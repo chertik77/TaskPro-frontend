@@ -2,7 +2,7 @@ import plugin from 'tailwindcss/plugin'
 
 const config = {
   darkMode: 'class',
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  content: ['./index.html', './app/**/*.{ts,tsx}'],
   theme: {
     fontFamily: {
       poppins: ['Poppins', 'sans-serif']
