@@ -1,7 +1,7 @@
-import { Button } from 'components/ui/Button'
+import { PasswordInput } from 'components/ui/PasswordInput'
 
 function App() {
-  return <Button variant='login'>Registration</Button>
+  return <PasswordInput />
 }
 
 export default App
