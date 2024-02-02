@@ -1,12 +1,12 @@
-import { ThemeProvider } from 'next-themes'
 import { Test } from 'components/ui/Test'
- 
+import { ThemeProvider } from 'next-themes'
+
 function App() {
   return (
     <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
-      <Test/>
+      <Test />
     </ThemeProvider>
   )
 }
- 
+
 export default App
