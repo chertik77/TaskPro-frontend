@@ -1,4 +1,5 @@
 import plugin from 'tailwindcss/plugin'
+import { createThemes } from 'tw-colors'
 
 const config = {
   darkMode: 'class',
@@ -113,7 +114,8 @@ const config = {
             transition: '250ms cubic-bezier(0.4, 0, 0.2, 1)'
           }
         })
-    })
+    }),
+    createThemes({ violet: {} })
   ]
 }
 
