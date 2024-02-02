@@ -1,5 +1,12 @@
+import { ThemeProvider } from 'next-themes'
+import { Test } from 'components/ui/Test'
+ 
 function App() {
-  return <p className='bg-sidebar text-white/50'>Hello, world!</p>
+  return (
+    <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+      <Test/>
+    </ThemeProvider>
+  )
 }
-
+ 
 export default App
