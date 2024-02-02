@@ -1,19 +1,12 @@
-import { Link, Outlet } from '@tanstack/react-router'
-import { ThemeChanger } from 'components/ui/ThemeChanger'
-
+import { ThemeProvider } from 'next-themes'
+import { Test } from 'components/ui/Test'
+ 
 function App() {
   return (
-    <>
-      <Link to='/' className='text-black'>
-        Home
-      </Link>
-      <Link to='/about' className='text-black'>
-        About
-      </Link>
-      <ThemeChanger />
-      <Outlet />
-    </>
+    <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+      <Test/>
+    </ThemeProvider>
   )
 }
-
+ 
 export default App
