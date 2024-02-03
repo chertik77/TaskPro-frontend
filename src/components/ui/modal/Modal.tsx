@@ -1,26 +1,14 @@
-import { type ReactNode } from 'react'
+import { cn } from 'lib/utils'
 import { Modal as Dialog } from 'react-responsive-modal'
 import 'react-responsive-modal/styles.css'
-
-type ModalProps = {
-  isModalOpen: boolean
-  onCloseModal: () => void
-  modalTitle:
-    | 'Edit profile'
-    | 'Edit board'
-    | 'Edit card'
-    | 'New board'
-    | 'Add card'
-    | 'Add column'
-    | 'Need Help'
-    | 'Edit column'
-  children: ReactNode
-}
+import type { ModalProps } from './modal-types'
+import { modalVariants } from './modal-variants'
 
 export const Modal = ({
   isModalOpen,
   children,
   onCloseModal,
+  size,
   modalTitle
 }: ModalProps) => (
   <Dialog
@@ -28,7 +16,7 @@ export const Modal = ({
     center
     onClose={onCloseModal}
     classNames={{
-      modal: 'm-0 shadow-none rounded-lg dark:bg-black p-6',
+      modal: `${cn(modalVariants({ size }))}`,
       closeIcon: 'dark:fill-white w-[18px] h-[18px]',
       overlay: 'backdrop-saturate-150 backdrop-blur-md'
     }}>
