@@ -12,7 +12,7 @@ type FormFields = {
 
 const LoginSchema = object({
   email: string([toTrimmed(), email('Please enter a valid email.')]),
-  password: string('password is required', [
+  password: string([
     toTrimmed(),
     minLength(8, 'Password should be at least 8 characters'),
     maxLength(64, 'Password is too long')
