@@ -22,3 +22,14 @@
   font-display: swap;
   src: local('Poppins'), url('fonts/PoppinsSemiBold.woff2') format('woff2');
 }
+
+.hide-password-toggle::-ms-reveal,
+.hide-password-toggle::-ms-clear {
+  visibility: hidden;
+  pointer-events: none;
+  display: none;
+}
+
+.icon-plus > * {
+  stroke: red;
+}
