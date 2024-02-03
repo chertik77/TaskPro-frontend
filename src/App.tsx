@@ -1,4 +1,4 @@
-import { Outlet } from '@tanstack/react-router'
+import { Link, Outlet } from '@tanstack/react-router'
 import { AuthPage } from 'pages/AuthPage'
 
 function App() {
@@ -6,6 +6,7 @@ function App() {
     <>
       <AuthPage />
       <Outlet />
+      <Link to='dashboard'>dasboard</Link>
     </>
   )
 }
