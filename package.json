@@ -14,7 +14,7 @@
     "@hookform/error-message": "^2.0.1",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-router": "^1.15.16",
-    "@tanstack/router": "^0.0.1-beta.53",
+    "alova": "^2.17.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.319.0",
