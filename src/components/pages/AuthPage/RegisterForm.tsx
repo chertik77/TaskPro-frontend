@@ -1,16 +1,16 @@
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Button } from 'components/ui/button/Button'
 import { useForm } from 'react-hook-form'
-import { valibotResolver } from '@hookform/resolvers/valibot'
+import { useSignupMutation } from 'redux/api/user'
 import {
-  object,
   custom,
-  string,
+  maxLength,
   minLength,
-  toTrimmed,
-  maxLength
+  object,
+  string,
+  toTrimmed
 } from 'valibot'
 import validator from 'validator'
-import { useSignupMutation } from 'redux/api/user'
 
 type FormFields = {
   name: string

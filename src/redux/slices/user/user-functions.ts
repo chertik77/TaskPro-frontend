@@ -7,7 +7,6 @@ export const signupFullfilled = (
 ) => {
   state.isLoggedIn = true
   state.user = action.payload.user
-  state.token = action.payload.token
 }
 
 export const currentPending = (state: InitialState) => {
