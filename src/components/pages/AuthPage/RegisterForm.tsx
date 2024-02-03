@@ -1,5 +1,5 @@
 import { Button } from 'components/ui/button/Button'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm, type SubmitHandler } from 'react-hook-form'
 
 type FormFields = {
   name: string
