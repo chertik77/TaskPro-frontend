@@ -1,9 +1,16 @@
 import { Button } from 'components/ui/button/Button'
 import { useForm } from 'react-hook-form'
 import { valibotResolver } from '@hookform/resolvers/valibot'
-import { object, email, string, minLength, toTrimmed, maxLength } from 'valibot'
-import { useRequest } from 'alova'
-import { signup } from 'api/methods/user'
+import {
+  object,
+  custom,
+  string,
+  minLength,
+  toTrimmed,
+  maxLength
+} from 'valibot'
+import validator from 'validator'
+import { useSignupMutation } from 'redux/api/user'
 
 type FormFields = {
   name: string
@@ -17,7 +24,10 @@ const RegisterSchema = object({
     minLength(2, 'Name should be at least 2 characters'),
     maxLength(32, 'Name is too long')
   ]),
-  email: string([toTrimmed(), email('Please enter a valid email.')]),
+  email: string([
+    toTrimmed(),
+    custom(validator.isEmail, 'Please enter a valid email.')
+  ]),
   password: string([
     toTrimmed(),
     minLength(8, 'Password should be at least 8 characters'),
@@ -26,20 +36,20 @@ const RegisterSchema = object({
 })
 
 export const RegisterForm = () => {
-  const { send } = useRequest(signup, { immediate: false })
+  const [signup] = useSignupMutation()
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isValid }
   } = useForm<FormFields>({
     resolver: valibotResolver(RegisterSchema),
     shouldUseNativeValidation: false
   })
 
-  const onSubmit = async (data: FormFields) => {
-    console.log(data)
-    send(data)
+  const onSubmit = (data: FormFields) => {
+    signup(data)
+    // console.log(data)
   }
 
   return (
@@ -62,7 +72,9 @@ export const RegisterForm = () => {
       {errors.password && (
         <div className='text-red-500'>{errors.password.message}</div>
       )}
-      <Button type='submit'>Regiter Now</Button>
+      <Button type='submit' disabled={!isValid}>
+        Regiter Now
+      </Button>
     </form>
   )
 }

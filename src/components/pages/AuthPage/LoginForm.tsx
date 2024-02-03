@@ -1,9 +1,17 @@
 import { useForm } from 'react-hook-form'
 import { Button } from 'components/ui/button/Button'
 import { valibotResolver } from '@hookform/resolvers/valibot'
-import { object, email, string, minLength, toTrimmed, maxLength } from 'valibot'
+import {
+  object,
+  custom,
+  string,
+  minLength,
+  toTrimmed,
+  maxLength
+} from 'valibot'
 import { useRequest } from 'alova'
 import { signin } from 'api/methods/user'
+import validator from 'validator'
 
 type FormFields = {
   email: string
@@ -11,7 +19,10 @@ type FormFields = {
 }
 
 const LoginSchema = object({
-  email: string([toTrimmed(), email('Please enter a valid email.')]),
+  email: string([
+    toTrimmed(),
+    custom(validator.isEmail, 'Please enter a valid email.')
+  ]),
   password: string([
     toTrimmed(),
     minLength(8, 'Password should be at least 8 characters'),
@@ -25,7 +36,7 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isValid }
   } = useForm<FormFields>({
     resolver: valibotResolver(LoginSchema),
     shouldUseNativeValidation: false
@@ -53,7 +64,9 @@ export const LoginForm = () => {
       {errors.password && (
         <div className='text-red-500'>{errors.password.message}</div>
       )}
-      <Button type='submit'>Log In Now</Button>
+      <Button type='submit' disabled={!isValid}>
+        Log In Now
+      </Button>
     </form>
   )
 }
