@@ -1,4 +1,5 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { ThemeProvider } from 'next-themes'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -8,6 +9,8 @@ const router = createRouter({ routeTree })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 )
