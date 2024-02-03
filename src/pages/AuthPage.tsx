@@ -1,3 +1,12 @@
+import { LoginForm } from 'components/pages/AuthPage/LoginForm'
+import { RegisterForm } from 'components/pages/AuthPage/RegisterForm'
+
 export const AuthPage = () => {
-  return <div>AuthPage</div>
+  return (
+    <div>
+      <p>AuthPage</p>
+      <RegisterForm />
+      <LoginForm />
+    </div>
+  )
 }
