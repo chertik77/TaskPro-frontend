@@ -9,9 +9,8 @@ import {
   toTrimmed,
   maxLength
 } from 'valibot'
-import { useRequest } from 'alova'
-import { signup } from 'api/methods/user'
 import validator from 'validator'
+import { useSignupMutation } from 'redux/api/user'
 
 type FormFields = {
   name: string
@@ -37,7 +36,7 @@ const RegisterSchema = object({
 })
 
 export const RegisterForm = () => {
-  const { send } = useRequest(signup, { immediate: false })
+  const [signup] = useSignupMutation()
 
   const {
     register,
@@ -48,9 +47,9 @@ export const RegisterForm = () => {
     shouldUseNativeValidation: false
   })
 
-  const onSubmit = async (data: FormFields) => {
-    console.log(data)
-    send(data)
+  const onSubmit = (data: FormFields) => {
+    signup(data)
+    // console.log(data)
   }
 
   return (
