@@ -4,7 +4,7 @@ import ReactHook from 'alova/react'
 
 export const alovaInstance = createAlova({
   statesHook: ReactHook,
-  baseURL: process.env.API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   requestAdapter: GlobalFetch(),
   cacheLogger: false,
   responded: {
