@@ -1,5 +1,5 @@
 import { Button } from 'components/ui/button/Button'
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 type FormFields = {
   name: string
@@ -10,7 +10,7 @@ type FormFields = {
 export const RegisterForm = () => {
   const { register, handleSubmit } = useForm<FormFields>()
 
-  const onSubmit: SubmitHandler<FormFields> = data => {
+  const onSubmit = (data: FormFields) => {
     console.log(data)
   }
 
