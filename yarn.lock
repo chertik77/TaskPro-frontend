@@ -939,6 +939,11 @@ ajv@^8.11.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+alova@^2.17.0:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/alova/-/alova-2.17.0.tgz#5affe36e84b5808d0ddc1c12bc7fb0b753caea6d"
+  integrity sha512-aWq0BDsXOVKTYphncy9eZqalZXBpRRnIUJJ2/UWa2APzjeasAxQvXSENbBxfb9Yc/KTbqvfSo9vD3M5TVqkSWQ==
+
 ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz"
