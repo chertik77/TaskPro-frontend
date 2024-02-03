@@ -2,6 +2,8 @@ import { Button } from 'components/ui/button/Button'
 import { useForm } from 'react-hook-form'
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { object, email, string, minLength, toTrimmed, maxLength } from 'valibot'
+import { useRequest } from 'alova'
+import { signup } from 'api/methods/user'
 
 type FormFields = {
   name: string
@@ -24,6 +26,8 @@ const RegisterSchema = object({
 })
 
 export const RegisterForm = () => {
+  const { send } = useRequest(signup, { immediate: false })
+
   const {
     register,
     handleSubmit,
@@ -33,8 +37,9 @@ export const RegisterForm = () => {
     shouldUseNativeValidation: false
   })
 
-  const onSubmit = (data: FormFields) => {
+  const onSubmit = async (data: FormFields) => {
     console.log(data)
+    send(data)
   }
 
   return (
