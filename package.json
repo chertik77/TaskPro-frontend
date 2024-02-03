@@ -14,6 +14,7 @@
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-router": "^1.15.16",
+    "@types/validator": "^13.11.8",
     "alova": "^2.17.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -24,7 +25,8 @@
     "react-icons": "^5.0.1",
     "react-responsive-modal": "^6.4.2",
     "tailwind-merge": "^2.2.1",
-    "valibot": "^0.27.1"
+    "valibot": "^0.27.1",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
