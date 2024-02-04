@@ -15,7 +15,7 @@ const config = {
     },
     backgroundImage: {
       'welcome-page-gradient':
-        'linear-gradient(180deg, rgba(196, 196, 196, 0.00) 25%, #BEDBB0 92.19%)'
+        'linear-gradient(180deg, #fff 25%, #BEDBB0 92.19%)'
     },
     extend: {
       screens: {

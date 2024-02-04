@@ -2,7 +2,7 @@ import { ButtonProps } from './button-types'
 
 export const Button = ({ isAddIcon, children, ...props }: ButtonProps) => (
   <button
-    className='rounded-lg bg-brand violet:bg-brand-secondary w-full h-[49px] text-black violet:text-white'
+    className='rounded-lg bg-brand violet:bg-brand-secondary w-full h-[49px] text-black violet:text-white disabled:opacity-50 disabled:cursor-not-allowed'
     {...props}>
     {isAddIcon ? (
       <div className='flex items-center justify-center gap-2'>
