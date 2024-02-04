@@ -32,6 +32,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
               placeholder={inputPasswordPlaceholder}
               className={cn(
                 'hide-password-toggle pr-[35px] rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-14-lh-1.28-fw-400 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
+                className,
                 {
                   'mb-[14px]': errors[inputName],
                   'mb-6': !errors[inputName]
