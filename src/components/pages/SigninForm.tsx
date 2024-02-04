@@ -32,7 +32,7 @@ export const SigninForm = () => {
         {...register('email')}
         placeholder='Enter your email'
         inputName='email'
-        className='mb-[14px]'
+        className='mb-[14px] text-white'
         errors={errors}
       />
       <Field
@@ -40,7 +40,7 @@ export const SigninForm = () => {
         isPasswordInput
         inputPasswordPlaceholder='Confirm a password'
         inputName='password'
-        className='mb-6'
+        className='mb-6 text-white'
         errors={errors}
       />
       <Button type='submit' disabled={!isValid}>

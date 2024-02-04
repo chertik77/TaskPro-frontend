@@ -32,14 +32,14 @@ export const SignupForm = () => {
         errors={errors}
         inputName='name'
         placeholder='Enter your name'
-        className='mb-[14px]'
+        className='mb-[14px] text-white'
         {...register('name')}
       />
       <Field
         errors={errors}
         inputName='email'
         placeholder='Enter your email'
-        className='mb-[14px]'
+        className='mb-[14px] text-white'
         {...register('email')}
       />
       <Field
