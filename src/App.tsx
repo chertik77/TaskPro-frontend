@@ -1,5 +1,14 @@
+import { Link, Outlet } from '@tanstack/react-router'
+import { AuthPage } from 'pages/AuthPage'
+
 function App() {
-  return <p className='bg-sidebar text-white/50'>Hello, world!</p>
+  return (
+    <>
+      <AuthPage />
+      <Outlet />
+      <Link to='dashboard'>dasboard</Link>
+    </>
+  )
 }
 
 export default App

@@ -1,30 +1,19 @@
+import { Link } from "@tanstack/react-router"
+import { Logo, Picture } from "components/pages/HomePage/Images"
+
 export const HomePage = () => {
   return (
-    // <Sidebar>
-    // <SidebarCreateBoardBtn></SidebarCreateBoardBtn>
-    // <SidebarBoardsList>
-    //   <SideBarBoardsItem></SideBarBoardsItem>
-    //     </SidebarBoardsList>
-    // <SidebarUserSupport></SidebarUserSupport>
-    //   <SidebarLogoutBtn></SidebarLogoutBtn>
-    // </Sidebar>
-    // <Header>
-    //   <HeaderThemeSelect></HeaderThemeSelect>
-    //   <HeaderUserInfo></HeaderUserInfo>
-    // </Header>
-    // <Filters/>
-    // <Board>
-    //   <BoardList>
-    //     <BoardItem>
-    //       <BoardHeadingList>
-    //         <BoardHeadingItem></BoardHeadingItem>
-    //       </BoardHeadingList>
-    //       <BoardTasksList>
-    //         <BoardTaskItem></BoardTaskItem>
-    //       </BoardTasksList>
-    //     </BoardItem>
-    //   </BoardList>
-    // </Board>
-    <div></div>
+    <div className='bg-welcome-page-gradient adaptive:px-5'>
+      <Picture />
+      <div className="flex gap-[14px] justify-center items-center pt-[14px] tablet:pt-[24px] desktop:pt-[24px]">
+        <Logo/>
+        <h1 className="text-fs-28-lh-normal-fw-600 tablet:text-fs-40-lh-normal-fw-600 desktop:text-fs-40-lh-normal-fw-600 text-black">Task Pro</h1>
+      </div>
+      <p className="text-fs-14-lh-1.28-fw-400 adaptive:w-full w-[335px] tablet:w-[473px] desktop:w-[473px] text-black pt-6 text-center mx-auto">Supercharge your productivity and take control of your tasks with Task Pro - Don't wait, start achieving your goals now!</p>
+      <ul className="pt-12 flex flex-col gap-[14px] justify-center items-center pb-[211px] tablet:pb-[293px] desktop:pb-[166px] ">
+        <li className="adaptive:w-full"><Link to='/signup' className="w-[335px] h-[49px] adaptive:w-full rounded-lg bg-black text-fs-14-lh-normal-fw-500 text-white text-center py-[14px] inline-block">Registration</Link> </li>
+        <li className="text-fs-14-lh-normal-fw-500 text-black"><Link to='/signin'>Log In</Link> </li>
+      </ul>
+    </div>
   )
 }

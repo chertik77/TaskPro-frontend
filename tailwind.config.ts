@@ -1,4 +1,5 @@
 import plugin from 'tailwindcss/plugin'
+import { createThemes } from 'tw-colors'
 
 const config = {
   darkMode: 'class',
@@ -12,12 +13,13 @@ const config = {
       padding: { DEFAULT: '20px', md: '32px', lg: '24px' },
       screens: { sm: '375px', md: '768px', lg: '1440px' }
     },
-    backGroundImage: {
+    backgroundImage: {
       'welcome-page-gradient':
         'linear-gradient(180deg, rgba(196, 196, 196, 0.00) 25%, #BEDBB0 92.19%)'
     },
     extend: {
       screens: {
+        adaptive: { max: '375px' },
         mobile: '375px',
         tablet: '768px',
         'max-tablet': { max: '768px' },
@@ -113,7 +115,8 @@ const config = {
             transition: '250ms cubic-bezier(0.4, 0, 0.2, 1)'
           }
         })
-    })
+    }),
+    createThemes({ violet: {} })
   ]
 }
 
