@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import avatarLight from '../../images/userAvatarLight.jpg';
-import avatarDark from '../../images/userAvatarDark.jpg';
 import MainModal from './MainModal';
 import { useSelector } from 'react-redux';
 import { HeaderThemeSelect } from './HeaderThemeSelect';
