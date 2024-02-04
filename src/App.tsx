@@ -1,16 +1,5 @@
-import { Link, Outlet } from '@tanstack/react-router'
-import { Button } from 'components/ui/button/Button'
-import { AuthPage } from 'pages/AuthPage'
+import { Outlet } from '@tanstack/react-router'
 
-function App() {
-  return (
-    <>
-      <Button isSmallIcon iconName='arrow' />
-      <AuthPage />
-      <Outlet />
-      <Link to='dashboard'>dasboard</Link>
-    </>
-  )
-}
+const App = () => <Outlet />
 
 export default App
