@@ -14,7 +14,7 @@ export const SigninForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate({ to: '/dashboard' })
+      navigate({ to: '/dashboard', replace: true })
       reset()
       handleSuccesToast(`Welcome back, ${data?.user.name}!`)
     }
