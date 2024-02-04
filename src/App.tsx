@@ -1,14 +1,13 @@
-import { Outlet } from '@tanstack/react-router'
-import { Button } from 'components/ui/button/Button'
+import { Link, Outlet } from '@tanstack/react-router'
 import { AuthPage } from 'pages/AuthPage'
 import { HomePage } from 'pages/HomePage'
 
 function App() {
   return (
     <>
-      <Button isAddIcon>Add</Button>
       <AuthPage />
       <Outlet />
+      <Link to='dashboard'>dasboard</Link>
     </>
   )
 }

@@ -1,5 +1,16 @@
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Button } from 'components/ui/button/Button'
 import { useForm } from 'react-hook-form'
+import { useSignupMutation } from 'redux/api/user'
+import {
+  custom,
+  maxLength,
+  minLength,
+  object,
+  string,
+  toTrimmed
+} from 'valibot'
+import validator from 'validator'
 
 type FormFields = {
   name: string
@@ -7,31 +18,63 @@ type FormFields = {
   password: string
 }
 
+const RegisterSchema = object({
+  name: string([
+    toTrimmed(),
+    minLength(2, 'Name should be at least 2 characters'),
+    maxLength(32, 'Name is too long')
+  ]),
+  email: string([
+    toTrimmed(),
+    custom(validator.isEmail, 'Please enter a valid email.')
+  ]),
+  password: string([
+    toTrimmed(),
+    minLength(8, 'Password should be at least 8 characters'),
+    maxLength(64, 'Password is too long')
+  ])
+})
+
 export const RegisterForm = () => {
-  const { register, handleSubmit } = useForm<FormFields>()
+  const [signup] = useSignupMutation()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid }
+  } = useForm<FormFields>({
+    resolver: valibotResolver(RegisterSchema),
+    shouldUseNativeValidation: false
+  })
 
   const onSubmit = (data: FormFields) => {
-    console.log(data)
+    signup(data)
+    // console.log(data)
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('name')} type='text' placeholder='Enter your name' />
+      {errors.name && <div className='text-red-500'>{errors.name.message}</div>}
       <input
-        {...register('name', { required: true })}
-        type='text'
-        placeholder='Enter your name'
-      />
-      <input
-        {...register('email', { required: true })}
+        {...register('email')}
         type='email'
         placeholder='Enter your email'
       />
+      {errors.email && (
+        <div className='text-red-500'>{errors.email.message}</div>
+      )}
       <input
-        {...register('password', { required: true })}
+        {...register('password')}
         type='password'
         placeholder='Create a password'
       />
-      <Button type='submit'>Regiter Now</Button>
+      {errors.password && (
+        <div className='text-red-500'>{errors.password.message}</div>
+      )}
+      <Button type='submit' disabled={!isValid}>
+        Regiter Now
+      </Button>
     </form>
   )
 }
