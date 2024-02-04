@@ -1,12 +1,10 @@
-import { alovaInstance } from 'api'
-import { API_ENDPOINTS } from 'config/api-endpoints'
-
 //TODO: Add proper type for data through valibot schema
-export const signup = (data: undefined) =>
-  alovaInstance.Post(API_ENDPOINTS.signup, data)
+// export const signup = (data: undefined) =>
+//   alovaInstance.Post(API_ENDPOINTS.signup, data)
 
-export const signin = (data: undefined) =>
-  alovaInstance.Post(API_ENDPOINTS.signin, data)
+import { alovaInstance } from 'api'
 
-export const current = (data: undefined) =>
-  alovaInstance.Post(API_ENDPOINTS.current, data)
+export const signin = (data: undefined) => alovaInstance.Post('signin', data)
+
+// export const current = (data: undefined) =>
+//   alovaInstance.Post(API_ENDPOINTS.current, data)

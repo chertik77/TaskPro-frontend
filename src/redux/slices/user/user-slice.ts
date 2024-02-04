@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { userApi } from 'redux/api/user'
 import {
   currentFullfilled,
@@ -20,8 +20,13 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addMatcher(userApi.endpoints.signup.matchFulfilled, signupFullfilled)
-      .addMatcher(userApi.endpoints.signin.matchFulfilled, signupFullfilled)
+      .addMatcher(
+        isAnyOf(
+          userApi.endpoints.signup.matchFulfilled,
+          userApi.endpoints.signin.matchFulfilled
+        ),
+        signupFullfilled
+      )
       .addMatcher(userApi.endpoints.current.matchPending, currentPending)
       .addMatcher(userApi.endpoints.current.matchFulfilled, currentFullfilled)
       .addMatcher(userApi.endpoints.current.matchRejected, currentRejected)
