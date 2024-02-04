@@ -8,7 +8,12 @@ import { Toaster } from 'sonner'
 import './index.css'
 import { routeTree } from './routeTree.gen'
 
-const router = createRouter({ routeTree })
+const router = createRouter({
+  routeTree,
+  basepath: import.meta.env.DEV
+    ? '/'
+    : 'https://final-project-frontend-theta.vercel.app'
+})
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
