@@ -1,22 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { RootState } from 'redux/store'
+import { mainApi } from '.'
 
-export const userApi = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_BASE_URL,
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).user.token
-      if (token) headers.set('authorization', `Bearer ${token}`)
-      return headers
-    }
-  }),
+export const userApi = mainApi.injectEndpoints({
   endpoints: ({ query, mutation }) => ({
     signup: mutation({
-      query: data => ({ url: 'auth/signup', method: 'POST', body: data })
+      query: body => ({ url: 'auth/signup', method: 'POST', body })
     }),
     signin: mutation({
-      query: data => ({ url: 'auth/signin', method: 'POST', body: data })
+      query: body => ({ url: 'auth/signin', method: 'POST', body })
     }),
     current: query({ query: () => 'auth/current' }),
     logout: mutation({
