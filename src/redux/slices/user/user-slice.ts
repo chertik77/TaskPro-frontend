@@ -12,7 +12,7 @@ import type { InitialState } from './user-types'
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: { name: null, email: null, password: null },
+    user: { name: null, email: null, password: null, theme: null },
     token: null,
     isLoggedIn: false,
     isRefreshing: false
