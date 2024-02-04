@@ -2,7 +2,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { Button } from 'components/ui/button/Button'
 import { Field } from 'components/ui/field/Field'
 import { useSigninForm } from 'hooks/useSigninForm'
-import { handleErrorToast, handleSuccesToast } from 'lib/promise-toast'
+import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
 
