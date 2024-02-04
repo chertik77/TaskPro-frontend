@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       screens: {
+        adaptive: { max: '375px' },
         mobile: '375px',
         tablet: '768px',
         'max-tablet': { max: '768px' },
