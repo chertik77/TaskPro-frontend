@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://final-project-frontend-theta.vercel.app",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
