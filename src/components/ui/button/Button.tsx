@@ -24,8 +24,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       className={`${
         isSmallIcon
-          ? 'text-[rgb(22, 22, 22)] opacity-50 hocus:text-brand-hover transition duration-300 ease-in-out violet:hocus:text-brand-secondary-hover'
-          : 'w-full h-[49px]rounded-lg bg-brand violet:bg-brand-secondary text-black violet:text-white'
+          ? 'text-black opacity-50 hocus:text-brand-hover transition duration-300 ease-in-out violet:hocus:text-brand-secondary-hover'
+          : 'w-full h-[49px] rounded-lg bg-brand violet:bg-brand-secondary text-black violet:text-white'
       }`}
       ref={ref}
       {...props}>
