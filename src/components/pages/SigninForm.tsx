@@ -7,7 +7,8 @@ import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
 
 export const SigninForm = () => {
-  const [signin, { isLoading, isSuccess, isError, data }] = useSigninMutation()
+  const [signin, { isLoading, isSuccess, isError, data, error }] =
+    useSigninMutation()
   const { handleSubmit, register, errors, isValid, reset } = useSigninForm()
   const navigate = useNavigate()
 
@@ -17,8 +18,12 @@ export const SigninForm = () => {
       reset()
       handleSuccesToast(`Welcome back, ${data?.user.name}!`)
     }
-    if (isError)
-      handleErrorToast('Something went wrong during login. Please try again.')
+    if (isError && error && 'status' in error)
+      handleErrorToast(
+        error?.status === 401
+          ? 'Invalid email or password. Please try again.'
+          : 'Something went wrong during login. Please try again.'
+      )
   }, [isError, isSuccess])
 
   return (
