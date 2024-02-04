@@ -13,7 +13,7 @@ const config = {
       padding: { DEFAULT: '20px', md: '32px', lg: '24px' },
       screens: { sm: '375px', md: '768px', lg: '1440px' }
     },
-    backGroundImage: {
+    backgroundImage: {
       'welcome-page-gradient':
         'linear-gradient(180deg, rgba(196, 196, 196, 0.00) 25%, #BEDBB0 92.19%)'
     },
