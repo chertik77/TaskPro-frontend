@@ -11,13 +11,13 @@ export const SidebarUserSupport = () => {
       alt="Need help icon"/>
                     </picture>
                     </div>
-          <p className=" text-sm font-normal">If you need help with
-              <span className="text-[#BEDBB0]">TaskPro</span>, check out our support resources or reach out to our customer support team.</p>
+          <p className=" text-sm font-normal">If you need help with 
+              <span className="text-[#BEDBB0]"> TaskPro</span>, check out our support resources or reach out to our customer support team.</p>
                 <div className="flex">
                     <a href="" >
                         <div >
                <svg  width="20" height="20">
-            <use href="assets/icons.svg#icon-logout-btn"></use>
+            <use href="assets/icons.svg#icon-help"></use>
                         </svg>
                         </div>
                     <p className=" font-medium">Need help?</p>

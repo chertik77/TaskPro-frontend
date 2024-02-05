@@ -8,7 +8,7 @@ export const SidebarCreateBoardBtn = () => {
         <div className="py-3.5 border-y  border-opacity-50 mb-10">
             <p className="inline-flex mr-[77px] w-[76px]  font-medium leading-normal tracking-tight">
                 Create a new board</p>
-<Button>+</Button>
+<Button >+</Button>
             </div>
         </div>
 }

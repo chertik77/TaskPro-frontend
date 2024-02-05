@@ -1,4 +1,3 @@
-import { useNavigate } from '@tanstack/react-router'
 import { Button, Field } from 'components/ui'
 import { useSignupForm } from 'hooks'
 import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
@@ -9,11 +8,9 @@ export const SignupForm = () => {
   const [signup, { isLoading, isError, isSuccess, data, error }] =
     useSignupMutation()
   const { handleSubmit, register, errors, isValid, reset } = useSignupForm()
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (isSuccess) {
-      navigate({ to: '/dashboard', replace: true })
       reset()
       handleSuccesToast(`Welcome, ${data?.user.name}!`)
     }

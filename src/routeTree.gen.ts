@@ -66,3 +66,4 @@ export const routeTree = rootRoute.addChildren([
   AuthSigninLazyRoute,
   AuthSignupLazyRoute,
 ])
+

@@ -3,8 +3,8 @@ export const SidebarLogoutBtn = () => {
    <a className="" href="" 
         aria-label="icon-logout-btn">
           <div className="">
-              <svg  width="32" height="32" className="stroke-current">
-            <use  href="/assets/icons.svg#icon-arrow-btn "></use>
+              <svg  width="32" height="32" >
+            <use  href="assets/icons.svg#icon-logout-btn"></use>
               </svg>
           </div>
                 <p className=" text-base font-medium ">Log out</p>
