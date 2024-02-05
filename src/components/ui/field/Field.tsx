@@ -31,7 +31,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
               type={showPassword ? 'text' : 'password'}
               placeholder={inputPasswordPlaceholder}
               className={cn(
-                'hide-password-toggle pr-[35px] rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-14-lh-1.28-fw-400 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
+                'hide-password-toggle pr-[35px] rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-16-lh-normal-fw-500 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
                 className,
                 {
                   'mb-[14px]': errors[inputName],
@@ -62,7 +62,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           <input
             type='text'
             className={cn(
-              'rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-14-lh-1.28-fw-400 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
+              'rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-16-lh-normal-fw-500 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
               className
             )}
             ref={ref}
