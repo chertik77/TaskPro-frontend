@@ -7,6 +7,5 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths(), TanStackRouterVite()],
   server: {
     port: 3000
-  },
-  base: 'https://final-project-frontend-theta.vercel.app/'
+  }
 })
