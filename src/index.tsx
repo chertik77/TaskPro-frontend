@@ -13,7 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
-          <BrowserRouter>
+          <BrowserRouter
+            basename={import.meta.env.DEV ? '/' : 'final-project-frontend'}>
             <App />
           </BrowserRouter>
         </ThemeProvider>
