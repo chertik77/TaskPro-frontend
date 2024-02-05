@@ -8,10 +8,7 @@ import { Toaster } from 'sonner'
 import './index.css'
 import { routeTree } from './routeTree.gen'
 
-const router = createRouter({
-  routeTree,
-  basepath: import.meta.env.DEV ? '/' : '/final-project-frontend'
-})
+const router = createRouter({ routeTree })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
