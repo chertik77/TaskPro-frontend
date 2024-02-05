@@ -1,0 +1,304 @@
+[
+  {
+    "id": "default",
+    "icon": {
+      "light": {
+        "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/jfq6ua5b75vcy7xuhre2.png",
+        "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/w5pgjvfyzydszymf5bq7.png"
+      },
+      "dark": {
+        "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/i0w5klem7h6al5ksakp0.png",
+        "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/xcjncr7bvaaiyaaplzmd.png"
+      },
+      "violet": {
+        "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102062/TaskPro/board_bg_images/bg_icons/eorlzlr8hcmfiaeai3dq.png",
+        "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/bg0kxjaptgtfvocla2ll.png"
+      }
+    }
+  },
+  {
+    "id": "flowers",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102068/TaskPro/board_bg_images/bg_icons/d4rhqdptzolbzjvocihc.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102072/TaskPro/board_bg_images/bg_icons/zo1j3damxlfm8zqtv13f.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099113/TaskPro/board_bg_images/mob/li0hec6xzppyuycx2od5.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/fzhexqksqqitd2hyua7u.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099152/TaskPro/board_bg_images/tabl/uxea6ntsz9b7p1aabkjq.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099153/TaskPro/board_bg_images/tabl/snbbebprr2ywdwzawfbr.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099092/TaskPro/board_bg_images/desk/sxsm0ldwi6rkmkpmjauv.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/nfxep55xgvpq7xitemq1.jpg"
+    }
+  },
+  {
+    "id": "mountains-night",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102067/TaskPro/board_bg_images/bg_icons/hvrxausocnds7rzb2pdc.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102072/TaskPro/board_bg_images/bg_icons/gmxf6pmw3yd0vwjydioo.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099113/TaskPro/board_bg_images/mob/y9ox3ppvkbhvbpdljczm.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099113/TaskPro/board_bg_images/mob/estvd5ta7wpaseajihiz.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099152/TaskPro/board_bg_images/tabl/arwu2omypmtbtgg4vhde.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099152/TaskPro/board_bg_images/tabl/q7wb4wjo36a0xdxbox34.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099092/TaskPro/board_bg_images/desk/zdtyhpf9r2ub0zd5vhqk.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/fvgiatkjobjaff8jmk73.jpg"
+    }
+  },
+  {
+    "id": "sakura",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102067/TaskPro/board_bg_images/bg_icons/sbylci0prfun3tw9bxut.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102071/TaskPro/board_bg_images/bg_icons/iwimf09wyi3xzmdnjblm.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/smzibut7fl6leshujurz.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/lts2cueup7pecu7lfdtu.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099153/TaskPro/board_bg_images/tabl/gzt0rsllrwckjmi9bg8u.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099153/TaskPro/board_bg_images/tabl/xjytrd5xj4sbqldi7pyh.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/gevm2folt4ivkwxdtgi5.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/rlqsujxtqtgem4cjttec.jpg"
+    }
+  },
+  {
+    "id": "night-sky",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102066/TaskPro/board_bg_images/bg_icons/paefw2hdgtfqatyp022e.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102070/TaskPro/board_bg_images/bg_icons/sxbheypxykwcbuqgnwln.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/nog5khfyia15gqiyobcr.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099113/TaskPro/board_bg_images/mob/sfrq2kfsbjwdkjidnlfy.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099151/TaskPro/board_bg_images/tabl/qmxwirh8kolhsqomrak8.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099152/TaskPro/board_bg_images/tabl/sldx6kux5ynxqd6vpfni.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099092/TaskPro/board_bg_images/desk/fftzhijeuukpmldr41ov.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/ufeq5m5kpdu3ekatkbbp.jpg"
+    }
+  },
+  {
+    "id": "tropics",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102065/TaskPro/board_bg_images/bg_icons/jvvdc8vyeiagj22k6ghi.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102070/TaskPro/board_bg_images/bg_icons/awedttxqu96dq8iiraca.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/ygaorfjituvxgaha1d1i.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/e4qlrznyrl2ojnh0re07.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099151/TaskPro/board_bg_images/tabl/wruduz2es0jx3zqtvyw0.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099151/TaskPro/board_bg_images/tabl/xgjtbiatwnhiljkpzb6h.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/dzjxktirz35zlbr1nls1.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/sk5voxsjigkckozgpspg.jpg"
+    }
+  },
+  {
+    "id": "light-sky",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102065/TaskPro/board_bg_images/bg_icons/agept7sxxtfj9pbltvv6.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102069/TaskPro/board_bg_images/bg_icons/vxi88qipqrelttyn6e7f.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/ob509gdcfp2cgtnfcw39.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/gsryicebltfdo3wuii0q.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099150/TaskPro/board_bg_images/tabl/y84bz146zactxs3pzkoc.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099151/TaskPro/board_bg_images/tabl/bwes0jci7wkdbdhaa2zn.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099092/TaskPro/board_bg_images/desk/pudbsv9csvgta9parcjm.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/jqddafdgy0urvtc5oncy.jpg"
+    }
+  },
+  {
+    "id": "sea-rocks",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102064/TaskPro/board_bg_images/bg_icons/gfym92ioi4uojocdakuk.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102069/TaskPro/board_bg_images/bg_icons/tkrw92llwrxi20rbekni.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/ct3uspi0s4lksrmsewgi.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/fb25jrawcck9cymbyym7.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099150/TaskPro/board_bg_images/tabl/vxswn265uq7k5ul7xvgv.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099150/TaskPro/board_bg_images/tabl/td3cpsd3ij1ivpmbupjc.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/pmrn1pvbcbrryptxqrhj.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/x4gmpw5gensxpllhrlcu.jpg"
+    }
+  },
+  {
+    "id": "blue-ball",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102064/TaskPro/board_bg_images/bg_icons/zucjfyi2pxkg9ed2rzun.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102068/TaskPro/board_bg_images/bg_icons/yz6nrj5khb3e2cteuwij.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099110/TaskPro/board_bg_images/mob/zgsn4xqhxkgvjpe4utjw.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099110/TaskPro/board_bg_images/mob/xhyobihqf4jidrc5chpv.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099149/TaskPro/board_bg_images/tabl/qdxl1q64lp7ulkzsnn7y.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099150/TaskPro/board_bg_images/tabl/kgo89vzzqvmrlc6tdaa6.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/wfy0bjq0nrwyu6iqhtmu.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/dtmqypo6r0v0nktpagku.jpg"
+    }
+  },
+  {
+    "id": "red-moon",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102067/TaskPro/board_bg_images/bg_icons/zs9qe9zluvmg6pgfjugc.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102072/TaskPro/board_bg_images/bg_icons/a1f6tdbpkqcsouzyhakv.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/rxgtypp8tuutkcjrk18v.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/qsadp7ohcb7mriexvck9.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099149/TaskPro/board_bg_images/tabl/umyxpjarqe1kqtjrsxvf.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099149/TaskPro/board_bg_images/tabl/ps4wphjmreuhxi2jx6yx.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/m6p9w5zwuijcajjc0c1x.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/q6ybwaw36b4sozcxkqv8.jpg"
+    }
+  },
+  {
+    "id": "sea-boat",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102067/TaskPro/board_bg_images/bg_icons/ruayp9udqdexni0lnrww.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102071/TaskPro/board_bg_images/bg_icons/xfs0eapdawysmahkput6.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/eqxbd3wascdoqcfccsjh.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/an8wpd6k1qb1ecml34mm.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099153/TaskPro/board_bg_images/tabl/eajebyionsoh09zq41lr.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099153/TaskPro/board_bg_images/tabl/g7wzlrpsbv9lmvg9sw2q.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/l10n3mpm1iblgkwi6kcp.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/liwskvsevrrnpidxhjvf.jpg"
+    }
+  },
+  {
+    "id": "air-balloons",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102066/TaskPro/board_bg_images/bg_icons/rwvu7qtvltnvgkv1z51x.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102071/TaskPro/board_bg_images/bg_icons/kf0yr6jhuzssrf9ywxb8.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/rwm8g4cgtznm25jjh80h.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099114/TaskPro/board_bg_images/mob/rpcqaisfdevupkru6h7w.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099154/TaskPro/board_bg_images/tabl/vcgdx9wpg2jrkcbjb3bh.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099154/TaskPro/board_bg_images/tabl/yd9yvxlfxub2gcmhyala.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099094/TaskPro/board_bg_images/desk/irvrc4656llwqkvgmnoo.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/wfkyahc04dnbj2fvu40t.jpg"
+    }
+  },
+  {
+    "id": "gorge",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102066/TaskPro/board_bg_images/bg_icons/tzpnffqqgtrghdynnim7.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102070/TaskPro/board_bg_images/bg_icons/ubpszzomifcx6ujhlsfg.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099113/TaskPro/board_bg_images/mob/e8rju3bn0jxkr0od1jvf.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099113/TaskPro/board_bg_images/mob/ryxxyubyaskrfdlrnn8w.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099152/TaskPro/board_bg_images/tabl/np3thl9g426q2kjew0dp.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099152/TaskPro/board_bg_images/tabl/cvqtlgnpcaiv8ydpqeb1.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/kq3lzvvgdxfglqcdphml.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/mtpc8fa6foucdz8wal5z.jpg"
+    }
+  },
+  {
+    "id": "sea-boat-2",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102065/TaskPro/board_bg_images/bg_icons/cpkwlvnslkpccy7avqjh.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102070/TaskPro/board_bg_images/bg_icons/cfbqk8kc9dj8tgvfgtvj.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/apaxszpwwdwtak5zgptz.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099112/TaskPro/board_bg_images/mob/h3dsu3uvets3wywq7m7j.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099151/TaskPro/board_bg_images/tabl/phd2o6jbi5suhbjbfcui.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099151/TaskPro/board_bg_images/tabl/ysiea2gmqr1u3gmuvc2f.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/ui0dcuvqqg8njf4q754v.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/ub8d3hgw3foieu0xrb5b.jpg"
+    }
+  },
+  {
+    "id": "air-balloons-2",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102065/TaskPro/board_bg_images/bg_icons/s09s7hltwkfau5okv26x.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102070/TaskPro/board_bg_images/bg_icons/z5sflekhjjmoptrpxene.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/j79gsvn04ouixm02tiks.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/zztmvld69as5tanjh1st.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099150/TaskPro/board_bg_images/tabl/drtg1dzux9vdz6b62ekf.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099150/TaskPro/board_bg_images/tabl/mfqhuwbpjtbxicciud7g.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/sahj7lkukrxvu8x3rv6w.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099095/TaskPro/board_bg_images/desk/cqh06h1b0se49uigusvm.jpg"
+    }
+  },
+  {
+    "id": "northern-lights",
+    "icon": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102064/TaskPro/board_bg_images/bg_icons/ussbxr6ybpm3lqgqxetp.png",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102068/TaskPro/board_bg_images/bg_icons/nqefoftmeqo6vzclle6q.png"
+    },
+    "mobile": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/k1zqbxbdtdvxnjwfxuxy.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099111/TaskPro/board_bg_images/mob/lksq6n6yjf7by6jo7esf.jpg"
+    },
+    "tablet": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099149/TaskPro/board_bg_images/tabl/p73mi8a0jh4slumb9eyz.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099149/TaskPro/board_bg_images/tabl/fj8x0x8djqthup57yhyw.jpg"
+    },
+    "desktop": {
+      "@1x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099096/TaskPro/board_bg_images/desk/kgiw6p0xcufqsnfxfabk.jpg",
+      "@2x": "https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099096/TaskPro/board_bg_images/desk/ln9qmsybum9dqfhlwmxy.jpg"
+    }
+  }
+]
