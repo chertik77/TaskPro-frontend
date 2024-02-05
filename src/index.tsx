@@ -3,12 +3,12 @@ import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { store, persistor } from 'redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from 'redux/store'
 import { Toaster } from 'sonner'
 import './index.css'
 import { routeTree } from './routeTree.gen'
-import { PersistGate } from 'redux-persist/integration/react'
-        
+
 const router = createRouter({ routeTree })
 
 declare module '@tanstack/react-router' {
