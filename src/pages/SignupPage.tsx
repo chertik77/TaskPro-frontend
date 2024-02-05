@@ -1,5 +1,4 @@
-import { AuthFormNavigation } from 'components/pages/AuthFormNavigation'
-import { SignupForm } from 'components/pages/SignupForm'
+import { AuthFormNavigation, SignupForm } from 'components/pages'
 
 export const SignupPage = () => (
   <div className='h-dvh flex items-center justify-center adaptive:px-5 bg-welcome-page-gradient'>
