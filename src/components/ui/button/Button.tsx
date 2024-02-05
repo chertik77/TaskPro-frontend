@@ -58,7 +58,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {children}
         </div>
       )}
-      {isSmallIcon && iconName && iconSmallComponents[iconName]} {children}
+      {isSmallIcon && iconName && iconSmallComponents[iconName] && (
+        <div className='flex items-center gap-2'>
+          {iconSmallComponents[iconName]}
+          {children}
+        </div>
+      )}
       {!isAddIcon && !isSmallIcon && children}
     </button>
   )
