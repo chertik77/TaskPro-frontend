@@ -4,17 +4,17 @@ import type { ButtonProps } from './button-types'
 const iconSmallComponents: Record<string, ReactNode> = {
   arrow: (
     <svg className='w-4 h-4 stroke-current'>
-      <use xlinkHref='/src/lib/svg-sprite/icons.svg#icon-arrow-btn' />
+      <use xlinkHref='/src/lib/icons/icons.svg#icon-arrow-btn' />
     </svg>
   ),
   pencil: (
     <svg className='w-4 h-4 stroke-current'>
-      <use xlinkHref='/src/lib/svg-sprite/icons.svg#icon-pencil-btn' />
+      <use xlinkHref='/src/lib/icons/icons.svg#icon-pencil-btn' />
     </svg>
   ),
   trash: (
     <svg className='w-4 h-4 stroke-current'>
-      <use xlinkHref='/src/lib/svg-sprite/icons.svg#icon-trash-btn' />
+      <use xlinkHref='/src/lib/icons/icons.svg#icon-trash-btn' />
     </svg>
   )
 }
@@ -24,8 +24,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       className={`${
         isSmallIcon
-          ? 'text-[rgb(22, 22, 22)] opacity-50 hocus:text-brand-hover transition duration-300 ease-in-out violet:hocus:text-brand-secondary-hover'
-          : 'w-full h-[49px]rounded-lg bg-brand violet:bg-brand-secondary text-black violet:text-white'
+          ? 'text-black opacity-50 hocus:text-brand-hover transition duration-300 ease-in-out violet:hocus:text-brand-secondary-hover'
+          : 'w-full h-[49px] rounded-lg bg-brand violet:bg-brand-secondary text-black violet:text-white'
       }`}
       ref={ref}
       {...props}>
