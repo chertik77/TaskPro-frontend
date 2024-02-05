@@ -3,8 +3,11 @@ import { store } from 'redux/store'
 
 export const Route = createFileRoute('/dashboard')({
   beforeLoad: () => {
-    if (!store.getState().user.user.email) {
-      throw redirect({ to: '/signin' })
+    if (
+      !store.getState().user.isLoggedIn &&
+      !store.getState().user.isRefreshing
+    ) {
+      throw redirect({ to: '/', replace: true })
     }
   },
   component: Dashboard

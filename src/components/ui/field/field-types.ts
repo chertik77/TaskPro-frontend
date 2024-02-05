@@ -1,5 +1,6 @@
 import type { VariantProps } from 'class-variance-authority'
 import type { InputHTMLAttributes } from 'react'
+import type { FieldErrors } from 'react-hook-form'
 import { textAreaVariants } from './field-variants'
 
 export type FieldProps = InputHTMLAttributes<HTMLInputElement> &
@@ -8,5 +9,5 @@ export type FieldProps = InputHTMLAttributes<HTMLInputElement> &
     isTextArea?: boolean
     isPasswordInput?: boolean
     inputPasswordPlaceholder?: string
-    errors?: {} //TODO: Add FieldErrors type instead of {} and remove optional parameters
+    errors: FieldErrors
   }

@@ -1,80 +1,78 @@
-import React, { useState } from 'react';
-import MainModal from './MainModal';
-import { useSelector } from 'react-redux';
-import { HeaderThemeSelect } from './HeaderThemeSelect';
+// import React, { useState } from 'react';
+// import MainModal from './MainModal';
+import { useSelector } from 'react-redux'
+// import { HeaderThemeSelect } from './HeaderThemeSelect'
 
-const selectUser = (state: { auth: { user: UserData } }) => state.auth.user;
+const selectUser = (state: { auth: { user: UserData } }) => state.auth.user
 
 interface UserData {
-  avatar: string;
-  login: string;
-  email: string;
-  theme: string;
+  avatar: string
+  login: string
+  email: string
+  theme: string
 }
 
 const Header: React.FC<{ click: () => void }> = ({ click }) => {
-  const user = useSelector(selectUser);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const theme = user.theme;
+  const user = useSelector(selectUser)
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const theme = user.theme
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
-  const currentUserData = {
-    avatar: user.avatar,
-    login: user.login,
-    email: user.email,
-  };
+  // const currentUserData = {
+  //   avatar: user.avatar,
+  //   login: user.login,
+  //   email: user.email,
+  // };
 
   return (
-    <div className="bg-background-paper">
-      <div className="p-4 md:p-8 lg:p-6">
+    <div className='bg-background-paper'>
+      <div className='p-4 md:p-8 lg:p-6'>
         <button
-          className="bg-transparent hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded"
-          onClick={click}
-        >
+          className='bg-transparent hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded'
+          onClick={click}>
           Open Drawer
         </button>
-        <div className="flex items-center space-x-4">
-          <HeaderThemeSelect />
-          <p className="text-text-primary">{user.login}</p>
+        <div className='flex items-center space-x-4'>
+          {/* <HeaderThemeSelect /> */}
+          <p className='text-text-primary'>{user.login}</p>
           <button
-            className="bg-transparent hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded"
-            onClick={openModal}
+            className='bg-transparent hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded'
+            // onClick={openModal}
           >
             Open Drawer
           </button>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className='flex items-center space-x-4'>
           {theme === 'dark' ? (
             <img
-              className="rounded-full"
-              src={currentUserData.avatar || avatarDark}
-              alt="Avatar"
+              className='rounded-full'
+              // src={currentUserData.avatar || avatarDark}
+              alt='Avatar'
             />
           ) : (
             <img
-              className="rounded-full"
-              src={currentUserData.avatar || avatarLight}
-              alt="Avatar"
+              className='rounded-full'
+              // src={currentUserData.avatar || avatarLight}
+              alt='Avatar'
             />
           )}
         </div>
-        <MainModal modalIsOpen={isModalOpen} closeModal={closeModal}>
-          {/* <ProfileEditModal user={currentUserData} modalClose={closeModal} /> */}
-        </MainModal>
+        {/* <MainModal modalIsOpen={isModalOpen} closeModal={closeModal}>
+          <ProfileEditModal user={currentUserData} modalClose={closeModal} />
+        </MainModal> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
-
+export default Header
 
 // import React, { useState } from 'react';
 // import { useSelector } from 'react-redux';
@@ -142,7 +140,6 @@ export default Header;
 // };
 
 // export default Header;
-
 
 // export const Header = () => {
 //   return <div>Header</div>
