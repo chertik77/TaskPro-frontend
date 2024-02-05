@@ -4,11 +4,11 @@ import { Svg } from './svg/Svg'
 import { Button } from 'components/ui/button/Button'
 import { useModal } from 'hooks/useModal'
 import { BackgroundContainer } from './BackgroundContainer'
-import { useForm } from 'react-hook-form'
+import { useBoard } from 'hooks/useBoard'
 
 export const EditBoardModal = () => {
   const { isModalOpen, toggleModal } = useModal()
-  const { formState: { errors }} = useForm()
+  const { register, errors } = useBoard()
 
   return (
     <Modal
@@ -16,7 +16,12 @@ export const EditBoardModal = () => {
       modalTitle='Edit board'
       isModalOpen={isModalOpen}
       onCloseModal={toggleModal}>
-      <Field inputName='Title' placeholder='Title' errors={ errors} />
+      <Field
+        {...register('title')}
+        inputName='title'
+        placeholder='Title'
+        errors={errors}
+      />
       <p className='mt-6'>Icons</p>
       <Svg />
       <p className='mt-6 '>Background</p>
