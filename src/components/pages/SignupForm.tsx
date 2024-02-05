@@ -45,6 +45,7 @@ export const SignupForm = () => {
       <Field
         errors={errors}
         inputName='password'
+        className='text-white'
         inputPasswordPlaceholder='Create a password'
         isPasswordInput
         {...register('password')}
