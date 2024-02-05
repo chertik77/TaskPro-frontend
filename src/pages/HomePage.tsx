@@ -1,6 +1,6 @@
-import { Link } from '@tanstack/react-router'
+import { Link } from 'react-router-dom'
 
-export const HomePage = () => (
+const HomePage = () => (
   <div className='h-dvh adaptive:px-5 flex justify-center items-center flex-col bg-welcome-page-gradient'>
     <picture>
       <source
@@ -39,3 +39,5 @@ export const HomePage = () => (
     </Link>
   </div>
 )
+
+export default HomePage
