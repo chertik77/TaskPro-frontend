@@ -14,7 +14,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
           <BrowserRouter
-            basename={import.meta.env.DEV ? '/' : '/final-project-frontend'}>
+            basename={
+              import.meta.env.DEV
+                ? '/'
+                : 'https://final-project-frontend-theta.vercel.app'
+            }>
             <App />
           </BrowserRouter>
         </ThemeProvider>

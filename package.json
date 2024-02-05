@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://chertik.github.io/final-project-frontend/",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
