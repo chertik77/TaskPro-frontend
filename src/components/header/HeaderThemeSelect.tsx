@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-// import sprite from 'sprite.svg';
+import { useState } from "react";
+import { useTheme } from 'next-themes';
+import { IoIosArrowDown } from "react-icons/io";
 
-const HeaderThemeSelect: React.FC = () => {
-  const [theme, setTheme] = useState<string>('light');
+export const HeaderThemeSelect = () => {
   const [list, setList] = useState<boolean>(false);
-
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-  }, [theme]);
+  const { theme, setTheme } = useTheme();
 
   const handleThemeChange = (newTheme: string): void => {
     setTheme(newTheme);
@@ -26,7 +23,7 @@ const HeaderThemeSelect: React.FC = () => {
       >
         Theme
         <svg className="fill-current stroke-current w-16 h-17">
-          <use href={`${"sprite"}#icon-chevron-down`} />
+          <IoIosArrowDown />
         </svg>
       </div>
       {list && (
@@ -60,16 +57,3 @@ const HeaderThemeSelect: React.FC = () => {
     </div>
   );
 };
-
-export default HeaderThemeSelect;
-
-
-
-
-
-
-// // export const HeaderThemeSelect = () => {
-// //   return <div>HeaderThemeSelect</div>
-// // }
-
-// // export default HeaderThemeSelect;
