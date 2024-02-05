@@ -28,7 +28,7 @@ export const Picture = () => (
 export const Logo = () => {
   return (
     <svg className='w-10 h-10 tablet:w-12 tablet:h-12 desktop:w-12 desktop:h-12'>
-      <use xlinkHref='/src/lib/icons/icons.svg#icon-logo' />
+      <use xlinkHref='/assets/icons.svg#icon-logo' />
     </svg>
   )
 }
