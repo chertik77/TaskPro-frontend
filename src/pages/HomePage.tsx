@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { Logo, Picture } from 'components/pages/HomePage/Images'
 
 export const HomePage = () => (
-  <div className='adaptive:px-5 h-screen flex justify-center items-center flex-col bg-welcome-page-gradient'>
+  <div className='w-screen h-screen adaptive:px-5 flex justify-center items-center flex-col bg-welcome-page-gradient'>
     <Picture />
     <div className='flex gap-[14px] items-center mt-6'>
       <Logo />
