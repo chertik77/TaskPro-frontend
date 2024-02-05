@@ -9,7 +9,8 @@ import './index.css'
 import { routeTree } from './routeTree.gen'
 
 const router = createRouter({
-  routeTree
+  routeTree,
+  basepath: import.meta.env.DEV ? '/' : '/final-project-frontend'
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
