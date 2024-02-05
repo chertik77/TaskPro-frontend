@@ -1,20 +1,20 @@
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef, type ReactNode } from 'react'
 import type { ButtonProps } from './button-types'
 
 const iconSmallComponents: Record<string, ReactNode> = {
   arrow: (
     <svg className='w-4 h-4 stroke-current'>
-      <use xlinkHref='/src/lib/icons/icons.svg#icon-arrow-btn' />
+      <use xlinkHref='/assets/icons.svg#icon-arrow-btn' />
     </svg>
   ),
   pencil: (
     <svg className='w-4 h-4 stroke-current'>
-      <use xlinkHref='/src/lib/icons/icons.svg#icon-pencil-btn' />
+      <use xlinkHref='/assets/icons.svg#icon-pencil-btn' />
     </svg>
   ),
   trash: (
     <svg className='w-4 h-4 stroke-current'>
-      <use xlinkHref='/src/lib/icons/icons.svg#icon-trash-btn' />
+      <use xlinkHref='/assets/icons.svg#icon-trash-btn' />
     </svg>
   )
 }
