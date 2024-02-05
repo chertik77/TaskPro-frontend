@@ -1,5 +1,8 @@
 import { valibotResolver } from '@hookform/resolvers/valibot'
-import { SigninSchemaFields, signinSchema } from 'lib/schemas/signin-schema'
+import {
+  signinSchema,
+  type SigninSchemaFields
+} from 'lib/schemas/signin-schema'
 import { useForm } from 'react-hook-form'
 import useFormPersist from 'react-hook-form-persist'
 

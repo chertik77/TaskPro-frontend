@@ -1,11 +1,10 @@
-import { AuthFormNavigation } from 'components/pages/AuthFormNavigation'
-import { SigninForm } from 'components/pages/SigninForm'
+import { AuthFormNavigation, AuthLayout, SigninForm } from 'components/pages'
 
-export const SigninPage = () => (
-  <div className='h-screen flex items-center justify-center adaptive:px-5 bg-welcome-page-gradient'>
-    <div className='rounded-lg bg-black w-[335px] p-6 tablet:w-[424px] tablet:p-10'>
-      <AuthFormNavigation />
-      <SigninForm />
-    </div>
-  </div>
+const SigninPage = () => (
+  <AuthLayout>
+    <AuthFormNavigation />
+    <SigninForm />
+  </AuthLayout>
 )
+
+export default SigninPage
