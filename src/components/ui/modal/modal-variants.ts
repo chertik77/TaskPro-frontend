@@ -5,13 +5,13 @@ export const modalVariants = cva(
   {
     variants: {
       size: {
-        sm: 'w-[335px]',
-        default: 'w-[350px]',
-        md: 'w-[400px]'
+        sm: 'w-[335px] tablet:w-[350px]',
+        md: 'w-[335px] tablet:w-[400px]'
       }
     },
     defaultVariants: {
-      size: 'default'
-    }
+      size: 'sm'
+    },
   }
+  
 )
