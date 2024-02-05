@@ -1,4 +1,4 @@
-import arr from '../../../lib/json/board-bg-images.json'
+import arr from 'lib/json/board-bg-images.json'
 export const BackgroundContainer = () => {
   return (
     <div className='flex flex-wrap gap-1 mt-[14px] mb-10 max-w-[280px]'>
