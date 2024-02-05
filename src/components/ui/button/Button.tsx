@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef, type ReactNode } from 'react'
 import type { ButtonProps } from './button-types'
 
 const iconSmallComponents: Record<string, ReactNode> = {

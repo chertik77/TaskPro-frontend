@@ -1,7 +1,5 @@
-import { useNavigate } from '@tanstack/react-router'
-import { Button } from 'components/ui/button/Button'
-import { Field } from 'components/ui/field/Field'
-import { useSigninForm } from 'hooks/useSigninForm'
+import { Button, Field } from 'components/ui'
+import { useSigninForm } from 'hooks'
 import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
@@ -10,11 +8,9 @@ export const SigninForm = () => {
   const [signin, { isLoading, isSuccess, isError, data, error }] =
     useSigninMutation()
   const { handleSubmit, register, errors, isValid, reset } = useSigninForm()
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (isSuccess) {
-      navigate({ to: '/dashboard', replace: true })
       reset()
       handleSuccesToast(`Welcome back, ${data?.user.name}!`)
     }

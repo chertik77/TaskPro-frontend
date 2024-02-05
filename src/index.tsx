@@ -1,28 +1,23 @@
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { App } from 'components/App'
 import { ThemeProvider } from 'next-themes'
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { store } from 'redux/store'
-import { Toaster } from 'sonner'
+import { BrowserRouter } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from 'redux/store'
 import './index.css'
-import { routeTree } from './routeTree.gen'
-
-const router = createRouter({ routeTree })
-
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
-}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store}>
-      <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
-        <RouterProvider router={router} />
-        <Toaster richColors position='top-right' />
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </StrictMode>
 )
