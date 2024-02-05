@@ -1,7 +1,10 @@
 import { dashboardApi } from './dashboard'
 
 const columnApi = dashboardApi.injectEndpoints({
-  endpoints: ({ mutation }) => ({
+  endpoints: ({ query, mutation }) => ({
+    getAllColumns: query({
+      query: boardName => `/dashboard/:${boardName}/columns`
+    }),
     addNewColumn: mutation({
       query: ({ boardName, body }) => ({
         url: `/dashboard/:${boardName}`,
@@ -26,6 +29,7 @@ const columnApi = dashboardApi.injectEndpoints({
 })
 
 export const {
+  useGetAllColumnsQuery,
   useAddNewColumnMutation,
   useEditColumnMutation,
   useDeleteColumnMutation
