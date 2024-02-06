@@ -7,7 +7,9 @@ export const AuthFormNavigation = () => (
       className='mr-[14px] text-white/30 aria-[current=page]:text-white'>
       Registration
     </Link>
-    <Link to='/auth/signin text-white/30 aria-[current=page]:text-white'>
+    <Link
+      to='/auth/signin'
+      className='text-white/30 aria-[current=page]:text-white'>
       Log In
     </Link>
   </div>

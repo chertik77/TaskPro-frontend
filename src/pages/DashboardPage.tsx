@@ -1,5 +1,7 @@
+import { Header } from 'components/header/Header'
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>
+  return <Header />
 }
 
 export default DashboardPage
