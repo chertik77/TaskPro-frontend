@@ -1,5 +1,5 @@
 import { Button, Field } from 'components/ui'
-import { useSigninForm, useFormValidCheck } from 'hooks'
+import { useIsFormValidOnReload, useSigninForm } from 'hooks'
 import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
@@ -9,7 +9,7 @@ export const SigninForm = () => {
     useSigninMutation()
   const { handleSubmit, register, errors, isValid, reset, trigger } =
     useSigninForm()
-  const validOnReload = useFormValidCheck(trigger)
+  const { isFormValidOnReload } = useIsFormValidOnReload(trigger)
 
   useEffect(() => {
     if (isSuccess) {
@@ -41,7 +41,7 @@ export const SigninForm = () => {
         className='mb-6 text-white'
         errors={errors}
       />
-      <Button type='submit' disabled={!isValid || !validOnReload}>
+      <Button type='submit' disabled={!isValid || !isFormValidOnReload}>
         {isLoading ? 'Loading...' : 'Log In Now'}
       </Button>
     </form>

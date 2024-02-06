@@ -26,5 +26,5 @@ export const useSignupForm = () => {
     storage: window.localStorage
   })
 
-  return { register, handleSubmit, errors, isValid, trigger, reset }
+  return { register, handleSubmit, errors, isValid, reset, trigger }
 }

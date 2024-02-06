@@ -26,5 +26,5 @@ export const useSigninForm = () => {
     storage: window.localStorage
   })
 
-  return { register, handleSubmit, errors, isValid, reset, trigger }
+  return { register, handleSubmit, errors, isValid, reset, watch, trigger }
 }
