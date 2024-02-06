@@ -1,21 +1,15 @@
+import { Button } from 'components/ui/button/Button'
 import { Field } from 'components/ui/field/Field'
 import { Modal } from 'components/ui/modal/Modal'
-import { Svg } from './svg/Svg'
-import { Button } from 'components/ui/button/Button'
-import { useModal } from 'hooks/useModal'
-import { BackgroundContainer } from './BackgroundContainer'
 import { useBoard } from 'hooks/useBoard'
+import { BackgroundContainer } from './BackgroundContainer'
+import { Svg } from './svg/Svg'
 
 export const EditBoardModal = () => {
-  const { isModalOpen, toggleModal } = useModal()
   const { register, errors } = useBoard()
 
   return (
-    <Modal
-      size='sm'
-      modalTitle='Edit board'
-      isModalOpen={isModalOpen}
-      onCloseModal={toggleModal}>
+    <Modal size='sm' modalTitle='Edit board'>
       <Field
         {...register('title')}
         inputName='title'
