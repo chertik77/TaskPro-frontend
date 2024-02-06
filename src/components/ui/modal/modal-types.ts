@@ -3,8 +3,6 @@ import type { ReactNode } from 'react'
 import { modalVariants } from './modal-variants'
 
 export type ModalProps = VariantProps<typeof modalVariants> & {
-  isModalOpen: boolean
-  onCloseModal: () => void
   modalTitle:
     | 'Edit profile'
     | 'Edit board'

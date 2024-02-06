@@ -1,7 +1,10 @@
 import { App } from 'components/App'
+import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
+import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
+import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -17,7 +20,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           themes={['light', 'dark', 'violet']}
           defaultTheme={store.getState().user.user.userTheme}>
           <BrowserRouter>
-            <App />
+            <ModalProvider
+              modals={[
+                ['edit-board-modal', EditBoardModal],
+                ['new-board-modal', NewBoardModal]
+              ]}>
+              <App />
+              <ModalRenderer Component={EditBoardModal} />
+              <ModalRenderer Component={NewBoardModal} />
+            </ModalProvider>
           </BrowserRouter>
         </ThemeProvider>
       </PersistGate>
