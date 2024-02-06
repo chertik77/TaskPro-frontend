@@ -12,7 +12,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+        <ThemeProvider
+          attribute='class'
+          themes={['light', 'dark', 'violet']}
+          defaultTheme={store.getState().user.user.userTheme}>
           <BrowserRouter>
             <App />
           </BrowserRouter>

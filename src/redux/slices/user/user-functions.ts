@@ -32,8 +32,8 @@ export const logoutFullfilled = (state: InitialState) => {
     name: null,
     email: null,
     password: null,
-    avatarURL: null,
-    userTheme: null
+    avatarURL: { url: '' },
+    userTheme: ''
   }
   state.isLoggedIn = false
   state.token = null
