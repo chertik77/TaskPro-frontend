@@ -1,6 +1,6 @@
 import { App } from 'components/App'
-import { EditBoardModal } from 'components/pages/DashboardPage/features/boardModal/EditBoardModal'
-import { NewBoardModal } from 'components/pages/DashboardPage/features/boardModal/NewBoardModal'
+import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
+import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
