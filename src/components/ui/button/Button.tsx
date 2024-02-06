@@ -18,7 +18,7 @@ const iconSmallComponents: Record<string, ReactNode> = {
     </svg>
   ),
   help: (
-    <svg className='size-4 stroke-current'>
+    <svg className='size-5  stroke-current '>
       <use xlinkHref='/assets/icons.svg#icon-help' />
     </svg>
   ),

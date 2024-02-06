@@ -10,7 +10,8 @@ export const SidebarCreateBoardBtn = () => {
         <p className='mr-[77px] inline-flex w-[76px]  font-medium leading-normal tracking-tight'>
           Create a new board
         </p>
-        <Button />
+        <Button isAddIcon={true}></Button>
+            {/* <Button isAddIcon ></Button>  */}
       </div>
     </div>
   )
