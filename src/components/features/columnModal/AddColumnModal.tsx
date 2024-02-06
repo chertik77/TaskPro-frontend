@@ -20,7 +20,7 @@ export const AddColumnModal = () => {
         className='mb-6'
       />
 
-      <Button isAddIcon={true} onClick={e => console.log(e)}>
+      <Button isAddIcon onClick={e => console.log(e)}>
         Add
       </Button>
     </Modal>
