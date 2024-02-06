@@ -1,6 +1,8 @@
 import { App } from 'components/App'
 import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
 import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
+import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
+import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -23,11 +25,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <ModalProvider
               modals={[
                 ['edit-board-modal', EditBoardModal],
-                ['new-board-modal', NewBoardModal]
+                ['new-board-modal', NewBoardModal],
+                ['add-column-modal', AddColumnModal],
+                ['edit-column-modal', EditColumnModal]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
               <ModalRenderer Component={NewBoardModal} />
+              <ModalRenderer Component={AddColumnModal} />
+              <ModalRenderer Component={EditColumnModal} />
             </ModalProvider>
           </BrowserRouter>
         </ThemeProvider>
