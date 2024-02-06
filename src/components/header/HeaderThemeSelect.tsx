@@ -1,59 +1,40 @@
-import { useState } from "react";
-import { useTheme } from 'next-themes';
-import { IoIosArrowDown } from "react-icons/io";
+import {
+  Content,
+  Icon,
+  Item,
+  ItemText,
+  Root,
+  Trigger,
+  Value
+} from '@radix-ui/react-select'
+import items from 'lib/json/theme-items.json'
+import { FaChevronDown } from 'react-icons/fa'
 
-export const HeaderThemeSelect = () => {
-  const [list, setList] = useState<boolean>(false);
-  const { theme, setTheme } = useTheme();
+const Select = Root
 
-  const handleThemeChange = (newTheme: string): void => {
-    setTheme(newTheme);
-    setList(false);
-  };
+const SelectTrigger = () => (
+  <Trigger className='flex items-center gap-1 bg-transparent focus:outline-none'>
+    <Value placeholder='Theme' />
+    <Icon>
+      <FaChevronDown />
+    </Icon>
+  </Trigger>
+)
 
-  const toggleList = (): void => {
-    setList(!list);
-  };
+const SelectContent = () => (
+  <Content
+    className='w-[100px] rounded-lg border border-brand bg-white-primary 
+    py-[18px] pl-[18px] pr-11 dark:bg-black-fourth violet:border-white-gray-secondary'
+    position='popper'>
+    {items.map(({ value, text }) => (
+      <Item
+        className='text-fs-14-lh-1.28-fw-400 text-black dark:text-white/30 outline-none cursor-pointer 
+        mb-1 data-[state=checked]:text-brand dark:data-[state=checked]:text-brand violet:data-[state=checked]:text-brand-secondary'
+        value={value}>
+        <ItemText>{text}</ItemText>
+      </Item>
+    ))}
+  </Content>
+)
 
-  return (
-    <div className="relative">
-      <div
-        className="flex items-center justify-between w-68 h-21 text-themeTitleTextColor text-14 font-semibold tracking-wide cursor-pointer transition-opacity hover:opacity-70"
-        onClick={toggleList}
-      >
-        Theme
-        <svg className="fill-current stroke-current w-16 h-17">
-          <IoIosArrowDown />
-        </svg>
-      </div>
-      {list && (
-        <ul className="absolute top-0 right-0 flex flex-col justify-between p-18 border-1 border-greenGreenBlueColor bg-themeListBgColor rounded-8 shadow-boxShadow w-100 h-107 font-semibold text-14">
-          <li
-            className={`cursor-pointer ${
-              theme === 'light' ? 'text-greenGreenBlueColor' : 'text-popupTextColor'
-            } transition-opacity hover:opacity-70`}
-            onClick={() => handleThemeChange('light')}
-          >
-            Light
-          </li>
-          <li
-            className={`cursor-pointer ${
-              theme === 'dark' ? 'text-greenGreenBlueColor' : 'text-popupTextColor'
-            } transition-opacity hover:opacity-70`}
-            onClick={() => handleThemeChange('dark')}
-          >
-            Dark
-          </li>
-          <li
-            className={`cursor-pointer ${
-              theme === 'violet' ? 'text-greenGreenBlueColor' : 'text-popupTextColor'
-            } transition-opacity hover:opacity-70`}
-            onClick={() => handleThemeChange('violet')}
-          >
-            Violet
-          </li>
-        </ul>
-      )}
-    </div>
-  );
-};
+export { Select, SelectContent, SelectTrigger }
