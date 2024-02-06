@@ -4,4 +4,5 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   isAddIcon?: boolean
   isSmallIcon?: boolean
   iconName?: string
+  disabled?: boolean
 }

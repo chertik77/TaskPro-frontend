@@ -1,3 +1,4 @@
+import { cn } from 'lib/utils'
 import { forwardRef, type ReactNode } from 'react'
 import type { ButtonProps } from './button-types'
 
@@ -32,11 +33,12 @@ const iconSmallComponents: Record<string, ReactNode> = {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ isAddIcon, isSmallIcon, children, iconName, ...props }, ref) => (
     <button
-      className={`${
+      className={cn(
+        'disabled:cursor-not-allowed disabled:opacity-50',
         isSmallIcon
           ? 'text-black opacity-50 transition duration-300 ease-in-out hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
           : 'h-[49px] w-full rounded-lg bg-brand text-black violet:bg-brand-secondary violet:text-white'
-      }`}
+      )}
       ref={ref}
       {...props}>
       {isAddIcon && !isSmallIcon && (
