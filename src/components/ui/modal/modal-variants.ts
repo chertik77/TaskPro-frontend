@@ -5,8 +5,8 @@ export const modalVariants = cva(
   {
     variants: {
       size: {
-        sm: 'w-[335px] tablet:w-[350px]',
-        md: 'w-[335px] tablet:w-[400px]'
+        sm: 'w-[335px] adaptive:w-11/12 tablet:w-[350px]',
+        md: 'w-[335px] adaptive:w-11/12 tablet:w-[400px]'
       }
     },
     defaultVariants: {
