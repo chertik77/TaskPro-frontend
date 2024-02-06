@@ -2,20 +2,17 @@ import { Layout } from 'components/Layout'
 import { PrivateRoute } from 'components/routes/PrivateRoute'
 import { RestrictedRoute } from 'components/routes/RestrictedRoute'
 import { useAppDispatch, useAuth } from 'hooks'
-import { lazy, useEffect } from 'react'
+import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
 
-const HomePage = lazy(() => import('pages/HomePage'))
-const SigninPage = lazy(() => import('pages/SigninPage'))
-const SignupPage = lazy(() => import('pages/SignupPage'))
-const DashboardPage = lazy(() => import('pages/DashboardPage'))
-
 export const App = () => {
   const dispatch = useAppDispatch()
-  const { isRefreshing } = useAuth()
+  const { isRefreshing, token } = useAuth()
 
   useEffect(() => {
+    if (token === null) return
     dispatch(userApi.endpoints.current.initiate(undefined))
   }, [dispatch])
 

@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const AuthFormNavigation = () => (
   <div className='mb-10 text-fs-18-lh-normal-fw-500'>
-    <Link
+    <NavLink
       to='/auth/signup'
       className='mr-[14px] text-white/30 aria-[current=page]:text-white'>
       Registration
-    </Link>
-    <Link
+    </NavLink>
+    <NavLink
       to='/auth/signin'
       className='text-white/30 aria-[current=page]:text-white'>
       Log In
-    </Link>
+    </NavLink>
   </div>
 )
