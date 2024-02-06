@@ -20,7 +20,7 @@ export const EditBoardModal = () => {
       <Svg />
       <p className='mt-6 '>Background</p>
       <BackgroundContainer />
-      <Button isAddIcon={true}>Create</Button>
+      <Button isAddIcon>Create</Button>
     </Modal>
   )
 }

@@ -19,7 +19,7 @@ export const NewBoardModal = () => {
       <Svg />
       <p className='mt-6 '>Background</p>
       <BackgroundContainer />
-      <Button isAddIcon={true} onClick={e => console.log(e)}>
+      <Button isAddIcon onClick={e => console.log(e)}>
         Create
       </Button>
     </Modal>
