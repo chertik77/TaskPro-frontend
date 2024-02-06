@@ -1,6 +1,6 @@
 export const SidebarLogoutBtn = () => {
-  return  <div className="flex items-end mt-6  gap-3.5 ">
-   <a className="" href="" 
+  return  <div className="flex items-end mt-6">
+   <a className="flex items-center gap-3.5 " href="" 
         aria-label="icon-logout-btn">
           <div className="">
               <svg  width="32" height="32" >
