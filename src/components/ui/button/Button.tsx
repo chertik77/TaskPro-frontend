@@ -30,14 +30,15 @@ const iconSmallComponents: Record<string, ReactNode> = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ isAddIcon, isSmallIcon, children, iconName, ...props }, ref) => (
+  ({ isAddIcon, isSmallIcon, children, iconName, disabled, ...props }, ref) => (
     <button
       className={`${
         isSmallIcon
           ? 'text-black opacity-50 transition duration-300 ease-in-out hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
           : 'h-[49px] w-full rounded-lg bg-brand text-black violet:bg-brand-secondary violet:text-white'
-      }`}
+      } ${disabled ? 'cursor-not-allowed bg-gray-300 text-gray-500' : ''}`}
       ref={ref}
+      disabled={disabled}
       {...props}>
       {isAddIcon && !isSmallIcon && (
         <div className='flex items-center justify-center gap-2'>

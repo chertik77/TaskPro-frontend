@@ -1,5 +1,5 @@
 import { Button, Field } from 'components/ui'
-import { useSignupForm } from 'hooks'
+import { useFormValidCheck, useSignupForm } from 'hooks'
 import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSignupMutation } from 'redux/api/user'
@@ -7,7 +7,9 @@ import { useSignupMutation } from 'redux/api/user'
 export const SignupForm = () => {
   const [signup, { isLoading, isError, isSuccess, data, error }] =
     useSignupMutation()
-  const { handleSubmit, register, errors, isValid, reset } = useSignupForm()
+  const { handleSubmit, register, errors, isValid, reset, trigger } =
+    useSignupForm()
+  const validOnReload = useFormValidCheck(trigger)
 
   useEffect(() => {
     if (isSuccess) {
@@ -46,7 +48,7 @@ export const SignupForm = () => {
         isPasswordInput
         {...register('password')}
       />
-      <Button type='submit' disabled={!isValid}>
+      <Button type='submit' disabled={!isValid || !validOnReload}>
         {isLoading ? 'Loading...' : 'Register Now'}
       </Button>
     </form>
