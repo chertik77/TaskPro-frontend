@@ -8,7 +8,7 @@
 </symbol>
 
  <symbol id="icon-menu" viewBox="0 0 32 32">
-  <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16h24M4 8h24M4 24h24"/>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16h24M4 8h24M4 24h24"/>
 </symbol>
 
      <symbol id="icon-filter" viewBox="0 0 16 16">

@@ -28,7 +28,21 @@ export const currentRejected = (state: InitialState) => {
 }
 
 export const logoutFullfilled = (state: InitialState) => {
-  state.user = { name: null, email: null }
+  state.user = {
+    name: null,
+    email: null,
+    password: null,
+    avatarURL: null,
+    userTheme: null
+  }
   state.isLoggedIn = false
   state.token = null
+}
+
+export const switchThemeFullfilled = (
+  state: InitialState,
+  action: PayloadAction<InitialState>
+) => {
+  state.user.userTheme = action.payload.user.userTheme
+  state.user.avatarURL = action.payload.user.avatarURL
 }

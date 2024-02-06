@@ -1,20 +1,13 @@
-import { useTheme } from 'next-themes'
 import { HeaderBurgerMenuBtn } from './HeaderBurgerMenuBtn'
-import { Select, SelectContent, SelectTrigger } from './HeaderThemeSelect'
-import HeaderUserInfo from './HeaderUserInfo'
+import { HeaderThemeSelect } from './HeaderThemeSelect'
+import { HeaderUserInfo } from './HeaderUserInfo'
 
-export const Header = () => {
-  const { setTheme } = useTheme()
-  return (
-    <header className='flex bg-white-primary py-[14px] dark:bg-black'>
-      <HeaderBurgerMenuBtn />
-      <div>
-        <Select onValueChange={setTheme}>
-          <SelectTrigger />
-          <SelectContent />
-        </Select>
-        <HeaderUserInfo />
-      </div>
-    </header>
-  )
-}
+export const Header = () => (
+  <header className='flex justify-between bg-white-primary px-5 py-[14px] dark:bg-black'>
+    <HeaderBurgerMenuBtn />
+    <div className='flex items-center gap-[14px]'>
+      <HeaderThemeSelect />
+      <HeaderUserInfo />
+    </div>
+  </header>
+)
