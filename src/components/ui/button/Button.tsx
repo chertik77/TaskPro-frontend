@@ -16,6 +16,16 @@ const iconSmallComponents: Record<string, ReactNode> = {
     <svg className='w-4 h-4 stroke-current'>
       <use xlinkHref='/assets/icons.svg#icon-trash-btn' />
     </svg>
+  ),
+  help: (
+    <svg className='w-5 h-5 stroke-current'>
+      <use xlinkHref='/assets/icons.svg#icon-help' />
+    </svg>
+  ),
+  logout: (
+    <svg className='w-8 h-8 stroke-brand'>
+      <use xlinkHref='/assets/icons.svg#icon-logout-btn' />
+    </svg>
   )
 }
 
@@ -48,7 +58,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {children}
         </div>
       )}
-      {isSmallIcon && iconName && iconSmallComponents[iconName]}
+      {isSmallIcon && iconName && iconSmallComponents[iconName] && (
+        <div className='flex items-center gap-2'>
+          {iconSmallComponents[iconName]}
+          {children}
+        </div>
+      )}
       {!isAddIcon && !isSmallIcon && children}
     </button>
   )
