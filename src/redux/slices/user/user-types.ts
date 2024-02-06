@@ -3,8 +3,8 @@ export type InitialState = {
     name: string | null
     email: string | null
     password: string | null
-    avatarURL: { url: string } | null
-    userTheme: string | null
+    avatarURL: { url: string }
+    userTheme: string
   }
   token: string | null
   isLoggedIn: boolean

@@ -18,8 +18,8 @@ const userSlice = createSlice({
       name: null,
       email: null,
       password: null,
-      avatarURL: null,
-      userTheme: null
+      avatarURL: { url: '' },
+      userTheme: 'dark'
     },
     token: null,
     isLoggedIn: false,
