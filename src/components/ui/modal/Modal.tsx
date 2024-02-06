@@ -20,7 +20,7 @@ export const Modal = ({
       closeIcon: 'dark:fill-white w-[18px] h-[18px]',
       overlay: 'backdrop-saturate-150 backdrop-blur-md'
     }}>
-    <h4 className='text-fs-18-lh-normal-fw-500 mb-6'>{modalTitle}</h4>
+    <h4 className='mb-6 text-fs-18-lh-normal-fw-500'>{modalTitle}</h4>
     {children}
   </Dialog>
 )

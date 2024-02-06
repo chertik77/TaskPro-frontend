@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 const HomePage = () => (
-  <div className='h-dvh adaptive:px-5 flex justify-center items-center flex-col bg-welcome-page-gradient'>
+  <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient adaptive:px-5'>
     <picture>
       <source
         media='(min-width: 768px)'
@@ -17,21 +17,21 @@ const HomePage = () => (
         loading='lazy'
       />
     </picture>
-    <div className='flex gap-[14px] items-center mt-6'>
-      <svg className='w-10 h-10 tablet:w-12 tablet:h-12'>
+    <div className='mt-6 flex items-center gap-[14px]'>
+      <svg className='size-10 tablet:size-12'>
         <use xlinkHref='/assets/icons.svg#icon-logo' />
       </svg>
-      <h1 className='text-fs-28-lh-normal-fw-600 tablet:text-fs-40-lh-normal-fw-600 text-black'>
+      <h1 className='text-fs-28-lh-normal-fw-600 text-black tablet:text-fs-40-lh-normal-fw-600'>
         Task Pro
       </h1>
     </div>
-    <p className='text-fs-14-lh-1.28-fw-400 w-[335px] tablet:w-[473px] text-black mt-6 text-center adaptive:w-full'>
+    <p className='mt-6 w-[335px] text-center text-fs-14-lh-1.28-fw-400 text-black adaptive:w-full tablet:w-[473px]'>
       Supercharge your productivity and take control of your tasks with Task Pro
       - Don't wait, start achieving your goals now!
     </p>
     <Link
       to='/auth/signup'
-      className='w-[335px] h-[49px] rounded-lg bg-black text-fs-14-lh-normal-fw-500 text-white text-center py-[14px] inline-block adaptive:w-full mt-12'>
+      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-[14px] text-center text-fs-14-lh-normal-fw-500 text-white adaptive:w-full'>
       Registration
     </Link>
     <Link to='/auth/signin' className='mt-[14px] text-black'>

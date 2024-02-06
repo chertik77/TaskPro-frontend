@@ -9,5 +9,6 @@
   "bracketSpacing": true,
   "bracketSameLine": true,
   "arrowParens": "avoid",
-  "proseWrap": "preserve"
+  "proseWrap": "preserve",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

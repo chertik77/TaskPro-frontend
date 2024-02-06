@@ -17,7 +17,7 @@ export const App = () => {
   }, [dispatch])
 
   return isRefreshing ? (
-    <div className='flex items-center justify-center h-dvh'>
+    <div className='flex h-dvh items-center justify-center'>
       {/* <Loader /> */}
     </div>
   ) : (

@@ -4,7 +4,7 @@ export const Svg = () => {
       onClick={e => {
         console.log(e.target)
       }}
-      className='flex gap-2 mt-[14px]'>
+      className='mt-[14px] flex gap-2'>
       <svg className=' opacity-50' width='18' height='18'>
         <use href='/public/assets/icons.svg#icon-project-1'></use>
       </svg>

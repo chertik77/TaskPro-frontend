@@ -6,7 +6,7 @@ import HeaderUserInfo from './HeaderUserInfo'
 export const Header = () => {
   const { setTheme } = useTheme()
   return (
-    <header className='py-[14px] flex bg-white-primary dark:bg-black'>
+    <header className='flex bg-white-primary py-[14px] dark:bg-black'>
       <HeaderBurgerMenuBtn />
       <div>
         <Select onValueChange={setTheme}>

@@ -31,7 +31,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
               type={showPassword ? 'text' : 'password'}
               placeholder={inputPasswordPlaceholder}
               className={cn(
-                'hide-password-toggle pr-[35px] rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-16-lh-normal-fw-500 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
+                'hide-password-toggle h-[49px] w-full rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] pr-[35px] text-fs-16-lh-normal-fw-500 text-black outline-none placeholder:opacity-40 autofill:bg-clip-text focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
                 className,
                 {
                   'mb-[14px]': errors[inputName],
@@ -46,15 +46,9 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
               className='absolute right-[18px] top-4'
               onClick={() => setShowPassword(prev => !prev)}>
               {showPassword ? (
-                <FiEyeOff
-                  className='h-[18px] w-[18px] opacity-40'
-                  stroke='white'
-                />
+                <FiEyeOff className='size-[18px] opacity-40' stroke='white' />
               ) : (
-                <FiEye
-                  className='h-[18px] w-[18px] opacity-40'
-                  stroke='white'
-                />
+                <FiEye className='size-[18px] opacity-40' stroke='white' />
               )}
             </button>
           </div>
@@ -62,7 +56,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           <input
             type='text'
             className={cn(
-              'rounded-lg border border-brand border-opacity-40 violet:border-brand-secondary bg-transparent px-[18px] text-black dark:text-white placeholder:opacity-40 text-fs-16-lh-normal-fw-500 outline-none focus:border-opacity-100 autofill:bg-clip-text h-[49px] w-full',
+              'h-[49px] w-full rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] text-fs-16-lh-normal-fw-500 text-black outline-none placeholder:opacity-40 autofill:bg-clip-text focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
               className
             )}
             ref={ref}

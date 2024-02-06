@@ -1,7 +1,7 @@
 import arr from 'lib/json/board-bg-images.json'
 export const BackgroundContainer = () => {
   return (
-    <div className='flex flex-wrap gap-1 mt-[14px] mb-10 max-w-[280px]'>
+    <div className='mb-10 mt-[14px] flex max-w-[280px] flex-wrap gap-1'>
       {arr.map((bg, i) => {
         return (
           <img
