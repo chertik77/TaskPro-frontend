@@ -1,7 +1,12 @@
 import { App } from 'components/App'
+import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
+import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
+import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
+import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
+import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -12,9 +17,24 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+        <ThemeProvider
+          attribute='class'
+          themes={['light', 'dark', 'violet']}
+          defaultTheme={store.getState().user.user.userTheme}>
           <BrowserRouter>
-            <App />
+            <ModalProvider
+              modals={[
+                ['edit-board-modal', EditBoardModal],
+                ['new-board-modal', NewBoardModal],
+                ['add-column-modal', AddColumnModal],
+                ['edit-column-modal', EditColumnModal]
+              ]}>
+              <App />
+              <ModalRenderer Component={EditBoardModal} />
+              <ModalRenderer Component={NewBoardModal} />
+              <ModalRenderer Component={AddColumnModal} />
+              <ModalRenderer Component={EditColumnModal} />
+            </ModalProvider>
           </BrowserRouter>
         </ThemeProvider>
       </PersistGate>
