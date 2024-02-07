@@ -5,6 +5,7 @@ import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModa
 import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
 import { AddCardModal } from 'components/pages/DashboardPage/modals/cardModal/addCardModal'
 import { EditCardModal } from 'components/pages/DashboardPage/modals/cardModal/editCardModal'
+import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfile/EditProfileModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -31,7 +32,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
                 ['add-card-modal', AddCardModal],
-                ['edit-card-modal', EditCardModal]
+                ['edit-card-modal', EditCardModal],
+                ['edit-profile-modal', EditProfileModal]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
@@ -40,6 +42,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={EditColumnModal} />
               <ModalRenderer Component={AddCardModal} />
               <ModalRenderer Component={EditCardModal} />
+              <ModalRenderer Component={EditProfileModal} />
             </ModalProvider>
           </BrowserRouter>
         </ThemeProvider>

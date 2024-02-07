@@ -1,8 +1,10 @@
+import { SideBarBoardsItem } from './SideBarBoardsItem'
+
 export const SidebarBoardsList = () => {
   return (
     <div className='mb-auto'>
       <ul className=''>
-        <li>Доска для примера</li>
+        <SideBarBoardsItem />
       </ul>
     </div>
   )

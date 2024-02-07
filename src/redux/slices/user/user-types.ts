@@ -2,7 +2,6 @@ export type InitialState = {
   user: {
     name: string | null
     email: string | null
-    password: string | null
     avatarURL: { url: string }
     userTheme: string
   }

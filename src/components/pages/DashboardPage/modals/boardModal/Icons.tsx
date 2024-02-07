@@ -13,10 +13,10 @@ export const Icons = ({ handleIconChange }: IconProps) => (
           onChange={handleIconChange}
           defaultChecked={id === 'icon-project-1'}
           type='radio'
-          className='peer absolute size-full opacity-0'
+          className='absolute size-full opacity-0'
           value={id}
         />
-        <svg className='size-[18px] opacity-50 peer-checked:stroke-black'>
+        <svg className='size-[18px] opacity-50'>
           <use xlinkHref={`/assets/icons.svg#${id}`}></use>
         </svg>
       </label>
