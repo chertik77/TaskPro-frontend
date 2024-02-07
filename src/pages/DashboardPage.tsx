@@ -1,13 +1,11 @@
-import { EditProfile } from 'components/features/EditProfile'
-import { Header } from 'components/header/Header'
-import { useModal } from 'hooks'
+import { Header } from 'components/pages/DashboardPage/header/Header'
+import { Sidebar } from 'components/pages/DashboardPage/sidebar/Sidebar'
 
 const DashboardPage = () => {
-  const { isModalOpen, toggleModal } = useModal()
   return (
     <>
       <Header />
-      <EditProfile isModalOpen={isModalOpen} toggleModal={toggleModal} />
+      <Sidebar />
     </>
   )
 }

@@ -7,13 +7,8 @@ import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useUserMutation } from 'redux/api/user'
 
-type EditProfileProps = {
-  isModalOpen: boolean
-  toggleModal: () => void
-}
-
-export const EditProfile = ({ isModalOpen, toggleModal }: EditProfileProps) => {
-  const { name, email, password, avatarURL } = useSelector(selectUser)
+export const EditProfileModal = () => {
+  const { name, email, avatarURL } = useSelector(selectUser)
   const [user, { isLoading, isError, isSuccess, data, error }] =
     useUserMutation()
   const { handleSubmit, register, errors, isValid, reset } = useSignupForm()
@@ -34,11 +29,7 @@ export const EditProfile = ({ isModalOpen, toggleModal }: EditProfileProps) => {
   }, [isError, isSuccess])
 
   return (
-    <Modal
-      modalTitle='Edit profile'
-      size='sm'
-      isModalOpen={isModalOpen}
-      onCloseModal={toggleModal}>
+    <Modal modalTitle='Edit profile' size='sm'>
       <div
         style={{ backgroundImage: `url(${avatarURL?.url})` }}
         className='relative mx-auto mb-[25px] size-[68px] rounded-lg bg-cover bg-center'>
@@ -50,7 +41,7 @@ export const EditProfile = ({ isModalOpen, toggleModal }: EditProfileProps) => {
         <Field
           errors={errors}
           inputName='name'
-          value={data?.name || name}
+          value={name || ''}
           placeholder='Enter your name'
           className='mb-[14px]'
           {...register('name')}
@@ -66,7 +57,6 @@ export const EditProfile = ({ isModalOpen, toggleModal }: EditProfileProps) => {
         <Field
           errors={errors}
           inputName='password'
-          value={password || ''}
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
           {...register('password')}
