@@ -16,8 +16,8 @@ export const useSignupForm = () => {
     trigger,
     formState: { errors, isValid }
   } = useForm<SignupSchemaFields>({
-    resolver: valibotResolver(signupSchema),
-    mode: 'onChange'
+    resolver: valibotResolver(signupSchema, { abortEarly: true }),
+    mode: 'onBlur'
   })
 
   useFormPersist('sign-up-form', {

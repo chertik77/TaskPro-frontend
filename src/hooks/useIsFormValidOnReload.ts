@@ -12,7 +12,7 @@ export const useIsFormValidOnReload = <T extends FieldValues>(
         setIsFormValidOnReload(true)
       }
     })
-  }, [trigger])
+  }, [])
 
   return { isFormValidOnReload }
 }

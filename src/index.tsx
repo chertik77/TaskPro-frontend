@@ -1,11 +1,12 @@
 import { App } from 'components/App'
+import { ThemeProviderContainer } from 'components/ThemeProviderContainer'
+import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfile/EditProfileModal'
 import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
 import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
 import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
 import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
 import { AddCardModal } from 'components/pages/DashboardPage/modals/cardModal/addCardModal'
 import { EditCardModal } from 'components/pages/DashboardPage/modals/cardModal/editCardModal'
-import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfile/EditProfileModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -20,10 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider
-          attribute='class'
-          themes={['light', 'dark', 'violet']}
-          defaultTheme={store.getState().user.user.userTheme}>
+        <ThemeProviderContainer>
           <BrowserRouter>
             <ModalProvider
               modals={[
@@ -45,7 +43,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={EditProfileModal} />
             </ModalProvider>
           </BrowserRouter>
-        </ThemeProvider>
+        </ThemeProviderContainer>
       </PersistGate>
     </Provider>
   </StrictMode>
