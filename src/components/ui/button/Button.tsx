@@ -1,32 +1,22 @@
 import { cn } from 'lib/utils'
-import { forwardRef, type ReactNode } from 'react'
+import { forwardRef } from 'react'
 import type { ButtonProps } from './button-types'
 
-const iconSmallComponents: Record<string, ReactNode> = {
-  arrow: (
-    <svg className='size-4 stroke-current'>
-      <use xlinkHref='/assets/icons.svg#icon-arrow-btn' />
-    </svg>
-  ),
-  pencil: (
-    <svg className='size-4 stroke-current'>
-      <use xlinkHref='/assets/icons.svg#icon-pencil-btn' />
-    </svg>
-  ),
-  trash: (
-    <svg className='size-4 stroke-current'>
-      <use xlinkHref='/assets/icons.svg#icon-trash-btn' />
-    </svg>
-  ),
-  help: (
-    <svg className='size-5  stroke-current '>
-      <use xlinkHref='/assets/icons.svg#icon-help' />
-    </svg>
-  ),
-  logout: (
-    <svg className='size-8 stroke-brand'>
-      <use xlinkHref='/assets/icons.svg#icon-logout-btn' />
-    </svg>
+const createIcon = (iconName: string, className: string) => (
+  <svg className={className}>
+    <use xlinkHref={`/assets/icons.svg#icon-${iconName}`} />
+  </svg>
+)
+
+const iconComponents: Record<string, JSX.Element> = {
+  arrow: createIcon('arrow-btn', 'size-4 stroke-current'),
+  pencil: createIcon('pencil-btn', 'size-4 stroke-current'),
+  trash: createIcon('trash-btn', 'size-4 stroke-current'),
+  help: createIcon('help', 'size-5 stroke-current'),
+  logout: createIcon('logout-btn', 'size-8 stroke-brand'),
+  plus: createIcon(
+    'plus',
+    'size-7 fill-black violet:fill-white violet:stroke-brand-secondary'
   )
 }
 
@@ -34,35 +24,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ isAddIcon, isSmallIcon, children, iconName, ...props }, ref) => (
     <button
       className={cn(
-        'disabled:cursor-not-allowed disabled:opacity-50',
+        'transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
         isSmallIcon
-          ? 'text-black opacity-50 transition duration-300 ease-in-out hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
-          : 'h-[49px] w-full rounded-lg bg-brand text-black violet:bg-brand-secondary violet:text-white'
+          ? 'text-black opacity-50 hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
+          : 'h-[49px] w-full rounded-lg bg-brand text-black  hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white'
       )}
       ref={ref}
       {...props}>
-      {isAddIcon && !isSmallIcon && (
+      {isAddIcon && !isSmallIcon && iconName && (
         <div className='flex items-center justify-center gap-2'>
-          <svg
-            width='28'
-            height='28'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-            className='fill-black violet:fill-white'>
-            <path d='M22 0H6a6 6 0 0 0-6 6v16a6 6 0 0 0 6 6h16a6 6 0 0 0 6-6V6a6 6 0 0 0-6-6Z' />
-            <path
-              d='M14 9.917v8.166M9.916 14h8.167'
-              className='stroke-white violet:stroke-brand-secondary'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+          {iconComponents[iconName]}
           {children}
         </div>
       )}
-      {isSmallIcon && iconName && iconSmallComponents[iconName] && (
+      {isSmallIcon && iconName && iconComponents[iconName] && (
         <div className='flex items-center gap-2'>
-          {iconSmallComponents[iconName]}
+          {iconComponents[iconName]}
           {children}
         </div>
       )}

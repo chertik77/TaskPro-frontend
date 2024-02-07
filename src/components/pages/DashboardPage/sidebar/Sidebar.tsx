@@ -6,11 +6,11 @@ import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => {
   return (
-    <div className='hidden xl:block fixed top-0 left-0 h-full z-50' >
+    <div className='fixed left-0 top-0 z-50 hidden h-full xl:block' >
     <div
       className='flex h-screen w-56 flex-grow
-    flex-col p-3.5  md:w-[260px] md:p-6 violet:bg-[#5255BC]
-        dark:bg-[#121212] bg-white'>
+    flex-col bg-white  p-3.5 violet:bg-[#5255BC] dark:bg-[#121212]
+        md:w-[260px] md:p-6'>
       <SideBarBoardsItem />
       <SidebarCreateBoardBtn />
       <SidebarBoardsList />

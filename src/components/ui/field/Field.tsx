@@ -3,7 +3,6 @@ import { cn } from 'lib/utils'
 import { forwardRef, useState } from 'react'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import type { FieldProps } from './field-types'
-import { textAreaVariants } from './field-variants'
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
   (
@@ -11,8 +10,6 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
       className,
       inputName,
       isPasswordInput,
-      isTextArea,
-      size,
       inputPasswordPlaceholder,
       errors,
       ...props
@@ -23,9 +20,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
 
     return (
       <>
-        {isTextArea ? (
-          <textarea className={cn(textAreaVariants({ size }))} />
-        ) : isPasswordInput ? (
+        {isPasswordInput ? (
           <div className='relative'>
             <input
               type={showPassword ? 'text' : 'password'}
