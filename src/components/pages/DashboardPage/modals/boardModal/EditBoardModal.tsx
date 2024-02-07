@@ -3,7 +3,7 @@ import { Field } from 'components/ui/field/Field'
 import { Modal } from 'components/ui/modal/Modal'
 import { useBoard } from 'hooks/useBoard'
 import { BackgroundContainer } from './BackgroundContainer'
-import { Svg } from './svg/Svg'
+import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
   const { register, errors } = useBoard()
@@ -17,7 +17,7 @@ export const EditBoardModal = () => {
         errors={errors}
       />
       <p className='mt-6'>Icons</p>
-      <Svg />
+      <Icons />
       <p className='mt-6 '>Background</p>
       <BackgroundContainer />
       <Button isAddIcon>Create</Button>
