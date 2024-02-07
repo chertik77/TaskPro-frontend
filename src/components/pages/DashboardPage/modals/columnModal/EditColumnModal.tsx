@@ -19,3 +19,5 @@ export const EditColumnModal = () => {
     </Modal>
   )
 }
+
+export default EditColumnModal

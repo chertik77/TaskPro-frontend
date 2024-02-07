@@ -1,7 +1,7 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useBoard } from 'hooks/useBoard'
 
-export const AddColumnModal = () => {
+const AddColumnModal = () => {
   const { register, errors } = useBoard()
 
   return (
@@ -19,3 +19,5 @@ export const AddColumnModal = () => {
     </Modal>
   )
 }
+
+export default AddColumnModal

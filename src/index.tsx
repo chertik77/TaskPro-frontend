@@ -1,11 +1,6 @@
 import { App } from 'components/App'
 import { ThemeProviderContainer } from 'components/ThemeProviderContainer'
-import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfile/EditProfileModal'
-import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
-import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
-import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
-import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
-import { StrictMode } from 'react'
+import { StrictMode, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
@@ -13,6 +8,26 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from 'redux/store'
 import './index.css'
+
+const EditProfileModal = lazy(
+  () =>
+    import('components/pages/DashboardPage/modals/EditProfile/EditProfileModal')
+)
+const EditBoardModal = lazy(
+  () =>
+    import('components/pages/DashboardPage/modals/boardModal/EditBoardModal')
+)
+const NewBoardModal = lazy(
+  () => import('components/pages/DashboardPage/modals/boardModal/NewBoardModal')
+)
+const AddColumnModal = lazy(
+  () =>
+    import('components/pages/DashboardPage/modals/columnModal/AddColumnModal')
+)
+const EditColumnModal = lazy(
+  () =>
+    import('components/pages/DashboardPage/modals/columnModal/EditColumnModal')
+)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
