@@ -29,15 +29,23 @@ export const AddCardModal = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Field
           errors={errors}
+          className='mb-[14px]'
           inputName='title'
           type='text'
           placeholder='Title'
           {...register('title')}
         />
-        <textarea placeholder='Description' {...register('description')} />
-        <p>Label color</p>
+        <textarea
+          placeholder='Description'
+          {...register('description')}
+          className='mb-[24px] h-[154px] w-full rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+        />
+        <p className='mb-[4px] text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
+          Label color
+        </p>
         <div className='flex'>
           <Field
+            className='accent-white'
             errors={errors}
             inputName='priority'
             {...register('priority')}

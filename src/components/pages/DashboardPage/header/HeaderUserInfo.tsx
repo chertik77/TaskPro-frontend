@@ -4,12 +4,7 @@ import { useModal } from 'react-modal-state'
 
 export const HeaderUserInfo = () => {
   const { name, avatarURL } = useSelector(selectUser)
-  const { open } = useModal('add-card-modal')
   const { open } = useModal('edit-profile-modal')
-
-  return (
-    <div className='flex items-center gap-2'>
-      <button onClick={open}>test</button>
 
   return (
     <button type='button' onClick={open} className='flex items-center gap-2'>
