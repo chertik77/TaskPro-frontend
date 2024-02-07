@@ -2,7 +2,7 @@ import icons from 'lib/json/board-icons.json'
 import type { ChangeEventHandler } from 'react'
 
 type IconProps = {
-  handleIconChange: ChangeEventHandler<HTMLInputElement>
+  handleIconChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export const Icons = ({ handleIconChange }: IconProps) => (
