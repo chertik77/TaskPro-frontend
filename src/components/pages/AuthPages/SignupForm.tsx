@@ -1,6 +1,6 @@
 import { Button, Field } from 'components/ui'
 import { useIsFormValidOnReload, useSignupForm } from 'hooks'
-import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSignupMutation } from 'redux/api/user'
 
@@ -14,7 +14,7 @@ export const SignupForm = () => {
   useEffect(() => {
     if (isSuccess) {
       reset()
-      handleSuccesToast(`Welcome, ${data?.user.name}!`)
+      handleSuccessToast(`Welcome, ${data?.user.name}!`)
     }
     if (isError && error && 'status' in error)
       handleErrorToast(
