@@ -3,6 +3,8 @@ import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal
 import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
 import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
 import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
+import { AddCardModal } from 'components/pages/DashboardPage/modals/cardModal/addCardModal'
+import { EditCardModal } from 'components/pages/DashboardPage/modals/cardModal/editCardModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -27,13 +29,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['edit-board-modal', EditBoardModal],
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
-                ['edit-column-modal', EditColumnModal]
+                ['edit-column-modal', EditColumnModal],
+                ['add-card-modal', AddCardModal],
+                ['edit-card-modal', EditCardModal]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
               <ModalRenderer Component={NewBoardModal} />
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
+              <ModalRenderer Component={AddCardModal} />
+              <ModalRenderer Component={EditCardModal} />
             </ModalProvider>
           </BrowserRouter>
         </ThemeProvider>
