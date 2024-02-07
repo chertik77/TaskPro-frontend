@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { selectUser } from 'redux/slices/user/user-slice'
 import { Button, Field } from 'components/ui'
 import { useSignupForm } from 'hooks'
-import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useUserMutation } from 'redux/api/user'
 
@@ -16,7 +16,7 @@ export const EditProfileModal = () => {
   useEffect(() => {
     if (isSuccess) {
       reset()
-      handleSuccesToast(
+      handleSuccessToast(
         `Welcome, ${data?.user.name}! Data changed successfully`
       )
     }
