@@ -12,7 +12,7 @@ const iconComponents: Record<string, JSX.Element> = {
   arrow: createIcon('arrow-btn', 'size-4 stroke-current'),
   pencil: createIcon('pencil-btn', 'size-4 stroke-current'),
   trash: createIcon('trash-btn', 'size-4 stroke-current'),
-  help: createIcon('help', 'size-4 stroke-current'),
+  help: createIcon('help', 'size-5 stroke-current'),
   logout: createIcon('logout-btn', 'size-8 stroke-brand'),
   plus: createIcon(
     'plus',

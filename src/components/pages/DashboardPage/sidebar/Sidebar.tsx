@@ -6,14 +6,17 @@ import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => {
   return (
+    <div className='fixed left-0 top-0 z-50 hidden h-full xl:block' >
     <div
       className='flex h-screen w-56 flex-grow
-    flex-col p-3.5  md:w-[260px] md:p-6'>
+    flex-col bg-white  p-3.5 violet:bg-[#5255BC] dark:bg-[#121212]
+        md:w-[260px] md:p-6'>
       <SideBarBoardsItem />
       <SidebarCreateBoardBtn />
       <SidebarBoardsList />
       <SidebarUserSupport />
       <SidebarLogoutBtn />
+      </div>
     </div>
   )
 }
