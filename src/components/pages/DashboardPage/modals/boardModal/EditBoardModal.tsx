@@ -5,7 +5,7 @@ import { useBoard } from 'hooks/useBoard'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
-const EditBoardModal = () => {
+export const EditBoardModal = () => {
   const { register, errors } = useBoard()
 
   return (
@@ -24,5 +24,3 @@ const EditBoardModal = () => {
     </Modal>
   )
 }
-
-export default EditBoardModal

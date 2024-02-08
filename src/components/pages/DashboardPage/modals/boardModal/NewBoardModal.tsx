@@ -6,7 +6,7 @@ import type { ChangeEvent } from 'react'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
-const NewBoardModal = () => {
+export const NewBoardModal = () => {
   const { register, errors } = useBoard()
 
   const handleIconChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,5 +32,3 @@ const NewBoardModal = () => {
     </Modal>
   )
 }
-
-export default NewBoardModal

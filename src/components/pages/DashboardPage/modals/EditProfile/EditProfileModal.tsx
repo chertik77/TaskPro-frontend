@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
 import { selectUser } from 'redux/slices/user/user-slice'
 
-const EditProfileModal = () => {
+export const EditProfileModal = () => {
   const { name, email, avatarURL } = useSelector(selectUser)
   const [user, { isLoading, isError, isSuccess, data, error }] =
     useUserMutation()
@@ -68,5 +68,3 @@ const EditProfileModal = () => {
     </Modal>
   )
 }
-
-export default EditProfileModal

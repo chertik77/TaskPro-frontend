@@ -56,6 +56,7 @@
     "tw-colors": "^3.3.1",
     "typescript": "*",
     "vite": "^5.0.8",
+    "vite-plugin-minify": "^1.5.2",
     "vite-tsconfig-paths": "^4.3.1"
   },
   "main": "index.js",
