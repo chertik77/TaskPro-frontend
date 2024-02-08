@@ -6,7 +6,9 @@ import {
   EditBoardModal,
   EditColumnModal,
   EditProfileModal,
-  NewBoardModal
+  NewBoardModal,
+  AddCardModal,
+  EditCardModal
 } from 'components/pages/DashboardPage/modals'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -29,6 +31,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
+                ['add-card-modal', AddCardModal],
+                ['edit-card-modal', EditCardModal],
+                ['edit-profile-modal', EditProfileModal],
                 ['edit-profile-modal', EditProfileModal],
                 ['burger-menu', BurgerMenu]
               ]}>
@@ -37,6 +42,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={NewBoardModal} />
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
+              <ModalRenderer Component={AddCardModal} />
+              <ModalRenderer Component={EditCardModal} />
               <ModalRenderer Component={EditProfileModal} />
               <ModalRenderer Component={BurgerMenu} />
             </ModalProvider>
