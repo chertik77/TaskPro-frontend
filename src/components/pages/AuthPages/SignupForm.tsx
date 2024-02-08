@@ -7,9 +7,16 @@ import { useSignupMutation } from 'redux/api/user'
 export const SignupForm = () => {
   const [signup, { isLoading, isError, isSuccess, data, error }] =
     useSignupMutation()
-  const { handleSubmit, register, errors, isValid, reset, trigger } =
-    useSignupForm()
-  const { isFormValidOnReload } = useIsFormValidOnReload(trigger)
+  const {
+    handleSubmit,
+    register,
+    errors,
+    isValid,
+    reset,
+    trigger,
+    clearErrors
+  } = useSignupForm()
+  const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
 
   useEffect(() => {
     if (isSuccess) {
