@@ -5,16 +5,31 @@ import { useBoard } from 'hooks/useBoard'
 import type { ChangeEvent } from 'react'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
+import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 
 const NewBoardModal = () => {
   const { register, errors } = useBoard()
+  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
 
   const handleIconChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value)
   }
 
+  const handleCreateBoard = () => {
+    addNewBoardMutation({title:, icon: , background:})
+    .unwrap()
+      .then((response) => {
+        console.log('Доска успешно создана:', response)
+      })
+      .catch((error) => {
+        console.error('Ошибка при создании доски:', error)
+      })
+  }
+
+  
+
   return (
-    <Modal size='sm' modalTitle='New board'>
+    < size='sm' modalTitle='New board'>
       <Field
         {...register('title')}
         inputName='title'
@@ -26,8 +41,8 @@ const NewBoardModal = () => {
       <Icons handleIconChange={handleIconChange} />
       <p className='mt-6'>Background</p>
       <BackgroundContainer />
-      <Button isAddIcon iconName='plus' onClick={e => console.log(e)}>
-        Create
+      <Button onClick={handleCreateBoard} disabled={isLoading}>
+        {isLoading ? 'Создание...' : 'Create'}
       </Button>
     </Modal>
   )
