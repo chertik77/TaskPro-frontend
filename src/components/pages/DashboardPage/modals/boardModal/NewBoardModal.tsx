@@ -10,24 +10,33 @@ import { useState } from 'react'
 
 const NewBoardModal = () => {
   const { register, errors } = useBoard()
-  const [addNewBoard] = useAddNewBoardMutation()
+  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
 
   const [formDataNewBoard, setformDataNewBoard] = useState({
     title: '',
     icon: '',
     background: ''
   })
-
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setformDataNewBoard({ ...formDataNewBoard, [name]: value })
+    setformDataNewBoard(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
   }
+
   const handleIconChange = (selectedIcon: string) => {
-    setformDataNewBoard({ ...formDataNewBoard, icon: selectedIcon })
+    setformDataNewBoard(prevState => ({
+      ...prevState,
+      icon: selectedIcon
+    }))
   }
 
   const handleBgChange = (selectedBackground: string) => {
-    setformDataNewBoard({ ...formDataNewBoard, background: selectedBackground })
+    setformDataNewBoard(prevState => ({
+      ...prevState,
+      background: selectedBackground
+    }))
   }
 
   const handleCreateBoard = () => {
@@ -60,8 +69,12 @@ const NewBoardModal = () => {
       <Icons handleIconChange={handleIconChange} />
       <p className='mt-6'>Background</p>
       <BackgroundContainer handleBgChange={handleBgChange} />
-      <Button isAddIcon iconName='plus' onClick={handleCreateBoard}>
-        Create
+      <Button
+        isAddIcon
+        iconName='plus'
+        onClick={handleCreateBoard}
+        disabled={isLoading}>
+        {isLoading ? 'Creating...' : 'Create'}
       </Button>
     </Modal>
   )
