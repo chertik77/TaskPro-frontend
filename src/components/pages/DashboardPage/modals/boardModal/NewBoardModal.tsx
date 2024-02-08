@@ -12,7 +12,7 @@ const NewBoardModal = () => {
   const { register, errors } = useBoard()
   const [addNewBoard] = useAddNewBoardMutation()
 
-  const [formData, setFormData] = useState({
+  const [formDataNewBoard, setformDataNewBoard] = useState({
     title: '',
     icon: '',
     background: ''
@@ -20,15 +20,21 @@ const NewBoardModal = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    setformDataNewBoard({ ...formDataNewBoard, [name]: value })
   }
-  console.log(formData)
+  const handleIconChange = (selectedIcon: string) => {
+    setformDataNewBoard({ ...formDataNewBoard, icon: selectedIcon })
+  }
+
+  const handleBgChange = (selectedBackground: string) => {
+    setformDataNewBoard({ ...formDataNewBoard, background: selectedBackground })
+  }
 
   const handleCreateBoard = () => {
     addNewBoard({
-      title: formData.title,
-      icon: formData.icon, // одразу повино бути дефолтне значення
-      background: formData.background // одразу повино бути дефолтне значення
+      title: formDataNewBoard.title,
+      icon: formDataNewBoard.icon, // одразу повино бути дефолтне значення
+      background: formDataNewBoard.background // одразу повино бути дефолтне значення
     })
       .unwrap()
       .then(response => {
@@ -39,10 +45,6 @@ const NewBoardModal = () => {
       })
   }
 
-  const handleIconChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
-  }
-
   return (
     <Modal size='sm' modalTitle='New board'>
       <Field
@@ -51,13 +53,13 @@ const NewBoardModal = () => {
         className={errors && 'mb-2'}
         placeholder='Title'
         errors={errors}
-        value={formData.title}
+        value={formDataNewBoard.title}
         onChange={handleInputChange}
       />
       <p className='mt-6'>Icons</p>
       <Icons handleIconChange={handleIconChange} />
       <p className='mt-6'>Background</p>
-      <BackgroundContainer />
+      <BackgroundContainer handleBgChange={handleBgChange} />
       <Button isAddIcon iconName='plus' onClick={handleCreateBoard}>
         Create
       </Button>

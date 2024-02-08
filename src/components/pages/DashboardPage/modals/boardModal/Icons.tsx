@@ -1,8 +1,8 @@
 import icons from 'lib/json/board-icons.json'
-import type { ChangeEventHandler } from 'react'
+// import type { ChangeEventHandler } from 'react'
 
 type IconProps = {
-  handleIconChange?: ChangeEventHandler<HTMLInputElement>
+  handleIconChange?: (selectedIcon: string) => void
 }
 
 export const Icons = ({ handleIconChange }: IconProps) => (
@@ -10,7 +10,7 @@ export const Icons = ({ handleIconChange }: IconProps) => (
     {icons.map(({ id }) => (
       <label className='relative cursor-pointer' key={id}>
         <input
-          onChange={handleIconChange}
+          onChange={e => handleIconChange && handleIconChange(e.target.value)}
           defaultChecked={id === 'icon-project-1'}
           type='radio'
           className='absolute size-full opacity-0'
