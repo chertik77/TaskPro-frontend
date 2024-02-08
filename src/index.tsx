@@ -1,6 +1,14 @@
 import { App } from 'components/App'
 import { ThemeProviderContainer } from 'components/ThemeProviderContainer'
-import { StrictMode, lazy } from 'react'
+import {
+  AddColumnModal,
+  BurgerMenu,
+  EditBoardModal,
+  EditColumnModal,
+  EditProfileModal,
+  NewBoardModal
+} from 'components/pages/DashboardPage/modals'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
@@ -8,36 +16,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from 'redux/store'
 import './index.css'
-
-const EditProfileModal = lazy(() =>
-  import('components/pages/DashboardPage/modals').then(m => ({
-    default: m.EditProfileModal
-  }))
-)
-
-const EditBoardModal = lazy(() =>
-  import('components/pages/DashboardPage/modals').then(m => ({
-    default: m.EditBoardModal
-  }))
-)
-
-const NewBoardModal = lazy(() =>
-  import('components/pages/DashboardPage/modals').then(m => ({
-    default: m.NewBoardModal
-  }))
-)
-
-const AddColumnModal = lazy(() =>
-  import('components/pages/DashboardPage/modals').then(m => ({
-    default: m.AddColumnModal
-  }))
-)
-
-const EditColumnModal = lazy(() =>
-  import('components/pages/DashboardPage/modals').then(m => ({
-    default: m.EditColumnModal
-  }))
-)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -51,7 +29,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
-                ['edit-profile-modal', EditProfileModal]
+                ['edit-profile-modal', EditProfileModal],
+                ['burger-menu', BurgerMenu]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
@@ -59,6 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
               <ModalRenderer Component={EditProfileModal} />
+              <ModalRenderer Component={BurgerMenu} />
             </ModalProvider>
           </BrowserRouter>
         </ThemeProviderContainer>

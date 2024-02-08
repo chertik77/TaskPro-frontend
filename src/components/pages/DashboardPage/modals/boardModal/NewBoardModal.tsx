@@ -8,7 +8,7 @@ import { Icons } from './Icons'
 import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 import { useState } from 'react'
 
-const NewBoardModal = () => {
+export const NewBoardModal = () => {
   const { register, errors } = useBoard()
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
 
@@ -75,5 +75,3 @@ const NewBoardModal = () => {
     </Modal>
   )
 }
-
-export default NewBoardModal

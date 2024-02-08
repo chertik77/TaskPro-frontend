@@ -111,6 +111,7 @@ const config = {
     }
   },
   plugins: [
+    require('tailwindcss-text-fill'),
     plugin(({ addComponents, addVariant }) => {
       addVariant('hocus', ['&:hover', '&:focus']),
         addComponents({
