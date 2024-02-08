@@ -12,38 +12,17 @@ const NewBoardModal = () => {
   const { register, errors } = useBoard()
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
 
-  const [formDataNewBoard, setformDataNewBoard] = useState({
+  const [formData, setFormData] = useState({
     title: '',
     icon: '',
     background: ''
   })
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setformDataNewBoard(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
-
-  const handleIconChange = (selectedIcon: string) => {
-    setformDataNewBoard(prevState => ({
-      ...prevState,
-      icon: selectedIcon
-    }))
-  }
-
-  const handleBgChange = (selectedBackground: string) => {
-    setformDataNewBoard(prevState => ({
-      ...prevState,
-      background: selectedBackground
-    }))
-  }
 
   const handleCreateBoard = () => {
     addNewBoard({
-      title: formDataNewBoard.title,
-      icon: formDataNewBoard.icon, // одразу повино бути дефолтне значення
-      background: formDataNewBoard.background // одразу повино бути дефолтне значення
+      title: formData.title,
+      icon: formData.icon,
+      background: formData.background
     })
       .unwrap()
       .then(response => {
@@ -54,6 +33,23 @@ const NewBoardModal = () => {
       })
   }
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleIconChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedIcon = e.target.value
+    setFormData({ ...formData, icon: selectedIcon })
+    console.log(selectedIcon)
+  }
+
+  const handleBgChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedIcon = e.target.value
+    setFormData({ ...formData, background: selectedIcon })
+    console.log(selectedIcon)
+  }
+
   return (
     <Modal size='sm' modalTitle='New board'>
       <Field
@@ -62,7 +58,7 @@ const NewBoardModal = () => {
         className={errors && 'mb-2'}
         placeholder='Title'
         errors={errors}
-        value={formDataNewBoard.title}
+        value={formData.title}
         onChange={handleInputChange}
       />
       <p className='mt-6'>Icons</p>
