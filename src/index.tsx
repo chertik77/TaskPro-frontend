@@ -1,15 +1,15 @@
 import { App } from 'components/App'
-import { ThemeProviderContainer } from 'components/ThemeProviderContainer'
 import {
+  AddCardModal,
   AddColumnModal,
   BurgerMenu,
   EditBoardModal,
+  EditCardModal,
   EditColumnModal,
   EditProfileModal,
-  NewBoardModal,
-  AddCardModal,
-  EditCardModal
+  NewBoardModal
 } from 'components/pages/DashboardPage/modals'
+import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
@@ -23,8 +23,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProviderContainer>
-          <BrowserRouter>
+        <BrowserRouter>
+          <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
             <ModalProvider
               modals={[
                 ['edit-board-modal', EditBoardModal],
@@ -47,8 +47,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={EditProfileModal} />
               <ModalRenderer Component={BurgerMenu} />
             </ModalProvider>
-          </BrowserRouter>
-        </ThemeProviderContainer>
+          </ThemeProvider>
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </StrictMode>
