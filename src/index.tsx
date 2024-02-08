@@ -9,24 +9,34 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from 'redux/store'
 import './index.css'
 
-const EditProfileModal = lazy(
-  () =>
-    import('components/pages/DashboardPage/modals/EditProfile/EditProfileModal')
+const EditProfileModal = lazy(() =>
+  import('components/pages/DashboardPage/modals').then(m => ({
+    default: m.EditProfileModal
+  }))
 )
-const EditBoardModal = lazy(
-  () =>
-    import('components/pages/DashboardPage/modals/boardModal/EditBoardModal')
+
+const EditBoardModal = lazy(() =>
+  import('components/pages/DashboardPage/modals').then(m => ({
+    default: m.EditBoardModal
+  }))
 )
-const NewBoardModal = lazy(
-  () => import('components/pages/DashboardPage/modals/boardModal/NewBoardModal')
+
+const NewBoardModal = lazy(() =>
+  import('components/pages/DashboardPage/modals').then(m => ({
+    default: m.NewBoardModal
+  }))
 )
-const AddColumnModal = lazy(
-  () =>
-    import('components/pages/DashboardPage/modals/columnModal/AddColumnModal')
+
+const AddColumnModal = lazy(() =>
+  import('components/pages/DashboardPage/modals').then(m => ({
+    default: m.AddColumnModal
+  }))
 )
-const EditColumnModal = lazy(
-  () =>
-    import('components/pages/DashboardPage/modals/columnModal/EditColumnModal')
+
+const EditColumnModal = lazy(() =>
+  import('components/pages/DashboardPage/modals').then(m => ({
+    default: m.EditColumnModal
+  }))
 )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

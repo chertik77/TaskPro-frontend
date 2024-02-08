@@ -1,0 +1,5 @@
+export { default as EditProfileModal } from './EditProfile/EditProfileModal'
+export { default as EditBoardModal } from './boardModal/EditBoardModal'
+export { default as NewBoardModal } from './boardModal/NewBoardModal'
+export { default as AddColumnModal } from './columnModal/AddColumnModal'
+export { default as EditColumnModal } from './columnModal/EditColumnModal'
