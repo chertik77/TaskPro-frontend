@@ -14,10 +14,11 @@ export const useSignupForm = () => {
     watch,
     setValue,
     trigger,
+    clearErrors,
     formState: { errors, isValid }
   } = useForm<SignupSchemaFields>({
-    resolver: valibotResolver(signupSchema, { abortEarly: true }),
-    mode: 'onBlur'
+    resolver: valibotResolver(signupSchema),
+    mode: 'onChange'
   })
 
   useFormPersist('sign-up-form', {
@@ -26,5 +27,13 @@ export const useSignupForm = () => {
     storage: window.localStorage
   })
 
-  return { register, handleSubmit, errors, isValid, reset, trigger }
+  return {
+    register,
+    handleSubmit,
+    errors,
+    isValid,
+    reset,
+    trigger,
+    clearErrors
+  }
 }

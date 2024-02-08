@@ -12,11 +12,10 @@ export const App = () => {
   const dispatch = useAppDispatch()
   const { isRefreshing, token } = useAuth()
 
-  isRefreshing === true
   useEffect(() => {
     if (token === null) return
     dispatch(userApi.endpoints.current.initiate(undefined))
-  }, [dispatch])
+  }, [])
 
   return isRefreshing ? (
     <div className='flex h-dvh items-center justify-center'>

@@ -18,7 +18,7 @@ const userSlice = createSlice({
       name: null,
       email: null,
       avatarURL: { url: '' },
-      userTheme: 'light'
+      userTheme: ''
     },
     token: null,
     isLoggedIn: false,
@@ -44,6 +44,7 @@ const userSlice = createSlice({
       )
   },
   selectors: {
+    selectTheme: state => state.user.userTheme,
     selectUser: state => state.user,
     selectIsLoggedIn: state => state.isLoggedIn,
     selectIsRefreshing: state => state.isRefreshing,
@@ -51,6 +52,11 @@ const userSlice = createSlice({
   }
 })
 
-export const { selectUser, selectIsLoggedIn, selectIsRefreshing, selectToken } =
-  userSlice.selectors
+export const {
+  selectUser,
+  selectIsLoggedIn,
+  selectIsRefreshing,
+  selectToken,
+  selectTheme
+} = userSlice.selectors
 export const userReducer = userSlice.reducer
