@@ -41,7 +41,9 @@ export const SigninForm = () => {
         className='mb-6 text-white'
         errors={errors}
       />
-      <Button type='submit' disabled={!isValid || !isFormValidOnReload}>
+      <Button
+        type='submit'
+        disabled={!isValid || !isFormValidOnReload || isLoading}>
         {isLoading ? 'Loading...' : 'Log In Now'}
       </Button>
     </form>

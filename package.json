@@ -53,6 +53,7 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
+    "tailwindcss-text-fill": "^0.2.0",
     "tw-colors": "^3.3.1",
     "typescript": "*",
     "vite": "^5.0.8",

@@ -30,7 +30,7 @@ export const SignupForm = () => {
         errors={errors}
         inputName='name'
         placeholder='Enter your name'
-        className='mb-[14px] text-white'
+        className='mb-[14px] text-white violet:text-white'
         {...register('name')}
       />
       <Field
@@ -48,7 +48,9 @@ export const SignupForm = () => {
         isPasswordInput
         {...register('password')}
       />
-      <Button type='submit' disabled={!isValid || !isFormValidOnReload}>
+      <Button
+        type='submit'
+        disabled={!isValid || !isFormValidOnReload || isLoading}>
         {isLoading ? 'Loading...' : 'Register Now'}
       </Button>
     </form>
