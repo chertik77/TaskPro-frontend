@@ -22,7 +22,7 @@ export const Icons = ({ handleIconChange }: IconProps) => (
         />
         <label
           htmlFor={id}
-          className='inline-flex cursor-pointer items-center peer-checked:text-black peer-checked:opacity-100 dark:peer-checked:text-white dark:peer-checked:opacity-100'>
+          className='inline-flex cursor-pointer items-center stroke-current peer-checked:text-black peer-checked:opacity-100 dark:peer-checked:text-white dark:peer-checked:opacity-100'>
           <svg className='size-[18px] stroke-current'>
             <use xlinkHref={`/assets/icons.svg#${id}`}></use>
           </svg>

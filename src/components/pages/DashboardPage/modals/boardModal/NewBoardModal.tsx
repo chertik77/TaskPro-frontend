@@ -7,10 +7,11 @@ import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 import { useState } from 'react'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 
 export const NewBoardModal = () => {
   const { register, errors } = useBoard()
-  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
+  const [addNewBoard, { isLoading, data }] = useAddNewBoardMutation()
 
   const [formData, setFormData] = useState({
     title: '',
@@ -19,6 +20,7 @@ export const NewBoardModal = () => {
   })
 
   const handleCreateBoard = () => {
+    console.log(data)
     addNewBoard({
       title: formData.title,
       icon: formData.icon,
@@ -26,10 +28,12 @@ export const NewBoardModal = () => {
     })
       .unwrap()
       .then(response => {
-        console.log('Board created successfully:', response)
+        handleSuccessToast('Board created successfully')
+        console.log(response)
       })
       .catch(error => {
-        console.error('Error creating board:', error)
+        handleErrorToast('Error creating board')
+        console.error(error)
       })
   }
 
