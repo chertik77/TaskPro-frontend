@@ -1,7 +1,7 @@
 import { DayPicker } from 'react-day-picker'
 import { cn } from 'lib/utils'
 import { buttonVariants } from '@registry/default/ui/button'
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+// import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -55,13 +55,11 @@ function Calendar({
         day_hidden: 'invisible',
         ...classNames
       }}
-      components={{
-        IconLeft: ({ ...props }) => <MdKeyboardArrowLeft className='h-4 w-4' />,
-        IconRight: ({ ...props }) => (
-          <MdKeyboardArrowRight className='h-4 w-4' />
-        )
-      }}
-      {...props}
+      // components={{
+      //   IconLeft: ({ ...props }) => <MdKeyboardArrowLeft className='size-4' />,
+      //   IconRight: ({ ...props }) => <MdKeyboardArrowRight className='size-4' />
+      // }}
+      // {...props}
     />
   )
 }
