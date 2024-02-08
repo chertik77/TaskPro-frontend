@@ -2,16 +2,16 @@ import { Button } from 'components/ui/button/Button'
 import { Field } from 'components/ui/field/Field'
 import { Modal } from 'components/ui/modal/Modal'
 import { useBoard } from 'hooks/useBoard'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import type { ChangeEvent } from 'react'
+import { useState } from 'react'
+import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
-import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
-import { useState } from 'react'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 
 export const NewBoardModal = () => {
   const { register, errors } = useBoard()
-  const [addNewBoard, { isLoading, data }] = useAddNewBoardMutation()
+  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
 
   const [formData, setFormData] = useState({
     title: '',
@@ -20,7 +20,6 @@ export const NewBoardModal = () => {
   })
 
   const handleCreateBoard = () => {
-    console.log(data)
     addNewBoard({
       title: formData.title,
       icon: formData.icon,
