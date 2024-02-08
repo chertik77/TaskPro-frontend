@@ -20,7 +20,9 @@ export const EditBoardModal = () => {
       <Icons />
       <p className='mt-6 '>Background</p>
       <BackgroundContainer />
-      <Button isAddIcon>Create</Button>
+      <Button isAddIcon iconName='plus'>
+        Create
+      </Button>
     </Modal>
   )
 }
