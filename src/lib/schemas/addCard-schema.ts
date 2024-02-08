@@ -1,11 +1,9 @@
 import {
-  date,
   minLength,
   object,
   string,
   toTrimmed,
   picklist,
-  optional,
   type Output
 } from 'valibot'
 
@@ -16,8 +14,12 @@ export const AddCardSchema = object({
     toTrimmed(),
     minLength(2, 'Please enter at least 2 characters.')
   ]),
-  description: optional(string([toTrimmed()])),
-  priority: picklist(priorityList)
+  description: string([
+    toTrimmed(),
+    minLength(2, 'Please enter at least 2 characters.')
+  ]),
+  priority: picklist(priorityList),
+  deadline: string()
 })
 
 export type AddCardSchemaFields = Output<typeof AddCardSchema>

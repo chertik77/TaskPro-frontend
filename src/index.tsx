@@ -7,7 +7,6 @@ import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModa
 import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
 import { AddCardModal } from 'components/pages/DashboardPage/modals/cardModal/addCardModal'
 import { EditCardModal } from 'components/pages/DashboardPage/modals/cardModal/editCardModal'
-import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'

@@ -6,6 +6,7 @@ import {
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
+import { Calendar } from './calendar'
 
 export const AddCardModal = () => {
   const {
@@ -15,7 +16,8 @@ export const AddCardModal = () => {
     formState: { errors, isValid }
   } = useForm<AddCardSchemaFields>({
     resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: { priority: 'Without priority' }
   })
   const { close } = useModal('add-card-modal')
 
@@ -38,47 +40,44 @@ export const AddCardModal = () => {
         <textarea
           placeholder='Description'
           {...register('description')}
-          className='mb-[24px] h-[154px] w-full rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
         />
         <p className='mb-[4px] text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-        <div className='flex'>
-          <Field
-            className='accent-white'
-            errors={errors}
-            inputName='priority'
-            {...register('priority')}
-            type='radio'
-            name='priority'
-            value='Low'
-          />
-          <Field
-            errors={errors}
-            inputName='priority'
-            {...register('priority')}
-            type='radio'
-            name='priority'
-            value='Medium'
-          />
-          <Field
-            errors={errors}
-            inputName='priority'
-            {...register('priority')}
-            type='radio'
-            name='priority'
-            value='High'
-          />
-          <Field
-            errors={errors}
-            inputName='priority'
-            {...register('priority')}
-            type='radio'
-            name='priority'
-            value='Without priority'
-          />
-        </div>
-        <Button type='submit' disabled={!isValid}>
+        <input
+          className='bg-black'
+          {...register('priority')}
+          type='radio'
+          name='priority'
+          value='Low'
+        />
+        <input
+          className=''
+          {...register('priority')}
+          type='radio'
+          name='priority'
+          value='Medium'
+        />
+        <input
+          {...register('priority')}
+          type='radio'
+          name='priority'
+          value='High'
+        />
+        <input
+          className='mb-[14px]'
+          {...register('priority')}
+          type='radio'
+          name='priority'
+          value='Without priority'
+        />
+        <p className='mb-[4px] text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
+          Deadline
+        </p>
+        <input type='date' {...register('deadline')} />
+        <Calendar />
+        <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
           Add
         </Button>
       </form>
