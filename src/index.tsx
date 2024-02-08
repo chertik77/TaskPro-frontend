@@ -3,6 +3,7 @@ import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal
 import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
 import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
 import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
+import { CreateNeedHelpModal } from './components/pages/DashboardPage/modals/needHelpModal/createNeedHelpModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -27,13 +28,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['edit-board-modal', EditBoardModal],
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
-                ['edit-column-modal', EditColumnModal]
+                ['edit-column-modal', EditColumnModal],
+                ['create-need-help-modal', CreateNeedHelpModal]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
               <ModalRenderer Component={NewBoardModal} />
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
+              <ModalRenderer Component={CreateNeedHelpModal} />
             </ModalProvider>
           </BrowserRouter>
         </ThemeProvider>

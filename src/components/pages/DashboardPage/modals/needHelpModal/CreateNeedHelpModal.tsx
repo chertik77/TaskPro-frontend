@@ -1,20 +1,20 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useBoard } from 'hooks/useBoard'
+import { useNeedHelp } from 'hooks/useNeedHelp.ts'
 
-export const NeedHelpModal = () => {
-  const { register, errors } = useBoard()
+export const CreateNeedHelpModal = () => {
+  const { register, errors } = useNeedHelp()
 
   return (
     <Modal size='sm' modalTitle='Need help'>
       <Field
-        {...register('title')}
+        {...register('email')}
         inputName='Email'
         placeholder='Email address'
         errors={errors}
         className='mb-6'
       />
  <Field
-        {...register('title')}
+        {...register('comment')}
         inputName='Comment'
         placeholder='Comment'
         errors={errors}
