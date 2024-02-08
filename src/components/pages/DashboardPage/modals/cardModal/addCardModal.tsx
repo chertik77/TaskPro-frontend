@@ -6,7 +6,7 @@ import {
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-import { Calendar } from './calendar'
+// import { Calendar } from './calendar'
 
 export const AddCardModal = () => {
   const {
@@ -42,41 +42,52 @@ export const AddCardModal = () => {
           {...register('description')}
           className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
         />
-        <p className='mb-[4px] text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
+        <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-        <input
-          className='bg-black'
-          {...register('priority')}
-          type='radio'
-          name='priority'
-          value='Low'
-        />
-        <input
-          className=''
-          {...register('priority')}
-          type='radio'
-          name='priority'
-          value='Medium'
-        />
-        <input
-          {...register('priority')}
-          type='radio'
-          name='priority'
-          value='High'
-        />
-        <input
-          className='mb-[14px]'
-          {...register('priority')}
-          type='radio'
-          name='priority'
-          value='Without priority'
-        />
-        <p className='mb-[4px] text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
+        <div className='mb-[14px] flex flex-wrap gap-[8px]'>
+          <div className='flex items-center'>
+            <input
+              className='size-6'
+              {...register('priority')}
+              type='radio'
+              name='priority'
+              value='Low'
+            />
+          </div>
+          <div className='flex items-center'>
+            <input
+              className='size-6'
+              {...register('priority')}
+              type='radio'
+              name='priority'
+              value='Medium'
+            />
+          </div>
+          <div className='flex items-center'>
+            <input
+              className='size-6'
+              {...register('priority')}
+              type='radio'
+              name='priority'
+              value='High'
+            />
+          </div>
+          <div className='flex items-center'>
+            <input
+              className='size-6'
+              {...register('priority')}
+              type='radio'
+              name='priority'
+              value='Without priority'
+            />
+          </div>
+        </div>
+        <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
         <input type='date' {...register('deadline')} />
-        <Calendar />
+        {/* <Calendar /> */}
         <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
           Add
         </Button>
