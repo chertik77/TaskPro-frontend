@@ -1,12 +1,15 @@
 import { App } from 'components/App'
 import { ThemeProviderContainer } from 'components/ThemeProviderContainer'
-import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfile/EditProfileModal'
-import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
-import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
-import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
-import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
-import { AddCardModal } from 'components/pages/DashboardPage/modals/cardModal/addCardModal'
-import { EditCardModal } from 'components/pages/DashboardPage/modals/cardModal/editCardModal'
+import {
+  AddColumnModal,
+  BurgerMenu,
+  EditBoardModal,
+  EditColumnModal,
+  EditProfileModal,
+  NewBoardModal,
+  AddCardModal,
+  EditCardModal
+} from 'components/pages/DashboardPage/modals'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
@@ -30,7 +33,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['edit-column-modal', EditColumnModal],
                 ['add-card-modal', AddCardModal],
                 ['edit-card-modal', EditCardModal],
-                ['edit-profile-modal', EditProfileModal]
+                ['edit-profile-modal', EditProfileModal],
+                ['edit-profile-modal', EditProfileModal],
+                ['burger-menu', BurgerMenu]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
@@ -40,6 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={AddCardModal} />
               <ModalRenderer Component={EditCardModal} />
               <ModalRenderer Component={EditProfileModal} />
+              <ModalRenderer Component={BurgerMenu} />
             </ModalProvider>
           </BrowserRouter>
         </ThemeProviderContainer>

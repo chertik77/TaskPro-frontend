@@ -1,11 +1,11 @@
-import { Modal } from 'components/ui/modal/Modal'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'redux/slices/user/user-slice'
 import { Button, Field } from 'components/ui'
+import { Modal } from 'components/ui/modal/Modal'
 import { useSignupForm } from 'hooks'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
+import { selectUser } from 'redux/slices/user/user-slice'
 
 export const EditProfileModal = () => {
   const { name, email, avatarURL } = useSelector(selectUser)

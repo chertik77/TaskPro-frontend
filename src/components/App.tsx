@@ -6,11 +6,13 @@ import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
+import { Loader } from './ui/loader/Loader'
 
 export const App = () => {
   const dispatch = useAppDispatch()
   const { isRefreshing, token } = useAuth()
 
+  isRefreshing === true
   useEffect(() => {
     if (token === null) return
     dispatch(userApi.endpoints.current.initiate(undefined))
@@ -18,7 +20,7 @@ export const App = () => {
 
   return isRefreshing ? (
     <div className='flex h-dvh items-center justify-center'>
-      {/* <Loader /> */}
+      <Loader />
     </div>
   ) : (
     <Routes>
