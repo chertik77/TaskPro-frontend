@@ -6,7 +6,7 @@ import {
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-// import { Calendar } from './calendar'
+import { Calendar } from './calendar'
 
 export const AddCardModal = () => {
   const {
@@ -87,7 +87,7 @@ export const AddCardModal = () => {
           Deadline
         </p>
         <input type='date' {...register('deadline')} />
-        {/* <Calendar /> */}
+        <Calendar />
         <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
           Add
         </Button>
