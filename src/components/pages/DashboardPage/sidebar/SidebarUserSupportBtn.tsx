@@ -17,9 +17,14 @@ export const SidebarUserSupportBtn = () => (
         , check out our support resources or reach out to our customer support
         team.
       </p>
-      <Button className='violet:text-white' isSmallIcon iconName='help'>
-        <span className='text-fs-12-lh-normal-fw-400'>Need help?</span>
-      </Button>
+      <div className='flex items-center gap-2'>
+        <Button
+          className='hocus:text-brand-hover  violet:text-white violet:hocus:text-brand-third'
+          isSmallIcon
+          iconName='help'>
+          <span className='text-fs-12-lh-normal-fw-400'>Need help?</span>
+        </Button>
+      </div>
     </div>
   </div>
 )
