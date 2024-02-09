@@ -1,3 +1,4 @@
+import { Board } from 'components/pages/DashboardPage/board/Board'
 import { Header } from 'components/pages/DashboardPage/header/Header'
 import { Sidebar } from 'components/pages/DashboardPage/sidebar/Sidebar'
 import { useTheme } from 'next-themes'
@@ -14,10 +15,11 @@ const DashboardPage = () => {
   }, [theme])
 
   return (
-    <>
-      <Header />
+    <div className='desktop:grid desktop:h-dvh desktop:grid-cols-[260px,1fr] desktop:grid-rows-[auto,1fr]'>
       <Sidebar />
-    </>
+      <Header />
+      <Board />
+    </div>
   )
 }
 

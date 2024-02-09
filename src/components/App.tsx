@@ -41,6 +41,10 @@ export const App = () => {
           path='/dashboard'
           element={<PrivateRoute component={<DashboardPage />} />}
         />
+        <Route
+          path='/dashboard/:name'
+          element={<PrivateRoute component={<DashboardPage />} />}
+        />
       </Route>
     </Routes>
   )
