@@ -1,7 +1,7 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAddColumnForm  } from 'hooks/useAddColumn'
 
-export const AddColumnModal = () => {
+export const EditColumnModal = () => {
   const { register, errors } = useAddColumnForm ()
 
   return (

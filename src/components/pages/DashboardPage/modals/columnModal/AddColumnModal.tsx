@@ -6,16 +6,18 @@ export const AddColumnModal = () => {
 
   return (
     <Modal size='sm' modalTitle='Add column'>
-      <Field
-        {...register('title')}
-        inputName='title'
-        placeholder='Title'
-        errors={errors}
-        className='mb-6'
-      />
-      <Button isAddIcon onClick={e => console.log(e)}>
-        Add
-      </Button>
+
+        <Field
+          {...register('title')}
+          inputName='title'
+          placeholder='Title'
+          errors={errors}
+          className='mb-6'
+        />
+        <Button isAddIcon iconName='plus'>
+          Add
+        </Button>
+
     </Modal>
   )
 }
