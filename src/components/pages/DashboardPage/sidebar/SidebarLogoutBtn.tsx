@@ -8,6 +8,7 @@ export const SidebarLogoutBtn = () => {
 
   return (
     <>
+      {/* remove before PR */}
       <button onClick={open}>Anton test</button>
       <Button className='flex items-center gap-3.5' onClick={logout}>
         <svg className='size-8 text-brand hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third'>

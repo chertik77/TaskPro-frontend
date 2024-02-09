@@ -53,7 +53,7 @@ export const AddCardModal = () => {
         <div className='mb-[14px] flex flex-wrap gap-[8px]'>
           <div className='flex items-center'>
             <input
-              className='size-6'
+              className='size-[14px]'
               {...register('priority')}
               type='radio'
               name='priority'
@@ -62,7 +62,7 @@ export const AddCardModal = () => {
           </div>
           <div className='flex items-center'>
             <input
-              className='size-6'
+              className='size-[14px]'
               {...register('priority')}
               type='radio'
               name='priority'
@@ -71,7 +71,7 @@ export const AddCardModal = () => {
           </div>
           <div className='flex items-center'>
             <input
-              className='size-6'
+              className='size-[14px]'
               {...register('priority')}
               type='radio'
               name='priority'
@@ -80,7 +80,7 @@ export const AddCardModal = () => {
           </div>
           <div className='flex items-center'>
             <input
-              className='size-6'
+              className='size-[14px]'
               {...register('priority')}
               type='radio'
               name='priority'
@@ -91,7 +91,7 @@ export const AddCardModal = () => {
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
-
+        <input type='date' className='mb-[40px]' {...register('deadline')} />
         {/* <DayPicker
           className={cn('border border-brand p-[18px]')}
           classNames={{
