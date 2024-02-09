@@ -1,22 +1,28 @@
 import { Button } from 'components/ui'
+import { useAppDispatch } from 'hooks'
+import { useEffect, useState } from 'react'
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
-import { useGetBoardByNameQuery } from 'redux/api/dashboard/board'
+import { boardApi } from 'redux/api/dashboard/board'
+import { Board as BoardT } from 'redux/slices/board/board-types'
 
 export const Board = () => {
   const { name } = useParams()
-  const { data } = useGetBoardByNameQuery(name?.slice(1))
+  const dispatch = useAppDispatch()
   const { open } = useModal('add-column-modal')
-  console.log(data)
-  // const dispatch = useAppDispatch()
+  const [boardData, setBoardData] = useState<BoardT | null>(null)
 
-  // useEffect(() => {
-  //   dispatch(boardApi.endpoints.getBoardByName.initiate(name?.slice(1)))
-  // }, [])
+  useEffect(() => {
+    if (name) {
+      dispatch(boardApi.endpoints.getBoardByName.initiate(name.slice(1)))
+        .unwrap()
+        .then(r => setBoardData(r))
+    }
+  }, [name])
 
   return (
     <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] tablet:text-fs-18-lh-normal-fw-500'>
-      {data?.title}
+      {boardData?.title}
       <Button
         isAddIcon
         onClick={open}
