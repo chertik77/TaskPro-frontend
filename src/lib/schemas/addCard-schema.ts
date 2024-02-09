@@ -3,6 +3,7 @@ import {
   object,
   string,
   toTrimmed,
+  any,
   picklist,
   type Output
 } from 'valibot'
@@ -19,7 +20,7 @@ export const AddCardSchema = object({
     minLength(2, 'Please enter at least 2 characters.')
   ]),
   priority: picklist(priorityList),
-  deadline: string()
+  deadline: any()
 })
 
 export type AddCardSchemaFields = Output<typeof AddCardSchema>
