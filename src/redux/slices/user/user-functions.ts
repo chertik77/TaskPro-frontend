@@ -1,33 +1,33 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { InitialState } from './user-types'
+import type { UserInitialState } from './user-types'
 
 export const signupFullfilled = (
-  state: InitialState,
-  action: PayloadAction<InitialState>
+  state: UserInitialState,
+  action: PayloadAction<UserInitialState>
 ) => {
   state.isLoggedIn = true
   state.user = action.payload.user
   state.token = action.payload.token
 }
 
-export const currentPending = (state: InitialState) => {
+export const currentPending = (state: UserInitialState) => {
   state.isRefreshing = true
 }
 
 export const currentFullfilled = (
-  state: InitialState,
-  action: PayloadAction<InitialState>
+  state: UserInitialState,
+  action: PayloadAction<UserInitialState>
 ) => {
   state.user = action.payload.user
   state.isLoggedIn = true
   state.isRefreshing = false
 }
 
-export const currentRejected = (state: InitialState) => {
+export const currentRejected = (state: UserInitialState) => {
   state.isRefreshing = false
 }
 
-export const logoutFullfilled = (state: InitialState) => {
+export const logoutFullfilled = (state: UserInitialState) => {
   state.user = {
     name: null,
     email: null,
@@ -39,8 +39,8 @@ export const logoutFullfilled = (state: InitialState) => {
 }
 
 export const switchThemeFullfilled = (
-  state: InitialState,
-  action: PayloadAction<InitialState>
+  state: UserInitialState,
+  action: PayloadAction<UserInitialState>
 ) => {
   state.user.userTheme = action.payload.user.userTheme
   state.user.avatarURL = action.payload.user.avatarURL

@@ -9,7 +9,7 @@ import {
   signupFullfilled,
   switchThemeFullfilled
 } from './user-functions'
-import type { InitialState } from './user-types'
+import type { UserInitialState } from './user-types'
 
 const userSlice = createSlice({
   name: 'user',
@@ -18,12 +18,12 @@ const userSlice = createSlice({
       name: null,
       email: null,
       avatarURL: { url: '' },
-      userTheme: ''
+      userTheme: 'light'
     },
     token: null,
     isLoggedIn: false,
     isRefreshing: false
-  } as InitialState,
+  } as UserInitialState,
   reducers: {},
   extraReducers: builder => {
     builder
