@@ -1,21 +1,17 @@
-import { valibotResolver } from '@hookform/resolvers/valibot';
-import { columnSchema, ColumnModal } from 'lib/schemas/addComumn-shema';
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import { ColumnModal, columnSchema } from 'lib/schemas/addComumn-shema'
 
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
+export const useAddColumnForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<ColumnModal>({
+    resolver: valibotResolver(columnSchema),
+    mode: 'onChange'
+  })
 
-export const useAddColumnForm  = () => {
-    const {
-        register,
-        handleSubmit,
-        formState:{errors},
-    } = useForm<ColumnModal>({
-        resolver: valibotResolver(columnSchema),
-        mode:"onChange"
-    })
-    const handleAddColumn: SubmitHandler<ColumnModal> = (data) => {
-        console.log("data:", data)
-}
-
-return {register, handleSubmit:handleSubmit(handleAddColumn),errors}
+  return { register, handleSubmit, errors }
 }
