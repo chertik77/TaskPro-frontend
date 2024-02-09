@@ -24,7 +24,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <ThemeProvider attribute='class' themes={['light', 'dark', 'violet']}>
+          <ThemeProvider
+            attribute='class'
+            themes={['light', 'dark', 'violet']}
+            enableSystem={false}>
             <ModalProvider
               modals={[
                 ['edit-board-modal', EditBoardModal],

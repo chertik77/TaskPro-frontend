@@ -1,8 +1,11 @@
+import type { Board } from 'redux/slices/board/board-types'
 import { dashboardApi } from './dashboard'
 
-const boardApi = dashboardApi.injectEndpoints({
+export const boardApi = dashboardApi.injectEndpoints({
   endpoints: ({ query, mutation }) => ({
-    getAllBoards: query({ query: () => '/dashboard' }),
+    getAllBoards: query<{ data: Board[] }, undefined>({
+      query: () => '/dashboard'
+    }),
     getBoardByName: query({ query: boardName => `/dashboard/:${boardName}` }),
     addNewBoard: mutation({
       query: body => ({ url: '/dashboard', method: 'POST', body })
