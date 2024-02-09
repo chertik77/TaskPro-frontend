@@ -14,9 +14,10 @@ export const SidebarBoardsList = () => {
 
   return (
     <div className='mb-auto'>
-      {data?.data.map(({ _id, title }) => <div key={_id}>{title}</div>)}
       <ul className=''>
-        <SideBarBoardsItem />
+        {data?.data.map(board => (
+          <SideBarBoardsItem board={board} key={board._id} />
+        ))}
       </ul>
     </div>
   )
