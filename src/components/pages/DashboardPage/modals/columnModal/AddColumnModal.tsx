@@ -1,18 +1,12 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useBoard } from 'hooks/useBoard'
-import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
+import { useAddColumnForm  } from 'hooks/useAddColumn'
 
 export const AddColumnModal = () => {
-  const { register, errors, handleSubmit } = useBoard()
-  const [addNewColumn] = useAddNewColumnMutation()
-
-  const submit = (data: { title: string }) => {
-    addNewColumn(data)
-  }
+  const { register, errors } = useAddColumnForm ()
 
   return (
     <Modal size='sm' modalTitle='Add column'>
-      <form onSubmit={handleSubmit(submit)}>
+
         <Field
           {...register('title')}
           inputName='title'
@@ -23,7 +17,7 @@ export const AddColumnModal = () => {
         <Button isAddIcon iconName='plus'>
           Add
         </Button>
-      </form>
+
     </Modal>
   )
 }
