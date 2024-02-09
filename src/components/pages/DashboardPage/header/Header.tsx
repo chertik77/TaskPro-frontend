@@ -1,4 +1,3 @@
-
 import { HeaderBurgerMenuBtn } from './HeaderBurgerMenuBtn'
 import { HeaderThemeSelect } from './HeaderThemeSelect'
 import { HeaderUserInfo } from './HeaderUserInfo'
@@ -12,4 +11,3 @@ export const Header = () => (
     </div>
   </header>
 )
->>>>>>> main

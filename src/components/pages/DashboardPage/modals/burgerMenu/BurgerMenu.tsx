@@ -1,25 +1,12 @@
-// export const BurgerMenu = () => {
-//   return (
-//     <div></div>
-//     // <Modal>
-//     //   <div>hello</div>
-//     // </Modal>
-//   )
-// }
-
-import { useState } from 'react';
-import { Sidebar } from '../../sidebar/Sidebar';
+import { useModalInstance } from 'react-modal-state'
+import Modal from 'react-responsive-modal'
+import { Sidebar } from '../../sidebar/Sidebar'
 
 export const BurgerMenu = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
+  const { isOpen, close } = useModalInstance()
   return (
-    <>
-      <Sidebar isSidebarOpen={isSidebarOpen} onCloseSideBar={closeSidebar} />
-    </>
-  );
-};
+    <Modal open={isOpen} onClose={close}>
+      <Sidebar />
+    </Modal>
+  )
+}
