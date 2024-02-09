@@ -8,8 +8,10 @@ import { useState } from 'react'
 import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
+import { useDispatch } from 'react-redux'
 
 export const NewBoardModal = () => {
+  const dispatch = useDispatch()
   const { register, errors } = useBoard()
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
 
@@ -28,6 +30,7 @@ export const NewBoardModal = () => {
       .unwrap()
       .then(response => {
         handleSuccessToast('Board created successfully')
+        dispatch({ type: 'board/addNewBoardFullfilled', payload: response })
         console.log(response)
       })
       .catch(error => {

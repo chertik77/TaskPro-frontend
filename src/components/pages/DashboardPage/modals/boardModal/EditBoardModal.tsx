@@ -5,26 +5,21 @@ import { useBoard } from 'hooks/useBoard'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 
 export const EditBoardModal = () => {
   const { register, errors } = useBoard()
-  const [editBoard, { isLoading, isError }] = useEditBoardMutation()
-  
-  const handleEditBoard = () => {
-    const formData = {
-      title: 
-      icon: 
-      background: 
-    }
+  const [editBoard, { isLoading }] = useEditBoardMutation()
 
-    editBoard({ boardName, body: formData })
+  const handleEditBoard = data => {
+    editBoard(data)
       .unwrap()
       .then(response => {
-       
+        handleSuccessToast('Board edited successfully')
         console.log(response)
       })
       .catch(error => {
-     
+        handleErrorToast('Error editing board')
         console.error(error)
       })
   }
@@ -40,8 +35,12 @@ export const EditBoardModal = () => {
       <Icons />
       <p className='mt-6 '>Background</p>
       <BackgroundContainer />
-      <Button isAddIcon iconName='plus'>
-        Create
+      <Button
+        isAddIcon
+        iconName='plus'
+        onClick={handleEditBoard}
+        disabled={isLoading}>
+        {isLoading ? 'Editing...' : 'Edit'}
       </Button>
     </Modal>
   )

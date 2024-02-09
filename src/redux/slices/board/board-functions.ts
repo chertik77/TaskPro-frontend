@@ -7,3 +7,14 @@ export const addNewBoardFullfilled = (
 ) => {
   state.boards.push(action.payload)
 }
+
+export const editBoardFullfilled = (
+  state: BoardInitialState,
+  action: PayloadAction<Board>
+) => {
+  const updatedBoard = action.payload
+  const index = state.boards.findIndex(board => board._id === updatedBoard._id)
+  if (index !== -1) {
+    state.boards[index] = updatedBoard
+  }
+}
