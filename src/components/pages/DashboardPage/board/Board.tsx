@@ -23,13 +23,13 @@ export const Board = () => {
   return (
     <>
       {boardData && (
-        <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] tablet:text-fs-18-lh-normal-fw-500'>
+        <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] text-black  dark:text-white tablet:text-fs-14-lh-normal-fw-500'>
           {boardData?.title}
           <Button
             isAddIcon
             onClick={open}
             iconName='plus'
-            className='w-[334px] bg-black-secondary py-[14px]'>
+            className='inline-flex h-[56px] w-[335px] items-center justify-center gap-2 rounded-md bg-white px-[79px] py-[14px] text-fs-14-lh-normal-fw-500 tracking-[-.28px] dark:bg-black-secondary sm:w-[334px] sm:pl-[79px] sm:pr-[78px]'>
             Add another column
           </Button>
         </div>
@@ -37,3 +37,21 @@ export const Board = () => {
     </>
   )
 }
+
+
+// return (
+//     <>
+//       
+//         <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] text-black  dark:text-white tablet:text-fs-14-lh-normal-fw-500'>
+//           {boardData?.title}
+//           <Button
+//             isAddIcon
+//             onClick={open}
+//             iconName='plus'
+//             className='inline-flex h-[56px] w-[335px] items-center justify-center gap-2 rounded-md bg-white px-[79px] py-[14px] text-fs-14-lh-normal-fw-500 tracking-[-.28px] dark:bg-black-secondary sm:w-[334px] sm:pl-[79px] sm:pr-[78px]'>
+//             Add another column
+//           </Button>
+//         </div>
+//       
+//     </>
+//   )
