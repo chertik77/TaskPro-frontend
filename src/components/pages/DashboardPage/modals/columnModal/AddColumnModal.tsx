@@ -1,8 +1,8 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useBoard } from 'hooks/useBoard'
+import { useAddColumnForm  } from 'hooks/useAddColumn'
 
 export const AddColumnModal = () => {
-  const { register, errors } = useBoard()
+  const { register, errors } = useAddColumnForm ()
 
   return (
     <Modal size='sm' modalTitle='Add column'>
