@@ -4,10 +4,30 @@ import { Modal } from 'components/ui/modal/Modal'
 import { useBoard } from 'hooks/useBoard'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
+import { useEditBoardMutation } from 'redux/api/dashboard/board'
 
 export const EditBoardModal = () => {
   const { register, errors } = useBoard()
+  const [editBoard, { isLoading, isError }] = useEditBoardMutation()
+  
+  const handleEditBoard = () => {
+    const formData = {
+      title: 
+      icon: 
+      background: 
+    }
 
+    editBoard({ boardName, body: formData })
+      .unwrap()
+      .then(response => {
+       
+        console.log(response)
+      })
+      .catch(error => {
+     
+        console.error(error)
+      })
+  }
   return (
     <Modal size='sm' modalTitle='Edit board'>
       <Field

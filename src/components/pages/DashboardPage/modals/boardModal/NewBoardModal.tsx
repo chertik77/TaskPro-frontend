@@ -15,7 +15,7 @@ export const NewBoardModal = () => {
 
   const [formData, setFormData] = useState({
     title: '',
-    icon: '',
+    icon: 'icon-project-1',
     background: ''
   })
 
