@@ -21,7 +21,11 @@ export const SideBarBoardsItem = ({ board }: { board: Board }) => {
         <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
       </svg>
       {board?.title}
-      {isAdditionalInfoShown && <button className='bg-brand'>Create</button>}
+      {isAdditionalInfoShown && (
+        <button className='bg-brand' onClick={open}>
+          Create
+        </button>
+      )}
     </li>
   )
 }

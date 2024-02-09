@@ -9,16 +9,21 @@ import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 import { useDispatch } from 'react-redux'
+import images from 'lib/json/board-bg-images.json'
 
 export const NewBoardModal = () => {
   const dispatch = useDispatch()
   const { register, errors } = useBoard()
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
+  const defaultBackground = images.find(bg => bg.id === 'default')
 
   const [formData, setFormData] = useState({
     title: '',
     icon: 'icon-project-1',
-    background: ''
+    background: defaultBackground
+      ? defaultBackground.icon?.['@1x'] ||
+        defaultBackground.icon?.light?.['@1x']
+      : ''
   })
 
   const handleCreateBoard = () => {
@@ -72,6 +77,7 @@ export const NewBoardModal = () => {
       <p className='mt-6'>Background</p>
       <BackgroundContainer handleBgChange={handleBgChange} />
       <Button
+        type='submit'
         isAddIcon
         iconName='plus'
         onClick={handleCreateBoard}
