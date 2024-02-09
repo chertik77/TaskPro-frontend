@@ -11,8 +11,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.3.4",
+    "@mui/material": "^5.15.9",
     "@radix-ui/react-select": "^2.0.0",
     "@reduxjs/toolkit": "^2.1.0",
     "date-fns": "^3.3.1",
