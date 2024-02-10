@@ -16,24 +16,36 @@ export const SidebarBoardsList = () => {
 
   return (
     <div className='mb-auto'>
-      <ul className=''>
+      <ul className='flex flex-col'>
         {data?.data.map(board => (
           <li
             key={board._id}
             className={cn(
-              'flex h-[61px] w-full cursor-pointer items-center gap-2 text-white/50',
+              'flex h-[61px] w-[258px] cursor-pointer items-center pl-6  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50',
               {
-                'rounded-l border-r-4 border-brand bg-black-third':
+                ' border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white dark:bg-black-third  dark:text-white':
                   board.title === name?.slice(1)
               }
             )}>
-            <NavLink to={`/dashboard/:${board.title}`}>
-              <svg className='size-[18px] stroke-current aria-[current=page]:bg-brand'>
+            <NavLink
+              to={`/dashboard/:${board.title}`}
+              className='flex w-full items-center gap-2'>
+              <svg className='size-[18px] stroke-current  aria-[current=page]:bg-brand'>
                 <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
               </svg>
-              {board?.title}
+              <p className='w-[115px] truncate'>{board?.title}</p>
             </NavLink>
-            {/* {isActiveItem && <button className='bg-brand'>Create</button>} */}
+            {board.title === name?.slice(1) && (
+              <div className='flex items-center gap-2 '>
+                <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
+                  <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
+                </svg>
+                <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
+                  <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
+                </svg>
+                <div className=' h-[61px] w-1.5 rounded-l-lg bg-brand violet:bg-white '></div>
+              </div>
+            )}
           </li>
         ))}
       </ul>
