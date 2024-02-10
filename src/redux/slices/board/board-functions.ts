@@ -23,7 +23,7 @@ export const deleteBoardFullfilled = (state: BoardInitialState) => {
     title: '',
     icon: '',
     background: '',
-    owner: null,
+    owner: '',
     columns: [
       {
         title: '',
@@ -35,7 +35,7 @@ export const deleteBoardFullfilled = (state: BoardInitialState) => {
             _id: '',
             title: '',
             description: '',
-            column: null,
+            column: '',
             owner: '',
             board: '',
             priority: '',
@@ -79,7 +79,7 @@ export const addNewTaskFullfilled = (
   action: PayloadAction<Task>
 ) => {
   const column = state.board.columns.find(
-    column => column._id === action.payload.column?._id
+    column => column._id === action.payload.column
   )
 
   column?.tasks.push(action.payload)
@@ -90,7 +90,7 @@ export const editTaskFullfilled = (
   action: PayloadAction<Task>
 ) => {
   const task = state.board.columns
-    .find(column => column._id === action.payload.column?._id)
+    .find(column => column._id === action.payload.column)
     ?.tasks.find(task => task._id === action.payload._id)
 
   if (task) {
@@ -106,6 +106,6 @@ export const deleteTaskFullfilled = (
   action: PayloadAction<Task>
 ) => {
   state.board.columns
-    .find(column => column._id === action.payload.column?._id)
+    .find(column => column._id === action.payload.column)
     ?.tasks.filter(task => task._id !== action.payload._id)
 }

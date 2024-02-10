@@ -5,7 +5,7 @@ export type Task = {
   title: string
   board: string
   description: string
-  column: { _id: string; title: string } | null
+  column: ''
   priority: string
   deadline: string
   owner: string
@@ -25,7 +25,7 @@ export type BoardInitialState = {
     background: string
     icon: string
     columns: Column[]
-    owner: Omit<UserInitialState, 'user'> | null
+    owner: Omit<UserInitialState, 'user'> | ''
     title: string
   }
 }

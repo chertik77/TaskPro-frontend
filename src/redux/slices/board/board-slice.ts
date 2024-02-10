@@ -23,7 +23,7 @@ const boardSlice = createSlice({
       title: '',
       icon: '',
       background: '',
-      owner: null,
+      owner: '',
       columns: [
         {
           title: '',
@@ -35,7 +35,7 @@ const boardSlice = createSlice({
               _id: '',
               title: '',
               description: '',
-              column: null,
+              column: '',
               owner: '',
               board: '',
               priority: '',
