@@ -4,48 +4,46 @@ import { Modal } from 'components/ui/modal/Modal'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useModal } from 'react-modal-state'
+
 import { useBoard } from 'hooks/useBoard'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import type { Board } from 'redux/slices/board/board-types'
-import { useState, useEffect } from 'react'
-import { useGetBoardByNameQuery } from 'redux/api/dashboard/board'
 
-export const EditBoardModal = ({ boardName }: { boardName: string }) => {
-  const [formData, setFormData] = useState<Partial<Board>>({})
-  const { data } = useGetBoardByNameQuery(boardName)
-  const { register, errors } = useBoard()
+import images from 'lib/json/board-bg-images.json'
+
+export const EditBoardModal = () => {
+  const dispatch = useDispatch()
+  const { boardName } = useParams()
+  const { register, errors, reset } = useBoard()
   const [editBoard, { isLoading }] = useEditBoardMutation()
+  const { close } = useModal('edit-board-modal')
+  const defaultBackground = images.find(bg => bg.id === 'default')
 
-  useEffect(() => {
-    if (data) {
-      setFormData(data)
-    }
-  }, [data])
+  const [formData, setFormData] = useState({
+    title: '',
+    icon: 'icon-project-1',
+    background: defaultBackground
+      ? defaultBackground.icon?.['@1x'] ||
+        defaultBackground.icon?.light?.['@1x']
+      : ''
+  })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+  const handleInputChange = (name: string, value: string) => {
     setFormData({ ...formData, [name]: value })
   }
 
-  const handleIconChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedIcon = e.target.value
-    setFormData({ ...formData, icon: selectedIcon })
-    console.log(selectedIcon)
-  }
-
-  const handleBgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedBg = e.target.value
-    setFormData({ ...formData, background: selectedBg })
-    console.log(selectedBg)
-  }
-
   const handleEditBoard = () => {
-    editBoard(formData)
+    editBoard({ boardName, body: formData })
       .unwrap()
       .then(response => {
         handleSuccessToast('Board edited successfully')
-        console.log(response)
+        dispatch({ type: 'board/editBoardFullfilled', payload: response })
+        close()
+        reset()
       })
       .catch(error => {
         handleErrorToast('Error editing board')
@@ -61,12 +59,17 @@ export const EditBoardModal = ({ boardName }: { boardName: string }) => {
         placeholder='Title'
         value={formData.title || ''}
         errors={errors}
-        onChange={handleInputChange}
+        onChange={e => handleInputChange('title', e.target.value)}
+        className='violet:text-black'
       />
       <p className='mt-6'>Icons</p>
-      <Icons handleIconChange={handleIconChange} />
+      <Icons
+        handleIconChange={e => handleInputChange('icon', e.target.value)}
+      />
       <p className='mt-6'>Background</p>
-      <BackgroundContainer handleBgChange={handleBgChange} />
+      <BackgroundContainer
+        handleBgChange={e => handleInputChange('background', e.target.value)}
+      />
       <Button
         isAddIcon
         iconName='plus'
