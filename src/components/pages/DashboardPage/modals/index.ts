@@ -1,4 +1,4 @@
-export * from './editProfileModal/EditProfileModal'
+export * from './EditProfileModal/EditProfileModal'
 export * from './boardModal/EditBoardModal'
 export * from './boardModal/NewBoardModal'
 export * from './burgerMenu/BurgerMenu'
