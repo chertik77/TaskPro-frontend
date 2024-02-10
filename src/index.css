@@ -35,3 +35,13 @@
   pointer-events: none;
   display: none;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Кнопка-бегунок */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(22, 22, 22, 0.5);
+  border-radius: 5px;
+}

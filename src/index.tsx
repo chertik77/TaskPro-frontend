@@ -26,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <ThemeProvider
             attribute='class'
+            defaultTheme='light'
             themes={['light', 'dark', 'violet']}
             enableSystem={false}>
             <ModalProvider

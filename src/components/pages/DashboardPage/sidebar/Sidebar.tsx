@@ -5,8 +5,8 @@ import { SidebarNav } from './SidebarNav'
 import { SidebarUserSupportBtn } from './SidebarUserSupportBtn'
 
 export const Sidebar = () => (
-  <div className='col-start-1 row-span-2 row-start-1 hidden h-dvh overflow-y-auto desktop:block'>
-    <div className='flex h-full w-56 flex-grow flex-col bg-white p-3.5 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px] tablet:p-6'>
+  <div className='col-start-1 row-span-2 row-start-1 hidden h-dvh overflow-y-auto overflow-x-hidden desktop:block '>
+    <div className='flex min-h-full w-56 flex-grow flex-col bg-white bg-local  violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px] '>
       <SidebarNav />
       <SidebarCreateBoardBtn />
       <SidebarBoardsList />
@@ -15,3 +15,5 @@ export const Sidebar = () => (
     </div>
   </div>
 )
+
+// p-3.5 tablet:p-6

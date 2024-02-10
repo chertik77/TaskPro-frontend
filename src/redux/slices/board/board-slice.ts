@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { boardApi } from 'redux/api/dashboard/board'
-import { addNewBoardFullfilled } from './board-functions'
+import {
+  addNewBoardFullfilled,
+  deleteBoardFullfilled,
+  editBoardFullfilled
+} from './board-functions'
 import type { BoardInitialState } from './board-types'
 
 const boardSlice = createSlice({
@@ -10,10 +14,19 @@ const boardSlice = createSlice({
   } as BoardInitialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addMatcher(
-      boardApi.endpoints.addNewBoard.matchFulfilled,
-      addNewBoardFullfilled
-    )
+    builder
+      .addMatcher(
+        boardApi.endpoints.addNewBoard.matchFulfilled,
+        addNewBoardFullfilled
+      )
+      .addMatcher(
+        boardApi.endpoints.editBoard.matchFulfilled,
+        editBoardFullfilled
+      )
+      .addMatcher(
+        boardApi.endpoints.deleteBoard.matchFulfilled,
+        deleteBoardFullfilled
+      )
   },
   selectors: { selectBoard: state => state }
 })

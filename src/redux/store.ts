@@ -7,7 +7,12 @@ import { boardReducer } from './slices/board/board-slice'
 import { userReducer } from './slices/user/user-slice'
 import { UserInitialState } from './slices/user/user-types'
 
-const persistConfig = { key: 'root', storage }
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['token'],
+  blacklist: ['_persist']
+}
 
 export const store = configureStore({
   reducer: {

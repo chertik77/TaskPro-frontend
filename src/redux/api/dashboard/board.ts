@@ -21,7 +21,7 @@ export const boardApi = dashboardApi.injectEndpoints({
     }),
     deleteBoard: mutation({
       query: boardName => ({
-        url: `/dashboard/:${boardName}`,
+        url: `/dashboard/${boardName}`,
         method: 'DELETE'
       })
     })
