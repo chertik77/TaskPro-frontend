@@ -38,7 +38,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['add-card-modal', AddCardModal],
                 ['edit-card-modal', EditCardModal],
                 ['edit-profile-modal', EditProfileModal],
-                ['edit-profile-modal', EditProfileModal],
                 ['burger-menu', BurgerMenu]
               ]}>
               <App />
