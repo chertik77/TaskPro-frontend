@@ -1,4 +1,4 @@
-export type InitialState = {
+export type UserInitialState = {
   user: {
     name: string | null
     email: string | null

@@ -7,9 +7,16 @@ import { useSigninMutation } from 'redux/api/user'
 export const SigninForm = () => {
   const [signin, { isLoading, isSuccess, isError, data, error }] =
     useSigninMutation()
-  const { handleSubmit, register, errors, isValid, reset, trigger } =
-    useSigninForm()
-  const { isFormValidOnReload } = useIsFormValidOnReload(trigger)
+  const {
+    handleSubmit,
+    register,
+    errors,
+    isValid,
+    reset,
+    trigger,
+    clearErrors
+  } = useSigninForm()
+  const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
 
   useEffect(() => {
     if (isSuccess) {
@@ -41,7 +48,9 @@ export const SigninForm = () => {
         className='mb-6 text-white'
         errors={errors}
       />
-      <Button type='submit' disabled={!isValid || !isFormValidOnReload}>
+      <Button
+        type='submit'
+        disabled={!isValid || !isFormValidOnReload || isLoading}>
         {isLoading ? 'Loading...' : 'Log In Now'}
       </Button>
     </form>

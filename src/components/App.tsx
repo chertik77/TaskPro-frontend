@@ -4,8 +4,9 @@ import { RestrictedRoute } from 'components/routes/RestrictedRoute'
 import { useAppDispatch, useAuth } from 'hooks'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, redirect } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
+import { Loader } from './ui/loader/Loader'
 
 export const App = () => {
   const dispatch = useAppDispatch()
@@ -14,11 +15,15 @@ export const App = () => {
   useEffect(() => {
     if (token === null) return
     dispatch(userApi.endpoints.current.initiate(undefined))
-  }, [dispatch])
+      .unwrap()
+      .catch(e => {
+        if (e.status === 401) redirect('/auth/signin')
+      })
+  }, [])
 
   return isRefreshing ? (
     <div className='flex h-dvh items-center justify-center'>
-      {/* <Loader /> */}
+      <Loader />
     </div>
   ) : (
     <Routes>
@@ -34,6 +39,10 @@ export const App = () => {
         />
         <Route
           path='/dashboard'
+          element={<PrivateRoute component={<DashboardPage />} />}
+        />
+        <Route
+          path='/dashboard/:name'
           element={<PrivateRoute component={<DashboardPage />} />}
         />
       </Route>

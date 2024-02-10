@@ -1,9 +1,14 @@
 import { App } from 'components/App'
-import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
-import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
-import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
-import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
-import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfileModal/EditProfileModal'
+import {
+  AddCardModal,
+  AddColumnModal,
+  BurgerMenu,
+  EditBoardModal,
+  EditCardModal,
+  EditColumnModal,
+  EditProfileModal,
+  NewBoardModal
+} from 'components/pages/DashboardPage/modals'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -18,28 +23,34 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider
-          attribute='class'
-          themes={['light', 'dark', 'violet']}
-          defaultTheme={store.getState().user.user.userTheme}>
-          <BrowserRouter>
+        <BrowserRouter>
+          <ThemeProvider
+            attribute='class'
+            themes={['light', 'dark', 'violet']}
+            enableSystem={false}>
             <ModalProvider
               modals={[
                 ['edit-board-modal', EditBoardModal],
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
-                ['edit-profile-modal', EditProfileModal]
+                ['add-card-modal', AddCardModal],
+                ['edit-card-modal', EditCardModal],
+                ['edit-profile-modal', EditProfileModal],
+                ['burger-menu', BurgerMenu]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
               <ModalRenderer Component={NewBoardModal} />
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
+              <ModalRenderer Component={AddCardModal} />
+              <ModalRenderer Component={EditCardModal} />
               <ModalRenderer Component={EditProfileModal} />
+              <ModalRenderer Component={BurgerMenu} />
             </ModalProvider>
-          </BrowserRouter>
-        </ThemeProvider>
+          </ThemeProvider>
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </StrictMode>
