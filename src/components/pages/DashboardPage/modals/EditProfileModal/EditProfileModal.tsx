@@ -43,23 +43,23 @@ export const EditProfileModal = () => {
     if (isSuccess) {
       close()
       handleSuccessToast(
-        `Welcome, ${data?.user.name}! Data changed successfully`
+        `Congrats, ${data?.user.name}! Data changed successfully`
       )
     }
     if (isError && error && 'status' in error)
       handleErrorToast(
         error?.status === 409
           ? 'User with this email already exists. Please try different email.'
-          : 'Something went wrong during registration. Please try again.'
+          : 'Something went wrong. Please try again.'
       )
   }, [isError, isSuccess])
 
   return (
     <Modal modalTitle='Edit profile' size='sm'>
-      <div className='mb-[25px] flex justify-center'>
-        <EditAvatar />
-      </div>
       <form onSubmit={handleSubmit(data => user(data))}>
+        <div className='mb-[25px] flex justify-center'>
+          <EditAvatar />
+        </div>
         <Field
           errors={errors}
           inputName='name'
