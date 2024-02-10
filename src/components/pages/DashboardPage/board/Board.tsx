@@ -4,17 +4,19 @@ import { useEffect, useState } from 'react'
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { boardApi } from 'redux/api/dashboard/board'
-import { Board as BoardT } from 'redux/slices/board/board-types'
+import { BoardInitialState } from 'redux/slices/board/board-types'
 
 export const Board = () => {
   const { name } = useParams()
   const dispatch = useAppDispatch()
   const { open } = useModal('add-column-modal')
-  const [boardData, setBoardData] = useState<BoardT | null>(null)
+  const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
+    null
+  )
 
   useEffect(() => {
     if (name) {
-      dispatch(boardApi.endpoints.getBoardByName.initiate(name.slice(1)))
+      dispatch(boardApi.endpoints.getBoardByName.initiate(name))
         .unwrap()
         .then(r => setBoardData(r))
     }
