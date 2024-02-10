@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 export const useBoard = () => {
   const {
     register,
+    handleSubmit,
     reset,
     formState: { errors }
   } = useForm<BoardModal>({
@@ -12,5 +13,5 @@ export const useBoard = () => {
     mode: 'onChange'
   })
 
-  return { register, errors, reset }
+  return { register, errors, handleSubmit, reset }
 }
