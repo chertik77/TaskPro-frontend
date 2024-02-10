@@ -6,6 +6,9 @@ import {
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
+import { RadioPriority } from 'components/ui/field/RadioPriority'
+import { handleSuccessToast } from 'lib/toasts'
+
 // import { useState } from 'react'
 // import { DayPicker } from 'react-day-picker'
 // import { cn } from 'lib/utils'
@@ -27,6 +30,7 @@ export const AddCardModal = () => {
   const { close } = useModal('add-card-modal')
 
   const onSubmit = (data: AddCardSchemaFields) => {
+    handleSuccessToast('Card successfully created!')
     console.log('data:', data)
     close()
     reset()
@@ -51,56 +55,28 @@ export const AddCardModal = () => {
           Label color
         </p>
 
-        <ul className='mb-[14px] flex gap-2'>
-          <li key='1' className='flex size-[14px] items-center justify-center '>
-            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-priority-low'>
-              <input
-                {...register('priority')}
-                type='radio'
-                name='priority'
-                value='Low'
-                className='peer hidden size-full'
-              />
-              <div className='size-[12px] rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
-            </label>
-          </li>
-          <li key='2' className='flex size-[14px] items-center justify-center'>
-            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-priority-medium'>
-              <input
-                {...register('priority')}
-                type='radio'
-                name='priority'
-                value='Medium'
-                className='peer hidden size-full'
-              />
-              <div className=' size-[12px] rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
-            </label>
-          </li>
-          <li key='3' className='flex size-[14px] items-center justify-center '>
-            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-brand'>
-              <input
-                {...register('priority')}
-                type='radio'
-                name='priority'
-                value='High'
-                className='peer hidden size-full'
-              />
-              <div className='size-[12px] rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
-            </label>
-          </li>
-          <li key='4' className='flex size-[14px] items-center justify-center '>
-            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-black/30'>
-              <input
-                {...register('priority')}
-                type='radio'
-                name='priority'
-                value='Without priority'
-                className='peer hidden size-full'
-              />
-              <div className=' size-[12px]  rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
-            </label>
-          </li>
-        </ul>
+        <div className='mb-[14px] flex gap-2'>
+          <RadioPriority
+            color='bg-priority-low'
+            value='Low'
+            {...register('priority')}
+          />
+          <RadioPriority
+            color='bg-priority-medium'
+            value='Medium'
+            {...register('priority')}
+          />
+          <RadioPriority
+            color='bg-brand'
+            value='High'
+            {...register('priority')}
+          />
+          <RadioPriority
+            color='bg-black/30 dark:bg-white/30'
+            value='Without priority'
+            {...register('priority')}
+          />
+        </div>
 
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
