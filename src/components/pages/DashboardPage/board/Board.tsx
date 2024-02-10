@@ -2,13 +2,16 @@ import { Button } from 'components/ui'
 import { useAppDispatch } from 'hooks'
 import { useEffect, useState } from 'react'
 import { useModal } from 'react-modal-state'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { boardApi } from 'redux/api/dashboard/board'
+import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 
 export const Board = () => {
   const { name } = useParams()
   const dispatch = useAppDispatch()
+  const columns = useSelector(selectColumns)
   const { open } = useModal('add-column-modal')
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
@@ -16,11 +19,13 @@ export const Board = () => {
 
   useEffect(() => {
     if (name) {
-      dispatch(boardApi.endpoints.getBoardByName.initiate(name))
+      dispatch(
+        boardApi.endpoints.getBoardByName.initiate(name, { forceRefetch: true })
+      )
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name])
+  }, [name, columns])
 
   return (
     <>
@@ -50,6 +55,9 @@ export const Board = () => {
             </svg>
             Add another column
           </Button>
+          {boardData?.columns.map(column => (
+            <p key={column._id}>{column.title}</p>
+          ))}
         </div>
       )}
     </>
