@@ -18,3 +18,7 @@ export const editBoardFullfilled = (
     state.boards[index] = updatedBoard
   }
 }
+
+export const deleteBoardFullfilled = (state: BoardInitialState) => {
+  state.boards = []
+}

@@ -1,11 +1,16 @@
 import { cn } from 'lib/utils'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
-import { useGetAllBoardsQuery } from 'redux/api/dashboard/board'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import {
+  useDeleteBoardMutation,
+  useGetAllBoardsQuery
+} from 'redux/api/dashboard/board'
 import { selectBoard } from 'redux/slices/board/board-slice'
 
 export const SidebarBoardsList = () => {
+  const navigate = useNavigate()
+  const [deleteBoard] = useDeleteBoardMutation()
   const { name } = useParams()
   const board = useSelector(selectBoard)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
@@ -37,12 +42,20 @@ export const SidebarBoardsList = () => {
             </NavLink>
             {board.title === name?.slice(1) && (
               <div className='flex items-center gap-2 '>
-                <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
-                  <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
-                </svg>
-                <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
-                  <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
-                </svg>
+                <button>
+                  <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
+                    <use xlinkHref={`/assets/icons.svg#icon-star-btn`}></use>
+                  </svg>
+                </button>
+                <button
+                  onClick={() => {
+                    deleteBoard(name.slice(1))
+                    navigate('/dashboard', { replace: true })
+                  }}>
+                  <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
+                    <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
+                  </svg>
+                </button>
                 <div className=' h-[61px] w-1.5 rounded-l-lg bg-brand violet:bg-white '></div>
               </div>
             )}
