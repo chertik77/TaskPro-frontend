@@ -50,44 +50,58 @@ export const AddCardModal = () => {
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-        <div className='mb-[14px] flex flex-wrap gap-[8px]'>
-          <div className='flex items-center'>
-            <input
-              className='size-[14px]'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='Low'
-            />
-          </div>
-          <div className='flex items-center'>
-            <input
-              className='size-[14px]'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='Medium'
-            />
-          </div>
-          <div className='flex items-center'>
-            <input
-              className='size-[14px]'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='High'
-            />
-          </div>
-          <div className='flex items-center'>
-            <input
-              className='size-[14px]'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='Without priority'
-            />
-          </div>
-        </div>
+
+        <ul className='mb-[14px] flex gap-2'>
+          <li key='1' className='flex size-[14px] items-center justify-center '>
+            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-priority-low'>
+              <input
+                {...register('priority')}
+                type='radio'
+                name='priority'
+                value='Low'
+                className='peer hidden size-full'
+              />
+              <div className='size-[12px] rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
+            </label>
+          </li>
+          <li key='2' className='flex size-[14px] items-center justify-center'>
+            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-priority-medium'>
+              <input
+                {...register('priority')}
+                type='radio'
+                name='priority'
+                value='Medium'
+                className='peer hidden size-full'
+              />
+              <div className=' size-[12px] rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
+            </label>
+          </li>
+          <li key='3' className='flex size-[14px] items-center justify-center '>
+            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-brand'>
+              <input
+                {...register('priority')}
+                type='radio'
+                name='priority'
+                value='High'
+                className='peer hidden size-full'
+              />
+              <div className='size-[12px] rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
+            </label>
+          </li>
+          <li key='4' className='flex size-[14px] items-center justify-center '>
+            <label className='flex size-full cursor-pointer items-center justify-center rounded-[50%] bg-black/30'>
+              <input
+                {...register('priority')}
+                type='radio'
+                name='priority'
+                value='Without priority'
+                className='peer hidden size-full'
+              />
+              <div className=' size-[12px]  rounded-[50%] border-[2px] border-white opacity-0 peer-checked:opacity-100'></div>
+            </label>
+          </li>
+        </ul>
+
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
