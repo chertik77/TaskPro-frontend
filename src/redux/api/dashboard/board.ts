@@ -6,7 +6,9 @@ export const boardApi = dashboardApi.injectEndpoints({
     getAllBoards: query<{ data: Board[] }, undefined>({
       query: () => '/dashboard'
     }),
-    getBoardByName: query({ query: boardName => `/dashboard/:${boardName}` }),
+    getBoardByName: query<Board, string>({
+      query: boardName => `/dashboard/${boardName}`
+    }),
     addNewBoard: mutation({
       query: body => ({ url: '/dashboard', method: 'POST', body })
     }),
