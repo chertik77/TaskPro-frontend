@@ -1,6 +1,6 @@
 import { dashboardApi } from './dashboard'
 
-const taskApi = dashboardApi.injectEndpoints({
+export const taskApi = dashboardApi.injectEndpoints({
   endpoints: ({ mutation }) => ({
     addNewTask: mutation({
       query: ({ boardName, columnId, body }) => ({

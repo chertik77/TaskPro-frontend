@@ -1,9 +1,13 @@
 import { cn } from 'lib/utils'
 import { useState } from 'react'
 import { useModal } from 'react-modal-state'
-import { Board } from 'redux/slices/board/board-types'
+import { BoardInitialState } from 'redux/slices/board/board-types'
 
-export const SideBarBoardsItem = ({ board }: { board: Board }) => {
+export const SideBarBoardsItem = ({
+  board
+}: {
+  board: BoardInitialState['board']
+}) => {
   const [isAdditionalInfoShown, setIsAdditionalShown] = useState(false)
   const { open } = useModal('edit-board-modal')
 

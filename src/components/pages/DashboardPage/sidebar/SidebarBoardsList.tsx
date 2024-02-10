@@ -1,5 +1,6 @@
 import { cn } from 'lib/utils'
 import { useEffect } from 'react'
+import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import {
@@ -9,6 +10,7 @@ import {
 import { selectBoard } from 'redux/slices/board/board-slice'
 
 export const SidebarBoardsList = () => {
+  const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
   const [deleteBoard] = useDeleteBoardMutation()
   const { name } = useParams()
@@ -29,27 +31,27 @@ export const SidebarBoardsList = () => {
               'flex h-[61px] w-[258px] cursor-pointer items-center pl-6  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50',
               {
                 ' border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white dark:bg-black-third  dark:text-white':
-                  board.title === name?.slice(1)
+                  board.title === name
               }
             )}>
             <NavLink
-              to={`/dashboard/:${board.title}`}
+              to={`/dashboard/${board.title}`}
               className='flex w-full items-center gap-2'>
               <svg className='size-[18px] stroke-current  aria-[current=page]:bg-brand'>
                 <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
               </svg>
               <p className='w-[115px] truncate'>{board?.title}</p>
             </NavLink>
-            {board.title === name?.slice(1) && (
+            {board.title === name && (
               <div className='flex items-center gap-2 '>
-                <button>
+                <button onClick={open}>
                   <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
-                    <use xlinkHref={`/assets/icons.svg#icon-star-btn`}></use>
+                    <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
                   </svg>
                 </button>
                 <button
                   onClick={() => {
-                    deleteBoard(name.slice(1))
+                    deleteBoard(name)
                     navigate('/dashboard', { replace: true })
                   }}>
                   <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>

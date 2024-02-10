@@ -5,19 +5,19 @@ import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { useModal } from 'react-modal-state'
+import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 import { useBoard } from 'hooks/useBoard'
-import { useEditBoardMutation } from 'redux/api/dashboard/board'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useEditBoardMutation } from 'redux/api/dashboard/board'
 
 import images from 'lib/json/board-bg-images.json'
 
 export const EditBoardModal = () => {
   const dispatch = useDispatch()
-  const { boardName } = useParams()
+  const { pathname } = useLocation()
   const { register, errors, reset } = useBoard()
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
@@ -31,7 +31,10 @@ export const EditBoardModal = () => {
         defaultBackground.icon?.light?.['@1x']
       : ''
   })
-
+  console.log(pathname)
+  const pathParts = pathname.split('/')
+  const boardName = pathParts[pathParts.length - 1]
+  console.log(name)
   const handleInputChange = (name: string, value: string) => {
     setFormData({ ...formData, [name]: value })
   }
