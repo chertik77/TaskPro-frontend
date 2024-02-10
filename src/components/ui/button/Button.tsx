@@ -27,7 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         'transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
         isSmallIcon
           ? 'text-black opacity-50 hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
-          : 'h-[49px] w-full rounded-lg bg-brand text-black  hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white'
+          : 'h-[49px] w-full rounded-lg bg-brand stroke-white  text-black hocus:bg-brand-hover  violet:bg-brand-secondary violet:text-white'
       )}
       ref={ref}
       {...props}>

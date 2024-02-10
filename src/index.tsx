@@ -26,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <ThemeProvider
             attribute='class'
+            defaultTheme='light'
             themes={['light', 'dark', 'violet']}
             enableSystem={false}>
             <ModalProvider
@@ -36,7 +37,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['edit-column-modal', EditColumnModal],
                 ['add-card-modal', AddCardModal],
                 ['edit-card-modal', EditCardModal],
-                ['edit-profile-modal', EditProfileModal],
                 ['edit-profile-modal', EditProfileModal],
                 ['burger-menu', BurgerMenu]
               ]}>

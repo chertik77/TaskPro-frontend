@@ -6,9 +6,12 @@ import {
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-import { Calendar } from './calendar'
+import { RadioPriority } from 'components/ui/field/RadioPriority'
+import { handleSuccessToast } from 'lib/toasts'
+import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
 
 export const AddCardModal = () => {
+  const [addNewTask] = useAddNewTaskMutation()
   const {
     register,
     handleSubmit,
@@ -17,12 +20,17 @@ export const AddCardModal = () => {
   } = useForm<AddCardSchemaFields>({
     resolver: valibotResolver(AddCardSchema),
     mode: 'onChange',
-    defaultValues: { priority: 'Without priority' }
+    defaultValues: {
+      priority: 'Without priority'
+    }
   })
   const { close } = useModal('add-card-modal')
 
   const onSubmit = (data: AddCardSchemaFields) => {
+    handleSuccessToast('Card successfully created!')
     console.log('data:', data)
+    console.log('addNewTask:', addNewTask)
+    addNewTask(data)
     close()
     reset()
   }
@@ -45,49 +53,35 @@ export const AddCardModal = () => {
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-        <div className='mb-[14px] flex flex-wrap gap-[8px]'>
-          <div className='flex items-center'>
-            <input
-              className='size-6'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='Low'
-            />
-          </div>
-          <div className='flex items-center'>
-            <input
-              className='size-6'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='Medium'
-            />
-          </div>
-          <div className='flex items-center'>
-            <input
-              className='size-6'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='High'
-            />
-          </div>
-          <div className='flex items-center'>
-            <input
-              className='size-6'
-              {...register('priority')}
-              type='radio'
-              name='priority'
-              value='Without priority'
-            />
-          </div>
+
+        <div className='mb-[14px] flex gap-2'>
+          <RadioPriority
+            color='bg-priority-low'
+            value='Low'
+            {...register('priority')}
+          />
+          <RadioPriority
+            color='bg-priority-medium'
+            value='Medium'
+            {...register('priority')}
+          />
+          <RadioPriority
+            color='bg-brand'
+            value='High'
+            {...register('priority')}
+          />
+          <RadioPriority
+            color='bg-black/30 dark:bg-white/30'
+            value='Without priority'
+            {...register('priority')}
+          />
         </div>
+
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
-        <input type='date' {...register('deadline')} />
-        <Calendar />
+        <input type='date' className='mb-[40px]' {...register('deadline')} />
+
         <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
           Add
         </Button>

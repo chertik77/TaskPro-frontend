@@ -45,3 +45,10 @@ export const switchThemeFullfilled = (
   state.user.userTheme = action.payload.user.userTheme
   state.user.avatarURL = action.payload.user.avatarURL
 }
+
+export const editProfileFullfilled = (
+  state: UserInitialState,
+  action: PayloadAction<UserInitialState>
+) => {
+  state.user = action.payload.user
+}

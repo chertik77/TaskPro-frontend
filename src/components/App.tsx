@@ -4,11 +4,13 @@ import { RestrictedRoute } from 'components/routes/RestrictedRoute'
 import { useAppDispatch, useAuth } from 'hooks'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useEffect } from 'react'
-import { Route, Routes, redirect } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
+import { persistor } from 'redux/store'
 import { Loader } from './ui/loader/Loader'
 
 export const App = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { isRefreshing, token } = useAuth()
 
@@ -17,7 +19,10 @@ export const App = () => {
     dispatch(userApi.endpoints.current.initiate(undefined))
       .unwrap()
       .catch(e => {
-        if (e.status === 401) redirect('/auth/signin')
+        if (e.status === 401) {
+          persistor.purge()
+          navigate('/auth/signin', { replace: true })
+        }
       })
   }, [])
 
