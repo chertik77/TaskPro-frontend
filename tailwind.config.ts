@@ -1,4 +1,3 @@
-import 'tailwindcss-text-fill'
 import plugin from 'tailwindcss/plugin'
 import { createThemes } from 'tw-colors'
 
@@ -112,6 +111,7 @@ const config = {
     }
   },
   plugins: [
+    require('tailwindcss-text-fill'),
     plugin(({ addComponents, addVariant }) => {
       addVariant('hocus', ['&:hover', '&:focus']),
         addComponents({
