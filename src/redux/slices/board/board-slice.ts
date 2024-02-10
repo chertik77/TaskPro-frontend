@@ -90,5 +90,5 @@ const boardSlice = createSlice({
   }
 })
 
-export const { selectBoard } = boardSlice.selectors
+export const { selectBoard, selectColumns, selectTasks } = boardSlice.selectors
 export const boardReducer = boardSlice.reducer

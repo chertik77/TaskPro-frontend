@@ -1,11 +1,13 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAddColumnForm } from 'hooks/useAddColumn'
 import type { ColumnModal } from 'lib/schemas/addComumn-shema'
+import { useModal } from 'react-modal-state'
 import { useLocation } from 'react-router-dom'
 import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
 
 export const AddColumnModal = () => {
   const location = useLocation()
+  const { close } = useModal('add-column-modal')
   const [addNewColumn] = useAddNewColumnMutation()
   const { register, errors, handleSubmit } = useAddColumnForm()
 
@@ -13,7 +15,9 @@ export const AddColumnModal = () => {
     console.log(data)
     const pathParts = location.pathname.split('/')
     const name = pathParts[pathParts.length - 1]
-    addNewColumn({ boardName: name, title: data.title })
+    addNewColumn({ boardName: name, body: data })
+      .unwrap()
+      .then(() => close())
   }
 
   return (

@@ -6,11 +6,10 @@ export const columnApi = dashboardApi.injectEndpoints({
       query: boardName => `/dashboard/${boardName}/columns`
     }),
     addNewColumn: mutation({
-      query: ({ boardName, columnTitle }) => ({
-        clg: console.log(boardName, columnTitle),
+      query: ({ boardName, body }) => ({
         url: `/dashboard/${boardName}`,
         method: 'POST',
-        title: columnTitle
+        body
       })
     }),
     editColumn: mutation({
