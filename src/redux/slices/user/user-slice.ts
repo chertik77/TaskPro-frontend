@@ -7,7 +7,8 @@ import {
   currentRejected,
   logoutFullfilled,
   signupFullfilled,
-  switchThemeFullfilled
+  switchThemeFullfilled,
+  editProfileFullfilled
 } from './user-functions'
 import type { InitialState } from './user-types'
 
@@ -38,6 +39,7 @@ const userSlice = createSlice({
       .addMatcher(userApi.endpoints.current.matchFulfilled, currentFullfilled)
       .addMatcher(userApi.endpoints.current.matchRejected, currentRejected)
       .addMatcher(userApi.endpoints.logout.matchFulfilled, logoutFullfilled)
+      .addMatcher(userApi.endpoints.user.matchFulfilled, editProfileFullfilled)
       .addMatcher(
         dashboardApi.endpoints.switchTheme.matchFulfilled,
         switchThemeFullfilled

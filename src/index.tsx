@@ -3,7 +3,7 @@ import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal
 import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
 import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
 import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
-import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfile/EditProfileModal'
+import { EditProfileModal } from 'components/pages/DashboardPage/modals/EditProfileModal/EditProfileModal'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'

@@ -2,20 +2,46 @@ import { Modal } from 'components/ui/modal/Modal'
 import { useSelector } from 'react-redux'
 import { selectUser } from 'redux/slices/user/user-slice'
 import { Button, Field } from 'components/ui'
-import { useSignupForm } from 'hooks'
+import { useEditProfileForm } from 'hooks'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useUserMutation } from 'redux/api/user'
+import { useModal } from 'react-modal-state'
+import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  const { name, email, avatarURL } = useSelector(selectUser)
+  const { close } = useModal('edit-profile-modal')
+  const { name, email } = useSelector(selectUser)
+  const editProfileFormData = localStorage.getItem('edit-profile-form')
+  const userName = editProfileFormData
+    ? JSON.parse(editProfileFormData).name
+    : name
+  const userEmail = editProfileFormData
+    ? JSON.parse(editProfileFormData).email
+    : email
+
+  const signUpFormData = localStorage.getItem('sign-up-form')
+  const signInFormData = localStorage.getItem('sign-in-form')
+  const userPassword = editProfileFormData
+    ? JSON.parse(editProfileFormData).password
+    : signInFormData
+      ? JSON.parse(signInFormData).password
+      : signUpFormData
+        ? JSON.parse(signUpFormData).password
+        : ''
   const [user, { isLoading, isError, isSuccess, data, error }] =
     useUserMutation()
-  const { handleSubmit, register, errors, isValid, reset } = useSignupForm()
+  const { handleSubmit, register, errors, isValid } = useEditProfileForm({
+    defaultValues: {
+      name: userName || '',
+      email: userEmail || '',
+      password: userPassword || ''
+    }
+  })
 
   useEffect(() => {
     if (isSuccess) {
-      reset()
+      close()
       handleSuccessToast(
         `Welcome, ${data?.user.name}! Data changed successfully`
       )
@@ -30,18 +56,13 @@ export const EditProfileModal = () => {
 
   return (
     <Modal modalTitle='Edit profile' size='sm'>
-      <div
-        style={{ backgroundImage: `url(${avatarURL?.url})` }}
-        className='relative mx-auto mb-[25px] size-[68px] rounded-lg bg-cover bg-center'>
-        <button className='absolute bottom-[-12px] left-[22px] size-6 rounded-lg bg-brand'>
-          +
-        </button>
+      <div className='mb-[25px] flex justify-center'>
+        <EditAvatar />
       </div>
       <form onSubmit={handleSubmit(data => user(data))}>
         <Field
           errors={errors}
           inputName='name'
-          value={name || ''}
           placeholder='Enter your name'
           className='mb-[14px]'
           {...register('name')}
@@ -49,7 +70,6 @@ export const EditProfileModal = () => {
         <Field
           errors={errors}
           inputName='email'
-          value={email || ''}
           placeholder='Enter your email'
           className='mb-[14px]'
           {...register('email')}
