@@ -6,11 +6,12 @@ export const useBoard = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<BoardModal>({
     resolver: valibotResolver(boardSchema),
     mode: 'onChange'
   })
 
-  return { register, errors, handleSubmit }
+  return { register, errors, handleSubmit, reset }
 }
