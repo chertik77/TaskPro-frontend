@@ -41,9 +41,9 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
               className='absolute right-[18px] top-4'
               onClick={() => setShowPassword(prev => !prev)}>
               {showPassword ? (
-                <FiEyeOff className='size-[18px] opacity-40' stroke='white' />
+                <FiEyeOff className='light:stroke-black size-[18px] stroke-white opacity-40 violet:stroke-black' />
               ) : (
-                <FiEye className='size-[18px] opacity-40' stroke='white' />
+                <FiEye className='light:stroke-black size-[18px]  stroke-white opacity-40 violet:stroke-black' />
               )}
             </button>
           </div>
