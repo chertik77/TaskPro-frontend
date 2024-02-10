@@ -19,7 +19,6 @@ export const App = () => {
     dispatch(userApi.endpoints.current.initiate(undefined))
       .unwrap()
       .catch(e => {
-        console.log(e)
         if (e.status === 401) {
           persistor.purge()
           navigate('/auth/signin', { replace: true })
