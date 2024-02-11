@@ -6,7 +6,8 @@ import { useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
 import { persistor } from 'redux/store'
-import { Loader } from './ui/loader/Loader'
+import { Board } from './pages/DashboardPage'
+import { CreateBoard, Loader } from './ui'
 
 export const App = () => {
   const navigate = useNavigate()
@@ -43,12 +44,10 @@ export const App = () => {
         />
         <Route
           path='/dashboard'
-          element={<PrivateRoute component={<DashboardPage />} />}
-        />
-        <Route
-          path='/dashboard/:name'
-          element={<PrivateRoute component={<DashboardPage />} />}
-        />
+          element={<PrivateRoute component={<DashboardPage />} />}>
+          <Route index element={<CreateBoard />} />
+          <Route path=':name' element={<Board />} />
+        </Route>
       </Route>
     </Routes>
   )

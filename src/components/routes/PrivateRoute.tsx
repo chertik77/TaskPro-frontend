@@ -1,5 +1,5 @@
 import { useAuth } from 'hooks'
-import { ReactElement } from 'react'
+import type { ReactElement } from 'react'
 import { Navigate } from 'react-router-dom'
 
 export const PrivateRoute = ({ component }: { component: ReactElement }) => {
