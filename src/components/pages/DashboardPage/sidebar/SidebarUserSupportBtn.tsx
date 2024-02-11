@@ -3,7 +3,7 @@ import { Button } from 'components/ui'
 export const SidebarUserSupportBtn = () => (
   <div
     className='mx-6 mt-10 h-[238px] rounded-lg
-           bg-white-gray p-[14px] violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5'>
+    bg-white-gray p-[14px] violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5'>
     <div className='mb-3.5'>
       <picture>
         <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />

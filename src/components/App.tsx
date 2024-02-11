@@ -1,6 +1,5 @@
 import { Layout } from 'components/Layout'
-import { PrivateRoute } from 'components/routes/PrivateRoute'
-import { RestrictedRoute } from 'components/routes/RestrictedRoute'
+import { PrivateRoute, RestrictedRoute } from 'components/routes'
 import { useAppDispatch, useAuth } from 'hooks'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useEffect } from 'react'
