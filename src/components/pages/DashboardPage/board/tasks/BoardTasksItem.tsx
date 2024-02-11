@@ -1,13 +1,13 @@
+type Priorities = 'Low' | 'Medium' | 'High' | 'Without priority'
+
 type BoardTasksItemProps = {
   title: string
   description: string
-  priority: 'Low' | 'Medium' | 'High' | 'Without priority'
+  priority: Priorities
   deadline: string
 }
 
-type ColorPickerArg = 'Low' | 'Medium' | 'High' | 'Without priority'
-
-const PriorityBorderColorPicker = (priority: ColorPickerArg) => {
+const PriorityBorderColorPicker = (priority: Priorities) => {
   switch (priority) {
     case 'Low':
       return 'border-priority-low'
@@ -20,7 +20,7 @@ const PriorityBorderColorPicker = (priority: ColorPickerArg) => {
   }
 }
 
-const PriorityColorPicker = (priority: ColorPickerArg) => {
+const PriorityColorPicker = (priority: Priorities) => {
   switch (priority) {
     case 'Low':
       return 'bg-priority-low'
