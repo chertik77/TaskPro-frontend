@@ -29,7 +29,6 @@ export const Board = () => {
         .then(r => setBoardData(r))
     }
   }, [name, columns])
-
   return (
     <>
       {!boardData ||
