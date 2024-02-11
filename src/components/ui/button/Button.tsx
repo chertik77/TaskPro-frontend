@@ -16,7 +16,7 @@ const iconComponents: Record<string, JSX.Element> = {
   logout: createIcon('logout-btn', 'size-8 stroke-brand'),
   plus: createIcon(
     'plus',
-    'size-7 fill-black violet:fill-white violet:stroke-brand-secondary'
+    'size-7 violet:fill-white violet:stroke-brand-secondary'
   )
 }
 

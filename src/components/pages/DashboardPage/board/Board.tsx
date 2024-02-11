@@ -66,18 +66,3 @@ export const Board = () => {
     </>
   )
 }
-
-//   return (
-//         <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black  dark:text-white'>
-//           {boardData?.title}
-//           <Button
-//             onClick={open}
-//             className='inline-flex h-[56px] w-[335px] items-center justify-center gap-2 rounded-md  bg-white fill-black px-[79px] py-[14px] text-fs-14-lh-normal-fw-500 dark:bg-black-secondary sm:w-[334px] sm:pl-[79px] sm:pr-[78px]'>
-//             <svg className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary violet:text-white dark:bg-white dark:text-black'>
-//               <use xlinkHref="/assets/icons.svg#icon-plus" />
-//             </svg>
-//             Add another column
-//           </Button>
-//         </div>
-//   )
-// }
