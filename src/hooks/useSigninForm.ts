@@ -14,6 +14,7 @@ export const useSigninForm = () => {
     setValue,
     reset,
     trigger,
+    clearErrors,
     formState: { errors, isValid }
   } = useForm<SigninSchemaFields>({
     resolver: valibotResolver(signinSchema),
@@ -26,5 +27,14 @@ export const useSigninForm = () => {
     storage: window.localStorage
   })
 
-  return { register, handleSubmit, errors, isValid, reset, watch, trigger }
+  return {
+    register,
+    handleSubmit,
+    errors,
+    isValid,
+    reset,
+    watch,
+    trigger,
+    clearErrors
+  }
 }

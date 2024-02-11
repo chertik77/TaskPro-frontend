@@ -1,14 +1,35 @@
-import { Link } from 'react-router-dom'
+import { cn } from 'lib/utils'
+import { useState } from 'react'
+import { useModal } from 'react-modal-state'
+import { BoardInitialState } from 'redux/slices/board/board-types'
 
-export const SideBarBoardsItem = () => {
+export const SideBarBoardsItem = ({
+  board
+}: {
+  board: BoardInitialState['board']
+}) => {
+  const [isAdditionalInfoShown, setIsAdditionalShown] = useState(false)
+  const { open } = useModal('edit-board-modal')
+
   return (
-    <div className='mb-[70px] flex items-center gap-2 md:mb-[60px] '>
-      <Link to='/dashboard' aria-label='icon-logo'>
-        <svg width='32' height='32'>
-          <use href='/assets/icons.svg#icon-logo'></use>
-        </svg>
-      </Link>
-      <div className='text-base font-semibold '>Task Pro</div>
-    </div>
+    <li
+      className={cn(
+        'flex h-[61px] w-full cursor-pointer items-center gap-2 text-white/50',
+        {
+          'rounded-l border-r-4 border-brand bg-black-third':
+            isAdditionalInfoShown
+        }
+      )}
+      onClick={() => setIsAdditionalShown(true)}>
+      <svg className='size-[18px] stroke-current'>
+        <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
+      </svg>
+      {board?.title}
+      {isAdditionalInfoShown && (
+        <button className='bg-brand' onClick={open}>
+          Create
+        </button>
+      )}
+    </li>
   )
 }

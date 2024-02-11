@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form'
 export const useBoard = () => {
   const {
     register,
+    handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<BoardModal>({
     resolver: valibotResolver(boardSchema),
     mode: 'onChange'
   })
 
-  return { register, errors }
+  return { register, errors, handleSubmit, reset }
 }

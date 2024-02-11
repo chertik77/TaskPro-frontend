@@ -1,20 +1,27 @@
 import { Button, Field } from 'components/ui'
 import { useIsFormValidOnReload, useSigninForm } from 'hooks'
-import { handleErrorToast, handleSuccesToast } from 'lib/toasts'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
 
 export const SigninForm = () => {
   const [signin, { isLoading, isSuccess, isError, data, error }] =
     useSigninMutation()
-  const { handleSubmit, register, errors, isValid, reset, trigger } =
-    useSigninForm()
-  const { isFormValidOnReload } = useIsFormValidOnReload(trigger)
+  const {
+    handleSubmit,
+    register,
+    errors,
+    isValid,
+    reset,
+    trigger,
+    clearErrors
+  } = useSigninForm()
+  const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
 
   useEffect(() => {
     if (isSuccess) {
       reset()
-      handleSuccesToast(`Welcome back, ${data?.user.name}!`)
+      handleSuccessToast(`Welcome back, ${data?.user.name}!`)
     }
     if (isError && error && 'status' in error)
       handleErrorToast(
@@ -41,7 +48,9 @@ export const SigninForm = () => {
         className='mb-6 text-white'
         errors={errors}
       />
-      <Button type='submit' disabled={!isValid || !isFormValidOnReload}>
+      <Button
+        type='submit'
+        disabled={!isValid || !isFormValidOnReload || isLoading}>
         {isLoading ? 'Loading...' : 'Log In Now'}
       </Button>
     </form>

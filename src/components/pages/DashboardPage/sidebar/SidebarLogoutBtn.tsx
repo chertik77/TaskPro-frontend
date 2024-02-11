@@ -1,19 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Button } from 'components/ui'
+import { useLogoutMutation } from 'redux/api/user'
 
 export const SidebarLogoutBtn = () => {
+  const [logout] = useLogoutMutation()
+
   return (
-    <div className='mt-6 flex items-end'>
-      <Link
-        to='/auth/signin'
-        className='flex items-center gap-3.5 '
-        aria-label='icon-logout-btn'>
-        <div className=''>
-          <svg width='32' height='32'>
-            <use href='assets/icons.svg#icon-logout-btn'></use>
-          </svg>
-        </div>
-        <p className=' text-base font-medium '>Log out</p>
-      </Link>
-    </div>
+    <Button className=' my-6 ml-6 flex items-center gap-3.5' onClick={logout}>
+      <svg className='size-8 text-brand hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third'>
+        <use xlinkHref='/assets/icons.svg#icon-logout-btn' />
+      </svg>
+      <span className='text-fs-16-lh-normal-fw-500 violet:text-white'>
+        Log out
+      </span>
+    </Button>
   )
 }

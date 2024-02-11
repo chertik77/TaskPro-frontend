@@ -1,16 +1,55 @@
 import { Button } from 'components/ui/button/Button'
 import { Field } from 'components/ui/field/Field'
 import { Modal } from 'components/ui/modal/Modal'
-import { useBoard } from 'hooks/useBoard'
-import type { ChangeEvent } from 'react'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
-export const NewBoardModal = () => {
-  const { register, errors } = useBoard()
+import { useBoard } from 'hooks/useBoard'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useModal } from 'react-modal-state'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 
-  const handleIconChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
+import images from 'lib/json/board-bg-images.json'
+
+export const NewBoardModal = () => {
+  const dispatch = useDispatch()
+  const { register, errors, reset } = useBoard()
+  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
+
+  const defaultBackground = images.find(bg => bg.id === 'default')
+  const { close } = useModal('new-board-modal')
+  const [formData, setFormData] = useState({
+    title: '',
+    icon: 'icon-project-1',
+    background: defaultBackground
+      ? defaultBackground.icon?.['@1x'] ||
+        defaultBackground.icon?.light?.['@1x']
+      : ''
+  })
+
+  const handleCreateBoard = () => {
+    addNewBoard({
+      title: formData.title,
+      icon: formData.icon,
+      background: formData.background
+    })
+      .unwrap()
+      .then(response => {
+        handleSuccessToast('Board created successfully')
+        dispatch({ type: 'board/addNewBoardFullfilled', payload: response })
+        close()
+        reset()
+      })
+      .catch(error => {
+        handleErrorToast('Error creating board')
+        console.error(error)
+      })
+  }
+
+  const handleInputChange = (name: string, value: string) => {
+    setFormData({ ...formData, [name]: value })
   }
 
   return (
@@ -18,16 +57,27 @@ export const NewBoardModal = () => {
       <Field
         {...register('title')}
         inputName='title'
-        className={errors && 'mb-2'}
+        className={errors ? 'mb-2' : ' violet:text-black'}
         placeholder='Title'
         errors={errors}
+        value={formData.title}
+        onChange={e => handleInputChange('title', e.target.value)}
       />
       <p className='mt-6'>Icons</p>
-      <Icons handleIconChange={handleIconChange} />
+      <Icons
+        handleIconChange={e => handleInputChange('icon', e.target.value)}
+      />
       <p className='mt-6'>Background</p>
-      <BackgroundContainer />
-      <Button isAddIcon iconName='plus' onClick={e => console.log(e)}>
-        Create
+      <BackgroundContainer
+        handleBgChange={e => handleInputChange('background', e.target.value)}
+      />
+      <Button
+        type='submit'
+        isAddIcon
+        iconName='plus'
+        onClick={handleCreateBoard}
+        disabled={isLoading}>
+        {isLoading ? 'Creating...' : 'Create'}
       </Button>
     </Modal>
   )

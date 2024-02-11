@@ -12,7 +12,7 @@ const iconComponents: Record<string, JSX.Element> = {
   arrow: createIcon('arrow-btn', 'size-4 stroke-current'),
   pencil: createIcon('pencil-btn', 'size-4 stroke-current'),
   trash: createIcon('trash-btn', 'size-4 stroke-current'),
-  help: createIcon('help', 'size-4 stroke-current'),
+  help: createIcon('help', 'size-5 stroke-current'),
   logout: createIcon('logout-btn', 'size-8 stroke-brand'),
   plus: createIcon(
     'plus',
@@ -27,7 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         'transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
         isSmallIcon
           ? 'text-black opacity-50 hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
-          : 'h-[49px] w-full rounded-lg bg-brand text-black  hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white'
+          : 'h-[49px] w-full rounded-lg bg-brand stroke-white  text-black hocus:bg-brand-hover  violet:bg-brand-secondary violet:text-white'
       )}
       ref={ref}
       {...props}>

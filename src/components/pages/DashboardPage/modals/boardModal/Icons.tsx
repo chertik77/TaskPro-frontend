@@ -1,25 +1,33 @@
 import icons from 'lib/json/board-icons.json'
-import type { ChangeEventHandler } from 'react'
+import { ChangeEventHandler } from 'react'
 
 type IconProps = {
   handleIconChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export const Icons = ({ handleIconChange }: IconProps) => (
-  <div className='mt-[14px] flex gap-2'>
-    {icons.map(({ id }) => (
-      <label className='relative cursor-pointer' key={id}>
+  <ul className='mt-[14px] flex gap-2'>
+    {icons.map(({ id }, index) => (
+      <li
+        key={id}
+        className='inline-flex items-center justify-between text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300'>
         <input
-          onChange={handleIconChange}
-          defaultChecked={id === 'icon-project-1'}
           type='radio'
-          className='peer absolute size-full opacity-0'
+          id={id}
+          name='icon'
           value={id}
+          className='peer hidden size-full'
+          onChange={handleIconChange}
+          defaultChecked={index === 0}
         />
-        <svg className='size-[18px] opacity-50 peer-checked:stroke-black'>
-          <use xlinkHref={`/assets/icons.svg#${id}`}></use>
-        </svg>
-      </label>
+        <label
+          htmlFor={id}
+          className='inline-flex cursor-pointer items-center stroke-current peer-checked:text-black peer-checked:opacity-100 dark:peer-checked:text-white dark:peer-checked:opacity-100'>
+          <svg className='size-[18px] stroke-current'>
+            <use xlinkHref={`/assets/icons.svg#${id}`}></use>
+          </svg>
+        </label>
+      </li>
     ))}
-  </div>
+  </ul>
 )

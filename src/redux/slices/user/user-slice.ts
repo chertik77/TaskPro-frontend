@@ -7,9 +7,10 @@ import {
   currentRejected,
   logoutFullfilled,
   signupFullfilled,
-  switchThemeFullfilled
+  switchThemeFullfilled,
+  editProfileFullfilled
 } from './user-functions'
-import type { InitialState } from './user-types'
+import type { UserInitialState } from './user-types'
 
 const userSlice = createSlice({
   name: 'user',
@@ -17,14 +18,13 @@ const userSlice = createSlice({
     user: {
       name: null,
       email: null,
-      password: null,
       avatarURL: { url: '' },
-      userTheme: 'dark'
+      userTheme: 'light'
     },
     token: null,
     isLoggedIn: false,
     isRefreshing: false
-  } as InitialState,
+  } as UserInitialState,
   reducers: {},
   extraReducers: builder => {
     builder
@@ -39,12 +39,14 @@ const userSlice = createSlice({
       .addMatcher(userApi.endpoints.current.matchFulfilled, currentFullfilled)
       .addMatcher(userApi.endpoints.current.matchRejected, currentRejected)
       .addMatcher(userApi.endpoints.logout.matchFulfilled, logoutFullfilled)
+      .addMatcher(userApi.endpoints.user.matchFulfilled, editProfileFullfilled)
       .addMatcher(
         dashboardApi.endpoints.switchTheme.matchFulfilled,
         switchThemeFullfilled
       )
   },
   selectors: {
+    selectTheme: state => state.user.userTheme,
     selectUser: state => state.user,
     selectIsLoggedIn: state => state.isLoggedIn,
     selectIsRefreshing: state => state.isRefreshing,
@@ -52,6 +54,11 @@ const userSlice = createSlice({
   }
 })
 
-export const { selectUser, selectIsLoggedIn, selectIsRefreshing, selectToken } =
-  userSlice.selectors
+export const {
+  selectUser,
+  selectIsLoggedIn,
+  selectIsRefreshing,
+  selectToken,
+  selectTheme
+} = userSlice.selectors
 export const userReducer = userSlice.reducer

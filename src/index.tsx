@@ -1,9 +1,14 @@
 import { App } from 'components/App'
-import { EditBoardModal } from 'components/pages/DashboardPage/modals/boardModal/EditBoardModal'
-import { NewBoardModal } from 'components/pages/DashboardPage/modals/boardModal/NewBoardModal'
-import { AddColumnModal } from 'components/pages/DashboardPage/modals/columnModal/AddColumnModal'
-import { EditColumnModal } from 'components/pages/DashboardPage/modals/columnModal/EditColumnModal'
-import { CreateNeedHelpModal } from './components/pages/DashboardPage/modals/needHelpModal/createNeedHelpModal'
+import {
+  AddCardModal,
+  AddColumnModal,
+  BurgerMenu,
+  EditBoardModal,
+  EditCardModal,
+  EditColumnModal,
+  EditProfileModal,
+  NewBoardModal
+} from 'components/pages/DashboardPage/modals'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
@@ -18,11 +23,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider
-          attribute='class'
-          themes={['light', 'dark', 'violet']}
-          defaultTheme={store.getState().user.user.userTheme}>
-          <BrowserRouter>
+        <BrowserRouter>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='light'
+            themes={['light', 'dark', 'violet']}
+            enableSystem={false}>
             <ModalProvider
               modals={[
                 ['edit-board-modal', EditBoardModal],
@@ -30,6 +36,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
                 ['create-need-help-modal', CreateNeedHelpModal]
+                ['add-card-modal', AddCardModal],
+                ['edit-card-modal', EditCardModal],
+                ['edit-profile-modal', EditProfileModal],
+                ['burger-menu', BurgerMenu]
               ]}>
               <App />
               <ModalRenderer Component={EditBoardModal} />
@@ -37,9 +47,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
               <ModalRenderer Component={CreateNeedHelpModal} />
+              <ModalRenderer Component={AddCardModal} />
+              <ModalRenderer Component={EditCardModal} />
+              <ModalRenderer Component={EditProfileModal} />
+              <ModalRenderer Component={BurgerMenu} />
             </ModalProvider>
-          </BrowserRouter>
-        </ThemeProvider>
+          </ThemeProvider>
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </StrictMode>
