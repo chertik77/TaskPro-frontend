@@ -31,12 +31,6 @@ export const Board = () => {
   }, [name, columns])
   return (
     <>
-      <BoardTasksItem
-        title='This is tile'
-        description='this is description'
-        priority='High'
-        deadline='11/02/2024'
-      />
       {!boardData ||
         (!boards.length && (
           <div className='flex size-full items-center justify-center'>
