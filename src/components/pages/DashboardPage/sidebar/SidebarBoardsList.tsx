@@ -24,7 +24,7 @@ export const SidebarBoardsList = () => {
             className={cn(
               'flex h-[61px] w-[258px] cursor-pointer items-center pl-6  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50',
               board.title === name &&
-                'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white dark:bg-black-third  dark:text-white'
+                'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white  light:bg-white-gray dark:bg-black-third dark:text-white'
             )}>
             <SideBarBoardsItem board={board} />
           </li>
