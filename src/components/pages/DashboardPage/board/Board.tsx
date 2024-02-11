@@ -15,7 +15,6 @@ export const Board = () => {
   const columns = useSelector(selectColumns)
   const boards = useSelector(selectBoards)
   const { open } = useModal('add-column-modal')
-  const { open: createNewBoard } = useModal('new-board-modal')
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
   )
@@ -29,7 +28,7 @@ export const Board = () => {
         .then(r => setBoardData(r))
     }
   }, [name, columns])
-  
+
   return (
     boards.length > 0 && (
       <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black  dark:text-white'>

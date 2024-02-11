@@ -1,7 +1,7 @@
 import { useModal } from 'react-modal-state'
 
 export const CreateBoard = () => {
-  const { open } = useModal('add-column-modal')
+  const { open } = useModal('new-board-modal')
 
   return (
     <div className='flex size-full items-center justify-center'>
