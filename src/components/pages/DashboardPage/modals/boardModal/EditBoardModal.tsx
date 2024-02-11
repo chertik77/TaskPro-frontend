@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
-import { BackgroundContainer } from './BackgroundContainer'
-import { Icons } from './Icons'
+// import { BackgroundContainer } from './BackgroundContainer'
+// import { Icons } from './Icons'
 import { useState } from 'react'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
@@ -64,13 +64,13 @@ export const EditBoardModal = () => {
           className='violet:text-black'
         />
         <p className='mt-6'>Icons</p>
-        <Icons
+        {/* <Icons
           handleIconChange={e => handleInputChange('icon', e.target.value)}
-        />
+        /> */}
         <p className='mt-6'>Background</p>
-        <BackgroundContainer
+        {/* <BackgroundContainer
           handleBgChange={e => handleInputChange('background', e.target.value)}
-        />
+        /> */}
         <Button
           type='submit'
           isAddIcon
