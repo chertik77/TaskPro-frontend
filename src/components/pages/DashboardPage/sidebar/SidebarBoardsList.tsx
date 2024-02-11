@@ -7,14 +7,14 @@ import {
   useDeleteBoardMutation,
   useGetAllBoardsQuery
 } from 'redux/api/dashboard/board'
-import { selectBoards } from 'redux/slices/boards/boards-slice'
+import { selectBoard } from 'redux/slices/board/board-slice'
 
 export const SidebarBoardsList = () => {
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
   const [deleteBoard] = useDeleteBoardMutation()
   const { name } = useParams()
-  const boards = useSelector(selectBoards)
+  const boards = useSelector(selectBoard)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
 
   useEffect(() => {
