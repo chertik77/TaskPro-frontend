@@ -55,24 +55,24 @@
     </symbol>
 
     <symbol id="icon-bell" viewBox="0 0 16 16">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
         d="M6.236 14c.47.415 1.088.667 1.764.667s1.294-.252 1.764-.667M12 5.333a4.003 4.003 0 0 0-4-4 4.001 4.001 0 0 0-4 4c0 2.06-.52 3.471-1.1 4.404-.49.787-.735 1.18-.726 1.29.01.121.036.168.134.241.088.066.487.066 1.285.066h8.815c.797 0 1.196 0 1.285-.066.098-.073.124-.119.134-.241.009-.11-.236-.503-.726-1.29-.581-.933-1.1-2.343-1.1-4.404z" />
     </symbol>
 
     <symbol id="icon-arrow-btn" viewBox="0 0 16 16">
-      <path fill='none' stroke='currentColor' stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
+      <path fill='none' stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
         d="M2.225 4.667a6.667 6.667 0 1 1 0 6.668" />
-      <path fill='none' stroke='currentColor' stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
+      <path fill='none' stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
         d="M8 10.667 10.667 8 8 5.333M1.333 8h9.333" />
     </symbol>
 
     <symbol id="icon-pencil-btn" viewBox="0 0 16 16">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
         d="m1.667 14.333 3.7-1.423c.237-.091.355-.136.466-.196.098-.053.192-.114.28-.182.099-.077.189-.167.368-.346l7.52-7.52a1.887 1.887 0 0 0-2.667-2.667l-7.52 7.52c-.179.179-.269.269-.346.368a2.066 2.066 0 0 0-.182.28 4.246 4.246 0 0 0-.196.466l-1.423 3.7zm0 0 1.372-3.567c.098-.255.147-.383.231-.441a.339.339 0 0 1 .253-.054c.101.019.197.116.391.309l1.506 1.506c.193.193.29.29.309.391a.334.334 0 0 1-.054.253c-.058.084-.186.133-.441.232l-3.567 1.372z" />
     </symbol>
 
     <symbol id="icon-trash-btn" viewBox="0 0 16 16">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"
         d="M6 2h4M2 4h12M3.333 4l.401 6.009c.074 1.116.112 1.673.294 2.122a2.998 2.998 0 0 0 1.836 1.717C6.323 14 6.882 14 8 14v0c1.118 0 1.677 0 2.136-.152a3 3 0 0 0 1.836-1.717c.182-.448.219-1.006.294-2.122L12.667 4" />
     </symbol>
 
