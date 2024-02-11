@@ -3,6 +3,7 @@ import {
   AddCardModal,
   AddColumnModal,
   BurgerMenu,
+  CreateNeedHelpModal,
   EditBoardModal,
   EditCardModal,
   EditColumnModal,
@@ -35,6 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
+                ['create-need-help-modal', CreateNeedHelpModal],
                 ['add-card-modal', AddCardModal],
                 ['edit-card-modal', EditCardModal],
                 ['edit-profile-modal', EditProfileModal],
@@ -45,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalRenderer Component={NewBoardModal} />
               <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={EditColumnModal} />
+              <ModalRenderer Component={CreateNeedHelpModal} />
               <ModalRenderer Component={AddCardModal} />
               <ModalRenderer Component={EditCardModal} />
               <ModalRenderer Component={EditProfileModal} />
