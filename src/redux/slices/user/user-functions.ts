@@ -36,6 +36,7 @@ export const logoutFullfilled = (state: UserInitialState) => {
   }
   state.isLoggedIn = false
   state.token = null
+  localStorage.removeItem('theme')
 }
 
 export const switchThemeFullfilled = (

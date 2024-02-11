@@ -1,9 +1,6 @@
-import { Button } from 'components/ui/button/Button'
-import { Field } from 'components/ui/field/Field'
-import { Modal } from 'components/ui/modal/Modal'
-import { BackgroundContainer } from './BackgroundContainer'
-import { Icons } from './Icons'
-
+import { Button, Field, Modal } from 'components/ui'
+// import { BackgroundContainer } from './BackgroundContainer'
+// import { Icons } from './Icons'
 import { useState } from 'react'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
@@ -18,7 +15,7 @@ import images from 'lib/json/board-bg-images.json'
 export const EditBoardModal = () => {
   const dispatch = useDispatch()
   const { pathname } = useLocation()
-  const { register, errors, reset } = useBoard()
+  const { register, errors, reset, handleSubmit } = useBoard()
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
   const defaultBackground = images.find(bg => bg.id === 'default')
@@ -31,10 +28,10 @@ export const EditBoardModal = () => {
         defaultBackground.icon?.light?.['@1x']
       : ''
   })
-  console.log(pathname)
+
   const pathParts = pathname.split('/')
   const boardName = pathParts[pathParts.length - 1]
-  console.log(name)
+
   const handleInputChange = (name: string, value: string) => {
     setFormData({ ...formData, [name]: value })
   }
@@ -46,7 +43,7 @@ export const EditBoardModal = () => {
         handleSuccessToast('Board edited successfully')
         dispatch({ type: 'board/editBoardFullfilled', payload: response })
         close()
-        reset()
+        reset({ title: '' })
       })
       .catch(error => {
         handleErrorToast('Error editing board')
@@ -56,30 +53,33 @@ export const EditBoardModal = () => {
 
   return (
     <Modal size='sm' modalTitle='Edit board'>
-      <Field
-        {...register('title')}
-        inputName='title'
-        placeholder='Title'
-        value={formData.title || ''}
-        errors={errors}
-        onChange={e => handleInputChange('title', e.target.value)}
-        className='violet:text-black'
-      />
-      <p className='mt-6'>Icons</p>
-      <Icons
-        handleIconChange={e => handleInputChange('icon', e.target.value)}
-      />
-      <p className='mt-6'>Background</p>
-      <BackgroundContainer
-        handleBgChange={e => handleInputChange('background', e.target.value)}
-      />
-      <Button
-        isAddIcon
-        iconName='plus'
-        onClick={handleEditBoard}
-        disabled={isLoading}>
-        {isLoading ? 'Editing...' : 'Edit'}
-      </Button>
+      <form onSubmit={handleSubmit(handleEditBoard)}>
+        <Field
+          {...register('title')}
+          inputName='title'
+          placeholder='Title'
+          value={formData.title || ''}
+          errors={errors}
+          onChange={e => handleInputChange('title', e.target.value)}
+          className='violet:text-black'
+        />
+        <p className='mt-6'>Icons</p>
+        {/* <Icons
+          handleIconChange={e => handleInputChange('icon', e.target.value)}
+        /> */}
+        <p className='mt-6'>Background</p>
+        {/* <BackgroundContainer
+          handleBgChange={e => handleInputChange('background', e.target.value)}
+        /> */}
+        <Button
+          type='submit'
+          isAddIcon
+          iconName='plus'
+          onClick={handleEditBoard}
+          disabled={isLoading}>
+          {isLoading ? 'Editing...' : 'Edit'}
+        </Button>
+      </form>
     </Modal>
   )
 }
