@@ -1,4 +1,8 @@
-import { AuthFormNavigation, AuthLayout, SigninForm } from 'components/pages'
+import {
+  AuthFormNavigation,
+  AuthLayout,
+  SigninForm
+} from 'components/pages/AuthPages'
 
 const SigninPage = () => (
   <AuthLayout>

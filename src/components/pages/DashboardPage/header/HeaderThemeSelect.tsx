@@ -7,11 +7,11 @@ export const HeaderThemeSelect = () => {
   const [switchTheme] = useSwitchThemeMutation()
 
   const handleThemeChange = (e: string) => {
-    switchTheme({ userTheme: e }).then(r => {
-      if ('data' in r) {
+    switchTheme({ userTheme: e })
+      .unwrap()
+      .then(r => {
         setTheme(r.data.user.userTheme)
-      }
-    })
+      })
   }
 
   return (
