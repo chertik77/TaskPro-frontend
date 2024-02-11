@@ -18,33 +18,7 @@ export const editBoardFullfilled = (
 }
 
 export const deleteBoardFullfilled = (state: BoardInitialState) => {
-  state.board = {
-    _id: '',
-    title: '',
-    icon: '',
-    background: '',
-    owner: '',
-    columns: [
-      {
-        title: '',
-        board: '',
-        owner: '',
-        _id: '',
-        tasks: [
-          {
-            _id: '',
-            title: '',
-            description: '',
-            column: '',
-            owner: '',
-            board: '',
-            priority: '',
-            deadline: ''
-          }
-        ]
-      }
-    ]
-  }
+  Object.assign(state, { board: {} })
 }
 
 export const addNewColumnFullfilled = (
@@ -71,7 +45,10 @@ export const deleteColumnFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<Column>
 ) => {
-  state.board.columns.filter(column => column._id !== action.payload._id)
+  const i = state.board.columns.findIndex(
+    column => column._id === action.payload._id
+  )
+  state.board.columns.splice(i, 1)
 }
 
 export const addNewTaskFullfilled = (
@@ -105,7 +82,15 @@ export const deleteTaskFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<Task>
 ) => {
-  state.board.columns
-    .find(column => column._id === action.payload.column)
-    ?.tasks.filter(task => task._id !== action.payload._id)
+  const column = state.board.columns.find(
+    column => column._id === action.payload.column
+  )
+  if (column) {
+    const taskIndex = column.tasks.findIndex(
+      task => task._id === action.payload._id
+    )
+    if (taskIndex !== -1) {
+      column.tasks.splice(taskIndex, 1)
+    }
+  }
 }

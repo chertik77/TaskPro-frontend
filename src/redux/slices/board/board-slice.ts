@@ -18,33 +18,7 @@ import type { BoardInitialState } from './board-types'
 const boardSlice = createSlice({
   name: 'board',
   initialState: {
-    board: {
-      _id: '',
-      title: '',
-      icon: '',
-      background: '',
-      owner: '',
-      columns: [
-        {
-          title: '',
-          board: '',
-          owner: '',
-          _id: '',
-          tasks: [
-            {
-              _id: '',
-              title: '',
-              description: '',
-              column: '',
-              owner: '',
-              board: '',
-              priority: '',
-              deadline: ''
-            }
-          ]
-        }
-      ]
-    }
+    board: {}
   } as BoardInitialState,
   reducers: {},
   extraReducers: builder => {

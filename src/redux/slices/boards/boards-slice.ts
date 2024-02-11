@@ -10,7 +10,7 @@ import { BoardsInitialState } from './boards-types'
 const boardsSlice = createSlice({
   name: 'boards',
   initialState: {
-    boards: [{ _id: '', title: '', icon: '', owner: '' }]
+    boards: []
   } as BoardsInitialState,
   reducers: {},
   extraReducers: builder => {

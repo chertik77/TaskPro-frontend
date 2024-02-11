@@ -3,9 +3,9 @@ import type { Boards, BoardsInitialState } from './boards-types'
 
 export const addNewBoardsFullfilled = (
   state: BoardsInitialState,
-  action: PayloadAction<BoardsInitialState['boards']>
+  action: PayloadAction<Boards>
 ) => {
-  state.boards = action.payload
+  state.boards.push(action.payload)
 }
 
 export const editBoardsFullfilled = (
@@ -24,5 +24,6 @@ export const deleteBoardsFullfilled = (
   state: BoardsInitialState,
   action: PayloadAction<Boards>
 ) => {
-  state.boards.filter(board => board._id !== action.payload._id)
+  const i = state.boards.findIndex(board => board._id === action.payload._id)
+  state.boards.splice(i, 1)
 }
