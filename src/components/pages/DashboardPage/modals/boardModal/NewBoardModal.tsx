@@ -5,15 +5,17 @@ import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
 import { useBoard } from 'hooks/useBoard'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useModal } from 'react-modal-state'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useState } from 'react'
+import { useModal } from 'react-modal-state'
+import { useDispatch } from 'react-redux'
 import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
 
 import images from 'lib/json/board-bg-images.json'
+import { useNavigate } from 'react-router-dom'
 
 export const NewBoardModal = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { register, errors, reset } = useBoard()
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
@@ -41,6 +43,7 @@ export const NewBoardModal = () => {
         dispatch({ type: 'board/addNewBoardFullfilled', payload: response })
         close()
         reset()
+        navigate(`/dashboard/${formData.title}`)
       })
       .catch(error => {
         handleErrorToast('Error creating board')

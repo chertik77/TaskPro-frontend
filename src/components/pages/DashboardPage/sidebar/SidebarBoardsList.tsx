@@ -52,7 +52,18 @@ export const SidebarBoardsList = () => {
                 <button
                   onClick={() => {
                     deleteBoard(name)
-                    navigate('/dashboard', { replace: true })
+                    const index = boards.findIndex(
+                      board => board.title === name
+                    )
+
+                    if (!boards.length) {
+                      navigate('/dashboard', { replace: true })
+                    } else {
+                      const nextBoardIndex = index && boards.length - 1 ? 0 : 1
+                      navigate(`/dashboard/${boards[nextBoardIndex].title}`, {
+                        replace: true
+                      })
+                    }
                   }}>
                   <svg className='size-4 aria-[current=page]:bg-brand hocus:text-brand-hover violet:hocus:text-brand-secondary'>
                     <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
