@@ -17,7 +17,6 @@ export const SidebarBoardsList = () => {
   const boards = useSelector(selectBoards)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
 
-  console.log(boards)
   useEffect(() => {
     refetch()
   }, [boards])
