@@ -1,6 +1,6 @@
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
@@ -13,33 +13,29 @@ export const SideBarBoardsItem = ({
   const { name } = useParams()
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
-  const boards = useSelector(selectBoards)
+  const boardss = useSelector(selectBoards)
   const [deleteBoard] = useDeleteBoardMutation()
 
   const handleDelete = () => {
     deleteBoard(name)
-    const index = boards.findIndex(board => board.title === name)
+    const index = boardss.findIndex(board => board.title === name)
 
-    if (!boards.length) {
-      navigate('/dashboard', { replace: true })
-    } else {
-      const nextBoardIndex = index && boards.length - 1 ? 0 : 1
-      navigate(`/dashboard/${boards[nextBoardIndex].title}`, {
-        replace: true
-      })
-    }
+    const nextBoardIndex = index && boardss.length - 1 ? 0 : 1
+    navigate(`/dashboard/${boardss[nextBoardIndex]?.title ?? ''}`, {
+      replace: true
+    })
   }
 
   return (
     <>
-      <NavLink
+      <Link
         to={`/dashboard/${board.title}`}
         className='flex w-full items-center gap-2'>
         <svg className='size-[18px] stroke-current aria-[current=page]:bg-brand'>
           <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
         </svg>
         <p className='w-[115px] truncate'>{board?.title}</p>
-      </NavLink>
+      </Link>
       {board.title === name && (
         <div className='flex items-center gap-2 '>
           <button onClick={open}>

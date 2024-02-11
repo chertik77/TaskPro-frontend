@@ -1,9 +1,9 @@
 import {
   minLength,
   object,
+  picklist,
   string,
   toTrimmed,
-  picklist,
   type Output
 } from 'valibot'
 
