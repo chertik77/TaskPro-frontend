@@ -1,11 +1,14 @@
 import icons from 'lib/json/board-icons.json'
-import { ChangeEventHandler } from 'react'
+import type { ControllerRenderProps } from 'react-hook-form'
 
-type IconProps = {
-  handleIconChange?: ChangeEventHandler<HTMLInputElement>
+type IconsProps = {
+  field: ControllerRenderProps<
+    { icon: string; title: string; background: string },
+    'icon'
+  >
 }
 
-export const Icons = ({ handleIconChange }: IconProps) => (
+export const Icons = (props: IconsProps) => (
   <ul className='mt-[14px] flex gap-2'>
     {icons.map(({ id }, index) => (
       <li
@@ -17,7 +20,7 @@ export const Icons = ({ handleIconChange }: IconProps) => (
           name='icon'
           value={id}
           className='peer hidden size-full'
-          onChange={handleIconChange}
+          onChange={props.field.onChange}
           defaultChecked={index === 0}
         />
         <label

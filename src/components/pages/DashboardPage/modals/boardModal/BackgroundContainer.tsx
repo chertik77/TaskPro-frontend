@@ -1,13 +1,14 @@
 import images from 'lib/json/board-bg-images.json'
-import type { ChangeEventHandler } from 'react'
+import type { ControllerRenderProps } from 'react-hook-form'
 
-type BackgroundContainerProps = {
-  handleBgChange?: ChangeEventHandler<HTMLInputElement>
+type BackgroundProps = {
+  field: ControllerRenderProps<
+    { icon: string; title: string; background: string },
+    'background'
+  >
 }
 
-export const BackgroundContainer = ({
-  handleBgChange
-}: BackgroundContainerProps) => (
+export const BackgroundContainer = (props: BackgroundProps) => (
   <ul className='mb-10 mt-[14px] flex max-w-[280px] flex-wrap gap-1'>
     {images.map(bg => (
       <li
@@ -18,7 +19,7 @@ export const BackgroundContainer = ({
           name='background'
           defaultChecked={bg.id === 'default'}
           value={bg.icon?.['@1x'] || bg.icon?.light?.['@1x']}
-          onChange={handleBgChange}
+          onChange={props.field.onChange}
           className='peer hidden size-full opacity-0'
           id={`background-${bg.id}`}
         />
