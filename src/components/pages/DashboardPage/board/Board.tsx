@@ -8,7 +8,6 @@ import { boardApi } from 'redux/api/dashboard/board'
 import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
-import { BoardTasksItem } from './tasks/BoardTasksItem'
 
 export const Board = () => {
   const { name } = useParams()
