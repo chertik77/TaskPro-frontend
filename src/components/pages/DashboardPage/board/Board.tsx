@@ -30,7 +30,7 @@ export const Board = () => {
   return (
     <>
       {!boardData && (
-        <div className='flex h-screen w-full items-center justify-center'>
+        <div className='flex size-full items-center justify-center'>
           <div className='h-[80px] w-[335px] text-center text-fs-12-lh-1.33-fw-400 text-black opacity-70 dark:text-white-gray-secondary  tablet:h-[72px] tablet:w-[486px] tablet:text-fs-14-lh-1.28-fw-400 '>
             Before starting your project, it is essential{' '}
             <span
