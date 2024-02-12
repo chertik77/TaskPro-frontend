@@ -1,6 +1,14 @@
-type BoardHeadingItemProps = {
-  title: string
-}
+import { Button } from 'components/ui'
+import { useModal } from 'react-modal-state'
+import { useParams } from 'react-router-dom'
+import { useDeleteColumnMutation } from 'redux/api/dashboard/column'
+import type { Column } from 'redux/slices/board/board-types'
+
+export const BoardHeadingItem = ({ column }: { column: Column }) => {
+  const { name } = useParams()
+  const { open: openCardModal } = useModal('add-card-modal')
+  const { open } = useModal('edit-column-modal')
+  const [deleteColumn] = useDeleteColumnMutation()
 
 export const BoardHeadingItem = ({ title }: BoardHeadingItemProps) => {
   return (
@@ -17,7 +25,4 @@ export const BoardHeadingItem = ({ title }: BoardHeadingItemProps) => {
             <use xlinkHref='/assets/icons.svg#icon-trash-btn'></use>
           </svg>
         </button>
-      </div>
-    </div>
-  )
 }
