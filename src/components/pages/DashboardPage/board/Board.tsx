@@ -8,7 +8,6 @@ import { boardApi } from 'redux/api/dashboard/board'
 import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
-
 import { BoardHeadingList } from './heading/BoardHeadingList'
 
 export const Board = () => {
@@ -17,7 +16,6 @@ export const Board = () => {
   const columns = useSelector(selectColumns)
   const boards = useSelector(selectBoards)
   const { open } = useModal('add-column-modal')
-  const { open: createNewBoard } = useModal('new-board-modal')
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
   )
@@ -34,22 +32,7 @@ export const Board = () => {
 
   return (
     <>
-      {!columns && (
-        <div className='flex h-screen w-full items-center justify-center'>
-          <div className='h-[80px] w-[335px] text-center text-fs-12-lh-1.33-fw-400 text-black opacity-70 dark:text-white-gray-secondary  tablet:h-[72px] tablet:w-[486px] tablet:text-fs-14-lh-1.28-fw-400 '>
-            Before starting your project, it is essential{' '}
-            <span
-              onClick={createNewBoard}
-              className='text-brand hocus:cursor-pointer hocus:text-brand-hover violet:text-brand-secondary violet:hocus:text-brand-third'>
-              to create a board
-            </span>{' '}
-            to visualize and track all the necessary tasks and milestones. This
-            board serves as a powerful tool to organize the workflow and ensure
-            effective collaboration among team members.
-          </div>
-        </div>
-      )}
-      {boards.length > 0 && (
+      {(boards.length > 0 || boardData !== null) && (
         <div className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
           {boardData?.title}
           <Button
@@ -60,7 +43,7 @@ export const Board = () => {
             </svg>
             Add another column
           </Button>
-          <BoardHeadingList />
+          <BoardHeadingList columns={boardData?.columns} />
         </div>
       )}
     </>
