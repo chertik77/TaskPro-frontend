@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui/index'
 import { useNewBoard } from 'hooks'
-import { AddNewBoard } from 'lib/schemas/newBord'
+import { AddNewBoard } from 'lib/schemas/newBoardModal'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
