@@ -9,7 +9,6 @@ import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
 
-
 import { BoardHeadingList } from './heading/BoardHeadingList'
 
 export const Board = () => {
@@ -33,8 +32,6 @@ export const Board = () => {
     }
   }, [name, columns])
 
-
-  
   return (
     <>
       {!columns && (
@@ -44,7 +41,7 @@ export const Board = () => {
             <span
               onClick={createNewBoard}
               className='text-brand hocus:cursor-pointer hocus:text-brand-hover violet:text-brand-secondary violet:hocus:text-brand-third'>
-                to create a board
+              to create a board
             </span>{' '}
             to visualize and track all the necessary tasks and milestones. This
             board serves as a powerful tool to organize the workflow and ensure
@@ -62,10 +59,10 @@ export const Board = () => {
               <use xlinkHref='/assets/icons.svg#icon-pluss' />
             </svg>
             Add another column
-          </Button>          
-          <BoardHeadingList/>
+          </Button>
+          <BoardHeadingList />
         </div>
       )}
     </>
   )
-}          
+}

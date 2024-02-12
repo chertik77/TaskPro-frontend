@@ -1,9 +1,10 @@
-import { useAuth } from 'hooks'
 import { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { selectIsAuth } from 'redux/slices/user/user-slice'
 
 export const RestrictedRoute = ({ component }: { component: ReactElement }) => {
-  const { isLoggedIn } = useAuth()
+  const isAuth = useSelector(selectIsAuth)
 
-  return isLoggedIn ? <Navigate to='/dashboard' /> : component
+  return isAuth ? <Navigate to='/dashboard' /> : component
 }

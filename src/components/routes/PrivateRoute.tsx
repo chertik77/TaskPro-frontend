@@ -1,11 +1,10 @@
-import { useAuth } from 'hooks'
 import type { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { selectIsAuth } from 'redux/slices/user/user-slice'
 
 export const PrivateRoute = ({ component }: { component: ReactElement }) => {
-  const { isRefreshing, isLoggedIn } = useAuth()
+  const isAuth = useSelector(selectIsAuth)
 
-  const shouldRedirect = !isLoggedIn && !isRefreshing
-
-  return shouldRedirect ? <Navigate to='/' /> : component
+  return !isAuth ? <Navigate to='/' /> : component
 }
