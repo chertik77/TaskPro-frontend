@@ -12,5 +12,6 @@ export type ModalProps = VariantProps<typeof modalVariants> & {
     | 'Add column'
     | 'Need help'
     | 'Edit column'
+    | ''
   children: ReactNode
 }
