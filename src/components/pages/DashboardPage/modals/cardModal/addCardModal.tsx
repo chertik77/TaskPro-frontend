@@ -26,17 +26,16 @@ export const AddCardModal = () => {
   
   useEffect(()=>{
     dispatch(columnApi.endpoints.getAllColumns.initiate(name)).unwrap()
-    .then((t)=>{
-      console.log(t);
-      setid(()=>t.data[0]._id)
-      t.data.forEach((element:any)=> {
-        console.log(element.title,name);
-        if(element.title === name){
-          setid(()=>element._id
-          )
+    .then((arr)=>{
+      setid(()=>arr.data[0]._id)
+      // t.data.forEach((element:any)=> {
+      //   console.log(element.title,name);
+      //   if(element.title === name){
+      //     setid(()=>element._id
+      //     )
           
-        }
-      });
+      //   }
+      // });
     })
   },[name])
   
