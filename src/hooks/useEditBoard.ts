@@ -1,17 +1,17 @@
 import { valibotResolver } from '@hookform/resolvers/valibot'
-import { AddNewBoard, newBoardSchema } from 'lib/schemas/newBoardModal'
+import { EditBoard, editBoardSchema } from 'lib/schemas/editBoardModal'
 import { useForm } from 'react-hook-form'
 
-export const useNewBoard = () => {
+export const useEditBoard = () => {
   const {
     register,
     handleSubmit,
     reset,
     control,
     formState: { errors, isValid }
-  } = useForm<AddNewBoard>({
+  } = useForm<EditBoard>({
     defaultValues: { icon: 'icon-project-1', background: 'default' },
-    resolver: valibotResolver(newBoardSchema),
+    resolver: valibotResolver(editBoardSchema),
     mode: 'onChange'
   })
 
