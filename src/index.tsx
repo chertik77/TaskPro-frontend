@@ -1,3 +1,4 @@
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import { App } from 'components/App'
 import {
   AddCardModal,
@@ -22,40 +23,42 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='light'
-            themes={['light', 'dark', 'violet']}
-            enableSystem={false}>
-            <ModalProvider
-              modals={[
-                ['edit-board-modal', EditBoardModal],
-                ['new-board-modal', NewBoardModal],
-                ['add-column-modal', AddColumnModal],
-                ['edit-column-modal', EditColumnModal],
-                ['create-need-help-modal', CreateNeedHelpModal],
-                ['add-card-modal', AddCardModal],
-                ['edit-card-modal', EditCardModal],
-                ['edit-profile-modal', EditProfileModal],
-                ['burger-menu', BurgerMenu]
-              ]}>
-              <App />
-              <ModalRenderer Component={EditBoardModal} />
-              <ModalRenderer Component={NewBoardModal} />
-              <ModalRenderer Component={AddColumnModal} />
-              <ModalRenderer Component={EditColumnModal} />
-              <ModalRenderer Component={CreateNeedHelpModal} />
-              <ModalRenderer Component={AddCardModal} />
-              <ModalRenderer Component={EditCardModal} />
-              <ModalRenderer Component={EditProfileModal} />
-              <ModalRenderer Component={BurgerMenu} />
-            </ModalProvider>
-          </ThemeProvider>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='light'
+              themes={['light', 'dark', 'violet']}
+              enableSystem={false}>
+              <ModalProvider
+                modals={[
+                  ['edit-board-modal', EditBoardModal],
+                  ['new-board-modal', NewBoardModal],
+                  ['add-column-modal', AddColumnModal],
+                  ['edit-column-modal', EditColumnModal],
+                  ['create-need-help-modal', CreateNeedHelpModal],
+                  ['add-card-modal', AddCardModal],
+                  ['edit-card-modal', EditCardModal],
+                  ['edit-profile-modal', EditProfileModal],
+                  ['burger-menu', BurgerMenu]
+                ]}>
+                <App />
+                <ModalRenderer Component={EditBoardModal} />
+                <ModalRenderer Component={NewBoardModal} />
+                <ModalRenderer Component={AddColumnModal} />
+                <ModalRenderer Component={EditColumnModal} />
+                <ModalRenderer Component={CreateNeedHelpModal} />
+                <ModalRenderer Component={AddCardModal} />
+                <ModalRenderer Component={EditCardModal} />
+                <ModalRenderer Component={EditProfileModal} />
+                <ModalRenderer Component={BurgerMenu} />
+              </ModalProvider>
+            </ThemeProvider>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </GoogleOAuthProvider>
   </StrictMode>
 )
