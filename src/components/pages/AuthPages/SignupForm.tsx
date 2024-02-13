@@ -1,4 +1,3 @@
-import { GoogleLogin } from '@react-oauth/google'
 import { Button, Field } from 'components/ui'
 import { useIsFormValidOnReload, useSignupForm } from 'hooks'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
@@ -34,17 +33,6 @@ export const SignupForm = () => {
 
   return (
     <form onSubmit={handleSubmit(data => signup(data))}>
-      <GoogleLogin
-        onSuccess={credentialResponse => {
-          console.log(credentialResponse)
-        }}
-        onError={() => {
-          console.log('Login Failed')
-        }}
-        context='signup'
-        theme='filled_black'
-        auto_select
-      />
       <Field
         errors={errors}
         inputName='name'
