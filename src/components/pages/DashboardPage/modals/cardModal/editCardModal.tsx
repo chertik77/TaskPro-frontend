@@ -1,15 +1,15 @@
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { Button, Field, Modal } from 'components/ui/index'
 import {
   AddCardSchema,
   type AddCardSchemaFields
 } from 'lib/schemas/addCard-schema'
-import { valibotResolver } from '@hookform/resolvers/valibot'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useLocation } from 'react-router-dom'
 import { useEditTaskMutation } from 'redux/api/dashboard/task'
-
 
 // import { useState } from 'react'
 // import { DayPicker } from 'react-day-picker'
@@ -17,6 +17,7 @@ import { useEditTaskMutation } from 'redux/api/dashboard/task'
 
 export const EditCardModal = () => {
   // const [selected, setSelected] = useState<Date>()
+  const location = useLocation()
   const {
     register,
     handleSubmit,
@@ -37,18 +38,13 @@ export const EditCardModal = () => {
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
 
-
-
   const [editTask] = useEditTaskMutation()
   const onSubmit = (data: AddCardSchemaFields) => {
-
-
-
     editTask({
       boardName: name,
       body: data,
-      columnId: JSON.parse(localStorage.getItem('idColumn') || '""'),
-      taskId: '65ca85d0a136eaa60fd8cb6f'
+      columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
+      taskId: JSON.parse(localStorage.getItem('ids') as string).taskId
     })
       .unwrap()
       .then(() => {
