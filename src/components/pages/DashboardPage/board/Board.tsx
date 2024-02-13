@@ -29,7 +29,7 @@ export const Board = () => {
         .then(r => setBoardData(r))
     }
   }, [name, columns])
-  console.log(boardData)
+
   return (
     <>
       {(boards.length > 0 || boardData !== null) && (
