@@ -8,6 +8,13 @@ export const addNewBoardsFullfilled = (
   state.boards.push(action.payload)
 }
 
+export const getAllBoardsFullfilled = (
+  state: BoardsInitialState,
+  action: PayloadAction<Boards>
+) => {
+  state.boards.push(action.payload)
+}
+
 export const editBoardsFullfilled = (
   state: BoardsInitialState,
   action: PayloadAction<Boards>

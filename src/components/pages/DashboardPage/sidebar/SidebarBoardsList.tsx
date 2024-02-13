@@ -3,18 +3,25 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetAllBoardsQuery } from 'redux/api/dashboard/board'
-import { selectBoards } from 'redux/slices/boards/boards-slice'
+import {
+  selectBoards,
+  selectBoardsLength
+} from 'redux/slices/boards/boards-slice'
 import { SideBarBoardsItem } from './SideBarBoardsItem'
 
 export const SidebarBoardsList = () => {
   const { name } = useParams()
   const boards = useSelector(selectBoards)
+  const boardsLength = useSelector(selectBoardsLength)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
 
   useEffect(() => {
+    console.log('refetch')
     refetch()
-  }, [boards])
+  }, [boards, data?.data.length])
 
+  console.log(boardsLength, 'boards')
+  console.log(data?.data, 'data')
   return (
     <div className='mb-auto'>
       <ul className='flex flex-col'>
