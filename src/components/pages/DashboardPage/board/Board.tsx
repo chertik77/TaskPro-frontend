@@ -28,7 +28,7 @@ export const Board = () => {
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name, columns])
+  }, [name, columns?.length])
 
   return (
     <>
@@ -43,7 +43,7 @@ export const Board = () => {
             </svg>
             Add another column
           </Button>
-          <BoardHeadingList columns={boardData?.columns} />
+          <BoardHeadingList />
         </div>
       )}
     </>
