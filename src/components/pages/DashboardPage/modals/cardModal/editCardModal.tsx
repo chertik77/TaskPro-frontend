@@ -7,7 +7,9 @@ import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { handleSuccessToast } from 'lib/toasts'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useEditTaskMutation } from 'redux/api/dashboard/task'
+
 
 // import { useState } from 'react'
 // import { DayPicker } from 'react-day-picker'
@@ -32,9 +34,32 @@ export const EditCardModal = () => {
   })
   const { close } = useModal('edit-card-modal')
 
+  const pathParts = location.pathname.split('/')
+  const name = pathParts[pathParts.length - 1]
+
+
+
+  const [editTask] = useEditTaskMutation()
   const onSubmit = (data: AddCardSchemaFields) => {
-    handleSuccessToast('Card successfully created!')
-    console.log('data:', data)
+
+
+
+    editTask({
+      boardName: name,
+      body: data,
+      columnId: JSON.parse(localStorage.getItem('idColumn') || '""'),
+      taskId: '65ca85d0a136eaa60fd8cb6f'
+    })
+      .unwrap()
+      .then(() => {
+        handleSuccessToast('Task edit successfully')
+        close()
+        reset()
+      })
+      .catch(error => {
+        handleErrorToast('Error edit board')
+        console.error(error)
+      })
     close()
     reset()
   }
