@@ -12,7 +12,7 @@ export const BoardHeadingList = () => {
     <div className='mb-[14px] mt-[39px] flex tablet:mt-[26px] desktop:mt-[10px]'>
       {columns?.map(column => {
         return (
-          <div key={column._id}>
+          <div key={column._id} className='mr-[34px] w-[334px]'>
             <BoardHeadingItem column={column} />
             <Button
               isAddIcon

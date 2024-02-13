@@ -38,7 +38,7 @@ export const BoardTasksItem = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className={`h-[154px] w-[334px] rounded-[8px] border-l-[4px] ${PriorityBorderColorPicker(task.priority)} bg-white py-[14px] pl-[24px] pr-[20px] dark:bg-black`}>
+      className={`mb-[8px] h-[154px] w-[334px] rounded-[8px] border-l-[4px] ${PriorityBorderColorPicker(task.priority)} bg-white py-[14px] pl-[24px] pr-[20px] dark:bg-black`}>
       <p className='pb-[8px] text-fs-14-lh-normal-fw-600 dark:text-white'>
         {task.title}
       </p>
