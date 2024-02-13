@@ -6,18 +6,17 @@ export const useEditColumnForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<ColumnModal>({
     resolver: valibotResolver(columnSchema),
-    mode: 'onChange',
-    defaultValues: {
-      title: localStorage.getItem('column-title')
-    }
+    mode: 'onChange'
   })
 
   return {
     register,
     handleSubmit,
+    reset,
     errors
   }
 }

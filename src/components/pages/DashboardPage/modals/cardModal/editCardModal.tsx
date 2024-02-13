@@ -6,8 +6,9 @@ import {
   type AddCardSchemaFields
 } from 'lib/schemas/addCard-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useModal } from 'react-modal-state'
+import { useModal, useModalInstance } from 'react-modal-state'
 import { useLocation } from 'react-router-dom'
 import { useEditTaskMutation } from 'redux/api/dashboard/task'
 
@@ -28,14 +29,15 @@ export const EditCardModal = () => {
     formState: { errors, isValid }
   } = useForm<AddCardSchemaFields>({
     resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange',
-    defaultValues: {
-      title,
-      description,
-      priority,
-      deadline
-    }
+    mode: 'onChange'
   })
+
+  const { isOpen } = useModalInstance()
+  useEffect(() => {
+    if (isOpen) {
+      reset({ title, description, priority, deadline })
+    }
+  }, [isOpen])
 
   const { close } = useModal('edit-card-modal')
   const pathParts = location.pathname.split('/')

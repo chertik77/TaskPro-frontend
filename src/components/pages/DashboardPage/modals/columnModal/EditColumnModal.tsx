@@ -1,15 +1,23 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useEditColumnForm } from 'hooks/useEditColumn'
 import type { ColumnModal } from 'lib/schemas/addComumn-shema'
-import { useModal } from 'react-modal-state'
+import { useModal, useModalInstance } from 'react-modal-state'
 import { useLocation } from 'react-router-dom'
 import { useEditColumnMutation } from 'redux/api/dashboard/column'
+import { useEffect } from 'react'
 
 export const EditColumnModal = () => {
   const { pathname } = useLocation()
-  const { register, errors, handleSubmit } = useEditColumnForm()
+  const { register, errors, handleSubmit, reset } = useEditColumnForm()
   const [editColumn] = useEditColumnMutation()
   const { close } = useModal('edit-column-modal')
+  const { isOpen } = useModalInstance()
+
+  useEffect(() => {
+    if (isOpen) {
+      reset({ title: localStorage.getItem('column-title') })
+    }
+  }, [isOpen])
 
   const id = localStorage.getItem('columnId')
 
@@ -32,7 +40,7 @@ export const EditColumnModal = () => {
           className='mb-6'
         />
         <Button isAddIcon iconName='plus'>
-          Add
+          Edit
         </Button>
       </form>
     </Modal>
