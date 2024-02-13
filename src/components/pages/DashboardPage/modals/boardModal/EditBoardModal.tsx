@@ -21,11 +21,12 @@ export const EditBoardModal = () => {
   const boardName = pathParts[pathParts.length - 1]
 
   const submit = (data: EditBoard) => {
+    console.log(data)
     editBoard({ boardName, body: data })
       .then(() => {
         handleSuccessToast('Board edited successfully')
         close()
-        reset({ title: '' })
+        reset({ title: ' ' })
         navigate(`/dashboard/${data.title}`)
       })
       .catch(() => {
@@ -42,6 +43,7 @@ export const EditBoardModal = () => {
           placeholder='Title'
           errors={errors}
           className='violet:text-black'
+          defaultValue={boardName}
         />
         <p className='mt-6'>Icons</p>
         <Controller
