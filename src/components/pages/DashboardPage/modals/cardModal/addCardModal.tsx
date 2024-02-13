@@ -8,11 +8,9 @@ import {
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-import { useLocation } from 'react-router-dom'
 import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
 
 export const AddCardModal = () => {
-  const location = useLocation()
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
 
@@ -30,7 +28,6 @@ export const AddCardModal = () => {
     }
   })
   const { close } = useModal('add-card-modal')
-
   const onSubmit = (data: AddCardSchemaFields) => {
     addNewTask({
       boardName: name,
@@ -44,10 +41,10 @@ export const AddCardModal = () => {
         reset()
       })
       .catch(() => {
-        handleErrorToast('Error creating task')
+        handleErrorToast(
+          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+        )
       })
-    close()
-    reset()
   }
   return (
     <Modal modalTitle='Add card'>
@@ -60,11 +57,18 @@ export const AddCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <textarea
-          placeholder='Description'
-          {...register('description')}
-          className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-        />
+        <div className='relative'>
+          <textarea
+            placeholder='Description'
+            {...register('description')}
+            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          />
+          {errors.description && (
+            <span className=' absolute left-0 top-[154px] text-red-600'>
+              Please enter at least 2 characters.
+            </span>
+          )}
+        </div>
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
@@ -95,8 +99,14 @@ export const AddCardModal = () => {
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
-        <input type='date' className='mb-[40px]' {...register('deadline')} />
-
+        <div className='relative'>
+          <input type='date' className='mb-[40px] ' {...register('deadline')} />
+          {errors.deadline && (
+            <span className=' absolute left-0 top-5 text-red-600'>
+              Wrong date!
+            </span>
+          )}
+        </div>
         <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
           Add
         </Button>
