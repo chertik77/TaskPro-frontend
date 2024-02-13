@@ -120,7 +120,7 @@ const config = {
           }
         })
     }),
-    createThemes({ violet: {}, light: {} })
+    createThemes({ violet: {}, light: {}, dark: {} })
   ]
 }
 

@@ -13,13 +13,6 @@ export const EditProfileModal = () => {
   const { close } = useModal('edit-profile-modal')
   const { name, email } = useSelector(selectUser)
   const editProfileFormData = localStorage.getItem('edit-profile-form')
-  const userName = editProfileFormData
-    ? JSON.parse(editProfileFormData).name
-    : name
-  const userEmail = editProfileFormData
-    ? JSON.parse(editProfileFormData).email
-    : email
-
   const signUpFormData = localStorage.getItem('sign-up-form')
   const signInFormData = localStorage.getItem('sign-in-form')
   const userPassword = editProfileFormData
@@ -33,8 +26,8 @@ export const EditProfileModal = () => {
     useUserMutation()
   const { handleSubmit, register, errors, isValid } = useEditProfileForm({
     defaultValues: {
-      name: userName || '',
-      email: userEmail || '',
+      name: name || '',
+      email: email || '',
       password: userPassword || ''
     }
   })
