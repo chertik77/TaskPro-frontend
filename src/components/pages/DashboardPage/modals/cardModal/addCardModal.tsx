@@ -1,20 +1,18 @@
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { Button, Field, Modal } from 'components/ui/index'
 import {
   AddCardSchema,
   type AddCardSchemaFields
 } from 'lib/schemas/addCard-schema'
-import { valibotResolver } from '@hookform/resolvers/valibot'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
 
 export const AddCardModal = () => {
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
-
-
 
   const [addNewTask] = useAddNewTaskMutation()
   const {
@@ -34,7 +32,7 @@ export const AddCardModal = () => {
     addNewTask({
       boardName: name,
       body: data,
-      columnId: JSON.parse(localStorage.getItem('idColumn') || '""')
+      columnId: localStorage.getItem('columnId')
     })
       .unwrap()
       .then(() => {
@@ -43,10 +41,10 @@ export const AddCardModal = () => {
         reset()
       })
       .catch(() => {
-        handleErrorToast("Oops! Something went wrong. Our team is already solving this problem. Please stay with us.")
+        handleErrorToast(
+          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+        )
       })
-    close()
-    reset()
   }
   return (
     <Modal modalTitle='Add card'>
@@ -59,14 +57,15 @@ export const AddCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-     <div className='relative'>   <textarea
-          placeholder='Description'
-          {...register('description')}
-          className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-        />
-        {errors.description && (
+        <div className='relative'>
+          <textarea
+            placeholder='Description'
+            {...register('description')}
+            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          />
+          {errors.description && (
             <span className=' absolute left-0 top-[154px] text-red-600'>
-            Please enter at least 2 characters.
+              Please enter at least 2 characters.
             </span>
           )}
         </div>
