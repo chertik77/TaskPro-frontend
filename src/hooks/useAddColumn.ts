@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 export const useAddColumnForm = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors }
   } = useForm<ColumnModal>({
@@ -13,5 +14,5 @@ export const useAddColumnForm = () => {
     mode: 'onChange'
   })
 
-  return { register, handleSubmit, errors }
+  return { register, handleSubmit, errors, reset }
 }
