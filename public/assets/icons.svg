@@ -13,7 +13,7 @@
     </symbol>
 
     <symbol id="icon-plus" viewBox="0 0 28 28">
-      <path fill="#161616" d="M22 0H6a6 6 0 0 0-6 6v16a6 6 0 0 0 6 6h16a6 6 0 0 0 6-6V6a6 6 0 0 0-6-6Z" />
+      <path fill="currentColor" d="M22 0H6a6 6 0 0 0-6 6v16a6 6 0 0 0 6 6h16a6 6 0 0 0 6-6V6a6 6 0 0 0-6-6Z" />
       <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M14 9.917v8.166M9.916 14h8.167" />
     </symbol>
 
@@ -122,5 +122,10 @@
       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333"
         d="M7.482 1.621c.189-.105.284-.158.384-.178a.677.677 0 0 1 .269 0c.1.021.195.073.384.178l4.933 2.741c.2.111.299.166.372.245a.68.68 0 0 1 .143.243c.034.102.034.216.034.445v5.411c0 .228 0 .343-.034.444a.665.665 0 0 1-.143.243c-.073.079-.173.134-.372.245l-4.933 2.741c-.189.105-.284.158-.384.178a.677.677 0 0 1-.269 0c-.1-.021-.195-.073-.384-.178l-4.933-2.741c-.2-.111-.3-.166-.372-.245a.68.68 0 0 1-.143-.243C2 11.048 2 10.934 2 10.706V5.295c0-.228 0-.343.034-.444a.665.665 0 0 1 .143-.243c.073-.079.173-.134.372-.245l4.933-2.741z" />
     </symbol>
+
+    <symbol id="icon-plus-violet" viewBox="0 0 28 28">
+  <path fill="#fff" d="M22 0H6a6 6 0 0 0-6 6v16a6 6 0 0 0 6 6h16a6 6 0 0 0 6-6V6a6 6 0 0 0-6-6Z"/>
+  <path stroke="#161616" stroke-linecap="round" stroke-linejoin="round" d="M14 9.917v8.166M9.917 14h8.167"/>
+</symbol>
   </defs>
 </svg>

@@ -23,10 +23,9 @@ export const BackgroundContainer = (props: BackgroundProps) => (
           className='peer hidden size-full opacity-0'
           id={`background-${bg.id}`}
         />
-        <label
-          htmlFor={`background-${bg.id}`}
-          className='peer-checked:border-blue-600'>
+        <label htmlFor={`background-${bg.id}`}>
           <img
+            className='peer-checked:border-blue-600'
             width={28}
             height={28}
             srcSet={`${bg.icon['@1x'] || bg.icon.light?.['@1x']} 1x, ${
