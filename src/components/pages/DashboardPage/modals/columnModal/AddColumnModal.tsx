@@ -12,7 +12,7 @@ export const AddColumnModal = () => {
   const { close } = useModal('add-column-modal')
   const [addNewColumn, { isSuccess, isError, error }] =
     useAddNewColumnMutation()
-  const { register, errors, handleSubmit } = useAddColumnForm()
+  const { register, errors, handleSubmit, reset } = useAddColumnForm()
 
   const submit = (data: ColumnModal) => {
     const pathParts = location.pathname.split('/')
@@ -20,6 +20,7 @@ export const AddColumnModal = () => {
     addNewColumn({ boardName: name, body: data })
       .unwrap()
       .then(() => close())
+    reset()
   }
 
   useEffect(() => {
