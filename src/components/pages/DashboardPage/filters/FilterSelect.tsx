@@ -15,9 +15,11 @@ export const FilterSelect = () => {
   }
 
   return (
-    <Select onValueChange={handleFilter}>
-      <SelectTrigger />
-      <SelectContent />
-    </Select>
+    <div className='absolute right-6 top-[14px]'>
+      <Select onValueChange={handleFilter}>
+        <SelectTrigger />
+        <SelectContent />
+      </Select>
+    </div>
   )
 }

@@ -1,5 +1,5 @@
 import { Content, Root, Trigger } from '@radix-ui/react-select'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
+import { RadioPriority } from 'components/ui/field/RadioFilterPriority'
 
 const Select = Root
 
@@ -14,12 +14,15 @@ const SelectTrigger = () => (
 
 const SelectContent = () => (
   <Content
-    className='flex w-[300px] gap-2 rounded-lg 
-    bg-white-primary p-6 dark:bg-black-fourth'
+    className='relative flex w-[300px] gap-2 
+    rounded-lg bg-white-primary p-6 dark:bg-black-fourth'
     position='popper'>
     <div className='border-b border-black/10 dark:border-white/10'>
       <h2 className='mb-[14px] text-fs-18-lh-normal-fw-500'>Filters</h2>
     </div>
+    <svg className='absolute right-[14px] top-[14px] size-[18px] stroke-black dark:stroke-white'>
+      <use xlinkHref={`/assets/icons.svg#icon-close`} />
+    </svg>
     <div className='my-[14px] flex justify-between'>
       <h3>Label color</h3>
       <button

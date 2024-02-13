@@ -37,6 +37,13 @@
       <path d="M2.08325 5H7.91659" stroke="#161616" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
 
+    <symbol id="icon-close" viewBox="0 0 18 18" fill="none">
+      <path d="M13.5 4.5L4.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+      <path d="M4.5 4.5L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+
     <symbol id="icon-menu" viewBox="0 0 32 32">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16h24M4 8h24M4 24h24" />
     </symbol>
