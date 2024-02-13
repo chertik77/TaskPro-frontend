@@ -8,6 +8,7 @@ import { boardApi } from 'redux/api/dashboard/board'
 import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
+import { BackgroundImage } from './BackgroundImage'
 
 export const Board = () => {
   const { name } = useParams()
@@ -44,6 +45,7 @@ export const Board = () => {
         {boardData?.columns.map(column => (
           <p key={column._id}>{column.title}</p>
         ))}
+        {boardData?.background && <BackgroundImage id={boardData.background} />}
       </div>
     )
   )
