@@ -18,7 +18,7 @@ export const BackgroundContainer = (props: BackgroundProps) => (
           type='radio'
           name='background'
           defaultChecked={bg.id === 'default'}
-          value={bg.icon?.['@1x'] || bg.icon?.light?.['@1x']}
+          value={bg.id}
           onChange={props.field.onChange}
           className='peer hidden size-full opacity-0'
           id={`background-${bg.id}`}

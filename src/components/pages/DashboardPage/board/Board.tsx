@@ -9,6 +9,7 @@ import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
 import { BoardHeadingList } from './heading/BoardHeadingList'
+import { BackgroundImage } from './BackgroundImage'
 
 export const Board = () => {
   const { name } = useParams()
@@ -44,6 +45,7 @@ export const Board = () => {
             Add another column
           </Button>
           <BoardHeadingList columns={boardData?.columns} />
+          <BackgroundImage id={boardData?.background} />
         </div>
       )}
     </>
