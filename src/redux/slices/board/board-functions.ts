@@ -12,7 +12,6 @@ export const getBoardByNameFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<BoardInitialState['board']>
 ) => {
-  // console.log(action.payload)
   state.board = action.payload
 }
 

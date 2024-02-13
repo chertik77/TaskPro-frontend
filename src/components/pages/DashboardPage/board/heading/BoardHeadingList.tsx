@@ -8,20 +8,7 @@ export const BoardHeadingList = () => {
   return (
     <div className='mb-[14px] mt-[39px] flex tablet:mt-[26px] desktop:mt-[10px]'>
       {columns?.map(column => {
-        return (
-          <div key={column._id}>
-            <BoardHeadingItem              
-              column={column}
-              key={column._id} />
-            <Button 
-              className=''
-              isAddIcon
-              iconName='plus'
-              onClick={() => { open(), addIdToLocaleStorage(column._id) }}>
-              Add another card
-            </Button>
-          </div>
-        )
+        return <BoardHeadingItem column={column} key={column._id} />
       })}
     </div>
   )
