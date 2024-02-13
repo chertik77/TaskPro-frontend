@@ -15,6 +15,9 @@ import { useEditTaskMutation } from 'redux/api/dashboard/task'
 // import { DayPicker } from 'react-day-picker'
 // import { cn } from 'lib/utils'
 
+const { title, description, priority, deadline } =
+  JSON.parse(localStorage.getItem('card-values')) ?? ''
+
 export const EditCardModal = () => {
   // const [selected, setSelected] = useState<Date>()
   const location = useLocation()
@@ -27,10 +30,10 @@ export const EditCardModal = () => {
     resolver: valibotResolver(AddCardSchema),
     mode: 'onChange',
     defaultValues: {
-      title: 'testTitle',
-      description: 'testDesc',
-      priority: 'High',
-      deadline: '2024-03-02'
+      title,
+      description,
+      priority,
+      deadline
     }
   })
   const { close } = useModal('edit-card-modal')
@@ -51,6 +54,7 @@ export const EditCardModal = () => {
         handleSuccessToast('Task edit successfully')
         close()
         reset()
+        localStorage.removeItem('card-values')
       })
       .catch(() => {
         handleErrorToast(

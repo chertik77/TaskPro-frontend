@@ -18,6 +18,7 @@ export const EditColumnModal = () => {
 
   const submit = (data: ColumnModal) => {
     editColumn({ boardName, columnId: id, body: data }).unwrap().then(close)
+    localStorage.removeItem('column-title')
   }
 
   return (

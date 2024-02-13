@@ -9,7 +9,10 @@ export const useEditColumnForm = () => {
     formState: { errors }
   } = useForm<ColumnModal>({
     resolver: valibotResolver(columnSchema),
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: {
+      title: localStorage.getItem('column-title')
+    }
   })
 
   return {
