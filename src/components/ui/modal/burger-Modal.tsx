@@ -15,15 +15,19 @@ export const BurgerModal = ({ children }: ModalProps) => {
       display: 'block',
   
     }
-  };
+  }
+  if (window.innerWidth >= 767) {
+    customStyles.modal.maxWidth = 260;
+  }
 
   return (
     <Dialog
       open={isOpen}
       onClose={close}
       styles={customStyles}
+      showCloseIcon={false}
     >
       {children}
     </Dialog>
   );
-};
+}
