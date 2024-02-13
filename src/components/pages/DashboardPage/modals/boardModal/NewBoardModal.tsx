@@ -17,6 +17,7 @@ export const NewBoardModal = () => {
   const { close } = useModal('new-board-modal')
 
   const submit = (data: AddNewBoard) => {
+    console.log(data)
     addNewBoard(data)
       .then(() => {
         handleSuccessToast('Board created successfully.')

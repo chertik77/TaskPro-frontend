@@ -9,7 +9,6 @@ import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
 import { BoardHeadingList } from './heading/BoardHeadingList'
-import { BackgroundImage } from './BackgroundImage'
 
 export const Board = () => {
   const { name } = useParams()
@@ -30,11 +29,20 @@ export const Board = () => {
         .then(r => setBoardData(r))
     }
   }, [name, columns])
-
+  console.log(boardData)
   return (
     <>
       {(boards.length > 0 || boardData !== null) && (
-        <div className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
+        <div
+          className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px]
+      desktop:pt-[10px]'
+          style={{
+            backgroundImage: `-webkit-image-set(url(${boardData?.background}))`,
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}>
           {boardData?.title}
           <Button
             onClick={open}
@@ -45,7 +53,6 @@ export const Board = () => {
             Add another column
           </Button>
           <BoardHeadingList columns={boardData?.columns} />
-          <BackgroundImage id={boardData?.background} />
         </div>
       )}
     </>
