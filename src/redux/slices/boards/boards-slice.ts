@@ -3,8 +3,7 @@ import { boardApi } from 'redux/api/dashboard/board'
 import {
   addNewBoardsFullfilled,
   deleteBoardsFullfilled,
-  editBoardsFullfilled,
-  getAllBoardsFullfilled
+  editBoardsFullfilled
 } from './boards-functions'
 import { BoardsInitialState } from './boards-types'
 
@@ -16,11 +15,6 @@ const boardsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addMatcher(
-        boardApi.endpoints.getAllBoards.matchFulfilled,
-        //@ts-expect-error its incorrect type for all boards
-        getAllBoardsFullfilled
-      )
       .addMatcher(
         boardApi.endpoints.addNewBoard.matchFulfilled,
         addNewBoardsFullfilled
