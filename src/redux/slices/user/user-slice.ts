@@ -5,10 +5,10 @@ import {
   currentFullfilled,
   currentPending,
   currentRejected,
+  editProfileFullfilled,
   logoutFullfilled,
   signupFullfilled,
-  switchThemeFullfilled,
-  editProfileFullfilled
+  switchThemeFullfilled
 } from './user-functions'
 import type { UserInitialState } from './user-types'
 
@@ -21,9 +21,7 @@ const userSlice = createSlice({
       avatarURL: { url: '' },
       userTheme: 'light'
     },
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false
+    token: null
   } as UserInitialState,
   reducers: {},
   extraReducers: builder => {
@@ -46,6 +44,7 @@ const userSlice = createSlice({
       )
   },
   selectors: {
+    selectIsAuth: state => Boolean(state.token),
     selectTheme: state => state.user.userTheme,
     selectUser: state => state.user,
     selectIsLoggedIn: state => state.isLoggedIn,
@@ -55,6 +54,7 @@ const userSlice = createSlice({
 })
 
 export const {
+  selectIsAuth,
   selectUser,
   selectIsLoggedIn,
   selectIsRefreshing,

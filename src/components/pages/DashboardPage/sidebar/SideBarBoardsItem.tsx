@@ -1,35 +1,56 @@
-import { cn } from 'lib/utils'
-import { useState } from 'react'
 import { useModal } from 'react-modal-state'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
 import { BoardInitialState } from 'redux/slices/board/board-types'
+import { selectBoards } from 'redux/slices/boards/boards-slice'
 
 export const SideBarBoardsItem = ({
   board
 }: {
   board: BoardInitialState['board']
 }) => {
-  const [isAdditionalInfoShown, setIsAdditionalShown] = useState(false)
+  const { name } = useParams()
   const { open } = useModal('edit-board-modal')
+  const navigate = useNavigate()
+  const boardss = useSelector(selectBoards)
+  const [deleteBoard] = useDeleteBoardMutation()
+
+  const handleDelete = () => {
+    deleteBoard(name)
+    const index = boardss.findIndex(board => board.title === name)
+
+    const nextBoardIndex = index && boardss.length - 1 ? 0 : 1
+    navigate(`/dashboard/${boardss[nextBoardIndex]?.title ?? ''}`, {
+      replace: true
+    })
+  }
 
   return (
-    <li
-      className={cn(
-        'flex h-[61px] w-full cursor-pointer items-center gap-2 text-white/50',
-        {
-          'rounded-l border-r-4 border-brand bg-black-third':
-            isAdditionalInfoShown
-        }
+    <>
+      <Link
+        to={`/dashboard/${board.title}`}
+        className='flex w-full items-center gap-2'>
+        <svg className='size-[18px] stroke-current aria-[current=page]:bg-brand'>
+          <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
+        </svg>
+        <p className='w-[115px] truncate'>{board?.title}</p>
+      </Link>
+      {board.title === name && (
+        <div className='flex items-center gap-2 '>
+          <button onClick={open}>
+            <svg className='size-4 stroke-white-primary opacity-50 aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black  light:hocus:stroke-brand'>
+              <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
+            </svg>
+          </button>
+          <button onClick={handleDelete}>
+            <svg className='size-4 stroke-white-primary opacity-50 aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black light:hocus:stroke-brand'>
+              <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
+            </svg>
+          </button>
+          <div className='h-[61px] w-[5px] rounded-l-lg bg-brand violet:bg-white'></div>
+        </div>
       )}
-      onClick={() => setIsAdditionalShown(true)}>
-      <svg className='size-[18px] stroke-current'>
-        <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
-      </svg>
-      {board?.title}
-      {isAdditionalInfoShown && (
-        <button className='bg-brand' onClick={open}>
-          Create
-        </button>
-      )}
-    </li>
+    </>
   )
 }
