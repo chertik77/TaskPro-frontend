@@ -1,16 +1,9 @@
-import { Button } from 'components/ui'
-import { Column } from 'redux/slices/board/board-types'
+import { useSelector } from 'react-redux'
+import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardHeadingItem } from './BoardHeadingItem'
-import { useModal } from 'react-modal-state'
 
-export const BoardHeadingList = ({ columns }: { columns?: Column[] }) => {
-  const { open } = useModal('add-card-modal')
-
-
-  const addIdToLocaleStorage=(id:string)=>{
-localStorage.setItem("idColumn",JSON.stringify(id))
-  }
-
+export const BoardHeadingList = () => {
+  const columns = useSelector(selectColumns)
 
   return (
     <div className='mb-[14px] mt-[39px] flex tablet:mt-[26px] desktop:mt-[10px]'>

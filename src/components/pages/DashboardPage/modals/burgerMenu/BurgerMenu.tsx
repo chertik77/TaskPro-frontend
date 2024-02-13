@@ -7,8 +7,8 @@ import { BurgerModal } from 'components/ui/modal/burger-Modal'
 
 export const BurgerMenu = () => {
 
-      return (<span className='flex'>
-    <BurgerModal modalTitle={''}>
+      return (<div className='flex'>
+    <BurgerModal modalTitle={''} >
     <div className=' m-0 flex  h-dvh min-h-full w-56 flex-grow flex-col overflow-y-auto  overflow-x-hidden bg-white bg-local p-0 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px] '>
       <SidebarNav />
       <SidebarCreateBoardBtn />
@@ -16,6 +16,7 @@ export const BurgerMenu = () => {
       <SidebarUserSupportBtn />
       <SidebarLogoutBtn />
     </div>
-    </BurgerModal></span>
+        </BurgerModal>
+      </div>
   )
 }

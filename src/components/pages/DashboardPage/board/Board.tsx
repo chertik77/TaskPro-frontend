@@ -28,7 +28,7 @@ export const Board = () => {
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name, columns])
+  }, [name, columns?.length])
 
   return (
     <>

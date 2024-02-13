@@ -12,8 +12,9 @@ export const SidebarBoardsList = () => {
   const { data, refetch } = useGetAllBoardsQuery(undefined)
 
   useEffect(() => {
+    console.log('ewdwe')
     refetch()
-  }, [boards])
+  }, [boards.length])
 
   return (
     <div className='mb-auto'>
