@@ -9,14 +9,10 @@ import { useModal } from 'react-modal-state'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
-import { columnApi } from 'redux/api/dashboard/column'
-import { useAppDispatch } from 'hooks'
-import { useEffect, useState } from 'react'
+
 
 export const AddCardModal = () => {
-  const [id, setid] = useState("");
-
-  const dispatch = useAppDispatch()
+ 
   
   
 
@@ -24,20 +20,19 @@ export const AddCardModal = () => {
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
   
-  useEffect(()=>{
-    dispatch(columnApi.endpoints.getAllColumns.initiate(name)).unwrap()
-    .then((arr)=>{
-      setid(()=>arr.data[0]._id)
-      // t.data.forEach((element:any)=> {
-      //   console.log(element.title,name);
-      //   if(element.title === name){
-      //     setid(()=>element._id
-      //     )
+  // useEffect(()=>{
+  //   dispatch(columnApi.endpoints.getAllColumns.initiate(name)).unwrap()
+  //   .then((arr)=>{
+  //     // setid(()=>arr.data[0]._id)
+  //     arr.data.forEach((element:any)=> {
+  //       console.log(element._id === JSON.parse(localStorage.getItem("idColumn") || '""'));
+  //       if(element._id === JSON.parse(localStorage.getItem("idColumn") || '""')){
+  //         setid(()=>element._id )
           
-      //   }
-      // });
-    })
-  },[name])
+  //       }
+  //     });
+  //   })
+  // },[name])
   
   
   
@@ -57,9 +52,8 @@ export const AddCardModal = () => {
     const { close } = useModal('add-card-modal')
   
     const onSubmit = (data: AddCardSchemaFields) => {
-      
-  console.log(id);
-      addNewTask({boardName:name,body:data,columnId:id})
+      // console.log({boardName:name,body:data,columnId:JSON.parse(localStorage.getItem('idColumn') || '""')});
+      addNewTask({boardName:name,body:data,columnId:JSON.parse(localStorage.getItem('idColumn') || '""')})
       .unwrap()
       .then(() => {
         handleSuccessToast('Task created successfully')
