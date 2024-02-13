@@ -15,10 +15,10 @@ import { useEditTaskMutation } from 'redux/api/dashboard/task'
 // import { DayPicker } from 'react-day-picker'
 // import { cn } from 'lib/utils'
 
-const { title, description, priority, deadline } =
-  JSON.parse(localStorage.getItem('card-values')) ?? ''
-
 export const EditCardModal = () => {
+  const { title, description, priority, deadline } =
+    JSON.parse(localStorage.getItem('card-values')) ?? ''
+
   // const [selected, setSelected] = useState<Date>()
   const location = useLocation()
   const {
@@ -36,8 +36,8 @@ export const EditCardModal = () => {
       deadline
     }
   })
-  const { close } = useModal('edit-card-modal')
 
+  const { close } = useModal('edit-card-modal')
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
 
@@ -62,7 +62,6 @@ export const EditCardModal = () => {
         )
       })
     close()
-    reset()
   }
   return (
     <Modal modalTitle='Edit card'>

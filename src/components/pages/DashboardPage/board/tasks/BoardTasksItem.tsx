@@ -36,12 +36,12 @@ export const BoardTasksItem = ({ task }: { task: Task }) => {
   const [deleteTask] = useDeleteTaskMutation()
   const { open } = useModal('edit-card-modal')
   const onEdit = () => {
+    localStorage.setItem('card-values', JSON.stringify(task))
     open()
     localStorage.setItem(
       'ids',
       JSON.stringify({ columnId: task.column, taskId: task._id })
     )
-    localStorage.setItem('card-values', JSON.stringify(task))
   }
 
   return (

@@ -8,11 +8,17 @@ import { modalVariants } from './modal-variants'
 export const Modal = ({ children, size, modalTitle }: ModalProps) => {
   const { isOpen, close } = useModalInstance()
 
+  const HandleClose = () => {
+    close()
+    localStorage.removeItem('card-values')
+    localStorage.removeItem('column-title')
+  }
+
   return (
     <Dialog
       open={isOpen}
       center
-      onClose={close}
+      onClose={HandleClose}
       classNames={{
         modal: `${cn(modalVariants({ size }))}`,
         closeIcon: 'dark:fill-white w-[18px] h-[18px]',
