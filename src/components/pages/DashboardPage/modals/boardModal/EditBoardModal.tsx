@@ -1,16 +1,17 @@
 import { Button, Field, Modal } from 'components/ui'
-import { BackgroundContainer } from './BackgroundContainer'
-import { Icons } from './Icons'
-import { Controller } from 'react-hook-form'
-import { useModal } from 'react-modal-state'
-import { useLocation } from 'react-router-dom'
 import { useEditBoard } from 'hooks/index'
 import { EditBoard } from 'lib/schemas/editBoardModal'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { Controller } from 'react-hook-form'
+import { useModal } from 'react-modal-state'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
+import { BackgroundContainer } from './BackgroundContainer'
+import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
     useEditBoard()
   const [editBoard, { isLoading }] = useEditBoardMutation()
@@ -25,6 +26,7 @@ export const EditBoardModal = () => {
         handleSuccessToast('Board edited successfully')
         close()
         reset({ title: '' })
+        navigate(`/dashboard/${data.title}`)
       })
       .catch(() => {
         handleErrorToast('Error editing board')
