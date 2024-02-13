@@ -7,33 +7,72 @@ import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { handleSuccessToast } from 'lib/toasts'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
+import { columnApi } from 'redux/api/dashboard/column'
+import { useAppDispatch } from 'hooks'
+import { useEffect, useState } from 'react'
 
 export const AddCardModal = () => {
-  const [addNewTask] = useAddNewTaskMutation()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid }
-  } = useForm<AddCardSchemaFields>({
-    resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange',
-    defaultValues: {
-      priority: 'Without priority'
-    }
-  })
-  const { close } = useModal('add-card-modal')
+  const [id, setid] = useState("");
 
-  const onSubmit = (data: AddCardSchemaFields) => {
-    handleSuccessToast('Card successfully created!')
-    console.log('data:', data)
-    console.log('addNewTask:', addNewTask)
-    addNewTask(data)
-    close()
-    reset()
-  }
+  const dispatch = useAppDispatch()
+  
+  
+
+  
+  const pathParts = location.pathname.split('/')
+  const name = pathParts[pathParts.length - 1]
+  
+  useEffect(()=>{
+    dispatch(columnApi.endpoints.getAllColumns.initiate(name)).unwrap()
+    .then((arr)=>{
+      setid(()=>arr.data[0]._id)
+      // t.data.forEach((element:any)=> {
+      //   console.log(element.title,name);
+      //   if(element.title === name){
+      //     setid(()=>element._id
+      //     )
+          
+      //   }
+      // });
+    })
+  },[name])
+  
+  
+  
+   const [addNewTask] = useAddNewTaskMutation()
+    const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors, isValid }
+    } = useForm<AddCardSchemaFields>({
+      resolver: valibotResolver(AddCardSchema),
+      mode: 'onChange',
+      defaultValues: {
+        priority: 'Without priority'
+      }
+    })
+    const { close } = useModal('add-card-modal')
+  
+    const onSubmit = (data: AddCardSchemaFields) => {
+      
+  console.log(id);
+      addNewTask({boardName:name,body:data,columnId:id})
+      .unwrap()
+      .then(() => {
+        handleSuccessToast('Task created successfully')
+        close()
+        reset()
+      })
+      .catch(error => {
+        handleErrorToast('Error creating board')
+        console.error(error)
+      })
+      close()
+      reset()
+    }
   return (
     <Modal modalTitle='Add card'>
       <form onSubmit={handleSubmit(onSubmit)}>

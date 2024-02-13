@@ -7,7 +7,11 @@ import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { handleSuccessToast } from 'lib/toasts'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useEditTaskMutation } from 'redux/api/dashboard/task'
+import { useEffect, useState } from 'react'
+import { columnApi } from 'redux/api/dashboard/column'
+import { useAppDispatch } from 'hooks'
 
 // import { useState } from 'react'
 // import { DayPicker } from 'react-day-picker'
@@ -31,13 +35,54 @@ export const EditCardModal = () => {
     }
   })
   const { close } = useModal('edit-card-modal')
+  const [id, setId] = useState("");
 
-  const onSubmit = (data: AddCardSchemaFields) => {
-    handleSuccessToast('Card successfully created!')
-    console.log('data:', data)
-    close()
-    reset()
-  }
+  const dispatch = useAppDispatch()
+  
+  
+
+  
+  const pathParts = location.pathname.split('/')
+  const name = pathParts[pathParts.length - 1]
+  
+  useEffect(()=>{
+    dispatch(columnApi.endpoints.getAllColumns.initiate(name)).unwrap()
+    .then((arr)=>{
+      setId(()=>arr.data[0]?._id)
+      // t.data.forEach((element:any)=> {
+      //   console.log(element.title,name);
+      //   if(element.title === name){
+      //     setId(()=>element._id
+      //     )
+          
+      //   }
+      // }
+      // );
+    })
+  },[name])
+  
+  
+  
+   const [editTask] = useEditTaskMutation()
+   
+  
+    const onSubmit = (data: AddCardSchemaFields) => {
+      
+  console.log(id);
+      editTask({boardName:name,body:data,columnId:id,taskId:"65c956923c6deeada72a9996"})
+      .unwrap()
+      .then(() => {
+        handleSuccessToast('Task edit successfully')
+        close()
+        reset()
+      })
+      .catch(error => {
+        handleErrorToast('Error edit board')
+        console.error(error)
+      })
+      close()
+      reset()
+    }
   return (
     <Modal modalTitle='Edit card'>
       <form onSubmit={handleSubmit(onSubmit)}>

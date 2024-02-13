@@ -8,7 +8,7 @@ import { boardApi } from 'redux/api/dashboard/board'
 import { selectColumns } from 'redux/slices/board/board-slice'
 import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
-import { BackgroundImage } from './BackgroundImage'
+import { BoardHeadingList } from './heading/BoardHeadingList'
 
 export const Board = () => {
   const { name } = useParams()
@@ -31,22 +31,21 @@ export const Board = () => {
   }, [name, columns])
 
   return (
-    boards.length > 0 && (
-      <div className='col-start-2 row-start-2 pl-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black  dark:text-white'>
-        {boardData?.title}
-        <Button
-          onClick={open}
-          className='inline-flex h-[56px] w-[335px] items-center justify-center gap-2 rounded-md  bg-white fill-black px-[79px] py-[14px] text-fs-14-lh-normal-fw-500 dark:bg-black-secondary sm:w-[334px] sm:pl-[79px] sm:pr-[78px]'>
-          <svg className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary violet:text-white dark:bg-white dark:text-black'>
-            <use xlinkHref='/assets/icons.svg#icon-plus' />
-          </svg>
-          Add another column
-        </Button>
-        {boardData?.columns.map(column => (
-          <p key={column._id}>{column.title}</p>
-        ))}
-        {boardData?.background && <BackgroundImage id={boardData.background} />}
-      </div>
-    )
+    <>
+      {(boards.length > 0 || boardData !== null) && (
+        <div className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
+          {boardData?.title}
+          <Button
+            onClick={open}
+            className='inline-flex h-[56px] w-[100%] items-center justify-center gap-2 rounded-md bg-white py-[14px] text-fs-14-lh-normal-fw-500 dark:bg-black-secondary mobile:w-[335px] mobile:px-[79px] tablet:w-[334px] tablet:pl-[79px] tablet:pr-[78px]'>
+            <svg className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary violet:text-white dark:bg-white dark:text-black'>
+              <use xlinkHref='/assets/icons.svg#icon-pluss' />
+            </svg>
+            Add another column
+          </Button>
+          <BoardHeadingList columns={boardData?.columns} />
+        </div>
+      )}
+    </>
   )
 }
