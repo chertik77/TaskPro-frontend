@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form';
 export const useNeedHelp = () => {
   const {
     register,
-    formState: { errors }
+    formState: { errors,isValid }
   } = useForm<NeedHelpModal>({
     resolver: valibotResolver(needHelpSchema),
     mode: 'onChange'
   });
 
-  return { register, errors };
+  return { register, errors, isValid };
 };

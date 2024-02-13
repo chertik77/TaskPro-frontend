@@ -2,25 +2,30 @@ import { Button, Field, Modal } from 'components/ui'
 import { useNeedHelp } from 'hooks/useNeedHelp.ts'
 
 export const CreateNeedHelpModal = () => {
-  const { register, errors } = useNeedHelp()
+  const { register, errors,isValid } = useNeedHelp()
 
   return (
-    <Modal size='sm' modalTitle='Need help'>
+    <Modal size='md' modalTitle='Need help'>
       <Field
         {...register('email')}
-        inputName='Email'
+        inputName='email'
         placeholder='Email address'
         errors={errors}
-        className='mb-6'
+        className=''
       />
- <Field
-        {...register('comment')}
-        inputName='Comment'
-        placeholder='Comment'
-        errors={errors}
-        className='mb-6'
-      />
-      <Button onClick={e => console.log(e)}>
+  <div className='relative mt-[14px] mb-6'>
+          <textarea
+            placeholder='Comment'
+            {...register('comment')}
+            className='h-[120px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          />
+          {errors.comment && (
+            <span className=' absolute left-0 top-[120px] text-red-600'>
+              Please enter at least 5 characters.
+            </span>
+          )}
+        </div>
+      <Button  onClick={e => console.log(e)}  disabled={!isValid}>
         Send
       </Button>
     </Modal>
