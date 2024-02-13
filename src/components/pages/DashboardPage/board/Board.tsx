@@ -37,7 +37,7 @@ export const Board = () => {
           className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px]
       desktop:pt-[10px]'
           style={{
-            backgroundImage: `-webkit-image-set(url(${boardData?.background}))`,
+            backgroundImage: `image-set(${boardData?.background})`,
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover',
