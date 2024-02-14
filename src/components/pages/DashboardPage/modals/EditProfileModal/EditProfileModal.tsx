@@ -1,12 +1,16 @@
-import { Modal } from 'components/ui/modal/Modal'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'redux/slices/user/user-slice'
 import { Button, Field } from 'components/ui'
-import { useEditProfileForm } from 'hooks'
+import { Modal } from 'components/ui/modal/Modal'
+import { useAppForm } from 'hooks'
+import {
+  signupSchema,
+  type SignupSchemaFields
+} from 'lib/schemas/signup-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
-import { useUserMutation } from 'redux/api/user'
 import { useModal } from 'react-modal-state'
+import { useSelector } from 'react-redux'
+import { useUserMutation } from 'redux/api/user'
+import { selectUser } from 'redux/slices/user/user-slice'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
@@ -31,13 +35,15 @@ export const EditProfileModal = () => {
         : ''
   const [user, { isLoading, isError, isSuccess, data, error }] =
     useUserMutation()
-  const { handleSubmit, register, errors, isValid } = useEditProfileForm({
-    defaultValues: {
-      name: userName || '',
-      email: userEmail || '',
-      password: userPassword || ''
-    }
-  })
+  const { handleSubmit, register, errors, isValid } =
+    useAppForm<SignupSchemaFields>(signupSchema, {
+      persistedKey: 'edit-profile-form',
+      defaultValues: {
+        name: userName || '',
+        email: userEmail || '',
+        password: userPassword || ''
+      }
+    })
 
   useEffect(() => {
     if (isSuccess) {

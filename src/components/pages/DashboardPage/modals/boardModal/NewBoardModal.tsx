@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui/index'
-import { useNewBoard } from 'hooks'
-import { AddNewBoard } from 'lib/schemas/newBoardModal'
+import { useAppForm } from 'hooks'
+import { newBoardSchema, type AddNewBoard } from 'lib/schemas/newBoardModal'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -12,7 +12,12 @@ import { Icons } from './Icons'
 export const NewBoardModal = () => {
   const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
-    useNewBoard()
+    useAppForm<AddNewBoard>(newBoardSchema, {
+      defaultValues: {
+        icon: 'icon-project-1',
+        background: 'default'
+      }
+    })
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
   const { close } = useModal('new-board-modal')
 
