@@ -1,9 +1,15 @@
 import { Content, Root, Trigger } from '@radix-ui/react-select'
 import { RadioPriority } from 'components/ui/field/RadioFilterPriority'
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import {
+  filterSchema,
+  type filterSchemaFields
+} from 'lib/schemas/filter-schema'
+import { useForm } from 'react-hook-form'
 
-const Select = Root
+export const Select = Root
 
-const SelectTrigger = () => (
+export const SelectTrigger = () => (
   <Trigger className='flex items-center gap-2 bg-transparent focus:outline-none'>
     <svg className='size-4 stroke-black/80 dark:stroke-white/80'>
       <use xlinkHref={`/assets/icons.svg#icon-filter`} />
@@ -12,35 +18,64 @@ const SelectTrigger = () => (
   </Trigger>
 )
 
-const SelectContent = () => (
-  <Content
-    className='relative flex w-[300px] gap-2 
-    rounded-lg bg-white-primary p-6 dark:bg-black-fourth'
-    position='popper'>
-    <div className='border-b border-black/10 dark:border-white/10'>
-      <h2 className='mb-[14px] text-fs-18-lh-normal-fw-500'>Filters</h2>
-    </div>
-    <svg className='absolute right-[14px] top-[14px] size-[18px] stroke-black dark:stroke-white'>
-      <use xlinkHref={`/assets/icons.svg#icon-close`} />
-    </svg>
-    <div className='my-[14px] flex justify-between'>
-      <h3>Label color</h3>
-      <button
-        type='button'
-        className='underline opacity-50 hocus:text-brand-hover hocus:no-underline hocus:opacity-100'>
-        Show all
-      </button>
-    </div>
-    <div className='flex flex-col gap-2'>
-      <RadioPriority value={'Low'} color={'bg-priority-low'} />
-      <RadioPriority value={'Medium'} color={'bg-priority-medium'} />
-      <RadioPriority value={'High'} color={'bg-brand'} />
-      <RadioPriority
-        value={'Without priority'}
-        color={'bg-black/30 dark:bg-white/30'}
-      />
-    </div>
-  </Content>
-)
+export const SelectContent = () => {
+  const {
+    register,
+    handleSubmit
+    // formState: { errors, isValid }
+  } = useForm<filterSchemaFields>({
+    resolver: valibotResolver(filterSchema),
+    mode: 'onChange'
+  })
+  const onSubmit = (data: filterSchemaFields) => {
+    console.log({ data })
+  }
 
-export { Select, SelectContent, SelectTrigger }
+  return (
+    <Content
+      className='relative flex w-[300px] gap-2 
+    rounded-lg bg-white-primary p-6 dark:bg-black-fourth'
+      position='popper'>
+      <div className='border-b border-black/10 dark:border-white/10'>
+        <h2 className='mb-[14px] text-fs-18-lh-normal-fw-500'>Filters</h2>
+      </div>
+      <button type='button'>
+        <svg className='absolute right-[14px] top-[14px] size-[18px] stroke-black dark:stroke-white'>
+          <use xlinkHref={`/assets/icons.svg#icon-close`} />
+        </svg>
+      </button>
+      <div className='my-[14px] flex justify-between text-fs-14-lh-normal-fw-500'>
+        <h3>Label color</h3>
+        <button
+          type='button'
+          className='text-fs-12-lh-normal-fw-400 underline opacity-50 hocus:text-brand-hover hocus:no-underline hocus:opacity-100'>
+          Show all
+        </button>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='flex flex-col gap-2'>
+          <RadioPriority
+            value={'Without priority'}
+            color={'bg-black/30 dark:bg-white/30'}
+            {...register('priority')}
+          />
+          <RadioPriority
+            value={'Low'}
+            color={'bg-priority-low'}
+            {...register('priority')}
+          />
+          <RadioPriority
+            value={'Medium'}
+            color={'bg-priority-medium'}
+            {...register('priority')}
+          />
+          <RadioPriority
+            value={'High'}
+            color={'bg-brand'}
+            {...register('priority')}
+          />
+        </div>
+      </form>
+    </Content>
+  )
+}
