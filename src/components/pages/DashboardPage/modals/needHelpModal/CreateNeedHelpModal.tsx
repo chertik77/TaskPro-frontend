@@ -20,7 +20,7 @@ export const CreateNeedHelpModal = () => {
             className='h-[120px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
           />
           {errors.comment && (
-            <span className=' absolute left-0 top-[120px] text-red-600'>
+            <span className=' text-red-600'>
               Please enter at least 5 characters.
             </span>
           )}
