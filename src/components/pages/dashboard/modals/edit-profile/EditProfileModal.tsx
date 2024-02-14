@@ -16,7 +16,8 @@ export const EditProfileModal = () => {
     useAppForm<SignupSchemaFields>(signupSchema, {
       defaultValues: {
         name: name || '',
-        email: email || ''
+        email: email || '',
+        password: ''
       }
     })
 
@@ -63,7 +64,7 @@ export const EditProfileModal = () => {
           inputName='password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
-          autoComplete='new-password'
+          autoComplete='current-password'
           {...register('password')}
         />
         <Button type='submit' disabled={!isValid || isLoading}>
