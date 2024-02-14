@@ -30,9 +30,9 @@ export const EditBoardModal = () => {
         navigate(`/dashboard/${data.title}`)
       })
       .catch(error => {
-        let errorMessage = 'Error editing board'
-        if (error.response) {
-          switch (error.response.status) {
+        let errorMessage = ''
+        if (error.status) {
+          switch (error.status) {
             case 401:
               errorMessage =
                 'Unauthorized access. Please login to create a board.'
