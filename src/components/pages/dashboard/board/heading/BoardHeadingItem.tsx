@@ -34,12 +34,12 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
           </button>
         </div>
       </div>
-      {column?.cards?.length > 0 && (
-        <div>
-          {column.cards.map(card => (
+      {column?.tasks?.length > 0 && (
+        <>
+          {column.tasks.map(card => (
             <BoardCardsItem key={card._id} card={card} />
           ))}
-        </div>
+        </>
       )}
     </>
   )
