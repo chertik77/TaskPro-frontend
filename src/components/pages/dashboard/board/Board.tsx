@@ -10,6 +10,8 @@ import type { BoardInitialState } from 'redux/slices/board/board-types'
 import { FilterSelect } from '../filters/FilterSelect'
 import { BoardHeadingList } from './heading/BoardHeadingList'
 
+const widthScreen = window.innerWidth
+
 export const Board = () => {
   const { name } = useParams()
   const dispatch = useAppDispatch()
@@ -18,6 +20,18 @@ export const Board = () => {
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
   )
+  let photo1x = ''
+  let photo2x = ''
+  if (widthScreen < 768) {
+    photo1x = `${boardData?.background?.split(',')[0]}`
+    photo2x = `${boardData?.background?.split(',')[1]}`
+  } else if (widthScreen > 768 && widthScreen < 1440) {
+    photo1x = `${boardData?.background?.split(',')[2]}`
+    photo2x = `${boardData?.background?.split(',')[3]}`
+  } else if (widthScreen > 1440) {
+    photo1x = `${boardData?.background?.split(',')[4]}`
+    photo2x = `${boardData?.background?.split(',')[5]}`
+  }
 
   useEffect(() => {
     if (name) {
@@ -27,12 +41,21 @@ export const Board = () => {
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name, columns?.length])
+  }, [name])
 
   return (
     <>
       {boardData !== null && (
-        <div className='col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500  desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
+        <div
+          className='col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500  desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'
+          style={{
+            height: '100vh',
+            backgroundImage: `image-set(url(${photo1x}) 1x,url(${photo2x}) 2x)`,
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}>
           {boardData?.title}
           <FilterSelect />
           <div className='flex h-screen overflow-x-auto scrollbar scrollbar-track-white scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black dark:scrollbar-thumb-scroll-thumb'>
