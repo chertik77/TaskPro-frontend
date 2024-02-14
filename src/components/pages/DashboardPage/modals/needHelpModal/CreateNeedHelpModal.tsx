@@ -9,13 +9,13 @@ export const CreateNeedHelpModal = () => {
   const { register, errors } = useAppForm<NeedHelpModal>(needHelpSchema)
 
   return (
-    <Modal size='sm' modalTitle='Need help'>
+    <Modal size='md' modalTitle='Need help'>
       <Field
         {...register('email')}
-        inputName='Email'
+        inputName='email'
         placeholder='Email address'
         errors={errors}
-        className='mb-6'
+        className=''
       />
       <Field
         {...register('comment')}
