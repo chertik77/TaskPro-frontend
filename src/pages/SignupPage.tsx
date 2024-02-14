@@ -2,7 +2,7 @@ import {
   AuthFormNavigation,
   AuthLayout,
   SignupForm
-} from 'components/pages/AuthPages'
+} from 'components/pages/auth'
 
 const SignupPage = () => (
   <AuthLayout>

@@ -35,6 +35,14 @@ export const BoardTasksItem = ({ task }: { task: Task }) => {
   const { name } = useParams()
   const [deleteTask] = useDeleteTaskMutation()
   const { open } = useModal('edit-card-modal')
+  const onEdit = () => {
+    localStorage.setItem('card-values', JSON.stringify(task))
+    open()
+    localStorage.setItem(
+      'ids',
+      JSON.stringify({ columnId: task.column, taskId: task._id })
+    )
+  }
 
   return (
     <div
@@ -71,14 +79,7 @@ export const BoardTasksItem = ({ task }: { task: Task }) => {
               <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
             </svg>
           </button>
-          <button
-            onClick={() => {
-              open()
-              localStorage.setItem(
-                'ids',
-                JSON.stringify({ columnId: task.column, taskId: task._id })
-              )
-            }}>
+          <button onClick={onEdit}>
             <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
             </svg>

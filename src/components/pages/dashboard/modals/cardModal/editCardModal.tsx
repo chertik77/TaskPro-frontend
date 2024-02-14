@@ -6,8 +6,9 @@ import {
   type AddCardSchemaFields
 } from 'lib/schemas/addCard-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useModal } from 'react-modal-state'
+import { useModal, useModalInstance } from 'react-modal-state'
 import { useLocation } from 'react-router-dom'
 import { useEditTaskMutation } from 'redux/api/dashboard/task'
 
@@ -16,6 +17,10 @@ import { useEditTaskMutation } from 'redux/api/dashboard/task'
 // import { cn } from 'lib/utils'
 
 export const EditCardModal = () => {
+  const cardValues = localStorage.getItem('card-values') ?? ''
+  const { title, description, priority, deadline } =
+    JSON.parse(cardValues) ?? ''
+
   // const [selected, setSelected] = useState<Date>()
   const location = useLocation()
   const {
@@ -25,16 +30,17 @@ export const EditCardModal = () => {
     formState: { errors, isValid }
   } = useForm<AddCardSchemaFields>({
     resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange',
-    defaultValues: {
-      title: 'testTitle',
-      description: 'testDesc',
-      priority: 'High',
-      deadline: '2024-03-02'
-    }
+    mode: 'onChange'
   })
-  const { close } = useModal('edit-card-modal')
 
+  const { isOpen } = useModalInstance()
+  useEffect(() => {
+    if (isOpen) {
+      reset({ title, description, priority, deadline })
+    }
+  }, [isOpen])
+
+  const { close } = useModal('edit-card-modal')
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
 
@@ -49,7 +55,6 @@ export const EditCardModal = () => {
       .unwrap()
       .then(() => {
         handleSuccessToast('Task edit successfully')
-        close()
         reset()
       })
       .catch(() => {
@@ -58,7 +63,6 @@ export const EditCardModal = () => {
         )
       })
     close()
-    reset()
   }
   return (
     <Modal modalTitle='Edit card'>

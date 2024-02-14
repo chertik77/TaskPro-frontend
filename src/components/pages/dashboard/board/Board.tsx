@@ -43,7 +43,11 @@ export const Board = () => {
               <svg className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary violet:text-white dark:bg-white dark:text-black'>
                 <use xlinkHref='/assets/icons.svg#icon-pluss' />
               </svg>
-              Add another column
+              {columns.length > 0 ? (
+                <span>Add another column</span>
+              ) : (
+                <span>Add column</span>
+              )}
             </Button>
           </div>
         </div>

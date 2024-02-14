@@ -6,15 +6,13 @@ export const SidebarLogoutBtn = () => {
   const [logout] = useLogoutMutation()
   const { close } = useModal('burger-menu')
 
-  const handleLogout = () => {
-    logout(undefined)
-    close()
-  }
-
   return (
     <Button
       className=' my-6 ml-6 flex items-center gap-3.5'
-      onClick={handleLogout}>
+      onClick={() => {
+        logout(undefined)
+        close()
+      }}>
       <svg className='size-8 text-brand hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third'>
         <use xlinkHref='/assets/icons.svg#icon-logout-btn' />
       </svg>

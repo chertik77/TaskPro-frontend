@@ -13,15 +13,15 @@ export const SideBarBoardsItem = ({
   const { name } = useParams()
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
-  const boardss = useSelector(selectBoards)
+  const boards = useSelector(selectBoards)
   const [deleteBoard] = useDeleteBoardMutation()
 
   const handleDelete = () => {
     deleteBoard(name)
-    const index = boardss.findIndex(board => board.title === name)
+    const index = boards.findIndex(board => board.title === name)
 
-    const nextBoardIndex = index && boardss.length - 1 ? 0 : 1
-    navigate(`/dashboard/${boardss[nextBoardIndex]?.title ?? ''}`, {
+    const nextBoardIndex = index && boards.length - 1 ? 0 : 1
+    navigate(`/dashboard/${boards[nextBoardIndex]?.title ?? ''}`, {
       replace: true
     })
   }
@@ -39,12 +39,12 @@ export const SideBarBoardsItem = ({
       {board.title === name && (
         <div className='flex items-center gap-2 '>
           <button onClick={open}>
-            <svg className='size-4 stroke-white-primary opacity-50 aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black  light:hocus:stroke-brand'>
+            <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black  light:hocus:stroke-brand'>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
             </svg>
           </button>
           <button onClick={handleDelete}>
-            <svg className='size-4 stroke-white-primary opacity-50 aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black light:hocus:stroke-brand'>
+            <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black light:hocus:stroke-brand'>
               <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
             </svg>
           </button>

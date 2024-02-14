@@ -6,9 +6,7 @@ export const SidebarCreateBoardBtn = () => {
 
   return (
     <div className='px-6'>
-      <p
-        className='mb-2  text-fs-12-lh-normal-fw-400
-           text-black/50 violet:text-white/50 dark:text-white/50'>
+      <p className='mb-2  text-fs-12-lh-normal-fw-400 text-black/50 violet:text-white/50 dark:text-white/50'>
         My boards
       </p>
       <div
