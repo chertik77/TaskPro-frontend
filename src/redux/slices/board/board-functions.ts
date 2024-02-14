@@ -8,6 +8,13 @@ export const addNewBoardFullfilled = (
   state.board = action.payload
 }
 
+export const getBoardByNameFullfilled = (
+  state: BoardInitialState,
+  action: PayloadAction<BoardInitialState['board']>
+) => {
+  state.board = action.payload
+}
+
 export const editBoardFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<BoardInitialState['board']>
@@ -32,13 +39,13 @@ export const editNewColumnFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<Column>
 ) => {
-  const column = state.board.columns.find(
-    column => column._id === action.payload._id
+  const columns = state.board.columns.map(column =>
+    column._id === action.payload._id
+      ? { ...column, ...action.payload }
+      : column
   )
 
-  if (column) {
-    column.title = action.payload.title
-  }
+  state.board.columns = columns
 }
 
 export const deleteColumnFullfilled = (

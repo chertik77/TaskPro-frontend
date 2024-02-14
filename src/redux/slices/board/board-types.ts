@@ -6,7 +6,7 @@ export type Task = {
   board: string
   description: string
   column: ''
-  priority: string
+  priority: 'Low' | 'Medium' | 'High' | 'Without priority'
   deadline: string
   owner: string
 }
