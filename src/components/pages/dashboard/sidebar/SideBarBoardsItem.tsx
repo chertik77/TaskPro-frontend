@@ -1,3 +1,4 @@
+import { handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -18,6 +19,10 @@ export const SideBarBoardsItem = ({
 
   const handleDelete = () => {
     deleteBoard(name)
+      .unwrap()
+      .then(() => {
+        handleSuccessToast('Board has been deleted successfully!')
+      })
     const index = boards.findIndex(board => board.title === name)
 
     const nextBoardIndex = index && boards.length - 1 ? 0 : 1

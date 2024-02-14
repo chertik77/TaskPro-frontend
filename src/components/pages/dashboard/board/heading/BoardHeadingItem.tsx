@@ -1,7 +1,7 @@
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteColumnMutation } from 'redux/api/dashboard/column'
-import { Column } from 'redux/slices/board/board-types'
+import type { Column } from 'redux/slices/board/board-types'
 import { BoardTasksItem } from '../tasks/BoardTasksItem'
 
 export const BoardHeadingItem = ({ column }: { column: Column }) => {

@@ -1,4 +1,4 @@
-import { UserInitialState } from '../user/user-types'
+import type { UserInitialState } from '../user/user-types'
 
 export type Task = {
   _id: string

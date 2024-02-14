@@ -1,22 +1,24 @@
 import {
-  custom,
+  email,
+  maxLength,
   minLength,
   object,
   string,
   toTrimmed,
   type Output
 } from 'valibot'
-import isEmail from 'validator/lib/isEmail'
 
 export const signupSchema = object({
   name: string([
     toTrimmed(),
-    minLength(5, 'Please enter at least 5 characters.')
+    minLength(2, 'Please enter at least 2 characters.'),
+    maxLength(32, 'Please enter at most 32 characters.')
   ]),
-  email: string([toTrimmed(), custom(isEmail, 'Please enter a valid email.')]),
+  email: string([toTrimmed(), email('Please enter a valid email.')]),
   password: string([
     toTrimmed(),
-    minLength(8, 'Please enter at least 8 characters.')
+    minLength(8, 'Please enter at least 8 characters.'),
+    maxLength(64, 'Please enter at most 64 characters.')
   ])
 })
 

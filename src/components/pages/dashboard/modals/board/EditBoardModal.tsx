@@ -1,19 +1,18 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
-import { editBoardSchema, type EditBoard } from 'lib/schemas/editBoardModal'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { boardSchema, type BoardSchemaFields } from 'lib/schemas/board-schema'
+import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
-  const { pathname } = useLocation()
   const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
-    useAppForm<EditBoard>(editBoardSchema, {
+    useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
         icon: 'icon-project-1',
         background: 'default'
@@ -21,41 +20,23 @@ export const EditBoardModal = () => {
     })
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
+  const boardName = useBoardNameByLocation()
 
-  const pathParts = pathname.split('/')
-  const boardName = pathParts[pathParts.length - 1]
-
-  const submit = (data: EditBoard) => {
+  const submit = (data: BoardSchemaFields) => {
     editBoard({ boardName, body: data })
       .unwrap()
       .then(() => {
-        handleSuccessToast('Board edited successfully')
+        handleInfoToast('The board has been edited successfully.')
         close()
         reset({ title: ' ' })
         navigate(`/dashboard/${data.title}`)
       })
-      .catch(error => {
-        let errorMessage = ''
-        if (error.status) {
-          switch (error.status) {
-            case 401:
-              errorMessage =
-                'Unauthorized access. Please login to create a board.'
-              break
-            case 403:
-              errorMessage = 'You do not have permission to create a board.'
-              break
-            case 409:
-              errorMessage =
-                'Conflict occurred. Board with the same title already exists.'
-              break
-            default:
-              errorMessage =
-                'An error occurred while editing a board. Please try again later.'
-              break
-          }
-        }
-        handleErrorToast(errorMessage)
+      .catch(e => {
+        handleErrorToast(
+          e.status === 409
+            ? 'Conflict occurred. Board with the same title already exists.'
+            : 'An error occurred while editing a board. Please try again later.'
+        )
       })
   }
 
