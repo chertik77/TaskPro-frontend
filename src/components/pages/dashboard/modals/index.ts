@@ -1,6 +1,7 @@
 export * from './EditProfileModal/EditProfileModal'
 export * from './boardModal/EditBoardModal'
 export * from './boardModal/NewBoardModal'
+export * from './burger-menu/BurgerMenu'
 export * from './cardModal/addCardModal'
 export * from './cardModal/editCardModal'
 export * from './columnModal/AddColumnModal'
