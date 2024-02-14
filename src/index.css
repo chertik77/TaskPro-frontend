@@ -35,3 +35,9 @@
   pointer-events: none;
   display: none;
 }
+
+@supports (-webkit-overflow-scrolling: touch) {
+  input {
+    font-size: 16px;
+  }
+}
