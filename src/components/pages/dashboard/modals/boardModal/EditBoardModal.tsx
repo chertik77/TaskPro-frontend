@@ -22,7 +22,6 @@ export const EditBoardModal = () => {
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
 
-  console.log(errors)
   const pathParts = pathname.split('/')
   const boardName = pathParts[pathParts.length - 1]
 

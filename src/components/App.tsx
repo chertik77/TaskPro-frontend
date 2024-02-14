@@ -8,7 +8,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
 import { selectIsAuth } from 'redux/slices/user/user-slice'
 import { persistor } from 'redux/store'
-import { Board } from './pages/DashboardPage'
+import { Board } from './pages/dashboard'
 import { CreateBoard } from './ui'
 
 export const App = () => {

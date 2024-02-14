@@ -9,7 +9,7 @@ import {
   EditColumnModal,
   EditProfileModal,
   NewBoardModal
-} from 'components/pages/DashboardPage/modals'
+} from 'components/pages/dashboard/modals'
 import { ThemeProvider } from 'next-themes'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
