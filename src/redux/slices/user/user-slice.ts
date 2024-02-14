@@ -23,7 +23,11 @@ const userSlice = createSlice({
     },
     token: null
   } as UserInitialState,
-  reducers: {},
+  reducers: {
+    clearToken: state => {
+      state.token = null
+    }
+  },
   extraReducers: builder => {
     builder
       .addMatcher(
@@ -51,4 +55,5 @@ const userSlice = createSlice({
 })
 
 export const { selectIsAuth, selectUser, selectTheme } = userSlice.selectors
+export const { clearToken } = userSlice.actions
 export const userReducer = userSlice.reducer

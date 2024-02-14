@@ -1,15 +1,18 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
-import { columnSchema, type ColumnModal } from 'lib/schemas/addComumn-shema'
+import { useAppForm, useBoardNameByLocation } from 'hooks'
+import {
+  columnSchema,
+  type ColumnSchemaFields
+} from 'lib/schemas/column-schema'
+import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { useLocation } from 'react-router-dom'
 import { useEditColumnMutation } from 'redux/api/dashboard/column'
 
 export const EditColumnModal = () => {
-  const { pathname } = useLocation()
+  const boardName = useBoardNameByLocation()
   const { register, errors, handleSubmit, reset } =
-    useAppForm<ColumnModal>(columnSchema)
+    useAppForm<ColumnSchemaFields>(columnSchema)
   const [editColumn] = useEditColumnMutation()
   const { close } = useModal('edit-column-modal')
   const { isOpen } = useModalInstance()
@@ -22,11 +25,18 @@ export const EditColumnModal = () => {
 
   const id = localStorage.getItem('columnId')
 
-  const pathParts = pathname.split('/')
-  const boardName = pathParts[pathParts.length - 1]
-
-  const submit = (data: ColumnModal) => {
-    editColumn({ boardName, columnId: id, body: data }).unwrap().then(close)
+  const submit = (data: ColumnSchemaFields) => {
+    editColumn({ boardName, columnId: id, body: data })
+      .unwrap()
+      .then(() => {
+        handleInfoToast('Column has been edited successfully!')
+        close()
+      })
+      .catch(() => {
+        handleErrorToast(
+          'Something went wrong while editing the column. Please try again.'
+        )
+      })
   }
 
   return (

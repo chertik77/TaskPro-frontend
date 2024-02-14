@@ -1,15 +1,12 @@
 import { valibotResolver } from '@hookform/resolvers/valibot'
+import { Button, Field, Modal } from 'components/ui'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { Button, Field, Modal } from 'components/ui/index'
-import {
-  AddCardSchema,
-  type AddCardSchemaFields
-} from 'lib/schemas/addCard-schema'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useBoardNameByLocation } from 'hooks'
+import { taskSchema, type TaskSchemaFields } from 'lib/schemas/task-schema'
+import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { useLocation } from 'react-router-dom'
 import { useEditTaskMutation } from 'redux/api/dashboard/task'
 
 // import { useState } from 'react'
@@ -22,14 +19,13 @@ export const EditCardModal = () => {
     JSON.parse(cardValues) ?? ''
 
   // const [selected, setSelected] = useState<Date>()
-  const location = useLocation()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid }
-  } = useForm<AddCardSchemaFields>({
-    resolver: valibotResolver(AddCardSchema),
+  } = useForm<TaskSchemaFields>({
+    resolver: valibotResolver(taskSchema),
     mode: 'onChange'
   })
 
@@ -41,25 +37,24 @@ export const EditCardModal = () => {
   }, [isOpen])
 
   const { close } = useModal('edit-card-modal')
-  const pathParts = location.pathname.split('/')
-  const name = pathParts[pathParts.length - 1]
+  const boardName = useBoardNameByLocation()
 
   const [editTask] = useEditTaskMutation()
-  const onSubmit = (data: AddCardSchemaFields) => {
+  const onSubmit = (data: TaskSchemaFields) => {
     editTask({
-      boardName: name,
+      boardName,
       body: data,
       columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
       taskId: JSON.parse(localStorage.getItem('ids') as string).taskId
     })
       .unwrap()
       .then(() => {
-        handleSuccessToast('Task edit successfully')
+        handleInfoToast('The task has been edited successfully!')
         reset()
       })
       .catch(() => {
         handleErrorToast(
-          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+          'Something went wrong while editing the card. Our team is already working on this issue. Please bear with us.'
         )
       })
     close()

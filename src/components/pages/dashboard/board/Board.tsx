@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { boardApi } from 'redux/api/dashboard/board'
 import { selectColumns } from 'redux/slices/board/board-slice'
-import { BoardInitialState } from 'redux/slices/board/board-types'
+import type { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
 import { BoardHeadingList } from './heading/BoardHeadingList'
 

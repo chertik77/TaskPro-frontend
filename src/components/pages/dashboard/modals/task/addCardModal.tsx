@@ -1,48 +1,46 @@
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { Button, Field, Modal } from 'components/ui/index'
-import {
-  AddCardSchema,
-  type AddCardSchemaFields
-} from 'lib/schemas/addCard-schema'
+import { useBoardNameByLocation } from 'hooks'
+import { taskSchema, type TaskSchemaFields } from 'lib/schemas/task-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useForm } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
 import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
 
 export const AddCardModal = () => {
-  const pathParts = location.pathname.split('/')
-  const name = pathParts[pathParts.length - 1]
-
+  const boardName = useBoardNameByLocation()
   const [addNewTask] = useAddNewTaskMutation()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid }
-  } = useForm<AddCardSchemaFields>({
-    resolver: valibotResolver(AddCardSchema),
+  } = useForm<TaskSchemaFields>({
+    resolver: valibotResolver(taskSchema),
     mode: 'onChange',
     defaultValues: {
       priority: 'Without priority'
     }
   })
   const { close } = useModal('add-card-modal')
-  const onSubmit = (data: AddCardSchemaFields) => {
+  const onSubmit = (data: TaskSchemaFields) => {
     addNewTask({
-      boardName: name,
+      boardName,
       body: data,
       columnId: localStorage.getItem('columnId')
     })
       .unwrap()
       .then(() => {
-        handleSuccessToast('Task created successfully')
+        handleSuccessToast(
+          `The task has been created successfully. Let's start working on it.`
+        )
         close()
         reset()
       })
       .catch(() => {
         handleErrorToast(
-          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+          'Something went wrong while adding the card. Our team is already working on this issue. Please bear with us.'
         )
       })
   }
