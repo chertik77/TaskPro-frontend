@@ -1,0 +1,6 @@
+[
+  { "value": "Low", "color": "bg-priority-low" },
+  { "value": "Medium", "color": "bg-priority-medium" },
+  { "value": "High", "color": "bg-brand" },
+  { "value": "Without priority", "color": "bg-black/30 dark:bg-white/30" }
+]

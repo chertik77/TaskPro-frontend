@@ -11,6 +11,11 @@ import { EditAvatar } from './EditAvatar'
 export const EditProfileModal = () => {
   const { close } = useModal('edit-profile-modal')
   const { name, email } = useSelector(selectUser)
+<<<<<<< HEAD:src/components/pages/dashboard/modals/EditProfileModal/EditProfileModal.tsx
+  const [user, { isLoading, isError, isSuccess, data, error }] =
+    useUserMutation()
+
+=======
   const editProfileFormData = localStorage.getItem('edit-profile-form')
   const userName = editProfileFormData
     ? JSON.parse(editProfileFormData).name
@@ -29,13 +34,13 @@ export const EditProfileModal = () => {
         ? JSON.parse(signUpFormData).password
         : ''
   const [user, { isLoading }] = useUserMutation()
+>>>>>>> origin/main:src/components/pages/dashboard/modals/edit-profile/EditProfileModal.tsx
   const { handleSubmit, register, errors, isValid } =
     useAppForm<SignupSchemaFields>(signupSchema, {
-      persistedKey: 'edit-profile-form',
       defaultValues: {
-        name: userName || '',
-        email: userEmail || '',
-        password: userPassword || ''
+        name: name || '',
+        email: email || '',
+        password: ''
       }
     })
 
@@ -82,6 +87,7 @@ export const EditProfileModal = () => {
           inputName='password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
+          autoComplete='new-password'
           {...register('password')}
         />
         <Button type='submit' disabled={!isValid || isLoading}>

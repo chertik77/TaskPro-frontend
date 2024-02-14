@@ -8,6 +8,7 @@ import { boardApi } from 'redux/api/dashboard/board'
 import { selectColumns } from 'redux/slices/board/board-slice'
 import type { BoardInitialState } from 'redux/slices/board/board-types'
 import { BoardHeadingList } from './heading/BoardHeadingList'
+import { FilterSelect } from '../filters/FilterSelect'
 
 export const Board = () => {
   const { name } = useParams()
@@ -33,7 +34,8 @@ export const Board = () => {
       {boardData !== null && (
         <div className='col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500  desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
           {boardData?.title}
-          <div className='flex h-screen overflow-x-auto scrollbar scrollbar-track-white  scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black dark:scrollbar-thumb-scroll-thumb'>
+          <FilterSelect />
+          <div className='scrollbar scrollbar-track-white scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black  dark:scrollbar-thumb-scroll-thumb flex h-screen overflow-x-auto'>
             <BoardHeadingList />
             <Button
               onClick={open}

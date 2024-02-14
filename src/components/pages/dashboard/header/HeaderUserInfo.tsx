@@ -9,7 +9,11 @@ export const HeaderUserInfo = () => {
   return (
     <button type='button' onClick={open} className='flex items-center gap-2'>
       <p>{name}</p>
-      <img src={avatarURL.url} alt={name as string} className='size-8' />
+      <img
+        src={avatarURL.url}
+        alt={name as string}
+        className='size-8 rounded-lg'
+      />
     </button>
   )
 }
