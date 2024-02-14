@@ -1,21 +1,23 @@
 import { Layout } from 'components/Layout'
 import { PrivateRoute, RestrictedRoute } from 'components/routes'
-import { useAppDispatch, useAuth } from 'hooks'
+import { useAppDispatch } from 'hooks'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
+import { selectIsAuth } from 'redux/slices/user/user-slice'
 import { persistor } from 'redux/store'
 import { Board } from './pages/DashboardPage'
-import { CreateBoard, Loader } from './ui'
+import { CreateBoard } from './ui'
 
 export const App = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { isRefreshing, token } = useAuth()
+  const isAuth = useSelector(selectIsAuth)
 
   useEffect(() => {
-    if (token === null) return
+    if (!isAuth) return
     dispatch(userApi.endpoints.current.initiate(undefined))
       .unwrap()
       .catch(e => {
@@ -26,11 +28,7 @@ export const App = () => {
       })
   }, [])
 
-  return isRefreshing ? (
-    <div className='flex h-dvh items-center justify-center'>
-      <Loader />
-    </div>
-  ) : (
+  return (
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<RestrictedRoute component={<HomePage />} />} />

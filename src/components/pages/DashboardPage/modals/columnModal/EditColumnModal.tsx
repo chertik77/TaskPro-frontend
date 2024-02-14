@@ -1,14 +1,15 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useEditColumnForm } from 'hooks/useEditColumn'
-import type { ColumnModal } from 'lib/schemas/addComumn-shema'
+import { useAppForm } from 'hooks'
+import { columnSchema, type ColumnModal } from 'lib/schemas/addComumn-shema'
+import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useLocation } from 'react-router-dom'
 import { useEditColumnMutation } from 'redux/api/dashboard/column'
-import { useEffect } from 'react'
 
 export const EditColumnModal = () => {
   const { pathname } = useLocation()
-  const { register, errors, handleSubmit, reset } = useEditColumnForm()
+  const { register, errors, handleSubmit, reset } =
+    useAppForm<ColumnModal>(columnSchema)
   const [editColumn] = useEditColumnMutation()
   const { close } = useModal('edit-column-modal')
   const { isOpen } = useModalInstance()

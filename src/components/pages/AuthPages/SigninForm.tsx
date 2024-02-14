@@ -1,5 +1,9 @@
 import { Button, Field } from 'components/ui'
-import { useIsFormValidOnReload, useSigninForm } from 'hooks'
+import { useAppForm, useIsFormValidOnReload } from 'hooks'
+import {
+  signinSchema,
+  type SigninSchemaFields
+} from 'lib/schemas/signin-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
@@ -15,7 +19,9 @@ export const SigninForm = () => {
     reset,
     trigger,
     clearErrors
-  } = useSigninForm()
+  } = useAppForm<SigninSchemaFields>(signinSchema, {
+    persistedKey: 'signin-form'
+  })
   const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
 
   useEffect(() => {
