@@ -4,7 +4,7 @@ import { useAppDispatch } from 'hooks'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
 import { selectIsAuth } from 'redux/slices/user/user-slice'
 import { persistor } from 'redux/store'
@@ -12,7 +12,6 @@ import { Board } from './pages/dashboard'
 import { CreateBoard } from './ui'
 
 export const App = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const isAuth = useSelector(selectIsAuth)
 
@@ -23,7 +22,6 @@ export const App = () => {
       .catch(e => {
         if (e.status === 401) {
           persistor.purge()
-          navigate('/auth/signin', { replace: true })
         }
       })
   }, [])
