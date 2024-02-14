@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns'
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteCardMutation } from 'redux/api/dashboard/card'
@@ -45,6 +46,8 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
     )
   }
 
+  const date = parseISO(card.deadline)
+
   return (
     <div
       className={`mb-[8px] h-[154px] w-[334px] rounded-[8px] border-l-[4px] ${PriorityBorderColorPicker(card.priority)} bg-white py-[14px] pl-[24px] pr-[20px] dark:bg-black`}>
@@ -62,14 +65,18 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <div className='flex items-center gap-[4px]'>
             <div
               className={`size-[12px]  rounded-[50%] ${PriorityColorPicker(card.priority)}`}></div>
-            <p className='text-fs-10-lh-normal-fw-400'>{card.priority}</p>
+            <p className='text-fs-10-lh-normal-fw-400'>
+              {card.priority === 'Without priority' ? 'Without' : card.priority}
+            </p>
           </div>
         </div>
         <div>
           <p className='pb-[4px] text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
             Deadline
           </p>
-          <p className='text-fs-10-lh-normal-fw-400'>{card.deadline}</p>
+          <p className='text-fs-10-lh-normal-fw-400'>
+            {format(date, 'MM/dd/yyyy')}
+          </p>
         </div>
         <div className='ml-auto flex gap-[8px]'>
           <svg className='size-[19px] stroke-brand pr-[4px]'>
