@@ -17,6 +17,7 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
           <button
             onClick={() => {
               localStorage.setItem('columnId', column._id)
+              localStorage.setItem('column-title', column.title)
               open()
             }}>
             <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>

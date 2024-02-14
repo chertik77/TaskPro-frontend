@@ -1,5 +1,9 @@
 import { Button, Field } from 'components/ui'
-import { useIsFormValidOnReload, useSignupForm } from 'hooks'
+import { useAppForm, useIsFormValidOnReload } from 'hooks'
+import {
+  signupSchema,
+  type SignupSchemaFields
+} from 'lib/schemas/signup-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useSignupMutation } from 'redux/api/user'
@@ -15,7 +19,9 @@ export const SignupForm = () => {
     reset,
     trigger,
     clearErrors
-  } = useSignupForm()
+  } = useAppForm<SignupSchemaFields>(signupSchema, {
+    persistedKey: 'signup-form'
+  })
   const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
 
   useEffect(() => {

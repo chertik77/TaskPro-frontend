@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useEditBoard } from 'hooks/index'
-import { EditBoard } from 'lib/schemas/editBoardModal'
+import { useAppForm } from 'hooks'
+import { editBoardSchema, type EditBoard } from 'lib/schemas/editBoardModal'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -13,10 +13,16 @@ export const EditBoardModal = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
-    useEditBoard()
+    useAppForm<EditBoard>(editBoardSchema, {
+      defaultValues: {
+        icon: 'icon-project-1',
+        background: 'default'
+      }
+    })
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
 
+  console.log(errors)
   const pathParts = pathname.split('/')
   const boardName = pathParts[pathParts.length - 1]
 

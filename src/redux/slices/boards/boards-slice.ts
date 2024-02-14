@@ -29,10 +29,9 @@ const boardsSlice = createSlice({
       )
   },
   selectors: {
-    selectBoards: state => state.boards,
-    selectBoardsLength: state => state.boards.length
+    selectBoards: state => state.boards
   }
 })
 
-export const { selectBoards, selectBoardsLength } = boardsSlice.selectors
+export const { selectBoards } = boardsSlice.selectors
 export const boardsReducer = boardsSlice.reducer

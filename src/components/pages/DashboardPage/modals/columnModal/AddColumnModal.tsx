@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useAddColumnForm } from 'hooks/useAddColumn'
-import type { ColumnModal } from 'lib/schemas/addComumn-shema'
+import { useAppForm } from 'hooks'
+import { columnSchema, type ColumnModal } from 'lib/schemas/addComumn-shema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useModal } from 'react-modal-state'
@@ -12,7 +12,8 @@ export const AddColumnModal = () => {
   const { close } = useModal('add-column-modal')
   const [addNewColumn, { isSuccess, isError, error }] =
     useAddNewColumnMutation()
-  const { register, errors, handleSubmit, reset } = useAddColumnForm()
+  const { register, errors, handleSubmit, reset } =
+    useAppForm<ColumnModal>(columnSchema)
 
   const submit = (data: ColumnModal) => {
     const pathParts = location.pathname.split('/')
