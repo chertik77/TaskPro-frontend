@@ -26,7 +26,7 @@ export const SidebarBoardsList = () => {
               board.title === name &&
                 'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white  light:bg-white-gray dark:bg-black-third dark:text-white'
             )}>
-            <SideBarBoardsItem board={board} />
+            <SideBarBoardsItem board={board} boards={data?.data} />
           </li>
         ))}
       </ul>
