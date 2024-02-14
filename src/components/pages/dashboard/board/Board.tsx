@@ -34,22 +34,9 @@ export const Board = () => {
   return (
     <>
       {(boards.length > 0 || boardData !== null) && (
-<<<<<<< HEAD:src/components/pages/DashboardPage/board/Board.tsx
-        <div className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px] relative'>
+        <div className='relative col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px]  tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
           {boardData?.title}
-          <Button
-            onClick={open}
-            className='inline-flex h-[56px] w-[100%] items-center justify-center gap-2 rounded-md bg-white py-[14px] text-fs-14-lh-normal-fw-500 dark:bg-black-secondary mobile:w-[335px] mobile:px-[79px] tablet:w-[334px] tablet:pl-[79px] tablet:pr-[78px]'>
-            <svg className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary violet:text-white dark:bg-white dark:text-black'>
-              <use xlinkHref='/assets/icons.svg#icon-pluss' />
-            </svg>
-            Add another column
-          </Button>
-          <BoardHeadingList columns={boardData?.columns} />
           <FilterSelect />
-=======
-        <div className='col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500  desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'>
-          {boardData?.title}
           <div className='flex'>
             <BoardHeadingList />
             <Button
@@ -65,7 +52,6 @@ export const Board = () => {
               )}
             </Button>
           </div>
->>>>>>> origin/main:src/components/pages/dashboard/board/Board.tsx
         </div>
       )}
     </>

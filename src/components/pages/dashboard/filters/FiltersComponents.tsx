@@ -1,5 +1,5 @@
 import { Content, Root, Trigger } from '@radix-ui/react-select'
-import { RadioPriority } from 'components/ui/field/RadioFilterPriority'
+import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import {
   filterSchema,
@@ -19,16 +19,14 @@ export const SelectTrigger = () => (
 )
 
 export const SelectContent = () => {
-  const {
-    register,
-    handleSubmit
-    // formState: { errors, isValid }
-  } = useForm<filterSchemaFields>({
+  const { register, handleSubmit } = useForm<filterSchemaFields>({
     resolver: valibotResolver(filterSchema),
     mode: 'onChange'
   })
-  const onSubmit = (data: filterSchemaFields) => {
-    console.log({ data })
+  const onChangeFilter: (data: filterSchemaFields) => void = (
+    data: filterSchemaFields
+  ) => {
+    console.log(data)
   }
 
   return (
@@ -52,26 +50,30 @@ export const SelectContent = () => {
           Show all
         </button>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onChangeFilter)}>
         <div className='flex flex-col gap-2'>
           <RadioPriority
             value={'Without priority'}
             color={'bg-black/30 dark:bg-white/30'}
+            isValue={true}
             {...register('priority')}
           />
           <RadioPriority
             value={'Low'}
             color={'bg-priority-low'}
+            isValue={true}
             {...register('priority')}
           />
           <RadioPriority
             value={'Medium'}
             color={'bg-priority-medium'}
+            isValue={true}
             {...register('priority')}
           />
           <RadioPriority
             value={'High'}
             color={'bg-brand'}
+            isValue={true}
             {...register('priority')}
           />
         </div>

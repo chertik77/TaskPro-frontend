@@ -16,37 +16,17 @@ import { EditAvatar } from './EditAvatar'
 export const EditProfileModal = () => {
   const { close } = useModal('edit-profile-modal')
   const { name, email } = useSelector(selectUser)
-  const editProfileFormData = localStorage.getItem('edit-profile-form')
-  const signUpFormData = localStorage.getItem('sign-up-form')
-  const signInFormData = localStorage.getItem('sign-in-form')
-  const userPassword = editProfileFormData
-    ? JSON.parse(editProfileFormData).password
-    : signInFormData
-      ? JSON.parse(signInFormData).password
-      : signUpFormData
-        ? JSON.parse(signUpFormData).password
-        : ''
   const [user, { isLoading, isError, isSuccess, data, error }] =
     useUserMutation()
-<<<<<<< HEAD:src/components/pages/DashboardPage/modals/EditProfileModal/EditProfileModal.tsx
-  const { handleSubmit, register, errors, isValid } = useEditProfileForm({
-    defaultValues: {
-      name: name || '',
-      email: email || '',
-      password: userPassword || ''
-    }
-  })
-=======
+
   const { handleSubmit, register, errors, isValid } =
     useAppForm<SignupSchemaFields>(signupSchema, {
-      persistedKey: 'edit-profile-form',
       defaultValues: {
-        name: userName || '',
-        email: userEmail || '',
-        password: userPassword || ''
+        name: name || '',
+        email: email || '',
+        password: ''
       }
     })
->>>>>>> origin/main:src/components/pages/dashboard/modals/EditProfileModal/EditProfileModal.tsx
 
   useEffect(() => {
     if (isSuccess) {
@@ -88,6 +68,7 @@ export const EditProfileModal = () => {
           inputName='password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
+          autoComplete='new-password'
           {...register('password')}
         />
         <Button type='submit' disabled={!isValid}>
