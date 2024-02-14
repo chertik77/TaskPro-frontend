@@ -1,18 +1,19 @@
 import {
-  custom,
+  email,
+  maxLength,
   minLength,
   object,
   string,
   toTrimmed,
   type Output
 } from 'valibot'
-import isEmail from 'validator/lib/isEmail'
 
 export const signinSchema = object({
-  email: string([toTrimmed(), custom(isEmail, 'Please enter a valid email.')]),
+  email: string([toTrimmed(), email('Please enter a valid email.')]),
   password: string([
     toTrimmed(),
-    minLength(8, 'Please enter at least 8 characters.')
+    minLength(8, 'Please enter at least 8 characters.'),
+    maxLength(64, 'Please enter at most 64 characters.')
   ])
 })
 

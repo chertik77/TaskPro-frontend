@@ -1,12 +1,10 @@
-import { Button, Field } from 'components/ui'
-import { Modal } from 'components/ui/modal/Modal'
+import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 import {
   signupSchema,
   type SignupSchemaFields
 } from 'lib/schemas/signup-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { useEffect } from 'react'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
@@ -33,8 +31,7 @@ export const EditProfileModal = () => {
       : signUpFormData
         ? JSON.parse(signUpFormData).password
         : ''
-  const [user, { isLoading, isError, isSuccess, data, error }] =
-    useUserMutation()
+  const [user, { isLoading }] = useUserMutation()
   const { handleSubmit, register, errors, isValid } =
     useAppForm<SignupSchemaFields>(signupSchema, {
       persistedKey: 'edit-profile-form',
@@ -45,24 +42,27 @@ export const EditProfileModal = () => {
       }
     })
 
-  useEffect(() => {
-    if (isSuccess) {
-      close()
-      handleSuccessToast(
-        `Congrats, ${data?.user.name}! Data changed successfully`
-      )
-    }
-    if (isError && error && 'status' in error)
-      handleErrorToast(
-        error?.status === 409
-          ? 'User with this email already exists. Please try different email.'
-          : 'Something went wrong. Please try again.'
-      )
-  }, [isError, isSuccess])
+  const submit = (data: SignupSchemaFields) => {
+    user(data)
+      .unwrap()
+      .then(r => {
+        close()
+        handleSuccessToast(
+          `Congrats, ${r?.user.name}! Your details have been changed successfully.`
+        )
+      })
+      .catch(e => {
+        handleErrorToast(
+          e?.status === 409
+            ? 'User with this email already exists. Please try different email.'
+            : 'Something went wrong while updating your profile. Please check your details and try again.'
+        )
+      })
+  }
 
   return (
     <Modal modalTitle='Edit profile' size='sm'>
-      <form onSubmit={handleSubmit(data => user(data))}>
+      <form onSubmit={handleSubmit(submit)}>
         <div className='mb-[25px] flex justify-center'>
           <EditAvatar />
         </div>

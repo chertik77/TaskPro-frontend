@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux'
-import { selectUser } from 'redux/slices/user/user-slice'
 import { Button } from 'components/ui'
-import { useUserMutation } from 'redux/api/user'
-import { useEffect } from 'react'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { ChangeEvent } from 'react'
+import type { ChangeEvent } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useUserMutation } from 'redux/api/user'
+import { selectUser } from 'redux/slices/user/user-slice'
 
 export const EditAvatar = () => {
   const { avatarURL } = useSelector(selectUser)

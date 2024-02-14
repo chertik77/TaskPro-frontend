@@ -5,7 +5,7 @@ import {
   deleteBoardsFullfilled,
   editBoardsFullfilled
 } from './boards-functions'
-import { BoardsInitialState } from './boards-types'
+import type { BoardsInitialState } from './boards-types'
 
 const boardsSlice = createSlice({
   name: 'boards',

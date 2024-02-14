@@ -1,6 +1,6 @@
-import { Button, Field, Modal } from 'components/ui/index'
+import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import { newBoardSchema, type AddNewBoard } from 'lib/schemas/newBoardModal'
+import { boardSchema, type BoardSchemaFields } from 'lib/schemas/board-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -12,7 +12,7 @@ import { Icons } from './Icons'
 export const NewBoardModal = () => {
   const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
-    useAppForm<AddNewBoard>(newBoardSchema, {
+    useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
         icon: 'icon-project-1',
         background: 'default'
@@ -21,37 +21,21 @@ export const NewBoardModal = () => {
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
   const { close } = useModal('new-board-modal')
 
-  const submit = (data: AddNewBoard) => {
+  const submit = (data: BoardSchemaFields) => {
     addNewBoard(data)
       .unwrap()
       .then(() => {
-        handleSuccessToast('Board successfully added to your collection')
+        handleSuccessToast('Board successfully added to your collection!')
         close()
         reset()
         navigate(`/dashboard/${data.title}`)
       })
-      .catch(error => {
-        let errorMessage = ''
-        if (error.status) {
-          switch (error.status) {
-            case 401:
-              errorMessage =
-                'Unauthorized access. Please login to create a board.'
-              break
-            case 403:
-              errorMessage = 'You do not have permission to create a board.'
-              break
-            case 409:
-              errorMessage =
-                'Conflict occurred. Board with the same title already exists.'
-              break
-            default:
-              errorMessage =
-                'An error occurred while creating a board. Please try again later.'
-              break
-          }
-        }
-        handleErrorToast(errorMessage)
+      .catch(e => {
+        handleErrorToast(
+          e.status === 409
+            ? 'Conflict occurred. Board with the same title already exists.'
+            : 'An error occurred while creating a board. Please try again later.'
+        )
       })
   }
 
