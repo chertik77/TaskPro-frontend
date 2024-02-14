@@ -1,3 +1,4 @@
+import tailwindScrollbar from 'tailwind-scrollbar'
 import plugin from 'tailwindcss/plugin'
 import { createThemes } from 'tw-colors'
 
@@ -114,7 +115,7 @@ const config = {
   },
   plugins: [
     require('tailwindcss-text-fill'),
-    require('tailwind-scrollbar'),
+    tailwindScrollbar({ nocompatible: true }),
     plugin(({ addComponents, addVariant }) => {
       addVariant('hocus', ['&:hover', '&:focus']),
         addComponents({
