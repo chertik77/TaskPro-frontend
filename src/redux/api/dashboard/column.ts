@@ -1,27 +1,24 @@
 import { dashboardApi } from './dashboard'
 
 export const columnApi = dashboardApi.injectEndpoints({
-  endpoints: ({ query, mutation }) => ({
-    getAllColumns: query({
-      query: boardName => `/dashboard/${boardName}/columns`
-    }),
+  endpoints: ({ mutation }) => ({
     addNewColumn: mutation({
-      query: ({ boardName, body }) => ({
-        url: `/dashboard/${boardName}`,
+      query: ({ boardId, body }) => ({
+        url: `/dashboard/${boardId}`,
         method: 'POST',
         body
       })
     }),
     editColumn: mutation({
-      query: ({ boardName, columnId, body }) => ({
-        url: `/dashboard/${boardName}/${columnId}`,
+      query: ({ boardId, columnId, body }) => ({
+        url: `/dashboard/${boardId}/${columnId}`,
         method: 'PATCH',
         body
       })
     }),
     deleteColumn: mutation({
-      query: ({ boardName, columnId }) => ({
-        url: `/dashboard/${boardName}/${columnId}`,
+      query: ({ boardId, columnId }) => ({
+        url: `/dashboard/${boardId}/${columnId}`,
         method: 'DELETE'
       })
     })
@@ -29,7 +26,6 @@ export const columnApi = dashboardApi.injectEndpoints({
 })
 
 export const {
-  useGetAllColumnsQuery,
   useAddNewColumnMutation,
   useEditColumnMutation,
   useDeleteColumnMutation

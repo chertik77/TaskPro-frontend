@@ -1,16 +1,16 @@
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
-import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { useAppForm, useBoardByLocation } from 'hooks'
 import { cardSchema, type CardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
 import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { useDeleteCardMutation } from 'redux/api/dashboard/card'
+import { useEditCardMutation } from 'redux/api/dashboard/card'
 
 export const EditCardModal = () => {
   const { close } = useModal('edit-card-modal')
-  const boardName = useBoardNameByLocation()
-  const [editCard, { isLoading }] = useDeleteCardMutation()
+  const boardId = useBoardByLocation()
+  const [editCard, { isLoading }] = useEditCardMutation()
   const { isOpen } = useModalInstance()
   const { register, handleSubmit, reset, errors, isValid } =
     useAppForm<CardSchemaFields>(cardSchema)
@@ -27,7 +27,7 @@ export const EditCardModal = () => {
 
   const submit = (data: CardSchemaFields) => {
     editCard({
-      boardName,
+      boardId,
       body: data,
       columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
       cardId: JSON.parse(localStorage.getItem('ids') as string).cardId

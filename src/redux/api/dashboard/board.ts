@@ -6,22 +6,22 @@ export const boardApi = dashboardApi.injectEndpoints({
     getAllBoards: query<{ data: BoardInitialState['board'][] }, undefined>({
       query: () => '/dashboard'
     }),
-    getBoardByName: query<BoardInitialState['board'], string>({
-      query: boardName => `/dashboard/${boardName}`
+    getBoardById: query<BoardInitialState['board'], string>({
+      query: boardId => `/dashboard/${boardId}`
     }),
     addNewBoard: mutation({
       query: body => ({ url: '/dashboard', method: 'POST', body })
     }),
     editBoard: mutation({
-      query: ({ boardName, body }) => ({
-        url: `/dashboard/${boardName}`,
+      query: ({ boardId, body }) => ({
+        url: `/dashboard/${boardId}`,
         method: 'PATCH',
         body
       })
     }),
     deleteBoard: mutation({
-      query: boardName => ({
-        url: `/dashboard/${boardName}`,
+      query: boardId => ({
+        url: `/dashboard/${boardId}`,
         method: 'DELETE'
       })
     })
@@ -30,7 +30,6 @@ export const boardApi = dashboardApi.injectEndpoints({
 
 export const {
   useGetAllBoardsQuery,
-  useGetBoardByNameQuery,
   useAddNewBoardMutation,
   useEditBoardMutation,
   useDeleteBoardMutation

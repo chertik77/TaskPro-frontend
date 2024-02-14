@@ -5,7 +5,7 @@ import type { Column } from 'redux/slices/board/board-types'
 import { BoardCardsItem } from '../cards/BoardCardsItem'
 
 export const BoardHeadingItem = ({ column }: { column: Column }) => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const [deleteColumn] = useDeleteColumnMutation()
   const { open } = useModal('edit-column-modal')
 
@@ -25,18 +25,16 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
             </svg>
           </button>
           <button
-            onClick={() =>
-              deleteColumn({ boardName: name, columnId: column._id })
-            }>
+            onClick={() => deleteColumn({ boardId, columnId: column._id })}>
             <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-trash-btn'></use>
             </svg>
           </button>
         </div>
       </div>
-      {column?.tasks?.length > 0 && (
+      {column?.cards?.length > 0 && (
         <>
-          {column.tasks.map(card => (
+          {column.cards.map(card => (
             <BoardCardsItem key={card._id} card={card} />
           ))}
         </>
