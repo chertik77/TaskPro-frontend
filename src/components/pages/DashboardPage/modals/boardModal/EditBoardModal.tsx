@@ -19,14 +19,14 @@ export const EditBoardModal = () => {
 
   const pathParts = pathname.split('/')
   const boardName = pathParts[pathParts.length - 1]
+  console.log(boardName)
 
   const submit = (data: EditBoard) => {
-    console.log(data)
     editBoard({ boardName, body: data })
       .then(() => {
         handleSuccessToast('Board edited successfully')
         close()
-        reset({ title: ' ' })
+        reset({ title: data.title })
         navigate(`/dashboard/${data.title}`)
       })
       .catch(() => {

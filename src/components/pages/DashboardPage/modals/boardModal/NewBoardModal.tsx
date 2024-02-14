@@ -19,7 +19,7 @@ export const NewBoardModal = () => {
   const submit = (data: AddNewBoard) => {
     addNewBoard(data)
       .then(() => {
-        handleSuccessToast('Board created successfully.')
+        handleSuccessToast('Board successfully added to your collection')
         close()
         reset()
         navigate(`/dashboard/${data.title}`)
