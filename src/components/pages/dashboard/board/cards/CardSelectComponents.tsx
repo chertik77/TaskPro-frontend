@@ -3,23 +3,14 @@ import { useSelector } from 'react-redux'
 import { selectColumns } from 'redux/slices/board/board-slice'
 
 const Select = Root
-const SelectTrigger = () => {
-  //   const onEdit = () => {
-  //     console.log('1111')
-  //     localStorage.setItem(
-  //       'change-column-ids',
-  //       JSON.stringify({ columnId: card.column, cardId: card._id })
-  //     )
-  //   }
+const SelectTrigger = () => (
+  <Trigger className='flex items-center gap-1 bg-transparent focus:outline-none'>
+    <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
+      <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
+    </svg>
+  </Trigger>
+)
 
-  return (
-    <Trigger className='flex items-center gap-1 bg-transparent focus:outline-none'>
-      <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
-        <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
-      </svg>
-    </Trigger>
-  )
-}
 const SelectContent = () => {
   const columns = useSelector(selectColumns)
 
