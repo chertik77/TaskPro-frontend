@@ -1,20 +1,19 @@
 import { handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
-import { useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
 import { BoardInitialState } from 'redux/slices/board/board-types'
-import { selectBoards } from 'redux/slices/boards/boards-slice'
 
 export const SideBarBoardsItem = ({
-  board
+  board,
+  boards
 }: {
+  boards: BoardInitialState['board'][]
   board: BoardInitialState['board']
 }) => {
   const { name } = useParams()
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
-  const boards = useSelector(selectBoards)
   const [deleteBoard] = useDeleteBoardMutation()
 
   const handleDelete = () => {
