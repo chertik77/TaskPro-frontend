@@ -10,6 +10,11 @@ import { BoardInitialState } from 'redux/slices/board/board-types'
 import { selectBoards } from 'redux/slices/boards/boards-slice'
 import { BoardHeadingList } from './heading/BoardHeadingList'
 
+
+let widthScreen = window.innerWidth
+
+
+
 export const Board = () => {
   const { name } = useParams()
   const dispatch = useAppDispatch()
@@ -18,7 +23,20 @@ export const Board = () => {
   const { open } = useModal('add-column-modal')
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
-  )
+    )
+    let photo1x = ''
+    let photo2x = ''
+      if(widthScreen<768){
+        photo1x = `${boardData?.background.split(",")[0]}`
+        photo2x = `${boardData?.background.split(",")[1]}`
+      }else if(widthScreen>768 && widthScreen<1440){
+        photo1x = `${boardData?.background.split(",")[2]}`
+        photo2x = `${boardData?.background.split(",")[3]}`
+        }else if(widthScreen>1440){
+          photo1x = `${boardData?.background.split(",")[4]}`
+          photo2x = `${boardData?.background.split(",")[5]}`
+        }
+    
 
   useEffect(() => {
     if (name) {
@@ -28,16 +46,20 @@ export const Board = () => {
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name, columns])
+  }, [name])
+
+
 
   return (
     <>
       {(boards.length > 0 || boardData !== null) && (
         <div
-          className='col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px]
+          className=' col-start-2 row-start-2 flex flex-col gap-[39px] px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500 desktop:gap-[10px] desktop:pl-[24px]
       desktop:pt-[10px]'
           style={{
-            backgroundImage: `image-set(${boardData?.background})`,
+            width: "max-content",
+            height:"100vh",
+            backgroundImage: `image-set(url(${photo1x}) 1x,url(${photo2x}) 2x)`,
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover',

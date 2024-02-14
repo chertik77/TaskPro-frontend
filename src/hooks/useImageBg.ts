@@ -14,13 +14,19 @@ interface BackgroundData {
 }
 
 export const useImageBg = (id: string) => {
-  const background = bgData.find((bg: BackgroundData) => bg.id === id)
-
+  const background = bgData.find((bg) => bg.id === id)
   if (!background) {
     return null
   }
+  // if(background.id === "default"){
+  //   const srcset = `${background.icon.light?.['@1x']}`
+  //   console.log(srcset);
+  //   return srcset
+  // }
 
-  const srcset = `${background.mobile ? `${background.mobile['@1x']} 375w, ${background.mobile['@2x']} 750w,` : ''}${background.tablet ? `${background.tablet['@1x']} 768w, ${background.tablet['@2x']} 1536w,` : ''}${background.desktop ? `${background.desktop['@1x']} 1180w, ${background.desktop['@2x']} 2360w` : ''}`
+  const srcset = `${background.mobile ? `${background.mobile['@1x']}, ${background.mobile['@2x']}` : ''},
+  ${background.tablet ? `${background.tablet['@1x']}, ${background.tablet['@2x']}` : ''},
+  ${background.desktop ? `${background.desktop['@1x']} , ${background.desktop['@2x']}` : ''}`
 
   // const { mobile, tablet, desktop } = background
 
