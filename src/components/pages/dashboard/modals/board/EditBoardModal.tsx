@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useBoardNameByLocation } from 'hooks'
-import { boardSchema, type BoardSchemaFields } from 'lib/schemas/board-schema'
+import { boardSchema, type BoardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -10,6 +10,9 @@ import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
+  const [editBoard, { isLoading }] = useEditBoardMutation()
+  const { close } = useModal('edit-board-modal')
+  const boardName = useBoardNameByLocation()
   const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
     useAppForm<BoardSchemaFields>(boardSchema, {
@@ -18,9 +21,6 @@ export const EditBoardModal = () => {
         background: 'default'
       }
     })
-  const [editBoard, { isLoading }] = useEditBoardMutation()
-  const { close } = useModal('edit-board-modal')
-  const boardName = useBoardNameByLocation()
 
   const submit = (data: BoardSchemaFields) => {
     editBoard({ boardName, body: data })
@@ -67,7 +67,7 @@ export const EditBoardModal = () => {
           isAddIcon
           iconName='plus'
           disabled={!isValid || isLoading}>
-          {isLoading ? 'Editing...' : 'Edit'}
+          {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>
     </Modal>

@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import { boardSchema, type BoardSchemaFields } from 'lib/schemas/board-schema'
+import { boardSchema, type BoardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -11,6 +11,8 @@ import { Icons } from './Icons'
 
 export const NewBoardModal = () => {
   const navigate = useNavigate()
+  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
+  const { close } = useModal('new-board-modal')
   const { register, errors, reset, handleSubmit, control, isValid } =
     useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
@@ -18,8 +20,6 @@ export const NewBoardModal = () => {
         background: 'default'
       }
     })
-  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
-  const { close } = useModal('new-board-modal')
 
   const submit = (data: BoardSchemaFields) => {
     addNewBoard(data)
@@ -66,7 +66,7 @@ export const NewBoardModal = () => {
           isAddIcon
           iconName='plus'
           disabled={!isValid || isLoading}>
-          {isLoading ? 'Creating...' : 'Create'}
+          {isLoading ? 'Loading...' : 'Create'}
         </Button>
       </form>
     </Modal>

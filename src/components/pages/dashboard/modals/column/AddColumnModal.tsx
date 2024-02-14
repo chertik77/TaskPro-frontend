@@ -1,9 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useBoardNameByLocation } from 'hooks'
-import {
-  columnSchema,
-  type ColumnSchemaFields
-} from 'lib/schemas/column-schema'
+import { columnSchema, type ColumnSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
@@ -11,8 +8,8 @@ import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
 export const AddColumnModal = () => {
   const boardName = useBoardNameByLocation()
   const { close } = useModal('add-column-modal')
-  const [addNewColumn] = useAddNewColumnMutation()
-  const { register, errors, handleSubmit, reset } =
+  const [addNewColumn, { isLoading }] = useAddNewColumnMutation()
+  const { register, errors, handleSubmit, reset, isValid } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
   const submit = (data: ColumnSchemaFields) => {
@@ -42,8 +39,8 @@ export const AddColumnModal = () => {
           errors={errors}
           className='mb-6'
         />
-        <Button isAddIcon iconName='plus'>
-          Add
+        <Button isAddIcon iconName='plus' disabled={!isValid || isLoading}>
+          {isLoading ? 'Loading...' : 'Add'}
         </Button>
       </form>
     </Modal>

@@ -1,7 +1,6 @@
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { Button, Field, Modal } from 'components/ui/index'
+import { Button, Field, Modal, RadioPriority } from 'components/ui'
 import { useAppForm, useBoardNameByLocation } from 'hooks'
-import { taskSchema, type TaskSchemaFields } from 'lib/schemas/task-schema'
+import { cardSchema, type CardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
@@ -9,16 +8,16 @@ import { useAddNewCardMutation } from 'redux/api/dashboard/card'
 
 export const AddCardModal = () => {
   const boardName = useBoardNameByLocation()
-  const [addNewCard] = useAddNewCardMutation()
+  const [addNewCard, { isLoading }] = useAddNewCardMutation()
   const { close } = useModal('add-card-modal')
   const { register, handleSubmit, reset, errors, isValid } =
-    useAppForm<TaskSchemaFields>(taskSchema, {
+    useAppForm<CardSchemaFields>(cardSchema, {
       defaultValues: {
         priority: 'Without priority'
       }
     })
 
-  const onSubmit = (data: TaskSchemaFields) => {
+  const onSubmit = (data: CardSchemaFields) => {
     addNewCard({
       boardName,
       body: data,
@@ -99,8 +98,12 @@ export const AddCardModal = () => {
             </span>
           )}
         </div>
-        <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
-          Add
+        <Button
+          isAddIcon
+          iconName='plus'
+          type='submit'
+          disabled={!isValid || isLoading}>
+          {isLoading ? 'Adding...' : 'Add'}
         </Button>
       </form>
     </Modal>

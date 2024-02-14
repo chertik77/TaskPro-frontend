@@ -14,7 +14,7 @@ const yyyy = today.getFullYear()
 const mm = today.getMonth() + 1
 const dd = today.getDate()
 
-export const taskSchema = object({
+export const cardSchema = object({
   title: string([
     toTrimmed(),
     minLength(3, 'Please enter at least 3 characters.')
@@ -29,4 +29,4 @@ export const taskSchema = object({
   ])
 })
 
-export type TaskSchemaFields = Output<typeof taskSchema>
+export type CardSchemaFields = Output<typeof cardSchema>

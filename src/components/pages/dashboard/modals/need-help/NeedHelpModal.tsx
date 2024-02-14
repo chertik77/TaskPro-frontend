@@ -1,19 +1,28 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import {
-  needHelpSchema,
-  type NeedHelpSchemaFields
-} from 'lib/schemas/need-help-schema'
+import { needHelpSchema, type NeedHelpSchemaFields } from 'lib/schemas'
+import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
-import { useNeedHelpMutation } from 'redux/api/dashboard/dashboard.ts'
+import { useNeedHelpMutation } from 'redux/api/dashboard/dashboard'
 
 export const NeedHelpModal = () => {
+  const [createHelp, { isLoading }] = useNeedHelpMutation()
   const { handleSubmit, register, errors, isValid } =
     useAppForm<NeedHelpSchemaFields>(needHelpSchema)
-  const [createHelp, { isLoading }] = useNeedHelpMutation()
 
   const submit = (data: NeedHelpSchemaFields) => {
     createHelp(data)
+      .unwrap()
+      .then(() => {
+        handleSuccessToast(
+          'Your help request has been sent successfully! Our team will get back to you shortly.'
+        )
+      })
+      .catch(() => {
+        handleErrorToast(
+          'Oops! Something went wrong while sending your help request. Please try again.'
+        )
+      })
   }
 
   return (
@@ -34,7 +43,7 @@ export const NeedHelpModal = () => {
           )}
         />
         <Button type='submit' disabled={!isValid || isLoading}>
-          {isLoading ? 'Sending...' : 'Send'}
+          {isLoading ? 'Loading...' : 'Send'}
         </Button>
       </form>
     </Modal>

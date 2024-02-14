@@ -1,21 +1,18 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useBoardNameByLocation } from 'hooks'
-import {
-  columnSchema,
-  type ColumnSchemaFields
-} from 'lib/schemas/column-schema'
+import { columnSchema, type ColumnSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditColumnMutation } from 'redux/api/dashboard/column'
 
 export const EditColumnModal = () => {
-  const boardName = useBoardNameByLocation()
-  const { register, errors, handleSubmit, reset } =
-    useAppForm<ColumnSchemaFields>(columnSchema)
-  const [editColumn] = useEditColumnMutation()
+  const [editColumn, { isLoading }] = useEditColumnMutation()
   const { close } = useModal('edit-column-modal')
   const { isOpen } = useModalInstance()
+  const boardName = useBoardNameByLocation()
+  const { register, errors, handleSubmit, reset, isValid } =
+    useAppForm<ColumnSchemaFields>(columnSchema)
 
   useEffect(() => {
     if (isOpen) {
@@ -49,8 +46,8 @@ export const EditColumnModal = () => {
           errors={errors}
           className='mb-6'
         />
-        <Button isAddIcon iconName='plus'>
-          Edit
+        <Button isAddIcon iconName='plus' disabled={!isValid || isLoading}>
+          {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>
     </Modal>

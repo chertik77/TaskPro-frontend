@@ -1,9 +1,6 @@
 import { Button, Field } from 'components/ui'
 import { useAppForm, useIsFormValidOnReload } from 'hooks'
-import {
-  signinSchema,
-  type SigninSchemaFields
-} from 'lib/schemas/signin-schema'
+import { signinSchema, type SigninSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useSigninMutation } from 'redux/api/user'
 

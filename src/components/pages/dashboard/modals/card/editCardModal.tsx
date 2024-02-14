@@ -1,47 +1,31 @@
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Button, Field, Modal } from 'components/ui'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { useBoardNameByLocation } from 'hooks'
-import { taskSchema, type TaskSchemaFields } from 'lib/schemas/task-schema'
+import { Button, Field, Modal, RadioPriority } from 'components/ui'
+import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { cardSchema, type CardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useDeleteCardMutation } from 'redux/api/dashboard/card'
 
-// import { useState } from 'react'
-// import { DayPicker } from 'react-day-picker'
-// import { cn } from 'lib/utils'
-
 export const EditCardModal = () => {
+  const { close } = useModal('edit-card-modal')
+  const boardName = useBoardNameByLocation()
+  const [editCard, { isLoading }] = useDeleteCardMutation()
+  const { isOpen } = useModalInstance()
+  const { register, handleSubmit, reset, errors, isValid } =
+    useAppForm<CardSchemaFields>(cardSchema)
+
   const cardValues = localStorage.getItem('card-values') ?? ''
   const { title, description, priority, deadline } =
     JSON.parse(cardValues) ?? ''
 
-  // const [selected, setSelected] = useState<Date>()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid }
-  } = useForm<TaskSchemaFields>({
-    resolver: valibotResolver(taskSchema),
-    mode: 'onChange'
-  })
-
-  const { isOpen } = useModalInstance()
   useEffect(() => {
     if (isOpen) {
       reset({ title, description, priority, deadline })
     }
   }, [isOpen])
 
-  const { close } = useModal('edit-card-modal')
-  const boardName = useBoardNameByLocation()
-
-  const [editCard] = useDeleteCardMutation()
-  const onSubmit = (data: TaskSchemaFields) => {
+  const submit = (data: CardSchemaFields) => {
     editCard({
       boardName,
       body: data,
@@ -60,9 +44,10 @@ export const EditCardModal = () => {
       })
     close()
   }
+
   return (
     <Modal modalTitle='Edit card'>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <Field
           errors={errors}
           className='mb-[14px]'
@@ -158,8 +143,12 @@ export const EditCardModal = () => {
           onSelect={setSelected}
         /> */}
 
-        <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
-          Edit
+        <Button
+          isAddIcon
+          iconName='plus'
+          type='submit'
+          disabled={!isValid || isLoading}>
+          {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>
     </Modal>

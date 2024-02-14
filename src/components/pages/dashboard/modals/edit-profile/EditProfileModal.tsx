@@ -1,9 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import {
-  signupSchema,
-  type SignupSchemaFields
-} from 'lib/schemas/signup-schema'
+import { signupSchema, type SignupSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
@@ -87,7 +84,7 @@ export const EditProfileModal = () => {
           isPasswordInput
           {...register('password')}
         />
-        <Button type='submit' disabled={!isValid}>
+        <Button type='submit' disabled={!isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Send'}
         </Button>
       </form>
