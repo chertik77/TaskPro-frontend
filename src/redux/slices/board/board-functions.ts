@@ -8,7 +8,7 @@ export const addNewBoardFullfilled = (
   state.board = action.payload
 }
 
-export const getBoardByNameFullfilled = (
+export const getBoardByIdFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<BoardInitialState['board']>
 ) => {

@@ -1,19 +1,19 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { useAppForm, useBoardByLocation } from 'hooks'
 import { columnSchema, type ColumnSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
 
 export const AddColumnModal = () => {
-  const boardName = useBoardNameByLocation()
+  const boardId = useBoardByLocation()
   const { close } = useModal('add-column-modal')
   const [addNewColumn, { isLoading }] = useAddNewColumnMutation()
   const { register, errors, handleSubmit, reset, isValid } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
   const submit = (data: ColumnSchemaFields) => {
-    addNewColumn({ boardName, body: data })
+    addNewColumn({ boardId, body: data })
       .unwrap()
       .then(() => {
         reset()
