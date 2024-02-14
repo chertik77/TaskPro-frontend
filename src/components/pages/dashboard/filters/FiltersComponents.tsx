@@ -1,7 +1,7 @@
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Content, Root, Trigger } from '@radix-ui/react-select'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { filterSchema, type FilterSchemaFields } from 'lib/schemas/'
+import { filterSchema, type FilterSchemaFields } from 'lib/schemas'
 import { useForm } from 'react-hook-form'
 
 export const Select = Root
