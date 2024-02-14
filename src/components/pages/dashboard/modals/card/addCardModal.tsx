@@ -1,5 +1,5 @@
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
-import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { useAppForm, useBoardByLocation } from 'hooks'
 import { cardSchema, type CardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
@@ -7,7 +7,7 @@ import { useModal } from 'react-modal-state'
 import { useAddNewCardMutation } from 'redux/api/dashboard/card'
 
 export const AddCardModal = () => {
-  const boardName = useBoardNameByLocation()
+  const boardId = useBoardByLocation()
   const [addNewCard, { isLoading }] = useAddNewCardMutation()
   const { close } = useModal('add-card-modal')
   const { register, handleSubmit, reset, errors, isValid } =
@@ -19,7 +19,7 @@ export const AddCardModal = () => {
 
   const onSubmit = (data: CardSchemaFields) => {
     addNewCard({
-      boardName,
+      boardId,
       body: data,
       columnId: localStorage.getItem('columnId')
     })

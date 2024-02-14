@@ -33,7 +33,7 @@ const PriorityColorPicker = (priority: Priorities) => {
 }
 
 export const BoardCardsItem = ({ card }: { card: Card }) => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const [deleteCard] = useDeleteCardMutation()
   const { open } = useModal('edit-card-modal')
   const onEdit = () => {
@@ -84,7 +84,7 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <button
             onClick={() =>
               deleteCard({
-                boardName: name,
+                boardId,
                 columnId: card.column,
                 cardId: card._id
               })

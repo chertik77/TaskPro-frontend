@@ -11,21 +11,21 @@ export const SideBarBoardsItem = ({
   boards: BoardInitialState['board'][]
   board: BoardInitialState['board']
 }) => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
   const [deleteBoard] = useDeleteBoardMutation()
 
   const handleDelete = () => {
-    deleteBoard(name)
+    deleteBoard(boardId)
       .unwrap()
       .then(() => {
         handleSuccessToast('Board has been deleted successfully!')
       })
-    const index = boards.findIndex(board => board.title === name)
+    const index = boards.findIndex(board => board._id === boardId)
 
     const nextBoardIndex = index && boards.length - 1 ? 0 : 1
-    navigate(`/dashboard/${boards[nextBoardIndex]?.title ?? ''}`, {
+    navigate(`/dashboard/${boards[nextBoardIndex]?._id ?? ''}`, {
       replace: true
     })
   }
@@ -33,22 +33,22 @@ export const SideBarBoardsItem = ({
   return (
     <>
       <Link
-        to={`/dashboard/${board.title}`}
+        to={`/dashboard/${board._id}`}
         className='flex h-full items-center gap-2'>
         <svg className='size-[18px] stroke-current aria-[current=page]:bg-brand'>
           <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
         </svg>
         <p className='w-[115px] truncate'>{board?.title}</p>
       </Link>
-      {board.title === name && (
+      {board._id === boardId && (
         <div className='flex items-center gap-2'>
           <button onClick={open}>
-            <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black  light:hocus:stroke-brand'>
+            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary'>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
             </svg>
           </button>
           <button onClick={handleDelete}>
-            <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black light:hocus:stroke-brand'>
+            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary'>
               <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
             </svg>
           </button>
