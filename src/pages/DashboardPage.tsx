@@ -1,4 +1,4 @@
-import { Header, Sidebar } from 'components/pages/DashboardPage'
+import { Header, Sidebar } from 'components/pages/dashboard'
 import { useTheme } from 'next-themes'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'

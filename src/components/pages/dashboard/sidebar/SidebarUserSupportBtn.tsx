@@ -3,6 +3,7 @@ import { useModal } from 'react-modal-state'
 
 export const SidebarUserSupportBtn = () => {
   const { open } = useModal('create-need-help-modal')
+
   return (
     <div
       className='mx-6 mt-10 h-[238px] rounded-lg

@@ -13,15 +13,15 @@ export const SideBarBoardsItem = ({
   const { name } = useParams()
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
-  const boardss = useSelector(selectBoards)
+  const boards = useSelector(selectBoards)
   const [deleteBoard] = useDeleteBoardMutation()
 
   const handleDelete = () => {
     deleteBoard(name)
-    const index = boardss.findIndex(board => board.title === name)
+    const index = boards.findIndex(board => board.title === name)
 
-    const nextBoardIndex = index && boardss.length - 1 ? 0 : 1
-    navigate(`/dashboard/${boardss[nextBoardIndex]?.title ?? ''}`, {
+    const nextBoardIndex = index && boards.length - 1 ? 0 : 1
+    navigate(`/dashboard/${boards[nextBoardIndex]?.title ?? ''}`, {
       replace: true
     })
   }
