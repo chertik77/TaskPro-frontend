@@ -10,8 +10,6 @@ export const Modal = ({ children, size, modalTitle }: ModalProps) => {
 
   const HandleClose = () => {
     close()
-    localStorage.removeItem('card-values')
-    localStorage.removeItem('column-title')
   }
 
   return (

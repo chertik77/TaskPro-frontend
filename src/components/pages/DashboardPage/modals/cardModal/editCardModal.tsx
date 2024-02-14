@@ -17,8 +17,9 @@ import { useEditTaskMutation } from 'redux/api/dashboard/task'
 // import { cn } from 'lib/utils'
 
 export const EditCardModal = () => {
+  const cardValues = localStorage.getItem('card-values') ?? ''
   const { title, description, priority, deadline } =
-    JSON.parse(localStorage.getItem('card-values')) ?? ''
+    JSON.parse(cardValues) ?? ''
 
   // const [selected, setSelected] = useState<Date>()
   const location = useLocation()
@@ -54,9 +55,7 @@ export const EditCardModal = () => {
       .unwrap()
       .then(() => {
         handleSuccessToast('Task edit successfully')
-        close()
         reset()
-        localStorage.removeItem('card-values')
       })
       .catch(() => {
         handleErrorToast(
