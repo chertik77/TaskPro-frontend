@@ -40,7 +40,9 @@ const config = {
         'white-gray-secondary': '#ECEDFD',
         'gray-secondary': '#ECEDFD66',
         'priority-low': '#8FA1D0',
-        'priority-medium': '#E09CB5'
+        'priority-medium': '#E09CB5',
+        'scroll-track1': '#E8E8E8',
+        'scroll-thumb': '#FFFFFF1A'
       },
       fontSize: {
         //! Font size - 8px
@@ -112,6 +114,7 @@ const config = {
   },
   plugins: [
     require('tailwindcss-text-fill'),
+    require('tailwind-scrollbar'),
     plugin(({ addComponents, addVariant }) => {
       addVariant('hocus', ['&:hover', '&:focus']),
         addComponents({

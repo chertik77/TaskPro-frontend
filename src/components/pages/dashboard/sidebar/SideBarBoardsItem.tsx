@@ -1,23 +1,27 @@
+import { handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
-import { useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
 import { BoardInitialState } from 'redux/slices/board/board-types'
-import { selectBoards } from 'redux/slices/boards/boards-slice'
 
 export const SideBarBoardsItem = ({
-  board
+  board,
+  boards
 }: {
+  boards: BoardInitialState['board'][]
   board: BoardInitialState['board']
 }) => {
   const { name } = useParams()
   const { open } = useModal('edit-board-modal')
   const navigate = useNavigate()
-  const boards = useSelector(selectBoards)
   const [deleteBoard] = useDeleteBoardMutation()
 
   const handleDelete = () => {
     deleteBoard(name)
+      .unwrap()
+      .then(() => {
+        handleSuccessToast('Board has been deleted successfully!')
+      })
     const index = boards.findIndex(board => board.title === name)
 
     const nextBoardIndex = index && boards.length - 1 ? 0 : 1
@@ -30,14 +34,14 @@ export const SideBarBoardsItem = ({
     <>
       <Link
         to={`/dashboard/${board.title}`}
-        className='flex w-full items-center gap-2'>
+        className='flex h-full items-center gap-2'>
         <svg className='size-[18px] stroke-current aria-[current=page]:bg-brand'>
           <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
         </svg>
         <p className='w-[115px] truncate'>{board?.title}</p>
       </Link>
       {board.title === name && (
-        <div className='flex items-center gap-2 '>
+        <div className='flex items-center gap-2'>
           <button onClick={open}>
             <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black  light:hocus:stroke-brand'>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>

@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { boardApi } from 'redux/api/dashboard/board'
+import { taskApi } from 'redux/api/dashboard/card'
 import { columnApi } from 'redux/api/dashboard/column'
-import { taskApi } from 'redux/api/dashboard/task'
 import {
   addNewBoardFullfilled,
+  addNewCardFullfilled,
   addNewColumnFullfilled,
-  addNewTaskFullfilled,
   deleteBoardFullfilled,
+  deleteCardFullfilled,
   deleteColumnFullfilled,
-  deleteTaskFullfilled,
   editBoardFullfilled,
+  editCardFullfilled,
   editNewColumnFullfilled,
-  editTaskFullfilled,
   getBoardByNameFullfilled
 } from './board-functions'
 import type { BoardInitialState } from './board-types'
@@ -53,20 +53,21 @@ const boardSlice = createSlice({
         deleteColumnFullfilled
       )
       .addMatcher(
-        taskApi.endpoints.addNewTask.matchFulfilled,
-        addNewTaskFullfilled
+        taskApi.endpoints.addNewCard.matchFulfilled,
+        addNewCardFullfilled
       )
-      .addMatcher(taskApi.endpoints.editTask.matchFulfilled, editTaskFullfilled)
+      .addMatcher(taskApi.endpoints.editCard.matchFulfilled, editCardFullfilled)
       .addMatcher(
-        taskApi.endpoints.deleteTask.matchFulfilled,
-        deleteTaskFullfilled
+        taskApi.endpoints.deleteCard.matchFulfilled,
+        deleteCardFullfilled
       )
   },
   selectors: {
     selectBoard: state => state.board,
-    selectColumns: state => state.board.columns
+    selectColumns: state => state.board.columns,
+    selectCards: state => state.board.columns.map(column => column.cards)
   }
 })
 
-export const { selectBoard, selectColumns } = boardSlice.selectors
+export const { selectBoard, selectColumns, selectCards } = boardSlice.selectors
 export const boardReducer = boardSlice.reducer

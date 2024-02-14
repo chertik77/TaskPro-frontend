@@ -22,7 +22,7 @@ export const BoardHeadingList = () => {
                 localStorage.setItem('columnId', column._id)
                 open()
               }}>
-              {column.tasks.length > 0 ? (
+              {column?.cards?.length > 0 ? (
                 <span>Add another card</span>
               ) : (
                 <span>Add card</span>

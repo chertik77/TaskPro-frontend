@@ -1,72 +1,53 @@
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { Button, Field, Modal } from 'components/ui/index'
-import {
-  AddCardSchema,
-  type AddCardSchemaFields
-} from 'lib/schemas/addCard-schema'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { Button, Field, Modal, RadioPriority } from 'components/ui'
+import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { cardSchema, type CardSchemaFields } from 'lib/schemas'
+import { handleErrorToast, handleInfoToast } from 'lib/toasts'
+import { cn } from 'lib/utils'
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { useLocation } from 'react-router-dom'
-import { useEditTaskMutation } from 'redux/api/dashboard/task'
-
-// import { useState } from 'react'
-// import { DayPicker } from 'react-day-picker'
-// import { cn } from 'lib/utils'
+import { useDeleteCardMutation } from 'redux/api/dashboard/card'
 
 export const EditCardModal = () => {
+  const { close } = useModal('edit-card-modal')
+  const boardName = useBoardNameByLocation()
+  const [editCard, { isLoading }] = useDeleteCardMutation()
+  const { isOpen } = useModalInstance()
+  const { register, handleSubmit, reset, errors, isValid } =
+    useAppForm<CardSchemaFields>(cardSchema)
+
   const cardValues = localStorage.getItem('card-values') ?? ''
   const { title, description, priority, deadline } =
     JSON.parse(cardValues) ?? ''
 
-  // const [selected, setSelected] = useState<Date>()
-  const location = useLocation()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid }
-  } = useForm<AddCardSchemaFields>({
-    resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange'
-  })
-
-  const { isOpen } = useModalInstance()
   useEffect(() => {
     if (isOpen) {
       reset({ title, description, priority, deadline })
     }
   }, [isOpen])
 
-  const { close } = useModal('edit-card-modal')
-  const pathParts = location.pathname.split('/')
-  const name = pathParts[pathParts.length - 1]
-
-  const [editTask] = useEditTaskMutation()
-  const onSubmit = (data: AddCardSchemaFields) => {
-    editTask({
-      boardName: name,
+  const submit = (data: CardSchemaFields) => {
+    editCard({
+      boardName,
       body: data,
       columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
-      taskId: JSON.parse(localStorage.getItem('ids') as string).taskId
+      cardId: JSON.parse(localStorage.getItem('ids') as string).cardId
     })
       .unwrap()
       .then(() => {
-        handleSuccessToast('Task edit successfully')
+        handleInfoToast('The task has been edited successfully!')
         reset()
       })
       .catch(() => {
         handleErrorToast(
-          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+          'Something went wrong while editing the card. Our team is already working on this issue. Please bear with us.'
         )
       })
     close()
   }
+
   return (
     <Modal modalTitle='Edit card'>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <Field
           errors={errors}
           className='mb-[14px]'
@@ -75,22 +56,22 @@ export const EditCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <div className='relative'>
-          <textarea
-            placeholder='Description'
-            {...register('description')}
-            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-          />
-          {errors.description && (
-            <span className=' absolute left-0 top-[154px] text-red-600'>
-              Please enter at least 2 characters.
-            </span>
+        <textarea
+          placeholder='Description'
+          {...register('description')}
+          className={cn(
+            'h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
+            !errors.description && 'mb-6'
           )}
-        </div>
+        />
+        {errors.description && (
+          <p className='mb-[14px] text-red-600'>
+            Please enter at least 2 characters.
+          </p>
+        )}
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-
         <div className='mb-[14px] flex gap-2'>
           <RadioPriority
             color='bg-priority-low'
@@ -113,7 +94,6 @@ export const EditCardModal = () => {
             {...register('priority')}
           />
         </div>
-
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
@@ -163,8 +143,12 @@ export const EditCardModal = () => {
           onSelect={setSelected}
         /> */}
 
-        <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
-          Edit
+        <Button
+          isAddIcon
+          iconName='plus'
+          type='submit'
+          disabled={!isValid || isLoading}>
+          {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>
     </Modal>
