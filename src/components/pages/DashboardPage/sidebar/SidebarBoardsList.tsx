@@ -3,17 +3,17 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetAllBoardsQuery } from 'redux/api/dashboard/board'
-import { selectBoards } from 'redux/slices/boards/boards-slice'
+import { selectBoard } from 'redux/slices/board/board-slice'
 import { SideBarBoardsItem } from './SideBarBoardsItem'
 
 export const SidebarBoardsList = () => {
   const { name } = useParams()
-  const boards = useSelector(selectBoards)
+  const board = useSelector(selectBoard)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
 
   useEffect(() => {
     refetch()
-  }, [boards])
+  }, [board])
 
   return (
     <div className='mb-auto'>

@@ -21,13 +21,17 @@ const iconComponents: Record<string, JSX.Element> = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ isAddIcon, isSmallIcon, children, iconName, ...props }, ref) => (
+  (
+    { className, isAddIcon, isSmallIcon, children, iconName, ...props },
+    ref
+  ) => (
     <button
       className={cn(
         'transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
         isSmallIcon
-          ? 'text-black opacity-50 hocus:text-brand-hover violet:hocus:text-brand-secondary'
-          : 'h-[49px] w-full rounded-lg bg-brand stroke-white  text-black hocus:bg-brand-hover  violet:bg-brand-secondary violet:text-white'
+          ? 'text-black opacity-50 hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
+          : 'violet:hocus:bg-#7B7EDE h-[49px] w-full rounded-lg bg-brand  stroke-white text-black  hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white',
+        className
       )}
       ref={ref}
       {...props}>

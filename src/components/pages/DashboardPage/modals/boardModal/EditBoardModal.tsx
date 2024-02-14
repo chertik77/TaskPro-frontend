@@ -1,6 +1,6 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useEditBoard } from 'hooks/index'
-import { EditBoard } from 'lib/schemas/editBoardModal'
+import { useAppForm } from 'hooks'
+import { editBoardSchema, type EditBoard } from 'lib/schemas/editBoardModal'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -13,23 +13,50 @@ export const EditBoardModal = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const { register, errors, reset, handleSubmit, control, isValid } =
-    useEditBoard()
+    useAppForm<EditBoard>(editBoardSchema, {
+      defaultValues: {
+        icon: 'icon-project-1',
+        background: 'default'
+      }
+    })
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
 
+  console.log(errors)
   const pathParts = pathname.split('/')
   const boardName = pathParts[pathParts.length - 1]
 
   const submit = (data: EditBoard) => {
     editBoard({ boardName, body: data })
+      .unwrap()
       .then(() => {
         handleSuccessToast('Board edited successfully')
         close()
-        reset({ title: '' })
+        reset({ title: ' ' })
         navigate(`/dashboard/${data.title}`)
       })
-      .catch(() => {
-        handleErrorToast('Error editing board')
+      .catch(error => {
+        let errorMessage = ''
+        if (error.status) {
+          switch (error.status) {
+            case 401:
+              errorMessage =
+                'Unauthorized access. Please login to create a board.'
+              break
+            case 403:
+              errorMessage = 'You do not have permission to create a board.'
+              break
+            case 409:
+              errorMessage =
+                'Conflict occurred. Board with the same title already exists.'
+              break
+            default:
+              errorMessage =
+                'An error occurred while editing a board. Please try again later.'
+              break
+          }
+        }
+        handleErrorToast(errorMessage)
       })
   }
 

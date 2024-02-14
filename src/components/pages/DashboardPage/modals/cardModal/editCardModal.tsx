@@ -1,22 +1,28 @@
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { Button, Field, Modal } from 'components/ui/index'
 import {
   AddCardSchema,
   type AddCardSchemaFields
 } from 'lib/schemas/addCard-schema'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { useForm } from 'react-hook-form'
-import { useModal } from 'react-modal-state'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useModal, useModalInstance } from 'react-modal-state'
+import { useLocation } from 'react-router-dom'
 import { useEditTaskMutation } from 'redux/api/dashboard/task'
-
 
 // import { useState } from 'react'
 // import { DayPicker } from 'react-day-picker'
 // import { cn } from 'lib/utils'
 
 export const EditCardModal = () => {
+  const cardValues = localStorage.getItem('card-values') ?? ''
+  const { title, description, priority, deadline } =
+    JSON.parse(cardValues) ?? ''
+
   // const [selected, setSelected] = useState<Date>()
+  const location = useLocation()
   const {
     register,
     handleSubmit,
@@ -24,44 +30,39 @@ export const EditCardModal = () => {
     formState: { errors, isValid }
   } = useForm<AddCardSchemaFields>({
     resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange',
-    defaultValues: {
-      title: 'testTitle',
-      description: 'testDesc',
-      priority: 'High',
-      deadline: '2024-03-02'
-    }
+    mode: 'onChange'
   })
-  const { close } = useModal('edit-card-modal')
 
+  const { isOpen } = useModalInstance()
+  useEffect(() => {
+    if (isOpen) {
+      reset({ title, description, priority, deadline })
+    }
+  }, [isOpen])
+
+  const { close } = useModal('edit-card-modal')
   const pathParts = location.pathname.split('/')
   const name = pathParts[pathParts.length - 1]
 
-
-
   const [editTask] = useEditTaskMutation()
   const onSubmit = (data: AddCardSchemaFields) => {
-
-
-
     editTask({
       boardName: name,
       body: data,
-      columnId: JSON.parse(localStorage.getItem('idColumn') || '""'),
-      taskId: '65ca85d0a136eaa60fd8cb6f'
+      columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
+      taskId: JSON.parse(localStorage.getItem('ids') as string).taskId
     })
       .unwrap()
       .then(() => {
         handleSuccessToast('Task edit successfully')
-        close()
         reset()
       })
-      .catch(error => {
-        handleErrorToast('Error edit board')
-        console.error(error)
+      .catch(() => {
+        handleErrorToast(
+          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+        )
       })
     close()
-    reset()
   }
   return (
     <Modal modalTitle='Edit card'>
@@ -74,11 +75,18 @@ export const EditCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <textarea
-          placeholder='Description'
-          {...register('description')}
-          className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-        />
+        <div className='relative'>
+          <textarea
+            placeholder='Description'
+            {...register('description')}
+            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          />
+          {errors.description && (
+            <span className=' absolute left-0 top-[154px] text-red-600'>
+              Please enter at least 2 characters.
+            </span>
+          )}
+        </div>
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
@@ -109,7 +117,14 @@ export const EditCardModal = () => {
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
-        <input type='date' className='mb-[40px]' {...register('deadline')} />
+        <div className='relative'>
+          <input type='date' className='mb-[40px] ' {...register('deadline')} />
+          {errors.deadline && (
+            <span className=' absolute left-0 top-5 text-red-600'>
+              Wrong date!
+            </span>
+          )}
+        </div>
         {/* <DayPicker
           className={cn('border border-brand p-[18px]')}
           classNames={{
