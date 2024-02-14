@@ -24,8 +24,28 @@ export const NewBoardModal = () => {
         reset()
         navigate(`/dashboard/${data.title}`)
       })
-      .catch(() => {
-        handleErrorToast('Error creating board')
+      .catch(error => {
+        let errorMessage = 'Error creating board'
+        if (error.response) {
+          switch (error.response.status) {
+            case 401:
+              errorMessage =
+                'Unauthorized access. Please login to create a board.'
+              break
+            case 403:
+              errorMessage = 'You do not have permission to create a board.'
+              break
+            case 409:
+              errorMessage =
+                'Conflict occurred. Board with the same title already exists.'
+              break
+            default:
+              errorMessage =
+                'An error occurred while creating a board. Please try again later.'
+              break
+          }
+        }
+        handleErrorToast(errorMessage)
       })
   }
 
