@@ -6,4 +6,4 @@ export const filterSchema = object({
   priority: picklist(priorityList)
 })
 
-export type filterSchemaFields = Output<typeof filterSchema>
+export type FilterSchemaFields = Output<typeof filterSchema>

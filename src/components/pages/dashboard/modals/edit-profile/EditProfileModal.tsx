@@ -9,38 +9,14 @@ import { selectUser } from 'redux/slices/user/user-slice'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
+  const [user, { isLoading }] = useUserMutation()
   const { close } = useModal('edit-profile-modal')
   const { name, email } = useSelector(selectUser)
-<<<<<<< HEAD:src/components/pages/dashboard/modals/EditProfileModal/EditProfileModal.tsx
-  const [user, { isLoading, isError, isSuccess, data, error }] =
-    useUserMutation()
-
-=======
-  const editProfileFormData = localStorage.getItem('edit-profile-form')
-  const userName = editProfileFormData
-    ? JSON.parse(editProfileFormData).name
-    : name
-  const userEmail = editProfileFormData
-    ? JSON.parse(editProfileFormData).email
-    : email
-
-  const signUpFormData = localStorage.getItem('sign-up-form')
-  const signInFormData = localStorage.getItem('sign-in-form')
-  const userPassword = editProfileFormData
-    ? JSON.parse(editProfileFormData).password
-    : signInFormData
-      ? JSON.parse(signInFormData).password
-      : signUpFormData
-        ? JSON.parse(signUpFormData).password
-        : ''
-  const [user, { isLoading }] = useUserMutation()
->>>>>>> origin/main:src/components/pages/dashboard/modals/edit-profile/EditProfileModal.tsx
   const { handleSubmit, register, errors, isValid } =
     useAppForm<SignupSchemaFields>(signupSchema, {
       defaultValues: {
         name: name || '',
-        email: email || '',
-        password: ''
+        email: email || ''
       }
     })
 

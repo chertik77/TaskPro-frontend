@@ -1,10 +1,7 @@
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Content, Root, Trigger } from '@radix-ui/react-select'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import {
-  filterSchema,
-  type filterSchemaFields
-} from 'lib/schemas/filter-schema'
+import { filterSchema, type FilterSchemaFields } from 'lib/schemas/'
 import { useForm } from 'react-hook-form'
 
 export const Select = Root
@@ -19,12 +16,12 @@ export const SelectTrigger = () => (
 )
 
 export const SelectContent = () => {
-  const { register, handleSubmit } = useForm<filterSchemaFields>({
+  const { register, handleSubmit } = useForm<FilterSchemaFields>({
     resolver: valibotResolver(filterSchema),
     mode: 'onChange'
   })
-  const onChangeFilter: (data: filterSchemaFields) => void = (
-    data: filterSchemaFields
+  const onChangeFilter: (data: FilterSchemaFields) => void = (
+    data: FilterSchemaFields
   ) => {
     console.log(data)
   }

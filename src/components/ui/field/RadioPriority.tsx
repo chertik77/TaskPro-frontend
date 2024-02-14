@@ -19,12 +19,10 @@ export const RadioPriority = forwardRef<HTMLInputElement, RadioProps>(
         />
         <div className='size-[90%] rounded-[50%] border-[3px] border-white opacity-0 transition duration-300 ease-in-out peer-checked:opacity-100 dark:border-black'></div>
       </div>
-      {isValue ? (
+      {isValue && (
         <span className='cursor-pointer text-fs-12-lh-normal-fw-400 opacity-50 hocus:opacity-100'>
           {value}
         </span>
-      ) : (
-        ''
       )}
     </label>
   )
