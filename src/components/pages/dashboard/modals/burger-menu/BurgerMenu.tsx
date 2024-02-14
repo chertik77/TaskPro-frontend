@@ -8,7 +8,7 @@ import { SidebarUserSupportBtn } from '../../sidebar/SidebarUserSupportBtn'
 export const BurgerMenu = () => (
   <div className='flex'>
     <BurgerModal modalTitle={''}>
-      <div className=' m-0 flex  h-dvh min-h-full w-56 flex-grow flex-col overflow-y-auto  overflow-x-hidden bg-white bg-local p-0 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px] '>
+      <div className=' m-0 flex min-h-dvh  w-56 flex-grow flex-col bg-white bg-local px-[14px] pt-[14px] violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px] tablet:px-6 tablet:pt-6'>
         <SidebarNav />
         <SidebarCreateBoardBtn />
         <SidebarBoardsList />
