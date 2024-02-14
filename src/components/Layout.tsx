@@ -8,7 +8,11 @@ export const Layout = () => {
   return (
     <>
       <Outlet />
-      <Toaster richColors theme={theme === 'dark' ? 'dark' : 'light'} />
+      <Toaster
+        richColors
+        theme={theme === 'dark' ? 'dark' : 'light'}
+        className='text-balance'
+      />
     </>
   )
 }

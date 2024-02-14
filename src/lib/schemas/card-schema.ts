@@ -11,21 +11,22 @@ import {
 const priorityList = ['Low', 'Medium', 'High', 'Without priority']
 const today = new Date()
 const yyyy = today.getFullYear()
-const mm = today.getMonth() + 1 // Months start at 0!
+const mm = today.getMonth() + 1
 const dd = today.getDate()
 
-export const AddCardSchema = object({
+export const cardSchema = object({
   title: string([
     toTrimmed(),
-    minLength(2, 'Please enter at least 2 characters.')
+    minLength(3, 'Please enter at least 3 characters.')
   ]),
   description: string([
     toTrimmed(),
-    minLength(2, 'Please enter at least 2 characters.')
+    minLength(3, 'Please enter at least 3 characters.')
   ]),
   priority: picklist(priorityList),
   deadline: string([
     minValue(`${yyyy}-${mm.toString().padStart(2, '0')}-${dd}`)
   ])
 })
-export type AddCardSchemaFields = Output<typeof AddCardSchema>
+
+export type CardSchemaFields = Output<typeof cardSchema>

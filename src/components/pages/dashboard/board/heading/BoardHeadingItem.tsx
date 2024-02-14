@@ -1,8 +1,8 @@
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteColumnMutation } from 'redux/api/dashboard/column'
-import { Column } from 'redux/slices/board/board-types'
-import { BoardTasksItem } from '../tasks/BoardTasksItem'
+import type { Column } from 'redux/slices/board/board-types'
+import { BoardCardsItem } from '../cards/BoardCardsItem'
 
 export const BoardHeadingItem = ({ column }: { column: Column }) => {
   const { name } = useParams()
@@ -34,12 +34,12 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
           </button>
         </div>
       </div>
-      {column.tasks.length > 0 && (
-        <div>
-          {column.tasks.map(task => (
-            <BoardTasksItem key={task._id} task={task} />
+      {column?.tasks?.length > 0 && (
+        <>
+          {column.tasks.map(card => (
+            <BoardCardsItem key={card._id} card={card} />
           ))}
-        </div>
+        </>
       )}
     </>
   )

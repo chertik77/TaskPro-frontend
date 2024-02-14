@@ -2,23 +2,23 @@ import { dashboardApi } from './dashboard'
 
 export const taskApi = dashboardApi.injectEndpoints({
   endpoints: ({ mutation }) => ({
-    addNewTask: mutation({
+    addNewCard: mutation({
       query: ({ boardName, columnId, body }) => ({
         url: `/dashboard/${boardName}/${columnId}`,
         method: 'POST',
         body
       })
     }),
-    editTask: mutation({
-      query: ({ boardName, columnId, taskId, body }) => ({
-        url: `/dashboard/${boardName}/${columnId}/${taskId}`,
+    editCard: mutation({
+      query: ({ boardName, columnId, cardId, body }) => ({
+        url: `/dashboard/${boardName}/${columnId}/${cardId}`,
         method: 'PATCH',
         body
       })
     }),
-    deleteTask: mutation({
-      query: ({ boardName, taskId, columnId }) => ({
-        url: `/dashboard/${boardName}/${columnId}/${taskId}`,
+    deleteCard: mutation({
+      query: ({ boardName, cardId, columnId }) => ({
+        url: `/dashboard/${boardName}/${columnId}/${cardId}`,
         method: 'DELETE'
       })
     })
@@ -26,7 +26,7 @@ export const taskApi = dashboardApi.injectEndpoints({
 })
 
 export const {
-  useAddNewTaskMutation,
-  useEditTaskMutation,
-  useDeleteTaskMutation
+  useAddNewCardMutation,
+  useEditCardMutation,
+  useDeleteCardMutation
 } = taskApi

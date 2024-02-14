@@ -4,7 +4,7 @@ export const dashboardApi = mainApi.injectEndpoints({
   endpoints: ({ mutation }) => ({
     switchTheme: mutation({
       query: body => ({
-        url: '/dashboard',
+        url: '/dashboard/theme',
         method: 'PATCH',
         body
       })

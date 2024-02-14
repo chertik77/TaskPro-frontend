@@ -16,17 +16,17 @@ export const SidebarBoardsList = () => {
   }, [board])
 
   return (
-    <div className='mb-auto'>
-      <ul className='flex flex-col'>
-        {data?.data.map(board => (
+    <div className='mb-auto '>
+      <ul className='flex flex-col mobile:text-fs-14-lh-1.28-fw-400'>
+        {data?.data?.map(board => (
           <li
             key={board._id}
             className={cn(
-              'flex h-[61px] w-[258px] cursor-pointer items-center pl-6  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50',
+              'flex h-[61px] cursor-pointer items-center gap-10  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50 desktop:pl-6',
               board.title === name &&
-                'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white  light:bg-white-gray dark:bg-black-third dark:text-white'
+                'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white  light:bg-white-gray dark:bg-black-third dark:text-white '
             )}>
-            <SideBarBoardsItem board={board} />
+            <SideBarBoardsItem board={board} boards={data?.data} />
           </li>
         ))}
       </ul>

@@ -1,51 +1,43 @@
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { Button, Field, Modal } from 'components/ui/index'
-import {
-  AddCardSchema,
-  type AddCardSchemaFields
-} from 'lib/schemas/addCard-schema'
+import { Button, Field, Modal, RadioPriority } from 'components/ui'
+import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { cardSchema, type CardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { useForm } from 'react-hook-form'
+import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
-import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
+import { useAddNewCardMutation } from 'redux/api/dashboard/card'
 
 export const AddCardModal = () => {
-  const pathParts = location.pathname.split('/')
-  const name = pathParts[pathParts.length - 1]
-
-  const [addNewTask] = useAddNewTaskMutation()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid }
-  } = useForm<AddCardSchemaFields>({
-    resolver: valibotResolver(AddCardSchema),
-    mode: 'onChange',
-    defaultValues: {
-      priority: 'Without priority'
-    }
-  })
+  const boardName = useBoardNameByLocation()
+  const [addNewCard, { isLoading }] = useAddNewCardMutation()
   const { close } = useModal('add-card-modal')
-  const onSubmit = (data: AddCardSchemaFields) => {
-    addNewTask({
-      boardName: name,
+  const { register, handleSubmit, reset, errors, isValid } =
+    useAppForm<CardSchemaFields>(cardSchema, {
+      defaultValues: {
+        priority: 'Without priority'
+      }
+    })
+
+  const onSubmit = (data: CardSchemaFields) => {
+    addNewCard({
+      boardName,
       body: data,
       columnId: localStorage.getItem('columnId')
     })
       .unwrap()
       .then(() => {
-        handleSuccessToast('Task created successfully')
+        handleSuccessToast(
+          `The task has been created successfully. Let's start working on it.`
+        )
         close()
         reset()
       })
       .catch(() => {
         handleErrorToast(
-          'Oops! Something went wrong. Our team is already solving this problem. Please stay with us.'
+          'Something went wrong while adding the card. Our team is already working on this issue. Please bear with us.'
         )
       })
   }
+
   return (
     <Modal modalTitle='Add card'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,22 +49,22 @@ export const AddCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <div className='relative'>
-          <textarea
-            placeholder='Description'
-            {...register('description')}
-            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-          />
-          {errors.description && (
-            <span className=' absolute left-0 top-[154px] text-red-600'>
-              Please enter at least 2 characters.
-            </span>
+        <textarea
+          placeholder='Description'
+          {...register('description')}
+          className={cn(
+            'h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
+            !errors.description && 'mb-6'
           )}
-        </div>
+        />
+        {errors.description && (
+          <p className='mb-[14px] text-red-600'>
+            Please enter at least 2 characters.
+          </p>
+        )}
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-
         <div className='mb-[14px] flex gap-2'>
           <RadioPriority
             color='bg-priority-low'
@@ -95,7 +87,6 @@ export const AddCardModal = () => {
             {...register('priority')}
           />
         </div>
-
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
@@ -107,8 +98,12 @@ export const AddCardModal = () => {
             </span>
           )}
         </div>
-        <Button isAddIcon iconName='plus' type='submit' disabled={!isValid}>
-          Add
+        <Button
+          isAddIcon
+          iconName='plus'
+          type='submit'
+          disabled={!isValid || isLoading}>
+          {isLoading ? 'Adding...' : 'Add'}
         </Button>
       </form>
     </Modal>

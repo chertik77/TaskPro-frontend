@@ -1,5 +1,5 @@
-import images from 'lib/json/board-bg-images.json'
 import { useImageBg } from 'hooks'
+import images from 'lib/json/board-bg-images.json'
 import type { ControllerRenderProps } from 'react-hook-form'
 
 type BackgroundProps = {
@@ -13,7 +13,7 @@ export const BackgroundContainer = (props: BackgroundProps) => {
   return (
     <ul className='mb-10 mt-[14px] flex max-w-[280px] flex-wrap gap-1'>
       {images.map(bg => {
-        const { srcset } = useImageBg(bg.id)
+        const srcset = useImageBg(bg.id)?.srcset
 
         return (
           <li

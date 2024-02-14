@@ -36,11 +36,8 @@
   display: none;
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(22, 22, 22, 0.5);
-  border-radius: 5px;
+@supports (-webkit-overflow-scrolling: touch) {
+  input {
+    font-size: 16px;
+  }
 }

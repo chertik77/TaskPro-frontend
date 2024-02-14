@@ -7,4 +7,5 @@ export type RadioProps = InputHTMLAttributes<HTMLInputElement> & {
     | 'bg-priority-medium'
     | 'bg-brand'
     | 'bg-black/30 dark:bg-white/30'
+  isValue?: boolean
 }

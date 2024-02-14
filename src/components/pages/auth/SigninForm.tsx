@@ -1,16 +1,11 @@
 import { Button, Field } from 'components/ui'
 import { useAppForm, useIsFormValidOnReload } from 'hooks'
-import {
-  signinSchema,
-  type SigninSchemaFields
-} from 'lib/schemas/signin-schema'
+import { signinSchema, type SigninSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { useEffect } from 'react'
 import { useSigninMutation } from 'redux/api/user'
 
 export const SigninForm = () => {
-  const [signin, { isLoading, isSuccess, isError, data, error }] =
-    useSigninMutation()
+  const [signin, { isLoading }] = useSigninMutation()
   const {
     handleSubmit,
     register,
@@ -24,21 +19,26 @@ export const SigninForm = () => {
   })
   const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
 
-  useEffect(() => {
-    if (isSuccess) {
-      reset()
-      handleSuccessToast(`Welcome back, ${data?.user.name}!`)
-    }
-    if (isError && error && 'status' in error)
-      handleErrorToast(
-        error?.status === 401
-          ? 'Invalid email or password. Please try again.'
-          : 'Something went wrong during login. Please try again.'
-      )
-  }, [isError, isSuccess])
+  const submit = (data: SigninSchemaFields) => {
+    signin(data)
+      .unwrap()
+      .then(r => {
+        reset()
+        handleSuccessToast(
+          `Welcome back, ${r?.user?.name}! We're glad to see you again.`
+        )
+      })
+      .catch(e => {
+        handleErrorToast(
+          e?.status === 401
+            ? 'Invalid email or password. Please try again.'
+            : 'Oops! Something went wrong during sign-in. Please check your details and try again.'
+        )
+      })
+  }
 
   return (
-    <form onSubmit={handleSubmit(data => signin(data))}>
+    <form onSubmit={handleSubmit(submit)}>
       <Field
         {...register('email')}
         placeholder='Enter your email'
