@@ -18,6 +18,10 @@ export const BurgerModal = ({ children }: ModalProps) => {
     customStyles.modal.maxWidth = 260
   }
 
+  if (window.innerWidth >= 1439) {
+    customStyles.modal.display = 'none'
+  }
+
   return (
     <Dialog
       open={isOpen}

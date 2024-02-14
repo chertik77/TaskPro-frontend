@@ -6,7 +6,7 @@ export const SidebarUserSupportBtn = () => {
 
   return (
     <div
-      className='mx-6 mt-10 h-[238px] rounded-lg
+      className='desctop:mx-6 desctop:mt-10 h-[238px] rounded-lg
     bg-white-gray p-[14px] violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5'>
       <div className='mb-3.5'>
         <picture>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export const SidebarNav = () => (
-  <div className='mb-[70px] flex items-center gap-2 tablet:mb-[60px]'>
+  <div className='desctop:px-6 desctop:pt-6 mb-[70px] flex items-center gap-2 tablet:mb-[60px] '>
     <Link to='/dashboard'>
       <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'>
         <path
