@@ -6,8 +6,8 @@ export const SidebarUserSupportBtn = () => {
 
   return (
     <div
-      className='desctop:mx-6 desctop:mt-10 h-[238px] rounded-lg
-    bg-white-gray p-[14px] violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5'>
+      className='h-[238px] rounded-lg bg-white-gray p-[14px]
+    violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5 desktop:mx-6 desktop:mt-10'>
       <div className='mb-3.5'>
         <picture>
           <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />
@@ -26,7 +26,9 @@ export const SidebarUserSupportBtn = () => {
           className='mb-4 hocus:text-brand-hover  violet:text-white violet:hocus:text-brand-third'
           isSmallIcon
           iconName='help'>
-          <span className='text-fs-12-lh-normal-fw-400'>Need help?</span>
+          <span className='text-fs-12-lh-normal-fw-400 opacity-100'>
+            Need help?
+          </span>
         </Button>
       </div>
     </div>

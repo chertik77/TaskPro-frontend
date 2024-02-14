@@ -5,7 +5,7 @@ export const SidebarCreateBoardBtn = () => {
   const { open } = useModal('new-board-modal')
 
   return (
-    <div className='desctop:px-6 mb-10'>
+    <div className='mb-10 desktop:px-6'>
       <p className='mb-2 text-fs-12-lh-normal-fw-400 text-black/50 violet:text-white/50 dark:text-white/50'>
         My boards
       </p>

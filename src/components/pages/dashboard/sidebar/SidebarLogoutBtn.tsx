@@ -8,7 +8,7 @@ export const SidebarLogoutBtn = () => {
 
   return (
     <Button
-      className='desctop:px-6 my-6 flex items-center gap-3.5 bg-transparent text-white hocus:bg-transparent hocus:text-brand-hover violet:bg-transparent violet:hocus:bg-transparent light:text-black'
+      className='desktop:px-6 my-6 flex items-center gap-3.5 bg-transparent text-white hocus:bg-transparent hocus:text-brand-hover violet:bg-transparent violet:hocus:bg-transparent light:text-black'
       onClick={() => {
         logout(undefined)
         close()
