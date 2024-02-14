@@ -4,10 +4,11 @@ import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { useBoardNameByLocation } from 'hooks'
 import { taskSchema, type TaskSchemaFields } from 'lib/schemas/task-schema'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
+import { cn } from 'lib/utils'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { useEditTaskMutation } from 'redux/api/dashboard/task'
+import { useDeleteCardMutation } from 'redux/api/dashboard/card'
 
 // import { useState } from 'react'
 // import { DayPicker } from 'react-day-picker'
@@ -39,13 +40,13 @@ export const EditCardModal = () => {
   const { close } = useModal('edit-card-modal')
   const boardName = useBoardNameByLocation()
 
-  const [editTask] = useEditTaskMutation()
+  const [editCard] = useDeleteCardMutation()
   const onSubmit = (data: TaskSchemaFields) => {
-    editTask({
+    editCard({
       boardName,
       body: data,
       columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
-      taskId: JSON.parse(localStorage.getItem('ids') as string).taskId
+      cardId: JSON.parse(localStorage.getItem('ids') as string).cardId
     })
       .unwrap()
       .then(() => {
@@ -70,22 +71,22 @@ export const EditCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <div className='relative'>
-          <textarea
-            placeholder='Description'
-            {...register('description')}
-            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-          />
-          {errors.description && (
-            <span className=' absolute left-0 top-[154px] text-red-600'>
-              Please enter at least 2 characters.
-            </span>
+        <textarea
+          placeholder='Description'
+          {...register('description')}
+          className={cn(
+            'h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
+            !errors.description && 'mb-6'
           )}
-        </div>
+        />
+        {errors.description && (
+          <p className='mb-[14px] text-red-600'>
+            Please enter at least 2 characters.
+          </p>
+        )}
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-
         <div className='mb-[14px] flex gap-2'>
           <RadioPriority
             color='bg-priority-low'
@@ -108,7 +109,6 @@ export const EditCardModal = () => {
             {...register('priority')}
           />
         </div>
-
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>

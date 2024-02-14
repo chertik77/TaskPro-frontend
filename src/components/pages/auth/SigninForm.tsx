@@ -28,7 +28,7 @@ export const SigninForm = () => {
       .then(r => {
         reset()
         handleSuccessToast(
-          `Welcome back, ${r?.user.name}! We're glad to see you again.`
+          `Welcome back, ${r?.user?.name}! We're glad to see you again.`
         )
       })
       .catch(e => {

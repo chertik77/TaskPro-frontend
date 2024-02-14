@@ -1,6 +1,6 @@
 import type { UserInitialState } from '../user/user-types'
 
-export type Task = {
+export type Card = {
   _id: string
   title: string
   board: string
@@ -16,7 +16,7 @@ export type Column = {
   title: string
   board: string
   owner: string
-  tasks: Task[]
+  cards: Card[]
 }
 
 export type BoardInitialState = {

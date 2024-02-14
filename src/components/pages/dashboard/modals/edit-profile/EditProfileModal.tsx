@@ -48,7 +48,7 @@ export const EditProfileModal = () => {
       .then(r => {
         close()
         handleSuccessToast(
-          `Congrats, ${r?.user.name}! Your details have been changed successfully.`
+          `Congrats, ${r?.user?.name}! Your details have been changed successfully.`
         )
       })
       .catch(e => {

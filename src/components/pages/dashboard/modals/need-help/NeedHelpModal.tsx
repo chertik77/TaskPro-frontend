@@ -4,6 +4,7 @@ import {
   needHelpSchema,
   type NeedHelpSchemaFields
 } from 'lib/schemas/need-help-schema'
+import { cn } from 'lib/utils'
 import { useNeedHelpMutation } from 'redux/api/dashboard/dashboard.ts'
 
 export const NeedHelpModal = () => {
@@ -20,7 +21,7 @@ export const NeedHelpModal = () => {
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('email')}
-          inputName='Email'
+          inputName='email'
           placeholder='Email address'
           errors={errors}
           className='mb-6 autofill:text-fill-black'
@@ -28,7 +29,9 @@ export const NeedHelpModal = () => {
         <textarea
           {...register('comment')}
           placeholder='Comment'
-          className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          className={cn(
+            'mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+          )}
         />
         <Button type='submit' disabled={!isValid || isLoading}>
           {isLoading ? 'Sending...' : 'Send'}

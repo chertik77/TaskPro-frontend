@@ -28,7 +28,7 @@ export const SignupForm = () => {
       .then(r => {
         reset()
         handleSuccessToast(
-          `Welcome, ${r?.user.name}! Your account has been successfully created. Let's get started!`
+          `Welcome, ${r?.user?.name}! Your account has been successfully created. Let's get started!`
         )
       })
       .catch(e => {

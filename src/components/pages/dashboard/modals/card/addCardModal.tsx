@@ -1,31 +1,25 @@
-import { valibotResolver } from '@hookform/resolvers/valibot'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
 import { Button, Field, Modal } from 'components/ui/index'
-import { useBoardNameByLocation } from 'hooks'
+import { useAppForm, useBoardNameByLocation } from 'hooks'
 import { taskSchema, type TaskSchemaFields } from 'lib/schemas/task-schema'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { useForm } from 'react-hook-form'
+import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
-import { useAddNewTaskMutation } from 'redux/api/dashboard/task'
+import { useAddNewCardMutation } from 'redux/api/dashboard/card'
 
 export const AddCardModal = () => {
   const boardName = useBoardNameByLocation()
-  const [addNewTask] = useAddNewTaskMutation()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid }
-  } = useForm<TaskSchemaFields>({
-    resolver: valibotResolver(taskSchema),
-    mode: 'onChange',
-    defaultValues: {
-      priority: 'Without priority'
-    }
-  })
+  const [addNewCard] = useAddNewCardMutation()
   const { close } = useModal('add-card-modal')
+  const { register, handleSubmit, reset, errors, isValid } =
+    useAppForm<TaskSchemaFields>(taskSchema, {
+      defaultValues: {
+        priority: 'Without priority'
+      }
+    })
+
   const onSubmit = (data: TaskSchemaFields) => {
-    addNewTask({
+    addNewCard({
       boardName,
       body: data,
       columnId: localStorage.getItem('columnId')
@@ -44,6 +38,7 @@ export const AddCardModal = () => {
         )
       })
   }
+
   return (
     <Modal modalTitle='Add card'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -55,22 +50,22 @@ export const AddCardModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <div className='relative'>
-          <textarea
-            placeholder='Description'
-            {...register('description')}
-            className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
-          />
-          {errors.description && (
-            <span className=' absolute left-0 top-[154px] text-red-600'>
-              Please enter at least 2 characters.
-            </span>
+        <textarea
+          placeholder='Description'
+          {...register('description')}
+          className={cn(
+            'h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
+            !errors.description && 'mb-6'
           )}
-        </div>
+        />
+        {errors.description && (
+          <p className='mb-[14px] text-red-600'>
+            Please enter at least 2 characters.
+          </p>
+        )}
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-
         <div className='mb-[14px] flex gap-2'>
           <RadioPriority
             color='bg-priority-low'
@@ -93,7 +88,6 @@ export const AddCardModal = () => {
             {...register('priority')}
           />
         </div>
-
         <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>

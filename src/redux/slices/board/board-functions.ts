@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { BoardInitialState, Column, Task } from './board-types'
+import type { BoardInitialState, Card, Column } from './board-types'
 
 export const addNewBoardFullfilled = (
   state: BoardInitialState,
@@ -58,46 +58,46 @@ export const deleteColumnFullfilled = (
   state.board.columns.splice(i, 1)
 }
 
-export const addNewTaskFullfilled = (
+export const addNewCardFullfilled = (
   state: BoardInitialState,
-  action: PayloadAction<Task>
+  action: PayloadAction<Card>
 ) => {
   const column = state.board.columns.find(
     column => column._id === action.payload.column
   )
 
-  column?.tasks.push(action.payload)
+  column?.cards?.push(action.payload)
 }
 
-export const editTaskFullfilled = (
+export const editCardFullfilled = (
   state: BoardInitialState,
-  action: PayloadAction<Task>
+  action: PayloadAction<Card>
 ) => {
-  const task = state.board.columns
+  const card = state.board.columns
     .find(column => column._id === action.payload.column)
-    ?.tasks.find(task => task._id === action.payload._id)
+    ?.cards?.find(card => card._id === action.payload._id)
 
-  if (task) {
-    task.title = action.payload.title
-    task.description = action.payload.description
-    task.priority = action.payload.priority
-    task.deadline = action.payload.deadline
+  if (card) {
+    card.title = action.payload.title
+    card.description = action.payload.description
+    card.priority = action.payload.priority
+    card.deadline = action.payload.deadline
   }
 }
 
-export const deleteTaskFullfilled = (
+export const deleteCardFullfilled = (
   state: BoardInitialState,
-  action: PayloadAction<Task>
+  action: PayloadAction<Card>
 ) => {
   const column = state.board.columns.find(
     column => column._id === action.payload.column
   )
   if (column) {
-    const taskIndex = column.tasks.findIndex(
-      task => task._id === action.payload._id
+    const cardIndex = column.cards.findIndex(
+      card => card._id === action.payload._id
     )
-    if (taskIndex !== -1) {
-      column.tasks.splice(taskIndex, 1)
+    if (cardIndex !== -1) {
+      column.cards.splice(cardIndex, 1)
     }
   }
 }

@@ -52,7 +52,8 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
             type='text'
             className={cn(
               'h-[49px] w-full rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] text-fs-16-lh-normal-fw-500 text-black outline-none placeholder:opacity-40 autofill:bg-clip-text autofill:text-fill-white focus:border-opacity-100 violet:border-brand-secondary violet:text-black dark:text-white',
-              className
+              className,
+              errors[inputName] && 'mb-2'
             )}
             ref={ref}
             {...props}
