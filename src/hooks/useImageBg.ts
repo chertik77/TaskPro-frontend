@@ -1,20 +1,7 @@
 import bgData from 'lib/json/board-bg-images.json'
 
-interface Screen {
-  '@1x': string
-  '@2x': string
-}
-
-interface BackgroundData {
-  id: string
-  icon: Screen
-  mobile: Screen
-  tablet: Screen
-  desktop: Screen
-}
-
 export const useImageBg = (id: string) => {
-  const background = bgData.find((bg) => bg.id === id)
+  const background = bgData.find(bg => bg.id === id)
   if (!background) {
     return null
   }

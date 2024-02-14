@@ -43,12 +43,12 @@ export const SideBarBoardsItem = ({
       {board.title === name && (
         <div className='flex items-center gap-2'>
           <button onClick={open}>
-            <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black  light:hocus:stroke-brand'>
+            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary'>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
             </svg>
           </button>
           <button onClick={handleDelete}>
-            <svg className='size-4 stroke-white-primary opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary light:stroke-black light:hocus:stroke-brand'>
+            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary'>
               <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
             </svg>
           </button>
