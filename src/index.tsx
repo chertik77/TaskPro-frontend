@@ -36,7 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 ['new-board-modal', NewBoardModal],
                 ['add-column-modal', AddColumnModal],
                 ['edit-column-modal', EditColumnModal],
-                ['create-need-help-modal', NeedHelpModal],
+                ['need-help-modal', NeedHelpModal],
                 ['add-card-modal', AddCardModal],
                 ['edit-card-modal', EditCardModal],
                 ['edit-profile-modal', EditProfileModal],

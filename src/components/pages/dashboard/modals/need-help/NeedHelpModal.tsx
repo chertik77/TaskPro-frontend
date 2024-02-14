@@ -3,17 +3,21 @@ import { useAppForm } from 'hooks'
 import { needHelpSchema, type NeedHelpSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
+import { useModal } from 'react-modal-state'
 import { useNeedHelpMutation } from 'redux/api/dashboard/dashboard'
 
 export const NeedHelpModal = () => {
   const [createHelp, { isLoading }] = useNeedHelpMutation()
-  const { handleSubmit, register, errors, isValid } =
+  const { close } = useModal('need-help-modal')
+  const { handleSubmit, register, errors, isValid, reset } =
     useAppForm<NeedHelpSchemaFields>(needHelpSchema)
 
   const submit = (data: NeedHelpSchemaFields) => {
     createHelp(data)
       .unwrap()
       .then(() => {
+        reset()
+        close()
         handleSuccessToast(
           'Your help request has been sent successfully! Our team will get back to you shortly.'
         )
