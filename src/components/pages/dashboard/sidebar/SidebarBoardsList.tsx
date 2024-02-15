@@ -27,7 +27,7 @@ export const SidebarBoardsList = () => {
           <li
             key={board._id}
             className={cn(
-              'flex h-[61px] cursor-pointer items-center gap-10  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50 desktop:pl-6',
+              'flex h-[61px] cursor-pointer items-center gap-10  text-black/50 transition duration-300 ease-in-out violet:text-white/50 violet:hocus:bg-transparent violet:hocus:opacity-50 dark:text-white/50 desktop:pl-6',
               board.title === boardId &&
                 'border-1 border-s-wite-500 border-r-dark light:bg-white-gray text-black violet:bg-white/50 violet:text-white dark:bg-black-third dark:text-white'
             )}>

@@ -23,10 +23,10 @@ export const SidebarUserSupportBtn = () => {
       <div className='flex items-center gap-2'>
         <Button
           onClick={open}
-          className='mb-4 hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third  dark:text-white '
+          className='mb-4 violet:text-white violet:hocus:text-brand-third dark:text-white dark:hocus:text-brand-hover'
           isSmallIcon
           iconName='help'>
-          <span className='text-fs-12-lh-normal-fw-400 opacity-100 dark:text-white'>
+          <span className='text-fs-12-lh-normal-fw-400 violet:text-white violet:hocus:text-brand-third dark:text-white dark:hocus:text-brand-hover'>
             Need help?
           </span>
         </Button>
