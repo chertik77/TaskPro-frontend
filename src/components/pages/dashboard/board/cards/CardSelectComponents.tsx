@@ -1,6 +1,7 @@
 import { Content, Item, ItemText, Root, Trigger } from '@radix-ui/react-select'
 import { useSelector } from 'react-redux'
 import { selectColumns } from 'redux/slices/board/board-slice'
+import type { Card } from 'redux/slices/board/board-types'
 
 export const Select = Root
 
@@ -12,15 +13,16 @@ export const SelectTrigger = () => (
   </Trigger>
 )
 
-export const SelectContent = () => {
+export const SelectContent = ({ card }: { card: Card }) => {
   const columns = useSelector(selectColumns)
+  const filteredColumns = columns.filter(column => column._id !== card.column)
 
   return (
     <Content
-      className='rounded-lg border border-brand bg-white-primary 
+      className='min-w-[135px] rounded-lg border border-brand bg-white-primary 
       p-[18px] violet:border-white-gray-secondary dark:bg-black-fourth'
       position='popper'>
-      {columns?.map(column => (
+      {filteredColumns?.map(column => (
         <Item
           key={column._id}
           className='svg-[state=checked]:stroke-brand mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black 
@@ -28,10 +30,12 @@ export const SelectContent = () => {
            violet:data-[state=checked]:text-brand-secondary dark:text-white/30 dark:data-[state=checked]:text-brand'
           value={column._id}>
           <ItemText>
-            <span className='pr-[8px]'>{column.title}</span>
-            <svg className='inline size-[16px] stroke-black/50  dark:stroke-white/50'>
-              <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
-            </svg>
+            <div className='flex justify-between'>
+              <span>{column.title}</span>
+              <svg className='inline-block size-[16px] stroke-black/50  dark:stroke-white/50'>
+                <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
+              </svg>
+            </div>
           </ItemText>
         </Item>
       ))}
