@@ -12,14 +12,16 @@ export const EditProfileModal = () => {
   const [user, { isLoading }] = useUserMutation()
   const { close } = useModal('edit-profile-modal')
   const { name, email } = useSelector(selectUser)
-  const { handleSubmit, register, errors, isValid } =
-    useAppForm<SignupSchemaFields>(signupSchema, {
+  const { handleSubmit, register, errors } = useAppForm<SignupSchemaFields>(
+    signupSchema,
+    {
       defaultValues: {
         name: name || '',
         email: email || '',
         password: ''
       }
-    })
+    }
+  )
 
   const submit = (data: SignupSchemaFields) => {
     user(data)
@@ -67,7 +69,7 @@ export const EditProfileModal = () => {
           autoComplete='current-password'
           {...register('password')}
         />
-        <Button type='submit' disabled={!isValid || isLoading}>
+        <Button type='submit' disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Send'}
         </Button>
       </form>
