@@ -21,6 +21,12 @@ export const taskApi = dashboardApi.injectEndpoints({
         url: `/dashboard/${boardId}/${columnId}/${cardId}`,
         method: 'DELETE'
       })
+    }),
+    changeCardColumn: mutation({
+      query: ({ boardId, cardId, columnId, newColumnId }) => ({
+        url: `/dashboard/${boardId}/${columnId}/${cardId}/${newColumnId}`,
+        method: 'PATCH'
+      })
     })
   })
 })
@@ -28,5 +34,6 @@ export const taskApi = dashboardApi.injectEndpoints({
 export const {
   useAddNewCardMutation,
   useEditCardMutation,
+  useChangeCardColumnMutation,
   useDeleteCardMutation
 } = taskApi
