@@ -3,7 +3,8 @@ import { useAppForm, useBoardByLocation } from 'hooks'
 import { boardSchema, type BoardSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
-import { useModal } from 'react-modal-state'
+import { useEffect } from 'react'
+import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
@@ -11,14 +12,22 @@ import { Icons } from './Icons'
 export const EditBoardModal = () => {
   const [editBoard, { isLoading }] = useEditBoardMutation()
   const { close } = useModal('edit-board-modal')
+  const { isOpen } = useModalInstance()
   const boardId = useBoardByLocation()
   const { register, errors, reset, handleSubmit, control, isValid } =
     useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
-        icon: 'icon-project-1',
         background: 'default'
       }
     })
+
+  const title = localStorage.getItem('edit-board-title') ?? ''
+
+  useEffect(() => {
+    if (isOpen) {
+      reset({ title })
+    }
+  }, [isOpen])
 
   const submit = (data: BoardSchemaFields) => {
     editBoard({ boardId, body: data })
