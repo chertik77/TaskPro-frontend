@@ -16,7 +16,7 @@ export const CardColumnSelect = ({ card }: { card: Card }) => {
         })
       }>
       <SelectTrigger />
-      <SelectContent />
+      <SelectContent card={card} />
     </Select>
   )
 }
