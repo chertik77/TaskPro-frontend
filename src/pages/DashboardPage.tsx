@@ -14,7 +14,7 @@ const DashboardPage = () => {
   }, [theme])
 
   return (
-    <div className='desktop:grid desktop:h-dvh desktop:grid-cols-[260px,1fr] desktop:grid-rows-[auto,1fr]'>
+    <div className='mobile:grid-cols-[225px,1fr] desktop:grid desktop:h-dvh desktop:grid-cols-[260px,1fr] desktop:grid-rows-[auto,1fr]'>
       <Sidebar />
       <Header />
       <Outlet />

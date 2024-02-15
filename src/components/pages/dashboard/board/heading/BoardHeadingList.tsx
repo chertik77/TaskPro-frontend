@@ -17,15 +17,16 @@ export const BoardHeadingList = () => {
             <Button
               isAddIcon
               iconName='plus'
-              className='text-fs-14-lh-normal-fw-500'
               onClick={() => {
                 localStorage.setItem('columnId', column._id)
                 open()
               }}>
               {column?.cards?.length > 0 ? (
-                <span>Add another card</span>
+                <span className='text-fs-14-lh-normal-fw-500'>
+                  Add another card
+                </span>
               ) : (
-                <span>Add card</span>
+                <span className='text-fs-14-lh-normal-fw-500'>Add card</span>
               )}
             </Button>
           </div>

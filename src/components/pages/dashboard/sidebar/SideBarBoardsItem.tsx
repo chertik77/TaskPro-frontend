@@ -1,5 +1,4 @@
 import { handleSuccessToast } from 'lib/toasts'
-import { useCallback } from 'react'
 import { useModal } from 'react-modal-state'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
@@ -17,7 +16,7 @@ export const SideBarBoardsItem = ({
   const navigate = useNavigate()
   const [deleteBoard] = useDeleteBoardMutation()
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = () => {
     deleteBoard(boardId)
       .unwrap()
       .then(() => {
@@ -29,7 +28,7 @@ export const SideBarBoardsItem = ({
     navigate(`/dashboard/${boards[nextBoardIndex]?._id ?? ''}`, {
       replace: true
     })
-  }, [])
+  }
 
   return (
     <>
@@ -44,16 +43,16 @@ export const SideBarBoardsItem = ({
       {board._id === boardId && (
         <div className='flex items-center gap-2'>
           <button onClick={open}>
-            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary'>
+            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand  violet:stroke-white-primary violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand '>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
             </svg>
           </button>
           <button onClick={handleDelete}>
-            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out hocus:stroke-brand-hover violet:hocus:stroke-brand-secondary'>
+            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand  violet:stroke-white-primary violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand'>
               <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
             </svg>
           </button>
-          <div className='h-[61px] w-[5px] rounded-l-lg bg-brand violet:bg-white'></div>
+          <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white'></div>
         </div>
       )}
     </>

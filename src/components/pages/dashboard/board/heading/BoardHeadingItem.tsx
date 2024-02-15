@@ -33,11 +33,11 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
         </div>
       </div>
       {column?.cards?.length > 0 && (
-        <>
-          {column.cards.map(card => (
+        <div className='mb-[14px]'>
+          {column.cards.toReversed().map(card => (
             <BoardCardsItem key={card._id} card={card} />
           ))}
-        </>
+        </div>
       )}
     </>
   )

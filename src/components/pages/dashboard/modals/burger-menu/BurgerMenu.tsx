@@ -1,4 +1,4 @@
-import { BurgerModal } from 'components/ui/modal/burger-Modal'
+import { BurgerModal } from './burger-Modal'
 import { SidebarBoardsList } from '../../sidebar/SidebarBoardsList'
 import { SidebarCreateBoardBtn } from '../../sidebar/SidebarCreateBoardBtn'
 import { SidebarLogoutBtn } from '../../sidebar/SidebarLogoutBtn'
