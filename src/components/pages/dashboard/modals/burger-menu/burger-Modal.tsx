@@ -1,7 +1,6 @@
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'
-// import 'react-responsive-modal/styles.css'
-import type { ModalProps } from './modal-types'
+import type { ModalProps } from '../../../../ui/modal/modal-types'
 
 export const BurgerModal = ({ children }: ModalProps) => {
   const { isOpen, close } = useModalInstance()
@@ -10,7 +9,7 @@ export const BurgerModal = ({ children }: ModalProps) => {
     modal: {
       padding: 0,
       margin: 0,
-      maxWidth: 225,
+      maxWidth: 224,
       display: 'block'
     }
   }
