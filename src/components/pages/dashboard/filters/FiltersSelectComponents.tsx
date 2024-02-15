@@ -19,7 +19,7 @@ export const SelectTrigger = () => (
 export const SelectContent = () => {
   return (
     <Content
-      className='absolute right-2 top-0 
+      className='absolute left-[-225px] top-1 
     flex w-[300px] rounded-lg bg-white-primary p-6 dark:bg-black-fourth'
       position='popper'>
       <div className='relative border-b border-black/10 dark:border-white/10'>
@@ -43,7 +43,6 @@ export const SelectContent = () => {
           <Item key={value} value={value}>
             <RadioPriority
               key={value}
-              className='mb-1'
               value={value as RadioProps['value']}
               color={color as RadioProps['color']}
               isValue

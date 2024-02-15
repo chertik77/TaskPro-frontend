@@ -22,16 +22,20 @@ const SelectTrigger = () => (
 const SelectContent = () => (
   <Content
     className='z-10 w-[100px] rounded-lg border border-brand 
-    bg-white-primary py-[18px] pl-[18px] pr-11 violet:border-white-gray-secondary dark:bg-black-fourth'
+    bg-white-primary pb-[14px] pl-[18px] pr-11 pt-[18px] violet:border-white-gray-secondary dark:bg-black-fourth'
     position='popper'>
     {items.map(({ value, text }) => (
       <Item
         key={value}
         className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none 
-        data-[state=checked]:text-brand violet:data-[state=checked]:text-brand-secondary
-         dark:text-white/30 dark:data-[state=checked]:text-brand'
+        data-[state=checked]:text-brand 
+         violet:data-[state=checked]:text-brand-secondary dark:text-white/30 dark:data-[state=checked]:text-brand'
         value={value}>
-        <ItemText>{text}</ItemText>
+        <ItemText>
+          <button className='hocus:text-brand violet:hocus:text-brand-secondary'>
+            {text}
+          </button>
+        </ItemText>
       </Item>
     ))}
   </Content>
