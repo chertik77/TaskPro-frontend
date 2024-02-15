@@ -1,7 +1,9 @@
-import { Content, Root, Trigger, Icon, Item } from '@radix-ui/react-select'
-import items from 'lib/json/filter-items.json'
+import { Content, Icon, Item, Root, Trigger } from '@radix-ui/react-select'
 import { RadioPriority } from 'components/ui/field/RadioPriority'
 import type { RadioProps } from 'components/ui/field/priority-types'
+import { useAppDispatch } from 'hooks'
+import items from 'lib/json/filter-items.json'
+import { filter } from 'redux/slices/board/board-slice'
 
 export const Select = Root
 
@@ -17,6 +19,7 @@ export const SelectTrigger = () => (
 )
 
 export const SelectContent = () => {
+  const dispath = useAppDispatch()
   return (
     <Content
       className='absolute left-[-225px] top-1 
@@ -34,7 +37,8 @@ export const SelectContent = () => {
         <h3>Label color</h3>
         <button
           type='button'
-          className='text-fs-12-lh-normal-fw-400 underline opacity-50 hocus:text-brand-hover hocus:no-underline hocus:opacity-100'>
+          className='text-fs-12-lh-normal-fw-400 underline opacity-50 hocus:text-brand-hover hocus:no-underline hocus:opacity-100'
+          onClick={() => dispath(filter(''))}>
           Show all
         </button>
       </div>
