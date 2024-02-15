@@ -21,12 +21,11 @@ export const EditBoardModal = () => {
       }
     })
 
-  const boardValues = localStorage.getItem('edit-board-values') ?? ''
-  const { title, icon } = JSON.parse(boardValues) ?? ''
+  const title = localStorage.getItem('edit-board-title') ?? ''
 
   useEffect(() => {
     if (isOpen) {
-      reset({ title, icon })
+      reset({ title })
     }
   }, [isOpen])
 

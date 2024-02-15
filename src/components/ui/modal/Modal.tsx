@@ -7,12 +7,17 @@ import { modalVariants } from './modal-variants'
 
 export const Modal = ({ children, size, modalTitle }: ModalProps) => {
   const { isOpen, close } = useModalInstance()
+  const onClose = () => {
+    close()
+    localStorage.removeItem('edit-board-title')
+    localStorage.removeItem('edit-board-icon')
+  }
 
   return (
     <Dialog
       open={isOpen}
       center
-      onClose={close}
+      onClose={onClose}
       classNames={{
         modal: `${cn(modalVariants({ size }))}`,
         closeIcon: 'dark:fill-white w-[18px] h-[18px]',

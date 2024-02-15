@@ -17,7 +17,8 @@ export const SideBarBoardsItem = ({
   const [deleteBoard] = useDeleteBoardMutation()
 
   const onEdit = () => {
-    localStorage.setItem('edit-board-values', JSON.stringify(board))
+    localStorage.setItem('edit-board-title', board.title)
+    localStorage.setItem('edit-board-icon', board.icon)
     open()
   }
 
