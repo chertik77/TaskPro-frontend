@@ -3,6 +3,7 @@ import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteCardMutation } from 'redux/api/dashboard/card'
 import type { Card } from 'redux/slices/board/board-types'
+import { CardColumnSelect } from './CardColumnSelect'
 
 type Priorities = 'Low' | 'Medium' | 'High' | 'Without priority'
 
@@ -78,14 +79,13 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           </p>
         </div>
         <div className='ml-auto flex gap-[8px]'>
-          <svg className='size-[19px] stroke-brand pr-[4px]'>
-            <use xlinkHref='/assets/icons.svg#icon-bell'></use>
-          </svg>
-          <button>
-            <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
-              <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
+          {new Date() >= new Date(format(date, 'MM/dd/yyyy')) && (
+            <svg className='size-[19px] stroke-brand pr-[4px]'>
+              <use xlinkHref='/assets/icons.svg#icon-bell'></use>
             </svg>
-          </button>
+          )}
+
+          <CardColumnSelect card={card} />
           <button onClick={onEdit}>
             <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
