@@ -37,7 +37,7 @@ export const NeedHelpModal = () => {
           inputName='email'
           placeholder='Email address'
           errors={errors}
-          className='mb-6 text-black dark:text-white'
+          className='mb-6 autofill:text-fill-bltext-black dark:text-white'
         />
         <textarea
           {...register('comment')}
