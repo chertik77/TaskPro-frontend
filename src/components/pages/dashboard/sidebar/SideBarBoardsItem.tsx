@@ -1,5 +1,4 @@
 import { handleSuccessToast } from 'lib/toasts'
-import { useCallback } from 'react'
 import { useModal } from 'react-modal-state'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
@@ -17,7 +16,7 @@ export const SideBarBoardsItem = ({
   const navigate = useNavigate()
   const [deleteBoard] = useDeleteBoardMutation()
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = () => {
     deleteBoard(boardId)
       .unwrap()
       .then(() => {
@@ -29,7 +28,7 @@ export const SideBarBoardsItem = ({
     navigate(`/dashboard/${boards[nextBoardIndex]?._id ?? ''}`, {
       replace: true
     })
-  }, [])
+  }
 
   return (
     <>
