@@ -24,6 +24,7 @@ export const SignupForm = () => {
       .unwrap()
       .then(r => {
         reset()
+        localStorage.removeItem('signup-form')
         handleSuccessToast(
           `Welcome, ${r?.user?.name}! Your account has been successfully created. Let's get started!`
         )

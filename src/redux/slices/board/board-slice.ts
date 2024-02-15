@@ -64,10 +64,9 @@ const boardSlice = createSlice({
   },
   selectors: {
     selectBoard: state => state.board,
-    selectColumns: state => state.board.columns,
-    selectCards: state => state.board.columns.map(column => column.cards)
+    selectColumns: state => state.board.columns
   }
 })
 
-export const { selectBoard, selectColumns, selectCards } = boardSlice.selectors
+export const { selectBoard, selectColumns } = boardSlice.selectors
 export const boardReducer = boardSlice.reducer
