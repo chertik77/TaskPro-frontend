@@ -1,10 +1,13 @@
 import { useModal } from 'react-modal-state'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useDeleteColumnMutation } from 'redux/api/dashboard/column'
+import { selectFilter } from 'redux/slices/board/board-slice'
 import type { Column } from 'redux/slices/board/board-types'
 import { BoardCardsItem } from '../cards/BoardCardsItem'
 
 export const BoardHeadingItem = ({ column }: { column: Column }) => {
+  const filter = useSelector(selectFilter)
   const { boardId } = useParams()
   const [deleteColumn] = useDeleteColumnMutation()
   const { open } = useModal('edit-column-modal')
@@ -36,9 +39,14 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
       </div>
       {column?.cards?.length > 0 && (
         <div className='mb-[14px]'>
-          {column.cards.toReversed().map(card => (
-            <BoardCardsItem key={card._id} card={card} />
-          ))}
+          {!filter
+            ? column.cards
+                .toReversed()
+                .map(card => <BoardCardsItem key={card._id} card={card} />)
+            : column.cards
+                .toReversed()
+                .filter(card => card.priority === filter)
+                .map(card => <BoardCardsItem key={card._id} card={card} />)}
         </div>
       )}
     </>

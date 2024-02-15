@@ -22,6 +22,7 @@ export type Column = {
 
 export type BoardInitialState = {
   board: {
+    filter: string
     _id: string
     background: string
     icon: string
