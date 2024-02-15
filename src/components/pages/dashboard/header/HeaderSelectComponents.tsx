@@ -21,8 +21,8 @@ const SelectTrigger = () => (
 )
 const SelectContent = () => (
   <Content
-    className='w-[100px] rounded-lg border border-brand bg-white-primary 
-    py-[18px] pl-[18px] pr-11 violet:border-white-gray-secondary dark:bg-black-fourth'
+    className='z-10 w-[100px] rounded-lg border border-brand 
+    bg-white-primary py-[18px] pl-[18px] pr-11 violet:border-white-gray-secondary dark:bg-black-fourth'
     position='popper'>
     {items.map(({ value, text }) => (
       <Item
