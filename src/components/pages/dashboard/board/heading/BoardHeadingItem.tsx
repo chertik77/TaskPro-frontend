@@ -33,11 +33,11 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
         </div>
       </div>
       {column?.cards?.length > 0 && (
-        <>
+        <div className='mb-[14px]'>
           {column.cards.map(card => (
             <BoardCardsItem key={card._id} card={card} />
           ))}
-        </>
+        </div>
       )}
     </>
   )
