@@ -24,11 +24,11 @@ export const NewBoardModal = () => {
   const submit = (data: BoardSchemaFields) => {
     addNewBoard(data)
       .unwrap()
-      .then(() => {
+      .then(r => {
         handleSuccessToast('Board successfully added to your collection!')
         close()
         reset()
-        navigate(`/dashboard/${data.title}`)
+        navigate(`/dashboard/${r._id}`)
       })
       .catch(e => {
         handleErrorToast(

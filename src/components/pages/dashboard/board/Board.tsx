@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { boardApi } from 'redux/api/dashboard/board'
-import { selectColumns } from 'redux/slices/board/board-slice'
+import { selectBoard, selectColumns } from 'redux/slices/board/board-slice'
 import type { BoardInitialState } from 'redux/slices/board/board-types'
 import { FilterSelect } from '../filters/FilterSelect'
 import { BoardHeadingList } from './heading/BoardHeadingList'
@@ -13,9 +13,10 @@ import { BoardHeadingList } from './heading/BoardHeadingList'
 const widthScreen = window.innerWidth
 
 export const Board = () => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const dispatch = useAppDispatch()
   const columns = useSelector(selectColumns)
+  const { title } = useSelector(selectBoard)
   const { open } = useModal('add-column-modal')
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
@@ -34,14 +35,16 @@ export const Board = () => {
   }
 
   useEffect(() => {
-    if (name) {
+    if (boardId) {
       dispatch(
-        boardApi.endpoints.getBoardByName.initiate(name, { forceRefetch: true })
+        boardApi.endpoints.getBoardById.initiate(boardId, {
+          forceRefetch: true
+        })
       )
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name])
+  }, [boardId])
 
   return (
     <>
@@ -56,7 +59,7 @@ export const Board = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}>
-          {boardData?.title}
+          {title}
           <FilterSelect />
           <div className='flex h-screen overflow-x-auto scrollbar scrollbar-track-white scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black dark:scrollbar-thumb-scroll-thumb'>
             <BoardHeadingList />

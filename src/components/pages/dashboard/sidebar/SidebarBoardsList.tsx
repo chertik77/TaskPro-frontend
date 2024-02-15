@@ -7,7 +7,7 @@ import { selectBoard } from 'redux/slices/board/board-slice'
 import { SideBarBoardsItem } from './SideBarBoardsItem'
 
 export const SidebarBoardsList = () => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const board = useSelector(selectBoard)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
 
@@ -23,7 +23,7 @@ export const SidebarBoardsList = () => {
             key={board._id}
             className={cn(
               'flex h-[61px] cursor-pointer items-center gap-10  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50 desktop:pl-6',
-              board.title === name &&
+              board.title === boardId &&
                 'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white  light:bg-white-gray dark:bg-black-third dark:text-white '
             )}>
             <SideBarBoardsItem board={board} boards={data?.data} />

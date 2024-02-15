@@ -1,7 +1,9 @@
+import { format, parseISO } from 'date-fns'
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteCardMutation } from 'redux/api/dashboard/card'
 import type { Card } from 'redux/slices/board/board-types'
+import { CardColumnSelect } from './CardColumnSelect'
 
 type Priorities = 'Low' | 'Medium' | 'High' | 'Without priority'
 
@@ -32,7 +34,7 @@ const PriorityColorPicker = (priority: Priorities) => {
 }
 
 export const BoardCardsItem = ({ card }: { card: Card }) => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const [deleteCard] = useDeleteCardMutation()
   const { open } = useModal('edit-card-modal')
   const onEdit = () => {
@@ -43,6 +45,8 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
       JSON.stringify({ columnId: card.column, cardId: card._id })
     )
   }
+
+  const date = parseISO(card.deadline)
 
   return (
     <div
@@ -61,24 +65,27 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <div className='flex items-center gap-[4px]'>
             <div
               className={`size-[12px]  rounded-[50%] ${PriorityColorPicker(card.priority)}`}></div>
-            <p className='text-fs-10-lh-normal-fw-400'>{card.priority}</p>
+            <p className='text-fs-10-lh-normal-fw-400'>
+              {card.priority === 'Without priority' ? 'Without' : card.priority}
+            </p>
           </div>
         </div>
         <div>
           <p className='pb-[4px] text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
             Deadline
           </p>
-          <p className='text-fs-10-lh-normal-fw-400'>{card.deadline}</p>
+          <p className='text-fs-10-lh-normal-fw-400'>
+            {format(date, 'MM/dd/yyyy')}
+          </p>
         </div>
         <div className='ml-auto flex gap-[8px]'>
-          <svg className='size-[19px] stroke-brand pr-[4px]'>
-            <use xlinkHref='/assets/icons.svg#icon-bell'></use>
-          </svg>
-          <button>
-            <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
-              <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
+          {new Date() >= new Date(format(date, 'MM/dd/yyyy')) && (
+            <svg className='size-[19px] stroke-brand pr-[4px]'>
+              <use xlinkHref='/assets/icons.svg#icon-bell'></use>
             </svg>
-          </button>
+          )}
+
+          <CardColumnSelect card={card} />
           <button onClick={onEdit}>
             <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
@@ -87,7 +94,7 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <button
             onClick={() =>
               deleteCard({
-                boardName: name,
+                boardId,
                 columnId: card.column,
                 cardId: card._id
               })

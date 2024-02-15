@@ -24,6 +24,7 @@ export const SigninForm = () => {
       .unwrap()
       .then(r => {
         reset()
+        localStorage.removeItem('signin-form')
         handleSuccessToast(
           `Welcome back, ${r?.user?.name}! We're glad to see you again.`
         )
