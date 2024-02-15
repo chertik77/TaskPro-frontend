@@ -6,14 +6,14 @@ import {
   addNewBoardFullfilled,
   addNewCardFullfilled,
   addNewColumnFullfilled,
+  changeCardColumnFullfilled,
   deleteBoardFullfilled,
   deleteCardFullfilled,
   deleteColumnFullfilled,
   editBoardFullfilled,
   editCardFullfilled,
   editNewColumnFullfilled,
-  getBoardByIdFullfilled,
-  changeCardColumnFullfilled
+  getBoardByIdFullfilled
 } from './board-functions'
 import type { BoardInitialState } from './board-types'
 
