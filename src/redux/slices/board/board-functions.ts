@@ -119,5 +119,7 @@ export const changeCardColumnFullfilled = (
   if (card) {
     oldColumn?.cards?.splice(oldColumn?.cards?.indexOf(card), 1)
     newColumn?.cards?.push(card)
+    oldColumn?._id === action.payload.oldColumn
+    newColumn?._id === action.payload.column
   }
 }

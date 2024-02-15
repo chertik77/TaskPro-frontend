@@ -11,7 +11,7 @@ export const CardColumnSelect = ({ card }: { card: Card }) => {
         changeColumn({
           boardId: card.board,
           columnId: card.column,
-          cardId: card?._id,
+          cardId: card._id,
           newColumnId: e
         })
       }>
