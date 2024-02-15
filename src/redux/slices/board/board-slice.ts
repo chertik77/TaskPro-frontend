@@ -12,7 +12,8 @@ import {
   editBoardFullfilled,
   editCardFullfilled,
   editNewColumnFullfilled,
-  getBoardByIdFullfilled
+  getBoardByIdFullfilled,
+  changeCardColumnFullfilled
 } from './board-functions'
 import type { BoardInitialState } from './board-types'
 
@@ -24,6 +25,10 @@ const boardSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addMatcher(
+        taskApi.endpoints.changeCardColumn.matchFulfilled,
+        changeCardColumnFullfilled
+      )
       .addMatcher(
         boardApi.endpoints.getBoardById.matchFulfilled,
         getBoardByIdFullfilled
