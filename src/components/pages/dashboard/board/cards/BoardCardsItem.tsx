@@ -51,7 +51,7 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
   return (
     <div
       className={`mb-[8px] h-[154px] w-[334px] rounded-[8px] border-l-[4px] ${PriorityBorderColorPicker(card.priority)} bg-white py-[14px] pl-[24px] pr-[20px] dark:bg-black`}>
-      <p className='pb-[8px] text-fs-14-lh-normal-fw-600 dark:text-white'>
+      <p className='pb-[8px] text-fs-14-lh-normal-fw-600 text-black dark:text-white'>
         {card.title}
       </p>
       <p className='mb-[14px] line-clamp-2 min-h-[38px] text-fs-12-lh-normal-fw-400 text-black/70 dark:text-white/50'>
@@ -65,7 +65,7 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <div className='flex items-center gap-[4px]'>
             <div
               className={`size-[12px]  rounded-[50%] ${PriorityColorPicker(card.priority)}`}></div>
-            <p className='text-fs-10-lh-normal-fw-400'>
+            <p className='text-fs-10-lh-normal-fw-400 text-black dark:text-white'>
               {card.priority === 'Without priority' ? 'Without' : card.priority}
             </p>
           </div>
@@ -74,7 +74,7 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <p className='pb-[4px] text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
             Deadline
           </p>
-          <p className='text-fs-10-lh-normal-fw-400'>
+          <p className='text-fs-10-lh-normal-fw-400 text-black dark:text-white'>
             {format(date, 'MM/dd/yyyy')}
           </p>
         </div>

@@ -12,7 +12,9 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
   return (
     <>
       <div className='mb-[14px] mr-[34px] flex h-[56px] w-[100%] min-w-[285px] items-center rounded-[8px] bg-white px-[20px] pb-[17px] pt-[18px] dark:bg-black mobile:w-[335px] tablet:w-[334px]'>
-        <div className='text-fs-14-lh-normal-fw-500'>{column.title}</div>
+        <div className='text-fs-14-lh-normal-fw-500 text-black dark:text-white'>
+          {column.title}
+        </div>
         <div className='ml-auto flex gap-[8px]'>
           <button
             onClick={() => {
