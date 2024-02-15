@@ -16,6 +16,11 @@ export const SideBarBoardsItem = ({
   const navigate = useNavigate()
   const [deleteBoard] = useDeleteBoardMutation()
 
+  const onEdit = () => {
+    localStorage.setItem('edit-board-values', JSON.stringify(board))
+    open()
+  }
+
   const handleDelete = () => {
     deleteBoard(boardId)
       .unwrap()
@@ -42,7 +47,7 @@ export const SideBarBoardsItem = ({
       </Link>
       {board._id === boardId && (
         <div className='flex items-center gap-2'>
-          <button onClick={open}>
+          <button onClick={onEdit}>
             <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand  violet:stroke-white-primary violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand '>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
             </svg>
