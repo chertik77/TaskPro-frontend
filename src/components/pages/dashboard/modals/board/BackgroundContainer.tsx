@@ -30,7 +30,7 @@ export const BackgroundContainer = (props: BackgroundProps) => {
             />
             <label
               htmlFor={`background-${bg.id}`}
-              className='peer-checked:border-blue-600'>
+              className='peer-checked:*:scale-125'>
               <img
                 width={28}
                 height={28}
