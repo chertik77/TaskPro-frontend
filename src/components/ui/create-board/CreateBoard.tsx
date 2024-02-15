@@ -4,8 +4,8 @@ export const CreateBoard = () => {
   const { open } = useModal('new-board-modal')
 
   return (
-    <div className='flex h-full w-full items-center justify-center'>
-      <div className='h-[80px] w-[335px] text-center text-fs-12-lh-1.33-fw-400 text-black opacity-70 dark:text-white-gray-secondary  tablet:h-[72px] tablet:w-[486px] tablet:text-fs-14-lh-1.28-fw-400 '>
+    <div className='flex items-center justify-center mobile:h-dvh desktop:h-auto'>
+      <div className='w-[335px] text-center text-fs-12-lh-1.33-fw-400 text-black opacity-70  dark:text-white-gray-secondary tablet:h-[72px] tablet:w-[486px] tablet:text-fs-14-lh-1.28-fw-400 max-tablet:px-5'>
         Before starting your project, it is essential{' '}
         <span
           onClick={open}

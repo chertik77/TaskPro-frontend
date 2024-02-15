@@ -60,7 +60,7 @@ export const Board = () => {
           }}>
           {title}
           <FilterSelect />
-          <div className='flex h-full overflow-x-auto scrollbar scrollbar-track-white scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black dark:scrollbar-thumb-scroll-thumb'>
+          <div className='flex h-dvh overflow-x-auto scrollbar scrollbar-track-white scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black dark:scrollbar-thumb-scroll-thumb'>
             <BoardHeadingList />
             <Button
               onClick={open}
