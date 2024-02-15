@@ -10,21 +10,21 @@ export const SidebarBoardsList = () => {
   const { boardId } = useParams()
   const board = useSelector(selectBoard)
   const { data, refetch } = useGetAllBoardsQuery(undefined)
-
+  console.log(data)
   useEffect(() => {
     refetch()
   }, [board])
 
   return (
-    <div className='mb-auto '>
+    <div className={cn('mb-20', data?.data?.length === 0 ? 'mb-auto' : null)}>
       <ul className='flex flex-col mobile:text-fs-14-lh-1.28-fw-400'>
         {data?.data?.map(board => (
           <li
             key={board._id}
             className={cn(
-              'flex h-[61px] cursor-pointer items-center gap-10  text-black/50 transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50 desktop:pl-6',
+              'flex h-[61px] cursor-pointer items-center gap-10  text-black/50 transition duration-300 ease-in-out violet:text-white/50  dark:text-white/50 desktop:pl-6',
               board.title === boardId &&
-                'border-1 border-s-wite-500 border-r-dark text-black violet:bg-white/50 violet:text-white  light:bg-white-gray dark:bg-black-third dark:text-white '
+                'border-1 border-s-wite-500 border-r-dark light:bg-white-gray text-black violet:bg-white/50 violet:text-white dark:bg-black-third dark:text-white'
             )}>
             <SideBarBoardsItem board={board} boards={data?.data} />
           </li>
