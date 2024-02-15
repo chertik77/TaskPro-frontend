@@ -4,6 +4,7 @@ export type Card = {
   _id: string
   title: string
   board: string
+  oldColumn: string
   description: string
   column: ''
   priority: 'Low' | 'Medium' | 'High' | 'Without priority'

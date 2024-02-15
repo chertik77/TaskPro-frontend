@@ -6,6 +6,7 @@ import {
   addNewBoardFullfilled,
   addNewCardFullfilled,
   addNewColumnFullfilled,
+  changeCardColumnFullfilled,
   deleteBoardFullfilled,
   deleteCardFullfilled,
   deleteColumnFullfilled,
@@ -24,6 +25,10 @@ const boardSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addMatcher(
+        taskApi.endpoints.changeCardColumn.matchFulfilled,
+        changeCardColumnFullfilled
+      )
       .addMatcher(
         boardApi.endpoints.getBoardById.matchFulfilled,
         getBoardByIdFullfilled

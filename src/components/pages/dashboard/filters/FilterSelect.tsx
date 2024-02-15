@@ -1,10 +1,13 @@
-import { Select, SelectContent, SelectTrigger } from './FiltersComponents'
+import { Select, SelectContent, SelectTrigger } from './FiltersSelectComponents'
 
-export const FilterSelect = () => (
-  <div className='absolute right-6 top-[14px]'>
-    <Select>
+export const FilterSelect = () => {
+  const handleFilterChange = (e: string) => {
+    console.log(e)
+  }
+  return (
+    <Select onValueChange={handleFilterChange}>
       <SelectTrigger />
       <SelectContent />
     </Select>
-  </div>
-)
+  )
+}
