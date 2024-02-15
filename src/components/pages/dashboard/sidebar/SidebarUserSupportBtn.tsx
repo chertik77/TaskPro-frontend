@@ -7,7 +7,7 @@ export const SidebarUserSupportBtn = () => {
   return (
     <div
       className='h-[238px] rounded-lg bg-white-gray p-[14px]
-    violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5 desktop:mx-6 desktop:mt-10'>
+    violet:bg-gray-secondary dark:bg-black-third tablet:h-[272px] tablet:p-5 desktop:mx-6'>
       <div className='mb-3.5'>
         <picture>
           <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />
@@ -23,10 +23,10 @@ export const SidebarUserSupportBtn = () => {
       <div className='flex items-center gap-2'>
         <Button
           onClick={open}
-          className='mb-4 hocus:text-brand-hover  violet:text-white violet:hocus:text-brand-third'
+          className='mb-4 hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third  dark:text-white '
           isSmallIcon
           iconName='help'>
-          <span className='text-fs-12-lh-normal-fw-400 opacity-100'>
+          <span className='text-fs-12-lh-normal-fw-400 opacity-100 dark:text-white'>
             Need help?
           </span>
         </Button>
