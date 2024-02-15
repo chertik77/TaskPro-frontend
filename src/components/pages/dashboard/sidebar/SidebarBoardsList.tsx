@@ -16,12 +16,7 @@ export const SidebarBoardsList = () => {
   }, [board])
 
   return (
-    <div
-      className={cn(
-        'mb-10',
-        data?.data?.length >= 2 && 'mb-5',
-        data?.data?.length === 0 ? 'mb-auto' : null
-      )}>
+    <div className={cn('mb-20', data?.data?.length === 0 ? 'mb-auto' : null)}>
       <ul className='flex flex-col mobile:text-fs-14-lh-1.28-fw-400'>
         {data?.data?.map(board => (
           <li
