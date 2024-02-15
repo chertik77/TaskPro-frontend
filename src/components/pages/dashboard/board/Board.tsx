@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { boardApi } from 'redux/api/dashboard/board'
-import { selectColumns } from 'redux/slices/board/board-slice'
+import { selectBoard, selectColumns } from 'redux/slices/board/board-slice'
 import type { BoardInitialState } from 'redux/slices/board/board-types'
 import { FilterSelect } from '../filters/FilterSelect'
 import { BoardHeadingList } from './heading/BoardHeadingList'
@@ -13,9 +13,10 @@ import { BoardHeadingList } from './heading/BoardHeadingList'
 const widthScreen = window.innerWidth
 
 export const Board = () => {
-  const { name } = useParams()
+  const { boardId } = useParams()
   const dispatch = useAppDispatch()
   const columns = useSelector(selectColumns)
+  const { title } = useSelector(selectBoard)
   const { open } = useModal('add-column-modal')
   const [boardData, setBoardData] = useState<BoardInitialState['board'] | null>(
     null
@@ -34,20 +35,22 @@ export const Board = () => {
   }
 
   useEffect(() => {
-    if (name) {
+    if (boardId) {
       dispatch(
-        boardApi.endpoints.getBoardByName.initiate(name, { forceRefetch: true })
+        boardApi.endpoints.getBoardById.initiate(boardId, {
+          forceRefetch: true
+        })
       )
         .unwrap()
         .then(r => setBoardData(r))
     }
-  }, [name])
+  }, [boardId])
 
   return (
     <>
       {boardData !== null && (
         <div
-          className='col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500  desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'
+          className='relative col-start-2 row-start-2 flex flex-col gap-[39px] overflow-x-auto px-[20px] pt-[14px] text-fs-14-lh-normal-fw-500 text-black dark:text-white tablet:gap-[26px] tablet:pl-[32px] tablet:pt-[26px] tablet:text-fs-18-lh-normal-fw-500  desktop:gap-[10px] desktop:pl-[24px] desktop:pt-[10px]'
           style={{
             height: '100vh',
             backgroundImage: `image-set(url(${photo1x}) 1x,url(${photo2x}) 2x)`,
@@ -56,7 +59,7 @@ export const Board = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}>
-          {boardData?.title}
+          {title}
           <FilterSelect />
           <div className='flex h-screen overflow-x-auto scrollbar scrollbar-track-white scrollbar-thumb-scroll-track1 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black dark:scrollbar-thumb-scroll-thumb'>
             <BoardHeadingList />

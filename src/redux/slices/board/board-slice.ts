@@ -6,13 +6,14 @@ import {
   addNewBoardFullfilled,
   addNewCardFullfilled,
   addNewColumnFullfilled,
+  changeCardColumnFullfilled,
   deleteBoardFullfilled,
   deleteCardFullfilled,
   deleteColumnFullfilled,
   editBoardFullfilled,
   editCardFullfilled,
   editNewColumnFullfilled,
-  getBoardByNameFullfilled
+  getBoardByIdFullfilled
 } from './board-functions'
 import type { BoardInitialState } from './board-types'
 
@@ -25,8 +26,12 @@ const boardSlice = createSlice({
   extraReducers: builder => {
     builder
       .addMatcher(
-        boardApi.endpoints.getBoardByName.matchFulfilled,
-        getBoardByNameFullfilled
+        taskApi.endpoints.changeCardColumn.matchFulfilled,
+        changeCardColumnFullfilled
+      )
+      .addMatcher(
+        boardApi.endpoints.getBoardById.matchFulfilled,
+        getBoardByIdFullfilled
       )
       .addMatcher(
         boardApi.endpoints.addNewBoard.matchFulfilled,
@@ -64,10 +69,9 @@ const boardSlice = createSlice({
   },
   selectors: {
     selectBoard: state => state.board,
-    selectColumns: state => state.board.columns,
-    selectCards: state => state.board.columns.map(column => column.cards)
+    selectColumns: state => state.board.columns
   }
 })
 
-export const { selectBoard, selectColumns, selectCards } = boardSlice.selectors
+export const { selectBoard, selectColumns } = boardSlice.selectors
 export const boardReducer = boardSlice.reducer

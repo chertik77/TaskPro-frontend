@@ -1,5 +1,5 @@
 import { Button, Field, Modal } from 'components/ui'
-import { useAppForm, useBoardNameByLocation } from 'hooks'
+import { useAppForm, useBoardByLocation } from 'hooks'
 import { columnSchema, type ColumnSchemaFields } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { useEffect } from 'react'
@@ -10,7 +10,7 @@ export const EditColumnModal = () => {
   const [editColumn, { isLoading }] = useEditColumnMutation()
   const { close } = useModal('edit-column-modal')
   const { isOpen } = useModalInstance()
-  const boardName = useBoardNameByLocation()
+  const boardId = useBoardByLocation()
   const { register, errors, handleSubmit, reset, isValid } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
@@ -20,10 +20,10 @@ export const EditColumnModal = () => {
     }
   }, [isOpen])
 
-  const id = localStorage.getItem('columnId')
+  const columnId = localStorage.getItem('columnId')
 
   const submit = (data: ColumnSchemaFields) => {
-    editColumn({ boardName, columnId: id, body: data })
+    editColumn({ boardId, columnId, body: data })
       .unwrap()
       .then(() => {
         handleInfoToast('Column has been edited successfully!')

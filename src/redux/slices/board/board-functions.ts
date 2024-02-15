@@ -8,7 +8,7 @@ export const addNewBoardFullfilled = (
   state.board = action.payload
 }
 
-export const getBoardByNameFullfilled = (
+export const getBoardByIdFullfilled = (
   state: BoardInitialState,
   action: PayloadAction<BoardInitialState['board']>
 ) => {
@@ -99,5 +99,25 @@ export const deleteCardFullfilled = (
     if (cardIndex !== -1) {
       column.cards.splice(cardIndex, 1)
     }
+  }
+}
+
+export const changeCardColumnFullfilled = (
+  state: BoardInitialState,
+  action: PayloadAction<Card>
+) => {
+  const oldColumn = state.board.columns.find(
+    column => column._id === action.payload.oldColumn
+  )
+
+  const newColumn = state.board.columns.find(
+    column => column._id === action.payload.column
+  )
+
+  const card = oldColumn?.cards?.find(card => card._id === action.payload._id)
+
+  if (card) {
+    oldColumn?.cards?.splice(oldColumn?.cards?.indexOf(card), 1)
+    newColumn?.cards?.push(card)
   }
 }
