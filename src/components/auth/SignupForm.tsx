@@ -5,7 +5,7 @@ import { authenticate } from 'redux/slices/user/user-slice'
 import { Button, Field } from 'components/ui'
 
 import { useAppDispatch, useAppForm } from 'hooks'
-import { useSignupUser } from 'hooks/useSignupUser'
+import { useSignupUser } from 'hooks/auth/useSignupUser'
 
 import { signupSchema } from 'lib/schemas'
 

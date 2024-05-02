@@ -1,24 +1,21 @@
 import type { BoardSchemaFields } from 'lib/schemas'
 
 import { Controller } from 'react-hook-form'
-import { useModal } from 'react-modal-state'
-import { useNavigate } from 'react-router-dom'
-import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
-import { toast } from 'sonner'
+import { addNewBoard } from 'redux/slices/board/board-slice'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
+import { useAppDispatch, useAppForm } from 'hooks'
+import { useAddNewBoard } from 'hooks/board/useAddNewBoard'
 
 import { boardSchema } from 'lib/schemas'
 
-import { BackgroundContainer } from './BackgroundContainer'
+import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
 export const NewBoardModal = () => {
-  const navigate = useNavigate()
-  const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
-  const { close } = useModal('new-board-modal')
+  const dispatch = useAppDispatch()
+
   const { register, formState, reset, handleSubmit, control } =
     useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
@@ -27,22 +24,10 @@ export const NewBoardModal = () => {
       }
     })
 
+  const { mutateAsync, isPending } = useAddNewBoard(reset)
+
   const submit = (data: BoardSchemaFields) => {
-    addNewBoard(data)
-      .unwrap()
-      .then(r => {
-        toast.success('Board successfully added to your collection!')
-        close()
-        reset()
-        navigate(`/dashboard/${r._id}`)
-      })
-      .catch(e => {
-        toast.error(
-          e.status === 409
-            ? 'Conflict occurred. Board with the same title already exists.'
-            : 'An error occurred while creating a board. Please try again later.'
-        )
-      })
+    mutateAsync(data).then(r => dispatch(addNewBoard(r)))
   }
 
   return (
@@ -67,14 +52,14 @@ export const NewBoardModal = () => {
         <Controller
           control={control}
           name='background'
-          render={props => <BackgroundContainer {...props} />}
+          render={props => <BackgroundImages {...props} />}
         />
         <Button
           type='submit'
           isAddIcon
           iconName='plus'
-          disabled={!formState.isValid || isLoading}>
-          {isLoading ? 'Loading...' : 'Create'}
+          disabled={isPending}>
+          {isPending ? 'Creating...' : 'Create'}
         </Button>
       </form>
     </Modal>

@@ -15,6 +15,7 @@ export const currentFullfilled = (
 }
 
 export const currentRejected = (state: UserInitialState) => {
+  state.token = null
   state.isRefreshing = false
 }
 

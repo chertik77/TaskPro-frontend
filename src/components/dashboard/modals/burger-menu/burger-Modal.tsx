@@ -1,4 +1,4 @@
-import type { ModalProps } from '../../../../ui/modal/modal-types'
+import type { ModalProps } from '../../../ui/modal/modal-types'
 
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'

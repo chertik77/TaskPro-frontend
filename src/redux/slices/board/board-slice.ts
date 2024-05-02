@@ -25,6 +25,14 @@ const boardSlice = createSlice({
     board: {}
   } as BoardInitialState,
   reducers: {
+    addNewBoard: (state, action) => {
+      state.board = action.payload
+    },
+    editBoard: (state, action) => {
+      state.board.title = action.payload.title
+      state.board.icon = action.payload.icon
+      state.board.background = action.payload.background
+    },
     filter: (state, action) => {
       state.board.filter = action.payload
     }
@@ -80,6 +88,7 @@ const boardSlice = createSlice({
   }
 })
 
+export const { addNewBoard, editBoard } = boardSlice.actions
 export const { selectBoard, selectColumns, selectFilter } = boardSlice.selectors
 export const { filter } = boardSlice.actions
 export const boardReducer = boardSlice.reducer

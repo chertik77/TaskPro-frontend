@@ -18,7 +18,7 @@ import {
   EditProfileModal,
   NeedHelpModal,
   NewBoardModal
-} from 'components/pages/dashboard/modals'
+} from 'components/dashboard/modals'
 
 import './index.css'
 

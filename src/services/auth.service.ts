@@ -16,6 +16,12 @@ class AuthService {
     return response.data
   }
 
+  async current() {
+    const response = await axiosWithAuth.get<AuthResponse>('/auth/current')
+
+    return response.data
+  }
+
   async logout() {
     const response = await axiosWithAuth.post('/auth/logout')
 

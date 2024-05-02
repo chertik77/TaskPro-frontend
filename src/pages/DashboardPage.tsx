@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { selectTheme } from 'redux/slices/user/user-slice'
 
-import { Header, Sidebar } from 'components/pages/dashboard'
+import { Header, Sidebar } from 'components/dashboard'
 
 const DashboardPage = () => {
   const theme = useSelector(selectTheme)
