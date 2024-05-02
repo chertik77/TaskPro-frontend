@@ -1,13 +1,16 @@
 import type { BoardSchemaFields } from 'lib/schemas'
 
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
-import { boardSchema } from 'lib/schemas'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal } from 'components/ui'
+
+import { useAppForm } from 'hooks'
+
+import { boardSchema } from 'lib/schemas'
 
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
@@ -28,13 +31,13 @@ export const NewBoardModal = () => {
     addNewBoard(data)
       .unwrap()
       .then(r => {
-        handleSuccessToast('Board successfully added to your collection!')
+        toast.success('Board successfully added to your collection!')
         close()
         reset()
         navigate(`/dashboard/${r._id}`)
       })
       .catch(e => {
-        handleErrorToast(
+        toast.error(
           e.status === 409
             ? 'Conflict occurred. Board with the same title already exists.'
             : 'An error occurred while creating a board. Please try again later.'

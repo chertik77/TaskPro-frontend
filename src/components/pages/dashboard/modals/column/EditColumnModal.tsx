@@ -1,12 +1,15 @@
 import type { ColumnSchemaFields } from 'lib/schemas'
 
 import { useEffect } from 'react'
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm, useBoardByLocation } from 'hooks'
-import { columnSchema } from 'lib/schemas'
-import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditColumnMutation } from 'redux/api/dashboard/column'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal } from 'components/ui'
+
+import { useAppForm, useBoardByLocation } from 'hooks'
+
+import { columnSchema } from 'lib/schemas'
 
 export const EditColumnModal = () => {
   const [editColumn, { isLoading }] = useEditColumnMutation()
@@ -28,11 +31,11 @@ export const EditColumnModal = () => {
     editColumn({ boardId, columnId, body: data })
       .unwrap()
       .then(() => {
-        handleInfoToast('Column has been edited successfully!')
+        toast.info('Column has been edited successfully!')
         close()
       })
       .catch(() => {
-        handleErrorToast(
+        toast.error(
           'Something went wrong while editing the column. Please try again.'
         )
       })

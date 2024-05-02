@@ -1,9 +1,9 @@
 import type { BoardInitialState } from 'redux/slices/board/board-types'
 
-import { handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
+import { toast } from 'sonner'
 
 export const SideBarBoardsItem = ({
   board,
@@ -27,7 +27,7 @@ export const SideBarBoardsItem = ({
     deleteBoard(boardId)
       .unwrap()
       .then(() => {
-        handleSuccessToast('Board has been deleted successfully!')
+        toast.success('Board has been deleted successfully!')
       })
     const index = boards.findIndex(board => board._id === boardId)
 

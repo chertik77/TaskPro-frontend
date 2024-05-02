@@ -1,14 +1,17 @@
 import type { BoardInitialState } from 'redux/slices/board/board-types'
 
 import { useEffect, useState } from 'react'
-import { Button } from 'components/ui'
-import { useAppDispatch } from 'hooks'
-import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { boardApi } from 'redux/api/dashboard/board'
 import { selectBoard, selectColumns } from 'redux/slices/board/board-slice'
+
+import { Button } from 'components/ui'
+
+import { useAppDispatch } from 'hooks'
+
+import { cn } from 'lib'
 
 import { FilterSelect } from '../filters/FilterSelect'
 import { BoardHeadingList } from './heading/BoardHeadingList'
@@ -61,7 +64,7 @@ export const Board = () => {
             desktop:pt-[10px]`
           )}
           style={{
-            backgroundImage: `image-set(url(${photo1x}) 1x,url(${photo2x}) 2x)`,
+            backgroundImage: `image-set(url('${photo1x}') 1x,url(${photo2x}) 2x)`,
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover',

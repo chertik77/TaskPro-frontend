@@ -1,8 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
-import { Button } from 'components/ui'
-import { useAppDispatch } from 'hooks'
 import { useModal } from 'react-modal-state'
 import { logout } from 'redux/slices/user/user-slice'
+
+import { Button } from 'components/ui'
+
+import { useAppDispatch } from 'hooks'
+
 import { authService } from 'services/auth.service'
 
 export const SidebarLogoutBtn = () => {

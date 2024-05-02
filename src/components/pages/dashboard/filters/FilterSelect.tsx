@@ -1,5 +1,6 @@
-import { useAppDispatch } from 'hooks'
 import { filter } from 'redux/slices/board/board-slice'
+
+import { useAppDispatch } from 'hooks'
 
 import { Select, SelectContent, SelectTrigger } from './FiltersSelectComponents'
 

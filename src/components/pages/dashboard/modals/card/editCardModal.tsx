@@ -1,13 +1,16 @@
 import type { CardSchemaFields } from 'lib/schemas'
 
 import { useEffect } from 'react'
-import { Button, Field, Modal, RadioPriority } from 'components/ui'
-import { useAppForm, useBoardByLocation } from 'hooks'
-import { cardSchema } from 'lib/schemas'
-import { handleErrorToast, handleInfoToast } from 'lib/toasts'
-import { cn } from 'lib/utils'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditCardMutation } from 'redux/api/dashboard/card'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal, RadioPriority } from 'components/ui'
+
+import { useAppForm, useBoardByLocation } from 'hooks'
+
+import { cn } from 'lib'
+import { cardSchema } from 'lib/schemas'
 
 export const EditCardModal = () => {
   const { close } = useModal('edit-card-modal')
@@ -36,11 +39,11 @@ export const EditCardModal = () => {
     })
       .unwrap()
       .then(() => {
-        handleInfoToast('The task has been edited successfully!')
+        toast.info('The task has been edited successfully!')
         reset()
       })
       .catch(() => {
-        handleErrorToast(
+        toast.error(
           'Something went wrong while editing the card. Our team is already working on this issue. Please bear with us.'
         )
       })

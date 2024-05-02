@@ -1,7 +1,8 @@
 import type { Output } from 'valibot'
 
-import iconsData from 'lib/json/board-icons.json'
 import { minLength, object, picklist, string, toTrimmed } from 'valibot'
+
+import iconsData from 'lib/json/board-icons.json'
 
 const listIcons = iconsData.map(icon => icon.id)
 

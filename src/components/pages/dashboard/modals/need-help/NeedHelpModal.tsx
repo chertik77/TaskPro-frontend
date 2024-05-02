@@ -1,10 +1,13 @@
 import type { NeedHelpSchemaFields } from 'lib/schemas'
 
+import { useModal } from 'react-modal-state'
+
 import { Button, Field, Modal } from 'components/ui'
+
 import { useAppForm } from 'hooks'
 import { useNeedHelp } from 'hooks/useNeedHelp'
+
 import { needHelpSchema } from 'lib/schemas'
-import { useModal } from 'react-modal-state'
 
 export const NeedHelpModal = () => {
   const { close } = useModal('need-help-modal')

@@ -1,12 +1,15 @@
 import type { CardSchemaFields } from 'lib/schemas'
 
-import { Button, Field, Modal, RadioPriority } from 'components/ui'
-import { useAppForm, useBoardByLocation } from 'hooks'
-import { cardSchema } from 'lib/schemas'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
 import { useAddNewCardMutation } from 'redux/api/dashboard/card'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal, RadioPriority } from 'components/ui'
+
+import { useAppForm, useBoardByLocation } from 'hooks'
+
+import { cn } from 'lib'
+import { cardSchema } from 'lib/schemas'
 
 export const AddCardModal = () => {
   const boardId = useBoardByLocation()
@@ -27,14 +30,14 @@ export const AddCardModal = () => {
     })
       .unwrap()
       .then(() => {
-        handleSuccessToast(
+        toast.success(
           `The task has been created successfully. Let's start working on it.`
         )
         close()
         reset()
       })
       .catch(() => {
-        handleErrorToast(
+        toast.error(
           'Something went wrong while adding the card. Our team is already working on this issue. Please bear with us.'
         )
       })

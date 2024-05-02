@@ -2,8 +2,9 @@ import type { FieldProps } from './field-types'
 
 import { forwardRef, useState } from 'react'
 import { ErrorMessage } from '@hookform/error-message'
-import { cn } from 'lib/utils'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
+
+import { cn } from 'lib'
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
   (

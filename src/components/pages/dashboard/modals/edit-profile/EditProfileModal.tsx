@@ -1,13 +1,16 @@
 import type { SignupSchemaFields } from 'lib/schemas'
 
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
-import { signupSchema } from 'lib/schemas'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
 import { selectUser } from 'redux/slices/user/user-slice'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal } from 'components/ui'
+
+import { useAppForm } from 'hooks'
+
+import { signupSchema } from 'lib/schemas'
 
 import { EditAvatar } from './EditAvatar'
 
@@ -31,12 +34,12 @@ export const EditProfileModal = () => {
       .unwrap()
       .then(r => {
         close()
-        handleSuccessToast(
+        toast.success(
           `Congrats, ${r?.user?.name}! Your details have been changed successfully.`
         )
       })
       .catch(e => {
-        handleErrorToast(
+        toast.error(
           e?.status === 409
             ? 'User with this email already exists. Please try different email.'
             : 'Something went wrong while updating your profile. Please check your details and try again.'

@@ -1,13 +1,16 @@
 import type { BoardSchemaFields } from 'lib/schemas'
 
 import { useEffect } from 'react'
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm, useBoardByLocation } from 'hooks'
-import { boardSchema } from 'lib/schemas'
-import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal } from 'components/ui'
+
+import { useAppForm, useBoardByLocation } from 'hooks'
+
+import { boardSchema } from 'lib/schemas'
 
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
@@ -36,12 +39,12 @@ export const EditBoardModal = () => {
     editBoard({ boardId, body: data })
       .unwrap()
       .then(() => {
-        handleInfoToast('The board has been edited successfully.')
+        toast.info('The board has been edited successfully.')
         close()
         reset({ title: ' ' })
       })
       .catch(e => {
-        handleErrorToast(
+        toast.error(
           e.status === 409
             ? 'Conflict occurred. Board with the same title already exists.'
             : 'An error occurred while editing a board. Please try again later.'

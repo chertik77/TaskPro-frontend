@@ -1,7 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import { useAppDispatch } from 'hooks'
 import { useTheme } from 'next-themes'
 import { updateUser } from 'redux/slices/user/user-slice'
+
+import { useAppDispatch } from 'hooks'
+
 import { userService } from 'services/user.service'
 
 import { Select, SelectContent, SelectTrigger } from './HeaderSelectComponents'

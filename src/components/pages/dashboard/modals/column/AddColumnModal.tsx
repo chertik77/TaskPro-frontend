@@ -1,11 +1,14 @@
 import type { ColumnSchemaFields } from 'lib/schemas'
 
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm, useBoardByLocation } from 'hooks'
-import { columnSchema } from 'lib/schemas'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
+import { toast } from 'sonner'
+
+import { Button, Field, Modal } from 'components/ui'
+
+import { useAppForm, useBoardByLocation } from 'hooks'
+
+import { columnSchema } from 'lib/schemas'
 
 export const AddColumnModal = () => {
   const boardId = useBoardByLocation()
@@ -19,13 +22,13 @@ export const AddColumnModal = () => {
       .unwrap()
       .then(() => {
         reset()
-        handleSuccessToast(
+        toast.success(
           `The column has been added successfully. Let's start filling it with tasks.`
         )
         close()
       })
       .catch(() => {
-        handleErrorToast(
+        toast.error(
           'Something went wrong while adding the column. Please try again.'
         )
       })

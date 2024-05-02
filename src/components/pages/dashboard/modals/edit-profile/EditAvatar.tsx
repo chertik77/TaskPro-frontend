@@ -1,11 +1,12 @@
 import type { ChangeEvent } from 'react'
 
 import { useEffect } from 'react'
-import { Button } from 'components/ui'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
 import { selectUser } from 'redux/slices/user/user-slice'
+import { toast } from 'sonner'
+
+import { Button } from 'components/ui'
 
 export const EditAvatar = () => {
   const { avatarURL } = useSelector(selectUser)
@@ -27,16 +28,16 @@ export const EditAvatar = () => {
         await mutateUser(formData)
       }
     } catch (error) {
-      handleErrorToast('Something went wrong. Please try again.')
+      toast.error('Something went wrong. Please try again.')
     }
   }
 
   useEffect(() => {
     if (isSuccess) {
-      handleSuccessToast('Congrats! Avatar changed successfully')
+      toast.success('Congrats! Avatar changed successfully')
     }
     if (isError && error) {
-      handleErrorToast('Something went wrong. Please try again.')
+      toast.error('Something went wrong. Please try again.')
     }
   }, [isError, isSuccess, error])
 

@@ -1,5 +1,6 @@
-import { Button } from 'components/ui'
 import { useModal } from 'react-modal-state'
+
+import { Button } from 'components/ui'
 
 export const SidebarUserSupportBtn = () => {
   const { open } = useModal('need-help-modal')

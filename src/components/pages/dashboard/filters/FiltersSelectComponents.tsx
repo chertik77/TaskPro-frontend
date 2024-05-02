@@ -1,10 +1,13 @@
 import type { RadioProps } from 'components/ui/field/priority-types'
 
 import { Content, Icon, Item, Root, Trigger } from '@radix-ui/react-select'
-import { RadioPriority } from 'components/ui/field/RadioPriority'
-import { useAppDispatch } from 'hooks'
-import items from 'lib/json/filter-items.json'
 import { filter } from 'redux/slices/board/board-slice'
+
+import { RadioPriority } from 'components/ui/field/RadioPriority'
+
+import { useAppDispatch } from 'hooks'
+
+import items from 'lib/json/filter-items.json'
 
 export const Select = Root
 

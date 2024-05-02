@@ -1,7 +1,8 @@
-import { Layout } from 'components/Layout'
-import { PrivateRoute, RestrictedRoute } from 'components/routes'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
+
+import { Layout } from 'components/Layout'
+import { PrivateRoute, RestrictedRoute } from 'components/routes'
 
 import { Board } from './pages/dashboard'
 import { CreateBoard } from './ui'

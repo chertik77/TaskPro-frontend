@@ -1,7 +1,8 @@
-import { Button } from 'components/ui'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { selectColumns } from 'redux/slices/board/board-slice'
+
+import { Button } from 'components/ui'
 
 import { BoardHeadingItem } from './BoardHeadingItem'
 

@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
-import { cn } from 'lib/utils'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetAllBoardsQuery } from 'redux/api/dashboard/board'
 import { selectBoard } from 'redux/slices/board/board-slice'
+
+import { cn } from 'lib'
 
 import { SideBarBoardsItem } from './SideBarBoardsItem'
 

@@ -1,6 +1,7 @@
-import { cn } from 'lib/utils'
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'
+
+import { cn } from 'lib'
 
 import 'react-responsive-modal/styles.css'
 

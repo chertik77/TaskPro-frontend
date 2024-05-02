@@ -1,5 +1,12 @@
 import { StrictMode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ReactDOM from 'react-dom/client'
+import { ModalProvider, ModalRenderer } from 'react-modal-state'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from 'redux/store'
+
 import { App } from 'components/App'
 import {
   AddCardModal,
@@ -12,12 +19,6 @@ import {
   NeedHelpModal,
   NewBoardModal
 } from 'components/pages/dashboard/modals'
-import ReactDOM from 'react-dom/client'
-import { ModalProvider, ModalRenderer } from 'react-modal-state'
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistor, store } from 'redux/store'
 
 import './index.css'
 

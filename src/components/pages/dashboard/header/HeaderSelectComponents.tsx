@@ -7,8 +7,9 @@ import {
   Trigger,
   Value
 } from '@radix-ui/react-select'
-import items from 'lib/json/theme-items.json'
 import { FaChevronDown } from 'react-icons/fa'
+
+import items from 'lib/json/theme-items.json'
 
 const Select = Root
 
