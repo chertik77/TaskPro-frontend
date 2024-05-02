@@ -11,6 +11,7 @@ import items from 'lib/json/theme-items.json'
 import { FaChevronDown } from 'react-icons/fa'
 
 const Select = Root
+
 const SelectTrigger = () => (
   <Trigger className='flex items-center gap-1 bg-transparent focus:outline-none'>
     <Value placeholder='Theme' />
@@ -19,6 +20,7 @@ const SelectTrigger = () => (
     </Icon>
   </Trigger>
 )
+
 const SelectContent = () => (
   <Content
     className='z-10 w-[100px] rounded-lg border border-brand bg-white-primary pb-[14px]

@@ -23,6 +23,7 @@
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "rules": {
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "tailwindcss/migration-from-tailwind-2": 0
   }
 }

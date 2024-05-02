@@ -1,22 +1,30 @@
+import { useMutation } from '@tanstack/react-query'
+import { useAppDispatch } from 'hooks'
 import { useTheme } from 'next-themes'
-import { useSwitchThemeMutation } from 'redux/api/dashboard/dashboard'
+import { updateUser } from 'redux/slices/user/user-slice'
+import { userService } from 'services/user.service'
 
 import { Select, SelectContent, SelectTrigger } from './HeaderSelectComponents'
 
 export const HeaderThemeSelect = () => {
-  const { setTheme } = useTheme()
-  const [switchTheme] = useSwitchThemeMutation()
+  const dispatch = useAppDispatch()
+
+  const { setTheme, theme } = useTheme()
+
+  const { mutateAsync } = useMutation({
+    mutationKey: ['user'],
+    mutationFn: (theme: string) => userService.changeUserTheme(theme)
+  })
 
   const handleThemeChange = (e: string) => {
-    switchTheme({ userTheme: e })
-      .unwrap()
-      .then(r => {
-        setTheme(r.data.user.userTheme)
-      })
+    setTheme(e)
+    mutateAsync(e).then(r => dispatch(updateUser(r.user)))
   }
 
   return (
-    <Select onValueChange={handleThemeChange}>
+    <Select
+      onValueChange={handleThemeChange}
+      defaultValue={theme}>
       <SelectTrigger />
       <SelectContent />
     </Select>

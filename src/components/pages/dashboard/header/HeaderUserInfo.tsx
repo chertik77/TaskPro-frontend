@@ -14,7 +14,7 @@ export const HeaderUserInfo = () => {
       <p>{name}</p>
       <img
         src={avatarURL.url}
-        alt={name as string}
+        alt={name!}
         className='size-8 rounded-lg'
       />
     </button>

@@ -1,31 +1,25 @@
-import { useEffect } from 'react'
 import { Layout } from 'components/Layout'
 import { PrivateRoute, RestrictedRoute } from 'components/routes'
-import { useAppDispatch } from 'hooks'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
-import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
-import { userApi } from 'redux/api/user'
-import { selectIsLoggedIn } from 'redux/slices/user/user-slice'
-import { persistor } from 'redux/store'
 
 import { Board } from './pages/dashboard'
 import { CreateBoard } from './ui'
 
 export const App = () => {
-  const dispatch = useAppDispatch()
-  const isLoggedIn = useSelector(selectIsLoggedIn)
+  // const dispatch = useAppDispatch()
+  // const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  useEffect(() => {
-    if (!isLoggedIn) return
-    dispatch(userApi.endpoints.current.initiate(undefined))
-      .unwrap()
-      .catch(e => {
-        if (e.status === 401) {
-          persistor.purge()
-        }
-      })
-  }, [dispatch, isLoggedIn])
+  // useEffect(() => {
+  //   if (!isLoggedIn) return
+  //   dispatch(userApi.endpoints.current.initiate(undefined))
+  //     .unwrap()
+  //     .catch(e => {
+  //       if (e.status === 401) {
+  //         persistor.purge()
+  //       }
+  //     })
+  // }, [dispatch, isLoggedIn])
 
   return (
     <Routes>

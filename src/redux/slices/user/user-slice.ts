@@ -22,6 +22,7 @@ const userSlice = createSlice({
       avatarURL: { url: '' },
       userTheme: 'light'
     },
+    isLoggedIn: false,
     token: null
   } as UserInitialState,
   reducers: {
@@ -29,6 +30,10 @@ const userSlice = createSlice({
       state.isLoggedIn = true
       state.token = action.payload.token
       state.user = action.payload.user
+    },
+    updateUser: (state, action) => {
+      state.user.avatarURL = action.payload.avatarURL
+      state.user.userTheme = action.payload.userTheme
     }
   },
   extraReducers: builder => {
@@ -51,6 +56,6 @@ const userSlice = createSlice({
   }
 })
 
-export const { authenticate } = userSlice.actions
+export const { authenticate, updateUser } = userSlice.actions
 export const { selectIsLoggedIn, selectUser, selectTheme } = userSlice.selectors
 export const userReducer = userSlice.reducer

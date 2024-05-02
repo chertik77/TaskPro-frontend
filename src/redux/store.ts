@@ -12,7 +12,6 @@ import { userReducer } from './slices/user/user-slice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['token'],
   blacklist: ['_persist']
 }
 
