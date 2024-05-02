@@ -1,6 +1,6 @@
 import type { UserInitialState } from './user-types'
 
-import { createSlice, isAnyOf } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { dashboardApi } from 'redux/api/dashboard/dashboard'
 import { userApi } from 'redux/api/user'
 
@@ -10,7 +10,6 @@ import {
   currentRejected,
   editProfileFullfilled,
   logoutFullfilled,
-  signupFullfilled,
   switchThemeFullfilled
 } from './user-functions'
 
@@ -25,16 +24,16 @@ const userSlice = createSlice({
     },
     token: null
   } as UserInitialState,
-  reducers: {},
+  reducers: {
+    authenticate: (state, action) => {
+      state.isLoggedIn = true
+      state.token = action.payload.token
+      state.user = action.payload.user
+    }
+  },
   extraReducers: builder => {
     builder
-      .addMatcher(
-        isAnyOf(
-          userApi.endpoints.signup.matchFulfilled,
-          userApi.endpoints.signin.matchFulfilled
-        ),
-        signupFullfilled
-      )
+
       .addMatcher(userApi.endpoints.current.matchPending, currentPending)
       .addMatcher(userApi.endpoints.current.matchFulfilled, currentFullfilled)
       .addMatcher(userApi.endpoints.current.matchRejected, currentRejected)
@@ -46,11 +45,12 @@ const userSlice = createSlice({
       )
   },
   selectors: {
-    selectIsAuth: state => Boolean(state.token),
+    selectIsLoggedIn: state => state.isLoggedIn,
     selectTheme: state => state.user.userTheme,
     selectUser: state => state.user
   }
 })
 
-export const { selectIsAuth, selectUser, selectTheme } = userSlice.selectors
+export const { authenticate } = userSlice.actions
+export const { selectIsLoggedIn, selectUser, selectTheme } = userSlice.selectors
 export const userReducer = userSlice.reducer

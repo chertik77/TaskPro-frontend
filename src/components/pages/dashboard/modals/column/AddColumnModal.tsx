@@ -11,7 +11,7 @@ export const AddColumnModal = () => {
   const boardId = useBoardByLocation()
   const { close } = useModal('add-column-modal')
   const [addNewColumn, { isLoading }] = useAddNewColumnMutation()
-  const { register, errors, handleSubmit, reset, isValid } =
+  const { register, handleSubmit, reset, formState } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
   const submit = (data: ColumnSchemaFields) => {
@@ -40,13 +40,13 @@ export const AddColumnModal = () => {
           {...register('title')}
           inputName='title'
           placeholder='Title'
-          errors={errors}
+          errors={formState.errors}
           className='mb-6'
         />
         <Button
           isAddIcon
           iconName='plus'
-          disabled={!isValid || isLoading}>
+          disabled={!formState.isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Add'}
         </Button>
       </form>

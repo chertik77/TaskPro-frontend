@@ -17,7 +17,7 @@ export const EditBoardModal = () => {
   const { close } = useModal('edit-board-modal')
   const { isOpen } = useModalInstance()
   const boardId = useBoardByLocation()
-  const { register, errors, reset, handleSubmit, control, isValid } =
+  const { register, reset, handleSubmit, control, formState } =
     useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
         background: 'default'
@@ -58,7 +58,7 @@ export const EditBoardModal = () => {
           {...register('title')}
           inputName='title'
           placeholder='Title'
-          errors={errors}
+          errors={formState.errors}
           className='violet:text-black'
         />
         <p className='mt-6'>Icons</p>
@@ -77,7 +77,7 @@ export const EditBoardModal = () => {
           type='submit'
           isAddIcon
           iconName='plus'
-          disabled={!isValid || isLoading}>
+          disabled={!formState.isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>

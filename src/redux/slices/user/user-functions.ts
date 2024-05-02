@@ -1,15 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { UserInitialState } from './user-types'
 
-export const signupFullfilled = (
-  state: UserInitialState,
-  action: PayloadAction<UserInitialState>
-) => {
-  state.isLoggedIn = true
-  state.user = action.payload.user
-  state.token = action.payload.token
-}
-
 export const currentPending = (state: UserInitialState) => {
   state.isRefreshing = true
 }

@@ -15,7 +15,7 @@ export const EditProfileModal = () => {
   const [user, { isLoading }] = useUserMutation()
   const { close } = useModal('edit-profile-modal')
   const { name, email } = useSelector(selectUser)
-  const { handleSubmit, register, errors } = useAppForm<SignupSchemaFields>(
+  const { handleSubmit, register, formState } = useAppForm<SignupSchemaFields>(
     signupSchema,
     {
       defaultValues: {
@@ -53,21 +53,21 @@ export const EditProfileModal = () => {
           <EditAvatar />
         </div>
         <Field
-          errors={errors}
+          errors={formState.errors}
           inputName='name'
           placeholder='Enter your name'
           className='mb-[14px]'
           {...register('name')}
         />
         <Field
-          errors={errors}
+          errors={formState.errors}
           inputName='email'
           placeholder='Enter your email'
           className='mb-[14px]'
           {...register('email')}
         />
         <Field
-          errors={errors}
+          errors={formState.errors}
           inputName='password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput

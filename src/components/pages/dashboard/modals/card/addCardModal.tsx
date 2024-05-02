@@ -12,7 +12,7 @@ export const AddCardModal = () => {
   const boardId = useBoardByLocation()
   const [addNewCard, { isLoading }] = useAddNewCardMutation()
   const { close } = useModal('add-card-modal')
-  const { register, handleSubmit, reset, errors, isValid } =
+  const { register, handleSubmit, reset, formState } =
     useAppForm<CardSchemaFields>(cardSchema, {
       defaultValues: {
         priority: 'Without priority'
@@ -44,7 +44,7 @@ export const AddCardModal = () => {
     <Modal modalTitle='Add card'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Field
-          errors={errors}
+          errors={formState.errors}
           className='mb-[14px]'
           inputName='title'
           type='text'
@@ -59,10 +59,10 @@ export const AddCardModal = () => {
             bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black
             outline-none placeholder:opacity-40 focus:border-opacity-100
             violet:border-brand-secondary dark:text-white`,
-            !errors.description && 'mb-6'
+            !formState.errors.description && 'mb-6'
           )}
         />
-        {errors.description && (
+        {formState.errors.description && (
           <p className='mb-[14px] text-red-600'>
             Please enter at least 2 characters.
           </p>
@@ -105,7 +105,7 @@ export const AddCardModal = () => {
             className='mb-[40px] '
             {...register('deadline')}
           />
-          {errors.deadline && (
+          {formState.errors.deadline && (
             <span className=' absolute left-0 top-5 text-red-600'>
               Wrong date!
             </span>
@@ -115,7 +115,7 @@ export const AddCardModal = () => {
           isAddIcon
           iconName='plus'
           type='submit'
-          disabled={!isValid || isLoading}>
+          disabled={!formState.isValid || isLoading}>
           {isLoading ? 'Adding...' : 'Add'}
         </Button>
       </form>

@@ -6,7 +6,7 @@ import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
-import { selectIsAuth } from 'redux/slices/user/user-slice'
+import { selectIsLoggedIn } from 'redux/slices/user/user-slice'
 import { persistor } from 'redux/store'
 
 import { Board } from './pages/dashboard'
@@ -14,10 +14,10 @@ import { CreateBoard } from './ui'
 
 export const App = () => {
   const dispatch = useAppDispatch()
-  const isAuth = useSelector(selectIsAuth)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
   useEffect(() => {
-    if (!isAuth) return
+    if (!isLoggedIn) return
     dispatch(userApi.endpoints.current.initiate(undefined))
       .unwrap()
       .catch(e => {
@@ -25,7 +25,7 @@ export const App = () => {
           persistor.purge()
         }
       })
-  }, [dispatch, isAuth])
+  }, [dispatch, isLoggedIn])
 
   return (
     <Routes>

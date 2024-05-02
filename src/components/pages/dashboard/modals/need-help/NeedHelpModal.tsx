@@ -11,7 +11,7 @@ import { useNeedHelpMutation } from 'redux/api/dashboard/dashboard'
 export const NeedHelpModal = () => {
   const [createHelp, { isLoading }] = useNeedHelpMutation()
   const { close } = useModal('need-help-modal')
-  const { handleSubmit, register, errors, isValid, reset } =
+  const { handleSubmit, register, formState, reset } =
     useAppForm<NeedHelpSchemaFields>(needHelpSchema)
 
   const submit = (data: NeedHelpSchemaFields) => {
@@ -40,7 +40,7 @@ export const NeedHelpModal = () => {
           {...register('email')}
           inputName='email'
           placeholder='Email address'
-          errors={errors}
+          errors={formState.errors}
           className='mb-6 text-black autofill:text-fill-black dark:text-white
             dark:autofill:text-fill-white'
         />
@@ -56,7 +56,7 @@ export const NeedHelpModal = () => {
         />
         <Button
           type='submit'
-          disabled={!isValid || isLoading}>
+          disabled={!formState.isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Send'}
         </Button>
       </form>

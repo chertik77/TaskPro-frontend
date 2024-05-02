@@ -13,7 +13,7 @@ export const EditColumnModal = () => {
   const { close } = useModal('edit-column-modal')
   const { isOpen } = useModalInstance()
   const boardId = useBoardByLocation()
-  const { register, errors, handleSubmit, reset, isValid } =
+  const { register, formState, handleSubmit, reset } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
   useEffect(() => {
@@ -47,13 +47,13 @@ export const EditColumnModal = () => {
           {...register('title')}
           inputName='title'
           placeholder='Title'
-          errors={errors}
+          errors={formState.errors}
           className='mb-6'
         />
         <Button
           isAddIcon
           iconName='plus'
-          disabled={!isValid || isLoading}>
+          disabled={!formState.isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>

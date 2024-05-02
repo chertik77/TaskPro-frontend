@@ -1,63 +1,41 @@
 import type { SignupSchemaFields } from 'lib/schemas'
 
 import { Button, Field } from 'components/ui'
-import { useAppForm, useIsFormValidOnReload } from 'hooks'
+import { useAppDispatch, useAppForm } from 'hooks'
+import { useSignupUser } from 'hooks/useSignupUser'
 import { signupSchema } from 'lib/schemas'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { useSignupMutation } from 'redux/api/user'
+import { authenticate } from 'redux/slices/user/user-slice'
 
 export const SignupForm = () => {
-  const [signup, { isLoading }] = useSignupMutation()
-  const {
-    handleSubmit,
-    register,
-    errors,
-    isValid,
-    reset,
-    trigger,
-    clearErrors
-  } = useAppForm<SignupSchemaFields>(signupSchema, {
-    persistedKey: 'signup-form'
-  })
-  const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
+  const dispatch = useAppDispatch()
+
+  const { handleSubmit, register, formState, reset } =
+    useAppForm<SignupSchemaFields>(signupSchema)
+
+  const { mutateAsync, isPending } = useSignupUser(reset)
 
   const submit = (data: SignupSchemaFields) => {
-    signup(data)
-      .unwrap()
-      .then(r => {
-        reset()
-        localStorage.removeItem('signup-form')
-        handleSuccessToast(
-          `Welcome, ${r?.user?.name}! Your account has been successfully created. Let's get started!`
-        )
-      })
-      .catch(e => {
-        handleErrorToast(
-          e?.status === 409
-            ? 'User with this email already exists. Please try different email.'
-            : 'Oops! Something went wrong during registration. Please check your details and try again.'
-        )
-      })
+    mutateAsync(data).then(r => dispatch(authenticate(r)))
   }
 
   return (
     <form onSubmit={handleSubmit(submit)}>
       <Field
-        errors={errors}
+        errors={formState.errors}
         inputName='name'
         placeholder='Enter your name'
         className='mb-[14px] text-white violet:text-white'
         {...register('name')}
       />
       <Field
-        errors={errors}
+        errors={formState.errors}
         inputName='email'
         placeholder='Enter your email'
         className='mb-[14px] text-white'
         {...register('email')}
       />
       <Field
-        errors={errors}
+        errors={formState.errors}
         inputName='password'
         className='text-white'
         inputPasswordPlaceholder='Create a password'
@@ -66,8 +44,8 @@ export const SignupForm = () => {
       />
       <Button
         type='submit'
-        disabled={!isValid || !isFormValidOnReload || isLoading}>
-        {isLoading ? 'Loading...' : 'Register Now'}
+        disabled={isPending}>
+        {isPending ? 'Loading...' : 'Register Now'}
       </Button>
     </form>
   )

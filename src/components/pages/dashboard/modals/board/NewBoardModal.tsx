@@ -16,7 +16,7 @@ export const NewBoardModal = () => {
   const navigate = useNavigate()
   const [addNewBoard, { isLoading }] = useAddNewBoardMutation()
   const { close } = useModal('new-board-modal')
-  const { register, errors, reset, handleSubmit, control, isValid } =
+  const { register, formState, reset, handleSubmit, control } =
     useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
         icon: 'icon-project-1',
@@ -50,9 +50,9 @@ export const NewBoardModal = () => {
         <Field
           {...register('title')}
           inputName='title'
-          className={errors ? 'mb-2' : 'violet:text-black'}
+          className={formState.errors ? 'mb-2' : 'violet:text-black'}
           placeholder='Title'
-          errors={errors}
+          errors={formState.errors}
         />
         <p className='mt-6'>Icons</p>
         <Controller
@@ -70,7 +70,7 @@ export const NewBoardModal = () => {
           type='submit'
           isAddIcon
           iconName='plus'
-          disabled={!isValid || isLoading}>
+          disabled={!formState.isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Create'}
         </Button>
       </form>

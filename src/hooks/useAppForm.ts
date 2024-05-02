@@ -12,29 +12,9 @@ type UseAppFormOptions<T extends FieldValues> = {
 export const useAppForm = <T extends FieldValues>(
   schema: BaseSchema,
   options?: UseAppFormOptions<T>
-) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    trigger,
-    clearErrors,
-    formState: { errors, isValid }
-  } = useForm<T>({
+) =>
+  useForm<T>({
     defaultValues: options?.defaultValues,
     resolver: valibotResolver(schema),
     mode: 'onChange'
   })
-
-  return {
-    register,
-    handleSubmit,
-    errors,
-    control,
-    isValid,
-    reset,
-    trigger,
-    clearErrors
-  }
-}

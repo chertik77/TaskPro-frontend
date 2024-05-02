@@ -1,43 +1,21 @@
 import type { SigninSchemaFields } from 'lib/schemas'
 
 import { Button, Field } from 'components/ui'
-import { useAppForm, useIsFormValidOnReload } from 'hooks'
+import { useAppDispatch, useAppForm } from 'hooks'
+import { useSigninUser } from 'hooks/useSigninUser'
 import { signinSchema } from 'lib/schemas'
-import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import { useSigninMutation } from 'redux/api/user'
+import { authenticate } from 'redux/slices/user/user-slice'
 
 export const SigninForm = () => {
-  const [signin, { isLoading }] = useSigninMutation()
-  const {
-    handleSubmit,
-    register,
-    errors,
-    isValid,
-    reset,
-    trigger,
-    clearErrors
-  } = useAppForm<SigninSchemaFields>(signinSchema, {
-    persistedKey: 'signin-form'
-  })
-  const { isFormValidOnReload } = useIsFormValidOnReload(trigger, clearErrors)
+  const dispatch = useAppDispatch()
+
+  const { handleSubmit, register, formState, reset } =
+    useAppForm<SigninSchemaFields>(signinSchema)
+
+  const { mutateAsync, isPending } = useSigninUser(reset)
 
   const submit = (data: SigninSchemaFields) => {
-    signin(data)
-      .unwrap()
-      .then(r => {
-        reset()
-        localStorage.removeItem('signin-form')
-        handleSuccessToast(
-          `Welcome back, ${r?.user?.name}! We're glad to see you again.`
-        )
-      })
-      .catch(e => {
-        handleErrorToast(
-          e?.status === 401
-            ? 'Invalid email or password. Please try again.'
-            : 'Oops! Something went wrong during sign-in. Please check your details and try again.'
-        )
-      })
+    mutateAsync(data).then(r => dispatch(authenticate(r)))
   }
 
   return (
@@ -47,7 +25,7 @@ export const SigninForm = () => {
         placeholder='Enter your email'
         inputName='email'
         className='mb-[14px] text-white'
-        errors={errors}
+        errors={formState.errors}
       />
       <Field
         {...register('password')}
@@ -55,12 +33,12 @@ export const SigninForm = () => {
         inputPasswordPlaceholder='Confirm a password'
         inputName='password'
         className='mb-6 text-white'
-        errors={errors}
+        errors={formState.errors}
       />
       <Button
         type='submit'
-        disabled={!isValid || !isFormValidOnReload || isLoading}>
-        {isLoading ? 'Loading...' : 'Log In Now'}
+        disabled={isPending}>
+        {isPending ? 'Loading...' : 'Log In Now'}
       </Button>
     </form>
   )
