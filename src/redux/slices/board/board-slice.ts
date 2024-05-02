@@ -1,7 +1,10 @@
+import type { BoardInitialState } from './board-types'
+
 import { createSlice } from '@reduxjs/toolkit'
 import { boardApi } from 'redux/api/dashboard/board'
 import { taskApi } from 'redux/api/dashboard/card'
 import { columnApi } from 'redux/api/dashboard/column'
+
 import {
   addNewBoardFullfilled,
   addNewCardFullfilled,
@@ -15,7 +18,6 @@ import {
   editNewColumnFullfilled,
   getBoardByIdFullfilled
 } from './board-functions'
-import type { BoardInitialState } from './board-types'
 
 const boardSlice = createSlice({
   name: 'board',

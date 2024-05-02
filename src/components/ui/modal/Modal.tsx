@@ -1,8 +1,11 @@
 import { cn } from 'lib/utils'
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'
+
 import 'react-responsive-modal/styles.css'
+
 import type { ModalProps } from './modal-types'
+
 import { modalVariants } from './modal-variants'
 
 export const Modal = ({ children, size, modalTitle }: ModalProps) => {

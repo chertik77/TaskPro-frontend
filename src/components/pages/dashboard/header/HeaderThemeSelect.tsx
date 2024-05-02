@@ -1,5 +1,6 @@
 import { useTheme } from 'next-themes'
 import { useSwitchThemeMutation } from 'redux/api/dashboard/dashboard'
+
 import { Select, SelectContent, SelectTrigger } from './HeaderSelectComponents'
 
 export const HeaderThemeSelect = () => {

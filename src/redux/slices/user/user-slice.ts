@@ -1,6 +1,9 @@
+import type { UserInitialState } from './user-types'
+
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { dashboardApi } from 'redux/api/dashboard/dashboard'
 import { userApi } from 'redux/api/user'
+
 import {
   currentFullfilled,
   currentPending,
@@ -10,7 +13,6 @@ import {
   signupFullfilled,
   switchThemeFullfilled
 } from './user-functions'
-import type { UserInitialState } from './user-types'
 
 const userSlice = createSlice({
   name: 'user',

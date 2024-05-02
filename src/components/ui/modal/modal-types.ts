@@ -1,5 +1,6 @@
 import type { VariantProps } from 'class-variance-authority'
 import type { ReactNode } from 'react'
+
 import { modalVariants } from './modal-variants'
 
 export type ModalProps = VariantProps<typeof modalVariants> & {

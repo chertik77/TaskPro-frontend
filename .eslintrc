@@ -7,6 +7,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:tailwindcss/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -19,11 +20,8 @@
       "version": "detect"
     }
   },
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "rules": {
-    "react/react-in-jsx-scope": 0,
-    "react/no-unescaped-entities": 0,
-    "react/display-name": 0,
-    "tailwindcss/migration-from-tailwind-2": 0
+    "react/react-in-jsx-scope": 0
   }
 }

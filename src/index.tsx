@@ -1,3 +1,4 @@
+import { StrictMode } from 'react'
 import { App } from 'components/App'
 import {
   AddCardModal,
@@ -11,19 +12,21 @@ import {
   NewBoardModal
 } from 'components/pages/dashboard/modals'
 import { ThemeProvider } from 'next-themes'
-import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from 'redux/store'
+
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate
+        loading={null}
+        persistor={persistor}>
         <BrowserRouter>
           <ThemeProvider
             attribute='class'

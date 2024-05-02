@@ -1,4 +1,5 @@
 import type { BoardInitialState } from 'redux/slices/board/board-types'
+
 import { dashboardApi } from './dashboard'
 
 export const boardApi = dashboardApi.injectEndpoints({

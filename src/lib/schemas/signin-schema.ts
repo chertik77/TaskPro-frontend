@@ -1,12 +1,6 @@
-import {
-  email,
-  maxLength,
-  minLength,
-  object,
-  string,
-  toTrimmed,
-  type Output
-} from 'valibot'
+import type { Output } from 'valibot'
+
+import { email, maxLength, minLength, object, string, toTrimmed } from 'valibot'
 
 export const signinSchema = object({
   email: string([toTrimmed(), email('Please enter a valid email.')]),

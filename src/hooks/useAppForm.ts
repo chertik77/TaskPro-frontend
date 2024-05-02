@@ -1,7 +1,8 @@
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { useForm, type DefaultValues, type FieldValues } from 'react-hook-form'
-import useFormPersist from 'react-hook-form-persist'
+import type { DefaultValues, FieldValues } from 'react-hook-form'
 import type { BaseSchema } from 'valibot'
+
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import { useForm } from 'react-hook-form'
 
 type UseAppFormOptions<T extends FieldValues> = {
   defaultValues?: DefaultValues<T>
@@ -17,8 +18,6 @@ export const useAppForm = <T extends FieldValues>(
     handleSubmit,
     reset,
     control,
-    watch,
-    setValue,
     trigger,
     clearErrors,
     formState: { errors, isValid }
@@ -27,14 +26,6 @@ export const useAppForm = <T extends FieldValues>(
     resolver: valibotResolver(schema),
     mode: 'onChange'
   })
-
-  options &&
-    options.persistedKey &&
-    useFormPersist(options.persistedKey, {
-      watch,
-      setValue,
-      storage: window.localStorage
-    })
 
   return {
     register,

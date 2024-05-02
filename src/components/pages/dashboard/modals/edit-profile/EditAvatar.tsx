@@ -1,7 +1,8 @@
+import type { ChangeEvent } from 'react'
+
+import { useEffect } from 'react'
 import { Button } from 'components/ui'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
-import type { ChangeEvent } from 'react'
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
 import { selectUser } from 'redux/slices/user/user-slice'

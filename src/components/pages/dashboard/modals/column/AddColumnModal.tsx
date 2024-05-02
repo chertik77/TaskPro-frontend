@@ -1,6 +1,8 @@
+import type { ColumnSchemaFields } from 'lib/schemas'
+
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useBoardByLocation } from 'hooks'
-import { columnSchema, type ColumnSchemaFields } from 'lib/schemas'
+import { columnSchema } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
@@ -30,7 +32,9 @@ export const AddColumnModal = () => {
   }
 
   return (
-    <Modal size='sm' modalTitle='Add column'>
+    <Modal
+      size='sm'
+      modalTitle='Add column'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}
@@ -39,7 +43,10 @@ export const AddColumnModal = () => {
           errors={errors}
           className='mb-6'
         />
-        <Button isAddIcon iconName='plus' disabled={!isValid || isLoading}>
+        <Button
+          isAddIcon
+          iconName='plus'
+          disabled={!isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Add'}
         </Button>
       </form>

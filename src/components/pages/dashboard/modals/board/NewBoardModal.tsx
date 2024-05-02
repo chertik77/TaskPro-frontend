@@ -1,11 +1,14 @@
+import type { BoardSchemaFields } from 'lib/schemas'
+
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import { boardSchema, type BoardSchemaFields } from 'lib/schemas'
+import { boardSchema } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 import { useAddNewBoardMutation } from 'redux/api/dashboard/board'
+
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
@@ -40,7 +43,9 @@ export const NewBoardModal = () => {
   }
 
   return (
-    <Modal size='sm' modalTitle='New board'>
+    <Modal
+      size='sm'
+      modalTitle='New board'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}

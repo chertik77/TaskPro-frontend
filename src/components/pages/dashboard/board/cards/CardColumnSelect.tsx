@@ -1,5 +1,7 @@
-import { useChangeCardColumnMutation } from 'redux/api/dashboard/card'
 import type { Card } from 'redux/slices/board/board-types'
+
+import { useChangeCardColumnMutation } from 'redux/api/dashboard/card'
+
 import { Select, SelectContent, SelectTrigger } from './CardSelectComponents'
 
 export const CardColumnSelect = ({ card }: { card: Card }) => {

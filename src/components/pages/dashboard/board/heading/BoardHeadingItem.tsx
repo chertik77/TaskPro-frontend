@@ -1,9 +1,11 @@
+import type { Column } from 'redux/slices/board/board-types'
+
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useDeleteColumnMutation } from 'redux/api/dashboard/column'
 import { selectFilter } from 'redux/slices/board/board-slice'
-import type { Column } from 'redux/slices/board/board-types'
+
 import { BoardCardsItem } from '../cards/BoardCardsItem'
 
 export const BoardHeadingItem = ({ column }: { column: Column }) => {
@@ -14,7 +16,10 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
 
   return (
     <>
-      <div className='mb-[14px] mr-[34px] flex h-[56px] w-[100%] min-w-[285px] items-center rounded-[8px] bg-white px-[20px] pb-[17px] pt-[18px] dark:bg-black mobile:w-[335px] tablet:w-[334px]'>
+      <div
+        className='mb-[14px] mr-[34px] flex h-[56px] w-[100%] min-w-[285px] items-center
+          rounded-[8px] bg-white px-[20px] pb-[17px] pt-[18px] dark:bg-black
+          mobile:w-[335px] tablet:w-[334px]'>
         <div className='text-fs-14-lh-normal-fw-500 text-black dark:text-white'>
           {column.title}
         </div>
@@ -25,13 +30,17 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
               localStorage.setItem('column-title', column.title)
               open()
             }}>
-            <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
+            <svg
+              className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
+                hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
             </svg>
           </button>
           <button
             onClick={() => deleteColumn({ boardId, columnId: column._id })}>
-            <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
+            <svg
+              className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
+                hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-trash-btn'></use>
             </svg>
           </button>
@@ -40,13 +49,21 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
       {column?.cards?.length > 0 && (
         <div className='mb-[14px]'>
           {!filter
-            ? column.cards
-                .toReversed()
-                .map(card => <BoardCardsItem key={card._id} card={card} />)
+            ? column.cards.toReversed().map(card => (
+                <BoardCardsItem
+                  key={card._id}
+                  card={card}
+                />
+              ))
             : column.cards
                 .toReversed()
                 .filter(card => card.priority === filter)
-                .map(card => <BoardCardsItem key={card._id} card={card} />)}
+                .map(card => (
+                  <BoardCardsItem
+                    key={card._id}
+                    card={card}
+                  />
+                ))}
         </div>
       )}
     </>

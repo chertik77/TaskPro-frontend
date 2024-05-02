@@ -1,6 +1,7 @@
-import { cn } from 'lib/utils'
-import { forwardRef } from 'react'
 import type { ButtonProps } from './button-types'
+
+import { forwardRef } from 'react'
+import { cn } from 'lib/utils'
 
 const createIcon = (iconName: string, className: string) => (
   <svg className={className}>
@@ -27,10 +28,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => (
     <button
       className={cn(
-        'transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
+        `transition duration-300 ease-in-out disabled:cursor-not-allowed
+        disabled:opacity-50`,
         isSmallIcon
-          ? 'text-black opacity-50 hocus:text-brand-hover violet:hocus:text-brand-secondary-hover'
-          : 'violet:hocus:bg-#7B7EDE h-[49px] w-full rounded-lg bg-brand  stroke-white text-black  hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white',
+          ? `text-black opacity-50 hocus:text-brand-hover
+            violet:hocus:text-brand-secondary-hover`
+          : `violet:hocus:bg-#7B7EDE h-[49px] w-full rounded-lg bg-brand stroke-white
+            text-black hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white`,
         className
       )}
       ref={ref}
@@ -51,3 +55,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     </button>
   )
 )
+
+Button.displayName = 'Button'

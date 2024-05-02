@@ -1,4 +1,6 @@
-import { minLength, object, string, toTrimmed, type Output } from 'valibot'
+import type { Output } from 'valibot'
+
+import { minLength, object, string, toTrimmed } from 'valibot'
 
 export const columnSchema = object({
   title: string([

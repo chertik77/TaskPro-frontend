@@ -1,8 +1,10 @@
+import type { ColumnSchemaFields } from 'lib/schemas'
+
+import { useEffect } from 'react'
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useBoardByLocation } from 'hooks'
-import { columnSchema, type ColumnSchemaFields } from 'lib/schemas'
+import { columnSchema } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
-import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditColumnMutation } from 'redux/api/dashboard/column'
 
@@ -18,7 +20,7 @@ export const EditColumnModal = () => {
     if (isOpen) {
       reset({ title: localStorage.getItem('column-title') ?? '' })
     }
-  }, [isOpen])
+  }, [isOpen, reset])
 
   const columnId = localStorage.getItem('columnId')
 
@@ -37,7 +39,9 @@ export const EditColumnModal = () => {
   }
 
   return (
-    <Modal size='sm' modalTitle='Edit column'>
+    <Modal
+      size='sm'
+      modalTitle='Edit column'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}
@@ -46,7 +50,10 @@ export const EditColumnModal = () => {
           errors={errors}
           className='mb-6'
         />
-        <Button isAddIcon iconName='plus' disabled={!isValid || isLoading}>
+        <Button
+          isAddIcon
+          iconName='plus'
+          disabled={!isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Edit'}
         </Button>
       </form>

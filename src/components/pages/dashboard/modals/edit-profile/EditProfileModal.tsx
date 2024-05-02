@@ -1,11 +1,14 @@
+import type { SignupSchemaFields } from 'lib/schemas'
+
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import { signupSchema, type SignupSchemaFields } from 'lib/schemas'
+import { signupSchema } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { useUserMutation } from 'redux/api/user'
 import { selectUser } from 'redux/slices/user/user-slice'
+
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
@@ -42,7 +45,9 @@ export const EditProfileModal = () => {
   }
 
   return (
-    <Modal modalTitle='Edit profile' size='sm'>
+    <Modal
+      modalTitle='Edit profile'
+      size='sm'>
       <form onSubmit={handleSubmit(submit)}>
         <div className='mb-[25px] flex justify-center'>
           <EditAvatar />
@@ -69,7 +74,9 @@ export const EditProfileModal = () => {
           autoComplete='current-password'
           {...register('password')}
         />
-        <Button type='submit' disabled={isLoading}>
+        <Button
+          type='submit'
+          disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Send'}
         </Button>
       </form>

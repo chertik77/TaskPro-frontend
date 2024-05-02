@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
 import type {
   FieldValues,
   UseFormClearErrors,
   UseFormTrigger
 } from 'react-hook-form'
+
+import { useEffect, useState } from 'react'
 
 export const useIsFormValidOnReload = <T extends FieldValues>(
   trigger: UseFormTrigger<T>,
@@ -18,7 +19,7 @@ export const useIsFormValidOnReload = <T extends FieldValues>(
         setIsFormValidOnReload(true)
       }
     })
-  }, [])
+  }, [clearErrors, trigger])
 
   return { isFormValidOnReload }
 }

@@ -1,11 +1,12 @@
+import type { Output } from 'valibot'
+
 import {
   minLength,
   minValue,
   object,
   picklist,
   string,
-  toTrimmed,
-  type Output
+  toTrimmed
 } from 'valibot'
 
 const priorityList = ['Low', 'Medium', 'High', 'Without priority']

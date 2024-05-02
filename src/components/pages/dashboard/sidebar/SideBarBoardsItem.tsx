@@ -1,8 +1,9 @@
+import type { BoardInitialState } from 'redux/slices/board/board-types'
+
 import { handleSuccessToast } from 'lib/toasts'
 import { useModal } from 'react-modal-state'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteBoardMutation } from 'redux/api/dashboard/board'
-import { BoardInitialState } from 'redux/slices/board/board-types'
 
 export const SideBarBoardsItem = ({
   board,
@@ -49,12 +50,18 @@ export const SideBarBoardsItem = ({
       {board._id === boardId && (
         <div className='flex items-center gap-2'>
           <button onClick={onEdit}>
-            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand  violet:stroke-white-primary violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand '>
+            <svg
+              className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out
+                aria-[current=page]:bg-brand hocus:stroke-brand violet:stroke-white-primary
+                violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand'>
               <use xlinkHref={`/assets/icons.svg#icon-pencil-btn`}></use>
             </svg>
           </button>
           <button onClick={handleDelete}>
-            <svg className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out aria-[current=page]:bg-brand hocus:stroke-brand  violet:stroke-white-primary violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand'>
+            <svg
+              className='size-4 stroke-black opacity-50 transition duration-300 ease-in-out
+                aria-[current=page]:bg-brand hocus:stroke-brand violet:stroke-white-primary
+                violet:hocus:stroke-white dark:stroke-white-primary dark:hocus:stroke-brand'>
               <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
             </svg>
           </button>

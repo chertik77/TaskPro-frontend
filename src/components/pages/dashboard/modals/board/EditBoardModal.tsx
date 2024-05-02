@@ -1,11 +1,14 @@
+import type { BoardSchemaFields } from 'lib/schemas'
+
+import { useEffect } from 'react'
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useBoardByLocation } from 'hooks'
-import { boardSchema, type BoardSchemaFields } from 'lib/schemas'
+import { boardSchema } from 'lib/schemas'
 import { handleErrorToast, handleInfoToast } from 'lib/toasts'
 import { Controller } from 'react-hook-form'
-import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { useEditBoardMutation } from 'redux/api/dashboard/board'
+
 import { BackgroundContainer } from './BackgroundContainer'
 import { Icons } from './Icons'
 
@@ -27,7 +30,7 @@ export const EditBoardModal = () => {
     if (isOpen) {
       reset({ title })
     }
-  }, [isOpen])
+  }, [isOpen, reset, title])
 
   const submit = (data: BoardSchemaFields) => {
     editBoard({ boardId, body: data })
@@ -47,7 +50,9 @@ export const EditBoardModal = () => {
   }
 
   return (
-    <Modal size='sm' modalTitle='Edit board'>
+    <Modal
+      size='sm'
+      modalTitle='Edit board'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}

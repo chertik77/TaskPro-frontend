@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 
 const HomePage = () => (
-  <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient adaptive:px-5'>
+  <div
+    className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient
+      adaptive:px-5'>
     <picture>
       <source
         media='(min-width: 768px)'
@@ -25,16 +27,21 @@ const HomePage = () => (
         Task Pro
       </h1>
     </div>
-    <p className='mt-6 w-[335px] text-center text-fs-14-lh-1.28-fw-400 text-black adaptive:w-full tablet:w-[473px]'>
+    <p
+      className='mt-6 w-[335px] text-center text-fs-14-lh-1.28-fw-400 text-black adaptive:w-full
+        tablet:w-[473px]'>
       Supercharge your productivity and take control of your tasks with Task Pro
-      - Don't wait, start achieving your goals now!
+      - Don&apos;t wait, start achieving your goals now!
     </p>
     <Link
       to='/auth/signup'
-      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-[14px] text-center text-fs-14-lh-normal-fw-500 text-white adaptive:w-full'>
+      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-[14px] text-center
+        text-fs-14-lh-normal-fw-500 text-white adaptive:w-full'>
       Registration
     </Link>
-    <Link to='/auth/signin' className='mt-[14px] text-black'>
+    <Link
+      to='/auth/signin'
+      className='mt-[14px] text-black'>
       Log In
     </Link>
   </div>

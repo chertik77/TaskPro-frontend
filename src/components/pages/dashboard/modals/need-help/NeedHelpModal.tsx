@@ -1,6 +1,8 @@
+import type { NeedHelpSchemaFields } from 'lib/schemas'
+
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
-import { needHelpSchema, type NeedHelpSchemaFields } from 'lib/schemas'
+import { needHelpSchema } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
@@ -30,23 +32,31 @@ export const NeedHelpModal = () => {
   }
 
   return (
-    <Modal size='sm' modalTitle='Need help'>
+    <Modal
+      size='sm'
+      modalTitle='Need help'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('email')}
           inputName='email'
           placeholder='Email address'
           errors={errors}
-          className='mb-6 text-black autofill:text-fill-black dark:text-white dark:autofill:text-fill-white'
+          className='mb-6 text-black autofill:text-fill-black dark:text-white
+            dark:autofill:text-fill-white'
         />
         <textarea
           {...register('comment')}
           placeholder='Comment'
           className={cn(
-            'mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+            `mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand
+            border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400
+            text-black outline-none placeholder:opacity-40 focus:border-opacity-100
+            violet:border-brand-secondary dark:text-white`
           )}
         />
-        <Button type='submit' disabled={!isValid || isLoading}>
+        <Button
+          type='submit'
+          disabled={!isValid || isLoading}>
           {isLoading ? 'Loading...' : 'Send'}
         </Button>
       </form>

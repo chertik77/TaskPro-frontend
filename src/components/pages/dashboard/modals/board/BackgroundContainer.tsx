@@ -1,6 +1,6 @@
-import { useImageBg } from 'hooks'
-import images from 'lib/json/board-bg-images.json'
 import type { ControllerRenderProps } from 'react-hook-form'
+
+import images from 'lib/json/board-bg-images.json'
 
 type BackgroundProps = {
   field: ControllerRenderProps<
@@ -13,8 +13,6 @@ export const BackgroundContainer = (props: BackgroundProps) => {
   return (
     <ul className='mb-10 mt-[14px] flex max-w-[280px] flex-wrap gap-2'>
       {images.map(bg => {
-        const srcset = useImageBg(bg.id)?.srcset
-
         return (
           <li
             key={bg.id}
@@ -23,7 +21,7 @@ export const BackgroundContainer = (props: BackgroundProps) => {
               type='radio'
               name='background'
               defaultChecked={bg.id === 'default'}
-              value={srcset}
+              // value={srcset}
               onChange={props.field.onChange}
               className='peer hidden size-full opacity-0'
               id={`background-${bg.id}`}

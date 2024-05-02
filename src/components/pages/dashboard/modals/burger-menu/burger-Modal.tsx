@@ -1,6 +1,7 @@
+import type { ModalProps } from '../../../../ui/modal/modal-types'
+
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'
-import type { ModalProps } from '../../../../ui/modal/modal-types'
 
 export const BurgerModal = ({ children }: ModalProps) => {
   const { isOpen, close } = useModalInstance()

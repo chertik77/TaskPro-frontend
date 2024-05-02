@@ -1,8 +1,10 @@
+import type { Card } from 'redux/slices/board/board-types'
+
 import { format, isToday, parseISO } from 'date-fns'
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteCardMutation } from 'redux/api/dashboard/card'
-import type { Card } from 'redux/slices/board/board-types'
+
 import { CardColumnSelect } from './CardColumnSelect'
 
 type Priorities = 'Low' | 'Medium' | 'High' | 'Without priority'
@@ -50,11 +52,15 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
 
   return (
     <div
-      className={`mb-[8px] h-[154px] w-[334px] rounded-[8px] border-l-[4px] ${PriorityBorderColorPicker(card.priority)} bg-white py-[14px] pl-[24px] pr-[20px] dark:bg-black`}>
+      className={`mb-[8px] h-[154px] w-[334px] rounded-[8px] border-l-[4px]
+      ${PriorityBorderColorPicker(card.priority)} bg-white py-[14px] pl-[24px]
+      pr-[20px] dark:bg-black`}>
       <p className='pb-[8px] text-fs-14-lh-normal-fw-600 text-black dark:text-white'>
         {card.title}
       </p>
-      <p className='mb-[14px] line-clamp-2 min-h-[38px] text-fs-12-lh-normal-fw-400 text-black/70 dark:text-white/50'>
+      <p
+        className='mb-[14px] line-clamp-2 min-h-[38px] text-fs-12-lh-normal-fw-400 text-black/70
+          dark:text-white/50'>
         {card.description}
       </p>
       <div className='flex items-end border-t-[1px] border-black/10 pt-[14px] dark:border-white/10'>
@@ -64,7 +70,7 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           </p>
           <div className='flex items-center gap-[4px]'>
             <div
-              className={`size-[12px]  rounded-[50%] ${PriorityColorPicker(card.priority)}`}></div>
+              className={`size-[12px] rounded-[50%] ${PriorityColorPicker(card.priority)}`}></div>
             <p className='text-fs-10-lh-normal-fw-400 text-black dark:text-white'>
               {card.priority === 'Without priority' ? 'Without' : card.priority}
             </p>
@@ -86,7 +92,9 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           )}
           <CardColumnSelect card={card} />
           <button onClick={onEdit}>
-            <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
+            <svg
+              className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
+                hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
             </svg>
           </button>
@@ -98,7 +106,9 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
                 cardId: card._id
               })
             }>
-            <svg className='size-[16px] stroke-black/50 transition duration-300 ease-in-out hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
+            <svg
+              className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
+                hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
               <use xlinkHref='/assets/icons.svg#icon-trash-btn'></use>
             </svg>
           </button>

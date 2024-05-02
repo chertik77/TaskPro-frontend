@@ -1,6 +1,8 @@
+import type { CardSchemaFields } from 'lib/schemas'
+
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
 import { useAppForm, useBoardByLocation } from 'hooks'
-import { cardSchema, type CardSchemaFields } from 'lib/schemas'
+import { cardSchema } from 'lib/schemas'
 import { handleErrorToast, handleSuccessToast } from 'lib/toasts'
 import { cn } from 'lib/utils'
 import { useModal } from 'react-modal-state'
@@ -53,7 +55,10 @@ export const AddCardModal = () => {
           placeholder='Description'
           {...register('description')}
           className={cn(
-            'h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40 bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black outline-none placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary dark:text-white',
+            `h-[154px] w-full resize-none rounded-lg border border-brand border-opacity-40
+            bg-transparent px-[18px] py-[14px] text-fs-14-lh-1.28-fw-400 text-black
+            outline-none placeholder:opacity-40 focus:border-opacity-100
+            violet:border-brand-secondary dark:text-white`,
             !errors.description && 'mb-6'
           )}
         />
@@ -62,7 +67,9 @@ export const AddCardModal = () => {
             Please enter at least 2 characters.
           </p>
         )}
-        <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
+        <p
+          className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50
+            violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
         <div className='mb-[14px] flex gap-2'>
@@ -87,11 +94,17 @@ export const AddCardModal = () => {
             {...register('priority')}
           />
         </div>
-        <p className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50 violet:text-black/50 dark:text-white/50'>
+        <p
+          className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50
+            violet:text-black/50 dark:text-white/50'>
           Deadline
         </p>
         <div className='relative'>
-          <input type='date' className='mb-[40px] ' {...register('deadline')} />
+          <input
+            type='date'
+            className='mb-[40px] '
+            {...register('deadline')}
+          />
           {errors.deadline && (
             <span className=' absolute left-0 top-5 text-red-600'>
               Wrong date!
