@@ -34,6 +34,16 @@ const userSlice = createSlice({
     updateUser: (state, action) => {
       state.user.avatarURL = action.payload.avatarURL
       state.user.userTheme = action.payload.userTheme
+    },
+    logout: state => {
+      state.user = {
+        name: null,
+        email: null,
+        avatarURL: { url: '' },
+        userTheme: ''
+      }
+      state.isLoggedIn = false
+      state.token = null
     }
   },
   extraReducers: builder => {
@@ -56,6 +66,6 @@ const userSlice = createSlice({
   }
 })
 
-export const { authenticate, updateUser } = userSlice.actions
+export const { authenticate, updateUser, logout } = userSlice.actions
 export const { selectIsLoggedIn, selectUser, selectTheme } = userSlice.selectors
 export const userReducer = userSlice.reducer
