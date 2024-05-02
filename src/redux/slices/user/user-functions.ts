@@ -22,7 +22,6 @@ export const currentRejected = (state: UserInitialState) => {
 
 export const logoutFullfilled = (state: UserInitialState) => {
   state.user = {
-    boards: [],
     name: null,
     email: null,
     avatarURL: { url: '' },
