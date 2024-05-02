@@ -16,11 +16,13 @@ export const currentFullfilled = (
 
 export const currentRejected = (state: UserInitialState) => {
   state.token = null
+  state.isLoggedIn = false
   state.isRefreshing = false
 }
 
 export const logoutFullfilled = (state: UserInitialState) => {
   state.user = {
+    boards: [],
     name: null,
     email: null,
     avatarURL: { url: '' },

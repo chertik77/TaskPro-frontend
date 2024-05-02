@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export const SidebarNav = () => (
+export const SidebarLogo = () => (
   <div className='mb-[70px] flex items-center gap-2 tablet:mb-[60px] desktop:px-6 desktop:pt-6 '>
     <Link to='/dashboard'>
       <svg

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useSelector } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { userApi } from 'redux/api/user'
 import { selectIsLoggedIn } from 'redux/slices/user/user-slice'
 import { persistor } from 'redux/store'
@@ -17,6 +17,7 @@ import { CreateBoard } from './ui'
 export const App = () => {
   const dispatch = useAppDispatch()
 
+  const navigate = useNavigate()
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
   useEffect(() => {
@@ -26,9 +27,10 @@ export const App = () => {
       .catch(e => {
         if (e.status === 401) {
           persistor.purge()
+          navigate('/')
         }
       })
-  }, [dispatch, isLoggedIn])
+  }, [dispatch, isLoggedIn, navigate])
 
   return (
     <Routes>
