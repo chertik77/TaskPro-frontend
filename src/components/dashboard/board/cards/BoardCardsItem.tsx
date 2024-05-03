@@ -1,4 +1,4 @@
-import type { Card } from 'redux/slices/board/board-types'
+import type { Card } from 'types/board.types'
 
 import { format, isToday, parseISO } from 'date-fns'
 import { useModal } from 'react-modal-state'

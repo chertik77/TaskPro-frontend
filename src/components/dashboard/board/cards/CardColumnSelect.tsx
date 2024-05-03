@@ -1,4 +1,4 @@
-import type { Card } from 'redux/slices/board/board-types'
+import type { Card } from 'types/board.types'
 
 import { useChangeCardColumnMutation } from 'redux/api/dashboard/card'
 

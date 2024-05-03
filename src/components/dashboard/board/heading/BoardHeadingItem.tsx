@@ -1,17 +1,12 @@
-import type { Column } from 'redux/slices/board/board-types'
+import type { Column } from 'types/board.types'
 
 import { useModal } from 'react-modal-state'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { useDeleteColumnMutation } from 'redux/api/dashboard/column'
-import { selectFilter } from 'redux/slices/board/board-slice'
 
-import { BoardCardsItem } from '../cards/BoardCardsItem'
+import { useDeleteColumn } from 'hooks/column/useDeleteColumn'
 
 export const BoardHeadingItem = ({ column }: { column: Column }) => {
-  const filter = useSelector(selectFilter)
-  const { boardId } = useParams()
-  const [deleteColumn] = useDeleteColumnMutation()
+  const { mutate } = useDeleteColumn(column._id)
+
   const { open } = useModal('edit-column-modal')
 
   return (
@@ -36,8 +31,7 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
               <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
             </svg>
           </button>
-          <button
-            onClick={() => deleteColumn({ boardId, columnId: column._id })}>
+          <button onClick={() => mutate()}>
             <svg
               className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
                 hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
@@ -46,26 +40,39 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
           </button>
         </div>
       </div>
-      {column?.cards?.length > 0 && (
+      {/* {column?.cards?.length > 0 && (
         <div className='mb-[14px]'>
-          {!filter
-            ? column.cards.toReversed().map(card => (
-                <BoardCardsItem
-                  key={card._id}
-                  card={card}
-                />
-              ))
-            : column.cards
-                .toReversed()
-                .filter(card => card.priority === filter)
-                .map(card => (
-                  <BoardCardsItem
-                    key={card._id}
-                    card={card}
-                  />
-                ))}
+          {column.cards.toReversed().map(card => (
+            <BoardCardsItem
+              key={card._id}
+              card={card}
+            />
+          ))}
         </div>
-      )}
+      )} */}
     </>
   )
 }
+
+// {
+//   column?.cards?.length > 0 && (
+//     <div className='mb-[14px]'>
+//       {!filter
+//         ? column.cards.toReversed().map(card => (
+//             <BoardCardsItem
+//               key={card._id}
+//               card={card}
+//             />
+//           ))
+//         : column.cards
+//             .toReversed()
+//             .filter(card => card.priority === filter)
+//             .map(card => (
+//               <BoardCardsItem
+//                 key={card._id}
+//                 card={card}
+//               />
+//             ))}
+//     </div>
+//   )
+// }

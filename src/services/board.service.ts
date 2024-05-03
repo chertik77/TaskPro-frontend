@@ -12,6 +12,12 @@ class BoardService {
     return response.data.data
   }
 
+  async getBoardById(boardId: string) {
+    const response = await axiosWithAuth.get<Board>(`/dashboard/${boardId}`)
+
+    return response.data
+  }
+
   async addNewBoard(data: BoardSchemaFields) {
     const response = await axiosWithAuth.post('/dashboard', data)
 

@@ -16,7 +16,7 @@ export const useAddNewBoard = (reset: UseFormReset<BoardSchemaFields>) => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: ['board'],
+    mutationKey: ['addBoard'],
     mutationFn: (data: BoardSchemaFields) => boardService.addNewBoard(data),
     onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: ['boards'] })

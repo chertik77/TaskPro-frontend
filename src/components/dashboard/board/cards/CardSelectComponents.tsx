@@ -1,4 +1,4 @@
-import type { Card } from 'redux/slices/board/board-types'
+import type { Card } from 'types/board.types'
 
 import { Content, Item, ItemText, Root, Trigger } from '@radix-ui/react-select'
 import { useSelector } from 'react-redux'

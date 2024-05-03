@@ -1724,7 +1724,7 @@ class-variance-authority@^0.7.0:
   dependencies:
     clsx "2.0.0"
 
-classnames@^2.3.1:
+classnames@^2.2.6, classnames@^2.3.1:
   version "2.5.1"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.5.1.tgz"
   integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
@@ -3722,6 +3722,14 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-edit-text@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-edit-text/-/react-edit-text-5.1.1.tgz#e7e2a5b3c04c6c5e746c2ecfd6b96d741c8484e8"
+  integrity sha512-ZG2UeJy2194MqlIsuK6Ob/dogYO8B6ekcwliD8/ia8FZJRqHq3OnCqRJrRol+uSsFidvJk6htqzAtvDdssYzoA==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.8.1"
 
 react-hook-form-persist@^3.0.0:
   version "3.0.0"

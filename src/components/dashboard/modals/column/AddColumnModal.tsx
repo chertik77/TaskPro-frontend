@@ -1,37 +1,51 @@
 import type { ColumnSchemaFields } from 'lib/schemas'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { useAddNewColumnMutation } from 'redux/api/dashboard/column'
-import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
 import { useAppForm, useBoardByLocation } from 'hooks'
+
+import { columnService } from 'services/column.service'
 
 import { columnSchema } from 'lib/schemas'
 
 export const AddColumnModal = () => {
   const boardId = useBoardByLocation()
   const { close } = useModal('add-column-modal')
-  const [addNewColumn, { isLoading }] = useAddNewColumnMutation()
-  const { register, handleSubmit, reset, formState } =
+  // const [addNewColumn, { isLoading }] = useAddNewColumnMutation()
+  const { register, handleSubmit, formState } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
+  const queryClient = useQueryClient()
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['column'],
+    mutationFn: (data: ColumnSchemaFields) =>
+      columnService.addNewColumn(boardId!, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['board'] })
+      close()
+    }
+  })
+
   const submit = (data: ColumnSchemaFields) => {
-    addNewColumn({ boardId, body: data })
-      .unwrap()
-      .then(() => {
-        reset()
-        toast.success(
-          `The column has been added successfully. Let's start filling it with tasks.`
-        )
-        close()
-      })
-      .catch(() => {
-        toast.error(
-          'Something went wrong while adding the column. Please try again.'
-        )
-      })
+    mutate(data)
+    // addNewColumn({ boardId, body: data })
+    //   .unwrap()
+    //   .then(() => {
+    //     reset()
+    //     toast.success(
+    //       `The column has been added successfully. Let's start filling it with tasks.`
+    //     )
+    //     close()
+    //   })
+    //   .catch(() => {
+    //     toast.error(
+    //       'Something went wrong while adding the column. Please try again.'
+    //     )
+    //   })
   }
 
   return (
@@ -49,8 +63,8 @@ export const AddColumnModal = () => {
         <Button
           isAddIcon
           iconName='plus'
-          disabled={!formState.isValid || isLoading}>
-          {isLoading ? 'Loading...' : 'Add'}
+          disabled={!formState.isValid || isPending}>
+          {isPending ? 'Loading...' : 'Add'}
         </Button>
       </form>
     </Modal>
