@@ -2,41 +2,41 @@ import type { CardSchemaFields } from 'lib/schemas'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
+import { toast } from 'sonner'
 
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
 
 import { useAppForm, useBoardByLocation } from 'hooks'
 
-import { taskService } from 'services/task.service'
+import { cardService } from 'services/card.service'
 
 import { cn } from 'lib'
 import { cardSchema } from 'lib/schemas'
 
 export const AddCardModal = () => {
   const boardId = useBoardByLocation()
+
   const { data: column } = useModalInstance<string>()
 
-  // const [addNewCard, { isLoading }] = useAddNewCardMutation()
   const { close } = useModal('add-card-modal')
+
   const { register, handleSubmit, formState } = useAppForm<CardSchemaFields>(
     cardSchema,
-    {
-      defaultValues: {
-        priority: 'Without priority'
-      }
-    }
+    { defaultValues: { priority: 'Without priority' } }
   )
 
-  console.log(column)
   const queryClient = useQueryClient()
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ['task'],
+    mutationKey: ['card'],
     mutationFn: (data: CardSchemaFields) =>
-      taskService.addNewTask(boardId!, column, data),
+      cardService.addNewCard(boardId!, column, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['column'] })
+      queryClient.invalidateQueries({ queryKey: ['board'] })
       close()
+      toast.success(
+        `The task has been created successfully. Let's start working on it.`
+      )
     }
   })
 
@@ -137,7 +137,7 @@ export const AddCardModal = () => {
           isAddIcon
           iconName='plus'
           type='submit'
-          disabled={!formState.isValid || isPending}>
+          disabled={isPending}>
           {isPending ? 'Adding...' : 'Add'}
         </Button>
       </form>

@@ -1,53 +1,59 @@
 import type { CardSchemaFields } from 'lib/schemas'
+import type { Card } from 'types/board.types'
 
 import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { useEditCardMutation } from 'redux/api/dashboard/card'
-import { toast } from 'sonner'
 
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
 
-import { useAppForm, useBoardByLocation } from 'hooks'
+import { useAppForm } from 'hooks'
+import { useEditCard } from 'hooks/card/useEditCard'
 
 import { cn } from 'lib'
 import { cardSchema } from 'lib/schemas'
 
+type EditCardModalData = {
+  card: Card
+  columnId: string
+  cardId: string
+}
+
 export const EditCardModal = () => {
   const { close } = useModal('edit-card-modal')
-  const boardId = useBoardByLocation()
-  const [editCard, { isLoading }] = useEditCardMutation()
-  const { isOpen } = useModalInstance()
-  const { register, handleSubmit, reset, formState } =
+
+  const { data } = useModalInstance<EditCardModalData>()
+
+  const { register, handleSubmit, formState, setValue } =
     useAppForm<CardSchemaFields>(cardSchema)
 
-  const cardValues = localStorage.getItem('card-values') ?? ''
-  const { title, description, priority, deadline } =
-    JSON.parse(cardValues) ?? ''
-
   useEffect(() => {
-    if (isOpen) {
-      reset({ title, description, priority, deadline })
-    }
-  }, [deadline, description, isOpen, priority, reset, title])
+    setValue('title', data?.card.title)
+    setValue('description', data?.card.description)
+    setValue('priority', data?.card.priority)
+    setValue('deadline', data?.card.deadline)
+  }, [data, setValue])
+
+  const { mutate, isPending } = useEditCard(data?.columnId, data?.cardId, close)
 
   const submit = (data: CardSchemaFields) => {
-    editCard({
-      boardId,
-      body: data,
-      columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
-      cardId: JSON.parse(localStorage.getItem('ids') as string).cardId
-    })
-      .unwrap()
-      .then(() => {
-        toast.info('The task has been edited successfully!')
-        reset()
-      })
-      .catch(() => {
-        toast.error(
-          'Something went wrong while editing the card. Our team is already working on this issue. Please bear with us.'
-        )
-      })
-    close()
+    mutate(data)
+    // editCard({
+    //   boardId,
+    //   body: data,
+    //   columnId: JSON.parse(localStorage.getItem('ids') as string).columnId,
+    //   cardId: JSON.parse(localStorage.getItem('ids') as string).cardId
+    // })
+    //   .unwrap()
+    //   .then(() => {
+    //     toast.info('The task has been edited successfully!')
+    //     reset()
+    //   })
+    //   .catch(() => {
+    //     toast.error(
+    //       'Something went wrong while editing the card. Our team is already working on this issue. Please bear with us.'
+    //     )
+    //   })
+    // close()
   }
 
   return (
@@ -163,8 +169,8 @@ export const EditCardModal = () => {
           isAddIcon
           iconName='plus'
           type='submit'
-          disabled={!formState.isValid || isLoading}>
-          {isLoading ? 'Loading...' : 'Edit'}
+          disabled={!formState.isValid || isPending}>
+          {isPending ? 'Loading...' : 'Edit'}
         </Button>
       </form>
     </Modal>

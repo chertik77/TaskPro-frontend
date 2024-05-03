@@ -1,6 +1,6 @@
 import type { SigninSchemaFields } from 'lib/schemas'
 
-import { authenticate } from 'redux/slices/user/user-slice'
+import { authenticate } from 'redux/user.slice'
 
 import { Button, Field } from 'components/ui'
 

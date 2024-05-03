@@ -1,16 +1,13 @@
 import type { ChangeEvent } from 'react'
 
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useUserMutation } from 'redux/api/user'
-import { selectUser } from 'redux/slices/user/user-slice'
+import { selectUser } from 'redux/user.slice'
 import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
 
 export const EditAvatar = () => {
   const { avatarURL } = useSelector(selectUser)
-  const [mutateUser, { isError, isSuccess, error }] = useUserMutation()
 
   const handleFileSelect = () => {
     const fileInput = document.getElementById('file-input')
@@ -25,21 +22,21 @@ export const EditAvatar = () => {
       if (file) {
         const formData = new FormData()
         formData.append('avatar', file)
-        await mutateUser(formData)
+        // await mutateUser(formData)
       }
     } catch (error) {
       toast.error('Something went wrong. Please try again.')
     }
   }
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success('Congrats! Avatar changed successfully')
-    }
-    if (isError && error) {
-      toast.error('Something went wrong. Please try again.')
-    }
-  }, [isError, isSuccess, error])
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     toast.success('Congrats! Avatar changed successfully')
+  //   }
+  //   if (isError && error) {
+  //     toast.error('Something went wrong. Please try again.')
+  //   }
+  // }, [isError, isSuccess, error])
 
   return (
     <>

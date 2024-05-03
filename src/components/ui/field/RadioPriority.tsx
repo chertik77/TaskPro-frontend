@@ -3,7 +3,7 @@ import type { RadioProps } from './priority-types'
 import { forwardRef } from 'react'
 
 export const RadioPriority = forwardRef<HTMLInputElement, RadioProps>(
-  ({ value, color, isValue, ...props }, ref) => (
+  ({ value, color, isValue, onChange, ...props }, ref) => (
     <label
       className='flex max-w-max cursor-pointer select-none items-center justify-center gap-2'
       htmlFor={`priority-${value}`}>
@@ -13,6 +13,7 @@ export const RadioPriority = forwardRef<HTMLInputElement, RadioProps>(
           type='radio'
           name='priority'
           value={value}
+          onChange={onChange}
           id={`priority-${value}`}
           className='peer hidden size-full'
           {...props}

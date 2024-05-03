@@ -4,24 +4,25 @@ import { useModal } from 'react-modal-state'
 
 import { Button } from 'components/ui'
 
-import { BoardHeadingItem } from './BoardHeadingItem'
+import { BoardColumnsItem } from './BoardColumnsItem'
 
-type BoardHeadingListProps = {
+type BoardColumnsListProps = {
   columns: Board['columns'] | undefined
 }
 
-export const BoardHeadingList = ({ columns }: BoardHeadingListProps) => {
+export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
   const { open } = useModal('add-card-modal')
 
   return (
-    <div className='mb-[14px] mt-[39px] flex tablet:mt-[26px] desktop:mt-[10px]'>
+    <div className='flex'>
       {columns?.map(column => (
         <div
           key={column._id}
           className='mr-[34px] w-[334px]'>
-          <BoardHeadingItem column={column} />
+          <BoardColumnsItem column={column} />
           <Button
             isAddIcon
+            className='mt-[14px]'
             iconName='plus'
             onClick={() => open(column._id)}>
             <span className='text-fs-14-lh-normal-fw-500'>

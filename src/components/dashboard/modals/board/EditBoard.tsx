@@ -36,9 +36,7 @@ export const EditBoardModal = () => {
   }
 
   return (
-    <Modal
-      size='sm'
-      modalTitle='Edit board'>
+    <Modal modalTitle='Edit board'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}

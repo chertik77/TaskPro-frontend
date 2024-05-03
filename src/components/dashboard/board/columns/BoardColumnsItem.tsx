@@ -1,10 +1,24 @@
-import type { Column } from 'types/board.types'
+import type { Card, Column } from 'types/board.types'
 
 import { useModal } from 'react-modal-state'
+import { useSelector } from 'react-redux'
+import { selectFilter } from 'redux/user.slice'
 
 import { useDeleteColumn } from 'hooks/column/useDeleteColumn'
 
-export const BoardHeadingItem = ({ column }: { column: Column }) => {
+import { BoardCard } from '../cards/BoardCard'
+
+const getVisibleCards = (cards: Card[], filter: string) => {
+  if (!filter) return cards
+
+  return cards.filter(card => card.priority === filter)
+}
+
+export const BoardColumnsItem = ({ column }: { column: Column }) => {
+  const filter = useSelector(selectFilter)
+
+  const filteredCards = getVisibleCards(column.cards, filter)
+
   const { mutate } = useDeleteColumn(column._id)
 
   const { open } = useModal('edit-column-modal')
@@ -12,13 +26,10 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
   return (
     <>
       <div
-        className='mb-[14px] mr-[34px] flex h-[56px] w-[100%] min-w-[285px] items-center
-          rounded-[8px] bg-white px-[20px] pb-[17px] pt-[18px] dark:bg-black
-          mobile:w-[335px] tablet:w-[334px]'>
-        <div className='text-fs-14-lh-normal-fw-500 text-black dark:text-white'>
-          {column.title}
-        </div>
-        <div className='ml-auto flex gap-[8px]'>
+        className='mb-[14px] flex h-[56px] min-w-[335px] rounded-lg bg-white px-5 py-[18px]
+          dark:bg-black'>
+        <h3 className='text-black dark:text-white'>{column.title}</h3>
+        <div className='ml-auto flex gap-2'>
           <button
             onClick={() => {
               localStorage.setItem('columnId', column._id)
@@ -40,16 +51,16 @@ export const BoardHeadingItem = ({ column }: { column: Column }) => {
           </button>
         </div>
       </div>
-      {/* {column?.cards?.length > 0 && (
-        <div className='mb-[14px]'>
-          {column.cards.toReversed().map(card => (
-            <BoardCardsItem
+      {column?.cards?.length > 0 && (
+        <div>
+          {filteredCards.map(card => (
+            <BoardCard
               key={card._id}
               card={card}
             />
           ))}
         </div>
-      )} */}
+      )}
     </>
   )
 }

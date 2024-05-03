@@ -49,9 +49,7 @@ export const AddColumnModal = () => {
   }
 
   return (
-    <Modal
-      size='sm'
-      modalTitle='Add column'>
+    <Modal modalTitle='Add column'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}

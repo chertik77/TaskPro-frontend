@@ -28,9 +28,7 @@ export const NewBoardModal = () => {
   }
 
   return (
-    <Modal
-      size='sm'
-      modalTitle='New board'>
+    <Modal modalTitle='New board'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}

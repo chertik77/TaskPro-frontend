@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { logout } from 'redux/slices/user/user-slice'
+import { logout } from 'redux/user.slice'
 
 import { Button } from 'components/ui'
 

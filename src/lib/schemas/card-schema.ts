@@ -1,19 +1,8 @@
 import type { Output } from 'valibot'
 
-import {
-  minLength,
-  minValue,
-  object,
-  picklist,
-  string,
-  toTrimmed
-} from 'valibot'
+import { minLength, object, picklist, string, toTrimmed } from 'valibot'
 
 const priorityList = ['Low', 'Medium', 'High', 'Without priority']
-const today = new Date()
-const yyyy = today.getFullYear()
-const mm = today.getMonth() + 1
-const dd = today.getDate()
 
 export const cardSchema = object({
   title: string([
@@ -26,7 +15,7 @@ export const cardSchema = object({
   ]),
   priority: picklist(priorityList),
   deadline: string([
-    minValue(`${yyyy}-${mm.toString().padStart(2, '0')}-${dd}`)
+    // minValue(`${yyyy}-${mm.toString().padStart(2, '0')}-${dd}`)
   ])
 })
 
