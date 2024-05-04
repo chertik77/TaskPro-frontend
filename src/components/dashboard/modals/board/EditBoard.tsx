@@ -59,8 +59,7 @@ export const EditBoardModal = () => {
         />
         <Button
           type='submit'
-          isAddIcon
-          iconName='plus'
+          isPlusIcon
           disabled={isPending}>
           {isPending ? 'Editing...' : 'Edit'}
         </Button>

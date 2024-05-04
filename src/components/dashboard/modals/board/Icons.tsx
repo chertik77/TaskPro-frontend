@@ -8,7 +8,7 @@ type IconsProps = {
 }
 
 export const Icons = (props: IconsProps) => (
-  <ul className='mt-[14px] flex gap-2'>
+  <ul className='mt-default flex gap-2'>
     {icons.map(({ id }, index) => (
       <li
         key={id}
@@ -29,7 +29,7 @@ export const Icons = (props: IconsProps) => (
             peer-checked:opacity-100 dark:peer-checked:text-white
             dark:peer-checked:opacity-100'>
           <svg className='size-[18px] stroke-current'>
-            <use xlinkHref={`/assets/icons.svg#${id}`}></use>
+            <use href={`/icons.svg#${id}`}></use>
           </svg>
         </label>
       </li>

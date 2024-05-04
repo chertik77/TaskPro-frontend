@@ -35,7 +35,7 @@ export const SidebarBoardsList = () => {
             )}>
             <div className='flex items-center gap-2'>
               <svg className='size-[18px] stroke-current'>
-                <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
+                <use href={`/icons.svg#${board.icon}`}></use>
               </svg>
               <p className='w-[115px] truncate'>{board?.title}</p>
             </div>

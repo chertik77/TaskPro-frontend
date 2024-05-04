@@ -21,9 +21,8 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
           className='mr-[34px] w-[334px]'>
           <BoardColumnsItem column={column} />
           <Button
-            isAddIcon
-            className='mt-[14px]'
-            iconName='plus'
+            isPlusIcon
+            className='mt-default'
             onClick={() => open(column._id)}>
             <span className='text-fs-14-lh-normal-fw-500'>
               Add another card

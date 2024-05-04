@@ -59,8 +59,7 @@ export const AddColumnModal = () => {
           className='mb-6'
         />
         <Button
-          isAddIcon
-          iconName='plus'
+          isPlusIcon
           disabled={!formState.isValid || isPending}>
           {isPending ? 'Loading...' : 'Add'}
         </Button>

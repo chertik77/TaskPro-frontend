@@ -67,7 +67,7 @@ export const AddCardModal = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Field
           errors={formState.errors}
-          className='mb-[14px]'
+          className='mb-default'
           inputName='title'
           type='text'
           placeholder='Title'
@@ -85,7 +85,7 @@ export const AddCardModal = () => {
           )}
         />
         {formState.errors.description && (
-          <p className='mb-[14px] text-red-600'>
+          <p className='mb-default text-red-600'>
             Please enter at least 2 characters.
           </p>
         )}
@@ -94,7 +94,7 @@ export const AddCardModal = () => {
             violet:text-black/50 dark:text-white/50'>
           Label color
         </p>
-        <div className='mb-[14px] flex gap-2'>
+        <div className='mb-default flex gap-2'>
           <RadioPriority
             color='bg-priority-low'
             value='Low'
@@ -134,8 +134,7 @@ export const AddCardModal = () => {
           )}
         </div>
         <Button
-          isAddIcon
-          iconName='plus'
+          isPlusIcon
           type='submit'
           disabled={isPending}>
           {isPending ? 'Adding...' : 'Add'}

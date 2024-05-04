@@ -30,14 +30,14 @@ export const SelectContent = () => {
         dark:bg-black-fourth'
       position='popper'>
       <div className='relative border-b border-black/10 dark:border-white/10'>
-        <h2 className='mb-[14px] text-fs-18-lh-normal-fw-500'>Filters</h2>
+        <h2 className='mb-default text-fs-18-lh-normal-fw-500'>Filters</h2>
       </div>
       <button type='button'>
-        <svg className='absolute right-[14px] top-[14px] size-[18px] stroke-black dark:stroke-white'>
+        <svg className='absolute right-default top-default size-[18px] stroke-black dark:stroke-white'>
           <use xlinkHref={`/assets/icons.svg#icon-close`} />
         </svg>
       </button>
-      <div className='my-[14px] flex justify-between text-fs-14-lh-normal-fw-500'>
+      <div className='my-default flex justify-between text-fs-14-lh-normal-fw-500'>
         <h3>Label color</h3>
         <button
           type='button'
