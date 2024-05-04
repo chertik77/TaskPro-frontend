@@ -21,7 +21,7 @@ export const BackgroundImages = (props: BackgroundImagesProps) => {
   }
 
   return (
-    <ul className='mb-10 mt-[14px] flex max-w-[280px] flex-wrap gap-2'>
+    <ul className='mb-10 mt-default flex max-w-[280px] flex-wrap gap-2'>
       {images.map(bg => (
         <li
           key={bg.id}

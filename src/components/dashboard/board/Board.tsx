@@ -1,8 +1,6 @@
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 
-import { Button } from 'components/ui'
-
 import { useGetBoardById } from 'hooks/board/useGetBoardById'
 
 import { cn } from 'lib'
@@ -39,7 +37,7 @@ export const Board = () => {
       </div>
       <div className='flex'>
         <BoardColumnsList columns={data?.columns} />
-        <Button
+        <button
           onClick={open}
           className='flex h-[56px] min-w-[335px] max-w-[335px] items-center gap-2 rounded-md bg-white
             px-[79px] text-fs-14-lh-normal-fw-500 violet:bg-white violet:text-black
@@ -47,10 +45,10 @@ export const Board = () => {
           <svg
             className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary
               violet:text-white dark:bg-white dark:text-black'>
-            <use xlinkHref='/assets/icons.svg#icon-pluss' />
+            <use xlinkHref='/icons.svg#icon-plus-create' />
           </svg>
           Add another column
-        </Button>
+        </button>
       </div>
     </div>
   )

@@ -73,7 +73,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           errors={errors}
           name={inputName}
           render={({ message }) => (
-            <p className='mb-[14px] text-red-500'>{message}</p>
+            <p className='mb-default text-red-500'>{message}</p>
           )}
         />
       </>

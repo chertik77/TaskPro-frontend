@@ -49,14 +49,13 @@ export const EditAvatar = () => {
       />
       <Button
         type='button'
-        isAddIcon
-        iconName='icon-plus-avatar'
+        isPlusIcon
         onClick={handleFileSelect}
         style={{ backgroundImage: `url(${avatarURL?.url})` }}
         className='relative size-[68px] rounded-lg bg-cover bg-center fill-black'>
         <div className='absolute bottom-[-12px] left-[22px] size-6 rounded-lg bg-brand p-[7px]'>
           <svg className='size-[10px]'>
-            <use xlinkHref={`/assets/icons.svg#icon-plus-avatar`} />
+            <use xlinkHref={`/icons.svg#icon-plus-avatar`} />
           </svg>
         </div>
       </Button>
