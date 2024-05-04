@@ -2,11 +2,12 @@ import type { NeedHelpSchemaFields } from 'lib/schemas'
 import type { AuthResponse } from 'types/auth.types'
 
 import { axiosWithAuth } from 'api'
+import { API_ENDPOINTS } from 'config/api-endpoints.config'
 
 class UserService {
   async changeUserTheme(theme: string) {
     const response = await axiosWithAuth.patch<AuthResponse>(
-      '/dashboard/theme',
+      API_ENDPOINTS.USER_THEME,
       { userTheme: theme }
     )
 
@@ -14,7 +15,7 @@ class UserService {
   }
 
   async askForHelp(data: NeedHelpSchemaFields) {
-    const response = await axiosWithAuth.post('/dashboard/help', data)
+    const response = await axiosWithAuth.post(API_ENDPOINTS.USER_HELP, data)
 
     return response.data
   }

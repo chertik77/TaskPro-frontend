@@ -18,15 +18,13 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
       {columns?.map(column => (
         <div
           key={column._id}
-          className='mr-[34px] w-[334px]'>
+          className='mr-[34px]'>
           <BoardColumnsItem column={column} />
           <Button
             isPlusIcon
             className='mt-default'
             onClick={() => open(column._id)}>
-            <span className='text-fs-14-lh-normal-fw-500'>
-              Add another card
-            </span>
+            Add another card
           </Button>
         </div>
       ))}

@@ -1,3 +1,4 @@
+import { themes } from 'constants/themes'
 import { ThemeProvider } from 'next-themes'
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
@@ -12,7 +13,7 @@ const DashboardPage = () => {
     <ThemeProvider
       attribute='class'
       defaultTheme={theme}
-      themes={['light', 'dark', 'violet']}
+      themes={themes}
       enableSystem={false}>
       <div
         className='mobile:grid-cols-[225px,1fr] desktop:grid desktop:h-dvh

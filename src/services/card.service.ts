@@ -1,11 +1,12 @@
 import type { CardSchemaFields } from 'lib/schemas'
 
 import { axiosWithAuth } from 'api'
+import { API_ENDPOINTS } from 'config/api-endpoints.config'
 
 class CardService {
   async addNewCard(boardId: string, columnId: string, data: CardSchemaFields) {
     const response = await axiosWithAuth.post(
-      `/dashboard/${boardId}/${columnId}`,
+      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`,
       data
     )
 
@@ -19,7 +20,7 @@ class CardService {
     newColumnId: string
   ) {
     const response = await axiosWithAuth.patch(
-      `/dashboard/${boardId}/${columnId}/${cardId}/${newColumnId}`
+      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}/${cardId}/${newColumnId}`
     )
 
     return response.data
@@ -32,7 +33,7 @@ class CardService {
     data: CardSchemaFields
   ) {
     const response = await axiosWithAuth.patch(
-      `/dashboard/${boardId}/${columnId}/${cardId}`,
+      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}/${cardId}`,
       data
     )
 

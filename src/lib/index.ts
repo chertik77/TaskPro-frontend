@@ -1,4 +1,5 @@
 import type { ClassValue } from 'clsx'
+import type { Card } from 'types/board.types'
 
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
@@ -16,4 +17,10 @@ export const getPriorityColor = (priority: string) => {
     default:
       return 'bg-black/30 dark:bg-white/30'
   }
+}
+
+export const getVisibleCards = (cards: Card[], filter: string) => {
+  if (!filter) return cards
+
+  return cards.filter(card => card.priority === filter)
 }

@@ -46,6 +46,7 @@ export const EditColumnModal = () => {
           className='mb-6'
         />
         <Button
+          type='submit'
           isPlusIcon
           disabled={!formState.isValid}>
           {formState.isValid ? 'Loading...' : 'Edit'}
