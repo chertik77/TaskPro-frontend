@@ -11,7 +11,7 @@ import { BoardCardPriority } from './BoardCardPriority'
 export const BoardCard = ({ card }: { card: Card }) => (
   <div
     className={cn(
-      `py-default h-[154px] w-[335px] rounded-lg border-l-4 bg-white pl-6 pr-5
+      `h-[154px] w-[335px] rounded-lg border-l-4 bg-white py-default pl-6 pr-5
       dark:bg-black`,
       card.priority === RadioPriority.WithoutPriority &&
         'border-black/30 dark:border-white/30',
@@ -25,7 +25,7 @@ export const BoardCard = ({ card }: { card: Card }) => (
         dark:text-white/50'>
       {card.description}
     </p>
-    <div className='pt-default flex items-end border-t-2 border-black/10 dark:border-white/10'>
+    <div className='flex items-end border-t-2 border-black/10 pt-default dark:border-white/10'>
       <BoardCardPriority priority={card.priority} />
       <BoardCardDeadline deadline={card.deadline} />
       <BoardCardActions card={card} />

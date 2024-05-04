@@ -5,7 +5,7 @@ import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
-import { DateSelectorPopover } from 'components/ui/calendar/DateSelectorPopover'
+import { DatePopover } from 'components/ui/calendar/DatePopover'
 
 import { useAppForm, useBoardByLocation } from 'hooks'
 
@@ -132,7 +132,7 @@ export const AddCardModal = () => {
             className='mb-[40px] '
             {...register('deadline')}
           /> */}
-          <DateSelectorPopover onChange={handleDeadlineChange} />
+          <DatePopover onChange={handleDeadlineChange} />
           {formState.errors.deadline && (
             <span className=' absolute left-0 top-5 text-red-600'>
               Wrong date!

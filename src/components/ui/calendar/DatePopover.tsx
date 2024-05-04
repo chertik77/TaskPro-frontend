@@ -5,12 +5,12 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 
 import { Calendar } from './Calendar'
 
-type DateSelectorPopoverProps = {
+type DateSelectorProps = {
   onChange: (date: string) => void
 }
 
-export const DateSelectorPopover = ({ onChange }: DateSelectorPopoverProps) => {
-  const [selected, setSelected] = useState<Date | undefined>()
+export const DatePopover = ({ onChange }: DateSelectorProps) => {
+  const [selected, setSelected] = useState<Date>(() => new Date())
 
   const handleDayClick = (date: Date) => {
     setSelected(date)
@@ -19,11 +19,9 @@ export const DateSelectorPopover = ({ onChange }: DateSelectorPopoverProps) => {
   }
 
   const formatTodayDate = (date: Date) => {
-    if (isToday(date)) {
-      return `Today, ${format(date, 'MMMM d')}`
-    } else {
-      return format(date, 'y-MM-dd')
-    }
+    return isToday(date)
+      ? `Today, ${format(date, 'MMMM d')}`
+      : format(date, 'dd-MM-y')
   }
 
   return (
@@ -35,7 +33,6 @@ export const DateSelectorPopover = ({ onChange }: DateSelectorPopoverProps) => {
               violet:text-brand-secondary'
             size={12}
             type='text'
-            placeholder={formatTodayDate(new Date())}
             value={formatTodayDate(selected || new Date())}
             readOnly
           />
@@ -44,15 +41,11 @@ export const DateSelectorPopover = ({ onChange }: DateSelectorPopoverProps) => {
       </Trigger>
       <Portal>
         <Content style={{ zIndex: 1000 }}>
-          <div
-            role='dialog'
-            aria-label='DayPicker calendar'>
-            <Calendar
-              mode='single'
-              selected={selected}
-              onDayClick={handleDayClick}
-            />
-          </div>
+          <Calendar
+            mode='single'
+            selected={selected}
+            onDayClick={handleDayClick}
+          />
         </Content>
       </Portal>
     </Popover>
