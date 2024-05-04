@@ -848,6 +848,11 @@
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@popperjs/core@^2.11.8":
+  version "2.11.8"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
+  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
+
 "@radix-ui/number@1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@radix-ui/number/-/number-1.0.1.tgz"
@@ -3723,6 +3728,11 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-fast-compare@^3.0.1:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
+  integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
+
 react-hook-form-persist@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/react-hook-form-persist/-/react-hook-form-persist-3.0.0.tgz"
@@ -3747,6 +3757,14 @@ react-modal-state@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/react-modal-state/-/react-modal-state-1.1.1.tgz"
   integrity sha512-5aZOSwaJgTKUTtMp6l/ziBlQ9ydhm9Y5axUC6HBZxhArWrJ5BGluSLeSZ4KX6l9VGObh/fbwbCLMpUq+C2kFyA==
+
+react-popper@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.3.0.tgz#17891c620e1320dce318bad9fede46a5f71c70ba"
+  integrity sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==
+  dependencies:
+    react-fast-compare "^3.0.1"
+    warning "^4.0.2"
 
 react-redux@^9.1.0:
   version "9.1.0"
@@ -4621,6 +4639,13 @@ vite@^5.0.8:
     rollup "^4.2.0"
   optionalDependencies:
     fsevents "~2.3.3"
+
+warning@^4.0.2:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"

@@ -1,9 +1,11 @@
 import type { Card } from 'redux/slices/board/board-types'
 
-import { format, isToday, parseISO } from 'date-fns'
+import { isToday, parseISO } from 'date-fns'
 import { useModal } from 'react-modal-state'
 import { useParams } from 'react-router-dom'
 import { useDeleteCardMutation } from 'redux/api/dashboard/card'
+
+import DatePickerDialog from 'components/ui/field/Field copy'
 
 import { CardColumnSelect } from './CardColumnSelect'
 
@@ -80,9 +82,10 @@ export const BoardCardsItem = ({ card }: { card: Card }) => {
           <p className='pb-[4px] text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
             Deadline
           </p>
-          <p className='text-fs-10-lh-normal-fw-400 text-black dark:text-white'>
-            {format(date, 'MM/dd/yyyy')}
-          </p>
+          {/* <p className='text-fs-10-lh-normal-fw-400 text-black dark:text-white'>
+            {format(date, 'MM/dd/yyyy')};
+          </p> */}
+          <DatePickerDialog />
         </div>
         <div className='ml-auto flex gap-[8px]'>
           {isToday(date) && (
