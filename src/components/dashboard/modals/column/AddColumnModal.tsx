@@ -30,6 +30,8 @@ export const AddColumnModal = () => {
     }
   })
 
+  console.log(formState.errors)
+
   const submit = (data: ColumnSchemaFields) => {
     mutate(data)
     // addNewColumn({ boardId, body: data })
@@ -59,8 +61,9 @@ export const AddColumnModal = () => {
           className='mb-6'
         />
         <Button
+          type='submit'
           isPlusIcon
-          disabled={!formState.isValid || isPending}>
+          disabled={isPending}>
           {isPending ? 'Loading...' : 'Add'}
         </Button>
       </form>
