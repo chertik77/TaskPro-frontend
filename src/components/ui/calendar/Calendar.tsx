@@ -9,8 +9,8 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
     showOutsideDays
     fixedWeeks
     disabled={date => date < new Date()}
-    className='rounded-lg border border-brand p-[18px] violet:border-brand-secondary
-      violet:bg-white'
+    className='rounded-lg border border-brand bg-white p-[18px] violet:border-brand-secondary
+      dark:bg-black-third'
     classNames={{
       caption:
         'flex justify-center relative items-center border-b border-black/20 dark:border-white/20 pb-[14px]',
