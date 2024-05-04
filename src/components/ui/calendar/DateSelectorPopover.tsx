@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { format, isToday } from 'date-fns'
 import { MdKeyboardArrowDown } from 'react-icons/md'

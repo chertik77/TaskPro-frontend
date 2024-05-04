@@ -19,8 +19,8 @@ export const BoardCard = ({ card }: { card: Card }) => {
   return (
     <div
       className={cn(
-        `h-[154px] w-[334px] rounded-[8px] border-l-[4px] bg-white
-        py-[14px] pl-[24px] pr-[20px] dark:bg-black`,
+        `h-[154px] w-[334px] rounded-[8px] border-l-[4px] bg-white py-[14px] pl-[24px]
+        pr-[20px] dark:bg-black`,
         card.priority === 'Without priority' &&
           'border-black/30 dark:border-white/30',
         card.priority === 'High' && 'border-brand',
