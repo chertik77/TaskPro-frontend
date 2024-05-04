@@ -7,7 +7,7 @@ import { Button } from 'components/ui/Button'
 
 import { useDeleteCard } from 'hooks/card/useDeleteCard'
 
-import { CardColumnSelect } from './CardColumnSelect'
+import { BoardCardColumnSelect } from './BoardCardColumnSelect'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const isTodayDeadline = isToday(card.deadline)
@@ -29,7 +29,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
           <use href='/icons.svg#icon-bell'></use>
         </svg>
       )}
-      <CardColumnSelect card={card} />
+      <BoardCardColumnSelect card={card} />
       <Button
         onClick={() => open(card)}
         iconName='pencil'
