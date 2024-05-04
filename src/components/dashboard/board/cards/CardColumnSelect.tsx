@@ -18,28 +18,28 @@ export const CardColumnSelect = ({ card }: { card: Card }) => {
     <Select
       onValueChange={mutate}
       disabled={columns && columns.length <= 1}>
-      <Select.Trigger className='flex items-center gap-1 bg-transparent focus:outline-none disabled:hidden'>
+      <Select.Trigger className='disabled:hidden'>
         <svg
-          className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
-            hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
+          className='size-4 stroke-black/50 hocus:stroke-black dark:stroke-white/50
+            dark:hocus:stroke-white'>
           <use href='/icons.svg#icon-arrow'></use>
         </svg>
       </Select.Trigger>
       <Select.Content
-        className='w-min rounded-lg border border-brand bg-white-primary p-[18px]
+        className='w-min rounded-lg border border-brand bg-white-primary p-[18px] shadow-select
+          data-[state=open]:animate-in data-[state=closed]:animate-out
+          data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0
+          data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95
           violet:border-white-gray-secondary dark:bg-black-fourth'>
         {filteredColumns?.map(column => (
           <Item
             key={column._id}
-            className='svg-[state=checked]:stroke-brand mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400
-              text-black outline-none data-[state=checked]:text-brand
-              violet:data-[state=checked]:text-brand-secondary dark:text-white/30
-              dark:data-[state=checked]:text-brand'
+            className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black dark:text-white/30'
             value={column._id}>
             <ItemText>
-              <div className='flex items-center justify-between gap-2'>
-                <span className='w-16 truncate'>{column.title}</span>
-                <svg className='inline-block size-[16px] stroke-black/50 dark:stroke-white/50'>
+              <div className='flex gap-2'>
+                <span className='w-20 truncate'>{column.title}</span>
+                <svg className='size-4 stroke-black/50 dark:stroke-white/50'>
                   <use href='/icons.svg#icon-arrow'></use>
                 </svg>
               </div>

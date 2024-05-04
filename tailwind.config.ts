@@ -19,6 +19,9 @@ export default {
       'welcome-page-gradient':
         'linear-gradient(180deg, #fff 25%, #BEDBB0 92.19%)'
     },
+    boxShadow: {
+      select: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)'
+    },
     extend: {
       spacing: {
         default: '14px'

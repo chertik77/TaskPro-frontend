@@ -10,15 +10,6 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   isPlusIcon?: boolean
 }
 
-//  className={cn(
-//         `violet:hocus:bg-#7B7EDE h-[49px] w-full rounded-lg bg-brand stroke-white
-//         text-black hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white`,
-//         isSmallIcon &&
-//           `text-black opacity-50 hocus:text-brand-hover
-//           violet:hocus:text-brand-secondary-hover`,
-//         className
-//       )}
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { iconClassName, className, isPlusIcon, children, iconName, ...props },
@@ -29,8 +20,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       className={cn(
         !iconName &&
-          `violet:hocus:bg-#7B7EDE h-[49px] w-full rounded-lg bg-brand stroke-white
-          text-black hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white`,
+          `h-[49px] w-full rounded-lg bg-brand stroke-white text-fs-14-lh-normal-fw-500
+          text-black disabled:cursor-not-allowed disabled:opacity-50 hocus:bg-brand-hover
+          violet:bg-brand-secondary violet:text-white
+          violet:hocus:bg-brand-secondary-hover`,
+        iconName && 'hocus:*:stroke-black dark:hocus:*:stroke-white-primary',
         isPlusIcon && 'flex items-center justify-center gap-2',
         className
       )}
@@ -38,7 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       {iconName && (
         <svg
           className={cn(
-            'size-4 stroke-black/50 violet:stroke-white-primary dark:stroke-white-primary/50',
+            'size-4 stroke-black/50 dark:stroke-white-primary/50',
             iconClassName
           )}>
           <use href={`/icons.svg#icon-${iconName}`} />
@@ -46,12 +40,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {isPlusIcon && (
         <>
-          <svg className={cn('size-7', iconClassName)}>
-            <use href={`/icons.svg#icon-plus`} />
+          <svg className='size-7'>
+            <use href='/icons.svg#icon-plus' />
           </svg>
           {children}
         </>
       )}
+      {!iconName && !isPlusIcon && children}
     </button>
   )
 )
