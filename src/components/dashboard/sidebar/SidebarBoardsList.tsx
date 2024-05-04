@@ -14,7 +14,6 @@ export const SidebarBoardsList = () => {
     queryKey: ['boards'],
     queryFn: () => boardService.getAllBoards()
   })
-
   return (
     <ul
       className={cn(
