@@ -14,6 +14,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   }
 
   return (
+    <div className='flex gap-5'>
     <div className='flex items-center gap-2'>
       <button onClick={handleEdit}>
         <svg
@@ -31,6 +32,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
           <use xlinkHref={`/assets/icons.svg#icon-trash-btn`}></use>
         </svg>
       </button>
+      </div>
       <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white'></div>
     </div>
   )
