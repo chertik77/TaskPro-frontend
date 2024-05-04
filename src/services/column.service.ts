@@ -1,8 +1,10 @@
+import type { ColumnSchemaFields } from 'lib/schemas'
+
 import { axiosWithAuth } from 'api'
 import { API_ENDPOINTS } from 'config/api-endpoints.config'
 
 class ColumnService {
-  async addNewColumn(boardId: string, data: { title: string }) {
+  async addNewColumn(boardId: string, data: ColumnSchemaFields) {
     const response = await axiosWithAuth.post(
       `${API_ENDPOINTS.DASHBOARD}/${boardId}`,
       data
