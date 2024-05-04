@@ -46,7 +46,7 @@ export const HeaderThemeSelect = () => {
         <Select.Content
           position='popper'
           className='z-10 w-[100px] rounded-lg border border-brand bg-white-primary pb-default
-            pl-[18px] pr-11 pt-[18px] data-[state=open]:animate-in
+            pl-[18px] pr-11 pt-[18px] shadow-select data-[state=open]:animate-in
             data-[state=closed]:animate-out data-[state=closed]:fade-out-0
             data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95
             data-[state=open]:zoom-in-95 violet:border-white-gray-secondary

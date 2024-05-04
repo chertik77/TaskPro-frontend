@@ -1,4 +1,4 @@
-import type { Card, Column } from 'types/board.types'
+import type { Column } from 'types/board.types'
 
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
@@ -8,13 +8,9 @@ import { Button } from 'components/ui/Button'
 
 import { useDeleteColumn } from 'hooks/column/useDeleteColumn'
 
+import { getVisibleCards } from 'lib'
+
 import { BoardCard } from '../cards/BoardCard'
-
-const getVisibleCards = (cards: Card[], filter: string) => {
-  if (!filter) return cards
-
-  return cards.filter(card => card.priority === filter)
-}
 
 export const BoardColumnsItem = ({ column }: { column: Column }) => {
   const filter = useSelector(selectFilter)
@@ -34,9 +30,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
         <div className='ml-auto flex gap-2'>
           <Button
             onClick={() => {
-              localStorage.setItem('columnId', column._id)
-              localStorage.setItem('column-title', column.title)
-              open()
+              open({ columnId: column._id, columnTitle: column.title })
             }}
             iconName='pencil'
           />
