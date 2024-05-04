@@ -10,7 +10,7 @@ export const BurgerModal = ({ children }: PropsWithChildren) => {
     modal: {
       padding: 0,
       margin: 0,
-      maxWidth: 224,
+      maxWidth: 225,
       display: 'block'
     }
   }

@@ -16,7 +16,8 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   }
 
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex gap-5'>
+      <div className='flex items-center gap-2'>
       <Button
         onClick={handleEdit}
         iconName='pencil'
@@ -27,6 +28,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
         iconName='trash'
         iconClassName='violet:stroke-white/50'
       />
+      </div>
       <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white'></div>
     </div>
   )
