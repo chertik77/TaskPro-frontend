@@ -1,8 +1,9 @@
 import tailwindScrollbar from 'tailwind-scrollbar'
 import plugin from 'tailwindcss/plugin'
+import { Config } from 'tailwindcss/types/config'
 import { createThemes } from 'tw-colors'
 
-const config = {
+export default {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
@@ -19,6 +20,9 @@ const config = {
         'linear-gradient(180deg, #fff 25%, #BEDBB0 92.19%)'
     },
     extend: {
+      spacing: {
+        default: '14px'
+      },
       screens: {
         adaptive: { max: '375px' },
         mobile: '375px',
@@ -127,6 +131,4 @@ const config = {
     }),
     createThemes({ violet: {} })
   ]
-}
-
-export default config
+} satisfies Config

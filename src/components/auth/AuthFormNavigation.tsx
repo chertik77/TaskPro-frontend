@@ -4,7 +4,7 @@ export const AuthFormNavigation = () => (
   <div className='mb-10 text-fs-18-lh-normal-fw-500'>
     <NavLink
       to='/auth/signup'
-      className='mr-[14px] text-white/30 aria-[current=page]:text-white'>
+      className='mr-default text-white/30 aria-[current=page]:text-white'>
       Registration
     </NavLink>
     <NavLink

@@ -1,14 +1,10 @@
-import { Icon, Item, ItemText, Value } from '@radix-ui/react-select'
+import * as Select from '@radix-ui/react-select'
+import { themes } from 'constants/themes'
 import { useTheme } from 'next-themes'
-import { FaChevronDown } from 'react-icons/fa'
 import { updateUser } from 'redux/user.slice'
-
-import { Select } from 'components/ui/Select'
 
 import { useAppDispatch } from 'hooks'
 import { useUpdateUser } from 'hooks/user/useUpdateUser'
-
-import themeItems from 'lib/json/theme-items.json'
 
 export const HeaderThemeSelect = () => {
   const dispatch = useAppDispatch()
@@ -23,34 +19,56 @@ export const HeaderThemeSelect = () => {
   }
 
   return (
-    <Select
+    <Select.Root
       onValueChange={handleThemeChange}
       defaultValue={theme}>
-      <Select.Trigger className='flex items-center gap-1 bg-transparent focus:outline-none'>
-        <Value placeholder='Theme' />
-        <Icon>
-          <FaChevronDown />
-        </Icon>
+      <Select.Trigger className='flex items-center gap-1'>
+        <Select.Value placeholder='Theme' />
+        <Select.Icon>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='16'
+            height='17'
+            fill='none'>
+            <path
+              d='m4 6.5 4 4 4-4'
+              className='stroke-black dark:stroke-white'
+              stroke='#161616'
+              strokeOpacity='.8'
+              strokeWidth='1.5'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </Select.Icon>
       </Select.Trigger>
-      <Select.Content
-        className='z-10 w-[100px] rounded-lg border border-brand bg-white-primary pb-[14px]
-          pl-[18px] pr-11 pt-[18px] violet:border-white-gray-secondary
-          dark:bg-black-fourth'>
-        {themeItems.map(({ value, text }) => (
-          <Item
-            key={value}
-            className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
-              data-[state=checked]:text-brand violet:data-[state=checked]:text-brand-secondary
-              dark:text-white/30 dark:data-[state=checked]:text-brand'
-            value={value}>
-            <ItemText>
-              <button className='hocus:text-brand violet:hocus:text-brand-secondary'>
-                {text}
-              </button>
-            </ItemText>
-          </Item>
-        ))}
-      </Select.Content>
-    </Select>
+      <Select.Portal>
+        <Select.Content
+          position='popper'
+          className='z-10 w-[100px] rounded-lg border border-brand bg-white-primary pb-default
+            pl-[18px] pr-11 pt-[18px] data-[state=open]:animate-in
+            data-[state=closed]:animate-out data-[state=closed]:fade-out-0
+            data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95
+            data-[state=open]:zoom-in-95 violet:border-white-gray-secondary
+            dark:bg-black-fourth'>
+          {themes.map(theme => (
+            <Select.Item
+              key={theme}
+              className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
+                data-[state=checked]:text-brand hocus:text-brand
+                violet:data-[state=checked]:text-brand-secondary
+                violet:hocus:text-brand-secondary dark:text-white/30
+                dark:data-[state=checked]:text-brand dark:hocus:text-brand'
+              value={theme}>
+              <Select.ItemText>
+                <button type='button'>
+                  {theme.charAt(0).toUpperCase() + theme.slice(1)}
+                </button>
+              </Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Content>
+      </Select.Portal>
+    </Select.Root>
   )
 }

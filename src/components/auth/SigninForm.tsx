@@ -27,7 +27,7 @@ export const SigninForm = () => {
         {...register('email')}
         placeholder='Enter your email'
         inputName='email'
-        className='mb-[14px] text-white'
+        className='mb-default text-white'
         errors={formState.errors}
       />
       <Field

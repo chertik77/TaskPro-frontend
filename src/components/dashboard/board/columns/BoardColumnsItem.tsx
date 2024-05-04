@@ -4,6 +4,8 @@ import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { selectFilter } from 'redux/user.slice'
 
+import { Button } from 'components/ui/Button'
+
 import { useDeleteColumn } from 'hooks/column/useDeleteColumn'
 
 import { BoardCard } from '../cards/BoardCard'
@@ -26,33 +28,26 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
   return (
     <>
       <div
-        className='mb-[14px] flex h-[56px] min-w-[335px] rounded-lg bg-white px-5 py-[18px]
+        className='mb-default flex h-[56px] min-w-[335px] rounded-lg bg-white px-5 py-[18px]
           dark:bg-black'>
         <h3 className='text-black dark:text-white'>{column.title}</h3>
         <div className='ml-auto flex gap-2'>
-          <button
+          <Button
             onClick={() => {
               localStorage.setItem('columnId', column._id)
               localStorage.setItem('column-title', column.title)
               open()
-            }}>
-            <svg
-              className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
-                hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
-              <use xlinkHref='/assets/icons.svg#icon-pencil-btn'></use>
-            </svg>
-          </button>
-          <button onClick={() => mutate()}>
-            <svg
-              className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
-                hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
-              <use xlinkHref='/assets/icons.svg#icon-trash-btn'></use>
-            </svg>
-          </button>
+            }}
+            iconName='pencil'
+          />
+          <Button
+            onClick={() => mutate()}
+            iconName='trash'
+          />
         </div>
       </div>
       {column?.cards?.length > 0 && (
-        <div>
+        <div className='space-y-[8px]'>
           {filteredCards.map(card => (
             <BoardCard
               key={card._id}
@@ -64,26 +59,3 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
     </>
   )
 }
-
-// {
-//   column?.cards?.length > 0 && (
-//     <div className='mb-[14px]'>
-//       {!filter
-//         ? column.cards.toReversed().map(card => (
-//             <BoardCardsItem
-//               key={card._id}
-//               card={card}
-//             />
-//           ))
-//         : column.cards
-//             .toReversed()
-//             .filter(card => card.priority === filter)
-//             .map(card => (
-//               <BoardCardsItem
-//                 key={card._id}
-//                 card={card}
-//               />
-//             ))}
-//     </div>
-//   )
-// }

@@ -22,7 +22,7 @@ export const CardColumnSelect = ({ card }: { card: Card }) => {
         <svg
           className='size-[16px] stroke-black/50 transition duration-300 ease-in-out
             hocus:stroke-black dark:stroke-white/50 dark:hocus:stroke-white'>
-          <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
+          <use href='/icons.svg#icon-arrow'></use>
         </svg>
       </Select.Trigger>
       <Select.Content
@@ -40,7 +40,7 @@ export const CardColumnSelect = ({ card }: { card: Card }) => {
               <div className='flex items-center justify-between gap-2'>
                 <span className='w-16 truncate'>{column.title}</span>
                 <svg className='inline-block size-[16px] stroke-black/50 dark:stroke-white/50'>
-                  <use xlinkHref='/assets/icons.svg#icon-arrow-btn'></use>
+                  <use href='/icons.svg#icon-arrow'></use>
                 </svg>
               </div>
             </ItemText>

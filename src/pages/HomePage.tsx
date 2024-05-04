@@ -19,9 +19,9 @@ const HomePage = () => (
         loading='lazy'
       />
     </picture>
-    <div className='mt-6 flex items-center gap-[14px]'>
+    <div className='mt-6 flex items-center gap-default'>
       <svg className='size-10 tablet:size-12'>
-        <use xlinkHref='/assets/icons.svg#icon-logo' />
+        <use href='/icons.svg#icon-logo' />
       </svg>
       <h1 className='text-fs-28-lh-normal-fw-600 text-black tablet:text-fs-40-lh-normal-fw-600'>
         Task Pro
@@ -35,13 +35,13 @@ const HomePage = () => (
     </p>
     <Link
       to='/auth/signup'
-      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-[14px] text-center
+      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-default text-center
         text-fs-14-lh-normal-fw-500 text-white adaptive:w-full'>
       Registration
     </Link>
     <Link
       to='/auth/signin'
-      className='mt-[14px] text-black'>
+      className='mt-default text-black'>
       Log In
     </Link>
   </div>

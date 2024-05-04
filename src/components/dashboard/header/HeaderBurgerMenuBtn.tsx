@@ -8,7 +8,7 @@ export const HeaderBurgerMenuBtn = () => {
       className='desktop:hidden'
       onClick={open}>
       <svg className='size-6 stroke-black dark:stroke-white'>
-        <use xlinkHref='/assets/icons.svg#icon-menu' />
+        <use href='/icons.svg#icon-menu' />
       </svg>
     </button>
   )

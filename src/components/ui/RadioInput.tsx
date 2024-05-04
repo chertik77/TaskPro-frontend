@@ -13,7 +13,7 @@ export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
   <RadioGroup.Item
     checked={checked}
     className={cn(
-      'size-[14px] rounded-full outline-none',
+      'size-[14px] rounded-full outline-none focus:scale-125',
       getPriorityColor(value as RadioPriority)
     )}
     value={value as RadioPriority}>

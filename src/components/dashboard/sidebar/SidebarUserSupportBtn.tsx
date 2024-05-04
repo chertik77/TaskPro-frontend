@@ -1,13 +1,11 @@
 import { useModal } from 'react-modal-state'
 
-import { Button } from 'components/ui'
-
 export const SidebarUserSupportBtn = () => {
   const { open } = useModal('need-help-modal')
 
   return (
     <div
-      className='h-[238px] rounded-lg bg-white-gray p-[14px] violet:bg-gray-secondary
+      className='h-[238px] rounded-lg bg-white-gray p-default violet:bg-gray-secondary
         dark:bg-black-third tablet:h-[272px] tablet:p-5 desktop:mx-6'>
       <div className='mb-3.5'>
         <picture>
@@ -26,20 +24,16 @@ export const SidebarUserSupportBtn = () => {
         , check out our support resources or reach out to our customer support
         team.
       </p>
-      <div className='flex items-center gap-2'>
-        <Button
-          onClick={open}
-          className='mb-4 hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third
-            dark:text-white-primary dark:hocus:text-brand-hover'
-          isSmallIcon
-          iconName='help'>
-          <span
-            className='text-fs-12-lh-normal-fw-400 violet:text-white violet:hocus:text-brand-third
-              dark:text-white dark:hocus:text-brand-hover'>
-            Need help?
-          </span>
-        </Button>
-      </div>
+      <button
+        onClick={open}
+        className='flex text-fs-12-lh-normal-fw-400 hocus:text-brand-hover violet:text-white
+          violet:hocus:text-brand-third dark:text-white-primary
+          dark:hocus:text-brand-hover'>
+        <svg>
+          <use href={`/icons.svg#icon-help`} />
+        </svg>
+        Need help?
+      </button>
     </div>
   )
 }

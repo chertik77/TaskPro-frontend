@@ -1,7 +1,5 @@
 import { useModal } from 'react-modal-state'
 
-import { Button } from 'components/ui'
-
 export const SidebarCreateBoardBtn = () => {
   const { open } = useModal('new-board-modal')
 
@@ -19,15 +17,16 @@ export const SidebarCreateBoardBtn = () => {
           Create a new board
         </p>
         <div className='flex items-center justify-center gap-2'>
-          <Button
+          <button
+            type='button'
             className='flex h-9 w-10 items-center justify-center rounded-lg bg-brand text-black
               hocus:bg-brand-hover violet:bg-brand-third violet:text-white
               violet:hocus:bg-[#979CEA]'
             onClick={open}>
             <svg className='size-5'>
-              <use xlinkHref={`/assets/icons.svg#icon-plus-min`} />
+              <use href='/icons.svg#icon-plus-min' />
             </svg>
-          </Button>
+          </button>
         </div>
       </div>
     </div>
