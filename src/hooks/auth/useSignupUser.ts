@@ -1,4 +1,3 @@
-import type { AxiosError } from 'axios'
 import type { SignupSchemaFields } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 
@@ -18,10 +17,8 @@ export const useSignupUser = (reset: UseFormReset<SignupSchemaFields>) =>
       )
     },
     onError(error, variables) {
-      const axiosError = error as AxiosError
-
       toast.error(
-        axiosError.response?.status === 409
+        error.response?.status === 409
           ? `User with email - ${variables.email} already exists. Please try different email.`
           : 'Oops! Something went wrong during registration. Please check your details and try again.'
       )

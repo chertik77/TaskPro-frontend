@@ -115,6 +115,7 @@ const config = {
   },
   plugins: [
     require('tailwindcss-text-fill'),
+    require('tailwindcss-animate'),
     tailwindScrollbar({ nocompatible: true }),
     plugin(({ addComponents, addVariant }) => {
       addVariant('hocus', ['&:hover', '&:focus']),

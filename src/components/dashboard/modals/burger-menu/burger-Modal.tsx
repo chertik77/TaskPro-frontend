@@ -1,9 +1,9 @@
-import type { ModalProps } from '../../../ui/modal/modal-types'
+import type { PropsWithChildren } from 'react'
 
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'
 
-export const BurgerModal = ({ children }: ModalProps) => {
+export const BurgerModal = ({ children }: PropsWithChildren) => {
   const { isOpen, close } = useModalInstance()
 
   const customStyles = {

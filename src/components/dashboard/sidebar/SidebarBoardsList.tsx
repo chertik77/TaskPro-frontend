@@ -1,28 +1,31 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { useGetAllBoardsQuery } from 'redux/api/dashboard/board'
-import { selectBoard } from 'redux/slices/board/board-slice'
+import { useQuery } from '@tanstack/react-query'
+import { Link, useParams } from 'react-router-dom'
+
+import { boardService } from 'services/board.service'
 
 import { cn } from 'lib'
 
-import { SideBarBoardsItem } from './SideBarBoardsItem'
+import { SidebarListActiveItem } from './SidebarListActiveItem'
 
 export const SidebarBoardsList = () => {
   const { boardId } = useParams()
-  const board = useSelector(selectBoard)
-  const { data, refetch } = useGetAllBoardsQuery(undefined)
 
-  useEffect(() => {
-    refetch()
-  }, [board, refetch])
+  const { data } = useQuery({
+    queryKey: ['boards'],
+    queryFn: () => boardService.getAllBoards()
+  })
 
   return (
-    <div className={cn('mb-20', data?.data?.length === 0 ? 'mb-auto' : null)}>
-      <ul className='flex flex-col mobile:text-fs-14-lh-1.28-fw-400'>
-        {data?.data?.map(board => (
+    <ul
+      className={cn(
+        'mb-20 flex flex-col mobile:text-fs-14-lh-1.28-fw-400',
+        data?.length === 0 && 'mb-auto'
+      )}>
+      {data?.map(board => (
+        <Link
+          to={`/dashboard/${board._id}`}
+          key={board._id}>
           <li
-            key={board._id}
             className={cn(
               `flex h-[61px] cursor-pointer items-center gap-10 text-black/50 transition
               duration-300 ease-in-out violet:text-white/50 dark:text-white/50 desktop:pl-6`,
@@ -30,13 +33,16 @@ export const SidebarBoardsList = () => {
                 `border-1 border-r-dark bg-white-gray text-black violet:bg-white/50
                 violet:text-white dark:bg-black-third dark:text-white`
             )}>
-            <SideBarBoardsItem
-              board={board}
-              boards={data?.data}
-            />
+            <div className='flex items-center gap-2'>
+              <svg className='size-[18px] stroke-current'>
+                <use xlinkHref={`/assets/icons.svg#${board.icon}`}></use>
+              </svg>
+              <p className='w-[115px] truncate'>{board?.title}</p>
+            </div>
+            {board._id === boardId && <SidebarListActiveItem board={board} />}
           </li>
-        ))}
-      </ul>
-    </div>
+        </Link>
+      ))}
+    </ul>
   )
 }

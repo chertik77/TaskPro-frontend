@@ -15,7 +15,7 @@ export const CreateBoard = () => {
           className='text-brand hocus:cursor-pointer hocus:text-brand-hover
             violet:text-brand-secondary violet:hocus:text-brand-third'>
           to create a board
-        </span>{' '}
+        </span>
         to visualize and track all the necessary tasks and milestones. This
         board serves as a powerful tool to organize the workflow and ensure
         effective collaboration among team members.

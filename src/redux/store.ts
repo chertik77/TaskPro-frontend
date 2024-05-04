@@ -1,13 +1,10 @@
-import type { UserInitialState } from './slices/user/user-types'
+import type { UserInitialState } from './user.slice'
 
 import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import { userApi } from './api/user'
-import { boardReducer } from './slices/board/board-slice'
-import { userReducer } from './slices/user/user-slice'
+import { userReducer } from './user.slice'
 
 const persistConfig = {
   key: 'root',
@@ -17,17 +14,11 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer<UserInitialState>(persistConfig, userReducer),
-    board: boardReducer,
-    [userApi.reducerPath]: userApi.reducer
+    user: persistReducer<UserInitialState>(persistConfig, userReducer)
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(
-      userApi.middleware
-    )
+    getDefaultMiddleware({ serializableCheck: false })
 })
-
-setupListeners(store.dispatch)
 
 export const persistor = persistStore(store)
 export type RootState = ReturnType<typeof store.getState>

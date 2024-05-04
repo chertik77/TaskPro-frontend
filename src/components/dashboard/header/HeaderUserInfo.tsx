@@ -1,6 +1,6 @@
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
-import { selectUser } from 'redux/slices/user/user-slice'
+import { selectUser } from 'redux/user.slice'
 
 export const HeaderUserInfo = () => {
   const { name, avatarURL } = useSelector(selectUser)

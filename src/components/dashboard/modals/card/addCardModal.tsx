@@ -1,46 +1,65 @@
 import type { CardSchemaFields } from 'lib/schemas'
 
-import { useModal } from 'react-modal-state'
-import { useAddNewCardMutation } from 'redux/api/dashboard/card'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
 
 import { useAppForm, useBoardByLocation } from 'hooks'
 
+import { cardService } from 'services/card.service'
+
 import { cn } from 'lib'
 import { cardSchema } from 'lib/schemas'
 
 export const AddCardModal = () => {
   const boardId = useBoardByLocation()
-  const [addNewCard, { isLoading }] = useAddNewCardMutation()
+
+  const { data: column } = useModalInstance<string>()
+
   const { close } = useModal('add-card-modal')
-  const { register, handleSubmit, reset, formState } =
-    useAppForm<CardSchemaFields>(cardSchema, {
-      defaultValues: {
-        priority: 'Without priority'
-      }
-    })
+
+  const { register, handleSubmit, formState } = useAppForm<CardSchemaFields>(
+    cardSchema,
+    { defaultValues: { priority: 'Without priority' } }
+  )
+
+  const queryClient = useQueryClient()
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['card'],
+    mutationFn: (data: CardSchemaFields) =>
+      cardService.addNewCard(boardId!, column, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['board'] })
+      close()
+      toast.success(
+        `The task has been created successfully. Let's start working on it.`
+      )
+    }
+  })
 
   const onSubmit = (data: CardSchemaFields) => {
-    addNewCard({
-      boardId,
-      body: data,
-      columnId: localStorage.getItem('columnId')
-    })
-      .unwrap()
-      .then(() => {
-        toast.success(
-          `The task has been created successfully. Let's start working on it.`
-        )
-        close()
-        reset()
-      })
-      .catch(() => {
-        toast.error(
-          'Something went wrong while adding the card. Our team is already working on this issue. Please bear with us.'
-        )
-      })
+    mutate(data)
+    // addNewCard({
+    //   boardId,
+    //   body: data,
+    //   columnId: localStorage.getItem('columnId')
+    // })
+    //   .unwrap()
+    //   .then(() => {
+    //     toast.success(
+    //       `The task has been created successfully. Let's start working on it.`
+    //     )
+    //     close()
+    //     reset()
+    //   })
+    //   .catch(() => {
+    //     toast.error(
+    //       'Something went wrong while adding the card. Our team is already working on this issue. Please bear with us.'
+    //     )
+    //   })
   }
 
   return (
@@ -118,8 +137,8 @@ export const AddCardModal = () => {
           isAddIcon
           iconName='plus'
           type='submit'
-          disabled={!formState.isValid || isLoading}>
-          {isLoading ? 'Adding...' : 'Add'}
+          disabled={isPending}>
+          {isPending ? 'Adding...' : 'Add'}
         </Button>
       </form>
     </Modal>

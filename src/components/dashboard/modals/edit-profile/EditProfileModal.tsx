@@ -1,10 +1,8 @@
 import type { SignupSchemaFields } from 'lib/schemas'
 
-import { useModal } from 'react-modal-state'
+import { useMutation } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
-import { useUserMutation } from 'redux/api/user'
-import { selectUser } from 'redux/slices/user/user-slice'
-import { toast } from 'sonner'
+import { selectUser } from 'redux/user.slice'
 
 import { Button, Field, Modal } from 'components/ui'
 
@@ -15,42 +13,23 @@ import { signupSchema } from 'lib/schemas'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  const [user, { isLoading }] = useUserMutation()
-  const { close } = useModal('edit-profile-modal')
+  // const { close } = useModal('edit-profile-modal')
+
   const { name, email } = useSelector(selectUser)
+
   const { handleSubmit, register, formState } = useAppForm<SignupSchemaFields>(
     signupSchema,
-    {
-      defaultValues: {
-        name: name || '',
-        email: email || '',
-        password: ''
-      }
-    }
+    { defaultValues: { name: name ?? '', email: email ?? '' } }
   )
 
-  const submit = (data: SignupSchemaFields) => {
-    user(data)
-      .unwrap()
-      .then(r => {
-        close()
-        toast.success(
-          `Congrats, ${r?.user?.name}! Your details have been changed successfully.`
-        )
-      })
-      .catch(e => {
-        toast.error(
-          e?.status === 409
-            ? 'User with this email already exists. Please try different email.'
-            : 'Something went wrong while updating your profile. Please check your details and try again.'
-        )
-      })
+  const { isPending } = useMutation({})
+
+  const submit = () => {
+    // mutate(data)
   }
 
   return (
-    <Modal
-      modalTitle='Edit profile'
-      size='sm'>
+    <Modal modalTitle='Edit profile'>
       <form onSubmit={handleSubmit(submit)}>
         <div className='mb-[25px] flex justify-center'>
           <EditAvatar />
@@ -79,8 +58,8 @@ export const EditProfileModal = () => {
         />
         <Button
           type='submit'
-          disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Send'}
+          disabled={isPending}>
+          {isPending ? 'Updating your credentails...' : 'Send'}
         </Button>
       </form>
     </Modal>

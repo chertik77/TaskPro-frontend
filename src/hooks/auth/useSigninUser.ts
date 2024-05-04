@@ -1,4 +1,3 @@
-import type { AxiosError } from 'axios'
 import type { SigninSchemaFields } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 
@@ -18,10 +17,8 @@ export const useSigninUser = (reset: UseFormReset<SigninSchemaFields>) =>
       )
     },
     onError(error) {
-      const axiosError = error as AxiosError
-
       toast.error(
-        axiosError.response?.status === 401
+        error.response?.status === 401
           ? 'Invalid email or password. Please try again.'
           : 'Oops! Something went wrong during sign-in. Please check your details and try again.'
       )

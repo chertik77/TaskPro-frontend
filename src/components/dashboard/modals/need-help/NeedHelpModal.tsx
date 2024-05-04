@@ -18,9 +18,7 @@ export const NeedHelpModal = () => {
   const { mutate, isPending } = useNeedHelp(close, reset)
 
   return (
-    <Modal
-      size='sm'
-      modalTitle='Need help'>
+    <Modal modalTitle='Need help'>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('email')}

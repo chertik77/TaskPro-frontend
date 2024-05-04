@@ -1,7 +1,7 @@
 import type { RadioProps } from 'components/ui/field/priority-types'
 
 import { Content, Icon, Item, Root, Trigger } from '@radix-ui/react-select'
-import { filter } from 'redux/slices/board/board-slice'
+import { filter } from 'redux/user.slice'
 
 import { RadioPriority } from 'components/ui/field/RadioPriority'
 
@@ -12,16 +12,13 @@ import items from 'lib/json/filter-items.json'
 export const Select = Root
 
 export const SelectTrigger = () => (
-  <Trigger
-    className='absolute right-5 top-[14px] flex items-center gap-2 bg-transparent
-      focus:outline-none tablet:right-8 tablet:top-5 desktop:right-6
-      desktop:top-[14px]'>
+  <Trigger className='flex items-center gap-2'>
     <Icon>
       <svg className='size-4 stroke-black/80 dark:stroke-white/80'>
         <use xlinkHref={`/assets/icons.svg#icon-filter`} />
       </svg>
     </Icon>
-    <h2 className='text-fs-14-lh-normal-fw-500'>Filters</h2>
+    <h2>Filters</h2>
   </Trigger>
 )
 

@@ -3,11 +3,10 @@ import type { BoardSchemaFields } from 'lib/schemas'
 import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 import { useModalInstance } from 'react-modal-state'
-import { editBoard } from 'redux/slices/board/board-slice'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppDispatch, useAppForm } from 'hooks'
+import { useAppForm } from 'hooks'
 import { useEditBoard } from 'hooks/board/useEditBoard'
 
 import { boardSchema } from 'lib/schemas'
@@ -16,8 +15,6 @@ import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
-  const dispatch = useAppDispatch()
-
   const { data } = useModalInstance<{ title: string; icon: string }>()
 
   const { register, reset, handleSubmit, control, formState, setValue } =
@@ -35,13 +32,11 @@ export const EditBoardModal = () => {
   const { mutateAsync, isPending } = useEditBoard(reset)
 
   const submit = (data: BoardSchemaFields) => {
-    mutateAsync(data).then(r => dispatch(editBoard(r)))
+    mutateAsync(data)
   }
 
   return (
-    <Modal
-      size='sm'
-      modalTitle='Edit board'>
+    <Modal modalTitle='Edit board'>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}
