@@ -26,10 +26,10 @@ export const SidebarUserSupportBtn = () => {
       </p>
       <button
         onClick={open}
-        className='flex text-fs-12-lh-normal-fw-400 hocus:text-brand-hover violet:text-white
+        className='flex gap-2 text-fs-12-lh-normal-fw-400 hocus:text-brand-hover violet:text-white
           violet:hocus:text-brand-third dark:text-white-primary
           dark:hocus:text-brand-hover'>
-        <svg>
+        <svg className='w-5 h-5'>
           <use href={`/icons.svg#icon-help`} />
         </svg>
         Need help?

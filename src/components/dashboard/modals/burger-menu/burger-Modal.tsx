@@ -10,12 +10,12 @@ export const BurgerModal = ({ children }: PropsWithChildren) => {
     modal: {
       padding: 0,
       margin: 0,
-      maxWidth: 224,
+      width: 225,
       display: 'block'
     }
   }
   if (window.innerWidth >= 767) {
-    customStyles.modal.maxWidth = 260
+    customStyles.modal.width = 260
   }
 
   if (window.innerWidth >= 1439) {

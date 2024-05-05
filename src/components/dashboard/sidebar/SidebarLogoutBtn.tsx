@@ -24,7 +24,7 @@ export const SidebarLogoutBtn = () => {
 
   return (
     <button
-      className='mt-6 flex items-center gap-3.5 bg-transparent text-black hocus:bg-transparent
+      className='mt-6 ml-[10px] tablet:ml-0 flex items-center gap-3.5 bg-transparent text-black hocus:bg-transparent
         hocus:text-brand-hover violet:bg-transparent violet:hocus:bg-transparent
         dark:text-white desktop:px-6'
       disabled={isPending}
@@ -32,7 +32,7 @@ export const SidebarLogoutBtn = () => {
       <svg
         className='size-8 text-brand hocus:text-brand-hover violet:text-white
           violet:hocus:text-brand-third'>
-        <use href='/icons.svg#icon-logout-btn' />
+        <use href='/icons.svg#icon-logout' />
       </svg>
       <span
         className='text-fs-16-lh-normal-fw-500 violet:text-white violet:hocus:text-brand-third
