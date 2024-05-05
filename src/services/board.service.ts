@@ -1,8 +1,8 @@
 import type { BoardSchemaFields } from 'lib/schemas'
-import type { Board } from 'types/board.types'
+import type { Board } from 'types'
 
 import { axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config/api-endpoints.config'
+import { API_ENDPOINTS } from 'config'
 
 class BoardService {
   async getAllBoards() {

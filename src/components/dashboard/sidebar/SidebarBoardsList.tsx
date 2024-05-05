@@ -1,19 +1,22 @@
 import { useQuery } from '@tanstack/react-query'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { boardService } from 'services/board.service'
+import { useGetBoardId } from 'hooks'
+
+import { boardService } from 'services'
 
 import { cn } from 'lib'
 
 import { SidebarListActiveItem } from './SidebarListActiveItem'
 
 export const SidebarBoardsList = () => {
-  const { boardId } = useParams()
+  const boardId = useGetBoardId()
 
   const { data } = useQuery({
     queryKey: ['boards'],
     queryFn: () => boardService.getAllBoards()
   })
+
   return (
     <ul
       className={cn(
@@ -26,8 +29,9 @@ export const SidebarBoardsList = () => {
           key={board._id}>
           <li
             className={cn(
-              `flex h-[61px] cursor-pointer items-center justify-between text-black/50 transition
-              duration-300 ease-in-out violet:text-white/50 dark:text-white/50 desktop:pl-6`,
+              `flex h-[61px] cursor-pointer items-center justify-between text-black/50
+              transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50
+              desktop:pl-6`,
               board._id === boardId &&
                 `border-1 border-r-dark bg-white-gray text-black violet:bg-white/50
                 violet:text-white dark:bg-black-third dark:text-white`

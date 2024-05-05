@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-export const useBoardByLocation = () => {
+export const useGetBoardId = () => {
   const { pathname } = useLocation()
 
   const pathParts = pathname.split('/')

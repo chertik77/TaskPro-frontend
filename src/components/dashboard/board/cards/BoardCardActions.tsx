@@ -1,19 +1,26 @@
-import type { Card } from 'types/board.types'
+import type { Card } from 'types'
 
 import { isBefore, isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 
-import { Button } from 'components/ui/Button'
+import { Button } from 'components/ui'
 
-import { useDeleteCard } from 'hooks/card/useDeleteCard'
+import { useGetBoardId, useAppMutation } from 'hooks'
+
+import { cardService } from 'services'
 
 import { BoardCardColumnSelect } from './BoardCardColumnSelect'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
+  const boardId = useGetBoardId()
+
   const isTodayDeadline = isToday(card.deadline)
   const isDeadlinePassed = isBefore(card.deadline, new Date())
 
-  const { mutate } = useDeleteCard(card.column, card._id)
+  const { mutate } = useAppMutation({
+    mutationKey: ['deleteCard'],
+    mutationFn: () => cardService.deleteCard(boardId, card.column, card._id)
+  })
 
   const { open } = useModal('edit-card-modal')
 

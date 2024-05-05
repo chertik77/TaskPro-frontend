@@ -1,20 +1,28 @@
+import type { ColumnSchemaFields } from 'lib/schemas'
 import type { onSaveProps } from 'react-edit-text'
-import type { Column } from 'types/board.types'
+import type { Column } from 'types'
 
 import { EditText } from 'react-edit-text'
 import { toast } from 'sonner'
 
-import { Button } from 'components/ui/Button'
+import { Button } from 'components/ui'
 
-import { useDeleteColumn } from 'hooks/column/useDeleteColumn'
-import { useEditColumn } from 'hooks/column/useEditColumn'
+import { useGetBoardId, useAppMutation } from 'hooks'
 
-import 'react-edit-text/dist/index.css'
+import { columnService } from 'services'
 
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
-  const { mutateAsync } = useDeleteColumn(column._id)
+  const boardId = useGetBoardId()
 
-  const { mutateAsync: mutateColumn } = useEditColumn(column._id)
+  const { mutateAsync } = useAppMutation({
+    mutationKey: ['deleteColumn'],
+    mutationFn: () => columnService.deleteColumn(boardId, column._id)
+  })
+
+  const { mutateAsync: mutateColumn } = useAppMutation<ColumnSchemaFields>({
+    mutationKey: ['editColumn'],
+    mutationFn: data => columnService.editColumn(boardId, column._id, data)
+  })
 
   const handleColumnEdit = ({ value }: onSaveProps) => {
     toast.promise(mutateColumn({ title: value }), {
@@ -39,8 +47,8 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
       <EditText
         onSave={handleColumnEdit}
         defaultValue={column.title}
-        className='rounded-lg'
-        inputClassName='outline-none bg-transparent w-40'
+        className='w-20 hover:bg-transparent'
+        inputClassName='outline-none bg-transparent'
       />
       <Button
         className='ml-auto'

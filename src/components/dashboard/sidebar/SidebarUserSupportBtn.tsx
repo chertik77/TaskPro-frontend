@@ -29,7 +29,7 @@ export const SidebarUserSupportBtn = () => {
         className='flex gap-2 text-fs-12-lh-normal-fw-400 hocus:text-brand-hover violet:text-white
           violet:hocus:text-brand-third dark:text-white-primary
           dark:hocus:text-brand-hover'>
-        <svg className='w-5 h-5'>
+        <svg className='size-5'>
           <use href={`/icons.svg#icon-help`} />
         </svg>
         Need help?

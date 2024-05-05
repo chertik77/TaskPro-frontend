@@ -1,10 +1,18 @@
-import type { FieldProps } from './field-types'
+import type { InputHTMLAttributes } from 'react'
+import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef, useState } from 'react'
 import { ErrorMessage } from '@hookform/error-message'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 import { cn } from 'lib'
+
+type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
+  inputName: string
+  isPasswordInput?: boolean
+  inputPasswordPlaceholder?: string
+  errors: FieldErrors
+}
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
   (

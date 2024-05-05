@@ -1,6 +1,7 @@
-import type { Column } from 'types/board.types'
+import type { Column } from 'types'
 
 import { useSelector } from 'react-redux'
+
 import { selectFilter } from 'redux/user.slice'
 
 import { getVisibleCards } from 'lib'

@@ -1,7 +1,7 @@
 import type { ColumnSchemaFields } from 'lib/schemas'
 
 import { axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config/api-endpoints.config'
+import { API_ENDPOINTS } from 'config'
 
 class ColumnService {
   async addNewColumn(boardId: string, data: ColumnSchemaFields) {

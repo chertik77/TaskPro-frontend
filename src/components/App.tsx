@@ -1,10 +1,10 @@
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
-import { Layout } from 'components/Layout'
 import { PrivateRoute, RestrictedRoute } from 'components/routes'
 
 import { Board } from './dashboard'
+import { Layout } from './Layout'
 import { CreateBoard } from './ui'
 
 export const App = () => {

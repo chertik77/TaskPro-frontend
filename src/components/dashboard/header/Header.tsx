@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/classnames-order */
 import { HeaderBurgerMenuBtn } from './HeaderBurgerMenuBtn'
 import { HeaderThemeSelect } from './HeaderThemeSelect'
 import { HeaderUserInfo } from './HeaderUserInfo'

@@ -1,8 +1,8 @@
 import type { NeedHelpSchemaFields } from 'lib/schemas'
-import type { AuthResponse } from 'types/auth.types'
+import type { AuthResponse } from 'types'
 
 import { axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config/api-endpoints.config'
+import { API_ENDPOINTS } from 'config'
 
 class UserService {
   async changeUserTheme(theme: string) {

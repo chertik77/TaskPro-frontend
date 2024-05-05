@@ -5,18 +5,24 @@ import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
-import { useAddColumn } from 'hooks/column/useAddColumn'
+import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
+
+import { columnService } from 'services'
 
 import { columnSchema } from 'lib/schemas'
 
 export const AddColumnModal = () => {
+  const boardId = useGetBoardId()
+
   const { close } = useModal('add-column-modal')
 
   const { register, handleSubmit, formState, reset } =
     useAppForm<ColumnSchemaFields>(columnSchema)
 
-  const { mutateAsync, isPending } = useAddColumn()
+  const { mutateAsync, isPending } = useAppMutation<ColumnSchemaFields>({
+    mutationKey: ['addColumn'],
+    mutationFn: data => columnService.addNewColumn(boardId, data)
+  })
 
   const submit = (data: ColumnSchemaFields) => {
     toast.promise(mutateAsync(data), {

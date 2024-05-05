@@ -1,4 +1,4 @@
-import type { Card } from 'types/board.types'
+import type { Card } from 'types'
 
 import { format } from 'date-fns'
 

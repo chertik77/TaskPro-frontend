@@ -6,8 +6,9 @@ import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
-import { useEditBoard } from 'hooks/board/useEditBoard'
+import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
+
+import { boardService } from 'services'
 
 import { boardSchema } from 'lib/schemas'
 
@@ -15,6 +16,8 @@ import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
+  const boardId = useGetBoardId()
+
   const { close } = useModal('edit-board-modal')
 
   const { data } = useModalInstance<{ title: string; icon: string }>()
@@ -28,7 +31,11 @@ export const EditBoardModal = () => {
       }
     })
 
-  const { mutateAsync, isPending } = useEditBoard()
+  const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields>({
+    mutationKey: ['editBoard'],
+    mutationFn: data => boardService.editBoard(boardId, data),
+    invalidateQueryKey: 'boards'
+  })
 
   const submit = (data: BoardSchemaFields) => {
     toast.promise(mutateAsync(data), {

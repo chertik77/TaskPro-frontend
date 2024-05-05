@@ -1,11 +1,13 @@
 import type { NeedHelpSchemaFields } from 'lib/schemas'
 
 import { useModal } from 'react-modal-state'
+import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
-import { useNeedHelp } from 'hooks/useNeedHelp'
+import { useAppForm, useAppMutation } from 'hooks'
+
+import { userService } from 'services'
 
 import { needHelpSchema } from 'lib/schemas'
 
@@ -15,11 +17,26 @@ export const NeedHelpModal = () => {
   const { handleSubmit, register, formState, reset } =
     useAppForm<NeedHelpSchemaFields>(needHelpSchema)
 
-  const { mutate, isPending } = useNeedHelp(close, reset)
+  const { mutateAsync, isPending } = useAppMutation<NeedHelpSchemaFields>({
+    mutationKey: ['help'],
+    mutationFn: data => userService.askForHelp(data)
+  })
+
+  const submit = (data: NeedHelpSchemaFields) => {
+    toast.promise(mutateAsync(data), {
+      loading: 'Sending...',
+      success: () => {
+        reset()
+        close()
+        return 'Your help request has been sent successfully! Our team will get back to you shortly.'
+      },
+      error: () => 'Oops! Something went wrong while sending your help request.'
+    })
+  }
 
   return (
     <Modal modalTitle='Need help'>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('email')}
           inputName='email'

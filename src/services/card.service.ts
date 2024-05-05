@@ -1,7 +1,7 @@
 import type { CardSchemaFields } from 'lib/schemas'
 
 import { axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config/api-endpoints.config'
+import { API_ENDPOINTS } from 'config'
 
 class CardService {
   async addNewCard(boardId: string, columnId: string, data: CardSchemaFields) {

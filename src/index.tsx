@@ -7,7 +7,6 @@ import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
-import { persistor, store } from 'redux/store'
 
 import { App } from 'components/App'
 import {
@@ -21,6 +20,9 @@ import {
   NewBoardModal
 } from 'components/dashboard/modals'
 
+import { persistor, store } from 'redux/store'
+
+import 'react-edit-text/dist/index.css'
 import './index.css'
 
 const queryClient = new QueryClient({

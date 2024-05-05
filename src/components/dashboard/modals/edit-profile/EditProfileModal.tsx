@@ -2,11 +2,12 @@ import type { SignupSchemaFields } from 'lib/schemas'
 
 import { useMutation } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
-import { selectUser } from 'redux/user.slice'
 
 import { Button, Field, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
+
+import { selectUser } from 'redux/user.slice'
 
 import { signupSchema } from 'lib/schemas'
 

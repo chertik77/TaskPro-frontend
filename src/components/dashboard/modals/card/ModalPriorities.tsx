@@ -3,10 +3,11 @@ import type { Control, FieldErrors } from 'react-hook-form'
 
 import { ErrorMessage } from '@hookform/error-message'
 import { Root } from '@radix-ui/react-radio-group'
-import { priorities } from 'constants/priorities'
 import { Controller } from 'react-hook-form'
 
-import { RadioInput } from 'components/ui/RadioInput'
+import { RadioInput } from 'components/ui'
+
+import { priorities } from 'constants/priorities'
 
 type AddCardModalPrioritiesProps = {
   control: Control<CardSchemaFields>

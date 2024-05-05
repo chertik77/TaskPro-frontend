@@ -1,10 +1,12 @@
-import { themes } from 'constants/themes'
 import { ThemeProvider } from 'next-themes'
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
-import { selectTheme } from 'redux/user.slice'
 
 import { Header, Sidebar } from 'components/dashboard'
+
+import { selectTheme } from 'redux/user.slice'
+
+import { themes } from 'constants/themes'
 
 const DashboardPage = () => {
   const theme = useSelector(selectTheme)

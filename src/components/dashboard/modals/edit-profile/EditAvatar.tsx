@@ -1,10 +1,11 @@
 import type { ChangeEvent } from 'react'
 
 import { useSelector } from 'react-redux'
-import { selectUser } from 'redux/user.slice'
 import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
+
+import { selectUser } from 'redux/user.slice'
 
 export const EditAvatar = () => {
   const { avatarURL } = useSelector(selectUser)

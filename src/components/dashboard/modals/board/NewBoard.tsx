@@ -1,4 +1,5 @@
 import type { BoardSchemaFields } from 'lib/schemas'
+import type { Board } from 'types'
 
 import { Controller } from 'react-hook-form'
 import { useModal } from 'react-modal-state'
@@ -7,8 +8,9 @@ import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
-import { useAddNewBoard } from 'hooks/board/useAddNewBoard'
+import { useAppForm, useAppMutation } from 'hooks'
+
+import { boardService } from 'services'
 
 import { boardSchema } from 'lib/schemas'
 
@@ -28,7 +30,11 @@ export const NewBoardModal = () => {
       }
     })
 
-  const { mutateAsync, isPending } = useAddNewBoard()
+  const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields, Board>({
+    mutationKey: ['addBoard'],
+    mutationFn: data => boardService.addNewBoard(data),
+    invalidateQueryKey: 'boards'
+  })
 
   const submit = (data: BoardSchemaFields) => {
     toast.promise(mutateAsync(data), {

@@ -1,17 +1,24 @@
+import type { AuthResponse } from 'types'
+
 import * as Select from '@radix-ui/react-select'
-import { themes } from 'constants/themes'
 import { useTheme } from 'next-themes'
+
+import { useAppDispatch, useAppMutation } from 'hooks'
+
 import { updateUser } from 'redux/user.slice'
 
-import { useAppDispatch } from 'hooks'
-import { useUpdateUser } from 'hooks/user/useUpdateUser'
+import { themes } from 'constants/themes'
+import { userService } from 'services'
 
 export const HeaderThemeSelect = () => {
   const dispatch = useAppDispatch()
 
   const { setTheme, theme } = useTheme()
 
-  const { mutateAsync } = useUpdateUser()
+  const { mutateAsync } = useAppMutation<string, AuthResponse>({
+    mutationKey: ['user'],
+    mutationFn: theme => userService.changeUserTheme(theme)
+  })
 
   const handleThemeChange = (e: string) => {
     setTheme(e)

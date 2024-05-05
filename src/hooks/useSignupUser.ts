@@ -1,15 +1,17 @@
 import type { SignupSchemaFields } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
+import type { AuthResponse } from 'types'
 
-import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { authService } from 'services/auth.service'
+import { authService } from 'services'
+
+import { useAppMutation } from './useAppMutation'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchemaFields>) =>
-  useMutation({
+  useAppMutation<SignupSchemaFields, AuthResponse>({
     mutationKey: ['signup'],
-    mutationFn: (data: SignupSchemaFields) => authService.signup(data),
+    mutationFn: data => authService.signup(data),
     onSuccess(_, variables) {
       reset()
       toast.success(

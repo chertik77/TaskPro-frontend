@@ -1,11 +1,10 @@
 import type { SignupSchemaFields } from 'lib/schemas'
 
-import { authenticate } from 'redux/user.slice'
-
 import { Button, Field } from 'components/ui'
 
-import { useAppDispatch, useAppForm } from 'hooks'
-import { useSignupUser } from 'hooks/auth/useSignupUser'
+import { useAppDispatch, useAppForm, useSignupUser } from 'hooks'
+
+import { authenticate } from 'redux/user.slice'
 
 import { signupSchema } from 'lib/schemas'
 

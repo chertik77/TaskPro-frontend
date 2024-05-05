@@ -1,8 +1,8 @@
 import type { SigninSchemaFields, SignupSchemaFields } from 'lib/schemas'
-import type { AuthResponse } from 'types/auth.types'
+import type { AuthResponse } from 'types'
 
 import { axiosClassic, axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config/api-endpoints.config'
+import { API_ENDPOINTS } from 'config'
 
 class AuthService {
   async signup(data: SignupSchemaFields) {

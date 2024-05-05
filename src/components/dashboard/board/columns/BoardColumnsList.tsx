@@ -1,4 +1,4 @@
-import type { Board } from 'types/board.types'
+import type { Board } from 'types'
 
 import { useModal } from 'react-modal-state'
 

@@ -1,11 +1,10 @@
 import type { SigninSchemaFields } from 'lib/schemas'
 
-import { authenticate } from 'redux/user.slice'
-
 import { Button, Field } from 'components/ui'
 
-import { useAppDispatch, useAppForm } from 'hooks'
-import { useSigninUser } from 'hooks/auth/useSigninUser'
+import { useAppDispatch, useAppForm, useSigninUser } from 'hooks'
+
+import { authenticate } from 'redux/user.slice'
 
 import { signinSchema } from 'lib/schemas'
 

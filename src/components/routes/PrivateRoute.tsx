@@ -2,6 +2,7 @@ import type { ReactElement } from 'react'
 
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+
 import { selectIsLoggedIn, selectIsRefreshing } from 'redux/user.slice'
 
 export const PrivateRoute = ({ component }: { component: ReactElement }) => {

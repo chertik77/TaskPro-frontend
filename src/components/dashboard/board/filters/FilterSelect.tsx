@@ -1,11 +1,12 @@
 import * as Popover from '@radix-ui/react-popover'
 import { Root } from '@radix-ui/react-radio-group'
 import { useSelector } from 'react-redux'
-import { filter, selectFilter } from 'redux/user.slice'
 
-import { RadioInput } from 'components/ui/RadioInput'
+import { RadioInput } from 'components/ui'
 
 import { useAppDispatch } from 'hooks'
+
+import { filter, selectFilter } from 'redux/user.slice'
 
 import items from 'lib/json/filter-items.json'
 

@@ -1,6 +1,7 @@
 import type { CreateAxiosDefaults } from 'axios'
 
 import axios from 'axios'
+
 import { store } from 'redux/store'
 
 const options: CreateAxiosDefaults = {
