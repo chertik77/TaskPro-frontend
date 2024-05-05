@@ -39,26 +39,25 @@ export const EditAvatar = () => {
   // }, [isError, isSuccess, error])
 
   return (
-    <>
+    <div className='mb-[25px] flex justify-center'>
       <input
         id='file-input'
         type='file'
         accept='image/jpeg, image/png'
-        style={{ display: 'none' }}
+        className='hidden'
         onChange={handleAvatarChange}
       />
       <Button
         type='button'
-        isPlusIcon
         onClick={handleFileSelect}
         style={{ backgroundImage: `url(${avatarURL?.url})` }}
-        className='relative size-[68px] rounded-lg bg-cover bg-center fill-black'>
+        className='relative size-[68px] rounded-lg bg-cover bg-center'>
         <div className='absolute bottom-[-12px] left-[22px] size-6 rounded-lg bg-brand p-[7px]'>
           <svg className='size-[10px]'>
-            <use xlinkHref={`/icons.svg#icon-plus-avatar`} />
+            <use href='/icons.svg#icon-plus-avatar' />
           </svg>
         </div>
       </Button>
-    </>
+    </div>
   )
 }

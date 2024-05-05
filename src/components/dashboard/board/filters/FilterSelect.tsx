@@ -50,21 +50,19 @@ export const FilterSelect = () => {
             <Root
               className='flex flex-col gap-2'
               onValueChange={v => dispatch(filter(v))}>
-              {items.map(({ value }) => {
-                return (
-                  <label
-                    className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 text-black/50
-                      has-[:checked]:text-black hocus:text-black dark:text-white/50
-                      has-[:checked]:dark:text-white hocus:dark:text-white'
-                    key={value}>
-                    <RadioInput
-                      value={value}
-                      checked={value === filterSelector}
-                    />
-                    {value}
-                  </label>
-                )
-              })}
+              {items.map(({ value }) => (
+                <label
+                  className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 text-black/50
+                    has-[:checked]:text-black hocus:text-black dark:text-white/50
+                    has-[:checked]:dark:text-white hocus:dark:text-white'
+                  key={value}>
+                  <RadioInput
+                    value={value}
+                    checked={value === filterSelector}
+                  />
+                  {value}
+                </label>
+              ))}
             </Root>
           </form>
         </Popover.Content>

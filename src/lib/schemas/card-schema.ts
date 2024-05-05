@@ -13,11 +13,8 @@ export const cardSchema = object({
     toTrimmed(),
     minLength(3, 'Please enter at least 3 characters.')
   ]),
-  priority: picklist(priorityList),
-  // dedlaine: date([toMinValue(new Date())])
-  deadline: string([
-    //   // minValue(`${yyyy}-${mm.toString().padStart(2, '0')}-${dd}`)
-  ])
+  priority: picklist(priorityList, 'Please select a priority.'),
+  deadline: string([])
 })
 
 export type CardSchemaFields = Output<typeof cardSchema>

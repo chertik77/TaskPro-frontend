@@ -1,6 +1,6 @@
 import type { Card } from 'types/board.types'
 
-import { RadioPriority } from 'components/ui/RadioInput'
+import { RadioPriority } from 'constants/priorities'
 
 import { cn } from 'lib'
 

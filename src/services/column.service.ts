@@ -13,6 +13,19 @@ class ColumnService {
     return response.data
   }
 
+  async editColumn(
+    boardId: string,
+    columnId: string,
+    data: ColumnSchemaFields
+  ) {
+    const response = await axiosWithAuth.patch(
+      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`,
+      data
+    )
+
+    return response.data
+  }
+
   async deleteColumn(boardId: string, columnId: string) {
     const response = await axiosWithAuth.delete(
       `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`

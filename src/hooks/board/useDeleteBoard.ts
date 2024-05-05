@@ -2,7 +2,6 @@ import type { Board } from 'types/board.types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'sonner'
 
 import { boardService } from 'services/board.service'
 
@@ -24,7 +23,6 @@ export const useDeleteBoard = () => {
           navigate(`/dashboard/${boards[0]._id}`, { replace: true })
         } else navigate('/dashboard')
       })
-      toast.success('Board has been deleted successfully!')
     }
   })
 }

@@ -1,19 +1,13 @@
 import * as RadioGroup from '@radix-ui/react-radio-group'
+import { RadioPriority } from 'constants/priorities'
 
 import { cn, getPriorityColor } from 'lib'
-
-export enum RadioPriority {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High',
-  WithoutPriority = 'Without priority'
-}
 
 export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
   <RadioGroup.Item
     checked={checked}
     className={cn(
-      'size-[14px] rounded-full outline-none focus:scale-125',
+      'size-[14px] rounded-full',
       getPriorityColor(value as RadioPriority)
     )}
     value={value as RadioPriority}>

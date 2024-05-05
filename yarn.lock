@@ -1199,6 +1199,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-edit-text@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-edit-text/-/react-edit-text-5.0.4.tgz#c108392a5c8a4f3c4561067d26948daa53d4c0b7"
+  integrity sha512-pHM8pjYoLAV3bDWlKGu429+iaabscSuAe6gDiwZ8RH0D0MdNeru/gVLOpnU/VOKpuhFO4zSYa1umLwhOxTVAdQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "18.2.43"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.43.tgz#c58e5abe241e6f71f60ce30e2a9aceb9d3a2a374"

@@ -1,8 +1,8 @@
 import type { BoardSchemaFields } from 'lib/schemas'
 
-import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
-import { useModalInstance } from 'react-modal-state'
+import { useModal, useModalInstance } from 'react-modal-state'
+import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
@@ -15,24 +15,31 @@ import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
+  const { close } = useModal('edit-board-modal')
+
   const { data } = useModalInstance<{ title: string; icon: string }>()
 
-  const { register, reset, handleSubmit, control, formState, setValue } =
+  const { register, reset, handleSubmit, control, formState } =
     useAppForm<BoardSchemaFields>(boardSchema, {
-      defaultValues: { background: 'default' }
+      defaultValues: {
+        title: data.title ?? '',
+        icon: data.icon ?? '',
+        background: 'default'
+      }
     })
 
-  useEffect(() => {
-    if (data) {
-      setValue('title', data.title)
-      setValue('icon', data.icon)
-    }
-  }, [data, setValue])
-
-  const { mutateAsync, isPending } = useEditBoard(reset)
+  const { mutateAsync, isPending } = useEditBoard()
 
   const submit = (data: BoardSchemaFields) => {
-    mutateAsync(data)
+    toast.promise(mutateAsync(data), {
+      loading: 'Editing board...',
+      success: () => {
+        reset()
+        close()
+        return 'The board has been edited successfully!'
+      },
+      error: () => 'An error occurred while editing the board.'
+    })
   }
 
   return (

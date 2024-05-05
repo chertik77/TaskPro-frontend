@@ -31,9 +31,7 @@ export const EditProfileModal = () => {
   return (
     <Modal modalTitle='Edit profile'>
       <form onSubmit={handleSubmit(submit)}>
-        <div className='mb-[25px] flex justify-center'>
-          <EditAvatar />
-        </div>
+        <EditAvatar />
         <Field
           errors={formState.errors}
           inputName='name'
@@ -53,7 +51,6 @@ export const EditProfileModal = () => {
           inputName='password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
-          autoComplete='current-password'
           {...register('password')}
         />
         <Button

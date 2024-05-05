@@ -1,6 +1,9 @@
 import type { BoardSchemaFields } from 'lib/schemas'
 
 import { Controller } from 'react-hook-form'
+import { useModal } from 'react-modal-state'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
@@ -13,6 +16,10 @@ import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
 export const NewBoardModal = () => {
+  const { close } = useModal('new-board-modal')
+
+  const navigate = useNavigate()
+
   const { register, formState, reset, handleSubmit, control } =
     useAppForm<BoardSchemaFields>(boardSchema, {
       defaultValues: {
@@ -21,10 +28,20 @@ export const NewBoardModal = () => {
       }
     })
 
-  const { mutateAsync, isPending } = useAddNewBoard(reset)
+  const { mutateAsync, isPending } = useAddNewBoard()
 
   const submit = (data: BoardSchemaFields) => {
-    mutateAsync(data)
+    toast.promise(mutateAsync(data), {
+      loading: 'Creating board...',
+      success: data => {
+        close()
+        reset()
+        navigate(`/dashboard/${data._id}`)
+        return 'Board successfully added to your collection!'
+      },
+      error: () =>
+        'An error occurred while creating a board. Please try again later.'
+    })
   }
 
   return (
