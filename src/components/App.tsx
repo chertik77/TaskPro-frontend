@@ -1,29 +1,38 @@
+import type { AxiosError } from 'axios'
+
+import { useEffect } from 'react'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
+import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
 import { PrivateRoute, RestrictedRoute } from 'components/routes'
+
+import { useAppDispatch } from 'hooks'
+
+import { current, logout, selectIsLoggedIn } from 'redux/user.slice'
+
+import { authService } from 'services'
 
 import { Board } from './dashboard'
 import { Layout } from './Layout'
 import { CreateBoard } from './ui'
 
 export const App = () => {
-  // const dispatch = useAppDispatch()
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  // const navigate = useNavigate()
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
+  const dispatch = useAppDispatch()
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) return
-  //   dispatch(userApi.endpoints.current.initiate(undefined))
-  //     .unwrap()
-  //     .catch(e => {
-  //       if (e.status === 401) {
-  //         persistor.purge()
-  //         navigate('/')
-  //       }
-  //     })
-  // }, [dispatch, isLoggedIn, navigate])
+  useEffect(() => {
+    if (!isLoggedIn) return
+    authService
+      .current()
+      .then(r => dispatch(current(r)))
+      .catch((e: AxiosError) => {
+        if (e.response?.status === 401) {
+          dispatch(logout())
+        }
+      })
+  }, [dispatch, isLoggedIn])
 
   return (
     <Routes>

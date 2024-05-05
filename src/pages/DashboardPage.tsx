@@ -4,17 +4,17 @@ import { Outlet } from 'react-router-dom'
 
 import { Header, Sidebar } from 'components/dashboard'
 
-import { selectTheme } from 'redux/user.slice'
+import { selectUser } from 'redux/user.slice'
 
 import { themes } from 'constants/themes'
 
 const DashboardPage = () => {
-  const theme = useSelector(selectTheme)
+  const { userTheme } = useSelector(selectUser)
 
   return (
     <ThemeProvider
       attribute='class'
-      defaultTheme={theme}
+      defaultTheme={userTheme}
       themes={themes}
       enableSystem={false}>
       <div

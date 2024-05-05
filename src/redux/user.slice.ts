@@ -10,7 +10,6 @@ export type UserInitialState = {
   filter: string
   token: string | null
   isLoggedIn: boolean
-  isRefreshing: boolean
 }
 
 const userSlice = createSlice({
@@ -24,14 +23,17 @@ const userSlice = createSlice({
     },
     token: null,
     filter: '',
-    isLoggedIn: false,
-    isRefreshing: false
+    isLoggedIn: false
   } as UserInitialState,
   reducers: {
     authenticate: (state, action) => {
       state.isLoggedIn = true
       state.token = action.payload.token
       state.user = action.payload.user
+    },
+    current: (state, action) => {
+      state.user = action.payload.user
+      state.isLoggedIn = true
     },
     updateUser: (state, action) => {
       state.user.avatarURL = action.payload.avatarURL
@@ -55,18 +57,12 @@ const userSlice = createSlice({
   selectors: {
     selectIsLoggedIn: state => state.isLoggedIn,
     selectUser: state => state.user,
-    selectTheme: state => state.user.userTheme,
-    selectIsRefreshing: state => state.isRefreshing,
     selectFilter: state => state.filter
   }
 })
 
-export const { authenticate, updateUser, logout, filter } = userSlice.actions
-export const {
-  selectIsLoggedIn,
-  selectUser,
-  selectIsRefreshing,
-  selectFilter,
-  selectTheme
-} = userSlice.selectors
+export const { authenticate, updateUser, logout, filter, current } =
+  userSlice.actions
+export const { selectIsLoggedIn, selectUser, selectFilter } =
+  userSlice.selectors
 export const userReducer = userSlice.reducer

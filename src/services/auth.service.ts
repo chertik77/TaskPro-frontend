@@ -1,5 +1,5 @@
 import type { SigninSchemaFields, SignupSchemaFields } from 'lib/schemas'
-import type { AuthResponse } from 'types'
+import type { AuthResponse, User } from 'types'
 
 import { axiosClassic, axiosWithAuth } from 'api'
 import { API_ENDPOINTS } from 'config'
@@ -24,9 +24,7 @@ class AuthService {
   }
 
   async current() {
-    const response = await axiosWithAuth.get<AuthResponse>(
-      API_ENDPOINTS.CURRENT
-    )
+    const response = await axiosWithAuth.get<User>(API_ENDPOINTS.CURRENT)
 
     return response.data
   }

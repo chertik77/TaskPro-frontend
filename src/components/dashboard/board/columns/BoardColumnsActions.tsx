@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
 
-import { useGetBoardId, useAppMutation } from 'hooks'
+import { useAppMutation, useGetBoardId } from 'hooks'
 
 import { columnService } from 'services'
 
@@ -47,7 +47,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
       <EditText
         onSave={handleColumnEdit}
         defaultValue={column.title}
-        className='w-20 hover:bg-transparent'
+        className='hover:bg-transparent'
         inputClassName='outline-none bg-transparent'
       />
       <Button
