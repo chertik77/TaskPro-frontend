@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
+import { DatePopover } from 'components/ui/calendar/DatePopover'
 
 import { useAppForm } from 'hooks'
 import { useEditCard } from 'hooks/card/useEditCard'
@@ -27,11 +28,16 @@ export const EditCardModal = () => {
     useAppForm<CardSchemaFields>(cardSchema)
 
   useEffect(() => {
-    setValue('title', data?.card.title)
+    console.log(data.card)
+    setValue('title', data?.card?.title)
     setValue('description', data?.card.description)
     setValue('priority', data?.card.priority)
     setValue('deadline', data?.card.deadline)
   }, [data, setValue])
+
+  const handleDeadlineChange = (date: string) => {
+    setValue('deadline', date)
+  }
 
   const { mutate, isPending } = useEditCard(data?.columnId, data?.cardId, close)
 
@@ -116,18 +122,31 @@ export const EditCardModal = () => {
           Deadline
         </p>
         <div className='relative'>
-          <input
+          {/* <input
             type='date'
             className='mb-[40px] '
             {...register('deadline')}
-          />
+          /> */}
+          <DatePopover onChange={handleDeadlineChange} />
           {formState.errors.deadline && (
             <span className=' absolute left-0 top-5 text-red-600'>
               Wrong date!
             </span>
           )}
         </div>
-        {/* <DayPicker
+        <Button
+          isPlusIcon
+          type='submit'
+          disabled={!formState.isValid || isPending}>
+          {isPending ? 'Loading...' : 'Edit'}
+        </Button>
+      </form>
+    </Modal>
+  )
+}
+
+{
+  /* <DayPicker
           className={cn('border border-brand p-[18px]')}
           classNames={{
             months: 'flex flex-col space-y-4 sm:space-x-4 sm:space-y-0',
@@ -163,15 +182,5 @@ export const EditCardModal = () => {
           mode='single'
           selected={selected}
           onSelect={setSelected}
-        /> */}
-
-        <Button
-          isPlusIcon
-          type='submit'
-          disabled={!formState.isValid || isPending}>
-          {isPending ? 'Loading...' : 'Edit'}
-        </Button>
-      </form>
-    </Modal>
-  )
+        /> */
 }

@@ -12,7 +12,7 @@ export const BoardCardDeadline = ({ deadline }: BoardCardDeadlineProps) => (
       Deadline
     </p>
     <p className='text-fs-10-lh-normal-fw-400'>
-      {format(deadline, 'MM/dd/yyyy')}
+      {format(deadline, 'dd/MM/yyyy')}
     </p>
   </div>
 )

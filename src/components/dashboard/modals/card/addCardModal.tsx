@@ -5,6 +5,7 @@ import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { Button, Field, Modal, RadioPriority } from 'components/ui'
+import { DatePopover } from 'components/ui/calendar/DatePopover'
 
 import { useAppForm, useBoardByLocation } from 'hooks'
 
@@ -20,10 +21,14 @@ export const AddCardModal = () => {
 
   const { close } = useModal('add-card-modal')
 
-  const { register, handleSubmit, formState } = useAppForm<CardSchemaFields>(
-    cardSchema,
-    { defaultValues: { priority: 'Without priority' } }
-  )
+  const { register, handleSubmit, formState, setValue } =
+    useAppForm<CardSchemaFields>(cardSchema, {
+      defaultValues: { priority: 'Without priority' }
+    })
+
+  const handleDeadlineChange = (date: string) => {
+    setValue('deadline', date)
+  }
 
   const queryClient = useQueryClient()
 
@@ -122,11 +127,12 @@ export const AddCardModal = () => {
           Deadline
         </p>
         <div className='relative'>
-          <input
+          {/* <input
             type='date'
             className='mb-[40px] '
             {...register('deadline')}
-          />
+          /> */}
+          <DatePopover onChange={handleDeadlineChange} />
           {formState.errors.deadline && (
             <span className=' absolute left-0 top-5 text-red-600'>
               Wrong date!
