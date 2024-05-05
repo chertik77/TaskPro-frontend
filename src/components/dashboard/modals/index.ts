@@ -1,5 +1,5 @@
 export * from './board/EditBoard'
-export * from './board/NewBoard'
+export * from './board/AddBoard'
 export * from './burger-menu/BurgerMenu'
 export * from './card/AddCardModal'
 export * from './card/EditCardModal'

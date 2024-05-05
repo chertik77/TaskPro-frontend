@@ -17,7 +17,7 @@ import { boardSchema } from 'lib/schemas'
 import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
-export const NewBoardModal = () => {
+export const AddBoardModal = () => {
   const { close } = useModal('new-board-modal')
 
   const navigate = useNavigate()
