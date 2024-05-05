@@ -1,7 +1,7 @@
 import type { UseMutationOptions } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 
 type UseAppMutationProps = {
   invalidateQueryKey?: string
