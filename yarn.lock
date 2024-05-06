@@ -3791,11 +3791,6 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
-react-edit-button@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-edit-button/-/react-edit-button-1.0.2.tgz#fb85a5dfa0a2a98b08c58205710a6cb7cebef290"
-  integrity sha512-Rx9XloJMBVW7mSxd+Tex/hyJA4guEmlzLAidYN2pCTPEiBJbyfAt49X2WGkuCrBOw9d5iOfb9ckpLAVgUiDb3A==
-
 react-edit-text@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-edit-text/-/react-edit-text-5.1.1.tgz#e7e2a5b3c04c6c5e746c2ecfd6b96d741c8484e8"

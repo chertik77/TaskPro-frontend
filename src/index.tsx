@@ -12,7 +12,6 @@ import { App } from 'components/App'
 import {
   AddBoardModal,
   AddCardModal,
-  AddColumnModal,
   BurgerMenu,
   EditBoardModal,
   EditCardModal,
@@ -47,7 +46,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               modals={[
                 ['edit-board-modal', EditBoardModal],
                 ['new-board-modal', AddBoardModal],
-                ['add-column-modal', AddColumnModal],
                 ['need-help-modal', NeedHelpModal],
                 ['add-card-modal', AddCardModal],
                 ['edit-card-modal', EditCardModal],
@@ -57,7 +55,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <App />
               <ModalRenderer Component={EditBoardModal} />
               <ModalRenderer Component={AddBoardModal} />
-              <ModalRenderer Component={AddColumnModal} />
               <ModalRenderer Component={NeedHelpModal} />
               <ModalRenderer Component={AddCardModal} />
               <ModalRenderer Component={EditCardModal} />

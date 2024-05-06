@@ -1,6 +1,5 @@
-import type { ColumnSchemaFields } from 'lib/schemas'
 import type { onSaveProps } from 'react-edit-text'
-import type { Column } from 'types'
+import type { Column, ColumnTitle } from 'types'
 
 import { useState } from 'react'
 import { EditText } from 'react-edit-text'
@@ -10,9 +9,11 @@ import { Button } from 'components/ui'
 
 import { useAppMutation, useGetBoardId } from 'hooks'
 
+import {
+  DEFAULT_COLUMN_TITLE,
+  REQUIRED_COLUMN_TITLE_LENGTH
+} from 'constants/titles'
 import { columnService } from 'services'
-
-const REQUIRED_COLUMN_TITLE_LENGTH = 3
 
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
@@ -24,7 +25,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
     mutationFn: () => columnService.deleteColumn(boardId, column._id)
   })
 
-  const { mutateAsync: mutateColumn } = useAppMutation<ColumnSchemaFields>({
+  const { mutateAsync: mutateColumn } = useAppMutation<ColumnTitle>({
     mutationKey: ['editColumn'],
     mutationFn: data => columnService.editColumn(boardId, column._id, data)
   })
@@ -57,6 +58,9 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
       <EditText
         onSave={handleColumnEdit}
         value={columnTitle}
+        onEditMode={() => {
+          if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
+        }}
         onChange={e => setColumnTitle(e.target.value)}
         className='hover:bg-transparent'
         inputClassName='outline-none bg-transparent'

@@ -1,10 +1,10 @@
-import type { ColumnSchemaFields } from 'lib/schemas'
+import type { ColumnTitle } from 'types'
 
 import { axiosWithAuth } from 'api'
 import { API_ENDPOINTS } from 'config'
 
 class ColumnService {
-  async addNewColumn(boardId: string, data: ColumnSchemaFields) {
+  async addNewColumn(boardId: string, data: ColumnTitle) {
     const response = await axiosWithAuth.post(
       `${API_ENDPOINTS.DASHBOARD}/${boardId}`,
       data
@@ -13,11 +13,7 @@ class ColumnService {
     return response.data
   }
 
-  async editColumn(
-    boardId: string,
-    columnId: string,
-    data: ColumnSchemaFields
-  ) {
+  async editColumn(boardId: string, columnId: string, data: ColumnTitle) {
     const response = await axiosWithAuth.patch(
       `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`,
       data

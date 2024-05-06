@@ -1,3 +1,7 @@
+export type ColumnTitle = {
+  title: string
+}
+
 export type Card = {
   _id: string
   title: string

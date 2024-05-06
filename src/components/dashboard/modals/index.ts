@@ -1,4 +1,3 @@
-export * from './AddColumnModal'
 export * from './NeedHelpModal'
 export * from './board/AddBoard'
 export * from './board/EditBoard'
