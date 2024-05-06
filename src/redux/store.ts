@@ -1,5 +1,3 @@
-import type { UserInitialState } from './user.slice'
-
 import { configureStore } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
@@ -14,7 +12,7 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer<UserInitialState>(persistConfig, userReducer)
+    user: persistReducer(persistConfig, userReducer)
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: false })
