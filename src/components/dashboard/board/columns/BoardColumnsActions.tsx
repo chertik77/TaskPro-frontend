@@ -2,6 +2,7 @@ import type { ColumnSchemaFields } from 'lib/schemas'
 import type { onSaveProps } from 'react-edit-text'
 import type { Column } from 'types'
 
+import { useState } from 'react'
 import { EditText } from 'react-edit-text'
 import { toast } from 'sonner'
 
@@ -12,6 +13,9 @@ import { useAppMutation, useGetBoardId } from 'hooks'
 import { columnService } from 'services'
 
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
+  const [columnTitle, setColumnTitle] = useState(column.title)
+
+  console.log(column.title)
   const boardId = useGetBoardId()
 
   const { mutateAsync } = useAppMutation({
@@ -24,7 +28,12 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
     mutationFn: data => columnService.editColumn(boardId, column._id, data)
   })
 
-  const handleColumnEdit = ({ value }: onSaveProps) => {
+  const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
+    if (value.length < 3) {
+      setColumnTitle(previousValue)
+      return toast.error('Column title must be at least 3 characters long.')
+    }
+
     toast.promise(mutateColumn({ title: value }), {
       loading: 'Updating column...',
       success: 'Column updated successfully!',
@@ -46,7 +55,8 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
         py-[18px] dark:bg-black'>
       <EditText
         onSave={handleColumnEdit}
-        defaultValue={column.title}
+        value={columnTitle}
+        onChange={e => setColumnTitle(e.target.value)}
         className='hover:bg-transparent'
         inputClassName='outline-none bg-transparent'
       />

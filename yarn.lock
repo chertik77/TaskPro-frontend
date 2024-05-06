@@ -3733,6 +3733,13 @@ quick-lru@^4.0.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-4.0.1.tgz#5b8878f113a58217848c6482026c73e1ba57727f"
   integrity sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==
 
+react-click-to-edit@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-click-to-edit/-/react-click-to-edit-1.2.3.tgz#75fd9466b6da31d3c56dfb81833faef2b1e0cde7"
+  integrity sha512-ZFftAx8KABQkjWfttVz6I+8nrn/ZZO/rlj3rOkG3SR5fRDjU6yA2eVtE5TTkHHa30LWVHqURAFesHllek0licw==
+  dependencies:
+    classnames "^2.2.6"
+
 react-day-picker@^8.10.0:
   version "8.10.1"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.10.1.tgz#4762ec298865919b93ec09ba69621580835b8e80"
@@ -3746,6 +3753,11 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
+react-easy-edit@^1.17.2:
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/react-easy-edit/-/react-easy-edit-1.17.2.tgz#86000c23efc47edec49825d3b2ca77ff211db5bd"
+  integrity sha512-UdYch/aJGw2U6FmbhNDGqKq2JqBlgxymTALjBv92BTgjLBVrYbMjVZ5xqjhm22dmJtzAQIPot1eBR6VTZq0t5Q==
+
 react-edit-text@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-edit-text/-/react-edit-text-5.1.1.tgz#e7e2a5b3c04c6c5e746c2ecfd6b96d741c8484e8"
@@ -3753,6 +3765,11 @@ react-edit-text@^5.1.1:
   dependencies:
     classnames "^2.2.6"
     prop-types "^15.8.1"
+
+react-editext@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-editext/-/react-editext-6.0.0.tgz#b5f5dbdc210d358dead498db39a230033b84ec31"
+  integrity sha512-4+15RuWuAmuPGaH2nd20KPmocfiGemTxdbRK7FOUBTZatwiy1LMWvcssqDssIhyzLclPPbeqYxJypZ4O0s2kcg==
 
 react-hook-form@^7.50.1:
   version "7.51.3"
