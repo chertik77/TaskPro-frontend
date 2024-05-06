@@ -15,8 +15,8 @@ export const useAppMutation = <T = void, R = void>({
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: [mutationKey],
-    mutationFn: mutationFn,
+    mutationKey,
+    mutationFn,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [invalidateQueryKey ?? 'board']
