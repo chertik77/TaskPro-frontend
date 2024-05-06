@@ -1,5 +1,6 @@
 import type { Board } from 'types'
 
+import { Droppable } from '@hello-pangea/dnd'
 import { useModal } from 'react-modal-state'
 
 import { Button } from 'components/ui'
@@ -19,7 +20,16 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
         <div
           key={column._id}
           className='mr-[34px]'>
-          <BoardColumnsItem column={column} />
+          <Droppable droppableId={column._id}>
+            {provided => (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}>
+                <BoardColumnsItem column={column} />
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
           <Button
             isPlusIcon
             className='mt-default'

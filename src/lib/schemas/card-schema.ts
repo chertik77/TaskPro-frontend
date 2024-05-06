@@ -14,7 +14,7 @@ export const cardSchema = object({
     minLength(3, 'Please enter at least 3 characters.')
   ]),
   priority: picklist(priorityList, 'Please select a priority.'),
-  deadline: string([])
+  deadline: string()
 })
 
 export type CardSchemaFields = Output<typeof cardSchema>

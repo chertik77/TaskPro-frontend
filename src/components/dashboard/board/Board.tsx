@@ -1,4 +1,10 @@
-import { useGetBoardById } from 'hooks'
+import type { OnDragEndResponder } from '@hello-pangea/dnd'
+
+import { DragDropContext } from '@hello-pangea/dnd'
+
+import { useAppMutation, useGetBoardById, useGetBoardId } from 'hooks'
+
+import { cardService } from 'services'
 
 import { cn } from 'lib'
 
@@ -6,8 +12,33 @@ import { BoardAddColumnBtn } from './columns/BoardAddColumnBtn'
 import { BoardColumnsList } from './columns/BoardColumnsList'
 import { FilterSelect } from './filters/FilterSelect'
 
+type ChangeCardColumnMutation = {
+  columnId: string
+  cardId: string
+  newColumnId: string
+}
+
 export const Board = () => {
+  const boardId = useGetBoardId()
   const { data } = useGetBoardById()
+
+  const { mutate } = useAppMutation<ChangeCardColumnMutation>({
+    mutationKey: ['changeCardColumn'],
+    mutationFn: ({ columnId, cardId, newColumnId }) =>
+      cardService.changeCardColumn(boardId, columnId, cardId, newColumnId)
+  })
+
+  const onDragEnd: OnDragEndResponder = result => {
+    if (!result.destination) return
+
+    if (result.source.droppableId === result.destination.droppableId) return
+
+    mutate({
+      columnId: result.source.droppableId,
+      cardId: result.draggableId,
+      newColumnId: result.destination?.droppableId as string
+    })
+  }
 
   return (
     <div
@@ -18,7 +49,9 @@ export const Board = () => {
         <FilterSelect />
       </div>
       <div className='flex'>
-        <BoardColumnsList columns={data?.columns} />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <BoardColumnsList columns={data?.columns} />
+        </DragDropContext>
         <BoardAddColumnBtn />
       </div>
     </div>

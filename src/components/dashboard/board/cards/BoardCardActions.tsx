@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 
 import { Button } from 'components/ui'
 
-import { useGetBoardId, useAppMutation } from 'hooks'
+import { useAppMutation, useGetBoardId } from 'hooks'
 
 import { cardService } from 'services'
 

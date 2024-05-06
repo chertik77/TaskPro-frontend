@@ -1,5 +1,6 @@
 import type { Column } from 'types'
 
+import { Draggable } from '@hello-pangea/dnd'
 import { useSelector } from 'react-redux'
 
 import { selectFilter } from 'redux/user.slice'
@@ -19,11 +20,20 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
       <BoardColumnsActions column={column} />
       {column?.cards?.length > 0 && (
         <div className='space-y-[8px]'>
-          {filteredCards.map(card => (
-            <BoardCard
+          {filteredCards.map((card, i) => (
+            <Draggable
+              index={i}
               key={card._id}
-              card={card}
-            />
+              draggableId={card._id}>
+              {provided => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}>
+                  <BoardCard card={card} />
+                </div>
+              )}
+            </Draggable>
           ))}
         </div>
       )}
