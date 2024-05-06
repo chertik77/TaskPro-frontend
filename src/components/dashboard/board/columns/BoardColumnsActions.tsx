@@ -12,10 +12,11 @@ import { useAppMutation, useGetBoardId } from 'hooks'
 
 import { columnService } from 'services'
 
+const REQUIRED_COLUMN_TITLE_LENGTH = 3
+
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  console.log(column.title)
   const boardId = useGetBoardId()
 
   const { mutateAsync } = useAppMutation({
@@ -29,7 +30,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
   })
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
-    if (value.length < 3) {
+    if (value.length < REQUIRED_COLUMN_TITLE_LENGTH) {
       setColumnTitle(previousValue)
       return toast.error('Column title must be at least 3 characters long.')
     }
