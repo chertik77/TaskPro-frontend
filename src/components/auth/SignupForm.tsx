@@ -26,14 +26,14 @@ export const SignupForm = () => {
         errors={formState.errors}
         inputName='name'
         placeholder='Enter your name'
-        className='mb-default text-white violet:text-white'
+        className='text-white'
         {...register('name')}
       />
       <Field
         errors={formState.errors}
         inputName='email'
         placeholder='Enter your email'
-        className='mb-default text-white'
+        className='text-white'
         {...register('email')}
       />
       <Field

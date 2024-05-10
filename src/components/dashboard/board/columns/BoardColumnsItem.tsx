@@ -19,22 +19,24 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
     <>
       <BoardColumnsActions column={column} />
       {column?.cards?.length > 0 && (
-        <div className='space-y-[8px]'>
-          {filteredCards.map((card, i) => (
-            <Draggable
-              index={i}
-              key={card._id}
-              draggableId={card._id}>
-              {provided => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}>
-                  <BoardCard card={card} />
-                </div>
-              )}
-            </Draggable>
-          ))}
+        <div className=''>
+          <div className='h-[500px] space-y-[8px] overflow-auto'>
+            {filteredCards.map((card, i) => (
+              <Draggable
+                index={i}
+                key={card._id}
+                draggableId={card._id}>
+                {provided => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}>
+                    <BoardCard card={card} />
+                  </div>
+                )}
+              </Draggable>
+            ))}
+          </div>
         </div>
       )}
     </>
