@@ -45,7 +45,7 @@ export const Board = () => {
       className={cn(`space-y-[39px] overflow-x-auto overflow-y-hidden px-5 pt-[14px]
         tablet:space-y-[26px] tablet:pl-[32px] desktop:space-y-[10px] desktop:pl-6`)}>
       <div className='flex justify-between'>
-        <p className='text-fs-18-lh-normal-fw-500'>{data?.title}</p>
+        <p className='text-fs-18-lh-normal-fw-500 '>{data?.title}</p>
         <FilterSelect />
       </div>
       <div className='flex'>
