@@ -12,7 +12,7 @@ import { userService } from 'services'
 import { needHelpSchema } from 'lib/schemas'
 
 export const NeedHelpModal = () => {
-  const { close } = useModal('need-help-modal')
+  const { close } = useModal(NeedHelpModal)
 
   const { handleSubmit, register, formState, reset } =
     useAppForm<NeedHelpSchemaFields>(needHelpSchema)

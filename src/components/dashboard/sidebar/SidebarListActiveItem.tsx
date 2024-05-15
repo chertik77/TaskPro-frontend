@@ -11,12 +11,14 @@ import { useAppMutation, useGetBoardId } from 'hooks'
 
 import { boardService } from 'services'
 
+import { EditBoardModal } from '../modals'
+
 export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   const boardId = useGetBoardId()
 
   const navigate = useNavigate()
 
-  const { open } = useModal('edit-board-modal')
+  const { open } = useModal(EditBoardModal)
 
   const queryClient = useQueryClient()
 

@@ -42,16 +42,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           loading={null}
           persistor={persistor}>
           <BrowserRouter>
-            <ModalProvider
-              modals={[
-                ['edit-board-modal', EditBoardModal],
-                ['new-board-modal', AddBoardModal],
-                ['need-help-modal', NeedHelpModal],
-                ['add-card-modal', AddCardModal],
-                ['edit-card-modal', EditCardModal],
-                ['edit-profile-modal', EditProfileModal],
-                ['burger-menu', BurgerMenu]
-              ]}>
+            <ModalProvider>
               <App />
               <ModalRenderer Component={EditBoardModal} />
               <ModalRenderer Component={AddBoardModal} />

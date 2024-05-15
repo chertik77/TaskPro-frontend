@@ -68,9 +68,7 @@ export const HeaderThemeSelect = () => {
                 dark:data-[state=checked]:text-brand dark:hocus:text-brand'
               value={theme}>
               <Select.ItemText>
-                <button type='button'>
-                  {theme.charAt(0).toUpperCase() + theme.slice(1)}
-                </button>
+                {theme.charAt(0).toUpperCase() + theme.slice(1)}
               </Select.ItemText>
             </Select.Item>
           ))}

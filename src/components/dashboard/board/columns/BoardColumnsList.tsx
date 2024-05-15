@@ -3,6 +3,7 @@ import type { Board } from 'types'
 import { Droppable } from '@hello-pangea/dnd'
 import { useModal } from 'react-modal-state'
 
+import { AddCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
 
 import { BoardColumnsItem } from './BoardColumnsItem'
@@ -12,7 +13,7 @@ type BoardColumnsListProps = {
 }
 
 export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
-  const { open } = useModal('add-card-modal')
+  const { open } = useModal(AddCardModal)
 
   return (
     <div className='flex'>

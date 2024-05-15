@@ -1,7 +1,9 @@
 import { useModal } from 'react-modal-state'
 
+import { AddBoardModal } from '../modals'
+
 export const SidebarCreateBoardBtn = () => {
-  const { open } = useModal('new-board-modal')
+  const { open } = useModal(AddBoardModal)
 
   return (
     <div className='mb-10 desktop:px-6'>

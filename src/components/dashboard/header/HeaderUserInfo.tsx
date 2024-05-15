@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux'
 
 import { selectUser } from 'redux/user.slice'
 
+import { EditProfileModal } from '../modals'
+
 export const HeaderUserInfo = () => {
   const { name, avatarURL } = useSelector(selectUser)
-  const { open } = useModal('edit-profile-modal')
+  const { open } = useModal(EditProfileModal)
 
   return (
     <button

@@ -3,6 +3,7 @@ import type { Card } from 'types'
 import { isBefore, isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 
+import { EditCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
 
 import { useAppMutation, useGetBoardId } from 'hooks'
@@ -22,7 +23,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
     mutationFn: () => cardService.deleteCard(boardId, card.column, card._id)
   })
 
-  const { open } = useModal('edit-card-modal')
+  const { open } = useModal(EditCardModal)
 
   return (
     <div className='ml-auto flex gap-2'>

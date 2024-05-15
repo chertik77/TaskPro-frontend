@@ -28,6 +28,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
                 draggableId={card._id}>
                 {provided => (
                   <div
+                    className='cursor-grab'
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
