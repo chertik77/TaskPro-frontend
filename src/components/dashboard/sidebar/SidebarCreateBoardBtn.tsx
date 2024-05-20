@@ -1,4 +1,5 @@
 import { useModal } from 'react-modal-state'
+import { Tooltip } from 'react-tooltip'
 
 import { AddBoardModal } from '../modals'
 
@@ -24,11 +25,17 @@ export const SidebarCreateBoardBtn = () => {
             className='flex h-9 w-10 items-center justify-center rounded-lg bg-brand text-black
               hocus:bg-brand-hover violet:bg-brand-third violet:text-white
               violet:hocus:bg-[#979CEA]'
-            onClick={open}>
+            onClick={open}
+            data-tooltip-id='create-board-tooltip'
+            data-tooltip-content='Create board'>
             <svg className='size-5'>
               <use href='/icons.svg#icon-plus-min' />
             </svg>
           </button>
+          <Tooltip
+            id='create-board-tooltip'
+            delayShow={500}
+          />
         </div>
       </div>
     </div>
