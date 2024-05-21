@@ -1,7 +1,9 @@
 import { useModal } from 'react-modal-state'
 
+import { AddBoardModal } from 'components/dashboard/modals'
+
 export const CreateBoard = () => {
-  const { open } = useModal('new-board-modal')
+  const { open } = useModal(AddBoardModal)
 
   return (
     <div className='flex items-center justify-center mobile:h-dvh desktop:h-auto'>
@@ -14,7 +16,7 @@ export const CreateBoard = () => {
           onClick={open}
           className='text-brand hocus:cursor-pointer hocus:text-brand-hover
             violet:text-brand-secondary violet:hocus:text-brand-third'>
-          to create a board
+          to create a board{' '}
         </span>
         to visualize and track all the necessary tasks and milestones. This
         board serves as a powerful tool to organize the workflow and ensure

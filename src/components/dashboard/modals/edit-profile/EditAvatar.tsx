@@ -51,7 +51,7 @@ export const EditAvatar = () => {
       <Button
         type='button'
         onClick={handleFileSelect}
-        style={{ backgroundImage: `url(${avatarURL?.url})` }}
+        style={{ backgroundImage: `url(${avatarURL})` }}
         className='relative size-[68px] rounded-lg bg-cover bg-center'>
         <div className='absolute bottom-[-12px] left-[22px] size-6 rounded-lg bg-brand p-[7px]'>
           <svg className='size-[10px]'>

@@ -4,10 +4,9 @@ import type { Card } from 'types'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { Button, Field, Modal } from 'components/ui'
-import { DatePopover } from 'components/ui/calendar/DatePopover'
+import { Button, DatePicker, Field, Modal } from 'components/ui'
 
-import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
+import { useAppForm, useAppMutation } from 'hooks'
 
 import { cardService } from 'services'
 
@@ -17,29 +16,24 @@ import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
 export const EditCardModal = () => {
-  const { close } = useModal('edit-card-modal')
+  const { close } = useModal(EditCardModal)
 
-  const { data } = useModalInstance<Card>()
+  const { data: card } = useModalInstance<Card>()
 
-  const boardId = useGetBoardId()
-
-  const { register, handleSubmit, formState, setValue, control, reset } =
+  const { register, handleSubmit, formState, control, reset } =
     useAppForm<CardSchemaFields>(cardSchema, {
       defaultValues: {
-        title: data?.title,
-        priority: data?.priority,
-        description: data?.description
+        title: card?.title,
+        priority: card?.priority,
+        description: card?.description,
+        deadline: card?.deadline as unknown as Date
       }
     })
-
-  const handleDeadlineChange = (date: string) => {
-    setValue('deadline', date)
-  }
 
   const { mutateAsync, isPending } = useAppMutation<CardSchemaFields>({
     mutationKey: ['editCard'],
     mutationFn: cardData =>
-      cardService.editCard(boardId, data.column, data._id, cardData)
+      cardService.editCard(card.board, card.column, card._id, cardData)
   })
 
   const submit = (data: CardSchemaFields) => {
@@ -74,19 +68,7 @@ export const EditCardModal = () => {
           errors={formState.errors}
           control={control}
         />
-        <p
-          className='mb-[4px] select-none text-fs-12-lh-normal-fw-400 text-black/50
-            violet:text-black/50 dark:text-white/50'>
-          Deadline
-        </p>
-        <div className='relative'>
-          <DatePopover onChange={handleDeadlineChange} />
-          {formState.errors.deadline && (
-            <span className=' absolute left-0 top-5 text-red-600'>
-              Wrong date!
-            </span>
-          )}
-        </div>
+        <DatePicker control={control} />
         <Button
           isPlusIcon
           type='submit'

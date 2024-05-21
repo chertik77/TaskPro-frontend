@@ -6,12 +6,13 @@ import { RadioInput } from 'components/ui'
 
 import { useAppDispatch } from 'hooks'
 
-import { filter, selectFilter } from 'redux/user.slice'
+import { filterCards, selectFilter } from 'redux/filter.slice'
 
 import items from 'lib/json/filter-items.json'
 
 export const FilterSelect = () => {
   const filterSelector = useSelector(selectFilter)
+
   const dispatch = useAppDispatch()
 
   return (
@@ -41,7 +42,7 @@ export const FilterSelect = () => {
             <h3>Label color</h3>
             <button
               type='button'
-              onClick={() => dispatch(filter(''))}
+              onClick={() => dispatch(filterCards(''))}
               className='text-fs-12-lh-normal-fw-400 underline opacity-50 focus:outline-none
                 hocus:text-brand-hover hocus:no-underline hocus:opacity-100'>
               Show all
@@ -50,7 +51,7 @@ export const FilterSelect = () => {
           <form>
             <Root
               className='flex flex-col gap-2'
-              onValueChange={v => dispatch(filter(v))}>
+              onValueChange={v => dispatch(filterCards(v))}>
               {items.map(({ value }) => (
                 <label
                   className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 text-black/50

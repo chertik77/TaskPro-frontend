@@ -16,8 +16,8 @@ export const HeaderUserInfo = () => {
       className='flex items-center gap-2'>
       <p>{name}</p>
       <img
-        src={avatarURL.url}
-        alt={name!}
+        src={avatarURL}
+        alt={name}
         className='size-8 rounded-lg'
       />
     </button>

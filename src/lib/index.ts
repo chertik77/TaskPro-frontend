@@ -2,6 +2,7 @@ import type { ClassValue } from 'clsx'
 import type { Card } from 'types/board.types'
 
 import { clsx } from 'clsx'
+import { format, isToday } from 'date-fns'
 import { twMerge } from 'tailwind-merge'
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
@@ -23,4 +24,10 @@ export const getVisibleCards = (cards: Card[], filter: string) => {
   if (!filter) return cards
 
   return cards.filter(card => card.priority === filter)
+}
+
+export const formatTodayDate = (date: Date) => {
+  return isToday(date)
+    ? `Today, ${format(date, 'MMMM d')}`
+    : format(date, 'dd/MM/yyyy')
 }

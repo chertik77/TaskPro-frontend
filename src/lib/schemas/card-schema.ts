@@ -1,8 +1,8 @@
 import type { Output } from 'valibot'
 
-import { minLength, object, picklist, string, toTrimmed } from 'valibot'
+import { date, minLength, object, picklist, string, toTrimmed } from 'valibot'
 
-const priorityList = ['Low', 'Medium', 'High', 'Without priority']
+import { priorities } from 'constants/priorities'
 
 export const cardSchema = object({
   title: string([
@@ -13,8 +13,8 @@ export const cardSchema = object({
     toTrimmed(),
     minLength(3, 'Please enter at least 3 characters.')
   ]),
-  priority: picklist(priorityList, 'Please select a priority.'),
-  deadline: string()
+  priority: picklist(priorities),
+  deadline: date()
 })
 
 export type CardSchemaFields = Output<typeof cardSchema>

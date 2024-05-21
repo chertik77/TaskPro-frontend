@@ -3,8 +3,7 @@ import type { CardSchemaFields } from 'lib/schemas'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { Button, Field, Modal } from 'components/ui'
-import { DatePopover } from 'components/ui/calendar/DatePopover'
+import { Button, DatePicker, Field, Modal } from 'components/ui'
 
 import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
 
@@ -18,16 +17,14 @@ import { ModalPriorities } from './ModalPriorities'
 export const AddCardModal = () => {
   const boardId = useGetBoardId()
 
-  const { close } = useModal('add-card-modal')
+  const { close } = useModal(AddCardModal)
 
   const { data: column } = useModalInstance<string>()
 
-  const { register, handleSubmit, formState, setValue, reset, control } =
-    useAppForm<CardSchemaFields>(cardSchema)
-
-  const handleDeadlineChange = (date: string) => {
-    setValue('deadline', date)
-  }
+  const { register, handleSubmit, formState, reset, control } =
+    useAppForm<CardSchemaFields>(cardSchema, {
+      defaultValues: { priority: 'Without priority', deadline: new Date() }
+    })
 
   const { mutateAsync, isPending } = useAppMutation<CardSchemaFields>({
     mutationKey: ['addCard'],
@@ -42,7 +39,7 @@ export const AddCardModal = () => {
         close()
         return "The task has been created successfully. Let's start working on it."
       },
-      error: () => 'An error occurred while adding the card.'
+      error: 'An error occurred while adding the card.'
     })
   }
 
@@ -65,17 +62,7 @@ export const AddCardModal = () => {
           control={control}
           errors={formState.errors}
         />
-        <p className='mb-1 text-fs-12-lh-normal-fw-400 text-black/50 dark:text-white/50'>
-          Deadline
-        </p>
-        <div className='relative'>
-          <DatePopover onChange={handleDeadlineChange} />
-          {formState.errors.deadline && (
-            <span className=' absolute left-0 top-5 text-red-600'>
-              Wrong date!
-            </span>
-          )}
-        </div>
+        <DatePicker control={control} />
         <Button
           isPlusIcon
           type='submit'

@@ -1,3 +1,5 @@
+import type { EnumPriority } from 'constants/priorities'
+
 export type ColumnTitle = {
   title: string
 }
@@ -8,7 +10,7 @@ export type Card = {
   column: string
   board: string
   description: string
-  priority: 'Low' | 'Medium' | 'High' | 'Without priority'
+  priority: EnumPriority
   deadline: string
 }
 

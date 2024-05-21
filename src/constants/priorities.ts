@@ -1,4 +1,4 @@
-export enum RadioPriority {
+export enum EnumPriority {
   Low = 'Low',
   Medium = 'Medium',
   High = 'High',

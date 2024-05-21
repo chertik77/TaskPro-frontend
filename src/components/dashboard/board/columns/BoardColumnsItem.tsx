@@ -3,7 +3,7 @@ import type { Column } from 'types'
 import { Draggable } from '@hello-pangea/dnd'
 import { useSelector } from 'react-redux'
 
-import { selectFilter } from 'redux/user.slice'
+import { selectFilter } from 'redux/filter.slice'
 
 import { getVisibleCards } from 'lib'
 
@@ -28,7 +28,6 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
                 draggableId={card._id}>
                 {provided => (
                   <div
-                    className='cursor-grab'
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>

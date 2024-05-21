@@ -1,6 +1,6 @@
 import type { Card } from 'types'
 
-import { RadioPriority } from 'constants/priorities'
+import { EnumPriority } from 'constants/priorities'
 
 import { cn } from 'lib'
 
@@ -13,11 +13,11 @@ export const BoardCard = ({ card }: { card: Card }) => (
     className={cn(
       `h-[154px] w-[335px] rounded-lg border-l-4 bg-white py-default pl-6 pr-5
       dark:bg-black`,
-      card.priority === RadioPriority.WithoutPriority &&
+      card.priority === EnumPriority.WithoutPriority &&
         'border-black/30 dark:border-white/30',
-      card.priority === RadioPriority.High && 'border-brand',
-      card.priority === RadioPriority.Medium && 'border-priority-medium',
-      card.priority === RadioPriority.Low && 'border-priority-low'
+      card.priority === EnumPriority.High && 'border-brand',
+      card.priority === EnumPriority.Medium && 'border-priority-medium',
+      card.priority === EnumPriority.Low && 'border-priority-low'
     )}>
     <p className='mb-2 text-fs-14-lh-normal-fw-600'>{card.title}</p>
     <p
