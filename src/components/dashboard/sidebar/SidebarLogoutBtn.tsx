@@ -1,16 +1,17 @@
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-
-import { useAppDispatch } from 'hooks'
+import { useDispatch } from 'react-redux'
 
 import { logout } from 'redux/user.slice'
 
 import { authService } from 'services'
 
-export const SidebarLogoutBtn = () => {
-  const dispatch = useAppDispatch()
+import { BurgerModal } from '../modals/burger-menu/burger-Modal'
 
-  const { close } = useModal('burger-menu')
+export const SidebarLogoutBtn = () => {
+  const dispatch = useDispatch()
+
+  const { close } = useModal(BurgerModal)
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ['logout'],

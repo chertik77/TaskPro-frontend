@@ -30,7 +30,7 @@ export const NeedHelpModal = () => {
         close()
         return 'Your help request has been sent successfully! Our team will get back to you shortly.'
       },
-      error: () => 'Oops! Something went wrong while sending your help request.'
+      error: 'Oops! Something went wrong while sending your help request.'
     })
   }
 

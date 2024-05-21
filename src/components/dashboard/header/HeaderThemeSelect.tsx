@@ -2,8 +2,9 @@ import type { AuthResponse } from 'types'
 
 import * as Select from '@radix-ui/react-select'
 import { useTheme } from 'next-themes'
+import { useDispatch } from 'react-redux'
 
-import { useAppDispatch, useAppMutation } from 'hooks'
+import { useAppMutation } from 'hooks'
 
 import { updateUser } from 'redux/user.slice'
 
@@ -11,7 +12,7 @@ import { themes } from 'constants/themes'
 import { userService } from 'services'
 
 export const HeaderThemeSelect = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   const { setTheme, theme } = useTheme()
 

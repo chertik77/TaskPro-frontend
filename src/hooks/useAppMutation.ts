@@ -10,17 +10,19 @@ type UseAppMutationProps = {
 export const useAppMutation = <T = void, R = void>({
   mutationKey,
   mutationFn,
-  invalidateQueryKey
+  invalidateQueryKey,
+  ...options
 }: UseMutationOptions<R, AxiosError, T> & UseAppMutationProps) => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationKey,
     mutationFn,
-    onSuccess: () => {
+    onSuccess() {
       queryClient.invalidateQueries({
         queryKey: [invalidateQueryKey ?? 'board']
       })
-    }
+    },
+    ...options
   })
 }

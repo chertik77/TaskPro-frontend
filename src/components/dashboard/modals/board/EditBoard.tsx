@@ -18,7 +18,7 @@ import { Icons } from './Icons'
 export const EditBoardModal = () => {
   const boardId = useGetBoardId()
 
-  const { close } = useModal('edit-board-modal')
+  const { close } = useModal(EditBoardModal)
 
   const { data } = useModalInstance<{ title: string; icon: string }>()
 
@@ -45,7 +45,7 @@ export const EditBoardModal = () => {
         close()
         return 'The board has been edited successfully!'
       },
-      error: () => 'An error occurred while editing the board.'
+      error: 'An error occurred while editing the board.'
     })
   }
 

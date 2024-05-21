@@ -2,12 +2,10 @@ import type { AxiosError } from 'axios'
 
 import { useEffect } from 'react'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
 import { PrivateRoute, RestrictedRoute } from 'components/routes'
-
-import { useAppDispatch } from 'hooks'
 
 import { current, logout, selectIsLoggedIn } from 'redux/user.slice'
 
@@ -20,7 +18,7 @@ import { CreateBoard } from './ui'
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!isLoggedIn) return

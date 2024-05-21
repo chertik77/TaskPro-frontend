@@ -1,15 +1,17 @@
 import type { SignupSchemaFields } from 'lib/schemas'
 
+import { useDispatch } from 'react-redux'
+
 import { Button, Field } from 'components/ui'
 
-import { useAppDispatch, useAppForm, useSignupUser } from 'hooks'
+import { useAppForm, useSignupUser } from 'hooks'
 
 import { authenticate } from 'redux/user.slice'
 
 import { signupSchema } from 'lib/schemas'
 
 export const SignupForm = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   const { handleSubmit, register, formState, reset } =
     useAppForm<SignupSchemaFields>(signupSchema)

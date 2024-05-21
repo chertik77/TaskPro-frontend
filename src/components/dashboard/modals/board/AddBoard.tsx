@@ -18,7 +18,7 @@ import { BackgroundImages } from './BackgroundImages'
 import { Icons } from './Icons'
 
 export const AddBoardModal = () => {
-  const { close } = useModal('new-board-modal')
+  const { close } = useModal(AddBoardModal)
 
   const navigate = useNavigate()
 
@@ -45,8 +45,7 @@ export const AddBoardModal = () => {
         navigate(`/dashboard/${data._id}`)
         return 'Board successfully added to your collection!'
       },
-      error: () =>
-        'An error occurred while creating a board. Please try again later.'
+      error: 'An error occurred while creating a board. Please try again later.'
     })
   }
 

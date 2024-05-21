@@ -1,7 +1,9 @@
 import { useModal } from 'react-modal-state'
 
+import { NeedHelpModal } from '../modals'
+
 export const SidebarUserSupportBtn = () => {
-  const { open } = useModal('need-help-modal')
+  const { open } = useModal(NeedHelpModal)
 
   return (
     <div
@@ -26,8 +28,8 @@ export const SidebarUserSupportBtn = () => {
       </p>
       <button
         onClick={open}
-        className='flex gap-2 text-fs-12-lh-normal-fw-400 hocus:text-brand-hover violet:text-white
-          violet:hocus:text-brand-third dark:text-white-primary
+        className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 hocus:text-brand-hover
+          violet:text-white violet:hocus:text-brand-third dark:text-white-primary
           dark:hocus:text-brand-hover'>
         <svg className='size-5'>
           <use href={`/icons.svg#icon-help`} />

@@ -1,19 +1,17 @@
 import * as Popover from '@radix-ui/react-popover'
 import { Root } from '@radix-ui/react-radio-group'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { RadioInput } from 'components/ui'
 
-import { useAppDispatch } from 'hooks'
-
 import { filterCards, selectFilter } from 'redux/filter.slice'
 
-import items from 'lib/json/filter-items.json'
+import { priorities } from 'constants/priorities'
 
 export const FilterSelect = () => {
   const filterSelector = useSelector(selectFilter)
 
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   return (
     <Popover.Root>
@@ -52,17 +50,17 @@ export const FilterSelect = () => {
             <Root
               className='flex flex-col gap-2'
               onValueChange={v => dispatch(filterCards(v))}>
-              {items.map(({ value }) => (
+              {priorities.map(priority => (
                 <label
                   className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 text-black/50
                     has-[:checked]:text-black hocus:text-black dark:text-white/50
                     has-[:checked]:dark:text-white hocus:dark:text-white'
-                  key={value}>
+                  key={priority}>
                   <RadioInput
-                    value={value}
-                    checked={value === filterSelector}
+                    value={priority}
+                    checked={priority === filterSelector}
                   />
-                  {value}
+                  {priority}
                 </label>
               ))}
             </Root>
