@@ -1,8 +1,8 @@
 import { SidebarBoardsList } from '../../sidebar/SidebarBoardsList'
-import { SidebarCreateBoardBtn } from '../../sidebar/SidebarCreateBoardBtn'
 import { SidebarLogo } from '../../sidebar/SidebarLogo'
 import { SidebarLogoutBtn } from '../../sidebar/SidebarLogoutBtn'
-import { SidebarUserSupportBtn } from '../../sidebar/SidebarUserSupportBtn'
+import { SidebarMyBoardsInfo } from '../../sidebar/SidebarMyBoardsInfo'
+import { SidebarUserSupport } from '../../sidebar/SidebarUserSupport'
 import { BurgerModal } from './burger-Modal'
 
 export const BurgerMenu = () => (
@@ -14,11 +14,11 @@ export const BurgerMenu = () => (
           tablet:w-[260px] tablet:px-6 tablet:pt-6'>
         <div>
           <SidebarLogo />
-          <SidebarCreateBoardBtn />
+          <SidebarMyBoardsInfo />
           <SidebarBoardsList />
         </div>
         <div>
-          <SidebarUserSupportBtn />
+          <SidebarUserSupport />
           <SidebarLogoutBtn />
         </div>
       </div>

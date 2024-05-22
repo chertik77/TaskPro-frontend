@@ -3,7 +3,7 @@ import { Tooltip } from 'react-tooltip'
 
 import { AddBoardModal } from '../modals'
 
-export const SidebarCreateBoardBtn = () => {
+export const SidebarMyBoardsInfo = () => {
   const { open } = useModal(AddBoardModal)
 
   return (

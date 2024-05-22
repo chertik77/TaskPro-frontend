@@ -3,7 +3,6 @@ import type { Board } from 'types'
 
 import { useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
-import { Controller } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -15,8 +14,8 @@ import { boardService } from 'services'
 
 import { boardSchema } from 'lib/schemas'
 
-import { BgImages } from './BgImages'
-import { Icons } from './Icons'
+import { RadioInputBgImages } from './RadioInputBgImages'
+import { RadioInputIcons } from './RadioInputIcons'
 
 export const EditBoardModal = () => {
   const boardId = useGetBoardId()
@@ -76,18 +75,8 @@ export const EditBoardModal = () => {
           errors={formState.errors}
           className='violet:text-black'
         />
-        <p className='mt-6'>Icons</p>
-        <Controller
-          control={control}
-          name='icon'
-          render={props => <Icons {...props} />}
-        />
-        <p className='mt-6'>Background</p>
-        <Controller
-          control={control}
-          name='background'
-          render={props => <BgImages {...props} />}
-        />
+        <RadioInputIcons control={control} />
+        <RadioInputBgImages control={control} />
         <Button
           type='submit'
           isPlusIcon

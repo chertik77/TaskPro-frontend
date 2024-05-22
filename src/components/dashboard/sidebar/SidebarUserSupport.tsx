@@ -2,7 +2,7 @@ import { useModal } from 'react-modal-state'
 
 import { NeedHelpModal } from '../modals'
 
-export const SidebarUserSupportBtn = () => {
+export const SidebarUserSupport = () => {
   const { open } = useModal(NeedHelpModal)
 
   return (

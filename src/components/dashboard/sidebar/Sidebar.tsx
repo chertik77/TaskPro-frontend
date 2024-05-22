@@ -1,8 +1,8 @@
 import { SidebarBoardsList } from './SidebarBoardsList'
-import { SidebarCreateBoardBtn } from './SidebarCreateBoardBtn'
 import { SidebarLogo } from './SidebarLogo'
 import { SidebarLogoutBtn } from './SidebarLogoutBtn'
-import { SidebarUserSupportBtn } from './SidebarUserSupportBtn'
+import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
+import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => (
   <div className='col-start-1 row-span-2 row-start-1 hidden desktop:block'>
@@ -11,11 +11,11 @@ export const Sidebar = () => (
         violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px]'>
       <div>
         <SidebarLogo />
-        <SidebarCreateBoardBtn />
+        <SidebarMyBoardsInfo />
         <SidebarBoardsList />
       </div>
       <div>
-        <SidebarUserSupportBtn />
+        <SidebarUserSupport />
         <SidebarLogoutBtn />
       </div>
     </div>

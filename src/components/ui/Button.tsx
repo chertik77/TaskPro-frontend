@@ -40,7 +40,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {isPlusIcon && (
         <>
-          <svg className='size-7'>
+          <svg className='size-7 stroke-transparent'>
             <use href='/icons.svg#icon-plus' />
           </svg>
           {children}

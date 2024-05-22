@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export const SidebarLogo = () => (
-  <div className='mb-[70px] flex items-center gap-2 tablet:mb-[60px] desktop:px-6 desktop:pt-6 '>
+  <div className='mb-[70px] flex items-center gap-2 tablet:mb-[60px] desktop:px-6 desktop:pt-6'>
     <Link to='/dashboard'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -17,10 +17,8 @@ export const SidebarLogo = () => (
         />
       </svg>
     </Link>
-    <div className='text-fs-16-lh-normal-fw-600'>
-      <span className='text-black violet:text-white dark:text-white'>
-        Task Pro
-      </span>
-    </div>
+    <h1 className='text-fs-16-lh-normal-fw-600 text-black violet:text-white dark:text-white'>
+      Task Pro
+    </h1>
   </div>
 )
