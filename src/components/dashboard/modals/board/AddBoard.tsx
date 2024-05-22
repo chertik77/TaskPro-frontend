@@ -1,4 +1,4 @@
-import type { BoardSchemaFields } from 'lib/schemas'
+import type { BoardSchema } from 'lib/schemas'
 import type { Board } from 'types'
 
 import { useModal } from 'react-modal-state'
@@ -11,8 +11,6 @@ import { useAppForm, useAppMutation } from 'hooks'
 
 import { boardService } from 'services'
 
-import { boardSchema } from 'lib/schemas'
-
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 
@@ -22,17 +20,17 @@ export const AddBoardModal = () => {
   const navigate = useNavigate()
 
   const { register, formState, reset, handleSubmit, control } =
-    useAppForm<BoardSchemaFields>(boardSchema, {
+    useAppForm<BoardSchema>(BoardSchema, {
       defaultValues: { icon: 'icon-project-1', background: 'default' }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields, Board>({
+  const { mutateAsync, isPending } = useAppMutation<BoardSchema, Board>({
     mutationKey: ['addBoard'],
     mutationFn: data => boardService.addNewBoard(data),
     invalidateQueryKey: 'boards'
   })
 
-  const submit = (data: BoardSchemaFields) => {
+  const submit = (data: BoardSchema) => {
     toast.promise(mutateAsync(data), {
       loading: 'Creating board...',
       success: data => {

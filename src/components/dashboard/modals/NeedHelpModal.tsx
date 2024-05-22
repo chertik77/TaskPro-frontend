@@ -1,4 +1,4 @@
-import type { NeedHelpSchemaFields } from 'lib/schemas'
+import type { HelpSchema } from 'lib/schemas'
 
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
@@ -9,20 +9,18 @@ import { useAppForm, useAppMutation } from 'hooks'
 
 import { userService } from 'services'
 
-import { needHelpSchema } from 'lib/schemas'
-
 export const NeedHelpModal = () => {
   const { close } = useModal(NeedHelpModal)
 
   const { handleSubmit, register, formState, reset } =
-    useAppForm<NeedHelpSchemaFields>(needHelpSchema)
+    useAppForm<HelpSchema>(HelpSchema)
 
-  const { mutateAsync, isPending } = useAppMutation<NeedHelpSchemaFields>({
+  const { mutateAsync, isPending } = useAppMutation<HelpSchema>({
     mutationKey: ['help'],
     mutationFn: data => userService.askForHelp(data)
   })
 
-  const submit = (data: NeedHelpSchemaFields) => {
+  const submit = (data: HelpSchema) => {
     toast.promise(mutateAsync(data), {
       loading: 'Sending...',
       success: () => {

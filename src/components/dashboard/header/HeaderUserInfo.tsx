@@ -7,6 +7,7 @@ import { EditProfileModal } from '../modals'
 
 export const HeaderUserInfo = () => {
   const { name, avatarURL } = useSelector(selectUser)
+
   const { open } = useModal(EditProfileModal)
 
   return (

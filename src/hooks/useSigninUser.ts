@@ -1,4 +1,4 @@
-import type { SigninSchemaFields } from 'lib/schemas'
+import type { SigninSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 import type { AuthResponse } from 'types'
 
@@ -8,8 +8,8 @@ import { useAppMutation } from 'hooks/useAppMutation'
 
 import { authService } from 'services'
 
-export const useSigninUser = (reset: UseFormReset<SigninSchemaFields>) =>
-  useAppMutation<SigninSchemaFields, AuthResponse>({
+export const useSigninUser = (reset: UseFormReset<SigninSchema>) =>
+  useAppMutation<SigninSchema, AuthResponse>({
     mutationKey: ['signin'],
     mutationFn: data => authService.signin(data),
     onSuccess(data) {

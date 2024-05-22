@@ -36,8 +36,8 @@ const userSlice = createSlice({
       state.isLoggedIn = true
     },
     updateUser: (state, action) => {
+      state.user = action.payload
       state.user.avatarURL = action.payload.avatarURL.url
-      state.user.userTheme = action.payload.userTheme
     },
     logout: state => {
       state.user = {

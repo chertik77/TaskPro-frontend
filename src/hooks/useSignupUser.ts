@@ -1,4 +1,4 @@
-import type { SignupSchemaFields } from 'lib/schemas'
+import type { SignupSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 import type { AuthResponse } from 'types'
 
@@ -8,8 +8,8 @@ import { authService } from 'services'
 
 import { useAppMutation } from './useAppMutation'
 
-export const useSignupUser = (reset: UseFormReset<SignupSchemaFields>) =>
-  useAppMutation<SignupSchemaFields, AuthResponse>({
+export const useSignupUser = (reset: UseFormReset<SignupSchema>) =>
+  useAppMutation<SignupSchema, AuthResponse>({
     mutationKey: ['signup'],
     mutationFn: data => authService.signup(data),
     onSuccess(_, variables) {

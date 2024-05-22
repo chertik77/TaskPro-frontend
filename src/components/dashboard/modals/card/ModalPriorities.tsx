@@ -1,4 +1,4 @@
-import type { CardSchemaFields } from 'lib/schemas'
+import type { CardSchema } from 'lib/schemas'
 import type { Control, FieldErrors } from 'react-hook-form'
 
 import { ErrorMessage } from '@hookform/error-message'
@@ -10,8 +10,8 @@ import { RadioInput } from 'components/ui'
 import { priorities } from 'constants/priorities'
 
 type AddCardModalPrioritiesProps = {
-  control: Control<CardSchemaFields>
-  errors: FieldErrors<CardSchemaFields>
+  control: Control<CardSchema>
+  errors: FieldErrors<CardSchema>
 }
 
 export const ModalPriorities = ({

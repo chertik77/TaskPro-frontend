@@ -1,4 +1,4 @@
-import type { CardSchemaFields } from 'lib/schemas'
+import type { CardSchema } from 'lib/schemas'
 import type { Card } from 'types'
 
 import { useEffect } from 'react'
@@ -11,8 +11,6 @@ import { useAppForm, useAppMutation } from 'hooks'
 
 import { cardService } from 'services'
 
-import { cardSchema } from 'lib/schemas'
-
 import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
@@ -22,11 +20,11 @@ export const EditCardModal = () => {
   const { data: card } = useModalInstance<Card>()
 
   const { register, handleSubmit, formState, control, reset, setValue } =
-    useAppForm<CardSchemaFields>(cardSchema, {
+    useAppForm<CardSchema>(CardSchema, {
       defaultValues: { title: card.title, description: card.description }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<CardSchemaFields>({
+  const { mutateAsync, isPending } = useAppMutation<CardSchema>({
     mutationKey: ['editCard'],
     mutationFn: cardData =>
       cardService.editCard(card.board, card.column, card._id, cardData)
@@ -39,7 +37,7 @@ export const EditCardModal = () => {
     setValue('deadline', card.deadline as unknown as Date)
   }, [card.deadline, card.description, card.priority, card.title, setValue])
 
-  const submit = (data: CardSchemaFields) => {
+  const submit = (data: CardSchema) => {
     toast.promise(mutateAsync(data), {
       loading: 'Editing...',
       success: () => {

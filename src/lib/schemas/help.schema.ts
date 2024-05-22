@@ -2,7 +2,7 @@ import type { Output } from 'valibot'
 
 import { email, minLength, object, string, toTrimmed } from 'valibot'
 
-export const needHelpSchema = object({
+export const HelpSchema = object({
   email: string([toTrimmed(), email('Please enter a valid email.')]),
   comment: string([
     toTrimmed(),
@@ -10,4 +10,4 @@ export const needHelpSchema = object({
   ])
 })
 
-export type NeedHelpSchemaFields = Output<typeof needHelpSchema>
+export type HelpSchema = Output<typeof HelpSchema>

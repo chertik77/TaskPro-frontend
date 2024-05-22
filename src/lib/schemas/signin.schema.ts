@@ -2,12 +2,7 @@ import type { Output } from 'valibot'
 
 import { email, maxLength, minLength, object, string, toTrimmed } from 'valibot'
 
-export const signupSchema = object({
-  name: string([
-    toTrimmed(),
-    minLength(2, 'Please enter at least 2 characters.'),
-    maxLength(32, 'Please enter at most 32 characters.')
-  ]),
+export const SigninSchema = object({
   email: string([toTrimmed(), email('Please enter a valid email.')]),
   password: string([
     toTrimmed(),
@@ -16,4 +11,4 @@ export const signupSchema = object({
   ])
 })
 
-export type SignupSchemaFields = Output<typeof signupSchema>
+export type SigninSchema = Output<typeof SigninSchema>

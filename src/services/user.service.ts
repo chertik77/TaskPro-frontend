@@ -1,4 +1,4 @@
-import type { NeedHelpSchemaFields } from 'lib/schemas'
+import type { HelpSchema, OptionalSignupSchema } from 'lib/schemas'
 import type { AuthResponse } from 'types'
 
 import { axiosWithAuth } from 'api'
@@ -14,8 +14,14 @@ class UserService {
     return response.data
   }
 
-  async askForHelp(data: NeedHelpSchemaFields) {
+  async askForHelp(data: HelpSchema) {
     const response = await axiosWithAuth.post(API_ENDPOINTS.USER_HELP, data)
+
+    return response.data
+  }
+
+  async updateUserCredentials(data: OptionalSignupSchema) {
+    const response = await axiosWithAuth.patch(API_ENDPOINTS.USER, data)
 
     return response.data
   }

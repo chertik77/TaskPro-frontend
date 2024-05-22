@@ -1,4 +1,4 @@
-import type { BoardSchemaFields } from 'lib/schemas'
+import type { BoardSchema } from 'lib/schemas'
 import type { Board } from 'types'
 
 import { useEffect } from 'react'
@@ -11,8 +11,6 @@ import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
 
 import { boardService } from 'services'
-
-import { boardSchema } from 'lib/schemas'
 
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
@@ -27,11 +25,11 @@ export const EditBoardModal = () => {
   const { data } = useModalInstance<{ title: string; icon: string }>()
 
   const { register, reset, handleSubmit, control, formState, setValue } =
-    useAppForm<BoardSchemaFields>(boardSchema, {
+    useAppForm<BoardSchema>(BoardSchema, {
       defaultValues: { title: data.title }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields, Board>({
+  const { mutateAsync, isPending } = useAppMutation<BoardSchema, Board>({
     mutationKey: ['editBoard'],
     mutationFn: data => boardService.editBoard(boardId, data),
     onSuccess(data) {
@@ -48,7 +46,7 @@ export const EditBoardModal = () => {
     setValue('background', 'default')
   }, [data.icon, data.title, setValue])
 
-  const submit = (data: BoardSchemaFields) => {
+  const submit = (data: BoardSchema) => {
     toast.promise(mutateAsync(data), {
       loading: 'Editing board...',
       success: () => {

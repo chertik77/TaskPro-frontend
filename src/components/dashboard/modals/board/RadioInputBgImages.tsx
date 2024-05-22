@@ -1,4 +1,4 @@
-import type { BoardSchemaFields } from 'lib/schemas'
+import type { BoardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
@@ -8,7 +8,7 @@ import { Controller } from 'react-hook-form'
 import images from 'lib/json/board-bg-images.json'
 
 type RadioInputBgImagesProps = {
-  control: Control<BoardSchemaFields>
+  control: Control<BoardSchema>
 }
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {

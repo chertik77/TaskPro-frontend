@@ -1,11 +1,11 @@
-import type { SigninSchemaFields, SignupSchemaFields } from 'lib/schemas'
+import type { SigninSchema, SignupSchema } from 'lib/schemas'
 import type { AuthResponse, User } from 'types'
 
 import { axiosClassic, axiosWithAuth } from 'api'
 import { API_ENDPOINTS } from 'config'
 
 class AuthService {
-  async signup(data: SignupSchemaFields) {
+  async signup(data: SignupSchema) {
     const response = await axiosClassic.post<AuthResponse>(
       API_ENDPOINTS.SIGNUP,
       data
@@ -14,7 +14,7 @@ class AuthService {
     return response.data
   }
 
-  async signin(data: SigninSchemaFields) {
+  async signin(data: SigninSchema) {
     const response = await axiosClassic.post<AuthResponse>(
       API_ENDPOINTS.SIGNIN,
       data

@@ -1,15 +1,16 @@
-import type { SignupSchemaFields } from 'lib/schemas'
+import type { AuthResponse } from 'types'
 
-import { useMutation } from '@tanstack/react-query'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
+import { useAppForm, useAppMutation } from 'hooks'
 
-import { selectUser } from 'redux/user.slice'
+import { selectUser, updateUser } from 'redux/user.slice'
 
-import { signupSchema } from 'lib/schemas'
+import { userService } from 'services'
+
+import { OptionalSignupSchema } from 'lib/schemas'
 
 import { EditAvatar } from './EditAvatar'
 
@@ -18,15 +19,23 @@ export const EditProfileModal = () => {
 
   const { name, email } = useSelector(selectUser)
 
-  const { handleSubmit, register, formState } = useAppForm<SignupSchemaFields>(
-    signupSchema,
-    { defaultValues: { name: name ?? '', email: email ?? '' } }
-  )
+  const dispatch = useDispatch()
 
-  const { isPending } = useMutation({})
+  const { handleSubmit, register, formState } =
+    useAppForm<OptionalSignupSchema>(OptionalSignupSchema, {
+      defaultValues: { name: name ?? '', email: email ?? '' }
+    })
 
-  const submit = () => {
-    // mutate(data)
+  const { isPending, mutateAsync } = useAppMutation<
+    OptionalSignupSchema,
+    AuthResponse
+  >({
+    mutationKey: ['editUser'],
+    mutationFn: data => userService.updateUserCredentials(data)
+  })
+
+  const submit = (data: OptionalSignupSchema) => {
+    mutateAsync(data).then(r => dispatch(updateUser(r.user)))
   }
 
   return (

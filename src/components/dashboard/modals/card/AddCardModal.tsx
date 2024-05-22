@@ -1,4 +1,4 @@
-import type { CardSchemaFields } from 'lib/schemas'
+import type { CardSchema } from 'lib/schemas'
 
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
@@ -8,8 +8,6 @@ import { Button, DatePicker, Field, Modal } from 'components/ui'
 import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
 
 import { cardService } from 'services'
-
-import { cardSchema } from 'lib/schemas'
 
 import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
@@ -22,16 +20,16 @@ export const AddCardModal = () => {
   const { data: column } = useModalInstance<string>()
 
   const { register, handleSubmit, formState, reset, control } =
-    useAppForm<CardSchemaFields>(cardSchema, {
+    useAppForm<CardSchema>(CardSchema, {
       defaultValues: { priority: 'Without priority', deadline: new Date() }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<CardSchemaFields>({
+  const { mutateAsync, isPending } = useAppMutation<CardSchema>({
     mutationKey: ['addCard'],
     mutationFn: data => cardService.addNewCard(boardId!, column, data)
   })
 
-  const onSubmit = (data: CardSchemaFields) => {
+  const onSubmit = (data: CardSchema) => {
     toast.promise(mutateAsync(data), {
       loading: 'Adding card...',
       success: () => {

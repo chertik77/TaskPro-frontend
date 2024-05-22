@@ -1,4 +1,4 @@
-import type { SignupSchemaFields } from 'lib/schemas'
+import type { SignupSchema } from 'lib/schemas'
 
 import { useDispatch } from 'react-redux'
 
@@ -8,17 +8,15 @@ import { useAppForm, useSignupUser } from 'hooks'
 
 import { authenticate } from 'redux/user.slice'
 
-import { signupSchema } from 'lib/schemas'
-
 export const SignupForm = () => {
   const dispatch = useDispatch()
 
   const { handleSubmit, register, formState, reset } =
-    useAppForm<SignupSchemaFields>(signupSchema)
+    useAppForm<SignupSchema>(SignupSchema)
 
   const { mutateAsync, isPending } = useSignupUser(reset)
 
-  const submit = (data: SignupSchemaFields) => {
+  const submit = (data: SignupSchema) => {
     mutateAsync(data).then(r => dispatch(authenticate(r)))
   }
 

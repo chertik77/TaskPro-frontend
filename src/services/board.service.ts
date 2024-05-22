@@ -1,4 +1,4 @@
-import type { BoardSchemaFields } from 'lib/schemas'
+import type { BoardSchema } from 'lib/schemas'
 import type { Board } from 'types'
 
 import { axiosWithAuth } from 'api'
@@ -21,13 +21,13 @@ class BoardService {
     return response.data
   }
 
-  async addNewBoard(data: BoardSchemaFields) {
+  async addNewBoard(data: BoardSchema) {
     const response = await axiosWithAuth.post(API_ENDPOINTS.DASHBOARD, data)
 
     return response.data
   }
 
-  async editBoard(boardId: string, data: BoardSchemaFields) {
+  async editBoard(boardId: string, data: BoardSchema) {
     const response = await axiosWithAuth.patch(
       `${API_ENDPOINTS.DASHBOARD}/${boardId}`,
       data
