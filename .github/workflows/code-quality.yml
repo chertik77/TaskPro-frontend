@@ -1,0 +1,38 @@
+name: Check code quality
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18 🚀
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Installing dependencies 📦
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: Linting code 🔧
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: lint
+
+      - name: Checking code formatting 📝
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: format:check
+
+      - name: Conventional Commits 🔒
+        uses: webiny/action-conventional-commits@v1.1.0
