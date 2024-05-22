@@ -1,5 +1,3 @@
-import type { CardSchema } from 'lib/schemas'
-
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -8,6 +6,8 @@ import { Button, DatePicker, Field, Modal } from 'components/ui'
 import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
 
 import { cardService } from 'services'
+
+import { CardSchema } from 'lib/schemas'
 
 import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'

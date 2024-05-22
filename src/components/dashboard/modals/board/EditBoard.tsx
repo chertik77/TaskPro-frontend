@@ -1,4 +1,3 @@
-import type { BoardSchema } from 'lib/schemas'
 import type { Board } from 'types'
 
 import { useEffect } from 'react'
@@ -11,6 +10,8 @@ import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
 
 import { boardService } from 'services'
+
+import { BoardSchema } from 'lib/schemas'
 
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'

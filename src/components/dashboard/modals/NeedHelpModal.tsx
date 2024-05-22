@@ -1,5 +1,3 @@
-import type { HelpSchema } from 'lib/schemas'
-
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -8,6 +6,8 @@ import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useAppMutation } from 'hooks'
 
 import { userService } from 'services'
+
+import { HelpSchema } from 'lib/schemas'
 
 export const NeedHelpModal = () => {
   const { close } = useModal(NeedHelpModal)

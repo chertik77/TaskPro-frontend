@@ -1,5 +1,3 @@
-import type { SignupSchema } from 'lib/schemas'
-
 import { useDispatch } from 'react-redux'
 
 import { Button, Field } from 'components/ui'
@@ -7,6 +5,8 @@ import { Button, Field } from 'components/ui'
 import { useAppForm, useSignupUser } from 'hooks'
 
 import { authenticate } from 'redux/user.slice'
+
+import { SignupSchema } from 'lib/schemas'
 
 export const SignupForm = () => {
   const dispatch = useDispatch()

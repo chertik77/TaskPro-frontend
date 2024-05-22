@@ -1,4 +1,3 @@
-import type { CardSchema } from 'lib/schemas'
 import type { Card } from 'types'
 
 import { useEffect } from 'react'
@@ -10,6 +9,8 @@ import { Button, DatePicker, Field, Modal } from 'components/ui'
 import { useAppForm, useAppMutation } from 'hooks'
 
 import { cardService } from 'services'
+
+import { CardSchema } from 'lib/schemas'
 
 import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
