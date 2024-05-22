@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
-    "lint": "eslint ./src --fix && tsc --noemit",
+    "lint": "eslint ./src --fix -f mo && tsc --noemit",
     "preview": "vite preview",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
@@ -55,6 +55,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "eslint": "^8.0.1",
+    "eslint-formatter-mo": "^1.2.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-tailwindcss": "^3.14.2",
