@@ -1,4 +1,4 @@
-import type { HelpSchema, OptionalSignupSchema } from 'lib/schemas'
+import type { HelpSchema, PartialSignupSchema } from 'lib/schemas'
 import type { AuthResponse } from 'types'
 
 import { axiosWithAuth } from 'api'
@@ -20,8 +20,10 @@ class UserService {
     return response.data
   }
 
-  async updateUserCredentials(data: OptionalSignupSchema) {
-    const response = await axiosWithAuth.patch(API_ENDPOINTS.USER, data)
+  async updateUserCredentials(data: PartialSignupSchema) {
+    const response = await axiosWithAuth.patch(API_ENDPOINTS.USER, data, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
 
     return response.data
   }

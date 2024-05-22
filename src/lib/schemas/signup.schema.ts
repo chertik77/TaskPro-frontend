@@ -2,10 +2,12 @@ import type { Output } from 'valibot'
 
 import {
   email,
+  instance,
   maxLength,
   minLength,
   object,
   optional,
+  partial,
   string,
   toTrimmed
 } from 'valibot'
@@ -17,33 +19,16 @@ export const SignupSchema = object({
     maxLength(32, 'Please enter at most 32 characters.')
   ]),
   email: string([toTrimmed(), email('Please enter a valid email.')]),
-  password: optional(
-    string([
-      toTrimmed(),
-      minLength(8, 'Please enter at least 8 characters.'),
-      maxLength(64, 'Please enter at most 64 characters.')
-    ])
-  )
+  password: string([
+    toTrimmed(),
+    minLength(8, 'Please enter at least 8 characters.'),
+    maxLength(64, 'Please enter at most 64 characters.')
+  ]),
+  avatar: optional(instance(File))
 })
 
-export const OptionalSignupSchema = object({
-  name: optional(
-    string([
-      toTrimmed(),
-      minLength(2, 'Please enter at least 2 characters.'),
-      maxLength(32, 'Please enter at most 32 characters.')
-    ])
-  ),
-  email: optional(string([toTrimmed(), email('Please enter a valid email.')])),
-  password: optional(
-    string([
-      toTrimmed(),
-      minLength(8, 'Please enter at least 8 characters.'),
-      maxLength(64, 'Please enter at most 64 characters.')
-    ])
-  )
-})
+export const PartialSignupSchema = partial(SignupSchema)
 
 export type SignupSchema = Output<typeof SignupSchema>
 
-export type OptionalSignupSchema = Output<typeof OptionalSignupSchema>
+export type PartialSignupSchema = Output<typeof PartialSignupSchema>

@@ -1,5 +1,10 @@
+import type { UseMutateAsyncFunction } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
+import type { PartialSignupSchema } from 'lib/schemas'
 import type { ChangeEvent } from 'react'
+import type { User } from 'types'
 
+import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
@@ -7,53 +12,46 @@ import { Button } from 'components/ui'
 
 import { selectUser } from 'redux/user.slice'
 
-export const EditAvatar = () => {
+type EditAvatarProps = {
+  changeUserAvatar: UseMutateAsyncFunction<
+    { user: User },
+    AxiosError,
+    PartialSignupSchema,
+    unknown
+  >
+}
+
+export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
   const { avatarURL } = useSelector(selectUser)
 
-  const handleFileSelect = () => {
-    const fileInput = document.getElementById('file-input')
-    if (fileInput) {
-      fileInput.click()
-    }
+  const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+    toast.promise(changeUserAvatar({ avatar: e.target.files?.[0] }), {
+      loading: 'Uploading avatar...',
+      success: 'Avatar uploaded successfully!',
+      error: 'An error occurred while uploading the avatar. Please try again.'
+    })
   }
-
-  const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    try {
-      const file = e.target.files?.[0]
-      if (file) {
-        const formData = new FormData()
-        formData.append('avatar', file)
-        // await mutateUser(formData)
-      }
-    } catch (error) {
-      toast.error('Something went wrong. Please try again.')
-    }
-  }
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success('Congrats! Avatar changed successfully')
-  //   }
-  //   if (isError && error) {
-  //     toast.error('Something went wrong. Please try again.')
-  //   }
-  // }, [isError, isSuccess, error])
 
   return (
     <div className='mb-[25px] flex justify-center'>
       <input
         id='file-input'
         type='file'
+        ref={inputRef}
         accept='image/jpeg, image/png'
         className='hidden'
         onChange={handleAvatarChange}
       />
       <Button
         type='button'
-        onClick={handleFileSelect}
+        onClick={() => inputRef.current?.click()}
         style={{ backgroundImage: `url(${avatarURL})` }}
-        className='relative size-[68px] rounded-lg bg-cover bg-center'>
-        <div className='absolute bottom-[-12px] left-[22px] size-6 rounded-lg bg-brand p-[7px]'>
+        className='relative size-[68px] bg-cover bg-center'>
+        <div
+          className='absolute -bottom-3 left-[22px] size-6 rounded-lg bg-brand p-[7px]
+            violet:bg-white-gray-secondary'>
           <svg className='size-[10px]'>
             <use href='/icons.svg#icon-plus-avatar' />
           </svg>

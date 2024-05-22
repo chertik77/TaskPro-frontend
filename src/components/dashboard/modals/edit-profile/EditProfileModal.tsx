@@ -1,6 +1,8 @@
-import type { AuthResponse } from 'types'
+import type { User } from 'types'
 
+import { useModal } from 'react-modal-state'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
@@ -10,38 +12,48 @@ import { selectUser, updateUser } from 'redux/user.slice'
 
 import { userService } from 'services'
 
-import { OptionalSignupSchema } from 'lib/schemas'
+import { PartialSignupSchema } from 'lib/schemas'
 
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  // const { close } = useModal('edit-profile-modal')
+  const { close } = useModal(EditProfileModal)
 
   const { name, email } = useSelector(selectUser)
 
   const dispatch = useDispatch()
 
-  const { handleSubmit, register, formState } =
-    useAppForm<OptionalSignupSchema>(OptionalSignupSchema, {
-      defaultValues: { name: name ?? '', email: email ?? '' }
-    })
+  const { handleSubmit, register, formState } = useAppForm<PartialSignupSchema>(
+    PartialSignupSchema,
+    { defaultValues: { name, email } }
+  )
 
   const { isPending, mutateAsync } = useAppMutation<
-    OptionalSignupSchema,
-    AuthResponse
+    PartialSignupSchema,
+    { user: User }
   >({
     mutationKey: ['editUser'],
-    mutationFn: data => userService.updateUserCredentials(data)
+    mutationFn: data => userService.updateUserCredentials(data),
+    onSuccess(data) {
+      dispatch(updateUser(data.user))
+    }
   })
 
-  const submit = (data: OptionalSignupSchema) => {
-    mutateAsync(data).then(r => dispatch(updateUser(r.user)))
+  const submit = (data: PartialSignupSchema) => {
+    toast.promise(mutateAsync(data), {
+      loading: 'Updating your profile...',
+      success: () => {
+        close()
+        return 'Profile updated successfully!'
+      },
+      error: 'Failed to update profile. Please try again.'
+    })
   }
 
   return (
     <Modal modalTitle='Edit profile'>
       <form onSubmit={handleSubmit(submit)}>
-        <EditAvatar />
+        <EditAvatar changeUserAvatar={mutateAsync} />
         <Field
           errors={formState.errors}
           inputName='name'
@@ -61,7 +73,9 @@ export const EditProfileModal = () => {
           inputName='password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
-          {...register('password')}
+          {...register('password', {
+            setValueAs: value => (!value ? undefined : value)
+          })}
         />
         <Button
           type='submit'
