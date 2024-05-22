@@ -30,7 +30,9 @@ export const DatePicker = ({ control }: DatePickerProps) => (
             <MdKeyboardArrowDown className='size-[18px] text-brand violet:text-brand-secondary' />
           </Trigger>
           <Portal>
-            <Content className='z-[1000]'>
+            <Content
+              className='z-[1000]'
+              align='start'>
               <Calendar
                 mode='single'
                 selected={field.value}
