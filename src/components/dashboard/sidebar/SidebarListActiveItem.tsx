@@ -27,13 +27,8 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
     mutationKey: ['deleteBoard'],
     mutationFn: () => boardService.deleteBoard(boardId),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['boards'] }).then(() => {
-        const boards = queryClient.getQueryData<Board[]>(['boards'])
-
-        if (boards && boards.length > 0) {
-          navigate(`/dashboard/${boards[0]._id}`, { replace: true })
-        } else navigate('/dashboard')
-      })
+      queryClient.invalidateQueries({ queryKey: ['boards'] })
+      navigate('/dashboard', { replace: true })
     }
   })
 

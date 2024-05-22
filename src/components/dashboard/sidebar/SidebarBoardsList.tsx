@@ -33,8 +33,8 @@ export const SidebarBoardsList = () => {
               transition duration-300 ease-in-out violet:text-white/50 dark:text-white/50
               desktop:pl-6`,
               board._id === boardId &&
-                `border-1 border-r-dark bg-white-gray text-black violet:bg-white/50
-                violet:text-white dark:bg-black-third dark:text-white`
+                `bg-white-gray text-black violet:bg-white/50 violet:text-white
+                dark:bg-black-third dark:text-white`
             )}>
             <div className='flex items-center gap-2'>
               <svg className='size-[18px] stroke-current'>

@@ -14,7 +14,7 @@ import { boardService } from 'services'
 
 import { boardSchema } from 'lib/schemas'
 
-import { BackgroundImages } from './BackgroundImages'
+import { BgImages } from './BgImages'
 import { Icons } from './Icons'
 
 export const AddBoardModal = () => {
@@ -24,10 +24,7 @@ export const AddBoardModal = () => {
 
   const { register, formState, reset, handleSubmit, control } =
     useAppForm<BoardSchemaFields>(boardSchema, {
-      defaultValues: {
-        icon: 'icon-project-1',
-        background: 'default'
-      }
+      defaultValues: { icon: 'icon-project-1', background: 'default' }
     })
 
   const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields, Board>({
@@ -50,7 +47,12 @@ export const AddBoardModal = () => {
   }
 
   return (
-    <Modal modalTitle='New board'>
+    <Modal
+      modalTitle='New board'
+      onClose={() => {
+        close()
+        reset()
+      }}>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}
@@ -69,7 +71,7 @@ export const AddBoardModal = () => {
         <Controller
           control={control}
           name='background'
-          render={props => <BackgroundImages {...props} />}
+          render={props => <BgImages {...props} />}
         />
         <Button
           type='submit'

@@ -1,6 +1,7 @@
 import type { CardSchemaFields } from 'lib/schemas'
 import type { Card } from 'types'
 
+import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -20,14 +21,9 @@ export const EditCardModal = () => {
 
   const { data: card } = useModalInstance<Card>()
 
-  const { register, handleSubmit, formState, control, reset } =
+  const { register, handleSubmit, formState, control, reset, setValue } =
     useAppForm<CardSchemaFields>(cardSchema, {
-      defaultValues: {
-        title: card?.title,
-        priority: card?.priority,
-        description: card?.description,
-        deadline: card?.deadline as unknown as Date
-      }
+      defaultValues: { title: card.title, description: card.description }
     })
 
   const { mutateAsync, isPending } = useAppMutation<CardSchemaFields>({
@@ -35,6 +31,13 @@ export const EditCardModal = () => {
     mutationFn: cardData =>
       cardService.editCard(card.board, card.column, card._id, cardData)
   })
+
+  useEffect(() => {
+    setValue('title', card.title)
+    setValue('priority', card.priority)
+    setValue('description', card.description)
+    setValue('deadline', card.deadline as unknown as Date)
+  }, [card.deadline, card.description, card.priority, card.title, setValue])
 
   const submit = (data: CardSchemaFields) => {
     toast.promise(mutateAsync(data), {
@@ -50,7 +53,12 @@ export const EditCardModal = () => {
   }
 
   return (
-    <Modal modalTitle='Edit card'>
+    <Modal
+      modalTitle='Edit card'
+      onClose={() => {
+        close()
+        reset()
+      }}>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           errors={formState.errors}

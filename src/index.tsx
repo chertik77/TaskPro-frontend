@@ -2,6 +2,7 @@ import type { AxiosError } from 'axios'
 
 import { StrictMode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ThemeProvider } from 'next-themes'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
@@ -20,6 +21,8 @@ import {
 } from 'components/dashboard/modals'
 
 import { persistor, store } from 'redux/store'
+
+import { themes } from 'constants/themes'
 
 import 'react-edit-text/dist/index.css'
 import 'react-tooltip/dist/react-tooltip.css'
@@ -43,16 +46,22 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           loading={null}
           persistor={persistor}>
           <BrowserRouter>
-            <ModalProvider>
-              <App />
-              <ModalRenderer Component={EditBoardModal} />
-              <ModalRenderer Component={AddBoardModal} />
-              <ModalRenderer Component={NeedHelpModal} />
-              <ModalRenderer Component={AddCardModal} />
-              <ModalRenderer Component={EditCardModal} />
-              <ModalRenderer Component={EditProfileModal} />
-              <ModalRenderer Component={BurgerMenu} />
-            </ModalProvider>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme={store.getState().user.user.userTheme}
+              themes={themes}
+              enableSystem={false}>
+              <ModalProvider>
+                <App />
+                <ModalRenderer Component={EditBoardModal} />
+                <ModalRenderer Component={AddBoardModal} />
+                <ModalRenderer Component={NeedHelpModal} />
+                <ModalRenderer Component={AddCardModal} />
+                <ModalRenderer Component={EditCardModal} />
+                <ModalRenderer Component={EditProfileModal} />
+                <ModalRenderer Component={BurgerMenu} />
+              </ModalProvider>
+            </ThemeProvider>
           </BrowserRouter>
         </PersistGate>
       </Provider>

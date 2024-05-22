@@ -1,5 +1,8 @@
 import type { BoardSchemaFields } from 'lib/schemas'
+import type { Board } from 'types'
 
+import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { Controller } from 'react-hook-form'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
@@ -12,7 +15,7 @@ import { boardService } from 'services'
 
 import { boardSchema } from 'lib/schemas'
 
-import { BackgroundImages } from './BackgroundImages'
+import { BgImages } from './BgImages'
 import { Icons } from './Icons'
 
 export const EditBoardModal = () => {
@@ -20,22 +23,31 @@ export const EditBoardModal = () => {
 
   const { close } = useModal(EditBoardModal)
 
+  const queryClient = useQueryClient()
+
   const { data } = useModalInstance<{ title: string; icon: string }>()
 
-  const { register, reset, handleSubmit, control, formState } =
+  const { register, reset, handleSubmit, control, formState, setValue } =
     useAppForm<BoardSchemaFields>(boardSchema, {
-      defaultValues: {
-        title: data.title ?? '',
-        icon: data.icon ?? '',
-        background: 'default'
-      }
+      defaultValues: { title: data.title }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields>({
+  const { mutateAsync, isPending } = useAppMutation<BoardSchemaFields, Board>({
     mutationKey: ['editBoard'],
     mutationFn: data => boardService.editBoard(boardId, data),
-    invalidateQueryKey: 'boards'
+    onSuccess(data) {
+      queryClient.invalidateQueries({ queryKey: ['boards'] })
+      if (data._id === boardId) {
+        queryClient.invalidateQueries({ queryKey: ['board'] })
+      }
+    }
   })
+
+  useEffect(() => {
+    setValue('icon', data.icon)
+    setValue('title', data.title)
+    setValue('background', 'default')
+  }, [data.icon, data.title, setValue])
 
   const submit = (data: BoardSchemaFields) => {
     toast.promise(mutateAsync(data), {
@@ -50,7 +62,12 @@ export const EditBoardModal = () => {
   }
 
   return (
-    <Modal modalTitle='Edit board'>
+    <Modal
+      modalTitle='Edit board'
+      onClose={() => {
+        close()
+        reset()
+      }}>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('title')}
@@ -69,7 +86,7 @@ export const EditBoardModal = () => {
         <Controller
           control={control}
           name='background'
-          render={props => <BackgroundImages {...props} />}
+          render={props => <BgImages {...props} />}
         />
         <Button
           type='submit'

@@ -44,7 +44,12 @@ export const AddCardModal = () => {
   }
 
   return (
-    <Modal modalTitle='Add card'>
+    <Modal
+      modalTitle='Add card'
+      onClose={() => {
+        close()
+        reset()
+      }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Field
           errors={formState.errors}

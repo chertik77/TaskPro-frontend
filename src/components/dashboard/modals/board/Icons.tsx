@@ -1,38 +1,31 @@
 import type { BoardSchemaFields } from 'lib/schemas'
 import type { ControllerRenderProps } from 'react-hook-form'
 
+import { Item, Root } from '@radix-ui/react-radio-group'
+
 import icons from 'lib/json/board-icons.json'
 
 type IconsProps = {
   field: ControllerRenderProps<BoardSchemaFields, 'icon'>
 }
 
-export const Icons = (props: IconsProps) => (
-  <ul className='mt-default flex gap-2'>
-    {icons.map(({ id }, index) => (
-      <li
+export const Icons = ({ field }: IconsProps) => (
+  <Root
+    className='mt-default flex items-center gap-2'
+    onValueChange={field.onChange}>
+    {icons.map(({ id }) => (
+      <Item
+        checked={field.value === id}
+        value={id}
         key={id}
-        className='inline-flex items-center justify-between text-gray-500 hover:text-gray-600
-          dark:text-gray-400 dark:hover:text-gray-300'>
-        <input
-          type='radio'
-          id={id}
-          name='icon'
-          value={id}
-          className='peer hidden size-full'
-          onChange={props.field.onChange}
-          defaultChecked={index === 0 || props.field.value === id}
-        />
-        <label
-          htmlFor={id}
-          className='inline-flex cursor-pointer items-center stroke-current peer-checked:text-black
-            peer-checked:opacity-100 dark:peer-checked:text-white
-            dark:peer-checked:opacity-100'>
-          <svg className='size-[18px] stroke-current'>
-            <use href={`/icons.svg#${id}`}></use>
-          </svg>
-        </label>
-      </li>
+        className='group text-gray-500 hocus:text-gray-600 dark:text-gray-400
+          dark:hocus:text-gray-300'>
+        <svg
+          className='size-[18px] stroke-current group-aria-checked:text-black
+            group-aria-checked:opacity-100 dark:group-aria-checked:text-white'>
+          <use href={`/icons.svg#${id}`}></use>
+        </svg>
+      </Item>
     ))}
-  </ul>
+  </Root>
 )
