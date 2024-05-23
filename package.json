@@ -38,7 +38,7 @@
     "react-tooltip": "^5.26.4",
     "redux-persist": "^6.0.0",
     "sonner": "^1.4.0",
-    "valibot": "^0.31.0"
+    "valibot": "^0.30.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
