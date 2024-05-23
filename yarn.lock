@@ -5070,9 +5070,9 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2:
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
 valibot@^0.31.0:
-  version "0.31.0-rc.0"
-  resolved "https://registry.yarnpkg.com/valibot/-/valibot-0.31.0-rc.0.tgz#b9d6efc1efbc461ed1e0e1261720d97ae39476e3"
-  integrity sha512-c8HERUa1wthubHtWn0EXJIw4itUEMq2WMZEVaV8zv0a0654aGDX+Ln1Ba5smAjFdntIn/0tDCqdeYYRibfhwtQ==
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/valibot/-/valibot-0.30.0.tgz#6b90386a04d2c281cdc5dc6ad33bd3d2d7ea13b5"
+  integrity sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"

@@ -9,4 +9,4 @@ export const EditUserSchema = v.partial(
   })
 )
 
-export type EditUserSchema = v.InferOutput<typeof EditUserSchema>
+export type EditUserSchema = v.Output<typeof EditUserSchema>
