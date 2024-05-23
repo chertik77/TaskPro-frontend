@@ -19,6 +19,7 @@ export const BurgerMenu = () => {
         pb-6 px-0 pt-default violet:bg-brand-secondary dark:bg-black-secondary
         tablet:w-[260px] tablet:px-6 tablet:pt-6`
       }}
+      focusTrapped={false}
       closeOnEsc={false}
       showCloseIcon={false}>
       <SidebarLogo />
