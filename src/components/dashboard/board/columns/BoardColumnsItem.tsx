@@ -21,10 +21,10 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
       {column?.cards?.length > 0 && (
         <div
           className={cn(
-            `scrollbar-thumb-scroll-white -mr-4 space-y-2 overflow-y-auto pr-4 scrollbar
-            scrollbar-track-white scrollbar-track-rounded-xl scrollbar-thumb-rounded-xl
-            scrollbar-w-2 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black
-            dark:scrollbar-thumb-white/10`,
+            `-mr-4 space-y-2 overflow-y-auto pr-4 scrollbar scrollbar-track-white
+            scrollbar-thumb-scroll-white scrollbar-track-rounded-xl
+            scrollbar-thumb-rounded-xl scrollbar-w-2 violet:scrollbar-thumb-brand-third
+            dark:scrollbar-track-black dark:scrollbar-thumb-white/10`,
             column.cards.length > 3 && 'h-[calc(100vh-280px)]'
           )}>
           {filteredCards.map((card, i) => (
