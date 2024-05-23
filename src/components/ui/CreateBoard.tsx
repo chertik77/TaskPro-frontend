@@ -7,8 +7,8 @@ export const CreateBoard = () => {
 
   return (
     <div
-      className='max-tablet:absolute max-tablet:left-1/2 max-tablet:top-1/2
-        max-tablet:-translate-x-1/2 max-tablet:-translate-y-1/2 desktop:flex
+      className='max-desktop:absolute max-desktop:left-1/2 max-desktop:top-1/2
+        max-desktop:-translate-x-1/2 max-desktop:translate-y-1/2 desktop:flex
         desktop:items-center desktop:justify-center'>
       <div
         className='w-[335px] px-5 text-center text-fs-12-lh-1.33-fw-400 text-black/70
