@@ -21,8 +21,8 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) =>
     onError(error) {
       toast.error(
         error.response?.status === 401
-          ? 'Invalid email or password. Please try again.'
-          : 'Oops! Something went wrong during sign-in. Please check your details and try again.'
+          ? 'Sign-in failed. The email or password you entered is incorrect. Please try again.'
+          : 'An error occurred during sign-in. Our technical team has been notified. Please try again shortly.'
       )
     }
   })

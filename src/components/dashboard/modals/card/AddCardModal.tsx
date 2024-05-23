@@ -31,13 +31,14 @@ export const AddCardModal = () => {
 
   const onSubmit = (data: CardSchema) => {
     toast.promise(mutateAsync(data), {
-      loading: 'Adding card...',
+      loading: 'Adding new task...',
       success: () => {
         reset()
         close()
-        return "The task has been created successfully. Let's start working on it."
+        return 'New task successfully created. Keep the productivity flowing!'
       },
-      error: 'An error occurred while adding the card.'
+      error:
+        'Unexpected error during task creation. We apologize for the inconvenience. Please try again later.'
     })
   }
 

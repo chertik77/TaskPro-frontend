@@ -28,9 +28,10 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
 
   const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
     toast.promise(changeUserAvatar({ avatar: e.target.files?.[0] }), {
-      loading: 'Uploading avatar...',
-      success: 'Avatar uploaded successfully!',
-      error: 'An error occurred while uploading the avatar. Please try again.'
+      loading: 'Uploading your new avatar...',
+      success: 'Avatar uploaded successfully! Looking good!',
+      error:
+        'Unexpected error during avatar update. We apologize for the inconvenience. Please try again later.'
     })
   }
 

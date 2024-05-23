@@ -38,17 +38,19 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
     }
 
     toast.promise(mutateColumn({ title: value }), {
-      loading: 'Updating column...',
-      success: 'Column updated successfully!',
-      error: 'An error occurred while updating the column.'
+      loading: 'Updating the column...',
+      success: 'Changes to the column have been saved successfully.',
+      error:
+        'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
     })
   }
 
   const handleColumnDelete = () => {
     toast.promise(mutateAsync(), {
-      loading: 'Deleting column...',
-      success: 'Column deleted successfully!',
-      error: 'An error occurred while deleting the column.'
+      loading: 'Deleting the column...',
+      success: 'The column has been successfully deleted from the board.',
+      error:
+        'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
     })
   }
 

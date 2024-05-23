@@ -6,7 +6,7 @@ import { Toaster } from 'sonner'
 export const Layout = () => {
   const { theme } = useTheme()
 
-  const isLaptopOrMobile = useMediaQuery({ maxWidth: 1440 })
+  const isLaptopOrMobile = useMediaQuery({ query: '(max-width: 1281px)' })
 
   return (
     <>

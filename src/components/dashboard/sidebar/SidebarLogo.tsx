@@ -8,7 +8,7 @@ export const SidebarLogo = () => {
 
   return (
     <div
-      className='mb-[70px] flex items-center gap-2 pl-default tablet:mb-[60px] desktop:px-6
+      className='mb-[70px] flex items-center gap-2 pl-default tablet:mb-[60px] tablet:px-6
         desktop:pt-6'>
       <Link
         to='/dashboard'

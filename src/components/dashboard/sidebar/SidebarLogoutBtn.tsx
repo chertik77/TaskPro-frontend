@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
+import { toast } from 'sonner'
 
 import { logout } from 'redux/user.slice'
 
@@ -15,7 +16,17 @@ export const SidebarLogoutBtn = () => {
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ['logout'],
-    mutationFn: () => authService.logout()
+    mutationFn: () => authService.logout(),
+    onSuccess() {
+      toast.success(
+        'You have successfully logged out. We look forward to seeing you again soon!'
+      )
+    },
+    onError() {
+      toast.error(
+        'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
+      )
+    }
   })
 
   const handleClickLogout = () => {

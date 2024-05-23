@@ -53,13 +53,14 @@ export const EditBoardModal = () => {
 
   const submit = (data: BoardSchema) => {
     toast.promise(mutateAsync(data), {
-      loading: 'Editing board...',
+      loading: 'Editing the board...',
       success: () => {
         reset()
         close()
-        return 'The board has been edited successfully!'
+        return 'Changes to the board have been saved successfully.'
       },
-      error: 'An error occurred while editing the board.'
+      error:
+        'Failed to update the board. Please try again. If the problem persists, contact support.'
     })
   }
 

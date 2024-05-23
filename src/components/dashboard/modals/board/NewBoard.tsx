@@ -33,14 +33,15 @@ export const NewBoardModal = () => {
 
   const submit = (data: BoardSchema) => {
     toast.promise(mutateAsync(data), {
-      loading: 'Creating board...',
+      loading: 'Creating new board...',
       success: data => {
         close()
         reset()
         navigate(`/dashboard/${data._id}`)
-        return 'Board successfully added to your collection!'
+        return 'Great job! Your new board is set up. Dive in and start making progress on your projects.'
       },
-      error: 'An error occurred while creating a board. Please try again later.'
+      error:
+        'Unexpected error during board creation. We apologize for the inconvenience. Please try again later.'
     })
   }
 

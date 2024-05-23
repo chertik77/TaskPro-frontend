@@ -18,10 +18,11 @@ export const BoardAddColumnBtn = () => {
 
   const handleAddColumnClick = () => {
     toast.promise(mutateAsync(), {
-      loading: 'Adding column...',
+      loading: 'Adding new column...',
       success:
-        "The column has been added successfully. Let's start filling it with tasks.",
-      error: 'Something went wrong while adding the column. Please try again.'
+        'New column successfully created. Start populating it with tasks.',
+      error:
+        'Unexpected error during column addition. We apologize for the inconvenience. Please try again later.'
     })
   }
 

@@ -32,7 +32,7 @@ export const SidebarBoardsList = () => {
           onClick={closeBurgerMenu}
           className={cn(
             `flex h-[61px] items-center justify-between pl-default text-black/50
-            violet:text-white/50 dark:text-white/50 desktop:pl-6`,
+            violet:text-white/50 dark:text-white/50 tablet:pl-6`,
             board._id === boardId &&
               `bg-white-gray text-black violet:bg-white/50 violet:text-white
               dark:bg-black-third dark:text-white`

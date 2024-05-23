@@ -3,6 +3,7 @@ import type { Card } from 'types'
 import { isBefore, isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 import { Tooltip } from 'react-tooltip'
+import { toast } from 'sonner'
 
 import { EditCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
@@ -16,15 +17,24 @@ import { BoardCardColumnSelect } from './BoardCardColumnSelect'
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const boardId = useGetBoardId()
 
-  const isTodayDeadline = isToday(card.deadline)
-  const isDeadlinePassed = isBefore(card.deadline, new Date())
+  const { open } = useModal(EditCardModal)
 
-  const { mutate } = useAppMutation({
+  const { mutateAsync } = useAppMutation({
     mutationKey: ['deleteCard'],
     mutationFn: () => cardService.deleteCard(boardId, card.column, card._id)
   })
 
-  const { open } = useModal(EditCardModal)
+  const handleCardDelete = () => {
+    toast.promise(mutateAsync(), {
+      loading: 'Deleting the task...',
+      success: 'Task deleted successfully! One less thing to worry about.',
+      error:
+        'An error occurred while deleting the task. Our technical team has been notified. Please try again shortly.'
+    })
+  }
+
+  const isTodayDeadline = isToday(card.deadline)
+  const isDeadlinePassed = isBefore(card.deadline, new Date())
 
   return (
     <div className='ml-auto flex gap-2'>
@@ -50,7 +60,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         data-tooltip-content='Edit card'
       />
       <Button
-        onClick={() => mutate()}
+        onClick={handleCardDelete}
         iconName='trash'
         data-tooltip-id='delete-card-tooltip'
         data-tooltip-content='Delete card'

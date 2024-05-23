@@ -15,14 +15,14 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) =>
     onSuccess(_, variables) {
       reset()
       toast.success(
-        `Welcome, ${variables?.name}! Your account has been successfully created. Let's get started!`
+        `Welcome aboard ${variables?.name}! You have successfully signed up. Let's get started.`
       )
     },
-    onError(error, variables) {
+    onError(error) {
       toast.error(
         error.response?.status === 409
-          ? `User with email - ${variables.email} already exists. Please try different email.`
-          : 'Oops! Something went wrong during registration. Please check your details and try again.'
+          ? 'Another user is already registered with the provided email address. Please use a different email.'
+          : 'An error occurred during sign-up. Our technical team has been notified. Please try again shortly.'
       )
     }
   })

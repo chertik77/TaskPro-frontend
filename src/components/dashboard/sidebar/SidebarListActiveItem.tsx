@@ -39,9 +39,9 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   const handleBoardDelete = () => {
     toast.promise(mutateAsync(), {
       loading: 'Deleting board...',
-      success: 'Board has been deleted successfully!',
+      success: 'The board has been successfully deleted from your account.',
       error:
-        'An error occurred while deleting the board. Please try again later.'
+        'An error occurred while deleting the board. Our technical team has been notified. Please try again shortly.'
     })
   }
 

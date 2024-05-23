@@ -50,12 +50,12 @@ export const EditProfileModal = () => {
       loading: 'Updating your profile...',
       success: () => {
         close()
-        return 'Profile updated successfully!'
+        return 'Your profile has been successfully updated.'
       },
       error: (e: AxiosError) => {
         return e.response?.status === 409
-          ? 'User with that email already exists, please try a different one.'
-          : 'Failed to update profile. Please try again.'
+          ? 'Profile update unsuccessful. Another user is already registered with the provided email address. Please use a different email.'
+          : 'Failed to update profile. Please try again. If the problem persists, contact support.'
       }
     })
   }

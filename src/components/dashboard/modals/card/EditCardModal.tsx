@@ -33,7 +33,7 @@ export const EditCardModal = () => {
   })
 
   useEffect(() => {
-    reset({ title, priority, deadline, description })
+    reset({ title, priority, deadline: new Date(deadline), description })
   }, [deadline, description, priority, title, reset])
 
   const fields = ['title', 'priority', 'description', 'deadline'] as const
@@ -44,17 +44,18 @@ export const EditCardModal = () => {
 
   const submit = (data: CardSchema) => {
     toast.promise(mutateAsync(data), {
-      loading: 'Editing...',
+      loading: 'Editing the task...',
       success: () => {
         close()
         reset()
-        return 'The task has been edited successfully!'
+        return 'Changes to the task have been saved successfully.'
       },
       error:
-        'Something went wrong while editing the card. Our team is already working on this issue. Please bear with us.'
+        'Unexpected error during task update. We apologize for the inconvenience. Please try again later.'
     })
   }
 
+  console.log(formState.errors)
   return (
     <Modal
       modalTitle='Edit card'
