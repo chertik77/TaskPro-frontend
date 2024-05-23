@@ -1,9 +1,9 @@
 import { useModal } from 'react-modal-state'
 
-import { AddBoardModal } from 'components/dashboard/modals'
+import { NewBoardModal } from 'components/dashboard/modals'
 
 export const CreateBoard = () => {
-  const { open } = useModal(AddBoardModal)
+  const { open } = useModal(NewBoardModal)
 
   return (
     <div className='flex items-center justify-center'>

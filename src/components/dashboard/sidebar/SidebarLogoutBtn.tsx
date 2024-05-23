@@ -6,12 +6,12 @@ import { logout } from 'redux/user.slice'
 
 import { authService } from 'services'
 
-import { BurgerModal } from '../modals/burger-menu/burger-Modal'
+import { BurgerMenu } from '../modals/BurgerMenu'
 
 export const SidebarLogoutBtn = () => {
   const dispatch = useDispatch()
 
-  const { close } = useModal(BurgerModal)
+  const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ['logout'],
@@ -21,14 +21,14 @@ export const SidebarLogoutBtn = () => {
   const handleClickLogout = () => {
     mutateAsync()
       .then(() => dispatch(logout()))
-      .finally(close)
+      .finally(closeBurgerMenu)
   }
 
   return (
     <button
-      className='ml-[10px] mt-6 flex items-center gap-3.5 bg-transparent text-black
+      className='mt-6 flex items-center gap-3.5 bg-transparent px-6 text-black
         hocus:bg-transparent hocus:text-brand-hover violet:bg-transparent
-        violet:hocus:bg-transparent dark:text-white tablet:ml-0 desktop:px-6'
+        violet:hocus:bg-transparent dark:text-white tablet:ml-0'
       disabled={isPending}
       onClick={handleClickLogout}>
       <svg

@@ -11,14 +11,14 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import { App } from 'components/App'
 import {
-  AddBoardModal,
   AddCardModal,
+  BurgerMenu,
   EditBoardModal,
   EditCardModal,
   EditProfileModal,
-  NeedHelpModal
+  NeedHelpModal,
+  NewBoardModal
 } from 'components/dashboard/modals'
-import { BurgerModal } from 'components/dashboard/modals/burger-menu/burger-Modal'
 
 import { persistor, store } from 'redux/store'
 
@@ -54,12 +54,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <ModalProvider>
                 <App />
                 <ModalRenderer Component={EditBoardModal} />
-                <ModalRenderer Component={AddBoardModal} />
+                <ModalRenderer Component={NewBoardModal} />
                 <ModalRenderer Component={NeedHelpModal} />
                 <ModalRenderer Component={AddCardModal} />
                 <ModalRenderer Component={EditCardModal} />
                 <ModalRenderer Component={EditProfileModal} />
-                <ModalRenderer Component={BurgerModal} />
+                <ModalRenderer Component={BurgerMenu} />
               </ModalProvider>
             </ThemeProvider>
           </BrowserRouter>

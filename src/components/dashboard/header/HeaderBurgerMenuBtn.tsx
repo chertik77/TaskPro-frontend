@@ -1,9 +1,9 @@
 import { useModal } from 'react-modal-state'
 
-import { BurgerModal } from '../modals/burger-menu/burger-Modal'
+import { BurgerMenu } from '../modals/BurgerMenu'
 
 export const HeaderBurgerMenuBtn = () => {
-  const { open } = useModal(BurgerModal)
+  const { open } = useModal(BurgerMenu)
 
   return (
     <button

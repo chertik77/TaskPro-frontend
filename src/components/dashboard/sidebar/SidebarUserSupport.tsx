@@ -1,13 +1,15 @@
 import { useModal } from 'react-modal-state'
 
-import { NeedHelpModal } from '../modals'
+import { BurgerMenu, NeedHelpModal } from '../modals'
 
 export const SidebarUserSupport = () => {
   const { open } = useModal(NeedHelpModal)
 
+  const { close: closeBurgerMenu } = useModal(BurgerMenu)
+
   return (
     <div
-      className='h-[238px] rounded-lg bg-white-gray p-default violet:bg-gray-secondary
+      className='mx-default h-[238px] rounded-lg bg-white-gray p-default violet:bg-gray-secondary
         dark:bg-black-third tablet:h-[272px] tablet:p-5 desktop:mx-6'>
       <div className='mb-3.5'>
         <picture>
@@ -27,8 +29,11 @@ export const SidebarUserSupport = () => {
         team.
       </p>
       <button
-        onClick={open}
-        className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 hocus:text-brand-hover
+        onClick={() => {
+          open()
+          closeBurgerMenu()
+        }}
+        className='flex items-center gap-2 text-fs-12-lh-normal-fw-500 hocus:text-brand-hover
           violet:text-white violet:hocus:text-brand-third dark:text-white-primary
           dark:hocus:text-brand-hover'>
         <svg className='size-5'>

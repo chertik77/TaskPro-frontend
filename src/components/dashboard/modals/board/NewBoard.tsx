@@ -15,8 +15,8 @@ import { BoardSchema } from 'lib/schemas'
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 
-export const AddBoardModal = () => {
-  const { close } = useModal(AddBoardModal)
+export const NewBoardModal = () => {
+  const { close } = useModal(NewBoardModal)
 
   const navigate = useNavigate()
 

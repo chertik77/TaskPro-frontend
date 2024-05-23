@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useModal } from 'react-modal-state'
 import { Link } from 'react-router-dom'
 
 import { useGetBoardId } from 'hooks'
@@ -7,10 +8,13 @@ import { boardService } from 'services'
 
 import { cn } from 'lib'
 
+import { BurgerMenu } from '../modals'
 import { SidebarListActiveItem } from './SidebarListActiveItem'
 
 export const SidebarBoardsList = () => {
   const boardId = useGetBoardId()
+
+  const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   const { data } = useQuery({
     queryKey: ['boards'],
@@ -25,9 +29,10 @@ export const SidebarBoardsList = () => {
       )}>
       {data?.map(board => (
         <Link
+          onClick={closeBurgerMenu}
           className={cn(
-            `flex h-[61px] items-center justify-between text-black/50 violet:text-white/50
-            dark:text-white/50 desktop:pl-6`,
+            `flex h-[61px] items-center justify-between pl-default text-black/50
+            violet:text-white/50 dark:text-white/50 desktop:pl-6`,
             board._id === boardId &&
               `bg-white-gray text-black violet:bg-white/50 violet:text-white
               dark:bg-black-third dark:text-white`
