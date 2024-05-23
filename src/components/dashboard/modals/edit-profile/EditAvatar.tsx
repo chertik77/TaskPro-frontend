@@ -1,6 +1,6 @@
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
-import type { PartialSignupSchema } from 'lib/schemas'
+import type { EditUserSchema } from 'lib/schemas'
 import type { ChangeEvent } from 'react'
 import type { User } from 'types'
 
@@ -16,7 +16,7 @@ type EditAvatarProps = {
   changeUserAvatar: UseMutateAsyncFunction<
     { user: User },
     AxiosError,
-    PartialSignupSchema,
+    EditUserSchema,
     unknown
   >
 }

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { selectFilter } from 'redux/filter.slice'
 
-import { getVisibleCards } from 'lib'
+import { cn, getVisibleCards } from 'lib'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
@@ -19,24 +19,29 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
     <>
       <BoardColumnsActions column={column} />
       {column?.cards?.length > 0 && (
-        <div className=''>
-          <div className='h-[500px] space-y-[8px] overflow-auto'>
-            {filteredCards.map((card, i) => (
-              <Draggable
-                index={i}
-                key={card._id}
-                draggableId={card._id}>
-                {provided => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}>
-                    <BoardCard card={card} />
-                  </div>
-                )}
-              </Draggable>
-            ))}
-          </div>
+        <div
+          className={cn(
+            `scrollbar-thumb-scroll-white -mr-4 space-y-2 overflow-y-auto pr-4 scrollbar
+            scrollbar-track-white scrollbar-track-rounded-xl scrollbar-thumb-rounded-xl
+            scrollbar-w-2 violet:scrollbar-thumb-brand-third dark:scrollbar-track-black
+            dark:scrollbar-thumb-white/10`,
+            column.cards.length > 3 && 'h-[calc(100vh-280px)]'
+          )}>
+          {filteredCards.map((card, i) => (
+            <Draggable
+              index={i}
+              key={card._id}
+              draggableId={card._id}>
+              {provided => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}>
+                  <BoardCard card={card} />
+                </div>
+              )}
+            </Draggable>
+          ))}
         </div>
       )}
     </>

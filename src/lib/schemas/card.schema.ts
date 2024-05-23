@@ -1,20 +1,17 @@
-import type { Output } from 'valibot'
-
-import { date, minLength, object, picklist, string, toTrimmed } from 'valibot'
+import * as v from 'valibot'
 
 import { priorities } from 'constants/priorities'
 
-export const CardSchema = object({
-  title: string([
-    toTrimmed(),
-    minLength(3, 'Please enter at least 3 characters.')
+import { TitleSchema } from './base.schema'
+
+export const CardSchema = v.object({
+  ...TitleSchema.entries,
+  description: v.string([
+    v.toTrimmed(),
+    v.minLength(3, 'Please enter at least 3 characters.')
   ]),
-  description: string([
-    toTrimmed(),
-    minLength(3, 'Please enter at least 3 characters.')
-  ]),
-  priority: picklist(priorities),
-  deadline: date()
+  priority: v.picklist(priorities),
+  deadline: v.date()
 })
 
-export type CardSchema = Output<typeof CardSchema>
+export type CardSchema = v.Output<typeof CardSchema>

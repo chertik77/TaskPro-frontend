@@ -49,8 +49,7 @@ export default {
         'gray-secondary': '#ECEDFD66',
         'priority-low': '#8FA1D0',
         'priority-medium': '#E09CB5',
-        'scroll-track1': '#E8E8E8',
-        'scroll-thumb': '#FFFFFF1A'
+        'scroll-white': '#E8E8E8'
       },
       fontSize: {
         //! Font size - 8px

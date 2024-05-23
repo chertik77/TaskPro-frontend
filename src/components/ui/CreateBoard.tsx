@@ -6,7 +6,7 @@ export const CreateBoard = () => {
   const { open } = useModal(AddBoardModal)
 
   return (
-    <div className='flex items-center justify-center mobile:h-dvh desktop:h-auto'>
+    <div className='flex items-center justify-center max-tablet:h-dvh'>
       <div
         className='w-[335px] text-center text-fs-12-lh-1.33-fw-400 text-black opacity-70
           dark:text-white-gray-secondary tablet:h-[72px] tablet:w-[486px]

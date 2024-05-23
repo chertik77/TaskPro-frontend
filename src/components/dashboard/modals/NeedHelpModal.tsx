@@ -1,9 +1,12 @@
 import { useModal } from 'react-modal-state'
+import { useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
 import { useAppForm, useAppMutation } from 'hooks'
+
+import { selectUser } from 'redux/user.slice'
 
 import { userService } from 'services'
 
@@ -12,8 +15,12 @@ import { HelpSchema } from 'lib/schemas'
 export const NeedHelpModal = () => {
   const { close } = useModal(NeedHelpModal)
 
-  const { handleSubmit, register, formState, reset } =
-    useAppForm<HelpSchema>(HelpSchema)
+  const { email } = useSelector(selectUser)
+
+  const { handleSubmit, register, formState, reset } = useAppForm<HelpSchema>(
+    HelpSchema,
+    { defaultValues: { email } }
+  )
 
   const { mutateAsync, isPending } = useAppMutation<HelpSchema>({
     mutationKey: ['help'],
@@ -26,14 +33,19 @@ export const NeedHelpModal = () => {
       success: () => {
         reset()
         close()
-        return 'Your help request has been sent successfully! Our team will get back to you shortly.'
+        return 'Your help request has been sent successfully!'
       },
       error: 'Oops! Something went wrong while sending your help request.'
     })
   }
 
   return (
-    <Modal modalTitle='Need help'>
+    <Modal
+      modalTitle='Need help'
+      onClose={() => {
+        close()
+        reset()
+      }}>
       <form onSubmit={handleSubmit(submit)}>
         <Field
           {...register('email')}

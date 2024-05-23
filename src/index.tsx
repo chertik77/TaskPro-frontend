@@ -13,12 +13,12 @@ import { App } from 'components/App'
 import {
   AddBoardModal,
   AddCardModal,
-  BurgerMenu,
   EditBoardModal,
   EditCardModal,
   EditProfileModal,
   NeedHelpModal
 } from 'components/dashboard/modals'
+import { BurgerModal } from 'components/dashboard/modals/burger-menu/burger-Modal'
 
 import { persistor, store } from 'redux/store'
 
@@ -59,7 +59,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <ModalRenderer Component={AddCardModal} />
                 <ModalRenderer Component={EditCardModal} />
                 <ModalRenderer Component={EditProfileModal} />
-                <ModalRenderer Component={BurgerMenu} />
+                <ModalRenderer Component={BurgerModal} />
               </ModalProvider>
             </ThemeProvider>
           </BrowserRouter>

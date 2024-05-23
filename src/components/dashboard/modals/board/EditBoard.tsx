@@ -23,11 +23,11 @@ export const EditBoardModal = () => {
 
   const queryClient = useQueryClient()
 
-  const { data } = useModalInstance<{ title: string; icon: string }>()
+  const { data: board } = useModalInstance<{ title: string; icon: string }>()
 
-  const { register, reset, handleSubmit, control, formState, setValue } =
+  const { register, reset, handleSubmit, control, formState } =
     useAppForm<BoardSchema>(BoardSchema, {
-      defaultValues: { title: data.title }
+      defaultValues: { title: board.title }
     })
 
   const { mutateAsync, isPending } = useAppMutation<BoardSchema, Board>({
@@ -42,10 +42,14 @@ export const EditBoardModal = () => {
   })
 
   useEffect(() => {
-    setValue('icon', data.icon)
-    setValue('title', data.title)
-    setValue('background', 'default')
-  }, [data.icon, data.title, setValue])
+    reset({ icon: board.icon, title: board.title, background: 'default' })
+  }, [board.icon, board.title, reset])
+
+  const fields = ['icon', 'title'] as const
+
+  const isFormReadyForSubmit = fields.some(
+    field => formState.dirtyFields[field]
+  )
 
   const submit = (data: BoardSchema) => {
     toast.promise(mutateAsync(data), {
@@ -79,7 +83,7 @@ export const EditBoardModal = () => {
         <Button
           type='submit'
           isPlusIcon
-          disabled={isPending}>
+          disabled={isPending || !isFormReadyForSubmit}>
           {isPending ? 'Editing...' : 'Edit'}
         </Button>
       </form>

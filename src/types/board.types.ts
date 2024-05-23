@@ -11,7 +11,7 @@ export type Card = {
   board: string
   description: string
   priority: EnumPriority
-  deadline: string
+  deadline: Date
 }
 
 export type Column = {

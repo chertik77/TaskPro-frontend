@@ -1,3 +1,4 @@
+import type { AxiosError } from 'axios'
 import type { User } from 'types'
 
 import { useModal } from 'react-modal-state'
@@ -12,24 +13,24 @@ import { selectUser, updateUser } from 'redux/user.slice'
 
 import { userService } from 'services'
 
-import { PartialSignupSchema } from 'lib/schemas'
+import { EditUserSchema } from 'lib/schemas'
 
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
   const { close } = useModal(EditProfileModal)
 
-  const { name, email } = useSelector(selectUser)
+  const { name: initialName, email: initialEmail } = useSelector(selectUser)
 
   const dispatch = useDispatch()
 
-  const { handleSubmit, register, formState } = useAppForm<PartialSignupSchema>(
-    PartialSignupSchema,
-    { defaultValues: { name, email } }
-  )
+  const { handleSubmit, register, formState, reset, watch } =
+    useAppForm<EditUserSchema>(EditUserSchema, {
+      defaultValues: { name: initialName, email: initialEmail }
+    })
 
   const { isPending, mutateAsync } = useAppMutation<
-    PartialSignupSchema,
+    EditUserSchema,
     { user: User }
   >({
     mutationKey: ['editUser'],
@@ -39,19 +40,33 @@ export const EditProfileModal = () => {
     }
   })
 
-  const submit = (data: PartialSignupSchema) => {
+  const isFormReadyForSubmit =
+    watch('name') !== initialName ||
+    watch('email') !== initialEmail ||
+    (watch('password') && formState.isValid)
+
+  const submit = (data: EditUserSchema) => {
     toast.promise(mutateAsync(data), {
       loading: 'Updating your profile...',
       success: () => {
         close()
         return 'Profile updated successfully!'
       },
-      error: 'Failed to update profile. Please try again.'
+      error: (e: AxiosError) => {
+        return e.response?.status === 409
+          ? 'User with that email already exists, please try a different one.'
+          : 'Failed to update profile. Please try again.'
+      }
     })
   }
 
   return (
-    <Modal modalTitle='Edit profile'>
+    <Modal
+      modalTitle='Edit profile'
+      onClose={() => {
+        reset()
+        close()
+      }}>
       <form onSubmit={handleSubmit(submit)}>
         <EditAvatar changeUserAvatar={mutateAsync} />
         <Field
@@ -79,7 +94,7 @@ export const EditProfileModal = () => {
         />
         <Button
           type='submit'
-          disabled={isPending}>
+          disabled={isPending || !isFormReadyForSubmit}>
           {isPending ? 'Updating your credentails...' : 'Send'}
         </Button>
       </form>

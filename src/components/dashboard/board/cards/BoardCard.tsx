@@ -25,7 +25,8 @@ export const BoardCard = ({ card }: { card: Card }) => (
         dark:text-white/50'>
       {card.description}
     </p>
-    <div className='flex items-end border-t-2 border-black/10 pt-default dark:border-white/10'>
+    {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}
+    <div className='flex items-end border-t-[1px] border-black/10 pt-default dark:border-white/10'>
       <BoardCardPriority priority={card.priority} />
       <BoardCardDeadline deadline={card.deadline} />
       <BoardCardActions card={card} />

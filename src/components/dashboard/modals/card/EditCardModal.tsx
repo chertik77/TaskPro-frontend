@@ -18,25 +18,29 @@ import { ModalPriorities } from './ModalPriorities'
 export const EditCardModal = () => {
   const { close } = useModal(EditCardModal)
 
-  const { data: card } = useModalInstance<Card>()
+  const {
+    data: { title, description, board, column, _id, priority, deadline }
+  } = useModalInstance<Card>()
 
-  const { register, handleSubmit, formState, control, reset, setValue } =
+  const { register, handleSubmit, formState, control, reset } =
     useAppForm<CardSchema>(CardSchema, {
-      defaultValues: { title: card.title, description: card.description }
+      defaultValues: { title, description }
     })
 
   const { mutateAsync, isPending } = useAppMutation<CardSchema>({
     mutationKey: ['editCard'],
-    mutationFn: cardData =>
-      cardService.editCard(card.board, card.column, card._id, cardData)
+    mutationFn: cardData => cardService.editCard(board, column, _id, cardData)
   })
 
   useEffect(() => {
-    setValue('title', card.title)
-    setValue('priority', card.priority)
-    setValue('description', card.description)
-    setValue('deadline', card.deadline as unknown as Date)
-  }, [card.deadline, card.description, card.priority, card.title, setValue])
+    reset({ title, priority, deadline, description })
+  }, [deadline, description, priority, title, reset])
+
+  const fields = ['title', 'priority', 'description', 'deadline'] as const
+
+  const isFormReadyForSubmit = fields.some(
+    field => formState.dirtyFields[field]
+  )
 
   const submit = (data: CardSchema) => {
     toast.promise(mutateAsync(data), {
@@ -79,7 +83,7 @@ export const EditCardModal = () => {
         <Button
           isPlusIcon
           type='submit'
-          disabled={isPending}>
+          disabled={isPending || !isFormReadyForSubmit}>
           {isPending ? 'Editing...' : 'Edit'}
         </Button>
       </form>
