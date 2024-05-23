@@ -19,11 +19,18 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "tailwindcss": {
+      "callees": ["cn"]
     }
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "rules": {
     "react/react-in-jsx-scope": 0,
-    "tailwindcss/migration-from-tailwind-2": 0
+    "tailwindcss/migration-from-tailwind-2": 0,
+    "tailwindcss/no-custom-classname": [
+      "warn",
+      { "whitelist": ["shadow-none"] }
+    ]
   }
 }
