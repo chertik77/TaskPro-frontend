@@ -25,7 +25,8 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
             scrollbar-thumb-scroll-white scrollbar-track-rounded-xl
             scrollbar-thumb-rounded-xl scrollbar-w-2 violet:scrollbar-thumb-brand-third
             dark:scrollbar-track-black dark:scrollbar-thumb-white/10`,
-            column.cards.length > 3 && 'h-[calc(100dvh-280px)]'
+            column.cards.length > 3 &&
+              'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
           )}>
           {filteredCards.map((card, i) => (
             <Draggable
