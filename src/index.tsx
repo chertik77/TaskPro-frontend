@@ -25,7 +25,6 @@ import { persistor, store } from 'redux/store'
 import { themes } from 'constants/themes'
 
 import 'react-edit-text/dist/index.css'
-import 'react-tooltip/dist/react-tooltip.css'
 import './index.css'
 
 const queryClient = new QueryClient({

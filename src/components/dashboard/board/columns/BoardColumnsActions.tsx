@@ -3,7 +3,6 @@ import type { Column, ColumnTitle } from 'types'
 
 import { useState } from 'react'
 import { EditText } from 'react-edit-text'
-import { Tooltip } from 'react-tooltip'
 import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
@@ -72,12 +71,6 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
         className='ml-auto'
         onClick={handleColumnDelete}
         iconName='trash'
-        data-tooltip-id='delete-column-tooltip'
-        data-tooltip-content='Delete column'
-      />
-      <Tooltip
-        id='delete-column-tooltip'
-        delayShow={500}
       />
     </div>
   )

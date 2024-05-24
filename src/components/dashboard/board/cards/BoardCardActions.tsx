@@ -2,7 +2,6 @@ import type { Card } from 'types'
 
 import { isBefore, isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
-import { Tooltip } from 'react-tooltip'
 import { toast } from 'sonner'
 
 import { EditCardModal } from 'components/dashboard/modals'
@@ -49,29 +48,13 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         </svg>
       )}
       <BoardCardColumnSelect card={card} />
-      <Tooltip
-        id='change-card-column-tooltip'
-        delayShow={500}
-      />
       <Button
         onClick={() => open(card)}
         iconName='pencil'
-        data-tooltip-id='edit-card-tooltip'
-        data-tooltip-content='Edit card'
       />
       <Button
         onClick={handleCardDelete}
         iconName='trash'
-        data-tooltip-id='delete-card-tooltip'
-        data-tooltip-content='Delete card'
-      />
-      <Tooltip
-        id='edit-card-tooltip'
-        delayShow={500}
-      />
-      <Tooltip
-        id='delete-card-tooltip'
-        delayShow={500}
       />
     </div>
   )

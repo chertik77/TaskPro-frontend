@@ -21,10 +21,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
     <Select.Root
       onValueChange={mutate}
       disabled={columns && columns.length <= 1}>
-      <Select.Trigger
-        className='disabled:hidden'
-        data-tooltip-id='change-card-column-tooltip'
-        data-tooltip-content='Change card column'>
+      <Select.Trigger className='disabled:hidden'>
         <svg
           className='size-4 stroke-black/50 hocus:stroke-black dark:stroke-white/50
             dark:hocus:stroke-white'>

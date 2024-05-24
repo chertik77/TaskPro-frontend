@@ -1,5 +1,4 @@
 import { useModal } from 'react-modal-state'
-import { Tooltip } from 'react-tooltip'
 
 import { BurgerMenu, NewBoardModal } from '../modals'
 
@@ -30,17 +29,11 @@ export const SidebarMyBoardsInfo = () => {
             onClick={() => {
               open()
               closeBurgerMenu()
-            }}
-            data-tooltip-id='create-board-tooltip'
-            data-tooltip-content='Create board'>
+            }}>
             <svg className='size-5'>
               <use href='/icons.svg#icon-plus-min' />
             </svg>
           </button>
-          <Tooltip
-            id='create-board-tooltip'
-            delayShow={500}
-          />
         </div>
       </div>
     </div>

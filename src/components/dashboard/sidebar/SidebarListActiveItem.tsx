@@ -3,7 +3,6 @@ import type { Board } from 'types'
 import { useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
-import { Tooltip } from 'react-tooltip'
 import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
@@ -52,23 +51,11 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
           onClick={handleBoardEdit}
           iconName='pencil'
           iconClassName='violet:stroke-white/50'
-          data-tooltip-id='edit-board-tooltip'
-          data-tooltip-content='Edit board'
         />
         <Button
           onClick={handleBoardDelete}
           iconName='trash'
           iconClassName='violet:stroke-white/50'
-          data-tooltip-id='delete-board-tooltip'
-          data-tooltip-content='Delete board'
-        />
-        <Tooltip
-          id='edit-board-tooltip'
-          delayShow={500}
-        />
-        <Tooltip
-          id='delete-board-tooltip'
-          delayShow={500}
         />
       </div>
       <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white'></div>
