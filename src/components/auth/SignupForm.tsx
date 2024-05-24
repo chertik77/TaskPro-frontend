@@ -25,6 +25,7 @@ export const SignupForm = () => {
       <Field
         errors={formState.errors}
         inputName='name'
+        autoComplete='name'
         placeholder='Enter your name'
         className='text-white'
         {...register('name')}
@@ -32,6 +33,7 @@ export const SignupForm = () => {
       <Field
         errors={formState.errors}
         inputName='email'
+        autoComplete='email'
         placeholder='Enter your email'
         className='text-white'
         {...register('email')}
@@ -40,6 +42,7 @@ export const SignupForm = () => {
         errors={formState.errors}
         inputName='password'
         className='text-white'
+        autoComplete='new-password'
         inputPasswordPlaceholder='Create a password'
         isPasswordInput
         {...register('password')}

@@ -26,12 +26,14 @@ export const SigninForm = () => {
         {...register('email')}
         placeholder='Enter your email'
         inputName='email'
+        autoComplete='email'
         className='text-white'
         errors={formState.errors}
       />
       <Field
         {...register('password')}
         isPasswordInput
+        autoComplete='current-password'
         inputPasswordPlaceholder='Confirm a password'
         inputName='password'
         className='text-white'
