@@ -83,6 +83,7 @@ export const EditProfileModal = () => {
         <Field
           errors={formState.errors}
           inputName='password'
+          autoComplete='new-password'
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
           {...register('password', {
