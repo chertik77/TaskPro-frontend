@@ -59,9 +59,9 @@ export const NeedHelpModal = () => {
           {...register('comment')}
           placeholder='Comment'
           className='mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand
-            border-opacity-40 bg-transparent px-[18px] py-default
-            text-fs-16-lh-normal-fw-500 text-black outline-none placeholder:opacity-40
-            focus:border-opacity-100 violet:border-brand-secondary dark:text-white'
+            border-opacity-40 bg-transparent px-[18px] py-default text-black outline-none
+            placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary
+            dark:text-white'
         />
         <Button
           type='submit'
