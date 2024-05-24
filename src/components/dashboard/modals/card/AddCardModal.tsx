@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
-import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
+import { useAppForm, useAppMutation } from 'hooks'
 
 import { cardService } from 'services'
 
@@ -13,8 +13,6 @@ import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
 export const AddCardModal = () => {
-  const boardId = useGetBoardId()
-
   const { close } = useModal(AddCardModal)
 
   const { data: column } = useModalInstance<string>()
@@ -26,7 +24,7 @@ export const AddCardModal = () => {
 
   const { mutateAsync, isPending } = useAppMutation<CardSchema>({
     mutationKey: ['addCard'],
-    mutationFn: data => cardService.addNewCard(boardId!, column, data)
+    mutationFn: data => cardService.addNewCard(column, data)
   })
 
   const onSubmit = (data: CardSchema) => {

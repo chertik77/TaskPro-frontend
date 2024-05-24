@@ -6,16 +6,16 @@ import { API_ENDPOINTS } from 'config'
 class ColumnService {
   async addNewColumn(boardId: string, data: ColumnTitle) {
     const response = await axiosWithAuth.post(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}`,
+      `${API_ENDPOINTS.COLUMN}/${boardId}/add`,
       data
     )
 
     return response.data
   }
 
-  async editColumn(boardId: string, columnId: string, data: ColumnTitle) {
-    const response = await axiosWithAuth.patch(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`,
+  async editColumn(columnId: string, data: ColumnTitle) {
+    const response = await axiosWithAuth.put(
+      `${API_ENDPOINTS.COLUMN}/${columnId}`,
       data
     )
 
@@ -24,7 +24,7 @@ class ColumnService {
 
   async deleteColumn(boardId: string, columnId: string) {
     const response = await axiosWithAuth.delete(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`
+      `${API_ENDPOINTS.COLUMN}/${boardId}/${columnId}`
     )
 
     return response.data

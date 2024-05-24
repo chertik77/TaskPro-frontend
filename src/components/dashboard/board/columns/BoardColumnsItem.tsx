@@ -31,8 +31,8 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
           {filteredCards.map((card, i) => (
             <Draggable
               index={i}
-              key={card._id}
-              draggableId={card._id}>
+              key={card.id}
+              draggableId={card.id}>
               {provided => (
                 <div
                   ref={provided.innerRef}

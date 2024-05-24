@@ -14,7 +14,7 @@ import { selectUser } from 'redux/user.slice'
 
 type EditAvatarProps = {
   changeUserAvatar: UseMutateAsyncFunction<
-    { user: User },
+    User,
     AxiosError,
     EditUserSchema,
     unknown
@@ -24,7 +24,7 @@ type EditAvatarProps = {
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const { avatarURL } = useSelector(selectUser)
+  const { avatar } = useSelector(selectUser)
 
   const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
     toast.promise(changeUserAvatar({ avatar: e.target.files?.[0] }), {
@@ -48,7 +48,7 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
       <Button
         type='button'
         onClick={() => inputRef.current?.click()}
-        style={{ backgroundImage: `url(${avatarURL})` }}
+        style={{ backgroundImage: `url(${avatar})` }}
         className='relative size-[68px] bg-cover bg-center'>
         <div
           className='absolute -bottom-3 left-[22px] size-6 rounded-lg bg-brand p-[7px]

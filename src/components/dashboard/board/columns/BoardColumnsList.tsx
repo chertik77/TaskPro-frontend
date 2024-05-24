@@ -19,9 +19,9 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
     <div className='flex'>
       {columns?.map(column => (
         <div
-          key={column._id}
+          key={column.id}
           className='mr-[34px]'>
-          <Droppable droppableId={column._id}>
+          <Droppable droppableId={column.id}>
             {provided => (
               <div
                 ref={provided.innerRef}
@@ -34,7 +34,7 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
           <Button
             isPlusIcon
             className='mt-default'
-            onClick={() => open(column._id)}>
+            onClick={() => open(column.id)}>
             Add another card
           </Button>
         </div>

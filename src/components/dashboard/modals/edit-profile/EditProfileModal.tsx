@@ -29,14 +29,11 @@ export const EditProfileModal = () => {
       defaultValues: { name: initialName, email: initialEmail }
     })
 
-  const { isPending, mutateAsync } = useAppMutation<
-    EditUserSchema,
-    { user: User }
-  >({
+  const { isPending, mutateAsync } = useAppMutation<EditUserSchema, User>({
     mutationKey: ['editUser'],
     mutationFn: data => userService.updateUserCredentials(data),
     onSuccess(data) {
-      dispatch(updateUser(data.user))
+      dispatch(updateUser(data))
     }
   })
 

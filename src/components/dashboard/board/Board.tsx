@@ -2,7 +2,7 @@ import type { OnDragEndResponder } from '@hello-pangea/dnd'
 
 import { DragDropContext } from '@hello-pangea/dnd'
 
-import { useAppMutation, useGetBoardById, useGetBoardId } from 'hooks'
+import { useAppMutation, useGetBoardById } from 'hooks'
 
 import { cardService } from 'services'
 
@@ -19,13 +19,12 @@ type ChangeCardColumnMutation = {
 }
 
 export const Board = () => {
-  const boardId = useGetBoardId()
   const { data } = useGetBoardById()
 
   const { mutate } = useAppMutation<ChangeCardColumnMutation>({
     mutationKey: ['changeCardColumn'],
     mutationFn: ({ columnId, cardId, newColumnId }) =>
-      cardService.changeCardColumn(boardId, columnId, cardId, newColumnId)
+      cardService.changeCardColumn(columnId, cardId, newColumnId)
   })
 
   const onDragEnd: OnDragEndResponder = result => {

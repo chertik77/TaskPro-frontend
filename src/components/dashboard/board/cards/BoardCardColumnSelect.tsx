@@ -9,12 +9,12 @@ import { cardService } from 'services'
 export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
   const columns = useGetBoardById().data?.columns
 
-  const filteredColumns = columns?.filter(column => column._id !== card.column)
+  const filteredColumns = columns?.filter(column => column.id !== card.column)
 
   const { mutate } = useAppMutation<string>({
     mutationKey: ['changeCardColumn'],
     mutationFn: columnId =>
-      cardService.changeCardColumn(card.board, card.column, card._id, columnId)
+      cardService.changeCardColumn(card.column, card.id, columnId)
   })
 
   return (
@@ -37,9 +37,9 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
           violet:border-white-gray-secondary dark:bg-black-fourth'>
         {filteredColumns?.map(column => (
           <Select.Item
-            key={column._id}
+            key={column.id}
             className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black dark:text-white/30'
-            value={column._id}>
+            value={column.id}>
             <Select.ItemText>
               <div className='flex gap-2'>
                 <span className='w-20 truncate'>{column.title}</span>

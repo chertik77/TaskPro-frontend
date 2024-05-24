@@ -37,7 +37,7 @@ export const NewBoardModal = () => {
       success: data => {
         close()
         reset()
-        navigate(`/dashboard/${data._id}`)
+        navigate(`/dashboard/${data.id}`)
         return 'Great job! Your new board is set up. Dive in and start making progress on your projects.'
       },
       error:

@@ -19,7 +19,7 @@ export const EditCardModal = () => {
   const { close } = useModal(EditCardModal)
 
   const {
-    data: { title, description, board, column, _id, priority, deadline }
+    data: { title, description, id, priority, deadline }
   } = useModalInstance<Card>()
 
   const { register, handleSubmit, formState, control, reset } =
@@ -29,7 +29,7 @@ export const EditCardModal = () => {
 
   const { mutateAsync, isPending } = useAppMutation<CardSchema>({
     mutationKey: ['editCard'],
-    mutationFn: cardData => cardService.editCard(board, column, _id, cardData)
+    mutationFn: cardData => cardService.editCard(id, cardData)
   })
 
   useEffect(() => {

@@ -35,7 +35,7 @@ export const EditBoardModal = () => {
     mutationFn: data => boardService.editBoard(boardId, data),
     onSuccess(data) {
       queryClient.invalidateQueries({ queryKey: ['boards'] })
-      if (data._id === boardId) {
+      if (data.id === boardId) {
         queryClient.invalidateQueries({ queryKey: ['board'] })
       }
     }

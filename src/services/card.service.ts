@@ -4,9 +4,9 @@ import { axiosWithAuth } from 'api'
 import { API_ENDPOINTS } from 'config'
 
 class CardService {
-  async addNewCard(boardId: string, columnId: string, data: CardSchema) {
+  async addNewCard(columnId: string, data: CardSchema) {
     const response = await axiosWithAuth.post(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}`,
+      `${API_ENDPOINTS.CARD}/${columnId}/add-card`,
       data
     )
 
@@ -14,35 +14,29 @@ class CardService {
   }
 
   async changeCardColumn(
-    boardId: string,
     columnId: string,
     cardId: string,
     newColumnId: string
   ) {
-    const response = await axiosWithAuth.patch(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}/${cardId}/${newColumnId}`
+    const response = await axiosWithAuth.put(
+      `${API_ENDPOINTS.CARD}/${columnId}/${cardId}/${newColumnId}`
     )
 
     return response.data
   }
 
-  async editCard(
-    boardId: string,
-    columnId: string,
-    cardId: string,
-    data: CardSchema
-  ) {
-    const response = await axiosWithAuth.patch(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}/${columnId}/${cardId}`,
+  async editCard(cardId: string, data: CardSchema) {
+    const response = await axiosWithAuth.put(
+      `${API_ENDPOINTS.CARD}/${cardId}`,
       data
     )
 
     return response.data
   }
 
-  async deleteCard(boardId: string, columnId: string, cardId: string) {
+  async deleteCard(columnId: string, cardId: string) {
     const response = await axiosWithAuth.delete(
-      `/dashboard/${boardId}/${columnId}/${cardId}`
+      `${API_ENDPOINTS.CARD}/${columnId}/${cardId}`
     )
 
     return response.data

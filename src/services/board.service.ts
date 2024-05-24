@@ -6,30 +6,33 @@ import { API_ENDPOINTS } from 'config'
 
 class BoardService {
   async getAllBoards() {
-    const response = await axiosWithAuth.get<{ total: number; data: Board[] }>(
-      API_ENDPOINTS.DASHBOARD
+    const response = await axiosWithAuth.get<{ boards: Board[] }>(
+      API_ENDPOINTS.BOARD
     )
 
-    return response.data.data
+    return response.data.boards
   }
 
   async getBoardById(boardId: string) {
     const response = await axiosWithAuth.get<Board>(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}`
+      `${API_ENDPOINTS.BOARD}/${boardId}`
     )
 
     return response.data
   }
 
   async addNewBoard(data: BoardSchema) {
-    const response = await axiosWithAuth.post(API_ENDPOINTS.DASHBOARD, data)
+    const response = await axiosWithAuth.post(
+      `${API_ENDPOINTS.BOARD}/add`,
+      data
+    )
 
     return response.data
   }
 
   async editBoard(boardId: string, data: BoardSchema) {
-    const response = await axiosWithAuth.patch(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}`,
+    const response = await axiosWithAuth.put(
+      `${API_ENDPOINTS.BOARD}/${boardId}`,
       data
     )
 
@@ -38,7 +41,7 @@ class BoardService {
 
   async deleteBoard(boardId: string) {
     const response = await axiosWithAuth.delete(
-      `${API_ENDPOINTS.DASHBOARD}/${boardId}`
+      `${API_ENDPOINTS.BOARD}/${boardId}`
     )
 
     return response.data

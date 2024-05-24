@@ -1,4 +1,4 @@
-import type { AuthResponse } from 'types'
+import type { User } from 'types'
 
 import { useTheme } from 'next-themes'
 import { useDispatch } from 'react-redux'
@@ -14,16 +14,16 @@ import { HeaderSelect } from './HeaderSelect'
 export const HeaderThemeSelect = () => {
   const dispatch = useDispatch()
 
-  const { setTheme, theme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
-  const { mutateAsync } = useAppMutation<string, AuthResponse>({
+  const { mutateAsync } = useAppMutation<string, User>({
     mutationKey: ['user'],
     mutationFn: theme => userService.changeUserTheme(theme)
   })
 
   const handleThemeChange = (e: string) => {
     setTheme(e)
-    mutateAsync(e).then(r => dispatch(updateUser(r.user)))
+    mutateAsync(e).then(r => dispatch(updateUser(r)))
   }
 
   return (

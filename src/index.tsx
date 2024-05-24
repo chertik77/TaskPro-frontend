@@ -47,7 +47,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <BrowserRouter>
             <ThemeProvider
               attribute='class'
-              defaultTheme={store.getState().user.user.userTheme}
+              storageKey={undefined}
+              defaultTheme={store.getState().user.user.theme}
               themes={themes}
               enableSystem={false}>
               <ModalProvider>

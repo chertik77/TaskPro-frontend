@@ -39,16 +39,16 @@ export const SidebarBoardsList = () => {
             aria-checked:violet:text-white dark:text-white/50
             aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6'
           onClick={closeBurgerMenu}
-          checked={board._id === boardId}
-          key={board._id}
-          value={board._id}>
+          checked={board.id === boardId}
+          key={board.id}
+          value={board.id}>
           <div className='flex items-center gap-2'>
             <svg className='size-[18px] stroke-current'>
               <use href={`/icons.svg#${board.icon}`}></use>
             </svg>
             <p className='truncate'>{board?.title}</p>
           </div>
-          {board._id === boardId && <SidebarListActiveItem board={board} />}
+          {board.id === boardId && <SidebarListActiveItem board={board} />}
         </Item>
       ))}
     </Root>

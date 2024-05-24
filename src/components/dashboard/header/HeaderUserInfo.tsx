@@ -6,7 +6,7 @@ import { selectUser } from 'redux/user.slice'
 import { EditProfileModal } from '../modals'
 
 export const HeaderUserInfo = () => {
-  const { name, avatarURL } = useSelector(selectUser)
+  const { name, avatar } = useSelector(selectUser)
 
   const { open } = useModal(EditProfileModal)
 
@@ -17,7 +17,7 @@ export const HeaderUserInfo = () => {
       className='flex items-center gap-2'>
       <p>{name}</p>
       <img
-        src={avatarURL}
+        src={avatar}
         alt={name}
         className='size-8 rounded-lg'
       />

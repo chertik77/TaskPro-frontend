@@ -1,11 +1,9 @@
 export type User = {
-  _id: string
-  userTheme: string
+  id: string
+  theme: string
   name: string
   email: string
-  avatarURL: {
-    url: string
-  }
+  avatar: string
 }
 
 export type AuthResponse = {

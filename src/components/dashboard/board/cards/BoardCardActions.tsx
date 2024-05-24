@@ -7,20 +7,18 @@ import { toast } from 'sonner'
 import { EditCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
 
-import { useAppMutation, useGetBoardId } from 'hooks'
+import { useAppMutation } from 'hooks'
 
 import { cardService } from 'services'
 
 import { BoardCardColumnSelect } from './BoardCardColumnSelect'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
-  const boardId = useGetBoardId()
-
   const { open } = useModal(EditCardModal)
 
   const { mutateAsync } = useAppMutation({
     mutationKey: ['deleteCard'],
-    mutationFn: () => cardService.deleteCard(boardId, card.column, card._id)
+    mutationFn: () => cardService.deleteCard(card.column, card.id)
   })
 
   const handleCardDelete = () => {

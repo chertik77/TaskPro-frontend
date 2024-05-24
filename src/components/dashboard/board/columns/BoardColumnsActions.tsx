@@ -22,12 +22,12 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
 
   const { mutateAsync } = useAppMutation({
     mutationKey: ['deleteColumn'],
-    mutationFn: () => columnService.deleteColumn(boardId, column._id)
+    mutationFn: () => columnService.deleteColumn(boardId, column.id)
   })
 
   const { mutateAsync: mutateColumn } = useAppMutation<ColumnTitle>({
     mutationKey: ['editColumn'],
-    mutationFn: data => columnService.editColumn(boardId, column._id, data)
+    mutationFn: data => columnService.editColumn(column.id, data)
   })
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {

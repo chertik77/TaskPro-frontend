@@ -4,8 +4,8 @@ export type UserInitialState = {
   user: {
     name: string
     email: string
-    avatarURL: string
-    userTheme: string
+    avatar: string
+    theme: string
   }
   token: string
   isLoggedIn: boolean
@@ -17,8 +17,8 @@ const userSlice = createSlice({
     user: {
       name: '',
       email: '',
-      avatarURL: '',
-      userTheme: 'light'
+      avatar: '',
+      theme: 'light'
     },
     token: '',
     isLoggedIn: false
@@ -28,23 +28,20 @@ const userSlice = createSlice({
       state.isLoggedIn = true
       state.token = action.payload.token
       state.user = action.payload.user
-      state.user.avatarURL = action.payload.user.avatarURL.url
     },
     current: (state, action) => {
-      state.user = action.payload.user
-      state.user.avatarURL = action.payload.user.avatarURL.url
+      state.user = action.payload
       state.isLoggedIn = true
     },
     updateUser: (state, action) => {
       state.user = action.payload
-      state.user.avatarURL = action.payload.avatarURL.url
     },
     logout: state => {
       state.user = {
         name: '',
         email: '',
-        avatarURL: '',
-        userTheme: ''
+        avatar: '',
+        theme: 'light'
       }
       state.isLoggedIn = false
       state.token = ''

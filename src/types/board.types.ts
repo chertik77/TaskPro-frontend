@@ -5,7 +5,7 @@ export type ColumnTitle = {
 }
 
 export type Card = {
-  _id: string
+  id: string
   title: string
   column: string
   board: string
@@ -15,13 +15,13 @@ export type Card = {
 }
 
 export type Column = {
-  _id: string
+  id: string
   title: string
   cards: Card[]
 }
 
 export type Board = {
-  _id: string
+  id: string
   title: string
   icon: string
   columns: Column[]
