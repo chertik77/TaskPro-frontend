@@ -20,7 +20,7 @@ export const ModalDescription = forwardRef<
       placeholder='Description'
       className={cn(
         `mb-2 h-[154px] w-full resize-none rounded-lg border border-brand/40 px-[18px]
-        py-default text-fs-14-lh-1.28-fw-400 outline-none placeholder:opacity-40
+        py-default text-fs-16-lh-normal-fw-500 outline-none placeholder:opacity-40
         focus:border-opacity-100 violet:border-brand-secondary`,
         !errors.description && 'mb-6'
       )}
