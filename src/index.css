@@ -42,17 +42,3 @@
     font-size: 16px;
   }
 }
-
-/* .bg-blur-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: url('https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/fvgiatkjobjaff8jmk73.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px);
-  z-index: -1;
-} */
