@@ -21,10 +21,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className={cn(
         !iconName &&
           `h-[49px] w-full rounded-lg bg-brand stroke-white text-fs-14-lh-normal-fw-500
-          text-black disabled:cursor-not-allowed disabled:opacity-50 hocus:bg-brand-hover
-          violet:bg-brand-secondary violet:text-white
+          text-black transition-colors disabled:cursor-not-allowed disabled:opacity-50
+          hocus:bg-brand-hover violet:bg-brand-secondary violet:text-white
           violet:hocus:bg-brand-secondary-hover`,
-        iconName && 'hocus:*:stroke-black dark:hocus:*:stroke-white-primary',
+        iconName &&
+          `hocus:*:stroke-black violet:hocus:*:stroke-black
+          dark:hocus:*:stroke-white-primary`,
         isPlusIcon && 'flex items-center justify-center gap-2',
         className
       )}

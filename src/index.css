@@ -42,3 +42,18 @@
     font-size: 16px;
   }
 }
+
+@layer components {
+  .custom-scrollbar {
+    @apply scrollbar scrollbar-track-white
+    scrollbar-thumb-scroll-white scrollbar-track-rounded-xl
+    scrollbar-thumb-rounded-xl scrollbar-w-2 violet:scrollbar-thumb-brand-third
+    dark:scrollbar-track-black dark:scrollbar-thumb-white/10;
+  }
+
+  .animation {
+    @apply data-[state=open]:animate-in data-[state=closed]:animate-out
+    data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0
+    data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95;
+  }
+}

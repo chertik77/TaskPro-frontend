@@ -33,11 +33,13 @@ export const SidebarBoardsList = () => {
       )}>
       {data?.map(board => (
         <Item
-          className='flex h-[61px] w-full items-center justify-between pl-default text-black/50
-            aria-checked:bg-white-gray aria-checked:text-black focus:outline-none
-            violet:text-white/50 aria-checked:violet:bg-white/50
+          className={cn(
+            `flex h-[61px] w-full items-center justify-between pl-default text-black/50
+            transition-colors ease-in-out aria-checked:bg-white-gray aria-checked:text-black
+            focus:outline-none violet:text-white/50 aria-checked:violet:bg-white/50
             aria-checked:violet:text-white dark:text-white/50
-            aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6'
+            aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6`
+          )}
           onClick={closeBurgerMenu}
           checked={board.id === boardId}
           key={board.id}

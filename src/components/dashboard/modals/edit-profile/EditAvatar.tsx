@@ -49,7 +49,7 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
         type='button'
         onClick={() => inputRef.current?.click()}
         style={{ backgroundImage: `url(${avatar})` }}
-        className='relative size-[68px] bg-cover bg-center'>
+        className='relative size-[68px] rounded-xl bg-cover bg-center'>
         <div
           className='absolute -bottom-3 left-[22px] size-6 rounded-lg bg-brand p-[7px]
             violet:bg-white-gray-secondary'>

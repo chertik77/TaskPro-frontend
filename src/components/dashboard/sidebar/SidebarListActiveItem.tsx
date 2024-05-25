@@ -32,7 +32,11 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   })
 
   const handleBoardEdit = () => {
-    open({ title: board.title, icon: board.icon })
+    open({
+      title: board.title,
+      icon: board.icon,
+      background: board.background.identifier
+    })
   }
 
   const handleBoardDelete = () => {
@@ -58,7 +62,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
           iconClassName='violet:stroke-white/50'
         />
       </div>
-      <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white'></div>
+      <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white' />
     </div>
   )
 }

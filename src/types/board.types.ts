@@ -8,7 +8,6 @@ export type Card = {
   id: string
   title: string
   column: string
-  board: string
   description: string
   priority: EnumPriority
   deadline: Date
@@ -24,5 +23,10 @@ export type Board = {
   id: string
   title: string
   icon: string
+  background: {
+    hasWhiteTextColor: boolean
+    identifier: string
+    url: string
+  }
   columns: Column[]
 }

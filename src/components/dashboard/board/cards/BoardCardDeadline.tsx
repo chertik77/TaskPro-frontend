@@ -8,7 +8,7 @@ type BoardCardDeadlineProps = {
 
 export const BoardCardDeadline = ({ deadline }: BoardCardDeadlineProps) => (
   <div>
-    <p className='pb-1 text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
+    <p className='mb-1 text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
       Deadline
     </p>
     <p className='text-fs-10-lh-normal-fw-400'>

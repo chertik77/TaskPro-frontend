@@ -8,6 +8,8 @@ import { useAppMutation, useGetBoardById } from 'hooks'
 
 import { cardService } from 'services'
 
+import { cn } from 'lib'
+
 import { BoardAddColumnBtn } from './columns/BoardAddColumnBtn'
 import { BoardColumnsList } from './columns/BoardColumnsList'
 import { FilterSelect } from './filters/FilterSelect'
@@ -19,7 +21,7 @@ type ChangeCardColumnMutation = {
 }
 
 export const Board = () => {
-  const { data, isPending, isFetching } = useGetBoardById()
+  const { data, isPending } = useGetBoardById()
 
   const { mutate } = useAppMutation<ChangeCardColumnMutation>({
     mutationKey: ['changeCardColumn'],
@@ -42,16 +44,18 @@ export const Board = () => {
   return (
     <>
       <div
-        className='relative space-y-[39px] overflow-hidden px-5 pt-default tablet:space-y-[26px]
-          tablet:pl-[32px] desktop:space-y-[10px] desktop:pl-6'>
+        className='relative overflow-hidden bg-cover bg-center px-5 pt-default tablet:px-8
+          tablet:pt-[26px] desktop:px-6 desktop:pt-[10px]'
+        style={{
+          backgroundImage: `url(${!isPending && data?.background?.url})`
+        }}>
         <div
-          className='absolute inset-0 z-[-1] bg-cover bg-center blur-md'
-          style={{
-            backgroundImage: `url(https://res.cloudinary.com/dmbnnewoy/image/upload/v1707099093/TaskPro/board_bg_images/desk/fvgiatkjobjaff8jmk73.jpg)`
-          }}
-        />
-        <div className='flex justify-between'>
-          <p className='text-fs-18-lh-normal-fw-500'>{data?.title}</p>
+          className={cn(
+            'mb-[39px] flex justify-between text-black tablet:mb-[26px] desktop:mb-[10px]',
+            data?.background.hasWhiteTextColor && 'text-white',
+            data?.background.identifier === 'default' && 'dark:text-white'
+          )}>
+          <p className='tablet:text-fs-18-lh-normal-fw-500'>{data?.title}</p>
           <FilterSelect />
         </div>
         <div
@@ -59,7 +63,7 @@ export const Board = () => {
             scrollbar-thumb-scroll-white scrollbar-track-rounded-xl
             scrollbar-thumb-rounded-xl scrollbar-h-3 violet:scrollbar-thumb-brand-third
             dark:scrollbar-track-black dark:scrollbar-thumb-white/10'>
-          {isPending || isFetching ? (
+          {isPending ? (
             <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
               <Loader />
             </div>

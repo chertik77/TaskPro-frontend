@@ -21,10 +21,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
       {column?.cards?.length > 0 && (
         <div
           className={cn(
-            `-mr-4 space-y-2 overflow-y-auto pr-4 scrollbar scrollbar-track-white
-            scrollbar-thumb-scroll-white scrollbar-track-rounded-xl
-            scrollbar-thumb-rounded-xl scrollbar-w-2 violet:scrollbar-thumb-brand-third
-            dark:scrollbar-track-black dark:scrollbar-thumb-white/10`,
+            'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
             column.cards.length > 3 &&
               'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
           )}>

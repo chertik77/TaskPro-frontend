@@ -33,9 +33,9 @@ export const SidebarUserSupport = () => {
           open()
           closeBurgerMenu()
         }}
-        className='flex items-center gap-2 text-fs-12-lh-normal-fw-500 hocus:text-brand-hover
-          violet:text-white violet:hocus:text-brand-third dark:text-white-primary
-          dark:hocus:text-brand-hover'>
+        className='flex items-center gap-2 text-fs-12-lh-normal-fw-500 transition-colors
+          hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third
+          dark:text-white-primary dark:hocus:text-brand-hover'>
         <svg className='size-5'>
           <use href={`/icons.svg#icon-help`} />
         </svg>

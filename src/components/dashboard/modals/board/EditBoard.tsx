@@ -23,7 +23,11 @@ export const EditBoardModal = () => {
 
   const queryClient = useQueryClient()
 
-  const { data: board } = useModalInstance<{ title: string; icon: string }>()
+  const { data: board } = useModalInstance<{
+    title: string
+    icon: string
+    background: string
+  }>()
 
   const { register, reset, handleSubmit, control, formState } =
     useAppForm<BoardSchema>(BoardSchema, {
@@ -42,10 +46,14 @@ export const EditBoardModal = () => {
   })
 
   useEffect(() => {
-    reset({ icon: board.icon, title: board.title, background: 'default' })
-  }, [board.icon, board.title, reset])
+    reset({
+      icon: board.icon,
+      title: board.title,
+      background: board.background
+    })
+  }, [board.background, board.icon, board.title, reset])
 
-  const fields = ['icon', 'title'] as const
+  const fields = ['icon', 'title', 'background'] as const
 
   const isFormReadyForSubmit = fields.some(
     field => formState.dirtyFields[field]
