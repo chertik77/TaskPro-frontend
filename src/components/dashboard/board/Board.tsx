@@ -59,7 +59,7 @@ export const Board = () => {
           <FilterSelect />
         </div>
         <div
-          className='flex overflow-x-scroll pb-4 scrollbar scrollbar-track-white
+          className='flex h-full overflow-x-scroll pb-4 scrollbar scrollbar-track-white
             scrollbar-thumb-scroll-white scrollbar-track-rounded-xl
             scrollbar-thumb-rounded-xl scrollbar-h-3 violet:scrollbar-thumb-brand-third
             dark:scrollbar-track-black dark:scrollbar-thumb-white/10'>

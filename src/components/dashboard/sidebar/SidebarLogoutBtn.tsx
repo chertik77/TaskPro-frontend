@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+import { useTheme } from 'next-themes'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
@@ -12,12 +13,15 @@ import { BurgerMenu } from '../modals/BurgerMenu'
 export const SidebarLogoutBtn = () => {
   const dispatch = useDispatch()
 
+  const { setTheme } = useTheme()
+
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ['logout'],
     mutationFn: () => authService.logout(),
     onSuccess() {
+      setTheme('light')
       toast.success(
         'You have successfully logged out. We look forward to seeing you again soon!'
       )

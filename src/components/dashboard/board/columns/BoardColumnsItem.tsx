@@ -23,6 +23,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
           className={cn(
             'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
             column.cards.length > 3 &&
+              !filter &&
               'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
           )}>
           {filteredCards.map((card, i) => (
