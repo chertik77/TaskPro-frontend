@@ -14,12 +14,7 @@ type ThemeProviderState = {
   setTheme: (theme: Theme) => void
 }
 
-const initialState: ThemeProviderState = {
-  theme: 'light',
-  setTheme: () => null
-}
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+const ThemeProviderContext = createContext<ThemeProviderState | null>(null)
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const { theme: userTheme } = useSelector(selectUser)
