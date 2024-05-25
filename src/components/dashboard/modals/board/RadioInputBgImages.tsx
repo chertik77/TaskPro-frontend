@@ -2,7 +2,7 @@ import type { BoardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
-import { useTheme } from 'next-themes'
+import { useTheme } from 'contexts/theme.context'
 import { Controller } from 'react-hook-form'
 
 import images from 'lib/json/board-bg-images.json'

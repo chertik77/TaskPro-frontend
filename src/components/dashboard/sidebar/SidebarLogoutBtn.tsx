@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { useTheme } from 'next-themes'
+import { useTheme } from 'contexts/theme.context'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'

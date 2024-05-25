@@ -1,4 +1,4 @@
-import { useTheme } from 'next-themes'
+import { useTheme } from 'contexts/theme.context'
 import { useMediaQuery } from 'react-responsive'
 import { Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'

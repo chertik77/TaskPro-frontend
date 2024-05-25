@@ -1,4 +1,4 @@
-import { useTheme } from 'next-themes'
+import { useTheme } from 'contexts/theme.context'
 import FadeLoader from 'react-spinners/FadeLoader'
 
 export const Loader = () => {

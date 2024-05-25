@@ -1,6 +1,7 @@
+import type { Theme } from 'contexts/theme.context'
 import type { User } from 'types'
 
-import { useTheme } from 'next-themes'
+import { useTheme } from 'contexts/theme.context'
 import { useDispatch } from 'react-redux'
 
 import { useAppMutation } from 'hooks'
@@ -22,7 +23,7 @@ export const HeaderThemeSelect = () => {
   })
 
   const handleThemeChange = (e: string) => {
-    setTheme(e)
+    setTheme(e as Theme)
     mutateAsync(e).then(r => dispatch(updateUser(r)))
   }
 
