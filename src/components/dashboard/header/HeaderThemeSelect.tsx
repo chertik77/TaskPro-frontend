@@ -1,4 +1,4 @@
-import type { Theme } from 'constants/titles'
+import type { Theme } from 'constants/priorities'
 import type { User } from 'types'
 
 import { useTheme } from 'contexts/theme.context'

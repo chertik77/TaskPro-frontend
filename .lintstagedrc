@@ -1,4 +1,4 @@
 {
-  "*.{ts, tsx}": ["prettier --write", "npm run lint"],
+  "*.{ts, tsx}": ["prettier --write", "yarn lint"],
   "*.json": ["prettier --write"]
 }
