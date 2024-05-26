@@ -3,7 +3,7 @@ import type { Column } from 'types'
 import { Draggable } from '@hello-pangea/dnd'
 import { useSelector } from 'react-redux'
 
-import { selectFilter } from 'redux/filter.slice'
+import { selectFilters } from 'redux/filter.slice'
 
 import { cn, getVisibleCards } from 'lib'
 
@@ -11,9 +11,9 @@ import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
 
 export const BoardColumnsItem = ({ column }: { column: Column }) => {
-  const filter = useSelector(selectFilter)
+  const filters = useSelector(selectFilters)
 
-  const filteredCards = getVisibleCards(column.cards, filter)
+  const filteredCards = getVisibleCards(column.cards, filters)
 
   return (
     <>
@@ -23,7 +23,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
           className={cn(
             'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
             column.cards.length > 3 &&
-              !filter &&
+              !filters.priorityFilter &&
               'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
           )}>
           {filteredCards.map((card, i) => (

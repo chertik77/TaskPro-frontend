@@ -12,7 +12,7 @@ import { cn } from 'lib'
 
 import { BoardAddColumnBtn } from './columns/BoardAddColumnBtn'
 import { BoardColumnsList } from './columns/BoardColumnsList'
-import { FilterSelect } from './filters/FilterSelect'
+import { Filters } from './filters/Filters'
 
 type ChangeCardColumnMutation = {
   columnId: string
@@ -56,7 +56,7 @@ export const Board = () => {
             data?.background.identifier === 'default' && 'dark:text-white'
           )}>
           <p className='tablet:text-fs-18-lh-normal-fw-500'>{data?.title}</p>
-          <FilterSelect />
+          <Filters />
         </div>
         <div
           className='flex h-full overflow-x-scroll pb-4 scrollbar scrollbar-track-white

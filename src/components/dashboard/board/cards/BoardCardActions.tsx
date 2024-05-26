@@ -1,6 +1,6 @@
 import type { Card } from 'types'
 
-import { isBefore, isToday } from 'date-fns'
+import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -30,18 +30,10 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
     })
   }
 
-  const isTodayDeadline = isToday(card.deadline)
-  const isDeadlinePassed = isBefore(card.deadline, new Date())
-
   return (
     <div className='ml-auto flex gap-2'>
-      {isTodayDeadline && (
+      {isToday(card.deadline) && (
         <svg className='size-[19px] animate-bounce stroke-brand pr-1 violet:stroke-brand-secondary'>
-          <use href='/icons.svg#icon-bell'></use>
-        </svg>
-      )}
-      {isDeadlinePassed && !isTodayDeadline && (
-        <svg className='size-[19px] animate-bounce stroke-red-500 pr-1'>
           <use href='/icons.svg#icon-bell'></use>
         </svg>
       )}
