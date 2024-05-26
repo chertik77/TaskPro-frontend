@@ -1,4 +1,9 @@
 {
-  "*.{ts,tsx}": ["prettier --write", "eslint --fix -f mo", "eslint -f mo"],
+  "*.{ts,tsx}": [
+    "prettier --write",
+    "eslint --fix -f mo",
+    "eslint -f mo",
+    "tsc-files --noEmit src/vite-env.d.ts"
+  ],
   "*.json": ["prettier --write"]
 }
