@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noemit"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^16.6.0",
