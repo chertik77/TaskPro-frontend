@@ -1,4 +1,4 @@
-import type { Theme } from 'contexts/theme.context'
+import type { Theme } from 'constants/themes'
 import type { BoardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
