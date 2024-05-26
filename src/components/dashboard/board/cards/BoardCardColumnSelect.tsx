@@ -34,24 +34,30 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
         position='popper'
         className='animation w-min rounded-lg border border-brand bg-white-primary p-[18px]
           shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
-        {filteredColumns?.map(column => (
-          <Select.Item
-            key={column.id}
-            className={cn(
-              'text-fs-14-lh-1.28-fw-400 text-black outline-none dark:text-white/30',
-              filteredColumns.length > 1 && 'mb-2'
-            )}
-            value={column.id}>
-            <Select.ItemText>
-              <div className='flex gap-2'>
-                <span className='w-20 truncate'>{column.title}</span>
-                <svg className='size-4 stroke-black/50 dark:stroke-white/50'>
-                  <use href='/icons.svg#icon-arrow'></use>
-                </svg>
-              </div>
-            </Select.ItemText>
-          </Select.Item>
-        ))}
+        <Select.Viewport>
+          {filteredColumns?.map(column => (
+            <Select.Item
+              key={column.id}
+              className={cn(
+                `group text-fs-14-lh-1.28-fw-400 text-black outline-none
+                data-[highlighted]:text-brand hocus:text-brand violet:hocus:text-brand-secondary
+                dark:text-white/30 dark:hocus:text-brand`,
+                filteredColumns.length > 1 && 'space-y-2'
+              )}
+              value={column.id}>
+              <Select.ItemText>
+                <div className='flex gap-2'>
+                  <span className='w-20 truncate'>{column.title}</span>
+                  <svg
+                    className='size-4 stroke-black/50 group-focus:stroke-brand
+                      violet:group-focus:stroke-brand-secondary dark:stroke-white/50'>
+                    <use href='/icons.svg#icon-arrow'></use>
+                  </svg>
+                </div>
+              </Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Viewport>
       </Select.Content>
     </Select.Root>
   )

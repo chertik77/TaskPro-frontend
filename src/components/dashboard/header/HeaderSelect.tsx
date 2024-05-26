@@ -36,24 +36,29 @@ export const HeaderSelect = ({
     </Select.Trigger>
     <Select.Portal>
       <Select.Content
+        align='end'
         position='popper'
-        className='animation w-[100px] rounded-lg border border-brand bg-white-primary pb-default
+        className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-default
           pl-[18px] pr-11 pt-[18px] shadow-select violet:border-white-gray-secondary
           dark:bg-black-fourth'>
-        {themes.map(theme => (
-          <Select.Item
-            key={theme}
-            className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
-              data-[state=checked]:text-brand hocus:text-brand
-              violet:data-[state=checked]:text-brand-secondary
-              violet:hocus:text-brand-secondary dark:text-white/30
-              dark:data-[state=checked]:text-brand dark:hocus:text-brand'
-            value={theme}>
-            <Select.ItemText>
-              {theme.charAt(0).toUpperCase() + theme.slice(1)}
-            </Select.ItemText>
-          </Select.Item>
-        ))}
+        <Select.Viewport>
+          {themes.map(theme => (
+            <Select.Item
+              key={theme}
+              className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
+                data-[highlighted]:text-brand data-[state=checked]:text-brand
+                data-[highlighted]:underline hocus:text-brand
+                violet:data-[state=checked]:text-brand-secondary
+                violet:hocus:text-brand-secondary dark:text-white/30
+                dark:data-[state=checked]:text-brand dark:hocus:text-brand'
+              value={theme}>
+              <Select.ItemText>
+                {theme.charAt(0).toUpperCase() + theme.slice(1)}
+                <Select.ItemIndicator />
+              </Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Viewport>
       </Select.Content>
     </Select.Portal>
   </Select.Root>
