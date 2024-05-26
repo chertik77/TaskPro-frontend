@@ -1,4 +1,9 @@
 {
-  "*.{ts, tsx}": ["prettier --write", "yarn lint"],
+  "*.{ts,tsx}": [
+    "prettier --write",
+    "eslint --fix -f mo",
+    "eslint -f mo",
+    "tsc-files --noEmit --skipLibCheck"
+  ],
   "*.json": ["prettier --write"]
 }
