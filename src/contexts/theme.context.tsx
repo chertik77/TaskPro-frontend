@@ -1,13 +1,10 @@
+import type { Theme } from 'constants/themes'
+import type { PropsWithChildren } from 'react'
+
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { selectUser } from 'redux/user.slice'
-
-export type Theme = 'dark' | 'light' | 'violet'
-
-type ThemeProviderProps = {
-  children: React.ReactNode
-}
 
 type ThemeProviderState = {
   theme: Theme
@@ -21,7 +18,7 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
+export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const { theme: userTheme } = useSelector(selectUser)
 
   const [theme, setTheme] = useState<Theme>(userTheme as Theme)

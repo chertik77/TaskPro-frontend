@@ -1,10 +1,10 @@
 [
-  { "id": "icon-project-1" },
-  { "id": "icon-star-2" },
-  { "id": "icon-loading-3" },
-  { "id": "icon-puzzle-piece-4" },
-  { "id": "icon-container-5" },
-  { "id": "icon-lightning-6" },
-  { "id": "icon-colors-7" },
-  { "id": "icon-hexagon-8" }
+  { "id": "project-1" },
+  { "id": "star-2" },
+  { "id": "loading-3" },
+  { "id": "puzzle-piece-4" },
+  { "id": "container-5" },
+  { "id": "lightning-6" },
+  { "id": "colors-7" },
+  { "id": "hexagon-8" }
 ]

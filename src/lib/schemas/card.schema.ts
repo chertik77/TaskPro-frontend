@@ -2,7 +2,7 @@ import * as v from 'valibot'
 
 import { priorities } from 'constants/priorities'
 
-import { TitleSchema } from './base.schema'
+import { TitleSchema } from './board.schema'
 
 export const CardSchema = v.object({
   ...TitleSchema.entries,

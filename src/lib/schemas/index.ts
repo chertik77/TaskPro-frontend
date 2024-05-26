@@ -1,6 +1,3 @@
 export * from './board.schema'
 export * from './card.schema'
-export * from './help.schema'
-export * from './signin.schema'
-export * from './signup.schema'
 export * from './user.schema'

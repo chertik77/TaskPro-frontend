@@ -1,3 +1,4 @@
+import type { Theme } from 'contexts/theme.context'
 import type { BoardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
@@ -34,11 +35,7 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
                   className='group-aria-checked:scale-125'
                   width={28}
                   height={28}
-                  src={
-                    typeof icon === 'object'
-                      ? icon[theme as 'dark' | 'light' | 'violet']
-                      : icon
-                  }
+                  src={typeof icon === 'object' ? icon[theme as Theme] : icon}
                   alt={id}
                 />
               </Item>

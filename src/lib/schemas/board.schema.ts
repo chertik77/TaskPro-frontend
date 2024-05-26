@@ -2,7 +2,12 @@ import * as v from 'valibot'
 
 import iconsData from 'lib/json/board-icons.json'
 
-import { TitleSchema } from './base.schema'
+export const TitleSchema = v.object({
+  title: v.string([
+    v.toTrimmed(),
+    v.minLength(3, 'Please enter at least 3 characters.')
+  ])
+})
 
 export const BoardSchema = v.object({
   ...TitleSchema.entries,
