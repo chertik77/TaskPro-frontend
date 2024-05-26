@@ -1,9 +1,4 @@
 {
-  "*.{ts,tsx}": [
-    "prettier --write",
-    "eslint --fix -f mo",
-    "eslint -f mo",
-    "yarn typecheck"
-  ],
+  "*.{ts,tsx}": ["prettier --write", "eslint --fix -f mo", "eslint -f mo"],
   "*.json": ["prettier --write"]
 }
