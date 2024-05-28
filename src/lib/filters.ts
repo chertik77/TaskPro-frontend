@@ -4,11 +4,11 @@ import type { Card } from 'types'
 
 import { isToday } from 'date-fns'
 
-const priorityOrder = {
-  'Without priority': 0,
-  Low: 1,
-  Medium: 2,
-  High: 3
+enum priorityOrder {
+  'Without priority' = 0,
+  Low = 1,
+  Medium = 2,
+  High = 3
 }
 
 const getPriorityOrder = (priority?: EnumPriority) => {

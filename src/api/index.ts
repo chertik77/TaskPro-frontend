@@ -10,10 +10,9 @@ const options: CreateAxiosDefaults = {
   baseURL: import.meta.env.VITE_API_BASE_URL
 }
 
-export const axiosClassic = axios.create(options)
-export const axiosWithAuth = axios.create(options)
+export const axiosInstance = axios.create(options)
 
-axiosWithAuth.interceptors.request.use(config => {
+axiosInstance.interceptors.request.use(config => {
   const token = store.getState().user.tokens.accessToken
 
   if (config?.headers && token) {
@@ -23,7 +22,7 @@ axiosWithAuth.interceptors.request.use(config => {
   return config
 })
 
-axiosWithAuth.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   config => config,
   async error => {
     const originalRequest = error.config
@@ -38,7 +37,7 @@ axiosWithAuth.interceptors.response.use(
       originalRequest._isRetry = true
       try {
         await authService.getTokens({ refreshToken })
-        return axiosWithAuth.request(originalRequest)
+        return axiosInstance.request(originalRequest)
       } catch (error) {
         console.log(error)
       }

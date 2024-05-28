@@ -1,12 +1,12 @@
 import type { BoardSchema } from 'lib/schemas'
 import type { Board } from 'types'
 
-import { axiosWithAuth } from 'api'
+import { axiosInstance } from 'api'
 import { ApiEndpoints } from 'config'
 
 export const boardService = {
   async getAllBoards() {
-    const response = await axiosWithAuth.get<{ boards: Board[] }>(
+    const response = await axiosInstance.get<{ boards: Board[] }>(
       ApiEndpoints.Board
     )
 
@@ -14,7 +14,7 @@ export const boardService = {
   },
 
   async getBoardById(boardId: string) {
-    const response = await axiosWithAuth.get<Board>(
+    const response = await axiosInstance.get<Board>(
       `${ApiEndpoints.Board}/${boardId}`
     )
 
@@ -22,7 +22,7 @@ export const boardService = {
   },
 
   async addNewBoard(data: BoardSchema) {
-    const response = await axiosWithAuth.post<Board>(
+    const response = await axiosInstance.post<Board>(
       `${ApiEndpoints.Board}`,
       data
     )
@@ -31,7 +31,7 @@ export const boardService = {
   },
 
   async editBoard(boardId: string, data: BoardSchema) {
-    const response = await axiosWithAuth.put<Board>(
+    const response = await axiosInstance.put<Board>(
       `${ApiEndpoints.Board}/${boardId}`,
       data
     )
@@ -40,6 +40,6 @@ export const boardService = {
   },
 
   async deleteBoard(boardId: string) {
-    await axiosWithAuth.delete(`${ApiEndpoints.Board}/${boardId}`)
+    await axiosInstance.delete(`${ApiEndpoints.Board}/${boardId}`)
   }
 }
