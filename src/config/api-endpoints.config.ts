@@ -1,16 +1,14 @@
-class Endpoints {
-  SIGNUP = '/auth/signup'
-  SIGNIN = '/auth/signin'
-  CURRENT = '/auth/current'
-  LOGOUT = '/auth/logout'
+export enum ApiEndpoints {
+  Signup = '/auth/signup',
+  Signin = '/auth/signin',
+  Tokens = '/auth/tokens',
+  Logout = '/auth/logout',
 
-  USER = '/user'
-  USER_THEME = '/user/theme'
-  USER_HELP = '/user/help'
+  User = '/user',
+  UserTheme = '/user/theme',
+  UserHelp = '/user/help',
 
-  BOARD = '/board'
-  COLUMN = '/column'
-  CARD = '/card'
+  Board = '/board',
+  Column = '/column',
+  Card = '/card'
 }
-
-export const API_ENDPOINTS = new Endpoints()

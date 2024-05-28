@@ -1,39 +1,37 @@
 import type { SigninSchema, SignupSchema } from 'lib/schemas'
-import type { AuthResponse, User } from 'types'
+import type { AuthResponse } from 'types'
 
 import { axiosClassic, axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config'
+import { ApiEndpoints } from 'config'
 
-class AuthService {
+export const authService = {
   async signup(data: SignupSchema) {
     const response = await axiosClassic.post<AuthResponse>(
-      API_ENDPOINTS.SIGNUP,
+      ApiEndpoints.Signup,
       data
     )
 
     return response.data
-  }
+  },
 
   async signin(data: SigninSchema) {
     const response = await axiosClassic.post<AuthResponse>(
-      API_ENDPOINTS.SIGNIN,
+      ApiEndpoints.Signin,
       data
     )
 
     return response.data
-  }
+  },
 
-  async current() {
-    const response = await axiosWithAuth.get<User>(API_ENDPOINTS.CURRENT)
+  async getTokens(data: { refreshToken: string }) {
+    const response = await axiosClassic.post(ApiEndpoints.Tokens, data)
 
     return response.data
-  }
+  },
 
   async logout() {
-    const response = await axiosWithAuth.post(API_ENDPOINTS.LOGOUT)
+    const response = await axiosWithAuth.post(ApiEndpoints.Logout)
 
     return response.data
   }
 }
-
-export const authService = new AuthService()

@@ -15,9 +15,7 @@ export type DialogProps = Partial<ModalProps> & {
     | 'Edit card'
     | 'New board'
     | 'Add card'
-    | 'Add column'
     | 'Need help'
-    | 'Edit column'
   children: ReactNode
 }
 

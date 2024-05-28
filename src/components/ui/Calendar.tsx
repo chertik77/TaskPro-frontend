@@ -26,7 +26,7 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
         'absolute left-0 disabled:opacity-20 disabled:cursor-not-allowed',
       nav: 'flex items-center',
       nav_button_next: 'absolute right-0',
-      table: '!mt-[14px]',
+      table: '!mt-3.5',
       row: 'flex gap-[11px] mt-[11px]',
       cell: 'p-0 text-fs-14-lh-1.28-fw-400',
       day: 'h-5 w-5 text-fs-14-lh-1.28-fw-400 rounded-full',

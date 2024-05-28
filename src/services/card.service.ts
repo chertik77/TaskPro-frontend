@@ -1,46 +1,40 @@
 import type { CardSchema } from 'lib/schemas'
 
 import { axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config'
+import { ApiEndpoints } from 'config'
 
-class CardService {
+export const cardService = {
   async addNewCard(columnId: string, data: CardSchema) {
     const response = await axiosWithAuth.post(
-      `${API_ENDPOINTS.CARD}/${columnId}/add-card`,
+      `${ApiEndpoints.Card}/${columnId}`,
       data
     )
 
     return response.data
-  }
+  },
 
-  async changeCardColumn(
-    columnId: string,
-    cardId: string,
-    newColumnId: string
-  ) {
-    const response = await axiosWithAuth.put(
-      `${API_ENDPOINTS.CARD}/${columnId}/${cardId}/${newColumnId}`
+  async changeCardColumn(cardId: string, newColumnId: string) {
+    const response = await axiosWithAuth.patch(
+      `${ApiEndpoints.Card}/${cardId}/${newColumnId}`
     )
 
     return response.data
-  }
+  },
 
   async editCard(cardId: string, data: CardSchema) {
     const response = await axiosWithAuth.put(
-      `${API_ENDPOINTS.CARD}/${cardId}`,
+      `${ApiEndpoints.Card}/${cardId}`,
       data
     )
 
     return response.data
-  }
+  },
 
-  async deleteCard(columnId: string, cardId: string) {
+  async deleteCard(cardId: string) {
     const response = await axiosWithAuth.delete(
-      `${API_ENDPOINTS.CARD}/${columnId}/${cardId}`
+      `${ApiEndpoints.Card}/${cardId}`
     )
 
     return response.data
   }
 }
-
-export const cardService = new CardService()

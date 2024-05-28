@@ -18,7 +18,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
 
   const { mutateAsync } = useAppMutation({
     mutationKey: ['deleteCard'],
-    mutationFn: () => cardService.deleteCard(card.column, card.id)
+    mutationFn: () => cardService.deleteCard(card.id)
   })
 
   const handleCardDelete = () => {

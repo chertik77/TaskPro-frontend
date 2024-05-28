@@ -1,34 +1,32 @@
 import type { ColumnTitle } from 'types'
 
 import { axiosWithAuth } from 'api'
-import { API_ENDPOINTS } from 'config'
+import { ApiEndpoints } from 'config'
 
-class ColumnService {
+export const columnService = {
   async addNewColumn(boardId: string, data: ColumnTitle) {
     const response = await axiosWithAuth.post(
-      `${API_ENDPOINTS.COLUMN}/${boardId}/add`,
+      `${ApiEndpoints.Column}/${boardId}`,
       data
     )
 
     return response.data
-  }
+  },
 
   async editColumn(columnId: string, data: ColumnTitle) {
     const response = await axiosWithAuth.put(
-      `${API_ENDPOINTS.COLUMN}/${columnId}`,
+      `${ApiEndpoints.Column}/${columnId}`,
       data
     )
 
     return response.data
-  }
+  },
 
-  async deleteColumn(boardId: string, columnId: string) {
+  async deleteColumn(columnId: string) {
     const response = await axiosWithAuth.delete(
-      `${API_ENDPOINTS.COLUMN}/${boardId}/${columnId}`
+      `${ApiEndpoints.Column}/${columnId}`
     )
 
     return response.data
   }
 }
-
-export const columnService = new ColumnService()

@@ -15,8 +15,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
 
   const { mutate } = useAppMutation<string>({
     mutationKey: ['changeCardColumn'],
-    mutationFn: columnId =>
-      cardService.changeCardColumn(card.column, card.id, columnId)
+    mutationFn: columnId => cardService.changeCardColumn(card.id, columnId)
   })
 
   return (

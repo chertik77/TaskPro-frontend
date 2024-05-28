@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
 
-import { useAppMutation, useGetBoardId } from 'hooks'
+import { useAppMutation } from 'hooks'
 
 import {
   DEFAULT_COLUMN_TITLE,
@@ -18,11 +18,9 @@ import { columnService } from 'services'
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  const boardId = useGetBoardId()
-
   const { mutateAsync } = useAppMutation({
     mutationKey: ['deleteColumn'],
-    mutationFn: () => columnService.deleteColumn(boardId, column.id)
+    mutationFn: () => columnService.deleteColumn(column.id)
   })
 
   const { mutateAsync: mutateColumn } = useAppMutation<ColumnTitle>({

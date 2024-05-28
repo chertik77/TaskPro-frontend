@@ -15,7 +15,6 @@ import { BoardColumnsList } from './columns/BoardColumnsList'
 import { Filters } from './filters/Filters'
 
 type ChangeCardColumnMutation = {
-  columnId: string
   cardId: string
   newColumnId: string
 }
@@ -25,8 +24,8 @@ export const Board = () => {
 
   const { mutate } = useAppMutation<ChangeCardColumnMutation>({
     mutationKey: ['changeCardColumn'],
-    mutationFn: ({ columnId, cardId, newColumnId }) =>
-      cardService.changeCardColumn(columnId, cardId, newColumnId)
+    mutationFn: ({ cardId, newColumnId }) =>
+      cardService.changeCardColumn(cardId, newColumnId)
   })
 
   const onDragEnd: OnDragEndResponder = result => {
@@ -35,7 +34,6 @@ export const Board = () => {
     if (result.source.droppableId === result.destination.droppableId) return
 
     mutate({
-      columnId: result.source.droppableId,
       cardId: result.draggableId,
       newColumnId: result.destination?.droppableId as string
     })

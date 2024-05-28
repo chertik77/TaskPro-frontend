@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const HomePage = () => (
+export const HomePage = () => (
   <div
     className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient
       adaptive:px-5'>
@@ -46,5 +46,3 @@ const HomePage = () => (
     </Link>
   </div>
 )
-
-export default HomePage
