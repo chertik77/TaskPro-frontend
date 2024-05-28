@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm, useAppMutation, useGetBoardId } from 'hooks'
+import { useAppForm, useAppMutation } from 'hooks'
 
 import { boardService } from 'services'
 
@@ -17,13 +17,12 @@ import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 
 export const EditBoardModal = () => {
-  const boardId = useGetBoardId()
-
   const { close } = useModal(EditBoardModal)
 
   const queryClient = useQueryClient()
 
   const { data: board } = useModalInstance<{
+    boardId: string
     title: string
     icon: string
     background: string
@@ -36,10 +35,10 @@ export const EditBoardModal = () => {
 
   const { mutateAsync, isPending } = useAppMutation<BoardSchema, Board>({
     mutationKey: ['editBoard'],
-    mutationFn: data => boardService.editBoard(boardId, data),
+    mutationFn: data => boardService.editBoard(board.boardId, data),
     onSuccess(data) {
       queryClient.invalidateQueries({ queryKey: ['boards'] })
-      if (data.id === boardId) {
+      if (data.id === board.boardId) {
         queryClient.invalidateQueries({ queryKey: ['board'] })
       }
     }

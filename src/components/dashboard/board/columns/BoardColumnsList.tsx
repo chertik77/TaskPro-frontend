@@ -28,15 +28,15 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
                 {...provided.droppableProps}>
                 <BoardColumnsItem column={column} />
                 {provided.placeholder}
+                <Button
+                  isPlusIcon
+                  className='mt-3.5'
+                  onClick={() => open(column.id)}>
+                  Add another card
+                </Button>
               </div>
             )}
           </Droppable>
-          <Button
-            isPlusIcon
-            className='mt-3.5'
-            onClick={() => open(column.id)}>
-            Add another card
-          </Button>
         </div>
       ))}
     </div>

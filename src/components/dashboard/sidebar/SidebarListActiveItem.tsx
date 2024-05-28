@@ -33,6 +33,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
 
   const handleBoardEdit = () => {
     open({
+      boardId,
       title: board.title,
       icon: board.icon,
       background: board.background.identifier
