@@ -62,7 +62,7 @@ export const NeedHelpModal = () => {
           placeholder='Comment'
           className={cn(
             `mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand
-            border-opacity-40 bg-transparent px-[18px] py-default text-black outline-none
+            border-opacity-40 bg-transparent px-[18px] py-3.5 text-black outline-none
             placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary
             dark:text-white`,
             formState.errors && 'mb-[10px]'
@@ -72,7 +72,7 @@ export const NeedHelpModal = () => {
           errors={formState.errors}
           name='comment'
           render={({ message }) => (
-            <p className='mb-default text-red-600'>{message}</p>
+            <p className='mb-3.5 text-red-600'>{message}</p>
           )}
         />
         <Button

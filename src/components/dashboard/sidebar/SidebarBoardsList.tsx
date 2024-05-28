@@ -34,7 +34,7 @@ export const SidebarBoardsList = () => {
       {data?.map(board => (
         <Item
           className={cn(
-            `flex h-[61px] w-full items-center justify-between pl-default text-black/50
+            `flex h-[61px] w-full items-center justify-between pl-3.5 text-black/50
             transition-colors ease-in-out aria-checked:bg-white-gray aria-checked:text-black
             focus:outline-none violet:text-white/50 aria-checked:violet:bg-white/50
             aria-checked:violet:text-white dark:text-white/50

@@ -1,6 +1,7 @@
+import type { Config } from 'tailwindcss/types/config'
+
 import tailwindScrollbar from 'tailwind-scrollbar'
 import plugin from 'tailwindcss/plugin'
-import { Config } from 'tailwindcss/types/config'
 import { createThemes } from 'tw-colors'
 
 export default {
@@ -23,9 +24,6 @@ export default {
       select: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)'
     },
     extend: {
-      spacing: {
-        default: '14px'
-      },
       screens: {
         adaptive: { max: '375px' },
         mobile: '375px',
@@ -123,13 +121,8 @@ export default {
     require('tailwindcss-text-fill'),
     require('tailwindcss-animate'),
     tailwindScrollbar({ nocompatible: true }),
-    plugin(({ addComponents, addVariant }) => {
-      addVariant('hocus', ['&:hover', '&:focus']),
-        addComponents({
-          '.main-transition': {
-            transition: '250ms cubic-bezier(0.4, 0, 0.2, 1)'
-          }
-        })
+    plugin(({ addVariant }) => {
+      addVariant('hocus', ['&:hover', '&:focus'])
     }),
     createThemes({ violet: {} })
   ]

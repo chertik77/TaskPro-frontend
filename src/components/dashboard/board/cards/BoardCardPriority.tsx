@@ -9,7 +9,7 @@ type BoardCardPriorityProps = {
 }
 
 export const BoardCardPriority = ({ priority }: BoardCardPriorityProps) => (
-  <div className='mr-default'>
+  <div className='mr-3.5'>
     <p className='mb-1 text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
       Priority
     </p>

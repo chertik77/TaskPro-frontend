@@ -70,14 +70,14 @@ export const EditProfileModal = () => {
           errors={formState.errors}
           inputName='name'
           placeholder='Enter your name'
-          className='mb-default'
+          className='mb-3.5'
           {...register('name')}
         />
         <Field
           errors={formState.errors}
           inputName='email'
           placeholder='Enter your email'
-          className='mb-default'
+          className='mb-3.5'
           {...register('email')}
         />
         <Field

@@ -6,8 +6,6 @@ import { Modal as Dialog } from 'react-responsive-modal'
 
 import { cn } from 'lib'
 
-import 'react-responsive-modal/styles.css'
-
 export type DialogProps = Partial<ModalProps> & {
   modalTitle:
     | 'Edit profile'
@@ -29,7 +27,7 @@ export const Modal = ({ children, modalTitle, ...props }: DialogProps) => {
       center
       classNames={{
         modal: `${cn('shadow-none m-0 w-[335px] rounded-lg p-6 dark:bg-black adaptive:w-11/12 tablet:w-[350px]', modalTitle === 'Need help' && 'w-[400px]')}`,
-        closeIcon: 'dark:fill-white w-[18px] h-[18px]',
+        closeIcon: 'dark:fill-white size-[18px]',
         overlay: 'backdrop-saturate-150 backdrop-blur-md'
       }}
       {...props}>

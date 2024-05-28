@@ -8,7 +8,7 @@ export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
   <RadioGroup.Item
     checked={checked}
     className={cn(
-      'size-default rounded-full',
+      'size-3.5 rounded-full',
       getPriorityColor(value as EnumPriority)
     )}
     value={value as EnumPriority}>

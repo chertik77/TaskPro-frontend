@@ -9,7 +9,7 @@ export const SidebarUserSupport = () => {
 
   return (
     <div
-      className='mx-default h-[238px] rounded-lg bg-white-gray p-default violet:bg-gray-secondary
+      className='mx-3.5 h-[238px] rounded-lg bg-white-gray p-3.5 violet:bg-gray-secondary
         dark:bg-black-third tablet:mx-6 tablet:h-[272px] tablet:p-5'>
       <div className='mb-3.5'>
         <picture>

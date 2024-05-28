@@ -29,7 +29,7 @@ export const ModalPriorities = ({
         <>
           <Root
             onValueChange={field.onChange}
-            className='mb-default flex gap-2'>
+            className='mb-3.5 flex gap-2'>
             {priorities.map(priority => (
               <RadioInput
                 checked={priority === field.value}
@@ -42,7 +42,7 @@ export const ModalPriorities = ({
             name={field.name}
             errors={errors}
             render={({ message }) => (
-              <p className='mb-default text-red-600'>{message}</p>
+              <p className='mb-3.5 text-red-600'>{message}</p>
             )}
           />
         </>

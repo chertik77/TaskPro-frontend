@@ -66,7 +66,7 @@ export const EditCardModal = () => {
       <form onSubmit={handleSubmit(submit)}>
         <Field
           errors={formState.errors}
-          className='mb-default'
+          className='mb-3.5'
           inputName='title'
           type='text'
           placeholder='Title'

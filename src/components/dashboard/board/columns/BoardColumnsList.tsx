@@ -33,7 +33,7 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
           </Droppable>
           <Button
             isPlusIcon
-            className='mt-default'
+            className='mt-3.5'
             onClick={() => open(column.id)}>
             Add another card
           </Button>

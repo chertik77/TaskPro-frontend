@@ -11,7 +11,7 @@ import { BoardCardPriority } from './BoardCardPriority'
 export const BoardCard = ({ card }: { card: Card }) => (
   <div
     className={cn(
-      `h-[154px] w-[335px] rounded-lg border-l-4 bg-white py-default pl-6 pr-5
+      `h-[154px] w-[335px] rounded-lg border-l-4 bg-white py-3.5 pl-6 pr-5
       dark:bg-black`,
       card.priority === EnumPriority.WithoutPriority &&
         'border-black/30 dark:border-white/30',
@@ -20,13 +20,11 @@ export const BoardCard = ({ card }: { card: Card }) => (
       card.priority === EnumPriority.Low && 'border-priority-low'
     )}>
     <p className='mb-2 text-fs-14-lh-normal-fw-600'>{card.title}</p>
-    <p
-      className='mb-default line-clamp-2 text-fs-12-lh-normal-fw-400 text-black/70
-        dark:text-white/50'>
+    <p className='mb-3.5 line-clamp-2 text-fs-12-lh-normal-fw-400 text-black/70 dark:text-white/50'>
       {card.description}
     </p>
     {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}
-    <div className='flex items-end border-t-[1px] border-black/10 pt-default dark:border-white/10'>
+    <div className='flex items-end border-t-[1px] border-black/10 pt-3.5 dark:border-white/10'>
       <BoardCardPriority priority={card.priority} />
       <BoardCardDeadline deadline={card.deadline} />
       <BoardCardActions card={card} />

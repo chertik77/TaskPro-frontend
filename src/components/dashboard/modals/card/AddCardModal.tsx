@@ -50,7 +50,7 @@ export const AddCardModal = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Field
           errors={formState.errors}
-          className='mb-default'
+          className='mb-3.5'
           inputName='title'
           type='text'
           placeholder='Title'

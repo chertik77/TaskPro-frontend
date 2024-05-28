@@ -7,53 +7,35 @@ import { Board } from './dashboard'
 import { Layout } from './Layout'
 import { CreateBoard } from './ui'
 
-export const App = () => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
-
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   if (!isLoggedIn) return
-  //   authService
-  //     .current()
-  //     .then(r => dispatch(current(r)))
-  //     .catch((e: AxiosError) => {
-  //       if (e.response?.status === 401) {
-  //         dispatch(logout())
-  //       }
-  //     })
-  // }, [dispatch, isLoggedIn])
-
-  return (
-    <Routes>
+export const App = () => (
+  <Routes>
+    <Route
+      path='/'
+      element={<Layout />}>
       <Route
-        path='/'
-        element={<Layout />}>
+        index
+        element={<RestrictedRoute component={<HomePage />} />}
+      />
+      <Route
+        path='/auth/signin'
+        element={<RestrictedRoute component={<SigninPage />} />}
+      />
+      <Route
+        path='/auth/signup'
+        element={<RestrictedRoute component={<SignupPage />} />}
+      />
+      <Route
+        path='/dashboard'
+        element={<PrivateRoute component={<DashboardPage />} />}>
         <Route
           index
-          element={<RestrictedRoute component={<HomePage />} />}
+          element={<CreateBoard />}
         />
         <Route
-          path='/auth/signin'
-          element={<RestrictedRoute component={<SigninPage />} />}
+          path=':boardId'
+          element={<Board />}
         />
-        <Route
-          path='/auth/signup'
-          element={<RestrictedRoute component={<SignupPage />} />}
-        />
-        <Route
-          path='/dashboard'
-          element={<PrivateRoute component={<DashboardPage />} />}>
-          <Route
-            index
-            element={<CreateBoard />}
-          />
-          <Route
-            path=':boardId'
-            element={<Board />}
-          />
-        </Route>
       </Route>
-    </Routes>
-  )
-}
+    </Route>
+  </Routes>
+)

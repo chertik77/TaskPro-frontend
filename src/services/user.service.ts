@@ -14,13 +14,11 @@ export const userService = {
   },
 
   async askForHelp(data: HelpSchema) {
-    const response = await axiosWithAuth.post(ApiEndpoints.UserHelp, data)
-
-    return response.data
+    await axiosWithAuth.post(ApiEndpoints.UserHelp, data)
   },
 
   async updateUserCredentials(data: EditUserSchema) {
-    const response = await axiosWithAuth.put(ApiEndpoints.User, data, {
+    const response = await axiosWithAuth.put<User>(ApiEndpoints.User, data, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
 

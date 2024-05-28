@@ -10,7 +10,7 @@ export const FilterControls = ({
   buttonTitle,
   ...props
 }: FilterControlsProps) => (
-  <div className='my-default flex justify-between'>
+  <div className='my-3.5 flex justify-between'>
     <h3>{controlTitle}</h3>
     <button
       type='button'

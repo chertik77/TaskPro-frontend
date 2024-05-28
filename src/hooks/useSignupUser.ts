@@ -1,6 +1,5 @@
 import type { SignupSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
-import type { AuthResponse } from 'types'
 
 import { toast } from 'sonner'
 
@@ -9,7 +8,7 @@ import { authService } from 'services'
 import { useAppMutation } from './useAppMutation'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchema>) =>
-  useAppMutation<SignupSchema, AuthResponse>({
+  useAppMutation<SignupSchema>({
     mutationKey: ['signup'],
     mutationFn: data => authService.signup(data),
     onSuccess(_, variables) {

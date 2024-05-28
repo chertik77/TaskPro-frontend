@@ -6,12 +6,7 @@ import { ApiEndpoints } from 'config'
 
 export const authService = {
   async signup(data: SignupSchema) {
-    const response = await axiosClassic.post<AuthResponse>(
-      ApiEndpoints.Signup,
-      data
-    )
-
-    return response.data
+    await axiosClassic.post(ApiEndpoints.Signup, data)
   },
 
   async signin(data: SigninSchema) {
@@ -30,8 +25,6 @@ export const authService = {
   },
 
   async logout() {
-    const response = await axiosWithAuth.post(ApiEndpoints.Logout)
-
-    return response.data
+    await axiosWithAuth.post(ApiEndpoints.Logout)
   }
 }

@@ -65,8 +65,8 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           <input
             type='text'
             className={cn(
-              `mb-default h-[49px] w-full rounded-lg border border-brand border-opacity-40
-              bg-transparent px-[18px] text-fs-16-lh-normal-fw-500 text-black outline-none
+              `mb-3.5 h-[49px] w-full rounded-lg border border-brand/40 bg-transparent
+              px-[18px] text-fs-16-lh-normal-fw-500 text-black outline-none
               placeholder:opacity-40 autofill:bg-clip-text autofill:text-fill-white
               focus:border-opacity-100 violet:border-brand-secondary dark:text-white`,
               className,
@@ -80,7 +80,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           errors={errors}
           name={inputName}
           render={({ message }) => (
-            <p className='mb-default text-red-600'>{message}</p>
+            <p className='mb-3.5 text-red-600'>{message}</p>
           )}
         />
       </>

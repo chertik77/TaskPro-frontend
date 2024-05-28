@@ -8,7 +8,7 @@ export const SidebarMyBoardsInfo = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   return (
-    <div className='mb-10 px-default tablet:px-6'>
+    <div className='mb-10 px-3.5 tablet:px-6'>
       <p
         className='mb-2 text-fs-12-lh-normal-fw-400 text-black/50 violet:text-white/50
           dark:text-white/50'>

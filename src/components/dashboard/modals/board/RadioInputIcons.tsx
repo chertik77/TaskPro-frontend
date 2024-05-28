@@ -18,7 +18,7 @@ export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
       name='icon'
       render={({ field }) => (
         <Root
-          className='mt-default flex items-center gap-2'
+          className='mt-3.5 flex items-center gap-2'
           onValueChange={field.onChange}>
           {icons.map(({ id }) => (
             <Item

@@ -23,7 +23,7 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
         name='background'
         render={({ field }) => (
           <Root
-            className='mb-10 mt-default flex max-w-[280px] flex-wrap gap-2'
+            className='mb-10 mt-3.5 flex max-w-[280px] flex-wrap gap-2'
             onValueChange={field.onChange}>
             {images.map(({ id, icon }) => (
               <Item

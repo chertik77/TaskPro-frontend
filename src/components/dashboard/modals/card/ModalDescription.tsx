@@ -20,7 +20,7 @@ export const ModalDescription = forwardRef<
       placeholder='Description'
       className={cn(
         `mb-2 h-[154px] w-full resize-none rounded-lg border border-brand/40
-        bg-transparent px-[18px] py-default outline-none placeholder:opacity-40
+        bg-transparent px-[18px] py-3.5 outline-none placeholder:opacity-40
         focus:border-opacity-100 violet:border-brand-secondary`,
         !errors.description && 'mb-6'
       )}
@@ -29,9 +29,7 @@ export const ModalDescription = forwardRef<
     <ErrorMessage
       errors={errors}
       name='description'
-      render={({ message }) => (
-        <p className='mb-default text-red-600'>{message}</p>
-      )}
+      render={({ message }) => <p className='mb-3.5 text-red-600'>{message}</p>}
     />
   </>
 ))

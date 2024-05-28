@@ -38,7 +38,7 @@ export const HeaderSelect = ({
       <Select.Content
         align='end'
         position='popper'
-        className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-default
+        className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-3.5
           pl-[18px] pr-11 pt-[18px] shadow-select violet:border-white-gray-secondary
           dark:bg-black-fourth'>
         <Select.Viewport>

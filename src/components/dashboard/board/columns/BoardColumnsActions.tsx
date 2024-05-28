@@ -53,7 +53,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
 
   return (
     <div
-      className='mb-default flex h-[56px] min-w-[335px] items-center rounded-lg bg-white px-5
+      className='mb-3.5 flex h-[56px] min-w-[335px] items-center rounded-lg bg-white px-5
         py-[18px] dark:bg-black'>
       <EditText
         onSave={handleColumnEdit}

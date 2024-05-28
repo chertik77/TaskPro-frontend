@@ -22,12 +22,10 @@ export const Filters = () => {
         <Popover.Content
           className='animation w-[300px] rounded-lg bg-white-primary p-6 dark:bg-black-fourth'
           collisionPadding={10}>
-          <h2
-            className='border-b border-black/10 pb-default text-fs-18-lh-normal-fw-500
-              dark:border-white/10'>
+          <h2 className='border-b border-black/10 pb-3.5 text-fs-18-lh-normal-fw-500 dark:border-white/10'>
             Filters
           </h2>
-          <Popover.Close className='absolute right-default top-default focus:stroke-brand'>
+          <Popover.Close className='absolute right-3.5 top-3.5 focus:stroke-brand'>
             <svg className='size-[18px] stroke-black dark:stroke-white'>
               <use href='/icons.svg#icon-close' />
             </svg>

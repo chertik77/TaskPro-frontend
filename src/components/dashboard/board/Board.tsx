@@ -42,7 +42,7 @@ export const Board = () => {
   return (
     <>
       <div
-        className='relative overflow-hidden bg-cover bg-center px-5 pt-default tablet:px-8
+        className='relative overflow-hidden bg-cover bg-center px-5 pt-3.5 tablet:px-8
           tablet:pt-[26px] desktop:px-6 desktop:pt-[10px]'
         style={{
           backgroundImage: `url(${!isPending && data?.background?.url})`

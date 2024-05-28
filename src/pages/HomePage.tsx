@@ -19,7 +19,7 @@ export const HomePage = () => (
         loading='lazy'
       />
     </picture>
-    <div className='mt-6 flex items-center gap-default'>
+    <div className='mt-6 flex items-center gap-3.5'>
       <svg className='size-10 tablet:size-12'>
         <use href='/icons.svg#icon-logo' />
       </svg>
@@ -35,13 +35,13 @@ export const HomePage = () => (
     </p>
     <Link
       to='/auth/signup'
-      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-default text-center
+      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-3.5 text-center
         text-fs-14-lh-normal-fw-500 text-white adaptive:w-full'>
       Registration
     </Link>
     <Link
       to='/auth/signin'
-      className='mt-default text-black'>
+      className='mt-3.5 text-black'>
       Log In
     </Link>
   </div>

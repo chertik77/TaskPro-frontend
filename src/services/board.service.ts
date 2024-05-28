@@ -22,13 +22,16 @@ export const boardService = {
   },
 
   async addNewBoard(data: BoardSchema) {
-    const response = await axiosWithAuth.post(`${ApiEndpoints.Board}`, data)
+    const response = await axiosWithAuth.post<Board>(
+      `${ApiEndpoints.Board}`,
+      data
+    )
 
     return response.data
   },
 
   async editBoard(boardId: string, data: BoardSchema) {
-    const response = await axiosWithAuth.put(
+    const response = await axiosWithAuth.put<Board>(
       `${ApiEndpoints.Board}/${boardId}`,
       data
     )
@@ -37,10 +40,6 @@ export const boardService = {
   },
 
   async deleteBoard(boardId: string) {
-    const response = await axiosWithAuth.delete(
-      `${ApiEndpoints.Board}/${boardId}`
-    )
-
-    return response.data
+    await axiosWithAuth.delete(`${ApiEndpoints.Board}/${boardId}`)
   }
 }

@@ -23,6 +23,7 @@ import {
 import { persistor, store } from 'redux/store'
 
 import 'react-edit-text/dist/index.css'
+import 'react-responsive-modal/styles.css'
 import './index.css'
 
 const queryClient = new QueryClient({
