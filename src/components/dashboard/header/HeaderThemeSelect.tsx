@@ -19,7 +19,9 @@ export const HeaderThemeSelect = () => {
 
   const { mutateAsync } = useAppMutation<string, User>({
     mutationKey: ['user'],
-    mutationFn: theme => userService.changeUserTheme(theme)
+    mutationFn: theme => userService.changeUserTheme(theme),
+    toastErrorMessage:
+      'There was an error changing the theme. Please try again.'
   })
 
   const handleThemeChange = (e: string) => {
