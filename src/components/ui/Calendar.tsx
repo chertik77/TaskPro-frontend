@@ -18,7 +18,7 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
       dark:bg-black-third'
     classNames={{
       caption:
-        'flex justify-center relative items-center border-b border-black/20 dark:border-white/20 pb-default',
+        'flex justify-center relative items-center border-b border-black/20 dark:border-white/20 pb-3.5',
       caption_label: 'text-fs-16-lh-normal-fw-500',
       head_row: 'flex gap-[11px]',
       head_cell: 'text-black/50 dark:text-white/50',

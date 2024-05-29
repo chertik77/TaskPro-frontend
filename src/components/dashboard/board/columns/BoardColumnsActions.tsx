@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { EditText } from 'react-edit-text'
 import { toast } from 'sonner'
 
-import { Button } from 'components/ui'
+import { Button, Loader } from 'components/ui'
 
 import { useAppMutation } from 'hooks'
 
@@ -15,10 +15,12 @@ import {
 } from 'constants/titles'
 import { columnService } from 'services'
 
+import { cn } from 'lib'
+
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  const { mutate: deleteColumn } = useAppMutation({
+  const { mutate: deleteColumn, isPending: isDeleting } = useAppMutation({
     mutationKey: ['deleteColumn'],
     mutationFn: () => columnService.deleteColumn(column.id),
     toastErrorMessage:
@@ -42,23 +44,35 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
 
   return (
     <div
-      className='mb-3.5 flex h-[56px] min-w-[335px] items-center rounded-lg bg-white px-5
-        py-[18px] dark:bg-black'>
-      <EditText
-        onSave={handleColumnEdit}
-        value={columnTitle}
-        onEditMode={() => {
-          if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
-        }}
-        onChange={e => setColumnTitle(e.target.value)}
-        className='w-[270px] hover:bg-transparent'
-        inputClassName='outline-none bg-transparent'
-      />
-      <Button
-        className='ml-auto'
-        onClick={() => deleteColumn()}
-        iconName='trash'
-      />
+      className={cn(
+        `mb-3.5 flex h-[56px] min-w-[335px] items-center rounded-lg bg-white px-5
+        py-[18px] dark:bg-black`,
+        isDeleting && 'justify-center'
+      )}>
+      {isDeleting ? (
+        <div className='flex items-center gap-2'>
+          <Loader />
+          Deleting...
+        </div>
+      ) : (
+        <>
+          <EditText
+            onSave={handleColumnEdit}
+            value={columnTitle}
+            onEditMode={() => {
+              if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
+            }}
+            onChange={e => setColumnTitle(e.target.value)}
+            className='w-[270px] hover:bg-transparent'
+            inputClassName='outline-none bg-transparent'
+          />
+          <Button
+            className='ml-auto'
+            onClick={() => deleteColumn()}
+            iconName='trash'
+          />
+        </>
+      )}
     </div>
   )
 }
