@@ -18,7 +18,7 @@ export const AddCardModal = () => {
       defaultValues: { priority: 'Without priority', deadline: new Date() }
     })
 
-  const { mutate, isPending } = useAddCard(reset, close)
+  const { mutate, isPending } = useAddCard(reset)
 
   return (
     <Modal

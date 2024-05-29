@@ -2,7 +2,6 @@ import type { Card } from 'types'
 
 import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
-import { toast } from 'sonner'
 
 import { EditCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
@@ -19,11 +18,8 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
   const { mutate } = useAppMutation({
     mutationKey: ['deleteCard'],
     mutationFn: () => cardService.deleteCard(card.id),
-    onError() {
-      toast.error(
-        'An error occurred while deleting the task. Our technical team has been notified. Please try again shortly.'
-      )
-    }
+    toastErrorMessage:
+      'An error occurred while deleting the task. Our technical team has been notified. Please try again shortly.'
   })
 
   return (

@@ -21,21 +21,15 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const { mutate: deleteColumn } = useAppMutation({
     mutationKey: ['deleteColumn'],
     mutationFn: () => columnService.deleteColumn(column.id),
-    onError() {
-      toast.error(
-        'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
-      )
-    }
+    toastErrorMessage:
+      'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
   })
 
   const { mutate } = useAppMutation<ColumnTitle>({
     mutationKey: ['editColumn'],
     mutationFn: data => columnService.editColumn(column.id, data),
-    onError() {
-      toast.error(
-        'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
-      )
-    }
+    toastErrorMessage:
+      'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
   })
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {

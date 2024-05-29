@@ -1,5 +1,3 @@
-import { toast } from 'sonner'
-
 import { Button, Loader } from 'components/ui'
 
 import { useAppMutation, useGetBoardId } from 'hooks'
@@ -14,11 +12,8 @@ export const BoardAddColumnBtn = () => {
     mutationKey: ['addColumn'],
     mutationFn: () =>
       columnService.addNewColumn(boardId!, { title: DEFAULT_COLUMN_TITLE }),
-    onError() {
-      toast.error(
-        'Unexpected error during column addition. We apologize for the inconvenience. Please try again later.'
-      )
-    }
+    toastErrorMessage:
+      'Unexpected error during column addition. We apologize for the inconvenience. Please try again later.'
   })
 
   return (

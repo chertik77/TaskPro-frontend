@@ -5,7 +5,7 @@ import type { AuthResponse } from 'types'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { authenticate } from 'redux/user.slice'
 

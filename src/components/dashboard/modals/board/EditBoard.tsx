@@ -1,15 +1,10 @@
-import type { Board } from 'types'
-
 import { useEffect } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { toast } from 'sonner'
 
-import { Button, Field, Loader, Modal } from 'components/ui'
+import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm, useAppMutation } from 'hooks'
-
-import { boardService } from 'services'
+import { useAppForm } from 'hooks'
+import { useEditBoard } from 'hooks/board/useEditBoard'
 
 import { BoardSchema } from 'lib/schemas'
 
@@ -19,10 +14,7 @@ import { RadioInputIcons } from './RadioInputIcons'
 export const EditBoardModal = () => {
   const { close } = useModal(EditBoardModal)
 
-  const queryClient = useQueryClient()
-
   const { data: board } = useModalInstance<{
-    boardId: string
     title: string
     icon: string
     background: string
@@ -33,23 +25,7 @@ export const EditBoardModal = () => {
       defaultValues: { title: board.title }
     })
 
-  const { mutate, isPending } = useAppMutation<BoardSchema, Board>({
-    mutationKey: ['editBoard'],
-    mutationFn: data => boardService.editBoard(board.boardId, data),
-    onSuccess(data) {
-      reset()
-      close()
-      queryClient.invalidateQueries({ queryKey: ['boards'] })
-      if (data.id === board.boardId) {
-        queryClient.invalidateQueries({ queryKey: ['board'] })
-      }
-    },
-    onError() {
-      toast.error(
-        'Failed to update the board. Please try again. If the problem persists, contact support.'
-      )
-    }
-  })
+  const { mutate, isPending } = useEditBoard(reset)
 
   useEffect(() => {
     reset({
@@ -86,7 +62,7 @@ export const EditBoardModal = () => {
           type='submit'
           isPlusIcon
           disabled={isPending || !isFormReadyForSubmit}>
-          {!isPending ? <Loader /> : 'Edit'}
+          {isPending ? 'Editing...' : 'Edit'}
         </Button>
       </form>
     </Modal>

@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
-import { Button, Field, Modal } from 'components/ui'
+import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm, useAppMutation } from 'hooks'
 
@@ -93,7 +93,7 @@ export const EditProfileModal = () => {
         <Button
           type='submit'
           disabled={isPending || !isFormReadyForSubmit}>
-          {isPending ? 'Updating your credentails...' : 'Send'}
+          {isPending ? <Loader /> : 'Send'}
         </Button>
       </form>
     </Modal>

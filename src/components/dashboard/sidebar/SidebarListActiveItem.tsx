@@ -4,21 +4,17 @@ import { useModal } from 'react-modal-state'
 
 import { Button } from 'components/ui'
 
-import { useGetBoardId } from 'hooks'
 import { useDeleteBoard } from 'hooks/board/useDeleteBoard'
 
 import { EditBoardModal } from '../modals'
 
 export const SidebarListActiveItem = ({ board }: { board: Board }) => {
-  const boardId = useGetBoardId()
-
   const { open } = useModal(EditBoardModal)
 
-  const { mutate, isPending } = useDeleteBoard(boardId)
+  const { mutate, isPending } = useDeleteBoard()
 
   const handleBoardEdit = () => {
     open({
-      boardId,
       title: board.title,
       icon: board.icon,
       background: board.background.identifier
