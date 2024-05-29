@@ -3,17 +3,20 @@ import type { Column } from 'types'
 import { Draggable } from '@hello-pangea/dnd'
 import { useSelector } from 'react-redux'
 
-import { selectFilters } from 'redux/filter.slice'
+import { selectCardPriority, selectCardSort } from 'redux/filter.slice'
 
-import { cn, getVisibleCards } from 'lib'
+import { cn, getFilteredCardsByPriority, getSortedCards } from 'lib'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
 
 export const BoardColumnsItem = ({ column }: { column: Column }) => {
-  const filters = useSelector(selectFilters)
+  const cardPriority = useSelector(selectCardPriority)
+  const cardSort = useSelector(selectCardSort)
 
-  const filteredCards = getVisibleCards(column.cards, filters)
+  const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
+
+  const sortedCards = getSortedCards(filteredCards, cardSort)
 
   return (
     <>
@@ -23,10 +26,10 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
           className={cn(
             'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
             column.cards.length > 3 &&
-              !filters.priorityFilter &&
+              !cardPriority &&
               'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
           )}>
-          {filteredCards.map((card, i) => (
+          {sortedCards?.map((card, i) => (
             <Draggable
               index={i}
               key={card.id}
