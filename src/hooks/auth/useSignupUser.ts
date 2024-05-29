@@ -1,27 +1,31 @@
 import type { SignupSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
+import type { AuthResponse } from 'types'
 
+import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
+
+import { useAppMutation } from 'hooks/useAppMutation'
+
+import { authenticate } from 'redux/user.slice'
 
 import { authService } from 'services'
 
-import { useAppMutation } from './useAppMutation'
+export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
+  const dispatch = useDispatch()
 
-export const useSignupUser = (reset: UseFormReset<SignupSchema>) =>
-  useAppMutation<SignupSchema>({
+  return useAppMutation<SignupSchema, AuthResponse>({
     mutationKey: ['signup'],
     mutationFn: data => authService.signup(data),
-    onSuccess(_, variables) {
+    onSuccess(data) {
       reset()
-      toast.success(
-        `Welcome aboard ${variables?.name}! You have successfully signed up. Let's get started.`
-      )
+      dispatch(authenticate(data))
     },
-    onError(error) {
+    onError: e =>
       toast.error(
-        error.response?.status === 409
+        e.response?.status === 409
           ? 'Another user is already registered with the provided email address. Please use a different email.'
           : 'An error occurred during sign-up. Our technical team has been notified. Please try again shortly.'
       )
-    }
   })
+}

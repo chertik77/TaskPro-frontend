@@ -1,33 +1,23 @@
-import { useDispatch } from 'react-redux'
+import { Button, Field, Loader } from 'components/ui'
 
-import { Button, Field } from 'components/ui'
-
-import { useAppForm, useSignupUser } from 'hooks'
-
-import { authenticate } from 'redux/user.slice'
+import { useAppForm } from 'hooks'
+import { useSignupUser } from 'hooks/auth'
 
 import { SignupSchema } from 'lib/schemas'
 
 export const SignupForm = () => {
-  const dispatch = useDispatch()
-
   const { handleSubmit, register, formState, reset } =
     useAppForm<SignupSchema>(SignupSchema)
 
-  const { mutateAsync, isPending } = useSignupUser(reset)
-
-  const submit = (data: SignupSchema) => {
-    mutateAsync(data).then(r => dispatch(authenticate(r)))
-  }
+  const { mutate, isPending } = useSignupUser(reset)
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={handleSubmit(data => mutate(data))}>
       <Field
         errors={formState.errors}
         inputName='name'
         autoComplete='name'
         placeholder='Enter your name'
-        className='text-white'
         {...register('name')}
       />
       <Field
@@ -35,13 +25,11 @@ export const SignupForm = () => {
         inputName='email'
         autoComplete='email'
         placeholder='Enter your email'
-        className='text-white'
         {...register('email')}
       />
       <Field
         errors={formState.errors}
         inputName='password'
-        className='text-white'
         autoComplete='new-password'
         inputPasswordPlaceholder='Create a password'
         isPasswordInput
@@ -50,7 +38,7 @@ export const SignupForm = () => {
       <Button
         type='submit'
         disabled={isPending}>
-        {isPending ? 'Loading...' : 'Register Now'}
+        {isPending ? <Loader /> : 'Register Now'}
       </Button>
     </form>
   )

@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { Button, Field, Modal } from 'components/ui'
+import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm, useAppMutation } from 'hooks'
 
@@ -33,14 +33,21 @@ export const EditBoardModal = () => {
       defaultValues: { title: board.title }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<BoardSchema, Board>({
+  const { mutate, isPending } = useAppMutation<BoardSchema, Board>({
     mutationKey: ['editBoard'],
     mutationFn: data => boardService.editBoard(board.boardId, data),
     onSuccess(data) {
+      reset()
+      close()
       queryClient.invalidateQueries({ queryKey: ['boards'] })
       if (data.id === board.boardId) {
         queryClient.invalidateQueries({ queryKey: ['board'] })
       }
+    },
+    onError() {
+      toast.error(
+        'Failed to update the board. Please try again. If the problem persists, contact support.'
+      )
     }
   })
 
@@ -58,19 +65,6 @@ export const EditBoardModal = () => {
     field => formState.dirtyFields[field]
   )
 
-  const submit = (data: BoardSchema) => {
-    toast.promise(mutateAsync(data), {
-      loading: 'Editing the board...',
-      success: () => {
-        reset()
-        close()
-        return 'Changes to the board have been saved successfully.'
-      },
-      error:
-        'Failed to update the board. Please try again. If the problem persists, contact support.'
-    })
-  }
-
   return (
     <Modal
       modalTitle='Edit board'
@@ -78,7 +72,7 @@ export const EditBoardModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('title')}
           inputName='title'
@@ -92,7 +86,7 @@ export const EditBoardModal = () => {
           type='submit'
           isPlusIcon
           disabled={isPending || !isFormReadyForSubmit}>
-          {isPending ? 'Editing...' : 'Edit'}
+          {!isPending ? <Loader /> : 'Edit'}
         </Button>
       </form>
     </Modal>

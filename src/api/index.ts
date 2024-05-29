@@ -40,6 +40,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance.request(originalRequest)
       } catch (error) {
         console.log(error)
+        // if (error?.response?.status === 403) store.dispatch(logout())
       }
     }
 

@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
 
-import { Button } from 'components/ui'
+import { Button, Loader } from 'components/ui'
 
 import { useAppMutation, useGetBoardId } from 'hooks'
 
@@ -10,34 +10,35 @@ import { columnService } from 'services'
 export const BoardAddColumnBtn = () => {
   const boardId = useGetBoardId()
 
-  const { mutateAsync, isPending } = useAppMutation({
+  const { mutate, isPending } = useAppMutation({
     mutationKey: ['addColumn'],
     mutationFn: () =>
-      columnService.addNewColumn(boardId, { title: DEFAULT_COLUMN_TITLE })
-  })
-
-  const handleAddColumnClick = () => {
-    toast.promise(mutateAsync(), {
-      loading: 'Adding new column...',
-      success:
-        'New column successfully created. Start populating it with tasks.',
-      error:
+      columnService.addNewColumn(boardId!, { title: DEFAULT_COLUMN_TITLE }),
+    onError() {
+      toast.error(
         'Unexpected error during column addition. We apologize for the inconvenience. Please try again later.'
-    })
-  }
+      )
+    }
+  })
 
   return (
     <Button
       disabled={isPending}
-      onClick={handleAddColumnClick}
+      onClick={() => mutate()}
       className='flex h-[56px] min-w-[335px] max-w-[335px] items-center gap-2 bg-white px-[79px]
         violet:bg-white violet:text-black dark:bg-black-secondary dark:text-white'>
-      <svg
-        className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary dark:bg-white
-          dark:text-black'>
-        <use href='/icons.svg#icon-plus-create' />
-      </svg>
-      Add another column
+      {isPending ? (
+        <Loader />
+      ) : (
+        <>
+          <svg
+            className='size-7 rounded-md bg-black text-white violet:bg-brand-secondary dark:bg-white
+              dark:text-black'>
+            <use href='/icons.svg#icon-plus-create' />
+          </svg>
+          Add another column
+        </>
+      )}
     </Button>
   )
 }

@@ -1,11 +1,10 @@
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 export const useGetBoardId = () => {
-  const { boardId } = useParams<{ boardId: string }>()
+  const { pathname } = useLocation()
 
-  if (boardId) {
-    return boardId
-  }
+  const pathParts = pathname.split('/')
+  const boardId = pathParts[pathParts.length - 1]
 
-  throw new Error('useGetBoardId must be used within /dashboard/:id path')
+  return boardId
 }

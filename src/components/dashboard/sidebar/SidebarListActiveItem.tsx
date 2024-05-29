@@ -1,35 +1,20 @@
 import type { Board } from 'types'
 
-import { useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
 
-import { useAppMutation, useGetBoardId } from 'hooks'
-
-import { boardService } from 'services'
+import { useGetBoardId } from 'hooks'
+import { useDeleteBoard } from 'hooks/board/useDeleteBoard'
 
 import { EditBoardModal } from '../modals'
 
 export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   const boardId = useGetBoardId()
 
-  const navigate = useNavigate()
-
   const { open } = useModal(EditBoardModal)
 
-  const queryClient = useQueryClient()
-
-  const { mutateAsync } = useAppMutation({
-    mutationKey: ['deleteBoard'],
-    mutationFn: () => boardService.deleteBoard(boardId),
-    onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['boards'] })
-      navigate('/dashboard', { replace: true })
-    }
-  })
+  const { mutate, isPending } = useDeleteBoard(boardId)
 
   const handleBoardEdit = () => {
     open({
@@ -37,15 +22,6 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
       title: board.title,
       icon: board.icon,
       background: board.background.identifier
-    })
-  }
-
-  const handleBoardDelete = () => {
-    toast.promise(mutateAsync(), {
-      loading: 'Deleting board...',
-      success: 'The board has been successfully deleted from your account.',
-      error:
-        'An error occurred while deleting the board. Our technical team has been notified. Please try again shortly.'
     })
   }
 
@@ -58,12 +34,13 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
           iconClassName='violet:stroke-white/50'
         />
         <Button
-          onClick={handleBoardDelete}
+          onClick={() => mutate()}
           iconName='trash'
+          disabled={isPending}
           iconClassName='violet:stroke-white/50'
         />
       </div>
-      <div className='h-[61px] w-[4px] rounded-l-lg bg-brand violet:bg-white' />
+      <div className='h-[61px] w-1 rounded-l-lg bg-brand violet:bg-white' />
     </div>
   )
 }

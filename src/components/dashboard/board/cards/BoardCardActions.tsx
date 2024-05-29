@@ -16,19 +16,15 @@ import { BoardCardColumnSelect } from './BoardCardColumnSelect'
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
-  const { mutateAsync } = useAppMutation({
+  const { mutate } = useAppMutation({
     mutationKey: ['deleteCard'],
-    mutationFn: () => cardService.deleteCard(card.id)
-  })
-
-  const handleCardDelete = () => {
-    toast.promise(mutateAsync(), {
-      loading: 'Deleting the task...',
-      success: 'Task deleted successfully! One less thing to worry about.',
-      error:
+    mutationFn: () => cardService.deleteCard(card.id),
+    onError() {
+      toast.error(
         'An error occurred while deleting the task. Our technical team has been notified. Please try again shortly.'
-    })
-  }
+      )
+    }
+  })
 
   return (
     <div className='ml-auto flex gap-2'>
@@ -43,7 +39,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         iconName='pencil'
       />
       <Button
-        onClick={handleCardDelete}
+        onClick={() => mutate()}
         iconName='trash'
       />
     </div>

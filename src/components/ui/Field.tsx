@@ -39,8 +39,8 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
                 `hide-password-toggle h-[49px] w-full rounded-lg border border-brand
                 border-opacity-40 bg-transparent px-[18px] pr-[35px] text-fs-16-lh-normal-fw-500
                 text-black outline-none placeholder:opacity-40 autofill:bg-clip-text
-                autofill:text-fill-white focus:border-opacity-100 violet:border-brand-secondary
-                dark:text-white`,
+                autofill:text-fill-black focus:border-opacity-100 violet:border-brand-secondary
+                dark:text-white dark:autofill:text-fill-white`,
                 className,
                 {
                   'mb-3.5': errors[inputName],

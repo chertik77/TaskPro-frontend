@@ -54,14 +54,13 @@ export const NeedHelpModal = () => {
           inputName='email'
           placeholder='Email address'
           errors={formState.errors}
-          className='mb-6 text-black autofill:text-fill-black dark:text-white
-            dark:autofill:text-fill-white'
+          className='mb-6'
         />
         <textarea
           {...register('comment')}
           placeholder='Comment'
           className={cn(
-            `mb-[24px] h-[154px] w-full resize-none rounded-lg border border-brand
+            `mb-6 h-[154px] w-full resize-none rounded-lg border border-brand
             border-opacity-40 bg-transparent px-[18px] py-3.5 text-black outline-none
             placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary
             dark:text-white`,

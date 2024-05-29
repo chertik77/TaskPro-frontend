@@ -1,11 +1,9 @@
-import { useModal, useModalInstance } from 'react-modal-state'
-import { toast } from 'sonner'
+import { useModal } from 'react-modal-state'
 
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
-import { useAppForm, useAppMutation } from 'hooks'
-
-import { cardService } from 'services'
+import { useAppForm } from 'hooks'
+import { useAddCard } from 'hooks/card/useAddCard'
 
 import { CardSchema } from 'lib/schemas'
 
@@ -15,30 +13,12 @@ import { ModalPriorities } from './ModalPriorities'
 export const AddCardModal = () => {
   const { close } = useModal(AddCardModal)
 
-  const { data: column } = useModalInstance<string>()
-
   const { register, handleSubmit, formState, reset, control } =
     useAppForm<CardSchema>(CardSchema, {
       defaultValues: { priority: 'Without priority', deadline: new Date() }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<CardSchema>({
-    mutationKey: ['addCard'],
-    mutationFn: data => cardService.addNewCard(column, data)
-  })
-
-  const onSubmit = (data: CardSchema) => {
-    toast.promise(mutateAsync(data), {
-      loading: 'Adding new task...',
-      success: () => {
-        reset()
-        close()
-        return 'New task successfully created. Keep the productivity flowing!'
-      },
-      error:
-        'Unexpected error during task creation. We apologize for the inconvenience. Please try again later.'
-    })
-  }
+  const { mutate, isPending } = useAddCard(reset, close)
 
   return (
     <Modal
@@ -47,12 +27,11 @@ export const AddCardModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           errors={formState.errors}
           className='mb-3.5'
           inputName='title'
-          type='text'
           placeholder='Title'
           {...register('title')}
         />

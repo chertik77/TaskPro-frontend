@@ -1,6 +1,7 @@
 import type { Card } from 'types'
 
 import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -22,14 +23,26 @@ export const EditCardModal = () => {
     data: { title, description, id, priority, deadline }
   } = useModalInstance<Card>()
 
+  const queryClient = useQueryClient()
+
   const { register, handleSubmit, formState, control, reset } =
     useAppForm<CardSchema>(CardSchema, {
       defaultValues: { title, description }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<CardSchema>({
+  const { mutate, isPending } = useAppMutation<CardSchema>({
     mutationKey: ['editCard'],
-    mutationFn: cardData => cardService.editCard(id, cardData)
+    mutationFn: cardData => cardService.editCard(id, cardData),
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['board'] })
+      close()
+      reset()
+    },
+    onError() {
+      toast.error(
+        'Unexpected error during task update. We apologize for the inconvenience. Please try again later.'
+      )
+    }
   })
 
   useEffect(() => {
@@ -42,20 +55,6 @@ export const EditCardModal = () => {
     field => formState.dirtyFields[field]
   )
 
-  const submit = (data: CardSchema) => {
-    toast.promise(mutateAsync(data), {
-      loading: 'Editing the task...',
-      success: () => {
-        close()
-        reset()
-        return 'Changes to the task have been saved successfully.'
-      },
-      error:
-        'Unexpected error during task update. We apologize for the inconvenience. Please try again later.'
-    })
-  }
-
-  console.log(formState.errors)
   return (
     <Modal
       modalTitle='Edit card'
@@ -63,7 +62,7 @@ export const EditCardModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           errors={formState.errors}
           className='mb-3.5'

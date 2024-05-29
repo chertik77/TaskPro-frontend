@@ -18,14 +18,24 @@ import { columnService } from 'services'
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  const { mutateAsync } = useAppMutation({
+  const { mutate: deleteColumn } = useAppMutation({
     mutationKey: ['deleteColumn'],
-    mutationFn: () => columnService.deleteColumn(column.id)
+    mutationFn: () => columnService.deleteColumn(column.id),
+    onError() {
+      toast.error(
+        'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
+      )
+    }
   })
 
-  const { mutateAsync: mutateColumn } = useAppMutation<ColumnTitle>({
+  const { mutate } = useAppMutation<ColumnTitle>({
     mutationKey: ['editColumn'],
-    mutationFn: data => columnService.editColumn(column.id, data)
+    mutationFn: data => columnService.editColumn(column.id, data),
+    onError() {
+      toast.error(
+        'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
+      )
+    }
   })
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
@@ -33,22 +43,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
       setColumnTitle(previousValue)
       return toast.error('Column title must be at least 3 characters long.')
     }
-
-    toast.promise(mutateColumn({ title: value }), {
-      loading: 'Updating the column...',
-      success: 'Changes to the column have been saved successfully.',
-      error:
-        'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
-    })
-  }
-
-  const handleColumnDelete = () => {
-    toast.promise(mutateAsync(), {
-      loading: 'Deleting the column...',
-      success: 'The column has been successfully deleted from the board.',
-      error:
-        'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
-    })
+    mutate({ title: value })
   }
 
   return (
@@ -67,7 +62,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
       />
       <Button
         className='ml-auto'
-        onClick={handleColumnDelete}
+        onClick={() => deleteColumn()}
         iconName='trash'
       />
     </div>

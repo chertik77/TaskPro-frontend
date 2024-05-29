@@ -1,5 +1,6 @@
 import type { Board } from 'types'
 
+import { useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -20,30 +21,28 @@ export const NewBoardModal = () => {
 
   const navigate = useNavigate()
 
+  const queryClient = useQueryClient()
+
   const { register, formState, reset, handleSubmit, control } =
     useAppForm<BoardSchema>(BoardSchema, {
       defaultValues: { icon: 'icon-project-1', background: 'default' }
     })
 
-  const { mutateAsync, isPending } = useAppMutation<BoardSchema, Board>({
+  const { mutate, isPending } = useAppMutation<BoardSchema, Board>({
     mutationKey: ['addBoard'],
     mutationFn: data => boardService.addNewBoard(data),
-    invalidateQueryKey: 'boards'
-  })
-
-  const submit = (data: BoardSchema) => {
-    toast.promise(mutateAsync(data), {
-      loading: 'Creating new board...',
-      success: data => {
-        close()
-        reset()
-        navigate(`/dashboard/${data.id}`)
-        return 'Great job! Your new board is set up. Dive in and start making progress on your projects.'
-      },
-      error:
+    onSuccess(data) {
+      close()
+      reset()
+      navigate(`/dashboard/${data.id}`)
+      queryClient.invalidateQueries({ queryKey: ['boards'] })
+    },
+    onError() {
+      toast.error(
         'Unexpected error during board creation. We apologize for the inconvenience. Please try again later.'
-    })
-  }
+      )
+    }
+  })
 
   return (
     <Modal
@@ -52,7 +51,7 @@ export const NewBoardModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('title')}
           inputName='title'

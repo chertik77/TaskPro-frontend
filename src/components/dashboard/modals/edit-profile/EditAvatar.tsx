@@ -1,12 +1,10 @@
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import type { EditUserSchema } from 'lib/schemas'
-import type { ChangeEvent } from 'react'
 import type { User } from 'types'
 
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
 
@@ -26,15 +24,6 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
 
   const { avatar } = useSelector(selectUser)
 
-  const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
-    toast.promise(changeUserAvatar({ avatar: e.target.files?.[0] }), {
-      loading: 'Uploading your new avatar...',
-      success: 'Avatar uploaded successfully! Looking good!',
-      error:
-        'Unexpected error during avatar update. We apologize for the inconvenience. Please try again later.'
-    })
-  }
-
   return (
     <div className='mb-[25px] flex justify-center'>
       <input
@@ -43,7 +32,7 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
         ref={inputRef}
         accept='image/jpeg, image/png'
         className='hidden'
-        onChange={handleAvatarChange}
+        onChange={e => changeUserAvatar({ avatar: e.target.files?.[0] })}
       />
       <Button
         type='button'

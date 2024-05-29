@@ -5,7 +5,7 @@ import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
 import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => (
-  <div className='col-start-1 row-span-2 row-start-1 hidden desktop:block'>
+  <div className='row-span-2 hidden desktop:block'>
     <div
       className='custom-scrollbar flex h-dvh w-56 flex-col justify-between overflow-y-auto
         bg-white pb-6 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px]'>

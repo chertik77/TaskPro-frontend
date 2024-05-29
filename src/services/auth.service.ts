@@ -6,7 +6,12 @@ import { ApiEndpoints } from 'config'
 
 export const authService = {
   async signup(data: SignupSchema) {
-    await axiosInstance.post(ApiEndpoints.Signup, data)
+    const response = await axiosInstance.post<AuthResponse>(
+      ApiEndpoints.Signup,
+      data
+    )
+
+    return response.data
   },
 
   async signin(data: SigninSchema) {
@@ -19,7 +24,10 @@ export const authService = {
   },
 
   async getTokens(data: { refreshToken: string }) {
-    const response = await axiosInstance.post(ApiEndpoints.Tokens, data)
+    const response = await axiosInstance.post<Pick<AuthResponse, 'tokens'>>(
+      ApiEndpoints.Tokens,
+      data
+    )
 
     return response.data
   },
