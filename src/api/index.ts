@@ -3,6 +3,7 @@ import type { CreateAxiosDefaults } from 'axios'
 import axios from 'axios'
 
 import { store } from 'redux/store'
+import { logout, saveTokens } from 'redux/user.slice'
 
 import { authService } from 'services'
 
@@ -36,11 +37,14 @@ axiosInstance.interceptors.response.use(
     ) {
       originalRequest._isRetry = true
       try {
-        await authService.getTokens({ refreshToken })
+        const response = await authService.getTokens({ refreshToken })
+
+        store.dispatch(saveTokens(response))
+
         return axiosInstance.request(originalRequest)
-      } catch (error) {
-        console.log(error)
-        // if (error?.response?.status === 403) store.dispatch(logout())
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        if (error?.response?.status === 403) store.dispatch(logout())
       }
     }
 

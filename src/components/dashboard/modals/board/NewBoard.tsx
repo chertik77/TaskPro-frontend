@@ -40,6 +40,7 @@ export const NewBoardModal = () => {
         <Button
           type='submit'
           isPlusIcon
+          shouldShowLoader={isPending}
           disabled={isPending}>
           {isPending ? 'Creating...' : 'Create'}
         </Button>

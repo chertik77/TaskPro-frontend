@@ -47,6 +47,7 @@ export const AddCardModal = () => {
         <Button
           isPlusIcon
           type='submit'
+          shouldShowLoader={isPending}
           disabled={isPending}>
           {isPending ? 'Adding...' : 'Add'}
         </Button>
