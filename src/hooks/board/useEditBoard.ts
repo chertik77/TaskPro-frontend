@@ -24,8 +24,8 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
     toastErrorMessage:
       'Failed to update the board. Please try again. If the problem persists, contact support.',
     onSuccess(data) {
-      reset()
       close()
+      reset()
       queryClient.invalidateQueries({ queryKey: ['boards'] })
       if (data.id === boardId) {
         queryClient.invalidateQueries({ queryKey: ['board'] })

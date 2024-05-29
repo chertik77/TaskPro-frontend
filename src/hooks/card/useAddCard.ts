@@ -24,8 +24,8 @@ export const useAddCard = (reset: UseFormReset<CardSchema>) => {
       'Unexpected error during task creation. We apologize for the inconvenience. Please try again later.',
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['board'] })
-      reset()
       close()
+      reset()
     }
   })
 }

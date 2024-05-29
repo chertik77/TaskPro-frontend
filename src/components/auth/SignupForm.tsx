@@ -17,7 +17,7 @@ export const SignupForm = () => {
         errors={formState.errors}
         inputName='name'
         autoComplete='name'
-        className='autofill:text-fill-white'
+        className='text-white autofill:text-fill-white'
         placeholder='Enter your name'
         {...register('name')}
       />
@@ -25,7 +25,7 @@ export const SignupForm = () => {
         errors={formState.errors}
         inputName='email'
         autoComplete='email'
-        className='autofill:text-fill-white'
+        className='text-white autofill:text-fill-white'
         placeholder='Enter your email'
         {...register('email')}
       />
@@ -33,7 +33,7 @@ export const SignupForm = () => {
         errors={formState.errors}
         inputName='password'
         autoComplete='new-password'
-        className='autofill:text-fill-white'
+        className='text-white autofill:text-fill-white'
         inputPasswordPlaceholder='Create a password'
         isPasswordInput
         {...register('password')}

@@ -25,8 +25,8 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
     toastErrorMessage:
       'Unexpected error during board creation. We apologize for the inconvenience. Please try again later.',
     onSuccess(data) {
-      reset()
       close()
+      reset()
       navigate(`/dashboard/${data.id}`)
       queryClient.invalidateQueries({ queryKey: ['boards'] })
     }
