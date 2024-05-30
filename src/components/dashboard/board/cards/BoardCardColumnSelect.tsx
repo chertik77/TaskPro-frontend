@@ -38,7 +38,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
             <Select.Item
               key={column.id}
               className={cn(
-                `group text-fs-14-lh-1.28-fw-400 text-black outline-none
+                `group cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
                 data-[highlighted]:text-brand hocus:text-brand violet:hocus:text-brand-secondary
                 dark:text-white/30 dark:hocus:text-brand`,
                 filteredColumns.length > 1 && 'space-y-2'

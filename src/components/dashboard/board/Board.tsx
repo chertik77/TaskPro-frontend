@@ -1,12 +1,6 @@
-import type { OnDragEndResponder } from '@hello-pangea/dnd'
-
-import { DragDropContext } from '@hello-pangea/dnd'
-
 import { Loader } from 'components/ui'
 
-import { useAppMutation, useGetBoardById } from 'hooks'
-
-import { cardService } from 'services'
+import { useGetBoardById } from 'hooks'
 
 import { cn } from 'lib'
 
@@ -14,30 +8,8 @@ import { BoardAddColumnBtn } from './columns/BoardAddColumnBtn'
 import { BoardColumnsList } from './columns/BoardColumnsList'
 import { Filters } from './filters/Filters'
 
-type ChangeCardColumnMutation = {
-  cardId: string
-  newColumnId: string
-}
-
 export const Board = () => {
   const { data, isPending } = useGetBoardById()
-
-  const { mutate } = useAppMutation<ChangeCardColumnMutation>({
-    mutationKey: ['changeCardColumn'],
-    mutationFn: ({ cardId, newColumnId }) =>
-      cardService.changeCardColumn(cardId, newColumnId)
-  })
-
-  const onDragEnd: OnDragEndResponder = result => {
-    if (!result.destination) return
-
-    if (result.source.droppableId === result.destination.droppableId) return
-
-    mutate({
-      cardId: result.draggableId,
-      newColumnId: result.destination?.droppableId as string
-    })
-  }
 
   return (
     <>
@@ -67,9 +39,7 @@ export const Board = () => {
             </div>
           ) : (
             <>
-              <DragDropContext onDragEnd={onDragEnd}>
-                <BoardColumnsList columns={data?.columns} />
-              </DragDropContext>
+              <BoardColumnsList columns={data?.columns} />
               <BoardAddColumnBtn />
             </>
           )}

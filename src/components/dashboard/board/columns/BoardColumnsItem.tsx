@@ -1,6 +1,5 @@
 import type { Column } from 'types'
 
-import { Draggable } from '@hello-pangea/dnd'
 import { useSelector } from 'react-redux'
 
 import { selectCardPriority, selectCardSort } from 'redux/filter.slice'
@@ -29,20 +28,11 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
               !cardPriority &&
               'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
           )}>
-          {sortedCards?.map((card, i) => (
-            <Draggable
-              index={i}
+          {sortedCards?.map(card => (
+            <BoardCard
+              card={card}
               key={card.id}
-              draggableId={card.id}>
-              {provided => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}>
-                  <BoardCard card={card} />
-                </div>
-              )}
-            </Draggable>
+            />
           ))}
         </div>
       )}
