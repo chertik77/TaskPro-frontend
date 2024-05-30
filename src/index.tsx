@@ -1,6 +1,7 @@
 import type { AxiosError } from 'axios'
 
 import { StrictMode } from 'react'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'contexts/theme.context'
 import ReactDOM from 'react-dom/client'
@@ -38,27 +39,29 @@ declare module '@tanstack/react-query' {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <PersistGate
-          loading={null}
-          persistor={persistor}>
-          <BrowserRouter>
-            <ThemeProvider>
-              <ModalProvider>
-                <App />
-                <ModalRenderer Component={EditBoardModal} />
-                <ModalRenderer Component={NewBoardModal} />
-                <ModalRenderer Component={NeedHelpModal} />
-                <ModalRenderer Component={AddCardModal} />
-                <ModalRenderer Component={EditCardModal} />
-                <ModalRenderer Component={EditProfileModal} />
-                <ModalRenderer Component={BurgerMenu} />
-              </ModalProvider>
-            </ThemeProvider>
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </QueryClientProvider>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <PersistGate
+            loading={null}
+            persistor={persistor}>
+            <BrowserRouter>
+              <ThemeProvider>
+                <ModalProvider>
+                  <App />
+                  <ModalRenderer Component={EditBoardModal} />
+                  <ModalRenderer Component={NewBoardModal} />
+                  <ModalRenderer Component={NeedHelpModal} />
+                  <ModalRenderer Component={AddCardModal} />
+                  <ModalRenderer Component={EditCardModal} />
+                  <ModalRenderer Component={EditProfileModal} />
+                  <ModalRenderer Component={BurgerMenu} />
+                </ModalProvider>
+              </ThemeProvider>
+            </BrowserRouter>
+          </PersistGate>
+        </Provider>
+      </QueryClientProvider>
+    </GoogleOAuthProvider>
   </StrictMode>
 )

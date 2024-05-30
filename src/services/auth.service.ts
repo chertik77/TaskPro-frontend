@@ -23,6 +23,15 @@ export const authService = {
     return response.data
   },
 
+  async signinWithGoogle(code: string) {
+    const response = await axiosInstance.post<AuthResponse>(
+      ApiEndpoints.GoogleSignin,
+      { code }
+    )
+
+    return response.data
+  },
+
   async getTokens(data: { refreshToken: string }) {
     const response = await axiosInstance.post<Pick<AuthResponse, 'tokens'>>(
       ApiEndpoints.Tokens,

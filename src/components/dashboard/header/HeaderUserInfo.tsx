@@ -19,6 +19,7 @@ export const HeaderUserInfo = () => {
       <img
         src={avatar}
         alt={name}
+        referrerPolicy='no-referrer'
         className='size-8 rounded-lg'
       />
     </button>
