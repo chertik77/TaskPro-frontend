@@ -15,7 +15,8 @@ export const FilterControls = ({
     <button
       type='button'
       className='text-fs-12-lh-normal-fw-400 underline opacity-50 focus:outline-none
-        hocus:text-brand-hover hocus:no-underline hocus:opacity-100'
+        hocus:text-brand-hover hocus:no-underline hocus:opacity-100
+        violet:hocus:text-brand-secondary'
       {...props}>
       {buttonTitle}
     </button>

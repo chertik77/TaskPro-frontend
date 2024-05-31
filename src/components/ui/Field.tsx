@@ -40,7 +40,8 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
                 border-opacity-40 bg-transparent px-[18px] pr-[35px] text-fs-16-lh-normal-fw-500
                 text-black outline-none placeholder:opacity-40 autofill:bg-clip-text
                 autofill:text-fill-black focus:border-opacity-100 violet:border-brand-secondary
-                dark:text-white dark:autofill:text-fill-white`,
+                violet:border-opacity-40 violet:focus:border-opacity-100 dark:text-white
+                dark:autofill:text-fill-white`,
                 className,
                 {
                   'mb-3.5': errors[inputName],
@@ -65,10 +66,11 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           <input
             type='text'
             className={cn(
-              `mb-3.5 h-[49px] w-full rounded-lg border border-brand/40 bg-transparent
-              px-[18px] text-fs-16-lh-normal-fw-500 text-black outline-none
+              `mb-3.5 h-[49px] w-full rounded-lg border border-brand border-opacity-40
+              bg-transparent px-[18px] text-fs-16-lh-normal-fw-500 text-black outline-none
               placeholder:opacity-40 autofill:bg-clip-text autofill:text-fill-white
-              focus:border-opacity-100 violet:border-brand-secondary dark:text-white`,
+              focus:border-opacity-100 violet:border-brand-secondary violet:border-opacity-40
+              violet:focus:border-opacity-100 dark:text-white`,
               className,
               errors[inputName] && 'mb-2'
             )}
