@@ -122,7 +122,7 @@ export default {
     require('tailwindcss-animate'),
     tailwindScrollbar({ nocompatible: true }),
     plugin(({ addVariant }) => {
-      addVariant('hocus', ['&:hover', '&:focus'])
+      addVariant('hocus', ['&:hover', '&:focus', '&:active'])
     }),
     createThemes({ violet: {} })
   ]
