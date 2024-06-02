@@ -8,7 +8,7 @@ import { Button } from 'components/ui'
 import { BoardColumnsItem } from './BoardColumnsItem'
 
 type BoardColumnsListProps = {
-  columns: Board['columns']
+  columns: Board['columns'] | undefined
 }
 
 export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
