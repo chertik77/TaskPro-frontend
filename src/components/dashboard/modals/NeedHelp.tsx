@@ -63,7 +63,7 @@ export const NeedHelpModal = () => {
             `mb-6 h-[154px] w-full resize-none rounded-lg border border-brand
             border-opacity-40 bg-transparent px-[18px] py-3.5 text-black outline-none
             placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary
-            dark:text-white`,
+            violet:border-opacity-40 violet:focus:border-opacity-100 dark:text-white`,
             formState.errors && 'mb-[10px]'
           )}
         />

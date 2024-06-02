@@ -4014,13 +4014,6 @@ react-edit-text@^5.1.1:
     classnames "^2.2.6"
     prop-types "^15.8.1"
 
-react-google-button@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/react-google-button/-/react-google-button-0.8.0.tgz#dea1771a764f2240234daf72d96ccd4d90bb13ff"
-  integrity sha512-0u6mbDcTUmWzgXsld8FJpbrXP+zDsNQVYPIt225aBqwgJ/CdrDiep1PZOpnyntyjsejWG0TtQr6uZB4eIaXlJQ==
-  dependencies:
-    prop-types "^15.8.1"
-
 react-hook-form@^7.50.1:
   version "7.51.3"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.3.tgz#7486dd2d52280b6b28048c099a98d2545931cab3"
@@ -4106,16 +4099,6 @@ react-router@6.23.0:
   integrity sha512-wPMZ8S2TuPadH0sF5irFGjkNLIcRvOSaEe7v+JER8508dyJumm6XZB1u5kztlX0RVq6AzRVndzqcUh6sFIauzA==
   dependencies:
     "@remix-run/router" "1.16.0"
-
-react-social-login-buttons@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/react-social-login-buttons/-/react-social-login-buttons-4.1.0.tgz#a56ac631c409e85f2f7b3b8df6c41905adb63086"
-  integrity sha512-PoZKH6h3eKGgcviFC5Sh50QDVQ5KhFf7MrPTFBU/wwPNn0DVNEb5km+T7z83+CiM24Z8qV/H82wHZ4OE6gcawQ==
-
-react-spinners@^0.13.8:
-  version "0.13.8"
-  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.13.8.tgz#5262571be0f745d86bbd49a1e6b49f9f9cb19acc"
-  integrity sha512-3e+k56lUkPj0vb5NDXPVFAOkPC//XyhKPJjvcGjyMNPWsBKpplfeyialP74G7H7+It7KzhtET+MvGqbKgAqpZA==
 
 react-style-singleton@^2.2.1:
   version "2.2.1"
