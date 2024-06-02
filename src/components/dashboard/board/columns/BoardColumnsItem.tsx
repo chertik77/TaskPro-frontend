@@ -24,9 +24,10 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
         <div
           className={cn(
             'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
-            column.cards.length > 3 &&
-              !cardPriority &&
-              'h-[calc(100dvh-300px)] tablet:h-[calc(100dvh-280px)]'
+            {
+              'h-[calc(100dvh-300px)] desktop:h-[calc(100dvh-270px)]':
+                column.cards.length > 3 && !cardPriority
+            }
           )}>
           {sortedCards?.map(card => (
             <BoardCard
