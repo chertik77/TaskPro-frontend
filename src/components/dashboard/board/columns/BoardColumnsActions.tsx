@@ -1,5 +1,5 @@
 import type { onSaveProps } from 'react-edit-text'
-import type { Column, ColumnTitle } from 'types'
+import type { Column } from 'types'
 
 import { useState } from 'react'
 import { EditText } from 'react-edit-text'
@@ -7,32 +7,23 @@ import { toast } from 'sonner'
 
 import { Button, Loader } from 'components/ui'
 
-import { useAppMutation } from 'hooks'
+import { useDeleteColumn, useEditColumn } from 'hooks/column'
 
 import {
   DEFAULT_COLUMN_TITLE,
   REQUIRED_COLUMN_TITLE_LENGTH
 } from 'constants/titles'
-import { columnService } from 'services'
 
 import { cn } from 'lib'
 
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  const { mutate: deleteColumn, isPending: isDeleting } = useAppMutation({
-    mutationKey: ['deleteColumn'],
-    mutationFn: () => columnService.deleteColumn(column.id),
-    toastErrorMessage:
-      'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
-  })
+  const { mutate: deleteColumn, isPending: isDeleting } = useDeleteColumn(
+    column.id
+  )
 
-  const { mutate } = useAppMutation<ColumnTitle>({
-    mutationKey: ['editColumn'],
-    mutationFn: data => columnService.editColumn(column.id, data),
-    toastErrorMessage:
-      'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
-  })
+  const { mutate } = useEditColumn(column.id)
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
     if (value.length < REQUIRED_COLUMN_TITLE_LENGTH) {

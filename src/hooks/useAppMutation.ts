@@ -1,7 +1,7 @@
 import type { UseMutationOptions } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 type UseAppMutationProps = {
@@ -13,20 +13,12 @@ export const useAppMutation = <T = void, R = void>({
   mutationFn,
   toastErrorMessage,
   ...options
-}: UseMutationOptions<R, AxiosError, T> & UseAppMutationProps) => {
-  const queryClient = useQueryClient()
-
-  return useMutation({
+}: UseMutationOptions<R, AxiosError, T> & UseAppMutationProps) =>
+  useMutation({
     mutationKey,
     mutationFn,
-    onSuccess() {
-      queryClient.invalidateQueries({
-        queryKey: ['board']
-      })
-    },
     onError() {
       toast.error(toastErrorMessage)
     },
     ...options
   })
-}

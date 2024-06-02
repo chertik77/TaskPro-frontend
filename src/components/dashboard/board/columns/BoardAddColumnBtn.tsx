@@ -1,20 +1,9 @@
 import { Button, Loader } from 'components/ui'
 
-import { useAppMutation, useGetBoardId } from 'hooks'
-
-import { DEFAULT_COLUMN_TITLE } from 'constants/titles'
-import { columnService } from 'services'
+import { useAddColumn } from 'hooks/column'
 
 export const BoardAddColumnBtn = () => {
-  const boardId = useGetBoardId()
-
-  const { mutate, isPending } = useAppMutation({
-    mutationKey: ['addColumn'],
-    mutationFn: () =>
-      columnService.addNewColumn(boardId!, { title: DEFAULT_COLUMN_TITLE }),
-    toastErrorMessage:
-      'Unexpected error during column addition. We apologize for the inconvenience. Please try again later.'
-  })
+  const { mutate, isPending } = useAddColumn()
 
   return (
     <Button

@@ -6,21 +6,14 @@ import { useModal } from 'react-modal-state'
 import { EditCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
 
-import { useAppMutation } from 'hooks'
-
-import { cardService } from 'services'
+import { useDeleteCard } from 'hooks/card'
 
 import { BoardCardColumnSelect } from './BoardCardColumnSelect'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
-  const { mutate } = useAppMutation({
-    mutationKey: ['deleteCard'],
-    mutationFn: () => cardService.deleteCard(card.id),
-    toastErrorMessage:
-      'An error occurred while deleting the task. Our technical team has been notified. Please try again shortly.'
-  })
+  const { mutate } = useDeleteCard(card.id)
 
   return (
     <div className='ml-auto flex gap-2'>

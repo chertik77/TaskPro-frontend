@@ -2,9 +2,8 @@ import type { Card } from 'types'
 
 import * as Select from '@radix-ui/react-select'
 
-import { useAppMutation, useGetBoardById } from 'hooks'
-
-import { cardService } from 'services'
+import { useGetBoardById } from 'hooks'
+import { useChangeCardColumn } from 'hooks/column'
 
 import { cn } from 'lib'
 
@@ -13,10 +12,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
 
   const filteredColumns = columns?.filter(column => column.id !== card.column)
 
-  const { mutate } = useAppMutation<string>({
-    mutationKey: ['changeCardColumn'],
-    mutationFn: columnId => cardService.changeCardColumn(card.id, columnId)
-  })
+  const { mutate } = useChangeCardColumn(card.id)
 
   return (
     <Select.Root
