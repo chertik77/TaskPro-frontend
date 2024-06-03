@@ -6,7 +6,7 @@ export const SidebarLogoutBtn = () => {
   return (
     <button
       className='group mt-6 flex items-center gap-3.5 bg-transparent px-6
-        text-fs-16-lh-normal-fw-500 text-black violet:text-white dark:text-white'
+        text-fs-16-lh-normal-fw-500 violet:text-white'
       disabled={isPending}
       onClick={() => mutate()}>
       <svg

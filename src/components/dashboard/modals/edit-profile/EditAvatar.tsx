@@ -42,7 +42,7 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
         <div
           className='absolute -bottom-3 left-[22px] size-6 rounded-lg bg-brand p-[7px]
             violet:bg-white-gray-secondary'>
-          <svg className='size-[10px]'>
+          <svg className='size-sm'>
             <use href='/icons.svg#icon-plus-avatar' />
           </svg>
         </div>

@@ -60,11 +60,11 @@ export const NeedHelpModal = () => {
           {...register('comment')}
           placeholder='Comment'
           className={cn(
-            `mb-6 h-[154px] w-full resize-none rounded-lg border border-brand
-            border-opacity-40 bg-transparent px-[18px] py-3.5 text-black outline-none
-            placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary
-            violet:border-opacity-40 violet:focus:border-opacity-100 dark:text-white`,
-            formState.errors && 'mb-[10px]'
+            `mb-6 h-5xl w-full resize-none rounded-lg border border-brand border-opacity-40
+            bg-transparent px-lg py-3.5 outline-none placeholder:opacity-40
+            focus:border-opacity-100 violet:border-brand-secondary violet:border-opacity-40
+            violet:focus:border-opacity-100`,
+            formState.errors && 'mb-sm'
           )}
         />
         <ErrorMessage

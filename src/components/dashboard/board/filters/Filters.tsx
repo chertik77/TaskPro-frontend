@@ -27,7 +27,7 @@ export const Filters = () => {
             Filters
           </h2>
           <Popover.Close className='absolute right-3.5 top-3.5 focus:stroke-brand'>
-            <svg className='size-[18px] stroke-black dark:stroke-white'>
+            <svg className='size-lg stroke-black dark:stroke-white'>
               <use href='/icons.svg#icon-close' />
             </svg>
           </Popover.Close>

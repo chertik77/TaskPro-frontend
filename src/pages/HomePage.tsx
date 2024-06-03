@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export const HomePage = () => (
-  <div
-    className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient
-      adaptive:px-5'>
+  <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>
     <picture>
       <source
         media='(min-width: 768px)'
@@ -23,25 +21,22 @@ export const HomePage = () => (
       <svg className='size-10 tablet:size-12'>
         <use href='/icons.svg#icon-logo' />
       </svg>
-      <h1 className='text-fs-28-lh-normal-fw-600 text-black tablet:text-fs-40-lh-normal-fw-600'>
+      <h1 className='text-fs-28-lh-normal-fw-600 tablet:text-fs-40-lh-normal-fw-600'>
         Task Pro
       </h1>
     </div>
-    <p
-      className='mt-6 w-[335px] text-center text-fs-14-lh-1.28-fw-400 text-black adaptive:w-full
-        tablet:w-[473px]'>
+    <p className='mt-6 w-8xl text-center text-fs-14-lh-1.28-fw-400 tablet:w-[473px]'>
       Supercharge your productivity and take control of your tasks with Task Pro
       - Don&apos;t wait, start achieving your goals now!
     </p>
     <Link
       to='/auth/signup'
-      className='mt-12 inline-block h-[49px] w-[335px] rounded-lg bg-black py-3.5 text-center
-        text-fs-14-lh-normal-fw-500 text-white adaptive:w-full'>
+      className='mt-12 w-8xl rounded-lg bg-black py-3.5 text-center text-white'>
       Registration
     </Link>
     <Link
       to='/auth/signin'
-      className='mt-3.5 text-black'>
+      className='mt-3.5'>
       Log In
     </Link>
   </div>

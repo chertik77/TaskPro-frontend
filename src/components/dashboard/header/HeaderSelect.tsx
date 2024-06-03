@@ -38,14 +38,14 @@ export const HeaderSelect = ({
       <Select.Content
         align='end'
         position='popper'
-        className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-3.5
-          pl-[18px] pr-11 pt-[18px] shadow-select violet:border-white-gray-secondary
+        className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-3.5 pl-lg
+          pr-11 pt-lg shadow-select violet:border-white-gray-secondary
           dark:bg-black-fourth'>
         <Select.Viewport>
           {themes.map(theme => (
             <Select.Item
               key={theme}
-              className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
+              className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 outline-none
                 data-[highlighted]:text-brand data-[state=checked]:text-brand
                 data-[highlighted]:underline hocus:text-brand
                 violet:data-[state=checked]:text-brand-secondary

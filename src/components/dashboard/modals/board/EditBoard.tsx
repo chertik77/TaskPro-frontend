@@ -54,7 +54,6 @@ export const EditBoardModal = () => {
           inputName='title'
           placeholder='Title'
           errors={formState.errors}
-          className='violet:text-black'
         />
         <RadioInputIcons control={control} />
         <RadioInputBgImages control={control} />

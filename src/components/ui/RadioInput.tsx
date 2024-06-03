@@ -15,9 +15,8 @@ export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
     <RadioGroup.Indicator
       // eslint-disable-next-line tailwindcss/no-custom-classname
       className={cn(
-        `flex size-full items-center justify-center rounded-full after:block after:size-3
-        after:rounded-full after:border-2 after:border-white after:content-['']
-        after:dark:border-black`,
+        `flex justify-center rounded-full after:size-3 after:rounded-full after:border-2
+        after:border-white after:dark:border-black`,
         `after:${getPriorityColor(value as EnumPriority)}`
       )}
     />

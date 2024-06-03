@@ -26,8 +26,8 @@ export const Modal = ({ children, modalTitle, ...props }: DialogProps) => {
       onClose={close}
       center
       classNames={{
-        modal: `${cn('shadow-none m-0 w-[335px] rounded-lg p-6 dark:bg-black adaptive:w-11/12 tablet:w-[350px]', modalTitle === 'Need help' && 'w-[400px]')}`,
-        closeIcon: 'dark:fill-white size-[18px]',
+        modal: `${cn('shadow-none m-0 w-8xl rounded-lg p-6 dark:bg-black tablet:w-[350px]', modalTitle === 'Need help' && 'w-[400px]')}`,
+        closeIcon: 'dark:fill-white size-lg',
         overlay: 'backdrop-saturate-150 backdrop-blur-md'
       }}
       {...props}>

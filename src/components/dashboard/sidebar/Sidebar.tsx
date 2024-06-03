@@ -8,7 +8,7 @@ export const Sidebar = () => (
   <div className='row-span-2 hidden desktop:block'>
     <div
       className='custom-scrollbar flex h-dvh w-56 flex-col justify-between overflow-y-auto
-        bg-white pb-6 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-[260px]'>
+        bg-white pb-6 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-7xl'>
       <div>
         <SidebarLogo />
         <SidebarMyBoardsInfo />

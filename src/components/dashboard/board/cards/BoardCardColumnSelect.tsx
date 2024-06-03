@@ -27,14 +27,14 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
       </Select.Trigger>
       <Select.Content
         position='popper'
-        className='animation w-min rounded-lg border border-brand bg-white-primary p-[18px]
+        className='animation w-min rounded-lg border border-brand bg-white-primary p-lg
           shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
         <Select.Viewport>
           {filteredColumns?.map(column => (
             <Select.Item
               key={column.id}
               className={cn(
-                `group cursor-pointer text-fs-14-lh-1.28-fw-400 text-black outline-none
+                `group cursor-pointer text-fs-14-lh-1.28-fw-400 outline-none
                 data-[highlighted]:text-brand hocus:text-brand violet:hocus:text-brand-secondary
                 dark:text-white/30 dark:hocus:text-brand`,
                 filteredColumns.length > 1 && 'space-y-2'

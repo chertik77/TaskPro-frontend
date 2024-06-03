@@ -23,11 +23,9 @@ export const DatePicker = ({ control }: DatePickerProps) => (
       name='deadline'
       render={({ field }) => (
         <Popover>
-          <Trigger
-            className='mb-[40px] flex items-center gap-1 text-fs-14-lh-normal-fw-500 text-brand
-              violet:text-brand-secondary'>
+          <Trigger className='mb-[40px] flex items-center gap-1 text-brand violet:text-brand-secondary'>
             {formatTodayDate(field.value)}
-            <MdKeyboardArrowDown className='size-[18px] text-brand violet:text-brand-secondary' />
+            <MdKeyboardArrowDown className='size-lg text-current' />
           </Trigger>
           <Portal>
             <Content

@@ -36,8 +36,8 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
   return (
     <div
       className={cn(
-        `mb-3.5 flex h-[56px] min-w-[335px] items-center rounded-lg bg-white px-5
-        py-[18px] dark:bg-black`,
+        `mb-3.5 flex h-3xl min-w-8xl items-center rounded-lg bg-white px-5 py-lg
+        dark:bg-black`,
         isDeleting && 'justify-center'
       )}>
       {isDeleting ? (

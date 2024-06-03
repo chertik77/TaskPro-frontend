@@ -14,7 +14,7 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
     disabled={date =>
       isBefore(date, new Date()) && !isSameDay(date, new Date())
     }
-    className='rounded-lg border border-brand bg-white p-[18px] violet:border-brand-secondary
+    className='rounded-lg border border-brand bg-white p-lg violet:border-brand-secondary
       dark:bg-black-third'
     classNames={{
       caption:

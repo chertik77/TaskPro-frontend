@@ -8,9 +8,7 @@ export default {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
-    fontFamily: {
-      poppins: ['Poppins', 'sans-serif']
-    },
+    fontFamily: { poppins: ['Poppins', 'sans-serif'] },
     container: {
       center: true,
       padding: { DEFAULT: '20px', md: '32px', lg: '24px' },
@@ -20,15 +18,22 @@ export default {
       'welcome-page-gradient':
         'linear-gradient(180deg, #fff 25%, #BEDBB0 92.19%)'
     },
-    boxShadow: {
-      select: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)'
-    },
+    boxShadow: { select: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)' },
     extend: {
+      spacing: {
+        sm: '10px',
+        lg: '18px',
+        xl: '26px',
+        '2xl': '49px',
+        '3xl': '56px',
+        '4xl': '61px',
+        '5xl': '154px',
+        '7xl': '260px',
+        '8xl': '335px'
+      },
       screens: {
-        adaptive: { max: '375px' },
         mobile: '375px',
         tablet: '768px',
-        'max-tablet': { max: '768px' },
         desktop: '1440px'
       },
       colors: {

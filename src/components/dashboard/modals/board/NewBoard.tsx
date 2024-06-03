@@ -31,7 +31,6 @@ export const NewBoardModal = () => {
         <Field
           {...register('title')}
           inputName='title'
-          className={formState.errors ? 'mb-2' : 'violet:text-black'}
           placeholder='Title'
           errors={formState.errors}
         />

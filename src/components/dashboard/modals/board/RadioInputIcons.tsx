@@ -28,7 +28,7 @@ export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
               className='group text-gray-500 hocus:text-gray-600 dark:text-gray-400
                 dark:hocus:text-gray-300'>
               <svg
-                className='size-[18px] stroke-current group-aria-checked:text-black
+                className='size-lg stroke-current group-aria-checked:text-black
                   group-aria-checked:opacity-100 dark:group-aria-checked:text-white'>
                 <use href={`/icons.svg#${id}`}></use>
               </svg>

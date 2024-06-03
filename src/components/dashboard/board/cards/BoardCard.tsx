@@ -11,8 +11,7 @@ import { BoardCardPriority } from './BoardCardPriority'
 export const BoardCard = ({ card }: { card: Card }) => (
   <div
     className={cn(
-      `h-[154px] w-[335px] rounded-lg border-l-4 bg-white py-3.5 pl-6 pr-5
-      dark:bg-black`,
+      'h-5xl w-8xl rounded-lg border-l-4 bg-white py-3.5 pl-6 pr-5 dark:bg-black',
       card.priority === EnumPriority.WithoutPriority &&
         'border-black/30 dark:border-white/30',
       card.priority === EnumPriority.High && 'border-brand',

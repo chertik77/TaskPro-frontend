@@ -47,9 +47,7 @@ export const EditCardModal = () => {
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           errors={formState.errors}
-          className='mb-3.5'
           inputName='title'
-          type='text'
           placeholder='Title'
           {...register('title')}
         />

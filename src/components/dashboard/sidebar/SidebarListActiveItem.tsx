@@ -36,7 +36,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
           iconClassName='violet:stroke-white/50'
         />
       </div>
-      <div className='h-[61px] w-1 rounded-l-lg bg-brand violet:bg-white' />
+      <div className='h-4xl w-1 rounded-l-lg bg-brand violet:bg-white' />
     </div>
   )
 }

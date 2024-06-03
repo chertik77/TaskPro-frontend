@@ -27,7 +27,7 @@ export const SidebarLogo = () => {
           />
         </svg>
       </Link>
-      <h1 className='text-fs-16-lh-normal-fw-600 text-black violet:text-white dark:text-white'>
+      <h1 className='text-fs-16-lh-normal-fw-600 violet:text-white'>
         Task Pro
       </h1>
     </div>

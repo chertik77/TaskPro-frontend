@@ -34,7 +34,7 @@ export const SidebarBoardsList = () => {
       {data?.map(board => (
         <Item
           className={cn(
-            `flex h-[61px] w-full items-center justify-between pl-3.5 text-black/50
+            `flex h-4xl w-full items-center justify-between pl-3.5 text-black/50
             transition-colors ease-in-out aria-checked:bg-white-gray aria-checked:text-black
             focus:outline-none violet:text-white/50 aria-checked:violet:bg-white/50
             aria-checked:violet:text-white dark:text-white/50
@@ -45,7 +45,7 @@ export const SidebarBoardsList = () => {
           key={board.id}
           value={board.id}>
           <div className='flex items-center gap-2'>
-            <svg className='size-[18px] stroke-current'>
+            <svg className='size-lg stroke-current'>
               <use href={`/icons.svg#${board.icon}`}></use>
             </svg>
             <p className='truncate'>{board?.title}</p>

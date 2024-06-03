@@ -21,7 +21,7 @@ export const SidebarUserSupport = () => {
         </picture>
       </div>
       <p
-        className='mb-[18px] text-fs-12-lh-1.33-fw-400 violet:text-white
+        className='mb-lg text-fs-12-lh-1.33-fw-400 violet:text-white
           tablet:text-fs-14-lh-1.42-fw-400'>
         If you need help with
         <span className='text-brand violet:text-brand-secondary'> TaskPro</span>
