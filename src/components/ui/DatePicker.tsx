@@ -15,9 +15,7 @@ type DatePickerProps = {
 
 export const DatePicker = ({ control }: DatePickerProps) => (
   <div className='relative'>
-    <p className='mb-1 text-fs-12-lh-normal-fw-400 text-black/50 dark:text-white/50'>
-      Deadline
-    </p>
+    <p className='mb-1 text-sm text-black/50 dark:text-white/50'>Deadline</p>
     <Controller
       control={control}
       name='deadline'
@@ -29,6 +27,7 @@ export const DatePicker = ({ control }: DatePickerProps) => (
           </Trigger>
           <Portal>
             <Content
+              side='top'
               className='z-[1000]'
               align='start'>
               <Calendar

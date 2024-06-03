@@ -18,8 +18,8 @@ export const BoardCard = ({ card }: { card: Card }) => (
       card.priority === EnumPriority.Medium && 'border-priority-medium',
       card.priority === EnumPriority.Low && 'border-priority-low'
     )}>
-    <p className='mb-2 text-fs-14-lh-normal-fw-600'>{card.title}</p>
-    <p className='mb-3.5 line-clamp-2 text-fs-12-lh-normal-fw-400 text-black/70 dark:text-white/50'>
+    <p className='mb-2 text-base font-semibold'>{card.title}</p>
+    <p className='mb-3.5 line-clamp-2 text-sm text-black/70 dark:text-white/50'>
       {card.description}
     </p>
     {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}

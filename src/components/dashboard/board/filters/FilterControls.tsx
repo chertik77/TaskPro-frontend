@@ -14,9 +14,8 @@ export const FilterControls = ({
     <h3>{controlTitle}</h3>
     <button
       type='button'
-      className='text-fs-12-lh-normal-fw-400 underline opacity-50 focus:outline-none
-        hocus:text-brand-hover hocus:no-underline hocus:opacity-100
-        violet:hocus:text-brand-secondary'
+      className='text-sm underline opacity-50 focus:outline-none hocus:text-brand-hover
+        hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
       {...props}>
       {buttonTitle}
     </button>

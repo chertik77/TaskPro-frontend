@@ -31,11 +31,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       className={cn(
         !iconName &&
-          `flex h-2xl w-full items-center justify-center rounded-lg bg-brand
-          text-fs-14-lh-normal-fw-500 text-black transition-colors
-          disabled:cursor-not-allowed disabled:opacity-50 hocus:bg-brand-hover
-          violet:bg-brand-secondary violet:text-white
-          violet:hocus:bg-brand-secondary-hover`,
+          `flex h-2xl w-full items-center justify-center rounded-lg bg-brand text-base
+          font-medium text-black transition-colors disabled:cursor-not-allowed
+          disabled:opacity-50 hocus:bg-brand-hover violet:bg-brand-secondary
+          violet:text-white violet:hocus:bg-brand-secondary-hover`,
         iconName &&
           `hocus:*:stroke-black violet:hocus:*:stroke-black
           dark:hocus:*:stroke-white-primary`,

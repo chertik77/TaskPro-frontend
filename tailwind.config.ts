@@ -55,67 +55,26 @@ export default {
         'scroll-white': '#E8E8E8'
       },
       fontSize: {
-        //! Font size - 8px
-        'fs-8-lh-normal-fw-400': [
+        extrasm: [
           '8px',
           { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.16px' }
         ],
-        //! Font size - 10px
-        'fs-10-lh-normal-fw-400': [
+        xs: [
           '10px',
           { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.2px' }
         ],
-        //! Font size - 12px
-        'fs-12-lh-normal-fw-400': [
-          '12px',
-          { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.24px' }
-        ],
-        'fs-12-lh-1.33-fw-400': [
-          '12px',
-          { lineHeight: '1.33', fontWeight: 400, letterSpacing: '-0.24px' }
-        ],
-        'fs-12-lh-normal-fw-500': [
-          '12px',
-          { lineHeight: 'normal', fontWeight: 500, letterSpacing: '-0.24px' }
-        ],
-        //! Font size - 14px
-        'fs-14-lh-1.28-fw-400': [
-          '14px',
-          { lineHeight: '1.28', fontWeight: 400, letterSpacing: '-0.28px' }
-        ],
-        'fs-14-lh-1.42-fw-400': [
-          '14px',
-          { lineHeight: '1.42', fontWeight: 400, letterSpacing: '-0.28px' }
-        ],
-        'fs-14-lh-normal-fw-500': [
-          '14px',
-          { lineHeight: 'normal', fontWeight: 500, letterSpacing: '-0.28px' }
-        ],
-        'fs-14-lh-normal-fw-600': [
-          '14px',
-          { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-0.28px' }
-        ],
-        //! Font size - 16px
-        'fs-16-lh-normal-fw-500': [
-          '16px',
-          { lineHeight: 'normal', fontWeight: 500, letterSpacing: '-0.64px' }
-        ],
-        'fs-16-lh-normal-fw-600': [
-          '16px',
-          { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-0.64px' }
-        ],
-        //! Font size - 18px
-        'fs-18-lh-normal-fw-500': [
+        sm: ['12px', { lineHeight: 'normal', letterSpacing: '-0.24px' }],
+        base: ['14px', { lineHeight: '1.28', letterSpacing: '-0.28px' }],
+        md: ['16px', { lineHeight: 'normal', letterSpacing: '-0.64px' }],
+        lg: [
           '18px',
           { lineHeight: 'normal', fontWeight: 500, letterSpacing: '-0.36px' }
         ],
-        //! Font size - 28px
-        'fs-28-lh-normal-fw-600': [
+        '3xl': [
           '28px',
           { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-1.12px' }
         ],
-        //! Font size - 40px
-        'fs-40-lh-normal-fw-600': [
+        '4xl': [
           '40px',
           { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-1.6px' }
         ]

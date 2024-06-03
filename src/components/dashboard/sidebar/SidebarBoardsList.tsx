@@ -27,10 +27,7 @@ export const SidebarBoardsList = () => {
   return (
     <Root
       onValueChange={v => navigate(`/dashboard/${v}`)}
-      className={cn(
-        'mb-20 text-fs-14-lh-1.28-fw-400',
-        data?.length === 0 && 'mb-auto'
-      )}>
+      className={cn('mb-20 text-base', data?.length === 0 && 'mb-auto')}>
       {data?.map(board => (
         <Item
           className={cn(

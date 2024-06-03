@@ -54,7 +54,6 @@
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
-    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "eslint": "^8.0.1",
     "eslint-formatter-mo": "^1.2.0",
@@ -77,6 +76,7 @@
     "tw-colors": "^3.3.1",
     "typescript": "*",
     "vite": "^5.0.8",
+    "vite-bundle-visualizer": "^1.2.1",
     "vite-plugin-minify": "^1.5.2",
     "vite-tsconfig-paths": "^4.3.1"
   }

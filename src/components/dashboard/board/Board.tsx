@@ -25,7 +25,7 @@ export const Board = () => {
             data?.background.hasWhiteTextColor && 'text-white',
             data?.background.identifier === 'default' && 'dark:text-white'
           )}>
-          <p className='tablet:text-fs-18-lh-normal-fw-500'>{data?.title}</p>
+          <p className='tablet:text-lg'>{data?.title}</p>
           {!isPending && <Filters />}
         </div>
         <div className='custom-scrollbar flex h-full overflow-x-scroll pb-4'>

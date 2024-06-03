@@ -31,9 +31,7 @@ export const SidebarLogo = () => {
           />
         </svg>
       </Link>
-      <h1 className='text-fs-16-lh-normal-fw-600 violet:text-white'>
-        Task Pro
-      </h1>
+      <h1 className='text-md font-semibold violet:text-white'>Task Pro</h1>
       {isSidebarOpen && (
         <button
           onClick={() => setIsSidebarOpen(false)}

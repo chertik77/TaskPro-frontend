@@ -19,9 +19,9 @@ export const PriorityFilter = () => {
       onValueChange={v => dispatch(filterCards(v))}>
       {priorities.map(priority => (
         <label
-          className='flex items-center gap-2 text-fs-12-lh-normal-fw-400 text-black/50
-            has-[:checked]:text-black hocus:text-black dark:text-white/50
-            has-[:checked]:dark:text-white hocus:dark:text-white'
+          className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black
+            hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
+            hocus:dark:text-white'
           key={priority}>
           <RadioInput
             value={priority}

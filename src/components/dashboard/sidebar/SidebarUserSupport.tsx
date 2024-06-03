@@ -20,9 +20,7 @@ export const SidebarUserSupport = () => {
           />
         </picture>
       </div>
-      <p
-        className='mb-lg text-fs-12-lh-1.33-fw-400 violet:text-white
-          tablet:text-fs-14-lh-1.42-fw-400'>
+      <p className='mb-lg text-sm violet:text-white tablet:text-base'>
         If you need help with
         <span className='text-brand violet:text-brand-secondary'> TaskPro</span>
         , check out our support resources or reach out to our customer support
@@ -33,7 +31,7 @@ export const SidebarUserSupport = () => {
           open()
           closeBurgerMenu()
         }}
-        className='flex items-center gap-2 text-fs-12-lh-normal-fw-500 transition-colors
+        className='flex items-center gap-2 text-sm font-medium transition-colors
           hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third
           dark:text-white-primary dark:hocus:text-brand-hover'>
         <svg className='size-5'>

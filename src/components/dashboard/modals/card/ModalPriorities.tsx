@@ -19,9 +19,7 @@ export const ModalPriorities = ({
   errors
 }: AddCardModalPrioritiesProps) => (
   <>
-    <p className='mb-1 text-fs-12-lh-normal-fw-400 text-black/50 dark:text-white/50'>
-      Label color
-    </p>
+    <p className='mb-1 text-sm text-black/50 dark:text-white/50'>Label color</p>
     <Controller
       name='priority'
       control={control}

@@ -45,9 +45,8 @@ export const HeaderSelect = ({
           {themes.map(theme => (
             <Select.Item
               key={theme}
-              className='mb-1 cursor-pointer text-fs-14-lh-1.28-fw-400 outline-none
-                data-[highlighted]:text-brand data-[state=checked]:text-brand
-                data-[highlighted]:underline hocus:text-brand
+              className='mb-1 cursor-pointer text-base outline-none data-[highlighted]:text-brand
+                data-[state=checked]:text-brand data-[highlighted]:underline hocus:text-brand
                 violet:data-[state=checked]:text-brand-secondary
                 violet:hocus:text-brand-secondary dark:text-white/30
                 dark:data-[state=checked]:text-brand dark:hocus:text-brand'

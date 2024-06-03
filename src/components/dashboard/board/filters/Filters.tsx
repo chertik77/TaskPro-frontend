@@ -23,7 +23,7 @@ export const Filters = () => {
           className='animation w-[300px] rounded-lg bg-white-primary p-6 shadow-select
             dark:bg-black-fourth'
           collisionPadding={10}>
-          <h2 className='border-b border-black/10 pb-3.5 text-fs-18-lh-normal-fw-500 dark:border-white/10'>
+          <h2 className='border-b border-black/10 pb-3.5 text-lg dark:border-white/10'>
             Filters
           </h2>
           <Popover.Close className='absolute right-3.5 top-3.5 focus:stroke-brand'>

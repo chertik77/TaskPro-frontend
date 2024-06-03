@@ -31,7 +31,7 @@ export const Modal = ({ children, modalTitle, ...props }: DialogProps) => {
         overlay: 'backdrop-saturate-150 backdrop-blur-md'
       }}
       {...props}>
-      <h4 className='mb-6 text-fs-18-lh-normal-fw-500'>{modalTitle}</h4>
+      <h4 className='mb-6 text-lg'>{modalTitle}</h4>
       {children}
     </Dialog>
   )

@@ -8,11 +8,9 @@ type BoardCardDeadlineProps = {
 
 export const BoardCardDeadline = ({ deadline }: BoardCardDeadlineProps) => (
   <div>
-    <p className='mb-1 text-fs-8-lh-normal-fw-400 text-black/50 dark:text-white/50'>
+    <p className='mb-1 text-extrasm text-black/50 dark:text-white/50'>
       Deadline
     </p>
-    <p className='text-fs-10-lh-normal-fw-400'>
-      {format(deadline, 'dd/MM/yyyy')}
-    </p>
+    <p className='text-xs'>{format(deadline, 'dd/MM/yyyy')}</p>
   </div>
 )
