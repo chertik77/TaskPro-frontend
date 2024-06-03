@@ -1,3 +1,5 @@
+import { useSidebar } from 'contexts/sidebar.context'
+import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 import { Link } from 'react-router-dom'
 
@@ -5,6 +7,8 @@ import { BurgerMenu } from '../modals'
 
 export const SidebarLogo = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
+
+  const { isSidebarOpen, setIsSidebarOpen } = useSidebar()
 
   return (
     <div
@@ -30,6 +34,14 @@ export const SidebarLogo = () => {
       <h1 className='text-fs-16-lh-normal-fw-600 violet:text-white'>
         Task Pro
       </h1>
+      {isSidebarOpen && (
+        <button
+          onClick={() => setIsSidebarOpen(false)}
+          type='button'
+          className='ml-auto max-desktop:hidden'>
+          <BiSidebar className='size-5 violet:text-white' />
+        </button>
+      )}
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { SidebarProvider } from 'contexts/sidebar.context'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -26,7 +27,15 @@ export const App = () => (
       />
       <Route
         path='/dashboard'
-        element={<PrivateRoute component={<DashboardPage />} />}>
+        element={
+          <PrivateRoute
+            component={
+              <SidebarProvider>
+                <DashboardPage />
+              </SidebarProvider>
+            }
+          />
+        }>
         <Route
           index
           element={<CreateBoard />}
