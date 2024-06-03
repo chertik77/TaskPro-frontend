@@ -36,7 +36,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
               type={showPassword ? 'text' : 'password'}
               placeholder={inputPasswordPlaceholder}
               className={cn(
-                `hide-password-toggle h-2xl w-full rounded-lg border border-brand
+                `hide-password-toggle peer h-2xl w-full rounded-lg border border-brand
                 border-opacity-40 bg-transparent px-lg pr-[35px] outline-none
                 placeholder:opacity-40 autofill:bg-clip-text autofill:text-fill-black
                 focus:border-opacity-100 violet:border-brand-secondary violet:border-opacity-40
@@ -52,12 +52,12 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
             />
             <button
               type='button'
-              className='absolute right-lg top-4'
+              className='absolute right-lg top-4 opacity-40 peer-[.text-white]:text-white'
               onClick={() => setShowPassword(prev => !prev)}>
               {showPassword ? (
-                <FiEyeOff className='size-lg stroke-white/40 violet:stroke-black dark:stroke-white' />
+                <FiEyeOff className='size-lg' />
               ) : (
-                <FiEye className='size-lg stroke-white/40 violet:stroke-black dark:stroke-white' />
+                <FiEye className='size-lg' />
               )}
             </button>
           </div>
@@ -67,8 +67,9 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
             className={cn(
               `mb-3.5 h-2xl w-full rounded-lg border border-brand border-opacity-40
               bg-transparent px-lg outline-none placeholder:opacity-40 autofill:bg-clip-text
-              autofill:text-fill-white focus:border-opacity-100 violet:border-brand-secondary
-              violet:border-opacity-40 violet:focus:border-opacity-100`,
+              autofill:text-fill-black focus:border-opacity-100 violet:border-brand-secondary
+              violet:border-opacity-40 violet:focus:border-opacity-100
+              dark:autofill:text-fill-white`,
               className,
               errors[inputName] && 'mb-2'
             )}

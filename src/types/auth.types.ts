@@ -7,9 +7,7 @@ export type User = {
 }
 
 export type AuthResponse = {
-  tokens: {
-    refreshToken: string
-    accessToken: string
-  }
+  refreshToken: string
+  accessToken: string
   user: User
 }

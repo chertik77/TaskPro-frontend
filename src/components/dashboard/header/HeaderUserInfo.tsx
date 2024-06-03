@@ -20,7 +20,7 @@ export const HeaderUserInfo = () => {
         src={avatar}
         alt={name}
         referrerPolicy='no-referrer'
-        className='size-8 rounded-lg'
+        className='size-8 rounded-lg object-cover'
       />
     </button>
   )

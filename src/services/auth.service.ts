@@ -33,7 +33,7 @@ export const authService = {
   },
 
   async getTokens(data: { refreshToken: string }) {
-    const response = await axiosInstance.post<Pick<AuthResponse, 'tokens'>>(
+    const response = await axiosInstance.post<Omit<AuthResponse, 'user'>>(
       ApiEndpoints.Tokens,
       data
     )
