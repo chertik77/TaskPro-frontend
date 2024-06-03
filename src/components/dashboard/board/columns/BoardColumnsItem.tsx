@@ -19,7 +19,10 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
 
   return (
     <>
-      <BoardColumnsActions column={column} />
+      <BoardColumnsActions
+        column={column}
+        sortedCardsLength={sortedCards?.length}
+      />
       {column?.cards?.length > 0 && (
         <div
           className={cn(

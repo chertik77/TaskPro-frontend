@@ -38,10 +38,6 @@ const userSlice = createSlice({
       state.tokens.refreshToken = action.payload.refreshToken
       state.user = action.payload.user
     },
-    current: (state, action) => {
-      state.user = action.payload
-      state.isLoggedIn = true
-    },
     saveTokens: (state, action) => {
       state.tokens.refreshToken = action.payload.refreshToken
       state.tokens.accessToken = action.payload.accessToken
@@ -57,7 +53,7 @@ const userSlice = createSlice({
   }
 })
 
-export const { authenticate, updateUser, logout, current, saveTokens } =
+export const { authenticate, updateUser, logout, saveTokens } =
   userSlice.actions
 export const { selectIsLoggedIn, selectUser } = userSlice.selectors
 export const userReducer = userSlice.reducer
