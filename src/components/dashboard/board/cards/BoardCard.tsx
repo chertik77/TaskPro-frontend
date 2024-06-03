@@ -1,23 +1,19 @@
 import type { Card } from 'types'
 
-import { EnumPriority } from 'constants/priorities'
-
-import { cn } from 'lib'
+import { cn, getPriorityColor } from 'lib'
 
 import { BoardCardActions } from './BoardCardActions'
 import { BoardCardDeadline } from './BoardCardDeadline'
 import { BoardCardPriority } from './BoardCardPriority'
 
 export const BoardCard = ({ card }: { card: Card }) => (
-  <div
-    className={cn(
-      'h-5xl w-8xl rounded-lg border-l-4 bg-white py-3.5 pl-6 pr-5 dark:bg-black',
-      card.priority === EnumPriority.WithoutPriority &&
-        'border-black/30 dark:border-white/30',
-      card.priority === EnumPriority.High && 'border-brand',
-      card.priority === EnumPriority.Medium && 'border-priority-medium',
-      card.priority === EnumPriority.Low && 'border-priority-low'
-    )}>
+  <div className='relative h-5xl w-8xl rounded-lg bg-white py-3.5 pl-6 pr-5 dark:bg-black'>
+    <div
+      className={cn(
+        'absolute left-0 top-0 h-full w-1 rounded-l',
+        getPriorityColor(card.priority)
+      )}
+    />
     <p className='mb-2 text-base font-semibold'>{card.title}</p>
     <p className='mb-3.5 line-clamp-2 text-sm text-black/70 dark:text-white/50'>
       {card.description}
