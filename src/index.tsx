@@ -27,6 +27,8 @@ import { CreateBoard } from 'components/ui'
 
 import { persistor, store } from 'redux/store'
 
+import { Pages } from 'config'
+
 import 'react-edit-text/dist/index.css'
 import 'react-responsive-modal/styles.css'
 import './index.css'
@@ -43,22 +45,22 @@ declare module '@tanstack/react-query' {
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: Pages.Home,
     element: <Layout />,
     children: [
       { index: true, element: <PublicOnlyRoute component={<HomePage />} /> }
     ]
   },
   {
-    path: '/auth/signin',
+    path: Pages.Signin,
     element: <PublicOnlyRoute component={<SigninPage />} />
   },
   {
-    path: '/auth/signup',
+    path: Pages.Signup,
     element: <PublicOnlyRoute component={<SignupPage />} />
   },
   {
-    path: '/dashboard',
+    path: Pages.Dashboard,
     element: (
       <PrivateRoute
         component={

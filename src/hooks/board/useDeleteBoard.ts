@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppMutation, useGetBoardId } from 'hooks'
 
+import { Pages } from 'config'
 import { boardService } from 'services'
 
 export const useDeleteBoard = () => {
@@ -19,7 +20,7 @@ export const useDeleteBoard = () => {
       'An error occurred while deleting the board. Our technical team has been notified. Please try again shortly.',
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['boards'] })
-      navigate('/dashboard', { replace: true })
+      navigate(Pages.Dashboard, { replace: true })
     }
   })
 }

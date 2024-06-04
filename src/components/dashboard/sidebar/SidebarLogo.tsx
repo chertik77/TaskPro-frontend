@@ -3,6 +3,8 @@ import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 import { Link } from 'react-router-dom'
 
+import { Pages } from 'config'
+
 import { BurgerMenu } from '../modals'
 
 export const SidebarLogo = () => {
@@ -15,7 +17,7 @@ export const SidebarLogo = () => {
       className='mb-[70px] flex items-center gap-2 pl-3.5 tablet:mb-[60px] tablet:px-6
         desktop:pt-6'>
       <Link
-        to='/dashboard'
+        to={Pages.Dashboard}
         onClick={closeBurgerMenu}>
         <svg
           xmlns='http://www.w3.org/2000/svg'

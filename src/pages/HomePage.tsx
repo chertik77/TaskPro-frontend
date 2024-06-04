@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import { Pages } from 'config'
+
 export const HomePage = () => (
   <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>
     <picture>
@@ -28,12 +30,12 @@ export const HomePage = () => (
       - Don&apos;t wait, start achieving your goals now!
     </p>
     <Link
-      to='/auth/signup'
+      to={Pages.Signup}
       className='mt-12 w-8xl rounded-lg bg-black py-3.5 text-center text-white'>
       Registration
     </Link>
     <Link
-      to='/auth/signin'
+      to={Pages.Signin}
       className='mt-3.5'>
       Log In
     </Link>

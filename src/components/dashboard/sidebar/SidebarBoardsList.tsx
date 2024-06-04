@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useGetBoardId } from 'hooks'
 
+import { Pages } from 'config'
 import { boardService } from 'services'
 
 import { cn } from 'lib'
@@ -26,7 +27,7 @@ export const SidebarBoardsList = () => {
 
   return (
     <Root
-      onValueChange={v => navigate(`/dashboard/${v}`)}
+      onValueChange={v => navigate(`${Pages.Dashboard}/${v}`)}
       className={cn('mb-20 text-base', data?.length === 0 && 'mb-auto')}>
       {data?.map(board => (
         <Item

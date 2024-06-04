@@ -10,6 +10,7 @@ import { NewBoardModal } from 'components/dashboard/modals'
 
 import { useAppMutation } from 'hooks/useAppMutation'
 
+import { Pages } from 'config'
 import { boardService } from 'services'
 
 export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
@@ -27,7 +28,7 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
     onSuccess(data) {
       close()
       reset()
-      navigate(`/dashboard/${data.id}`)
+      navigate(`${Pages.Dashboard}/${data.id}`)
       queryClient.invalidateQueries({ queryKey: ['boards'] })
     }
   })
