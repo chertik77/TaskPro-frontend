@@ -7,10 +7,8 @@ export type UserInitialState = {
     avatar: string
     theme: string
   }
-  tokens: {
-    accessToken: string
-    refreshToken: string
-  }
+  accessToken: string
+  refreshToken: string
   isLoggedIn: boolean
 }
 
@@ -21,10 +19,8 @@ const initialState: UserInitialState = {
     avatar: '',
     theme: 'light'
   },
-  tokens: {
-    accessToken: '',
-    refreshToken: ''
-  },
+  accessToken: '',
+  refreshToken: '',
   isLoggedIn: false
 }
 
@@ -34,13 +30,13 @@ const userSlice = createSlice({
   reducers: {
     authenticate: (state, action) => {
       state.isLoggedIn = true
-      state.tokens.accessToken = action.payload.accessToken
-      state.tokens.refreshToken = action.payload.refreshToken
+      state.accessToken = action.payload.accessToken
+      state.refreshToken = action.payload.refreshToken
       state.user = action.payload.user
     },
     saveTokens: (state, action) => {
-      state.tokens.refreshToken = action.payload.refreshToken
-      state.tokens.accessToken = action.payload.accessToken
+      state.refreshToken = action.payload.refreshToken
+      state.accessToken = action.payload.accessToken
     },
     updateUser: (state, action) => {
       state.user = action.payload

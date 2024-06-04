@@ -14,7 +14,7 @@ const options: CreateAxiosDefaults = {
 export const axiosInstance = axios.create(options)
 
 axiosInstance.interceptors.request.use(config => {
-  const token = store.getState().user.tokens.accessToken
+  const token = store.getState().user.accessToken
 
   if (config?.headers && token) {
     config.headers.Authorization = `Bearer ${token}`
@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
   async error => {
     const originalRequest = error.config
 
-    const refreshToken = store.getState().user.tokens.refreshToken
+    const refreshToken = store.getState().user.refreshToken
 
     if (
       error?.response?.status === 401 &&
