@@ -37,6 +37,7 @@ export const HeaderSelect = ({
     <Select.Portal>
       <Select.Content
         align='end'
+        sideOffset={5}
         position='popper'
         className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-3.5 pl-lg
           pr-11 pt-lg shadow-select violet:border-white-gray-secondary

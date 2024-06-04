@@ -26,8 +26,9 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
         </svg>
       </Select.Trigger>
       <Select.Content
+        sideOffset={10}
         position='popper'
-        className='animation w-min rounded-lg border border-brand bg-white-primary p-lg
+        className='animation z-10 w-min rounded-lg border border-brand bg-white-primary p-lg
           shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
         <Select.Viewport>
           {filteredColumns?.map(column => (
@@ -37,7 +38,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
                 `group cursor-pointer text-base outline-none data-[highlighted]:text-brand
                 hocus:text-brand violet:hocus:text-brand-secondary dark:text-white/30
                 dark:hocus:text-brand`,
-                filteredColumns.length > 1 && 'space-y-2'
+                filteredColumns.length > 1 && 'mb-2 last:mb-0'
               )}
               value={column.id}>
               <Select.ItemText>
