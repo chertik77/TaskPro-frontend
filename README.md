@@ -2,6 +2,8 @@
 
 Welcome to the Task Pro App, the ultimate tool for managing your tasks efficiently. Developed as the final project of the Fullstack Development Bootcamp, Task Pro combines powerful features and an intuitive interface to streamline your task management, similar to popular tools like Trello.
 
+![screenshot](https://github.com/chertik77/TaskPro-frontend/assets/129002577/ca6e8137-ce72-4220-9575-d884359cd4ba)
+
 ## Features
 
 - **Authentication:** Users can register and log in to access the main application.
@@ -14,7 +16,7 @@ Welcome to the Task Pro App, the ultimate tool for managing your tasks efficient
 
 - **Profile Editing:** Users can edit their profiles, including changing avatars.
 
-- **Toggle Sidebar:** Users can effortlessly toggle the sidebar on and off using keyboard shortcuts (<kbd>⌘ Command</kbd> + <kbd>O</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>O</kbd> on Windows/Linux), to maximize their workspace and concentrate on tasks without distractions.
+- **Toggle Sidebar:** Users can effortlessly toggle the sidebar on and off using keyboard shortcuts (<kbd>⌘ Command</kbd> + <kbd>O</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>O</kbd> on Windows/Linux), enabling them to maximize their workspace and concentrate on tasks without distractions.
 
 - **Help Email Integration:** Quickly reach out for assistance by sending an email directly from the app, ensuring timely support for any queries or issues.
 
