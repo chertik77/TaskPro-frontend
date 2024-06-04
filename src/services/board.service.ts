@@ -22,10 +22,7 @@ export const boardService = {
   },
 
   async addNewBoard(data: BoardSchema) {
-    const response = await axiosInstance.post<Board>(
-      `${ApiEndpoints.Board}`,
-      data
-    )
+    const response = await axiosInstance.post<Board>(ApiEndpoints.Board, data)
 
     return response.data
   },
