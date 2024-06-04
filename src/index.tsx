@@ -22,7 +22,7 @@ import {
   NewBoardModal
 } from 'components/dashboard/modals'
 import { Layout } from 'components/Layout'
-import { PrivateRoute, RestrictedRoute } from 'components/routes'
+import { PrivateRoute, PublicOnlyRoute } from 'components/routes'
 import { CreateBoard } from 'components/ui'
 
 import { persistor, store } from 'redux/store'
@@ -46,16 +46,16 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <RestrictedRoute component={<HomePage />} /> }
+      { index: true, element: <PublicOnlyRoute component={<HomePage />} /> }
     ]
   },
   {
     path: '/auth/signin',
-    element: <RestrictedRoute component={<SigninPage />} />
+    element: <PublicOnlyRoute component={<SigninPage />} />
   },
   {
     path: '/auth/signup',
-    element: <RestrictedRoute component={<SignupPage />} />
+    element: <PublicOnlyRoute component={<SignupPage />} />
   },
   {
     path: '/dashboard',

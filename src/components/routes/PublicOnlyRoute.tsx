@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom'
 
 import { selectIsLoggedIn } from 'redux/user.slice'
 
-export const RestrictedRoute = ({ component }: { component: ReactElement }) => {
+export const PublicOnlyRoute = ({ component }: { component: ReactElement }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
   return isLoggedIn ? <Navigate to='/dashboard' /> : component
