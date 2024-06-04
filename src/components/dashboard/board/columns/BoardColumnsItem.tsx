@@ -1,5 +1,6 @@
 import type { Column } from 'types'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 
 import { selectCardPriority, selectCardSort } from 'redux/filter.slice'
@@ -19,10 +20,16 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
 
   return (
     <>
-      <BoardColumnsActions
-        column={column}
-        sortedCardsLength={sortedCards?.length}
-      />
+      <motion.div
+        initial={{ y: -40 }}
+        animate={{ y: 0 }}
+        exit={{ y: -40 }}
+        transition={{ duration: 0.5 }}>
+        <BoardColumnsActions
+          column={column}
+          sortedCardsLength={sortedCards?.length}
+        />
+      </motion.div>
       {column?.cards?.length > 0 && (
         <div
           className={cn(
@@ -32,12 +39,18 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
                 column.cards.length > 3 && !cardPriority
             }
           )}>
-          {sortedCards?.map(card => (
-            <BoardCard
-              card={card}
-              key={card.id}
-            />
-          ))}
+          <AnimatePresence>
+            {sortedCards?.map(card => (
+              <motion.div
+                key={card.id}
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}>
+                <BoardCard card={card} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       )}
     </>
