@@ -35,4 +35,4 @@ Welcome to the Task Pro App, the ultimate tool for managing your tasks efficient
 
 ## Languages and Tools
 
-<a href="#"><img src="https://skillicons.dev/icons?i=ts,react,redux,tailwind,gcp,githubactions,vercel,vite,vscode,figma,yarn" alt="tools"></a>
+<a href="#"><img src="https://skillicons.dev/icons?i=ts,react,redux,tailwind,gcp,githubactions,vercel,vite,vscode,figma" alt="tools"></a>
