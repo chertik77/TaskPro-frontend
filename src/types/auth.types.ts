@@ -11,3 +11,5 @@ export type AuthResponse = {
   accessToken: string
   user: User
 }
+
+export type Tokens = Omit<AuthResponse, 'user'>

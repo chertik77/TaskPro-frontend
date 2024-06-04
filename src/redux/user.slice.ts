@@ -1,3 +1,6 @@
+import type { PayloadAction } from '@reduxjs/toolkit'
+import type { AuthResponse, Tokens, User } from 'types'
+
 import { createSlice } from '@reduxjs/toolkit'
 
 export type UserInitialState = {
@@ -28,17 +31,17 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    authenticate: (state, action) => {
+    authenticate: (state, action: PayloadAction<AuthResponse>) => {
       state.isLoggedIn = true
       state.accessToken = action.payload.accessToken
       state.refreshToken = action.payload.refreshToken
       state.user = action.payload.user
     },
-    saveTokens: (state, action) => {
+    saveTokens: (state, action: PayloadAction<Tokens>) => {
       state.refreshToken = action.payload.refreshToken
       state.accessToken = action.payload.accessToken
     },
-    updateUser: (state, action) => {
+    updateUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload
     },
     logout: () => initialState

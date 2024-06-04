@@ -1,5 +1,5 @@
 import type { SigninSchema, SignupSchema } from 'lib/schemas'
-import type { AuthResponse } from 'types'
+import type { AuthResponse, Tokens } from 'types'
 
 import { axiosInstance } from 'api'
 import { ApiEndpoints } from 'config'
@@ -33,10 +33,7 @@ export const authService = {
   },
 
   async getTokens(data: { refreshToken: string }) {
-    const response = await axiosInstance.post<Omit<AuthResponse, 'user'>>(
-      ApiEndpoints.Tokens,
-      data
-    )
+    const response = await axiosInstance.post<Tokens>(ApiEndpoints.Tokens, data)
 
     return response.data
   },
