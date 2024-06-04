@@ -7,20 +7,21 @@ import { useModal } from 'react-modal-state'
 
 import { EditBoardModal } from 'components/dashboard/modals'
 
-import { useAppMutation, useGetBoardId } from 'hooks'
+import { useAppMutation } from 'hooks'
 
 import { boardService } from 'services'
 
-export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
+export const useEditBoard = (
+  boardId: string,
+  reset: UseFormReset<BoardSchema>
+) => {
   const queryClient = useQueryClient()
-
-  const boardId = useGetBoardId()
 
   const { close } = useModal(EditBoardModal)
 
   return useAppMutation<BoardSchema, Board>({
     mutationKey: ['editBoard'],
-    mutationFn: data => boardService.editBoard(boardId, data),
+    mutationFn: data => boardService.editBoard(boardId!, data),
     toastErrorMessage:
       'Failed to update the board. Please try again. If the problem persists, contact support.',
     onSuccess(data) {

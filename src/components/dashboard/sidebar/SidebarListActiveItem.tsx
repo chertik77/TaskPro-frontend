@@ -15,6 +15,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
 
   const handleBoardEdit = () => {
     open({
+      id: board.id,
       title: board.title,
       icon: board.icon,
       background: board.background.identifier

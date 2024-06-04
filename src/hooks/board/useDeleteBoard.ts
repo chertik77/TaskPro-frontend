@@ -14,7 +14,7 @@ export const useDeleteBoard = () => {
 
   return useAppMutation({
     mutationKey: ['deleteBoard'],
-    mutationFn: () => boardService.deleteBoard(boardId),
+    mutationFn: () => boardService.deleteBoard(boardId!),
     toastErrorMessage:
       'An error occurred while deleting the board. Our technical team has been notified. Please try again shortly.',
     onSuccess() {

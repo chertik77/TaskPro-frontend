@@ -15,6 +15,7 @@ export const EditBoardModal = () => {
   const { close } = useModal(EditBoardModal)
 
   const { data: board } = useModalInstance<{
+    id: string
     title: string
     icon: string
     background: string
@@ -25,7 +26,7 @@ export const EditBoardModal = () => {
       defaultValues: { title: board.title }
     })
 
-  const { mutate, isPending } = useEditBoard(reset)
+  const { mutate, isPending } = useEditBoard(board.id, reset)
 
   useEffect(() => {
     reset({
