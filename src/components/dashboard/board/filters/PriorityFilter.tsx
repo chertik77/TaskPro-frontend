@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { RadioInput } from 'components/ui'
 
-import { filterCards, selectCardPriority } from 'redux/filter.slice'
+import { selectCardPriority, setCardPriority } from 'redux/filter.slice'
 
 import { priorities } from 'constants/priorities'
 
@@ -16,7 +16,7 @@ export const PriorityFilter = () => {
     <Root
       className='flex flex-col gap-2'
       value={cardPriority}
-      onValueChange={v => dispatch(filterCards(v))}>
+      onValueChange={v => dispatch(setCardPriority(v))}>
       {priorities.map(priority => (
         <label
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black

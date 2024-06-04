@@ -3,20 +3,20 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { RadioInput } from 'components/ui'
 
-import { selectCardSort, sortCards } from 'redux/filter.slice'
+import { selectCardSortCriterion, setSortCriterion } from 'redux/filter.slice'
 
 import sortItems from 'lib/json/sort-filter.json'
 
-export const SortFilter = () => {
-  const cardSort = useSelector(selectCardSort)
+export const SortCriterion = () => {
+  const cardSortCriterion = useSelector(selectCardSortCriterion)
 
   const dispatch = useDispatch()
 
   return (
     <Root
       className='flex flex-col gap-2'
-      value={cardSort}
-      onValueChange={v => dispatch(sortCards(v))}>
+      value={cardSortCriterion}
+      onValueChange={v => dispatch(setSortCriterion(v))}>
       {sortItems.map(({ value, id }) => (
         <label
           key={id}
@@ -25,7 +25,7 @@ export const SortFilter = () => {
             hocus:dark:text-white'>
           <RadioInput
             value={id}
-            checked={id === cardSort}
+            checked={id === cardSortCriterion}
           />
           {value}
         </label>

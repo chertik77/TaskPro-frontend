@@ -3,7 +3,7 @@ import type { Column } from 'types'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 
-import { selectCardPriority, selectCardSort } from 'redux/filter.slice'
+import { selectCardPriority, selectCardSortCriterion } from 'redux/filter.slice'
 
 import { cn, getFilteredCardsByPriority, getSortedCards } from 'lib'
 
@@ -12,11 +12,11 @@ import { BoardColumnsActions } from './BoardColumnsActions'
 
 export const BoardColumnsItem = ({ column }: { column: Column }) => {
   const cardPriority = useSelector(selectCardPriority)
-  const cardSort = useSelector(selectCardSort)
+  const cardSortCriterion = useSelector(selectCardSortCriterion)
 
   const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 
-  const sortedCards = getSortedCards(filteredCards, cardSort)
+  const sortedCards = getSortedCards(filteredCards, cardSortCriterion)
 
   return (
     <>

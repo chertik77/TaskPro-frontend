@@ -1,30 +1,33 @@
+import type { PayloadAction } from '@reduxjs/toolkit'
+
 import { createSlice } from '@reduxjs/toolkit'
 
 export type FilterInitialState = {
   cardPriority: string
-  cardSort: string
+  sortCriterion: string
 }
 
 const filterSlice = createSlice({
   name: 'filter',
   initialState: {
     cardPriority: '',
-    cardSort: ''
+    sortCriterion: ''
   } as FilterInitialState,
   reducers: {
-    filterCards: (state, action) => {
+    setCardPriority: (state, action: PayloadAction<string>) => {
       state.cardPriority = action.payload
     },
-    sortCards: (state, action) => {
-      state.cardSort = action.payload
+    setSortCriterion: (state, action: PayloadAction<string>) => {
+      state.sortCriterion = action.payload
     }
   },
   selectors: {
     selectCardPriority: state => state.cardPriority,
-    selectCardSort: state => state.cardSort
+    selectCardSortCriterion: state => state.sortCriterion
   }
 })
 
-export const { filterCards, sortCards } = filterSlice.actions
-export const { selectCardPriority, selectCardSort } = filterSlice.selectors
+export const { setSortCriterion, setCardPriority } = filterSlice.actions
+export const { selectCardPriority, selectCardSortCriterion } =
+  filterSlice.selectors
 export const filterReducer = filterSlice.reducer
