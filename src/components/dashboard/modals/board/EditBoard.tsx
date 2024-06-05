@@ -16,9 +16,9 @@ export const EditBoardModal = () => {
 
   const { data: board } = useModalInstance<{
     id: string
+    background: string
     title: string
     icon: string
-    background: string
   }>()
 
   const { register, reset, handleSubmit, control, formState } =

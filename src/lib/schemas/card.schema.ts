@@ -1,7 +1,5 @@
 import * as v from 'valibot'
 
-import { priorities } from 'constants/priorities'
-
 import { TitleSchema } from './board.schema'
 
 export const CardSchema = v.object({
@@ -10,7 +8,7 @@ export const CardSchema = v.object({
     v.toTrimmed(),
     v.minLength(3, 'Please enter at least 3 characters.')
   ]),
-  priority: v.picklist(priorities),
+  priority: v.picklist(['Low', 'Medium', 'High', 'Without priority']),
   deadline: v.date()
 })
 

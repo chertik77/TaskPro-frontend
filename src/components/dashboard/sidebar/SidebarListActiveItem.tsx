@@ -8,18 +8,17 @@ import { useDeleteBoard } from 'hooks/board/useDeleteBoard'
 
 import { EditBoardModal } from '../modals'
 
-export const SidebarListActiveItem = ({ board }: { board: Board }) => {
+export const SidebarListActiveItem = ({
+  board: { id, title, icon, background }
+}: {
+  board: Board
+}) => {
   const { open } = useModal(EditBoardModal)
 
   const { mutate, isPending } = useDeleteBoard()
 
   const handleBoardEdit = () => {
-    open({
-      id: board.id,
-      title: board.title,
-      icon: board.icon,
-      background: board.background.identifier
-    })
+    open({ id, title, icon, background: background.identifier })
   }
 
   return (
