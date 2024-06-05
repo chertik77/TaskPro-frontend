@@ -1,4 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
+import type { Theme } from 'constants/themes'
 import type { AuthResponse, Tokens, User } from 'types'
 
 import { createSlice } from '@reduxjs/toolkit'
@@ -8,7 +9,7 @@ export type UserInitialState = {
     name: string
     email: string
     avatar: string
-    theme: string
+    theme: Theme
   }
   accessToken: string
   refreshToken: string
