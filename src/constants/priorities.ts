@@ -5,4 +5,4 @@ export enum EnumPriority {
   WithoutPriority = 'Without priority'
 }
 
-export const priorities = ['Low', 'Medium', 'High', 'Without priority']
+export const priorities = ['Low', 'Medium', 'High', 'Without priority'] as const
