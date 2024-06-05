@@ -45,13 +45,6 @@ declare module '@tanstack/react-query' {
 
 const router = createBrowserRouter([
   {
-    path: Pages.Home,
-    element: <Layout />,
-    children: [
-      { index: true, element: <PublicOnlyRoute component={<HomePage />} /> }
-    ]
-  },
-  {
     path: Pages.Signin,
     element: <PublicOnlyRoute component={<SigninPage />} />
   },
@@ -60,16 +53,15 @@ const router = createBrowserRouter([
     element: <PublicOnlyRoute component={<SignupPage />} />
   },
   {
+    path: Pages.Home,
+    element: <Layout />,
+    children: [
+      { index: true, element: <PublicOnlyRoute component={<HomePage />} /> }
+    ]
+  },
+  {
     path: Pages.Dashboard,
-    element: (
-      <PrivateRoute
-        component={
-          <SidebarProvider>
-            <DashboardPage />
-          </SidebarProvider>
-        }
-      />
-    ),
+    element: <PrivateRoute component={<DashboardPage />} />,
     children: [
       { index: true, element: <CreateBoard /> },
       { path: ':boardId', element: <Board /> }
@@ -86,16 +78,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           loading={null}
           persistor={persistor}>
           <ThemeProvider>
-            <ModalProvider>
-              <RouterProvider router={router} />
-              <ModalRenderer Component={EditBoardModal} />
-              <ModalRenderer Component={NewBoardModal} />
-              <ModalRenderer Component={NeedHelpModal} />
-              <ModalRenderer Component={AddCardModal} />
-              <ModalRenderer Component={EditCardModal} />
-              <ModalRenderer Component={EditProfileModal} />
-              <ModalRenderer Component={BurgerMenu} />
-            </ModalProvider>
+            <SidebarProvider>
+              <ModalProvider>
+                <RouterProvider router={router} />
+                <ModalRenderer Component={EditBoardModal} />
+                <ModalRenderer Component={NewBoardModal} />
+                <ModalRenderer Component={NeedHelpModal} />
+                <ModalRenderer Component={AddCardModal} />
+                <ModalRenderer Component={EditCardModal} />
+                <ModalRenderer Component={EditProfileModal} />
+                <ModalRenderer Component={BurgerMenu} />
+              </ModalProvider>
+            </SidebarProvider>
           </ThemeProvider>
         </PersistGate>
       </Provider>
