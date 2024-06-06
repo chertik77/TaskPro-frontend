@@ -27,6 +27,7 @@ export const SidebarBoardsList = () => {
 
   return (
     <Root
+      value={boardId}
       onValueChange={v => navigate(`${Pages.Dashboard}/${v}`)}
       className={cn('mb-20 text-base', data?.length === 0 && 'mb-auto')}>
       {data?.map(board => (
