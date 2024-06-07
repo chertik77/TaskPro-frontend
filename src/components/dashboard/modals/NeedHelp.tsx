@@ -3,7 +3,7 @@ import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
-import { Button, Field, Modal } from 'components/ui'
+import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm, useAppMutation } from 'hooks'
 
@@ -26,20 +26,14 @@ export const NeedHelpModal = () => {
 
   const { mutateAsync, isPending } = useAppMutation<HelpSchema>({
     mutationKey: ['help'],
-    mutationFn: data => userService.askForHelp(data)
+    mutationFn: data => userService.askForHelp(data),
+    onSuccess() {
+      reset()
+      close()
+      toast.success('Your help request has been sent successfully!')
+    },
+    toastErrorMessage: 'An error occurred while sending your help request.'
   })
-
-  const submit = (data: HelpSchema) => {
-    toast.promise(mutateAsync(data), {
-      loading: 'Sending...',
-      success: () => {
-        reset()
-        close()
-        return 'Your help request has been sent successfully!'
-      },
-      error: 'Oops! Something went wrong while sending your help request.'
-    })
-  }
 
   return (
     <Modal
@@ -48,7 +42,7 @@ export const NeedHelpModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(data => mutateAsync(data))}>
         <Field
           {...register('email')}
           inputName='email'
@@ -77,7 +71,7 @@ export const NeedHelpModal = () => {
         <Button
           type='submit'
           disabled={isPending}>
-          {isPending ? 'Loading...' : 'Send'}
+          {isPending ? <Loader /> : 'Send'}
         </Button>
       </form>
     </Modal>

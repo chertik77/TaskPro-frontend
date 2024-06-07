@@ -23,9 +23,9 @@ export const HomePage = () => (
       <svg className='size-10 tablet:size-12'>
         <use href='/icons.svg#icon-logo' />
       </svg>
-      <h1 className='text-3xl tablet:text-4xl'>Task Pro</h1>
+      <h1 className='text-3xl text-black tablet:text-4xl'>Task Pro</h1>
     </div>
-    <p className='mt-6 w-8xl text-center text-base tablet:w-[473px]'>
+    <p className='mt-6 w-8xl text-center text-base text-black tablet:w-[473px]'>
       Supercharge your productivity and take control of your tasks with Task Pro
       - Don&apos;t wait, start achieving your goals now!
     </p>
