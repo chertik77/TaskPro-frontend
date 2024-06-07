@@ -2,20 +2,21 @@ import type { Theme } from 'constants/themes'
 import type { User } from 'types'
 
 import { useTheme } from 'contexts/theme.context'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useAppMutation } from 'hooks'
 
-import { updateUser } from 'redux/user.slice'
+import { selectUser, updateUser } from 'redux/user.slice'
 
 import { userService } from 'services'
 
 import { HeaderSelect } from './HeaderSelect'
 
 export const HeaderThemeSelect = () => {
+  const { theme } = useSelector(selectUser)
   const dispatch = useDispatch()
 
-  const { theme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
 
   const { mutateAsync } = useAppMutation<string, User>({
     mutationKey: ['user'],
@@ -31,7 +32,7 @@ export const HeaderThemeSelect = () => {
 
   return (
     <HeaderSelect
-      theme={theme!}
+      theme={theme}
       handleThemeChange={handleThemeChange}
     />
   )
