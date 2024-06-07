@@ -39,8 +39,8 @@ export const BoardColumnsActions = ({
   const { mutate } = useEditColumn(column.id)
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
-    if (value.length < REQUIRED_COLUMN_TITLE_LENGTH) {
-      setColumnTitle(previousValue)
+    if (value.trim().length < REQUIRED_COLUMN_TITLE_LENGTH) {
+      setColumnTitle(previousValue.trim())
       return toast.error('Column title must be at least 3 characters long.')
     }
     mutate({ title: value })
@@ -67,7 +67,7 @@ export const BoardColumnsActions = ({
             onEditMode={() => {
               if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
             }}
-            onChange={e => setColumnTitle(e.target.value.trim())}
+            onChange={e => setColumnTitle(e.target.value)}
             className='w-[270px] hover:bg-transparent'
             inputClassName='outline-none bg-transparent'
           />

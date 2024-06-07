@@ -47,7 +47,7 @@ export const SidebarBoardsList = () => {
             <svg className='size-lg stroke-current'>
               <use href={`/icons.svg#${board.icon}`}></use>
             </svg>
-            <p className='truncate'>{board?.title}</p>
+            <p className='w-[122px] truncate text-left'>{board?.title}</p>
           </div>
           {board.id === boardId && <SidebarListActiveItem board={board} />}
         </Item>
