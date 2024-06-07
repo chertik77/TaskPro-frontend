@@ -26,6 +26,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
         </svg>
       </Select.Trigger>
       <Select.Content
+        side='top'
         sideOffset={10}
         position='popper'
         className='animation z-10 w-min rounded-lg border border-brand bg-white-primary p-lg
