@@ -3,7 +3,7 @@ import type { Card } from 'types'
 import * as Select from '@radix-ui/react-select'
 
 import { useGetBoardById } from 'hooks'
-import { useChangeCardColumn } from 'hooks/column'
+import { useChangeCardColumn } from 'hooks/card'
 
 import { cn } from 'lib'
 
