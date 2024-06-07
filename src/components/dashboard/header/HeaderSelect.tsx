@@ -13,7 +13,7 @@ export const HeaderSelect = ({
 }: HeaderSelectProps) => (
   <Select.Root
     onValueChange={handleThemeChange}
-    defaultValue={theme}>
+    value={theme}>
     <Select.Trigger className='flex items-center gap-1'>
       <Select.Value placeholder='Theme' />
       <Select.Icon>
