@@ -23,5 +23,11 @@ export const userService = {
     })
 
     return response.data
+  },
+
+  async getCurrentUser() {
+    const response = await axiosInstance.get<User>(ApiEndpoints.UserMe)
+
+    return response.data
   }
 }

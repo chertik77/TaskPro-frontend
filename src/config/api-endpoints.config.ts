@@ -6,6 +6,7 @@ export enum ApiEndpoints {
   GoogleSignin = '/auth/google',
 
   User = '/user',
+  UserMe = '/user/me',
   UserTheme = '/user/theme',
   UserHelp = '/user/help',
 
