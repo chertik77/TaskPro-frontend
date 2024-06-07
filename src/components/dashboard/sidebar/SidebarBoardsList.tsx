@@ -43,11 +43,13 @@ export const SidebarBoardsList = () => {
           checked={board.id === boardId}
           key={board.id}
           value={board.id}>
-          <div className='flex items-center gap-2'>
+          <div className='flex items-center gap-1 tablet:gap-2'>
             <svg className='size-lg stroke-current'>
               <use href={`/icons.svg#${board.icon}`}></use>
             </svg>
-            <p className='w-[122px] truncate text-left'>{board?.title}</p>
+            <p className='w-[105px] truncate text-left tablet:w-[122px]'>
+              {board?.title}
+            </p>
           </div>
           {board.id === boardId && <SidebarListActiveItem board={board} />}
         </Item>
