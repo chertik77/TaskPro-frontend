@@ -2,6 +2,7 @@ import type { AxiosError } from 'axios'
 
 import { StrictMode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { SidebarProvider } from 'contexts/sidebar.context'
 import { ThemeProvider } from 'contexts/theme.context'
 import ReactDOM from 'react-dom/client'
@@ -63,6 +64,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </PersistGate>
         </Provider>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
     {/* </GoogleOAuthProvider> */}
   </StrictMode>
