@@ -36,6 +36,7 @@ axiosInstance.interceptors.response.use(
       !error.config._isRetry
     ) {
       originalRequest._isRetry = true
+
       try {
         const response = await authService.getTokens({ refreshToken })
 

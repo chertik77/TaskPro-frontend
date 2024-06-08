@@ -36,7 +36,7 @@ export const HomePage = () => (
     </Link>
     <Link
       to={Pages.Signin}
-      className='mt-3.5'>
+      className='mt-3.5 text-black'>
       Log In
     </Link>
   </div>
