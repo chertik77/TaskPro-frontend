@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { SidebarProvider } from 'contexts/sidebar.context'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useDispatch } from 'react-redux'
@@ -18,9 +19,16 @@ import { CreateBoard } from './ui'
 export const App = () => {
   const dispatch = useDispatch()
 
+  const { data, isSuccess } = useQuery({
+    queryKey: ['user'],
+    queryFn: userService.getCurrentUser
+  })
+
   useEffect(() => {
-    userService.getCurrentUser().then(r => dispatch(updateUser(r)))
-  }, [dispatch])
+    if (isSuccess) {
+      dispatch(updateUser(data))
+    }
+  }, [data, dispatch, isSuccess])
 
   return (
     <Routes>

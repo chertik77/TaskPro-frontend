@@ -1,15 +1,13 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
-import { toast } from 'sonner'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
-import { useAppForm, useAppMutation } from 'hooks'
+import { useAppForm } from 'hooks'
+import { useNeedHelp } from 'hooks/user'
 
 import { selectUser } from 'redux/user.slice'
-
-import { userService } from 'services'
 
 import { cn } from 'lib'
 import { HelpSchema } from 'lib/schemas'
@@ -24,16 +22,7 @@ export const NeedHelpModal = () => {
     { defaultValues: { email } }
   )
 
-  const { mutateAsync, isPending } = useAppMutation<HelpSchema>({
-    mutationKey: ['help'],
-    mutationFn: data => userService.askForHelp(data),
-    onSuccess() {
-      reset()
-      close()
-      toast.success('Your help request has been sent successfully!')
-    },
-    toastErrorMessage: 'An error occurred while sending your help request.'
-  })
+  const { mutate, isPending } = useNeedHelp(reset)
 
   return (
     <Modal
@@ -42,7 +31,7 @@ export const NeedHelpModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(data => mutateAsync(data))}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('email')}
           inputName='email'
