@@ -1,3 +1,3 @@
-export const themes = ['light', 'dark', 'violet']
+export const themes = ['light', 'dark', 'violet'] as const
 
-export type Theme = 'dark' | 'light' | 'violet'
+export type Theme = (typeof themes)[number]

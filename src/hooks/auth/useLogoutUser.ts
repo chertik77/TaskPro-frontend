@@ -1,7 +1,6 @@
 import { useTheme } from 'contexts/theme.context'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
-import { toast } from 'sonner'
 
 import { BurgerMenu } from 'components/dashboard/modals'
 
@@ -21,14 +20,11 @@ export const useLogoutUser = () => {
   return useAppMutation({
     mutationKey: ['logout'],
     mutationFn: () => authService.logout(),
+    toastErrorMessage:
+      'An error occurred while logging out. Our technical team has been notified. Please try again shortly.',
     onSuccess() {
       setTheme('light')
       dispatch(logout())
-    },
-    onError() {
-      toast.error(
-        'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
-      )
     },
     onSettled() {
       closeBurgerMenu()
