@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { SidebarProvider } from 'contexts/sidebar.context'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
 import { PrivateRoute, PublicOnlyRoute } from 'components/routes'
 
-import { updateUser } from 'redux/user.slice'
+import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
 
 import { Pages } from 'config'
 import { userService } from 'services'
@@ -17,11 +17,14 @@ import { Layout } from './Layout'
 import { CreateBoard } from './ui'
 
 export const App = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+
   const dispatch = useDispatch()
 
   const { data, isSuccess } = useQuery({
     queryKey: ['user'],
-    queryFn: userService.getCurrentUser
+    queryFn: userService.getCurrentUser,
+    enabled: isLoggedIn
   })
 
   useEffect(() => {

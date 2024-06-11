@@ -23,6 +23,7 @@ export const useLogoutUser = () => {
     toastErrorMessage:
       'An error occurred while logging out. Our technical team has been notified. Please try again shortly.',
     onSuccess() {
+      document.cookie = `g_state=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT`
       setTheme('light')
       dispatch(logout())
     },
