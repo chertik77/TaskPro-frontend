@@ -16,7 +16,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
   const cardPriority = useSelector(selectCardPriority)
   const cardSortCriterion = useSelector(selectCardSortCriterion)
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+  const isTabletOrMobile = useMediaQuery({ minWidth: 320, maxWidth: 1439 })
 
   const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 
@@ -34,13 +34,13 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
             'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
             {
               'h-[calc(100dvh-270px)]':
-                column.cards.length > CARDS_LENGTH_REQUIRED_FOR_SCROLL &&
+                sortedCards.length > CARDS_LENGTH_REQUIRED_FOR_SCROLL &&
                 !cardPriority &&
-                !isMobile,
+                !isTabletOrMobile,
               'h-[calc(100dvh-300px)]':
-                column.cards.length >= CARDS_LENGTH_REQUIRED_FOR_SCROLL &&
+                sortedCards.length >= CARDS_LENGTH_REQUIRED_FOR_SCROLL &&
                 !cardPriority &&
-                isMobile
+                isTabletOrMobile
             }
           )}>
           {sortedCards.map(card => (
