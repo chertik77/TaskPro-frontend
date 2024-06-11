@@ -29,6 +29,7 @@
     "react-day-picker": "^8.10.0",
     "react-dom": "^18.2.0",
     "react-edit-text": "^5.1.1",
+    "react-google-one-tap-login": "^0.1.1",
     "react-hook-form": "^7.50.1",
     "react-hotkeys-hook": "^4.5.0",
     "react-icons": "^5.0.1",
