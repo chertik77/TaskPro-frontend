@@ -15,7 +15,7 @@ export const BurgerMenu = () => {
       open={isOpen}
       onClose={close}
       classNames={{
-        modal: `m-0 flex min-h-dvh w-[225px] flex-col justify-between bg-white
+        modal: `m-0 flex min-h-dvh w-[225px] flex-col bg-white
         pb-6 px-0 pt-default violet:bg-brand-secondary dark:bg-black-secondary
         tablet:w-7xl tablet:pt-6`
       }}
@@ -25,8 +25,10 @@ export const BurgerMenu = () => {
       <SidebarLogo />
       <SidebarMyBoardsInfo />
       <SidebarBoardsList />
-      <SidebarUserSupport />
-      <SidebarLogoutBtn />
+      <div className='mt-auto'>
+        <SidebarUserSupport />
+        <SidebarLogoutBtn />
+      </div>
     </Modal>
   )
 }

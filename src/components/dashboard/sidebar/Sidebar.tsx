@@ -14,14 +14,14 @@ export const Sidebar = () => {
   return (
     <div className={cn('row-span-2 hidden', isSidebarOpen && 'desktop:block')}>
       <div
-        className='custom-scrollbar flex h-dvh w-56 flex-col justify-between overflow-y-auto
-          bg-white pb-6 violet:bg-brand-secondary dark:bg-black-secondary tablet:w-7xl'>
+        className='custom-scrollbar flex h-dvh w-56 flex-col overflow-y-auto bg-white pb-6
+          violet:bg-brand-secondary dark:bg-black-secondary tablet:w-7xl'>
         <div>
           <SidebarLogo />
           <SidebarMyBoardsInfo />
           <SidebarBoardsList />
         </div>
-        <div>
+        <div className='mt-auto'>
           <SidebarUserSupport />
           <SidebarLogoutBtn />
         </div>
