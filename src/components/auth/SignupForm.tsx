@@ -1,7 +1,7 @@
 import { Button, Field, Loader } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useSignupUser } from 'hooks/auth'
+import { useSigninUserWithGoogle, useSignupUser } from 'hooks/auth'
 
 import { SignupSchema } from 'lib/schemas'
 
@@ -9,7 +9,7 @@ export const SignupForm = () => {
   const { handleSubmit, register, formState, reset } =
     useAppForm<SignupSchema>(SignupSchema)
 
-  // useSigninUserWithGoogle()
+  useSigninUserWithGoogle()
 
   const { mutate, isPending } = useSignupUser(reset)
 
