@@ -9,6 +9,8 @@ export const SignupForm = () => {
   const { handleSubmit, register, formState, reset } =
     useAppForm<SignupSchema>(SignupSchema)
 
+  // useSigninUserWithGoogle()
+
   const { mutate, isPending } = useSignupUser(reset)
 
   return (

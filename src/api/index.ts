@@ -45,7 +45,6 @@ axiosInstance.interceptors.response.use(
         return axiosInstance.request(originalRequest)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
-        console.log(error)
         if (error?.response?.status === 403) store.dispatch(logout())
       }
     }
