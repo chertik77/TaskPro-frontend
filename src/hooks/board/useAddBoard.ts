@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { NewBoardModal } from 'components/dashboard/modals'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { Pages } from 'config'
 import { boardService } from 'services'
@@ -22,7 +22,7 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
 
   return useAppMutation<BoardSchema, Board>({
     mutationKey: ['addBoard'],
-    mutationFn: data => boardService.addNewBoard(data),
+    mutationFn: boardService.addNewBoard,
     toastErrorMessage:
       'Unexpected error during board creation. We apologize for the inconvenience. Please try again later.',
     onSuccess(data) {

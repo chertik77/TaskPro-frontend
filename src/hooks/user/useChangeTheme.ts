@@ -2,7 +2,7 @@ import type { User } from 'types'
 
 import { useQueryClient } from '@tanstack/react-query'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { userService } from 'services'
 
@@ -11,7 +11,7 @@ export const useChangeTheme = () => {
 
   return useAppMutation<string, User>({
     mutationKey: ['changeTheme'],
-    mutationFn: theme => userService.changeUserTheme(theme),
+    mutationFn: userService.changeUserTheme,
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['user'] })
     },

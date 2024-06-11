@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { EditProfileModal } from 'components/dashboard/modals'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { userService } from 'services'
 
@@ -18,7 +18,7 @@ export const useEditProfile = () => {
 
   return useAppMutation<EditUserSchema, User>({
     mutationKey: ['editUser'],
-    mutationFn: data => userService.updateUserCredentials(data),
+    mutationFn: userService.updateUserCredentials,
     onSuccess() {
       close()
       toast.success('Your profile has been successfully updated.')

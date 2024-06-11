@@ -6,7 +6,7 @@ import { useModal, useModalInstance } from 'react-modal-state'
 
 import { AddCardModal } from 'components/dashboard/modals'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { cardService } from 'services'
 

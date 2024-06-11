@@ -19,7 +19,7 @@ export const useLogoutUser = () => {
 
   return useAppMutation({
     mutationKey: ['logout'],
-    mutationFn: () => authService.logout(),
+    mutationFn: authService.logout,
     toastErrorMessage:
       'An error occurred while logging out. Our technical team has been notified. Please try again shortly.',
     onSuccess() {

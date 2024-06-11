@@ -21,7 +21,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const { theme: userTheme } = useSelector(selectUser)
 
-  const [theme, setTheme] = useState<Theme>(userTheme as Theme)
+  const [theme, setTheme] = useState<Theme>(userTheme)
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -32,7 +32,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
   }, [userTheme, theme])
 
   const value = {
-    theme: userTheme as Theme,
+    theme: userTheme,
     setTheme: (theme: Theme) => setTheme(theme)
   }
 

@@ -16,7 +16,7 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
 
   return useAppMutation<SignupSchema, AuthResponse>({
     mutationKey: ['signup'],
-    mutationFn: data => authService.signup(data),
+    mutationFn: authService.signup,
     onSuccess(data) {
       reset()
       dispatch(authenticate(data))

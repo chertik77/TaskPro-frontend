@@ -1,4 +1,4 @@
-import type { EnumPriority } from 'constants/priorities'
+import type { Priority } from 'constants/priorities'
 import type { Card } from 'types'
 
 import { isToday } from 'date-fns'
@@ -10,7 +10,7 @@ enum priorityOrder {
   High = 3
 }
 
-const getPriorityOrder = (priority?: EnumPriority) => {
+const getPriorityOrder = (priority?: Priority) => {
   return priority ? priorityOrder[priority] : priorityOrder['Without priority']
 }
 

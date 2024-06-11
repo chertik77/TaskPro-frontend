@@ -1,7 +1,5 @@
 import type { Card } from 'types'
 
-import { EnumPriority } from 'constants/priorities'
-
 import { cn, getPriorityColor } from 'lib'
 
 type BoardCardPriorityProps = {
@@ -16,7 +14,7 @@ export const BoardCardPriority = ({ priority }: BoardCardPriorityProps) => (
     <div className='flex items-center gap-1'>
       <div className={cn('size-3 rounded-full', getPriorityColor(priority))} />
       <p className='text-xs'>
-        {priority === EnumPriority.WithoutPriority ? 'Without' : priority}
+        {priority === 'Without priority' ? 'Without' : priority}
       </p>
     </div>
   </div>

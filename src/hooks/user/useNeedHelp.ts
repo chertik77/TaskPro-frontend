@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 
 import { NeedHelpModal } from 'components/dashboard/modals'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { userService } from 'services'
 
@@ -15,7 +15,7 @@ export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {
 
   return useAppMutation<HelpSchema>({
     mutationKey: ['help'],
-    mutationFn: data => userService.askForHelp(data),
+    mutationFn: userService.askForHelp,
     onSuccess() {
       reset()
       close()

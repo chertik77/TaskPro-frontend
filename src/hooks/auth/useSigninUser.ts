@@ -16,7 +16,7 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
 
   return useAppMutation<SigninSchema, AuthResponse>({
     mutationKey: ['signin'],
-    mutationFn: data => authService.signin(data),
+    mutationFn: authService.signin,
     onSuccess(data) {
       reset()
       dispatch(authenticate(data))

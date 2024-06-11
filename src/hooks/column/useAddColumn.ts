@@ -1,7 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 
-import { useAppMutation } from 'hooks/useAppMutation'
-import { useGetBoardId } from 'hooks/useGetBoardId'
+import { useAppMutation, useGetBoardId } from 'hooks'
 
 import { DEFAULT_COLUMN_TITLE } from 'constants/titles'
 import { columnService } from 'services'

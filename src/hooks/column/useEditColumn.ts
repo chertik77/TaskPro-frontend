@@ -2,7 +2,7 @@ import type { ColumnTitle } from 'types'
 
 import { useQueryClient } from '@tanstack/react-query'
 
-import { useAppMutation } from 'hooks/useAppMutation'
+import { useAppMutation } from 'hooks'
 
 import { columnService } from 'services'
 

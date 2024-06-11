@@ -1,4 +1,4 @@
-import type { EnumPriority } from 'constants/priorities'
+import type { Priority } from 'constants/priorities'
 
 export type ColumnTitle = {
   title: string
@@ -9,7 +9,7 @@ export type Card = {
   title: string
   column: string
   description: string
-  priority: EnumPriority
+  priority: Priority
   deadline: Date
 }
 

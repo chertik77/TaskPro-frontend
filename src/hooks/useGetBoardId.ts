@@ -7,6 +7,4 @@ export const useGetBoardId = () => {
   const boardId = pathParts[pathParts.length - 1]
 
   if (boardId) return boardId
-
-  throw new Error('Board ID not found')
 }
