@@ -25,7 +25,7 @@ export const authService = {
 
   async signinWithGoogle(credential: string) {
     const response = await axiosInstance.post<AuthResponse>(
-      ApiEndpoints.GoogleSignin,
+      ApiEndpoints.Google,
       { credential }
     )
 

@@ -3,7 +3,7 @@ export enum ApiEndpoints {
   Signin = '/auth/signin',
   Tokens = '/auth/tokens',
   Logout = '/auth/logout',
-  GoogleSignin = '/auth/google',
+  Google = '/auth/google',
 
   User = '/user',
   UserMe = '/user/me',
