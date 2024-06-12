@@ -1,6 +1,5 @@
 import { GoogleLogin } from '@react-oauth/google'
 import { useDispatch } from 'react-redux'
-import { useMediaQuery } from 'react-responsive'
 
 import { Button, Field, Loader } from 'components/ui'
 
@@ -23,7 +22,7 @@ export const SigninForm = () => {
 
   const { mutate, isPending } = useSigninUser(reset)
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+  // const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
     <>
@@ -34,8 +33,14 @@ export const SigninForm = () => {
           )
           dispatch(authenticate(r))
         }}
-        useOneTap={!isMobile}
+        prompt_parent_id='g_id_onload'
+        useOneTap={true}
         auto_select
+      />
+      <div
+        data-prompt_parent_id='g_id_onload'
+        id='g_id_onload'
+        className='absolute right-5 top-5'
       />
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
