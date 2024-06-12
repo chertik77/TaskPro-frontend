@@ -7,6 +7,8 @@ import { useSigninUserWithGoogle } from 'hooks/auth'
 
 import { Pages } from 'config'
 
+import { cn } from 'lib'
+
 export const HomePage = () => {
   const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439px)' })
 
@@ -42,7 +44,10 @@ export const HomePage = () => {
       {isMobileOrTablet && <GoogleButton />}
       <Link
         to={Pages.Signup}
-        className='mt-3.5 w-8xl rounded-lg bg-black py-3.5 text-center text-white'>
+        className={cn(
+          'w-8xl rounded-lg bg-black py-3.5 text-center text-white',
+          isMobileOrTablet && 'mt-3.5'
+        )}>
         Registration
       </Link>
       <Link
