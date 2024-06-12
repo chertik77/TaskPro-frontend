@@ -1,8 +1,8 @@
-import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
 
 import { GoogleButton } from 'components/GoogleButton'
 
+import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useSigninUserWithGoogle } from 'hooks/auth'
 
 import { Pages } from 'config'
@@ -10,7 +10,7 @@ import { Pages } from 'config'
 import { cn } from 'lib'
 
 export const HomePage = () => {
-  const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439px)' })
+  const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   useSigninUserWithGoogle()
 
@@ -41,12 +41,12 @@ export const HomePage = () => {
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don&apos;t wait, start achieving your goals now!
       </p>
-      {isMobileOrTablet && <GoogleButton />}
+      {isTabletAndBelow && <GoogleButton />}
       <Link
         to={Pages.Signup}
         className={cn(
           'w-8xl rounded-lg bg-black py-3.5 text-center text-white',
-          isMobileOrTablet && 'mt-3.5'
+          isTabletAndBelow && 'mt-3.5'
         )}>
         Registration
       </Link>

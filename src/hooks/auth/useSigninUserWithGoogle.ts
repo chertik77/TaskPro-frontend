@@ -1,7 +1,8 @@
 import { useGoogleOneTapLogin } from '@react-oauth/google'
 import { useDispatch } from 'react-redux'
-import { useMediaQuery } from 'react-responsive'
 import { toast } from 'sonner'
+
+import { useTabletAndBelowMediaQuery } from 'hooks/useTabletAndBelowMediaQuery'
 
 import { authenticate } from 'redux/user.slice'
 
@@ -10,7 +11,7 @@ import { authService } from 'services'
 export const useSigninUserWithGoogle = () => {
   const dispatch = useDispatch()
 
-  const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439px)' })
+  const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   return useGoogleOneTapLogin({
     cancel_on_tap_outside: false,
@@ -20,7 +21,7 @@ export const useSigninUserWithGoogle = () => {
       )
       dispatch(authenticate(r))
     },
-    disabled: isMobileOrTablet,
+    disabled: isTabletAndBelow,
     onError: () =>
       toast.error(
         'Authentication failed: Unable to sign in with Google. Please try again.'

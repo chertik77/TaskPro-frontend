@@ -1,7 +1,8 @@
 import type { Column } from 'types'
 
 import { useSelector } from 'react-redux'
-import { useMediaQuery } from 'react-responsive'
+
+import { useTabletAndBelowMediaQuery } from 'hooks'
 
 import { selectCardPriority, selectCardSortCriterion } from 'redux/filter.slice'
 
@@ -18,7 +19,7 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
 
   const sortedCards = getSortedCards(filteredCards, cardSortCriterion)
 
-  const isTabletOrMobile = useMediaQuery({ minWidth: 320, maxWidth: 1439 })
+  const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   return (
     <>
@@ -28,8 +29,8 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
       />
       <div
         className={cn('custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4', {
-          'h-[calc(100dvh-270px)]': !cardPriority && !isTabletOrMobile,
-          'h-[calc(100dvh-300px)]': !cardPriority && isTabletOrMobile
+          'h-[calc(100dvh-270px)]': !cardPriority && !isTabletAndBelow,
+          'h-[calc(100dvh-300px)]': !cardPriority && isTabletAndBelow
         })}>
         {sortedCards?.map(card => (
           <BoardCard
