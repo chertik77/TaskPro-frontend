@@ -1,6 +1,7 @@
 import type { CreateAxiosDefaults } from 'axios'
 
 import axios from 'axios'
+import createAuthRefreshInterceptor from 'axios-auth-refresh'
 
 import { store } from 'redux/store'
 import { logout, saveTokens } from 'redux/user.slice'
@@ -23,32 +24,11 @@ axiosInstance.interceptors.request.use(config => {
   return config
 })
 
-axiosInstance.interceptors.response.use(
-  config => config,
-  async error => {
-    const originalRequest = error.config
+createAuthRefreshInterceptor(axiosInstance, async () => {
+  const refreshToken = store.getState().user.refreshToken
 
-    const refreshToken = store.getState().user.refreshToken
-
-    if (
-      error?.response?.status === 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
-      originalRequest._isRetry = true
-
-      try {
-        const response = await authService.getTokens({ refreshToken })
-
-        store.dispatch(saveTokens(response))
-
-        return axiosInstance.request(originalRequest)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
-        if (error?.response?.status === 403) store.dispatch(logout())
-      }
-    }
-
-    throw error
-  }
-)
+  authService
+    .getTokens({ refreshToken })
+    .then(r => store.dispatch(saveTokens(r)))
+    .catch(() => store.dispatch(logout()))
+})
