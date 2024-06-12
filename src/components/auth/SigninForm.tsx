@@ -1,14 +1,7 @@
-import { GoogleLogin } from '@react-oauth/google'
-import { useDispatch } from 'react-redux'
-
 import { Button, Field, Loader } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useSigninUser } from 'hooks/auth'
-
-import { authenticate } from 'redux/user.slice'
-
-import { authService } from 'services'
+import { useSigninUser, useSigninUserWithGoogle } from 'hooks/auth'
 
 import { SigninSchema } from 'lib/schemas'
 
@@ -16,32 +9,12 @@ export const SigninForm = () => {
   const { handleSubmit, register, formState, reset } =
     useAppForm<SigninSchema>(SigninSchema)
 
-  // useSigninUserWithGoogle()
-
-  const dispatch = useDispatch()
+  useSigninUserWithGoogle()
 
   const { mutate, isPending } = useSigninUser(reset)
 
-  // const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-
   return (
     <>
-      <GoogleLogin
-        onSuccess={async credentialResponse => {
-          const r = await authService.signinWithGoogle(
-            credentialResponse.credential!
-          )
-          dispatch(authenticate(r))
-        }}
-        prompt_parent_id='g_id_onload'
-        useOneTap={true}
-        auto_select
-      />
-      <div
-        data-prompt_parent_id='g_id_onload'
-        id='g_id_onload'
-        className='absolute right-5 top-5'
-      />
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('email')}

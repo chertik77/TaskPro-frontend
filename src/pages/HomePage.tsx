@@ -1,10 +1,15 @@
+import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
+
+import { GoogleButton } from 'components/GoogleButton'
 
 import { useSigninUserWithGoogle } from 'hooks/auth'
 
 import { Pages } from 'config'
 
 export const HomePage = () => {
+  const isMobileOrTablet = useMediaQuery({ query: '(max-width: 1439px)' })
+
   useSigninUserWithGoogle()
 
   return (
@@ -30,13 +35,14 @@ export const HomePage = () => {
         </svg>
         <h1 className='text-3xl text-black tablet:text-4xl'>Task Pro</h1>
       </div>
-      <p className='mt-6 w-8xl text-center text-base text-black tablet:w-[473px]'>
+      <p className='mb-8 mt-6 w-8xl text-center text-base text-black tablet:w-[473px]'>
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don&apos;t wait, start achieving your goals now!
       </p>
+      {isMobileOrTablet && <GoogleButton />}
       <Link
         to={Pages.Signup}
-        className='mt-12 w-8xl rounded-lg bg-black py-3.5 text-center text-white'>
+        className='mt-3.5 w-8xl rounded-lg bg-black py-3.5 text-center text-white'>
         Registration
       </Link>
       <Link
