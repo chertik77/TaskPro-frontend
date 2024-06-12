@@ -10,8 +10,6 @@ import { cn, getFilteredCardsByPriority, getSortedCards } from 'lib'
 import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
 
-const CARDS_LENGTH_REQUIRED_FOR_SCROLL = 3
-
 export const BoardColumnsItem = ({ column }: { column: Column }) => {
   const cardPriority = useSelector(selectCardPriority)
   const cardSortCriterion = useSelector(selectCardSortCriterion)
@@ -33,14 +31,8 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
           className={cn(
             'custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4',
             {
-              'h-[calc(100dvh-270px)]':
-                sortedCards.length > CARDS_LENGTH_REQUIRED_FOR_SCROLL &&
-                !cardPriority &&
-                !isTabletOrMobile,
-              'h-[calc(100dvh-300px)]':
-                sortedCards.length >= CARDS_LENGTH_REQUIRED_FOR_SCROLL &&
-                !cardPriority &&
-                isTabletOrMobile
+              'h-[calc(100dvh-270px)]': !cardPriority && !isTabletOrMobile,
+              'h-[calc(100dvh-300px)]': !cardPriority && isTabletOrMobile
             }
           )}>
           {sortedCards.map(card => (
