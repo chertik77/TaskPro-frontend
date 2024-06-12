@@ -2,6 +2,7 @@ import type { PropsWithChildren } from 'react'
 
 import { createContext, useContext, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { useMediaQuery } from 'react-responsive'
 
 type SidebarProviderState = {
   isSidebarOpen: boolean
@@ -18,8 +19,11 @@ const SidebarProviderContext = createContext<SidebarProviderState>(initialState)
 export const SidebarProvider = ({ children }: PropsWithChildren) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
+  const isTabletAndBelow = useMediaQuery({ maxWidth: 1439 })
+
   useHotkeys('mod+o', () => setIsSidebarOpen(prev => !prev), {
-    preventDefault: true
+    preventDefault: true,
+    ignoreEventWhen: () => isTabletAndBelow
   })
 
   const value = {
