@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 
+import { Loader } from 'components/ui'
+
 import { useGetBoardId } from 'hooks'
 
 import { Pages } from 'config'
@@ -20,12 +22,17 @@ export const SidebarBoardsList = () => {
 
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['boards'],
     queryFn: () => boardService.getAllBoards()
   })
 
-  return (
+  return isPending ? (
+    <div className='flex h-4xl items-center gap-2 pl-3.5 violet:text-white tablet:pl-6'>
+      <Loader className='size-5' />
+      Loading your boards...
+    </div>
+  ) : (
     <Root
       value={boardId}
       onValueChange={v => navigate(`${Pages.Dashboard}/${v}`)}

@@ -1,5 +1,5 @@
 export * from './Button'
-export * from './CreateBoard'
+
 export * from './DatePicker'
 export * from './Field'
 export * from './Loader'
