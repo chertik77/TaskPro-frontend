@@ -1,5 +1,3 @@
-import type { CreateAxiosDefaults } from 'axios'
-
 import axios from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
 
@@ -8,11 +6,9 @@ import { logout, saveTokens } from 'redux/user.slice'
 
 import { authService } from 'services'
 
-const options: CreateAxiosDefaults = {
+export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL
-}
-
-export const axiosInstance = axios.create(options)
+})
 
 axiosInstance.interceptors.request.use(config => {
   const token = store.getState().user.accessToken

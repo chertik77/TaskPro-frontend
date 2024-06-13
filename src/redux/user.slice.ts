@@ -1,18 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { Theme } from 'constants/themes'
 import type { AuthResponse, Tokens, User } from 'types'
 
 import { createSlice } from '@reduxjs/toolkit'
 
-export type UserInitialState = {
-  user: {
-    name: string
-    email: string
-    avatar: string
-    theme: Theme
-  }
-  accessToken: string
-  refreshToken: string
+export type UserInitialState = Tokens & {
+  user: Omit<User, 'id'>
   isLoggedIn: boolean
 }
 
