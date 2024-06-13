@@ -34,7 +34,7 @@ export const boardService = {
     return response.data
   },
 
-  deleteBoard(boardId: string) {
-    axiosInstance.delete(`${ApiEndpoints.Board}/${boardId}`)
+  async deleteBoard(boardId: string) {
+    await axiosInstance.delete(`${ApiEndpoints.Board}/${boardId}`)
   }
 }
