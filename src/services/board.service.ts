@@ -6,11 +6,9 @@ import { ApiEndpoints } from 'config'
 
 export const boardService = {
   async getAllBoards() {
-    const response = await axiosInstance.get<{ boards: Board[] }>(
-      ApiEndpoints.Board
-    )
+    const response = await axiosInstance.get<Board[]>(ApiEndpoints.Board)
 
-    return response.data.boards
+    return response.data
   },
 
   async getBoardById(boardId: string) {
@@ -36,7 +34,7 @@ export const boardService = {
     return response.data
   },
 
-  async deleteBoard(boardId: string) {
-    await axiosInstance.delete(`${ApiEndpoints.Board}/${boardId}`)
+  deleteBoard(boardId: string) {
+    axiosInstance.delete(`${ApiEndpoints.Board}/${boardId}`)
   }
 }
