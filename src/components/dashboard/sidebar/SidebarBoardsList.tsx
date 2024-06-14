@@ -35,7 +35,10 @@ export const SidebarBoardsList = () => {
   ) : (
     <Root
       value={boardId}
-      onValueChange={v => navigate(`${Pages.Dashboard}/${v}`)}
+      onValueChange={v => {
+        navigate(`${Pages.Dashboard}/${v}`)
+        closeBurgerMenu()
+      }}
       className={cn('mb-20 text-base', data?.length === 0 && 'mb-auto')}>
       {data?.map(board => (
         <Item
@@ -46,7 +49,6 @@ export const SidebarBoardsList = () => {
             aria-checked:violet:text-white dark:text-white/50
             aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6`
           )}
-          onClick={closeBurgerMenu}
           checked={board.id === boardId}
           key={board.id}
           value={board.id}>
