@@ -6,7 +6,7 @@ import { Button } from 'components/ui'
 
 import { useDeleteBoard } from 'hooks/board/useDeleteBoard'
 
-import { EditBoardModal } from '../modals'
+import { BurgerMenu, EditBoardModal } from '../modals'
 
 export const SidebarListActiveItem = ({
   board: { id, title, icon, background }
@@ -15,9 +15,12 @@ export const SidebarListActiveItem = ({
 }) => {
   const { open } = useModal(EditBoardModal)
 
+  const { close } = useModal(BurgerMenu)
+
   const { mutate, isPending } = useDeleteBoard()
 
   const handleBoardEdit = () => {
+    close()
     open({ id, title, icon, background: background.identifier })
   }
 
@@ -30,7 +33,10 @@ export const SidebarListActiveItem = ({
           iconClassName='violet:stroke-white/50'
         />
         <Button
-          onClick={() => mutate()}
+          onClick={() => {
+            close()
+            mutate()
+          }}
           iconName='trash'
           disabled={isPending}
           iconClassName='violet:stroke-white/50'
