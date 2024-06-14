@@ -1,3 +1,4 @@
+import * as Avatar from '@radix-ui/react-avatar'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 
@@ -16,12 +17,17 @@ export const HeaderUserInfo = () => {
       onClick={open}
       className='flex items-center gap-2'>
       <p>{name}</p>
-      <img
-        src={avatar}
-        alt={name}
-        referrerPolicy='no-referrer'
-        className='size-8 rounded-lg object-cover'
-      />
+      <Avatar.Root>
+        <Avatar.Image
+          src={avatar}
+          alt={name}
+          referrerPolicy='no-referrer'
+          className='size-8 rounded-lg object-cover'
+        />
+        <Avatar.Fallback className='flex size-8 items-center justify-center rounded-lg bg-white text-black'>
+          A
+        </Avatar.Fallback>
+      </Avatar.Root>
     </button>
   )
 }
