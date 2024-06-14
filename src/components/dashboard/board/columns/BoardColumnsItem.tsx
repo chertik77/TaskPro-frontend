@@ -23,14 +23,11 @@ export const BoardColumnsItem = ({ column }: { column: Column }) => {
 
   return (
     <>
-      <BoardColumnsActions
-        column={column}
-        sortedCardsLength={sortedCards?.length}
-      />
+      <BoardColumnsActions column={column} />
       <div
         className={cn('custom-scrollbar -mr-4 space-y-2 overflow-y-auto pr-4', {
-          'h-[calc(100dvh-270px)]': !cardPriority && !isTabletAndBelow,
-          'h-[calc(100dvh-300px)]': !cardPriority && isTabletAndBelow
+          'h-[calc(100dvh-270px)]': !isTabletAndBelow,
+          'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         {sortedCards?.map(card => (
           <BoardCard
