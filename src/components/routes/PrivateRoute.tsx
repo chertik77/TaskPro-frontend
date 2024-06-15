@@ -10,7 +10,5 @@ import { Pages } from 'config'
 export const PrivateRoute = ({ component }: { component: ReactElement }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  const shouldRedirect = !isLoggedIn
-
-  return shouldRedirect ? <Navigate to={Pages.Home} /> : component
+  return !isLoggedIn ? <Navigate to={Pages.Home} /> : component
 }

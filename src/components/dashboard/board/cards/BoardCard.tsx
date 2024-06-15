@@ -7,7 +7,9 @@ import { BoardCardDeadline } from './BoardCardDeadline'
 import { BoardCardPriority } from './BoardCardPriority'
 
 export const BoardCard = ({ card }: { card: Card }) => (
-  <div className='relative h-5xl w-8xl rounded-lg bg-white py-3.5 pl-6 pr-5 dark:bg-black'>
+  <div
+    className='relative mb-2 h-5xl w-8xl rounded-lg bg-white py-3.5 pl-6 pr-5 last:mb-0
+      dark:bg-black'>
     <div
       className={cn(
         'absolute left-0 top-0 h-full w-1 rounded-l',

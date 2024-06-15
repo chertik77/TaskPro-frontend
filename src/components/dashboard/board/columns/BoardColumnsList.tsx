@@ -8,10 +8,14 @@ import { Button } from 'components/ui'
 import { BoardColumnsItem } from './BoardColumnsItem'
 
 type BoardColumnsListProps = {
+  backgroundIdentifier?: string
   columns: Board['columns'] | undefined
 }
 
-export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
+export const BoardColumnsList = ({
+  columns,
+  backgroundIdentifier
+}: BoardColumnsListProps) => {
   const { open } = useModal(AddCardModal)
 
   return (
@@ -20,7 +24,10 @@ export const BoardColumnsList = ({ columns }: BoardColumnsListProps) => {
         <div
           key={column.id}
           className='mr-[34px]'>
-          <BoardColumnsItem column={column} />
+          <BoardColumnsItem
+            column={column}
+            backgroundIdentifier={backgroundIdentifier}
+          />
           <Button
             isPlusIcon
             className='mt-3.5'

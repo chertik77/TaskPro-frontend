@@ -1,4 +1,7 @@
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useSidebar } from 'contexts/sidebar.context'
+
+import { CustomScrollbar } from 'components/ui'
 
 import { cn } from 'lib'
 
@@ -12,20 +15,28 @@ export const Sidebar = () => {
   const { isSidebarOpen } = useSidebar()
 
   return (
-    <div className={cn('row-span-2 hidden', isSidebarOpen && 'desktop:block')}>
-      <div
-        className='custom-scrollbar flex h-dvh w-56 flex-col overflow-y-auto bg-white pb-6
-          violet:bg-brand-secondary dark:bg-black-secondary tablet:w-7xl'>
-        <div>
-          <SidebarLogo />
-          <SidebarMyBoardsInfo />
-          <SidebarBoardsList />
+    <ScrollArea.Root
+      type='scroll'
+      className={cn(
+        'row-span-2 hidden overflow-hidden',
+        isSidebarOpen && 'desktop:block'
+      )}>
+      <ScrollArea.Viewport
+        className='h-dvh w-56 bg-white violet:bg-brand-secondary dark:bg-black-secondary
+          tablet:w-7xl'>
+        <div className='flex h-dvh flex-col'>
+          <div>
+            <SidebarLogo />
+            <SidebarMyBoardsInfo />
+            <SidebarBoardsList />
+          </div>
+          <div className='mt-auto pb-6'>
+            <SidebarUserSupport />
+            <SidebarLogoutBtn />
+          </div>
         </div>
-        <div className='mt-auto'>
-          <SidebarUserSupport />
-          <SidebarLogoutBtn />
-        </div>
-      </div>
-    </div>
+      </ScrollArea.Viewport>
+      <CustomScrollbar scrollBarClassName='w-2' />
+    </ScrollArea.Root>
   )
 }
