@@ -3,7 +3,7 @@ import type { Column } from 'types'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useSelector } from 'react-redux'
 
-import { CustomScrollbar } from 'components/ui'
+import { Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
@@ -49,7 +49,7 @@ export const BoardColumnsItem = ({
             />
           ))}
         </ScrollArea.Viewport>
-        <CustomScrollbar
+        <Scrollbar
           backgroundIdentifier={backgroundIdentifier}
           scrollBarClassName='w-2'
           thumbClassName='!w-2'

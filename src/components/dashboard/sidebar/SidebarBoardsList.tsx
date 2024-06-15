@@ -44,8 +44,8 @@ export const SidebarBoardsList = () => {
         <Item
           className={cn(
             `flex h-4xl w-full items-center justify-between pl-3.5 text-black/50
-            transition-colors ease-in-out aria-checked:bg-white-gray aria-checked:text-black
-            focus:outline-none violet:text-white/50 aria-checked:violet:bg-white/50
+            transition-colors ease-in-out focus:outline-none aria-checked:bg-white-gray
+            aria-checked:text-black violet:text-white/50 aria-checked:violet:bg-white/50
             aria-checked:violet:text-white dark:text-white/50
             aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6`
           )}

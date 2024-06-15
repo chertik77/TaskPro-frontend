@@ -1,7 +1,7 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useSidebar } from 'contexts/sidebar.context'
 
-import { CustomScrollbar } from 'components/ui'
+import { Scrollbar } from 'components/ui'
 
 import { cn } from 'lib'
 
@@ -36,7 +36,7 @@ export const Sidebar = () => {
           </div>
         </div>
       </ScrollArea.Viewport>
-      <CustomScrollbar scrollBarClassName='w-2' />
+      <Scrollbar scrollBarClassName='w-2' />
     </ScrollArea.Root>
   )
 }

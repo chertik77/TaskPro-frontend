@@ -1,6 +1,6 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
-import { CustomScrollbar, Loader } from 'components/ui'
+import { Loader, Scrollbar } from 'components/ui'
 
 import { useGetBoardById } from 'hooks'
 
@@ -45,10 +45,10 @@ export const Board = () => {
           </div>
         )}
       </ScrollArea.Viewport>
-      <CustomScrollbar
+      <Scrollbar
+        backgroundIdentifier={data?.background.identifier}
         scrollBarClassName='mx-5 mb-2 h-3 tablet:mx-8 desktop:mx-6'
         thumbClassName='!h-3'
-        backgroundIdentifier={data?.background.identifier}
         orientation='horizontal'
       />
     </ScrollArea.Root>
