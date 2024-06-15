@@ -32,7 +32,6 @@ export const BoardColumnsItem = ({
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
-  console.log(backgroundIdentifier)
   return (
     <>
       <BoardColumnsActions column={column} />

@@ -24,7 +24,9 @@ export const HeaderUserInfo = () => {
           referrerPolicy='no-referrer'
           className='size-8 rounded-lg object-cover'
         />
-        <Avatar.Fallback className='flex size-8 items-center justify-center rounded-lg bg-white text-black'>
+        <Avatar.Fallback
+          className='flex size-8 items-center justify-center rounded-lg bg-white-gray-secondary
+            dark:bg-black-secondary'>
           A
         </Avatar.Fallback>
       </Avatar.Root>
