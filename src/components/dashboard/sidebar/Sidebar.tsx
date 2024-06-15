@@ -36,7 +36,7 @@ export const Sidebar = () => {
           </div>
         </div>
       </ScrollArea.Viewport>
-      <Scrollbar scrollBarClassName='w-2' />
+      <Scrollbar scrollBarClassName='w-1' />
     </ScrollArea.Root>
   )
 }
