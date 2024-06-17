@@ -8,7 +8,7 @@ import { authenticate } from 'redux/user.slice'
 
 import { authService } from 'services'
 
-export const useSigninUserWithGoogle = () => {
+export const useGoogleOneTap = () => {
   const dispatch = useDispatch()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()

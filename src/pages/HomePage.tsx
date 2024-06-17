@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { GoogleButton } from 'components/GoogleButton'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
-import { useSigninUserWithGoogle } from 'hooks/auth'
+import { useGoogleOneTap } from 'hooks/auth'
 
 import { Pages } from 'config'
 
@@ -12,7 +12,7 @@ import { cn } from 'lib'
 export const HomePage = () => {
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
-  useSigninUserWithGoogle()
+  useGoogleOneTap()
 
   return (
     <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>
