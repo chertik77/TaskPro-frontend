@@ -4,6 +4,8 @@ Welcome to the Task Pro App, the ultimate tool for managing your tasks efficient
 
 ![screenshot](https://github.com/chertik77/TaskPro-frontend/assets/129002577/ca6e8137-ce72-4220-9575-d884359cd4ba)
 
+_Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
+
 ## Features
 
 - **Authentication:** Users can register and log in to access the main application.
