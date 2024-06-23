@@ -32,7 +32,7 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
       day: 'h-5 w-5 text-base rounded-full',
       day_selected:
         'bg-brand text-black-third violet:bg-brand-secondary violet:text-white opacity-100',
-      day_outside: 'opacity-20',
+      day_outside: 'opacity-20 aria-selected:opacity-100',
       day_disabled: 'opacity-20 cursor-not-allowed'
     }}
     components={{

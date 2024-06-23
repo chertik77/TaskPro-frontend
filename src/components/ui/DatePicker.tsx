@@ -35,7 +35,7 @@ export const DatePicker = ({ control }: DatePickerProps) => {
               <Content
                 side='top'
                 sideOffset={5}
-                className='z-[1000]'
+                className='animation z-[1000]'
                 align='start'>
                 <Calendar
                   mode='single'
