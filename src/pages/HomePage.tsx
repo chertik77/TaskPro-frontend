@@ -2,16 +2,11 @@ import { Link } from 'react-router-dom'
 
 import { GoogleButton } from 'components/GoogleButton'
 
-import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useGoogleOneTap } from 'hooks/auth'
 
 import { Pages } from 'config'
 
-import { cn } from 'lib'
-
 export const HomePage = () => {
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
-
   useGoogleOneTap()
 
   return (
@@ -44,10 +39,7 @@ export const HomePage = () => {
       <GoogleButton />
       <Link
         to={Pages.Signup}
-        className={cn(
-          'w-8xl rounded-lg bg-black py-3.5 text-center text-white',
-          isTabletAndBelow && 'mt-3.5'
-        )}>
+        className='mt-3.5 w-8xl rounded-lg bg-black py-3.5 text-center text-white'>
         Registration
       </Link>
       <Link
