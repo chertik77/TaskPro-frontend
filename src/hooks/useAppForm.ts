@@ -9,7 +9,7 @@ export const useAppForm = <T extends FieldValues>(
   options?: UseFormProps<T>
 ) =>
   useForm<T>({
-    defaultValues: options?.defaultValues,
     resolver: valibotResolver(schema),
-    mode: 'onChange'
+    mode: 'onChange',
+    ...options
   })
