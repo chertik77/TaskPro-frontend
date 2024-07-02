@@ -9,6 +9,7 @@ export const useGetBoardById = () => {
 
   return useQuery({
     queryKey: ['board', boardId],
-    queryFn: () => boardService.getBoardById(boardId!)
+    queryFn: () => boardService.getBoardById(boardId!),
+    enabled: !!boardId
   })
 }
