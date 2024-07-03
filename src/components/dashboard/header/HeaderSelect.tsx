@@ -1,10 +1,12 @@
+import type { Theme } from 'constants/themes'
+
 import * as Select from '@radix-ui/react-select'
 
 import { themes } from 'constants/themes'
 
 type HeaderSelectProps = {
-  theme: string
-  handleThemeChange: (e: string) => void
+  theme: Theme
+  handleThemeChange: (e: Theme) => void
 }
 
 export const HeaderSelect = ({

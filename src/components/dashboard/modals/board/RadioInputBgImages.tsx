@@ -1,4 +1,3 @@
-import type { Theme } from 'constants/themes'
 import type { BoardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
@@ -35,7 +34,7 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
                   className='group-aria-checked:scale-125'
                   width={28}
                   height={28}
-                  src={typeof icon === 'object' ? icon[theme as Theme] : icon}
+                  src={typeof icon === 'object' ? icon[theme] : icon}
                   alt={id}
                 />
               </Item>

@@ -11,8 +11,8 @@ export const HeaderThemeSelect = () => {
 
   const { mutate } = useChangeTheme()
 
-  const handleThemeChange = (e: string) => {
-    setTheme(e as Theme)
+  const handleThemeChange = (e: Theme) => {
+    setTheme(e)
     mutate(e)
   }
 

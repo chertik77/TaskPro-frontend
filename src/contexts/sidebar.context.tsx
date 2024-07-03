@@ -27,13 +27,9 @@ export const SidebarProvider = ({ children }: PropsWithChildren) => {
     ignoreEventWhen: () => isTabletAndBelow
   })
 
-  const value = {
-    isSidebarOpen,
-    setIsSidebarOpen: (value: boolean) => setIsSidebarOpen(value)
-  }
-
   return (
-    <SidebarProviderContext.Provider value={value}>
+    <SidebarProviderContext.Provider
+      value={{ isSidebarOpen, setIsSidebarOpen }}>
       {children}
     </SidebarProviderContext.Provider>
   )

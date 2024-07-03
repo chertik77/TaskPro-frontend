@@ -31,13 +31,8 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     root.classList.add(userTheme)
   }, [userTheme, theme])
 
-  const value = {
-    theme: userTheme,
-    setTheme: (theme: Theme) => setTheme(theme)
-  }
-
   return (
-    <ThemeProviderContext.Provider value={value}>
+    <ThemeProviderContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeProviderContext.Provider>
   )
