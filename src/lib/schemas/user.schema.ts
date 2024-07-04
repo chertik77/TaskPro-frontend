@@ -21,7 +21,7 @@ export const SignupSchema = v.object({
 export const EditUserSchema = v.partial(
   v.object({
     ...SignupSchema.entries,
-    avatar: v.optional(v.instance(File))
+    avatar: v.instance(File)
   })
 )
 
