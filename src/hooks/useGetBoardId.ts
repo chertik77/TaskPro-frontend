@@ -5,7 +5,5 @@ export const useGetBoardId = () => {
 
   const boardId = pathname.split('/').pop()
 
-  if (boardId) return boardId
-
-  throw new Error('Board id is not available')
+  return boardId
 }
