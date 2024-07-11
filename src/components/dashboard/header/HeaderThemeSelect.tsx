@@ -14,11 +14,7 @@ export const HeaderThemeSelect = () => {
   const { mutate } = useChangeTheme()
 
   useEffect(() => {
-    const root = window.document.documentElement
-
-    root.className = ''
-
-    root.classList.add(theme)
+    window.document.documentElement.className = theme
   }, [theme])
 
   return (

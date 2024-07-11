@@ -32,6 +32,7 @@ export const EditProfileModal = () => {
   return (
     <Modal
       modalTitle='Edit profile'
+      focusTrapped={false}
       onClose={() => {
         reset()
         close()
