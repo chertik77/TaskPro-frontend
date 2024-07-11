@@ -1,4 +1,3 @@
-import { useTheme } from 'contexts/theme.context'
 import { useModal } from 'react-modal-state'
 import { useDispatch } from 'react-redux'
 
@@ -13,8 +12,6 @@ import { authService } from 'services'
 export const useLogoutUser = () => {
   const dispatch = useDispatch()
 
-  const { setTheme } = useTheme()
-
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   return useAppMutation({
@@ -24,7 +21,6 @@ export const useLogoutUser = () => {
       'An error occurred while logging out. Our technical team has been notified. Please try again shortly.',
     onSuccess() {
       document.cookie = `g_state=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT`
-      setTheme('light')
       dispatch(logout())
     },
     onSettled() {

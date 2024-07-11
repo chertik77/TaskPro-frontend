@@ -43,11 +43,13 @@ const userSlice = createSlice({
   },
   selectors: {
     selectIsLoggedIn: state => state.isLoggedIn,
-    selectUser: state => state.user
+    selectUser: state => state.user,
+    selectUserTheme: state => state.user.theme
   }
 })
 
 export const { authenticate, updateUser, logout, saveTokens } =
   userSlice.actions
-export const { selectIsLoggedIn, selectUser } = userSlice.selectors
+export const { selectIsLoggedIn, selectUser, selectUserTheme } =
+  userSlice.selectors
 export const userReducer = userSlice.reducer

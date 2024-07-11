@@ -1,25 +1,29 @@
-import type { Theme } from 'constants/themes'
-
+import { useEffect } from 'react'
 import * as Select from '@radix-ui/react-select'
-import { useTheme } from 'contexts/theme.context'
+import { useSelector } from 'react-redux'
 
 import { useChangeTheme } from 'hooks/user'
+
+import { selectUserTheme } from 'redux/user.slice'
 
 import { themes } from 'constants/themes'
 
 export const HeaderThemeSelect = () => {
-  const { theme, setTheme } = useTheme()
+  const theme = useSelector(selectUserTheme)
 
   const { mutate } = useChangeTheme()
 
-  const handleThemeChange = (v: Theme) => {
-    setTheme(v)
-    mutate(v)
-  }
+  useEffect(() => {
+    const root = window.document.documentElement
+
+    root.className = ''
+
+    root.classList.add(theme)
+  }, [theme])
 
   return (
     <Select.Root
-      onValueChange={handleThemeChange}
+      onValueChange={mutate}
       value={theme}>
       <Select.Trigger className='flex items-center gap-1'>
         <Select.Value placeholder='Theme' />

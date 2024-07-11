@@ -5,7 +5,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { SidebarProvider } from 'contexts/sidebar.context'
-import { ThemeProvider } from 'contexts/theme.context'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'
@@ -48,20 +47,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <PersistGate
               loading={null}
               persistor={persistor}>
-              <ThemeProvider>
-                <SidebarProvider>
-                  <ModalProvider>
-                    <App />
-                    <ModalRenderer Component={EditBoardModal} />
-                    <ModalRenderer Component={NewBoardModal} />
-                    <ModalRenderer Component={NeedHelpModal} />
-                    <ModalRenderer Component={AddCardModal} />
-                    <ModalRenderer Component={EditCardModal} />
-                    <ModalRenderer Component={EditProfileModal} />
-                    <ModalRenderer Component={BurgerMenu} />
-                  </ModalProvider>
-                </SidebarProvider>
-              </ThemeProvider>
+              <SidebarProvider>
+                <ModalProvider>
+                  <App />
+                  <ModalRenderer Component={EditBoardModal} />
+                  <ModalRenderer Component={NewBoardModal} />
+                  <ModalRenderer Component={NeedHelpModal} />
+                  <ModalRenderer Component={AddCardModal} />
+                  <ModalRenderer Component={EditCardModal} />
+                  <ModalRenderer Component={EditProfileModal} />
+                  <ModalRenderer Component={BurgerMenu} />
+                </ModalProvider>
+              </SidebarProvider>
             </PersistGate>
           </Provider>
         </BrowserRouter>

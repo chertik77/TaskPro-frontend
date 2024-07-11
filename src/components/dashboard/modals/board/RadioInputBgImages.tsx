@@ -2,8 +2,10 @@ import type { BoardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
-import { useTheme } from 'contexts/theme.context'
 import { Controller } from 'react-hook-form'
+import { useSelector } from 'react-redux'
+
+import { selectUserTheme } from 'redux/user.slice'
 
 import images from 'lib/json/board-bg-images.json'
 
@@ -12,7 +14,7 @@ type RadioInputBgImagesProps = {
 }
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
-  const { theme } = useTheme()
+  const theme = useSelector(selectUserTheme)
 
   return (
     <>

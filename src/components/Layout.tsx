@@ -1,11 +1,13 @@
-import { useTheme } from 'contexts/theme.context'
+import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
+import { selectUserTheme } from 'redux/user.slice'
+
 export const Layout = () => {
-  const { theme } = useTheme()
+  const theme = useSelector(selectUserTheme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
