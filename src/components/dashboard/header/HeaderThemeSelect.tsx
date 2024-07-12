@@ -21,7 +21,7 @@ export const HeaderThemeSelect = () => {
     <Select.Root
       onValueChange={mutate}
       value={theme}>
-      <Select.Trigger className='flex items-center gap-1'>
+      <Select.Trigger className='flex items-center gap-1 outline-none'>
         <Select.Value placeholder='Theme' />
         <Select.Icon>
           <svg
