@@ -16,6 +16,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
 
   return (
     <Select.Root
+      value={card.column}
       onValueChange={mutate}
       disabled={columns && columns.length <= 1}>
       <Select.Trigger className='disabled:hidden'>
