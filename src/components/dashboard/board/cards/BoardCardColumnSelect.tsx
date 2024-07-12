@@ -30,7 +30,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
         <Select.Content
           sideOffset={10}
           position='popper'
-          className='animation z-10 w-min rounded-lg border border-brand bg-white-primary p-lg
+          className='animation w-min rounded-lg border border-brand bg-white-primary p-lg
             shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
           <Select.Viewport>
             {filteredColumns?.map(column => (
