@@ -26,36 +26,38 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
           <use href='/icons.svg#icon-arrow'></use>
         </svg>
       </Select.Trigger>
-      <Select.Content
-        sideOffset={10}
-        position='popper'
-        className='animation z-10 w-min rounded-lg border border-brand bg-white-primary p-lg
-          shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
-        <Select.Viewport>
-          {filteredColumns?.map(column => (
-            <Select.Item
-              key={column.id}
-              className={cn(
-                `group cursor-pointer text-base outline-none data-[highlighted]:text-brand
-                hocus:text-brand violet:hocus:text-brand-secondary dark:text-white/30
-                dark:hocus:text-brand`,
-                filteredColumns.length > 1 && 'mb-2 last:mb-0'
-              )}
-              value={column.id}>
-              <Select.ItemText>
-                <div className='flex gap-2'>
-                  <span className='w-20 truncate'>{column.title}</span>
-                  <svg
-                    className='size-4 stroke-black/50 group-focus:stroke-brand
-                      violet:group-focus:stroke-brand-secondary dark:stroke-white/50'>
-                    <use href='/icons.svg#icon-arrow'></use>
-                  </svg>
-                </div>
-              </Select.ItemText>
-            </Select.Item>
-          ))}
-        </Select.Viewport>
-      </Select.Content>
+      <Select.Portal>
+        <Select.Content
+          sideOffset={10}
+          position='popper'
+          className='animation z-10 w-min rounded-lg border border-brand bg-white-primary p-lg
+            shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
+          <Select.Viewport>
+            {filteredColumns?.map(column => (
+              <Select.Item
+                key={column.id}
+                className={cn(
+                  `group cursor-pointer text-base outline-none data-[highlighted]:text-brand
+                  hocus:text-brand violet:hocus:text-brand-secondary dark:text-white/30
+                  dark:hocus:text-brand`,
+                  filteredColumns.length > 1 && 'mb-2 last:mb-0'
+                )}
+                value={column.id}>
+                <Select.ItemText>
+                  <div className='flex gap-2'>
+                    <span className='w-20 truncate'>{column.title}</span>
+                    <svg
+                      className='size-4 stroke-black/50 group-focus:stroke-brand
+                        violet:group-focus:stroke-brand-secondary dark:stroke-white/50'>
+                      <use href='/icons.svg#icon-arrow'></use>
+                    </svg>
+                  </div>
+                </Select.ItemText>
+              </Select.Item>
+            ))}
+          </Select.Viewport>
+        </Select.Content>
+      </Select.Portal>
     </Select.Root>
   )
 }
