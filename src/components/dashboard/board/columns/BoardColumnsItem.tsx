@@ -37,11 +37,11 @@ export const BoardColumnsItem = ({
       <BoardColumnsActions column={column} />
       <ScrollArea.Root
         type='scroll'
-        className={cn('-mr-4 overflow-y-hidden pr-4', {
+        className={cn('-mr-4 pr-4', {
           'h-[calc(100dvh-275px)]': !isTabletAndBelow,
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
-        <ScrollArea.Viewport className='h-full !overflow-x-visible'>
+        <ScrollArea.Viewport className='h-full'>
           {sortedCards?.map(card => (
             <BoardCard
               card={card}
