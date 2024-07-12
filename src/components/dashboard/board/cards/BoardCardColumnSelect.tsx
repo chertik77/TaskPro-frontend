@@ -19,7 +19,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
       value={card.column}
       onValueChange={mutate}
       disabled={columns && columns.length <= 1}>
-      <Select.Trigger className='disabled:hidden'>
+      <Select.Trigger className='outline-none disabled:hidden'>
         <svg
           className='size-4 stroke-black/50 hocus:stroke-black dark:stroke-white/50
             dark:hocus:stroke-white'>
