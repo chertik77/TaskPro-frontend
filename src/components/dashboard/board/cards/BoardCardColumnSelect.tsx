@@ -28,6 +28,8 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
       </Select.Trigger>
       <Select.Content
         sideOffset={10}
+        side='top'
+        sticky='always'
         position='popper'
         className='animation z-10 w-min rounded-lg border border-brand bg-white-primary p-lg
           shadow-select violet:border-white-gray-secondary dark:bg-black-fourth'>
