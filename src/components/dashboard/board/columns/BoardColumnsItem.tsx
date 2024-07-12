@@ -37,7 +37,7 @@ export const BoardColumnsItem = ({
       <BoardColumnsActions column={column} />
       <ScrollArea.Root
         type='scroll'
-        className={cn('-mr-4 overflow-hidden pr-4', {
+        className={cn('-mr-4 overflow-y-hidden pr-4', {
           'h-[calc(100dvh-275px)]': !isTabletAndBelow,
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
