@@ -1,9 +1,6 @@
 import type { Column } from 'types'
 
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useSelector } from 'react-redux'
-
-import { Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
@@ -20,8 +17,8 @@ type BoardColumnsItemProps = {
 }
 
 export const BoardColumnsItem = ({
-  column,
-  backgroundIdentifier
+  column
+  // backgroundIdentifier
 }: BoardColumnsItemProps) => {
   const cardPriority = useSelector(selectCardPriority)
   const cardSortCriterion = useSelector(selectCardSortCriterion)
@@ -35,26 +32,26 @@ export const BoardColumnsItem = ({
   return (
     <>
       <BoardColumnsActions column={column} />
-      <ScrollArea.Root
-        type='scroll'
-        className={cn('-mr-4 pr-4', {
+      <div
+        // type='scroll'
+        className={cn('-mr-4 overflow-y-scroll pr-4', {
           'h-[calc(100dvh-275px)]': !isTabletAndBelow,
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
-        <ScrollArea.Viewport className='h-full'>
+        <div className='h-full'>
           {sortedCards?.map(card => (
             <BoardCard
               card={card}
               key={card.id}
             />
           ))}
-        </ScrollArea.Viewport>
-        <Scrollbar
+        </div>
+        {/* <Scrollbar
           backgroundIdentifier={backgroundIdentifier}
           scrollBarClassName='w-2'
           thumbClassName='!w-2'
-        />
-      </ScrollArea.Root>
+        /> */}
+      </div>
     </>
   )
 }
