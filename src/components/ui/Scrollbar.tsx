@@ -21,7 +21,8 @@ export const Scrollbar = ({
     <ScrollArea.Thumb
       className={cn(
         'rounded-xl bg-white/60',
-        backgroundIdentifier === 'default' && 'bg-scroll-white',
+        backgroundIdentifier === 'default' &&
+          'bg-scroll-white violet:bg-black/20 dark:bg-white/10',
         thumbClassName
       )}
     />
