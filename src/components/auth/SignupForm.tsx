@@ -6,8 +6,7 @@ import { useGoogleOneTap, useSignupUser } from 'hooks/auth'
 import { SignupSchema } from 'lib/schemas'
 
 export const SignupForm = () => {
-  const { handleSubmit, register, formState, reset } =
-    useAppForm<SignupSchema>(SignupSchema)
+  const { handleSubmit, register, formState, reset } = useAppForm(SignupSchema)
 
   useGoogleOneTap()
 

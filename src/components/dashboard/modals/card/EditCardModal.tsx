@@ -6,7 +6,7 @@ import { useModal, useModalInstance } from 'react-modal-state'
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useEditCard } from 'hooks/card/useEditCard'
+import { useEditCard } from 'hooks/card'
 
 import { CardSchema } from 'lib/schemas'
 
@@ -20,10 +20,10 @@ export const EditCardModal = () => {
     data: { title, description, id, priority, deadline }
   } = useModalInstance<Card>()
 
-  const { register, handleSubmit, formState, control, reset } =
-    useAppForm<CardSchema>(CardSchema, {
-      defaultValues: { title, description }
-    })
+  const { register, handleSubmit, formState, control, reset } = useAppForm(
+    CardSchema,
+    { defaultValues: { title, description } }
+  )
 
   const { mutate, isPending } = useEditCard(id, reset)
 

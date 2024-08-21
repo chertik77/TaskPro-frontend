@@ -4,7 +4,7 @@ import { useModal, useModalInstance } from 'react-modal-state'
 import { Button, Field, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useEditBoard } from 'hooks/board/useEditBoard'
+import { useEditBoard } from 'hooks/board'
 
 import { BoardSchema } from 'lib/schemas'
 
@@ -21,10 +21,10 @@ export const EditBoardModal = () => {
     icon: string
   }>()
 
-  const { register, reset, handleSubmit, control, formState } =
-    useAppForm<BoardSchema>(BoardSchema, {
-      defaultValues: { title: board.title }
-    })
+  const { register, reset, handleSubmit, control, formState } = useAppForm(
+    BoardSchema,
+    { defaultValues: { title: board.title } }
+  )
 
   const { mutate, isPending } = useEditBoard(board.id, reset)
 

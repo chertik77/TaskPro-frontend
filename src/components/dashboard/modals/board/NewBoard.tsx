@@ -3,7 +3,7 @@ import { useModal } from 'react-modal-state'
 import { Button, Field, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useAddBoard } from 'hooks/board/useAddBoard'
+import { useAddBoard } from 'hooks/board'
 
 import { BoardSchema } from 'lib/schemas'
 
@@ -13,10 +13,10 @@ import { RadioInputIcons } from './RadioInputIcons'
 export const NewBoardModal = () => {
   const { close } = useModal(NewBoardModal)
 
-  const { register, formState, reset, handleSubmit, control } =
-    useAppForm<BoardSchema>(BoardSchema, {
-      defaultValues: { icon: 'icon-project-1', background: 'default' }
-    })
+  const { register, formState, reset, handleSubmit, control } = useAppForm(
+    BoardSchema,
+    { defaultValues: { icon: 'icon-project-1', background: 'default' } }
+  )
 
   const { mutate, isPending } = useAddBoard(reset)
 

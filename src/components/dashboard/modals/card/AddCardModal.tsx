@@ -3,7 +3,7 @@ import { useModal } from 'react-modal-state'
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useAddCard } from 'hooks/card/useAddCard'
+import { useAddCard } from 'hooks/card'
 
 import { CardSchema } from 'lib/schemas'
 
@@ -13,10 +13,10 @@ import { ModalPriorities } from './ModalPriorities'
 export const AddCardModal = () => {
   const { close } = useModal(AddCardModal)
 
-  const { register, handleSubmit, formState, reset, control } =
-    useAppForm<CardSchema>(CardSchema, {
-      defaultValues: { priority: 'Without priority', deadline: new Date() }
-    })
+  const { register, handleSubmit, formState, reset, control } = useAppForm(
+    CardSchema,
+    { defaultValues: { priority: 'Without priority', deadline: new Date() } }
+  )
 
   const { mutate, isPending } = useAddCard(reset)
 

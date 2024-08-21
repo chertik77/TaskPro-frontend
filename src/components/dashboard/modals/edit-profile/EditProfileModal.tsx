@@ -19,10 +19,10 @@ export const EditProfileModal = () => {
 
   const { isPending, mutateAsync, mutate } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset, watch } =
-    useAppForm<EditUserSchema>(EditUserSchema, {
-      defaultValues: { name: initialName, email: initialEmail }
-    })
+  const { handleSubmit, register, formState, reset, watch } = useAppForm(
+    EditUserSchema,
+    { defaultValues: { name: initialName, email: initialEmail } }
+  )
 
   const isFormReadyForSubmit =
     watch('name') !== initialName ||

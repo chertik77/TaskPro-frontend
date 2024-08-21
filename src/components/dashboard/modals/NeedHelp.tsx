@@ -17,10 +17,9 @@ export const NeedHelpModal = () => {
 
   const { email } = useSelector(selectUser)
 
-  const { handleSubmit, register, formState, reset } = useAppForm<HelpSchema>(
-    HelpSchema,
-    { defaultValues: { email } }
-  )
+  const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema, {
+    defaultValues: { email }
+  })
 
   const { mutate, isPending } = useNeedHelp(reset)
 
