@@ -23,7 +23,10 @@ export const getSortedCardsByTodayDeadline = (cards: Card[]) =>
     return 0
   })
 
-export const getFilteredCardsByPriority = (cards: Card[], priority: string) => {
+export const getFilteredCardsByPriority = (
+  cards: Card[],
+  priority: Priority
+) => {
   if (!priority) return getSortedCardsByTodayDeadline(cards)
 
   return cards.filter(card => card.priority === priority)
@@ -32,28 +35,28 @@ export const getFilteredCardsByPriority = (cards: Card[], priority: string) => {
 export const getSortedCards = (cards: Card[], sortValue: string) => {
   if (!sortValue) return cards
 
-  if (sortValue === 'deadline:asc-order') {
+  if (sortValue === 'deadline-asc-order') {
     return cards.toSorted(
       (a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
     )
   }
 
-  if (sortValue === 'deadline:desc-order') {
+  if (sortValue === 'deadline-desc-order') {
     return cards.toSorted(
       (a, b) => new Date(b.deadline).getTime() - new Date(a.deadline).getTime()
     )
   }
 
   if (
-    sortValue === 'priority:desc-order' ||
-    sortValue === 'priority:asc-order'
+    sortValue === 'priority-desc-order' ||
+    sortValue === 'priority-asc-order'
   ) {
     return cards.toSorted((a, b) => {
       const priorityComparison =
         getPriorityOrder(a.priority) - getPriorityOrder(b.priority)
 
       if (priorityComparison !== 0) {
-        return sortValue === 'priority:asc-order'
+        return sortValue === 'priority-asc-order'
           ? priorityComparison
           : -priorityComparison
       }
@@ -61,7 +64,7 @@ export const getSortedCards = (cards: Card[], sortValue: string) => {
       const dateA = new Date(a.deadline).getTime()
       const dateB = new Date(b.deadline).getTime()
 
-      return sortValue === 'priority:asc-order' ? dateA - dateB : dateB - dateA
+      return sortValue === 'priority-asc-order' ? dateA - dateB : dateB - dateA
     })
   }
 }

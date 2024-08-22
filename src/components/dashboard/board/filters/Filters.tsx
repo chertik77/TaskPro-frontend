@@ -1,14 +1,13 @@
 import * as Popover from '@radix-ui/react-popover'
-import { useDispatch } from 'react-redux'
 
-import { setCardPriority, setSortCriterion } from 'redux/filter.slice'
+import { useCardFiltersBySearchParams } from 'hooks/card'
 
 import { FilterControls } from './FilterControls'
 import { PriorityFilter } from './PriorityFilter'
 import { SortCriterion } from './SortCriterion'
 
 export const Filters = () => {
-  const dispatch = useDispatch()
+  const { searchParams, setSearchParams } = useCardFiltersBySearchParams()
 
   return (
     <Popover.Root>
@@ -34,13 +33,19 @@ export const Filters = () => {
           <FilterControls
             controlTitle='Label color'
             buttonTitle='Show all'
-            onClick={() => dispatch(setCardPriority(''))}
+            onClick={() => {
+              searchParams.delete('priority')
+              setSearchParams(searchParams)
+            }}
           />
           <PriorityFilter />
           <FilterControls
             controlTitle='Sort by'
             buttonTitle='Reset'
-            onClick={() => dispatch(setSortCriterion(''))}
+            onClick={() => {
+              searchParams.delete('sort')
+              setSearchParams(searchParams)
+            }}
           />
           <SortCriterion />
         </Popover.Content>

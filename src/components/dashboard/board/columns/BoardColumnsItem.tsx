@@ -1,13 +1,11 @@
 import type { Column } from 'types'
 
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { useSelector } from 'react-redux'
 
 import { Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
-
-import { selectCardPriority, selectCardSortCriterion } from 'redux/filter.slice'
+import { useCardFiltersBySearchParams } from 'hooks/card'
 
 import { cn, getFilteredCardsByPriority, getSortedCards } from 'lib'
 
@@ -23,8 +21,7 @@ export const BoardColumnsItem = ({
   column,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const cardPriority = useSelector(selectCardPriority)
-  const cardSortCriterion = useSelector(selectCardSortCriterion)
+  const { cardPriority, cardSortCriterion } = useCardFiltersBySearchParams()
 
   const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 

@@ -1,18 +1,18 @@
 [
   {
-    "id": "priority:asc-order",
+    "id": "priority-asc-order",
     "value": "Priority (from without to high)"
   },
   {
-    "id": "priority:desc-order",
+    "id": "priority-desc-order",
     "value": "Priority (from high to without)"
   },
   {
-    "id": "deadline:asc-order",
+    "id": "deadline-asc-order",
     "value": "Deadline (Ascending Order)"
   },
   {
-    "id": "deadline:desc-order",
+    "id": "deadline-desc-order",
     "value": "Deadline (Descending Order)"
   }
 ]
