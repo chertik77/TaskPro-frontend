@@ -27,6 +27,7 @@
     "axios": "^1.6.8",
     "axios-auth-refresh": "^3.3.6",
     "date-fns": "^3.3.1",
+    "focus-trap-react": "^10.2.3",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.0",
     "react-dom": "^18.2.0",
