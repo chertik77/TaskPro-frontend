@@ -4,7 +4,7 @@ import { useModal } from 'react-modal-state'
 
 import { Button } from 'components/ui'
 
-import { useDeleteBoard } from 'hooks/board/useDeleteBoard'
+import { useDeleteBoard } from 'hooks/board'
 
 import { BurgerMenu, EditBoardModal } from '../modals'
 
