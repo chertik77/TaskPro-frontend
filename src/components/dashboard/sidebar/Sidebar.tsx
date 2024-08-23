@@ -24,7 +24,7 @@ export const Sidebar = () => {
       <ScrollArea.Viewport
         className='h-dvh w-56 bg-white violet:bg-brand-secondary dark:bg-black-secondary
           tablet:w-7xl'>
-        <div className='flex h-dvh flex-col'>
+        <aside className='flex h-dvh flex-col'>
           <div>
             <SidebarLogo />
             <SidebarMyBoardsInfo />
@@ -34,7 +34,7 @@ export const Sidebar = () => {
             <SidebarUserSupport />
             <SidebarLogoutBtn />
           </div>
-        </div>
+        </aside>
       </ScrollArea.Viewport>
       <Scrollbar scrollBarClassName='w-1' />
     </ScrollArea.Root>
