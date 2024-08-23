@@ -1,5 +1,6 @@
 import type { Column } from 'types'
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { Scrollbar } from 'components/ui'
@@ -23,6 +24,8 @@ export const BoardColumnsItem = ({
 }: BoardColumnsItemProps) => {
   const { cardPriority, cardSortCriterion } = useCardFiltersBySearchParams()
 
+  const [parent] = useAutoAnimate({ duration: 500 })
+
   const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 
   const sortedCards = getSortedCards(filteredCards, cardSortCriterion)
@@ -39,12 +42,14 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         <ScrollArea.Viewport className='h-full'>
-          {sortedCards?.map(card => (
-            <BoardCard
-              card={card}
-              key={card.id}
-            />
-          ))}
+          <div ref={parent}>
+            {sortedCards?.map(card => (
+              <BoardCard
+                card={card}
+                key={card.id}
+              />
+            ))}
+          </div>
         </ScrollArea.Viewport>
         <Scrollbar
           backgroundIdentifier={backgroundIdentifier}
