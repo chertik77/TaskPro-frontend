@@ -32,9 +32,7 @@ export const Board = () => {
       </div>
       <ScrollArea.Viewport className='w-full flex-1 pb-4'>
         {isPending ? (
-          <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
-            <Loader />
-          </div>
+          <Loader className='absolute inset-0 m-auto' />
         ) : (
           <div className='flex'>
             <BoardColumnsList
