@@ -19,9 +19,9 @@ export const BoardColumnsList = ({
   const { open } = useModal(AddCardModal)
 
   return (
-    <div className='flex'>
+    <ul className='flex'>
       {columns?.map(column => (
-        <div
+        <li
           key={column.id}
           className='mr-[34px]'>
           <BoardColumnsItem
@@ -34,8 +34,8 @@ export const BoardColumnsList = ({
             onClick={() => open(column.id)}>
             Add another card
           </Button>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }

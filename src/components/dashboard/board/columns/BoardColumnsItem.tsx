@@ -24,7 +24,7 @@ export const BoardColumnsItem = ({
 }: BoardColumnsItemProps) => {
   const { cardPriority, cardSortCriterion } = useCardFiltersBySearchParams()
 
-  const [parent] = useAutoAnimate({ duration: 500 })
+  const [parent] = useAutoAnimate({ duration: 400 })
 
   const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 
