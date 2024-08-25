@@ -6,7 +6,6 @@ import { useGetBoardById } from 'hooks'
 
 import { cn } from 'lib'
 
-import { BoardAddColumnBtn } from './columns/BoardAddColumnBtn'
 import { BoardColumnsList } from './columns/BoardColumnsList'
 import { Filters } from './filters/Filters'
 
@@ -34,13 +33,10 @@ export const Board = () => {
         {isPending ? (
           <Loader className='absolute inset-0 m-auto' />
         ) : (
-          <div className='flex'>
-            <BoardColumnsList
-              columns={data?.columns}
-              backgroundIdentifier={data?.background.identifier}
-            />
-            <BoardAddColumnBtn />
-          </div>
+          <BoardColumnsList
+            columns={data?.columns}
+            backgroundIdentifier={data?.background.identifier}
+          />
         )}
       </ScrollArea.Viewport>
       <Scrollbar

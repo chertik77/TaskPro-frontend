@@ -1,10 +1,8 @@
 import type { Board } from 'types'
 
-import { useModal } from 'react-modal-state'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-import { AddCardModal } from 'components/dashboard/modals'
-import { Button } from 'components/ui'
-
+import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'
 
 type BoardColumnsListProps = {
@@ -16,26 +14,20 @@ export const BoardColumnsList = ({
   columns,
   backgroundIdentifier
 }: BoardColumnsListProps) => {
-  const { open } = useModal(AddCardModal)
+  const [parent] = useAutoAnimate({ duration: 400 })
 
   return (
-    <ul className='flex'>
+    <div
+      className='flex gap-[34px]'
+      ref={parent}>
       {columns?.map(column => (
-        <li
+        <BoardColumnsItem
+          column={column}
           key={column.id}
-          className='mr-[34px]'>
-          <BoardColumnsItem
-            column={column}
-            backgroundIdentifier={backgroundIdentifier}
-          />
-          <Button
-            isPlusIcon
-            className='mt-3.5'
-            onClick={() => open(column.id)}>
-            Add another card
-          </Button>
-        </li>
+          backgroundIdentifier={backgroundIdentifier}
+        />
       ))}
-    </ul>
+      <BoardAddColumnBtn />
+    </div>
   )
 }

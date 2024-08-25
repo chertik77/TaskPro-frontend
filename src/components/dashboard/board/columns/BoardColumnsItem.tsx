@@ -2,8 +2,10 @@ import type { Column } from 'types'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { useModal } from 'react-modal-state'
 
-import { Scrollbar } from 'components/ui'
+import { AddCardModal } from 'components/dashboard/modals'
+import { Button, Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useCardFiltersBySearchParams } from 'hooks/card'
@@ -26,6 +28,8 @@ export const BoardColumnsItem = ({
 
   const [parent] = useAutoAnimate({ duration: 400 })
 
+  const { open } = useModal(AddCardModal)
+
   const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 
   const sortedCards = getSortedCards(filteredCards, cardSortCriterion)
@@ -33,7 +37,7 @@ export const BoardColumnsItem = ({
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   return (
-    <>
+    <div className='flex w-[334px] flex-col'>
       <BoardColumnsActions column={column} />
       <ScrollArea.Root
         type='scroll'
@@ -57,6 +61,12 @@ export const BoardColumnsItem = ({
           thumbClassName='!w-2'
         />
       </ScrollArea.Root>
-    </>
+      <Button
+        isPlusIcon
+        className='mt-3.5'
+        onClick={() => open(column.id)}>
+        Add another card
+      </Button>
+    </div>
   )
 }
