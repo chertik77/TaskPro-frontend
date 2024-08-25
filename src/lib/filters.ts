@@ -47,24 +47,23 @@ export const getSortedCards = (cards: Card[], sortValue: string) => {
     )
   }
 
-  if (
-    sortValue === 'priority-desc-order' ||
-    sortValue === 'priority-asc-order'
-  ) {
+  if (['priority-desc-order', 'priority-asc-order'].includes(sortValue)) {
+    const sortDirection = sortValue === 'priority-asc-order' ? 1 : -1
+
     return cards.toSorted((a, b) => {
       const priorityComparison =
-        getPriorityOrder(a.priority) - getPriorityOrder(b.priority)
+        (getPriorityOrder(a.priority) - getPriorityOrder(b.priority)) *
+        sortDirection
 
       if (priorityComparison !== 0) {
-        return sortValue === 'priority-asc-order'
-          ? priorityComparison
-          : -priorityComparison
+        return priorityComparison
       }
 
-      const dateA = new Date(a.deadline).getTime()
-      const dateB = new Date(b.deadline).getTime()
+      const dateComparison =
+        (new Date(a.deadline).getTime() - new Date(b.deadline).getTime()) *
+        sortDirection
 
-      return sortValue === 'priority-asc-order' ? dateA - dateB : dateB - dateA
+      return dateComparison
     })
   }
 }
