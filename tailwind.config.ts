@@ -84,7 +84,7 @@ export default {
     require('tailwindcss-text-fill'),
     require('tailwindcss-animate'),
     plugin(({ addVariant }) => {
-      addVariant('hocus', ['&:hover', '&:focus', '&:active'])
+      addVariant('hocus', ['&:hover', '&:focus-visible', '&:active'])
     }),
     createThemes({ violet: {} })
   ]
