@@ -2,7 +2,7 @@ import { useModal } from 'react-modal-state'
 
 import { NewBoardModal } from 'components/dashboard/modals'
 
-export const CreateBoard = () => {
+export const EmptyBoard = () => {
   const { open } = useModal(NewBoardModal)
 
   return (

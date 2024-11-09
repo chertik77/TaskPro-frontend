@@ -2,7 +2,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { Loader, Scrollbar } from 'components/ui'
 
-import { useGetBoardById } from 'hooks'
+import { useGetBoardById } from 'hooks/board'
 
 import { cn } from 'lib'
 

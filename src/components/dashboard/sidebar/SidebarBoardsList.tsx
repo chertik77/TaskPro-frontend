@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Loader } from 'components/ui'
 
-import { useGetBoardId } from 'hooks'
+import { useGetBoardId } from 'hooks/board'
 
 import { Pages } from 'config'
 import { boardService } from 'services'

@@ -1,10 +1,12 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppMutation, useGetBoardId } from 'hooks'
+import { useAppMutation } from 'hooks'
 
 import { Pages } from 'config'
 import { boardService } from 'services'
+
+import { useGetBoardId } from '.'
 
 export const useDeleteBoard = () => {
   const navigate = useNavigate()
