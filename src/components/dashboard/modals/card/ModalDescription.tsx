@@ -34,5 +34,3 @@ export const ModalDescription = forwardRef<
     />
   </>
 ))
-
-ModalDescription.displayName = 'ModalDescription'

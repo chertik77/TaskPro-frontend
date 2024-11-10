@@ -30,7 +30,7 @@ export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
               <svg
                 className='size-lg stroke-current group-aria-checked:text-black
                   group-aria-checked:opacity-100 dark:group-aria-checked:text-white'>
-                <use href={`/icons.svg#${id}`}></use>
+                <use href={`/icons.svg#${id}`} />
               </svg>
             </Item>
           ))}

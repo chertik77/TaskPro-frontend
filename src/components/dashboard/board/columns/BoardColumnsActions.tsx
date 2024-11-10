@@ -28,6 +28,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
     if (value.trim().length < REQUIRED_COLUMN_TITLE_LENGTH) {
       setColumnTitle(previousValue.trim())
+
       return toast.error('Column title must be at least 3 characters long.')
     }
     mutate({ title: value })

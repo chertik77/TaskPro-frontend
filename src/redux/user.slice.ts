@@ -37,9 +37,7 @@ const userSlice = createSlice({
     updateUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload
     },
-    logout: () => {
-      return initialState
-    }
+    logout: () => initialState
   },
   selectors: {
     selectIsLoggedIn: state => state.isLoggedIn,

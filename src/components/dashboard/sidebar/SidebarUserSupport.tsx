@@ -35,7 +35,7 @@ export const SidebarUserSupport = () => {
           hocus:text-brand-hover violet:text-white violet:hocus:text-brand-third
           dark:text-white-primary dark:hocus:text-brand-hover'>
         <svg className='size-5'>
-          <use href={`/icons.svg#icon-help`} />
+          <use href='/icons.svg#icon-help' />
         </svg>
         Need help?
       </button>

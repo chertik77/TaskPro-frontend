@@ -19,7 +19,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
     <div className='ml-auto flex gap-2'>
       {isToday(card.deadline) && (
         <svg className='size-lg animate-bounce stroke-brand pr-1 violet:stroke-brand-secondary'>
-          <use href='/icons.svg#icon-bell'></use>
+          <use href='/icons.svg#icon-bell' />
         </svg>
       )}
       <BoardCardColumnSelect card={card} />

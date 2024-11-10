@@ -17,10 +17,9 @@ export const getPriorityColor = (priority: string) => {
   return priorityColors[priority] || priorityColors.default
 }
 
-export const formatTodayDate = (date: Date) => {
-  return isToday(date)
+export const formatTodayDate = (date: Date) =>
+  isToday(date)
     ? `Today, ${format(date, 'MMMM d')}`
     : format(date, 'dd/MM/yyyy')
-}
 
 export * from './filters'

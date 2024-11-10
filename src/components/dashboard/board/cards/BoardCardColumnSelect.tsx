@@ -23,7 +23,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
         <svg
           className='size-4 stroke-black/50 hocus:stroke-black dark:stroke-white/50
             dark:hocus:stroke-white'>
-          <use href='/icons.svg#icon-arrow'></use>
+          <use href='/icons.svg#icon-arrow' />
         </svg>
       </Select.Trigger>
       <Select.Portal>
@@ -49,7 +49,7 @@ export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
                     <svg
                       className='size-4 stroke-black/50 group-focus:stroke-brand
                         violet:group-focus:stroke-brand-secondary dark:stroke-white/50'>
-                      <use href='/icons.svg#icon-arrow'></use>
+                      <use href='/icons.svg#icon-arrow' />
                     </svg>
                   </div>
                 </Select.ItemText>

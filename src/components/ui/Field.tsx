@@ -88,5 +88,3 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
     )
   }
 )
-
-Field.displayName = 'Field'
