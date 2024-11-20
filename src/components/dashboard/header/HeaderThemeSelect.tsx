@@ -15,6 +15,10 @@ export const HeaderThemeSelect = () => {
 
   useEffect(() => {
     window.document.documentElement.className = theme
+
+    return () => {
+      window.document.documentElement.className = 'light'
+    }
   }, [theme])
 
   return (
