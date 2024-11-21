@@ -1,14 +1,12 @@
 import { Button, Field, Loader } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useGoogleOneTap, useSigninUser } from 'hooks/auth'
+import { useSigninUser } from 'hooks/auth'
 
 import { SigninSchema } from 'lib/schemas'
 
 export const SigninForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(SigninSchema)
-
-  useGoogleOneTap()
 
   const { mutate, isPending } = useSigninUser(reset)
 

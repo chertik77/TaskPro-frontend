@@ -25,9 +25,9 @@ export const HeaderUserInfo = () => {
           className='size-8 rounded-lg object-cover'
         />
         <Avatar.Fallback
-          className='flex size-8 items-center justify-center rounded-lg bg-white-gray-secondary
-            dark:bg-black-secondary'>
-          A
+          className='flex size-8 items-center justify-center rounded-lg bg-white-gray
+            violet:bg-white-gray-secondary dark:bg-black-secondary'>
+          {name.charAt(0).toUpperCase()}
         </Avatar.Fallback>
       </Avatar.Root>
     </button>
