@@ -4,17 +4,28 @@ import { RadioInput } from 'components/ui'
 
 import { useCardFiltersBySearchParams } from 'hooks/card'
 
-import sortItems from 'lib/json/sort-filter.json'
+const deadlinesFilters = [
+  { id: 'asc', value: 'Ascending Order' },
+  { id: 'desc', value: 'Descending Order' }
+]
 
-export const SortCriterion = () => {
-  const { setSearchParams, cardSortCriterion } = useCardFiltersBySearchParams()
+export const DeadlineFilter = () => {
+  const { setSearchParams, cardDeadline } = useCardFiltersBySearchParams()
+
+  const handleDeadlineChange = (v: string) => {
+    setSearchParams(prev => {
+      prev.set('deadline', v)
+
+      return prev
+    })
+  }
 
   return (
     <Root
       className='flex flex-col gap-2'
-      value={cardSortCriterion}
-      onValueChange={v => setSearchParams({ sort: v })}>
-      {sortItems.map(({ value, id }) => (
+      value={cardDeadline}
+      onValueChange={handleDeadlineChange}>
+      {deadlinesFilters.map(({ value, id }) => (
         <label
           key={id}
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black
@@ -22,7 +33,7 @@ export const SortCriterion = () => {
             hocus:dark:text-white'>
           <RadioInput
             value={id}
-            checked={id === cardSortCriterion}
+            checked={id === cardDeadline}
           />
           {value}
         </label>

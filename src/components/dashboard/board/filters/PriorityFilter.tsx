@@ -9,11 +9,19 @@ import { priorities } from 'constants/priorities'
 export const PriorityFilter = () => {
   const { setSearchParams, cardPriority } = useCardFiltersBySearchParams()
 
+  const handlePriorityChange = (v: string) => {
+    setSearchParams(prev => {
+      prev.set('priority', v)
+
+      return prev
+    })
+  }
+
   return (
     <Root
       className='flex flex-col gap-2'
       value={cardPriority}
-      onValueChange={v => setSearchParams({ priority: v })}>
+      onValueChange={handlePriorityChange}>
       {priorities.map(priority => (
         <label
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black

@@ -2,9 +2,8 @@ import * as Popover from '@radix-ui/react-popover'
 
 import { useCardFiltersBySearchParams } from 'hooks/card'
 
-import { FilterControls } from './FilterControls'
+import { DeadlineFilter } from './DeadlineFilter'
 import { PriorityFilter } from './PriorityFilter'
-import { SortCriterion } from './SortCriterion'
 
 export const Filters = () => {
   const { searchParams, setSearchParams } = useCardFiltersBySearchParams()
@@ -30,24 +29,23 @@ export const Filters = () => {
               <use href='/icons.svg#icon-close' />
             </svg>
           </Popover.Close>
-          <FilterControls
-            controlTitle='Label color'
-            buttonTitle='Show all'
-            onClick={() => {
-              searchParams.delete('priority')
-              setSearchParams(searchParams)
-            }}
-          />
+          <div className='my-3.5 flex justify-between'>
+            <h3>Label color</h3>
+            <button
+              type='button'
+              className='text-sm underline opacity-50 focus:outline-none hocus:text-brand-hover
+                hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
+              onClick={() => {
+                searchParams.delete('priority')
+                searchParams.delete('deadline')
+                setSearchParams(searchParams)
+              }}>
+              Show all
+            </button>
+          </div>
           <PriorityFilter />
-          <FilterControls
-            controlTitle='Sort by'
-            buttonTitle='Reset'
-            onClick={() => {
-              searchParams.delete('sort')
-              setSearchParams(searchParams)
-            }}
-          />
-          <SortCriterion />
+          <h3 className='my-3.5'>Deadline</h3>
+          <DeadlineFilter />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

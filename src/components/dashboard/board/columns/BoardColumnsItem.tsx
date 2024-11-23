@@ -8,9 +8,8 @@ import { AddCardModal } from 'components/dashboard/modals'
 import { Button, Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
-import { useCardFiltersBySearchParams } from 'hooks/card'
 
-import { cn, getFilteredCardsByPriority, getSortedCards } from 'lib'
+import { cn } from 'lib'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
@@ -24,15 +23,9 @@ export const BoardColumnsItem = ({
   column,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { cardPriority, cardSortCriterion } = useCardFiltersBySearchParams()
-
   const [parent] = useAutoAnimate({ duration: 400 })
 
   const { open } = useModal(AddCardModal)
-
-  const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
-
-  const sortedCards = getSortedCards(filteredCards, cardSortCriterion)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -47,7 +40,7 @@ export const BoardColumnsItem = ({
         })}>
         <ScrollArea.Viewport className='h-full'>
           <div ref={parent}>
-            {sortedCards?.map(card => (
+            {column.cards?.map(card => (
               <BoardCard
                 card={card}
                 key={card.id}

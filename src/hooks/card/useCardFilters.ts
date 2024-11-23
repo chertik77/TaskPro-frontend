@@ -6,7 +6,7 @@ export const useCardFiltersBySearchParams = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const cardPriority = searchParams.get('priority') as Priority
-  const cardSortCriterion = searchParams.get('sort')!
+  const cardDeadline = searchParams.get('deadline') as 'asc' | 'desc'
 
-  return { cardPriority, cardSortCriterion, setSearchParams, searchParams }
+  return { cardPriority, cardDeadline, setSearchParams, searchParams }
 }
