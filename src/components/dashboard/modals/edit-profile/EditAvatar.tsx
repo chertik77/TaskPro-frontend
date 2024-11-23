@@ -6,8 +6,6 @@ import type { User } from 'types'
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Button } from 'components/ui'
-
 import { selectUser } from 'redux/user.slice'
 
 type EditAvatarProps = {
@@ -34,7 +32,7 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
         className='hidden'
         onChange={e => changeUserAvatar({ avatar: e.target.files?.[0] })}
       />
-      <Button
+      <button
         type='button'
         onClick={() => inputRef.current?.click()}
         style={{ backgroundImage: avatar && `url(${avatar})` }}
@@ -46,7 +44,7 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
             <use href='/icons.svg#icon-plus-avatar' />
           </svg>
         </div>
-      </Button>
+      </button>
     </div>
   )
 }
