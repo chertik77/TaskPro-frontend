@@ -29,7 +29,9 @@ import 'react-responsive-modal/styles.css'
 import './index.css'
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } }
+  defaultOptions: {
+    queries: { refetchOnWindowFocus: false }
+  }
 })
 
 declare module '@tanstack/react-query' {

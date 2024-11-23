@@ -1,19 +1,21 @@
-import { useQueryClient } from '@tanstack/react-query'
-
-import { useAppMutation } from 'hooks'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 import { columnService } from 'services'
 
 export const useDeleteColumn = (columnId: string) => {
   const queryClient = useQueryClient()
 
-  return useAppMutation({
+  return useMutation({
     mutationKey: ['deleteColumn'],
     mutationFn: () => columnService.deleteColumn(columnId),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['board'] })
     },
-    toastErrorMessage:
-      'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
+    onError() {
+      toast.error(
+        'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
+      )
+    }
   })
 }

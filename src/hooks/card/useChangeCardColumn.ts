@@ -1,19 +1,22 @@
-import { useQueryClient } from '@tanstack/react-query'
-
-import { useAppMutation } from 'hooks'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 import { cardService } from 'services'
 
 export const useChangeCardColumn = (cardId: string) => {
   const queryClient = useQueryClient()
 
-  return useAppMutation<string>({
+  return useMutation({
     mutationKey: ['changeCardColumn'],
-    mutationFn: columnId => cardService.changeCardColumn(cardId, columnId),
+    mutationFn: (columnId: string) =>
+      cardService.changeCardColumn(cardId, columnId),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['board'] })
     },
-    toastErrorMessage:
-      'Unexpected error during column changing. We apologize for the inconvenience. Please try again later.'
+    onError() {
+      toast.error(
+        'Unexpected error during column changing. We apologize for the inconvenience. Please try again later.'
+      )
+    }
   })
 }

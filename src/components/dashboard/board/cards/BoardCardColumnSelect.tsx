@@ -8,17 +8,19 @@ import { useChangeCardColumn } from 'hooks/card'
 import { cn } from 'lib'
 
 export const BoardCardColumnSelect = ({ card }: { card: Card }) => {
-  const columns = useGetBoardById().data?.columns
+  const { data } = useGetBoardById()
 
-  const filteredColumns = columns?.filter(column => column.id !== card.column)
+  const filteredColumns = data?.columns.filter(
+    column => column.id !== card.columnId
+  )
 
   const { mutate } = useChangeCardColumn(card.id)
 
   return (
     <Select.Root
-      value={card.column}
+      value={card.columnId}
       onValueChange={mutate}
-      disabled={columns && columns.length <= 1}>
+      disabled={data && data.columns.length <= 1}>
       <Select.Trigger className='outline-none disabled:hidden'>
         <svg
           className='size-4 stroke-black/50 hocus:stroke-black dark:stroke-white/50

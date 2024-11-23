@@ -1,21 +1,23 @@
 import type { ColumnTitle } from 'types'
 
-import { useQueryClient } from '@tanstack/react-query'
-
-import { useAppMutation } from 'hooks'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 import { columnService } from 'services'
 
 export const useEditColumn = (columnId: string) => {
   const queryClient = useQueryClient()
 
-  return useAppMutation<ColumnTitle>({
+  return useMutation({
     mutationKey: ['editColumn'],
-    mutationFn: data => columnService.editColumn(columnId, data),
+    mutationFn: (data: ColumnTitle) => columnService.editColumn(columnId, data),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['board'] })
     },
-    toastErrorMessage:
-      'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
+    onError() {
+      toast.error(
+        'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
+      )
+    }
   })
 }

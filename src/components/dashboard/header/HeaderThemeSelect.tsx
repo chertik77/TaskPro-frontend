@@ -14,10 +14,12 @@ export const HeaderThemeSelect = () => {
   const { mutate } = useChangeTheme()
 
   useEffect(() => {
-    window.document.documentElement.className = theme
+    const root = window.document.documentElement
+
+    root.className = theme
 
     return () => {
-      window.document.documentElement.className = 'light'
+      root.className = 'light'
     }
   }, [theme])
 

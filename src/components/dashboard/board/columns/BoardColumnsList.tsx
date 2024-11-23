@@ -1,4 +1,4 @@
-import type { Board } from 'types'
+import type { Column } from 'types'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -6,8 +6,8 @@ import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'
 
 type BoardColumnsListProps = {
+  columns: Column[] | undefined
   backgroundIdentifier?: string
-  columns: Board['columns'] | undefined
 }
 
 export const BoardColumnsList = ({

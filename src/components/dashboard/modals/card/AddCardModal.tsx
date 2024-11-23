@@ -15,7 +15,7 @@ export const AddCardModal = () => {
 
   const { register, handleSubmit, formState, reset, control } = useAppForm(
     CardSchema,
-    { defaultValues: { priority: 'Without priority', deadline: new Date() } }
+    { defaultValues: { priority: 'Without', deadline: new Date() } }
   )
 
   const { mutate, isPending } = useAddCard(reset)

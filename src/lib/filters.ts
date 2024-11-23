@@ -4,14 +4,14 @@ import type { Card } from 'types'
 import { isToday } from 'date-fns'
 
 enum PriorityOrder {
-  'Without priority' = 0,
+  'Without' = 0,
   Low = 1,
   Medium = 2,
   High = 3
 }
 
 const getPriorityOrder = (priority?: Priority) =>
-  priority ? PriorityOrder[priority] : PriorityOrder['Without priority']
+  priority ? PriorityOrder[priority] : PriorityOrder['Without']
 
 export const getSortedCardsByTodayDeadline = (cards: Card[]) =>
   cards.sort((a, b) => {

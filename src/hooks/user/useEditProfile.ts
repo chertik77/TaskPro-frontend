@@ -1,13 +1,8 @@
-import type { EditUserSchema } from 'lib/schemas'
-import type { User } from 'types'
-
-import { useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { EditProfileModal } from 'components/dashboard/modals'
-
-import { useAppMutation } from 'hooks'
 
 import { userService } from 'services'
 
@@ -16,7 +11,7 @@ export const useEditProfile = () => {
 
   const { close } = useModal(EditProfileModal)
 
-  return useAppMutation<EditUserSchema, User>({
+  return useMutation({
     mutationKey: ['editUser'],
     mutationFn: userService.updateUserCredentials,
     onSuccess() {

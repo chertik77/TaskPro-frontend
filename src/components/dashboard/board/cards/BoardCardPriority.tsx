@@ -1,9 +1,9 @@
-import type { Card } from 'types'
+import type { Priority } from 'constants/priorities'
 
 import { cn, getPriorityColor } from 'lib'
 
 type BoardCardPriorityProps = {
-  priority: Card['priority']
+  priority: Priority
 }
 
 export const BoardCardPriority = ({ priority }: BoardCardPriorityProps) => (
@@ -13,9 +13,7 @@ export const BoardCardPriority = ({ priority }: BoardCardPriorityProps) => (
     </p>
     <div className='flex items-center gap-1'>
       <div className={cn('size-3 rounded-full', getPriorityColor(priority))} />
-      <p className='text-xs'>
-        {priority === 'Without priority' ? 'Without' : priority}
-      </p>
+      <p className='text-xs'>{priority}</p>
     </div>
   </div>
 )

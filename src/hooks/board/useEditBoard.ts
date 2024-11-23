@@ -1,13 +1,11 @@
 import type { BoardSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
-import type { Board } from 'types'
 
-import { useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
+import { toast } from 'sonner'
 
 import { EditBoardModal } from 'components/dashboard/modals'
-
-import { useAppMutation } from 'hooks'
 
 import { boardService } from 'services'
 
@@ -19,11 +17,9 @@ export const useEditBoard = (
 
   const { close } = useModal(EditBoardModal)
 
-  return useAppMutation<BoardSchema, Board>({
+  return useMutation({
     mutationKey: ['editBoard'],
-    mutationFn: data => boardService.editBoard(boardId!, data),
-    toastErrorMessage:
-      'Failed to update the board. Please try again. If the problem persists, contact support.',
+    mutationFn: (data: BoardSchema) => boardService.editBoard(boardId!, data),
     onSuccess(data) {
       close()
       reset()
@@ -31,6 +27,11 @@ export const useEditBoard = (
       if (data.id === boardId) {
         queryClient.invalidateQueries({ queryKey: ['board'] })
       }
+    },
+    onError() {
+      toast.error(
+        'Failed to update the board. Please try again. If the problem persists, contact support.'
+      )
     }
   })
 }
