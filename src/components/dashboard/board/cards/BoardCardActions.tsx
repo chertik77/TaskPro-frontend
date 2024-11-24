@@ -8,8 +8,6 @@ import { Button } from 'components/ui'
 
 import { useDeleteCard } from 'hooks/card'
 
-import { BoardCardColumnSelect } from './BoardCardColumnSelect'
-
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
@@ -22,7 +20,6 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
           <use href='/icons.svg#icon-bell' />
         </svg>
       )}
-      <BoardCardColumnSelect card={card} />
       <Button
         onClick={() => open(card)}
         iconName='pencil'

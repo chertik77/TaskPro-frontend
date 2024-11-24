@@ -1,6 +1,6 @@
 import type { Column } from 'types'
 
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { Draggable } from '@hello-pangea/dnd'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
@@ -23,8 +23,6 @@ export const BoardColumnsItem = ({
   column,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const [parent] = useAutoAnimate({ duration: 400 })
-
   const { open } = useModal(AddCardModal)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
@@ -39,14 +37,22 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         <ScrollArea.Viewport className='h-full'>
-          <div ref={parent}>
-            {column.cards?.map(card => (
-              <BoardCard
-                card={card}
-                key={card.id}
-              />
-            ))}
-          </div>
+          {column.cards?.map((card, index) => (
+            <Draggable
+              draggableId={card.id}
+              key={card.id}
+              index={index}>
+              {({ innerRef, draggableProps, dragHandleProps }) => (
+                <div
+                  ref={innerRef}
+                  className='mb-2 last:mb-0'
+                  {...draggableProps}
+                  {...dragHandleProps}>
+                  <BoardCard card={card} />
+                </div>
+              )}
+            </Draggable>
+          ))}
         </ScrollArea.Viewport>
         <Scrollbar
           backgroundIdentifier={backgroundIdentifier}

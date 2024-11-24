@@ -7,6 +7,7 @@ export type ColumnTitle = {
 export type Card = {
   id: string
   title: string
+  order: number
   columnId: string
   description: string
   priority: Priority
