@@ -14,6 +14,8 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 - **Task Management:** Seamlessly handle your tasks by creating, editing, and prioritizing them. Utilize advanced features like filtering by priority and sorting by priority or deadline to stay on top of your workload efficiently.
 
+- **Drag and Drop:** Intuitively manage tasks using drag-and-drop functionality. Rearrange tasks within the board effortlessly, enhancing workflow efficiency and user experience.
+
 - **Theme Switcher:** Toggle between light, dark, and violet themes for a personalized experience.
 
 - **Profile Editing:** Users can edit their profiles, including changing avatars.
