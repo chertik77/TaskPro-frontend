@@ -63,7 +63,7 @@ export const EditBoardModal = () => {
           isPlusIcon
           shouldShowLoader={isPending}
           disabled={isPending || !isFormReadyForSubmit}>
-          {isPending ? 'Editing...' : 'Edit'}
+          {!isPending && 'Edit'}
         </Button>
       </form>
     </Modal>

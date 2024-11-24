@@ -48,7 +48,7 @@ export const AddCardModal = () => {
           type='submit'
           shouldShowLoader={isPending}
           disabled={isPending}>
-          {isPending ? 'Adding...' : 'Add'}
+          {!isPending && 'Add'}
         </Button>
       </form>
     </Modal>

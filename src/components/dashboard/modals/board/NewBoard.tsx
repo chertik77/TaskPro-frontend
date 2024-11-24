@@ -41,7 +41,7 @@ export const NewBoardModal = () => {
           isPlusIcon
           shouldShowLoader={isPending}
           disabled={isPending}>
-          {isPending ? 'Creating...' : 'Create'}
+          {!isPending && 'Create'}
         </Button>
       </form>
     </Modal>

@@ -61,11 +61,11 @@ export const EditCardModal = () => {
         />
         <DatePicker control={control} />
         <Button
+          type='submit'
           isPlusIcon
           shouldShowLoader={isPending}
-          type='submit'
           disabled={isPending || !isFormReadyForSubmit}>
-          {isPending ? 'Editing...' : 'Edit'}
+          {!isPending && 'Edit'}
         </Button>
       </form>
     </Modal>

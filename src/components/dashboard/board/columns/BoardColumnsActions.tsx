@@ -42,10 +42,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
         isDeleting && 'justify-center'
       )}>
       {isDeleting ? (
-        <div className='flex items-center gap-2'>
-          <Loader />
-          Deleting...
-        </div>
+        <Loader />
       ) : (
         <>
           <EditText
