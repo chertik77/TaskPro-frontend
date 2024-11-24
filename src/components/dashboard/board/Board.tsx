@@ -3,6 +3,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Loader, Scrollbar } from 'components/ui'
 
 import { useGetBoardById } from 'hooks/board'
+import { useDocumentTitle } from 'hooks/useDocumentTitle'
 
 import { cn } from 'lib'
 
@@ -11,6 +12,8 @@ import { Filters } from './filters/Filters'
 
 export const Board = () => {
   const { data, isLoading } = useGetBoardById()
+
+  useDocumentTitle(data?.title as string)
 
   return (
     <ScrollArea.Root
