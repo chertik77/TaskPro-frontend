@@ -1,6 +1,6 @@
 import type { Column } from 'types'
 
-import { Draggable } from '@hello-pangea/dnd'
+import { Droppable } from '@hello-pangea/dnd'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
@@ -30,36 +30,34 @@ export const BoardColumnsItem = ({
   return (
     <div className='flex w-[334px] flex-col'>
       <BoardColumnsActions column={column} />
-      <ScrollArea.Root
-        type='scroll'
-        className={cn('-mr-4 pr-4', {
-          'h-[calc(100dvh-275px)]': !isTabletAndBelow,
-          'h-[calc(100dvh-300px)]': isTabletAndBelow
-        })}>
-        <ScrollArea.Viewport className='h-full'>
-          {column.cards?.map((card, index) => (
-            <Draggable
-              draggableId={card.id}
-              key={card.id}
-              index={index}>
-              {({ innerRef, draggableProps, dragHandleProps }) => (
-                <div
-                  ref={innerRef}
-                  className='mb-2 last:mb-0'
-                  {...draggableProps}
-                  {...dragHandleProps}>
-                  <BoardCard card={card} />
-                </div>
-              )}
-            </Draggable>
-          ))}
-        </ScrollArea.Viewport>
-        <Scrollbar
-          backgroundIdentifier={backgroundIdentifier}
-          scrollBarClassName='w-2'
-          thumbClassName='!w-2'
-        />
-      </ScrollArea.Root>
+      <Droppable droppableId={column.id}>
+        {({ innerRef, droppableProps, placeholder }) => (
+          <ScrollArea.Root
+            type='scroll'
+            ref={innerRef}
+            {...droppableProps}
+            className={cn('-mr-4 pr-4', {
+              'h-[calc(100dvh-275px)]': !isTabletAndBelow,
+              'h-[calc(100dvh-300px)]': isTabletAndBelow
+            })}>
+            <ScrollArea.Viewport className='h-full'>
+              {column.cards?.map((card, index) => (
+                <BoardCard
+                  card={card}
+                  key={card.id}
+                  index={index}
+                />
+              ))}
+              {placeholder}
+            </ScrollArea.Viewport>
+            <Scrollbar
+              backgroundIdentifier={backgroundIdentifier}
+              scrollBarClassName='w-2'
+              thumbClassName='!w-2'
+            />
+          </ScrollArea.Root>
+        )}
+      </Droppable>
       <Button
         isPlusIcon
         className='mt-3.5'

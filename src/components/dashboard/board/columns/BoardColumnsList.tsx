@@ -2,7 +2,7 @@ import type { Column } from 'types'
 
 import { useEffect, useState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+import { DragDropContext } from '@hello-pangea/dnd'
 
 import { useOnDragEnd } from 'hooks/card'
 
@@ -37,21 +37,11 @@ export const BoardColumnsList = ({
         className='flex gap-[34px]'
         ref={animationParent}>
         {orderedColumns?.map(column => (
-          <Droppable
+          <BoardColumnsItem
+            column={column}
             key={column.id}
-            droppableId={column.id}>
-            {({ innerRef, droppableProps, placeholder }) => (
-              <div
-                {...droppableProps}
-                ref={innerRef}>
-                <BoardColumnsItem
-                  column={column}
-                  backgroundIdentifier={backgroundIdentifier}
-                />
-                {placeholder}
-              </div>
-            )}
-          </Droppable>
+            backgroundIdentifier={backgroundIdentifier}
+          />
         ))}
         <BoardAddColumnBtn />
       </div>

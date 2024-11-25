@@ -21,6 +21,7 @@ export const useOnDragEnd = ({
   setOrderedColumns
 }: UseOnDragEndProps) => {
   const { mutate } = useUpdateCardsOrder()
+
   const onDragEnd: OnDragEndResponder = ({ source, destination }) => {
     if (!destination) return
 
