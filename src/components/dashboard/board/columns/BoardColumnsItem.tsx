@@ -1,6 +1,6 @@
 import type { Column } from 'types'
 
-import { Droppable } from '@hello-pangea/dnd'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
@@ -29,7 +29,7 @@ export const BoardColumnsItem = ({
 
   const { cardPriority } = useCardFilters()
 
-  // const [animationParent, enableAnimations] = useAutoAnimate({ duration: 400 })
+  const [animationParent] = useAutoAnimate({ duration: 400 })
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -38,36 +38,28 @@ export const BoardColumnsItem = ({
   return (
     <div className='flex w-[334px] flex-col'>
       <BoardColumnsActions column={column} />
-      <Droppable droppableId={column.id}>
-        {({ innerRef, droppableProps, placeholder }) => (
-          <ScrollArea.Root
-            type='scroll'
-            ref={innerRef}
-            {...droppableProps}
-            className={cn('-mr-4 pr-4', {
-              'h-[calc(100dvh-275px)]': !isTabletAndBelow,
-              'h-[calc(100dvh-300px)]': isTabletAndBelow
-            })}>
-            <ScrollArea.Viewport className='h-full'>
-              {/* <div ref={animationParent}> */}
-              {filteredCards.map((card, index) => (
-                <BoardCard
-                  card={card}
-                  key={card.id}
-                  index={index}
-                />
-              ))}
-              {placeholder}
-              {/* </div> */}
-            </ScrollArea.Viewport>
-            <Scrollbar
-              backgroundIdentifier={backgroundIdentifier}
-              scrollBarClassName='w-2'
-              thumbClassName='!w-2'
-            />
-          </ScrollArea.Root>
-        )}
-      </Droppable>
+      <ScrollArea.Root
+        type='scroll'
+        className={cn('-mr-4 pr-4', {
+          'h-[calc(100dvh-275px)]': !isTabletAndBelow,
+          'h-[calc(100dvh-300px)]': isTabletAndBelow
+        })}>
+        <ScrollArea.Viewport className='h-full'>
+          <div ref={animationParent}>
+            {filteredCards.map(card => (
+              <BoardCard
+                card={card}
+                key={card.id}
+              />
+            ))}
+          </div>
+        </ScrollArea.Viewport>
+        <Scrollbar
+          backgroundIdentifier={backgroundIdentifier}
+          scrollBarClassName='w-2'
+          thumbClassName='!w-2'
+        />
+      </ScrollArea.Root>
       <Button
         isPlusIcon
         className='mt-3.5'
