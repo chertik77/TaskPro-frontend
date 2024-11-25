@@ -8,21 +8,21 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 ## Features
 
-- **Authentication:** Users can register and log in to access the main application.
+- **Authentication:** Register or log in to the app easily, including the option to sign in with Google.
 
-- **Board Creation:** Personalize workspace by creating boards with unique icons and background images.
+- **Custom Boards:** Create personalized boards with unique icons and background images to organize your workspace.
 
-- **Task Management:** Seamlessly handle your tasks by creating, editing, and prioritizing them. Utilize advanced features like filtering by priority and sorting by priority or deadline to stay on top of your workload efficiently.
+- **Task Management Made Simple:** Add, edit, and prioritize tasks. Use filters to focus on high-priority items.
 
-- **Drag and Drop:** Intuitively manage tasks using drag-and-drop functionality. Rearrange tasks within the board effortlessly, enhancing workflow efficiency and user experience.
+- **Drag and Drop:** Move tasks around easily with drag-and-drop, making your workflow smooth and hassle-free.
 
-- **Theme Switcher:** Toggle between light, dark, and violet themes for a personalized experience.
+- **Switch Themes:** Choose between light, dark, or violet themes to match your style and mood.
 
-- **Profile Editing:** Users can edit their profiles, including changing avatars.
+- **Edit Your Profile:** Update your profile details, including changing your avatar.
 
-- **Toggle Sidebar:** Users can effortlessly toggle the sidebar on and off using keyboard shortcuts (<kbd>⌘ Command</kbd> + <kbd>O</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>O</kbd> on Windows/Linux), enabling them to maximize their workspace and concentrate on tasks without distractions.
+- **Toggle Sidebar:** Use shortcuts (<kbd>⌘ Command</kbd> + <kbd>O</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>O</kbd> on Windows/Linux) to show or hide the sidebar, giving you more space to focus.
 
-- **Help Email Integration:** Quickly reach out for assistance by sending an email directly from the app, ensuring timely support for any queries or issues.
+- **Get Help Fast:** Quickly reach out for assistance by sending an email directly from the app, ensuring timely support for any queries or issues.
 
 ## Project Contributors
 
