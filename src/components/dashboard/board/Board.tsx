@@ -11,7 +11,7 @@ import { BoardColumnsList } from './columns/BoardColumnsList'
 import { Filters } from './filters/Filters'
 
 export const Board = () => {
-  const { data, isLoading } = useGetBoardById()
+  const { data, isPending } = useGetBoardById()
 
   useDocumentTitle(data?.title as string)
 
@@ -21,7 +21,7 @@ export const Board = () => {
       className='relative flex flex-col overflow-hidden bg-cover bg-center px-5 pt-3.5
         tablet:px-8 tablet:pt-xl desktop:px-6 desktop:pt-sm'
       style={{
-        backgroundImage: `url(${!isLoading && data?.background?.url})`
+        backgroundImage: `url(${!isPending && data?.background?.url})`
       }}>
       <div
         className={cn(
@@ -30,10 +30,10 @@ export const Board = () => {
           data?.background.identifier === 'default' && 'dark:text-white'
         )}>
         <p className='tablet:text-lg'>{data?.title}</p>
-        {!isLoading && <Filters />}
+        {!isPending && <Filters />}
       </div>
       <ScrollArea.Viewport className='w-full flex-1 pb-4'>
-        {isLoading ? (
+        {isPending ? (
           <Loader className='absolute inset-0 m-auto' />
         ) : (
           <BoardColumnsList

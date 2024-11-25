@@ -2,26 +2,18 @@ import { Root } from '@radix-ui/react-radio-group'
 
 import { RadioInput } from 'components/ui'
 
-import { useCardFiltersBySearchParams } from 'hooks/card'
+import { useCardFilters } from 'hooks/card'
 
 import { priorities } from 'constants/priorities'
 
 export const PriorityFilter = () => {
-  const { setSearchParams, cardPriority } = useCardFiltersBySearchParams()
-
-  const handlePriorityChange = (v: string) => {
-    setSearchParams(prev => {
-      prev.set('priority', v)
-
-      return prev
-    })
-  }
+  const { setSearchParams, cardPriority } = useCardFilters()
 
   return (
     <Root
       className='flex flex-col gap-2'
       value={cardPriority}
-      onValueChange={handlePriorityChange}>
+      onValueChange={v => setSearchParams({ priority: v })}>
       {priorities.map(priority => (
         <label
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black

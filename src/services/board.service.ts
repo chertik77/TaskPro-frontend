@@ -1,4 +1,3 @@
-import type { Priority } from 'constants/priorities'
 import type { BoardSchema } from 'lib/schemas'
 import type { Board } from 'types'
 
@@ -12,13 +11,9 @@ export const boardService = {
     return response.data
   },
 
-  async getBoardById(
-    boardId: string,
-    params?: { priority?: Priority; sortBy?: 'asc' | 'desc' }
-  ) {
+  async getBoardById(boardId: string) {
     const response = await axiosInstance.get<Board>(
-      `${ApiEndpoints.Board}/${boardId}`,
-      { params }
+      `${ApiEndpoints.Board}/${boardId}`
     )
 
     return response.data

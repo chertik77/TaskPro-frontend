@@ -1,12 +1,11 @@
 import * as Popover from '@radix-ui/react-popover'
 
-import { useCardFiltersBySearchParams } from 'hooks/card'
+import { useCardFilters } from 'hooks/card'
 
-import { DeadlineFilter } from './DeadlineFilter'
 import { PriorityFilter } from './PriorityFilter'
 
 export const Filters = () => {
-  const { searchParams, setSearchParams } = useCardFiltersBySearchParams()
+  const { searchParams, setSearchParams } = useCardFilters()
 
   return (
     <Popover.Root>
@@ -37,15 +36,12 @@ export const Filters = () => {
                 hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
               onClick={() => {
                 searchParams.delete('priority')
-                searchParams.delete('deadline')
                 setSearchParams(searchParams)
               }}>
               Show all
             </button>
           </div>
           <PriorityFilter />
-          <h3 className='my-3.5'>Deadline</h3>
-          <DeadlineFilter />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

@@ -68,8 +68,8 @@ export const useOnDragEnd = ({
       setOrderedColumns(newOrderedColumns)
 
       mutate({
-        ids: reorderedCards.map(card => card.id),
-        columnId: source.droppableId
+        columnId: source.droppableId,
+        ids: reorderedCards.map(card => card.id)
       })
     } else {
       const [movedCard] = sourceColumn?.cards.splice(source.index, 1) || []
@@ -89,8 +89,8 @@ export const useOnDragEnd = ({
       setOrderedColumns(newOrderedColumns)
 
       mutate({
-        ids: destinationColumn!.cards.map(card => card.id),
-        columnId: destination.droppableId
+        columnId: destination.droppableId,
+        ids: destinationColumn!.cards.map(card => card.id)
       })
     }
   }

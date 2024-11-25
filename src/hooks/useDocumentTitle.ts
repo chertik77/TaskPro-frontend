@@ -4,8 +4,12 @@ const WEBSITE_NAME = 'TaskPro'
 
 export const useDocumentTitle = (title: string) => {
   useEffect(() => {
-    document.title = `${title} | ${WEBSITE_NAME}`
-  }, [title])
+    if (title) {
+      document.title = `${title} | ${WEBSITE_NAME}`
+    }
 
-  return null
+    return () => {
+      document.title = WEBSITE_NAME
+    }
+  }, [title])
 }

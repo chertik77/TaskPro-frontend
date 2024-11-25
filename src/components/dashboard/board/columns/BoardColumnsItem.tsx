@@ -8,8 +8,10 @@ import { AddCardModal } from 'components/dashboard/modals'
 import { Button, Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
+import { useCardFilters } from 'hooks/card'
 
 import { cn } from 'lib'
+import { getFilteredCardsByPriority } from 'lib/filters'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
@@ -25,7 +27,13 @@ export const BoardColumnsItem = ({
 }: BoardColumnsItemProps) => {
   const { open } = useModal(AddCardModal)
 
+  const { cardPriority } = useCardFilters()
+
+  // const [animationParent, enableAnimations] = useAutoAnimate({ duration: 400 })
+
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
+
+  const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
 
   return (
     <div className='flex w-[334px] flex-col'>
@@ -41,7 +49,8 @@ export const BoardColumnsItem = ({
               'h-[calc(100dvh-300px)]': isTabletAndBelow
             })}>
             <ScrollArea.Viewport className='h-full'>
-              {column.cards?.map((card, index) => (
+              {/* <div ref={animationParent}> */}
+              {filteredCards.map((card, index) => (
                 <BoardCard
                   card={card}
                   key={card.id}
@@ -49,6 +58,7 @@ export const BoardColumnsItem = ({
                 />
               ))}
               {placeholder}
+              {/* </div> */}
             </ScrollArea.Viewport>
             <Scrollbar
               backgroundIdentifier={backgroundIdentifier}

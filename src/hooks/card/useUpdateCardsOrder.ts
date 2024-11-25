@@ -6,7 +6,7 @@ import { cardService } from 'services'
 export const useUpdateCardsOrder = () =>
   useMutation({
     mutationKey: ['updateCardsOrder'],
-    mutationFn: ({ ids, columnId }: { ids: string[]; columnId: string }) =>
+    mutationFn: ({ columnId, ids }: { ids: string[]; columnId: string }) =>
       cardService.updateCardsOrder(columnId, { ids }),
     onError() {
       toast.error(
