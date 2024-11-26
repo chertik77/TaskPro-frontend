@@ -18,14 +18,15 @@ export const BoardColumnsList = ({
   columns,
   backgroundIdentifier
 }: BoardColumnsListProps) => {
-  const { cards, activeCard, onDragStart, onDragOver } =
+  const { cards, activeCard, onDragStart, onDragOver, onDragEnd } =
     useCardDragAndDrop(columns)
 
   return (
-    <DndContext
-      onDragStart={onDragStart}
-      onDragOver={onDragOver}>
-      <div className='flex gap-[34px]'>
+    <div className='flex gap-[34px]'>
+      <DndContext
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDragEnd={onDragEnd}>
         {columns?.map(column => (
           <BoardColumnsItem
             column={column}
@@ -35,13 +36,13 @@ export const BoardColumnsList = ({
           />
         ))}
         <BoardAddColumnBtn />
-      </div>
-      {createPortal(
-        <DragOverlay>
-          {activeCard && <BoardCard card={activeCard!} />}
-        </DragOverlay>,
-        document.body
-      )}
-    </DndContext>
+        {createPortal(
+          <DragOverlay>
+            {activeCard && <BoardCard card={activeCard!} />}
+          </DragOverlay>,
+          document.body
+        )}
+      </DndContext>
+    </div>
   )
 }
