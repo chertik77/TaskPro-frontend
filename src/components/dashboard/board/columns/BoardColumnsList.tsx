@@ -1,6 +1,6 @@
 import type { Column } from 'types'
 
-import { DndContext, DragOverlay } from '@dnd-kit/core'
+import { closestCenter, DndContext, DragOverlay } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
 
 import { useCardDragAndDrop } from 'hooks/card'
@@ -24,6 +24,7 @@ export const BoardColumnsList = ({
   return (
     <div className='flex gap-[34px]'>
       <DndContext
+        collisionDetection={closestCenter}
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}>

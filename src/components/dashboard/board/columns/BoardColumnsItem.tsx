@@ -2,7 +2,7 @@ import type { Card, Column } from 'types'
 
 import { useMemo } from 'react'
 import { useDroppable } from '@dnd-kit/core'
-import { SortableContext } from '@dnd-kit/sortable'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
@@ -56,7 +56,9 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         <ScrollArea.Viewport className='h-full'>
-          <SortableContext items={cardsIds || []}>
+          <SortableContext
+            items={cardsIds || []}
+            strategy={verticalListSortingStrategy}>
             {filteredCards?.map(card => (
               <BoardCard
                 card={card}

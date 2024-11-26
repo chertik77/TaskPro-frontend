@@ -36,8 +36,8 @@ export const useCardDragAndDrop = (columns: Column[] | undefined) => {
       setCards(cards => {
         if (!cards) return
 
-        const activeCardIndex = cards.findIndex(card => card.id === activeId)
-        const overCardIndex = cards.findIndex(card => card.id === overId)
+        const activeCardIndex = cards.findIndex(c => c.id === activeId)
+        const overCardIndex = cards.findIndex(c => c.id === overId)
 
         const activeCard = cards[activeCardIndex!]
         const overCard = cards[overCardIndex!]
@@ -62,14 +62,16 @@ export const useCardDragAndDrop = (columns: Column[] | undefined) => {
 
     if (isOverAColumn) {
       setCards(cards => {
-        const activeCardIndex = cards?.findIndex(c => c.id === activeId)
+        if (!cards) return
 
-        const activeCard = cards![activeCardIndex!]
+        const activeCardIndex = cards.findIndex(c => c.id === activeId)
+
+        const activeCard = cards[activeCardIndex]
 
         if (activeCard) {
-          activeCard.columnId = overId as string
+          activeCard.columnId = overId
 
-          return arrayMove(cards!, activeCardIndex!, activeCardIndex!)
+          return arrayMove(cards, activeCardIndex, activeCardIndex)
         }
 
         return cards
