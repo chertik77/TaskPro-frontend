@@ -4,10 +4,14 @@ import type { Card, Column } from 'types'
 import { useEffect, useState } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 
+import { useUpdateCardsOrder } from './useUpdateCardsOrder'
+
 export const useCardDragAndDrop = (columns: Column[] | undefined) => {
   const [cards, setCards] = useState(columns?.flatMap(c => c.cards))
 
   const [activeCard, setActiveCard] = useState<Card | null>(null)
+
+  const { mutate } = useUpdateCardsOrder()
 
   useEffect(() => {
     setCards(columns?.flatMap(c => c.cards))
@@ -28,14 +32,38 @@ export const useCardDragAndDrop = (columns: Column[] | undefined) => {
     const isOverACard = over.data.current?.type === 'card'
 
     if (isOverACard) {
-      const activeCardIndex = cards?.findIndex(card => card.id === activeId)
-      const overCardIndex = cards?.findIndex(card => card.id === overId)
+      setCards(cards => {
+        const activeCardIndex = cards?.findIndex(card => card.id === activeId)
+        const overCardIndex = cards?.findIndex(card => card.id === overId)
 
-      cards![activeCardIndex!].columnId = cards![overCardIndex!].columnId
+        const activeCard = cards![activeCardIndex!]
+        const overCard = cards![overCardIndex!]
 
-      const updatedCards = arrayMove(cards!, activeCardIndex!, overCardIndex!)
+        if (
+          activeCard &&
+          overCard &&
+          activeCard.columnId !== overCard.columnId
+        ) {
+          activeCard.columnId = overCard.columnId
 
-      setCards(updatedCards)
+          const updatedCards = arrayMove(
+            cards!,
+            activeCardIndex!,
+            Math.max(0, overCardIndex! - 1)
+          )
+
+          // mutate({
+          //   columnId: overCard.columnId,
+          //   ids: updatedCards
+          //     .filter(card => card.columnId === overCard.columnId)
+          //     .map(card => card.id)
+          // })
+
+          return updatedCards
+        }
+
+        return arrayMove(cards!, activeCardIndex!, overCardIndex!)
+      })
     }
 
     const isOverAColumn = over.data.current?.type === 'column'
@@ -48,6 +76,13 @@ export const useCardDragAndDrop = (columns: Column[] | undefined) => {
       const updatedCards = arrayMove(cards!, activeCardIndex!, activeCardIndex!)
 
       setCards(updatedCards)
+
+      mutate({
+        columnId: overId as string,
+        ids: updatedCards
+          .filter(card => card.columnId === overId)
+          .map(card => card.id)
+      })
     }
   }
 
