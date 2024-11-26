@@ -1,4 +1,5 @@
 export * from './useAddCard'
+export * from './useCardDragAndDrop'
 export * from './useCardFilters'
 export * from './useDeleteCard'
 export * from './useEditCard'
