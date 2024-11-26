@@ -37,7 +37,7 @@ export const BoardColumnsItem = ({
 
   const filteredCards = getFilteredCardsByPriority(cards!, cardPriority)
 
-  const cardsIds = useMemo(() => cards?.map(c => c.id), [cards])
+  const cardsIds = useMemo(() => filteredCards?.map(c => c.id), [filteredCards])
 
   const { setNodeRef } = useDroppable({
     id: column.id,

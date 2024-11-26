@@ -3,12 +3,11 @@ import type { Column } from 'types'
 import {
   DndContext,
   DragOverlay,
-  MouseSensor,
-  TouchSensor,
+  PointerSensor,
+  pointerWithin,
   useSensor,
   useSensors
 } from '@dnd-kit/core'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { createPortal } from 'react-dom'
 
 import { useCardDragAndDrop } from 'hooks/card'
@@ -30,18 +29,14 @@ export const BoardColumnsList = ({
     useCardDragAndDrop(columns)
 
   const sensors = useSensors(
-    useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
-    useSensor(TouchSensor, { activationConstraint: { distance: 8 } })
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
   )
 
-  const [animationParent] = useAutoAnimate({ duration: 400 })
-
   return (
-    <div
-      className='flex gap-[34px]'
-      ref={animationParent}>
+    <div className='flex gap-[34px]'>
       <DndContext
         sensors={sensors}
+        collisionDetection={pointerWithin}
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}>
