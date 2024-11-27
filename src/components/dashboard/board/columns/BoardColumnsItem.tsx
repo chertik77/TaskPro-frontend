@@ -69,7 +69,7 @@ export const BoardColumnsItem = ({
     />
   ) : (
     <div
-      className='flex w-[334px] flex-col'
+      className='flex w-[334px] cursor-grab flex-col'
       ref={setNodeRef}
       style={style}
       {...attributes}

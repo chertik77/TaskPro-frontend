@@ -52,7 +52,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
               if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
             }}
             onChange={e => setColumnTitle(e.target.value)}
-            className='w-[270px] hover:bg-transparent'
+            className='w-[250px] hover:bg-transparent'
             inputClassName='outline-none bg-transparent'
           />
           <Button
