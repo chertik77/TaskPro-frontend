@@ -1,6 +1,8 @@
-import type { Column } from 'types'
+import type { Card, Column } from 'types'
 
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useMemo } from 'react'
+import { useDroppable } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
@@ -18,25 +20,34 @@ import { BoardColumnsActions } from './BoardColumnsActions'
 
 type BoardColumnsItemProps = {
   column: Column
+  cards: Card[] | undefined
   backgroundIdentifier?: string
 }
 
 export const BoardColumnsItem = ({
   column,
+  cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
   const { open } = useModal(AddCardModal)
 
   const { cardPriority } = useCardFilters()
 
-  const [animationParent] = useAutoAnimate({ duration: 400 })
-
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
-  const filteredCards = getFilteredCardsByPriority(column.cards, cardPriority)
+  const filteredCards = getFilteredCardsByPriority(cards!, cardPriority)
+
+  const cardsIds = useMemo(() => filteredCards?.map(c => c.id), [filteredCards])
+
+  const { setNodeRef } = useDroppable({
+    id: column.id,
+    data: { type: 'column' }
+  })
 
   return (
-    <div className='flex w-[334px] flex-col'>
+    <div
+      className='flex w-[334px] flex-col'
+      ref={setNodeRef}>
       <BoardColumnsActions column={column} />
       <ScrollArea.Root
         type='scroll'
@@ -45,14 +56,16 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         <ScrollArea.Viewport className='h-full'>
-          <div ref={animationParent}>
-            {filteredCards.map(card => (
+          <SortableContext
+            items={cardsIds || []}
+            strategy={verticalListSortingStrategy}>
+            {filteredCards?.map(card => (
               <BoardCard
                 card={card}
                 key={card.id}
               />
             ))}
-          </div>
+          </SortableContext>
         </ScrollArea.Viewport>
         <Scrollbar
           backgroundIdentifier={backgroundIdentifier}
