@@ -5,12 +5,13 @@ import { toast } from 'sonner'
 
 import { columnService } from 'services'
 
-export const useEditColumn = (columnId: string) => {
+export const useEditColumn = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationKey: ['editColumn'],
-    mutationFn: (data: ColumnTitle) => columnService.editColumn(columnId, data),
+    mutationFn: ({ columnId, data }: { columnId: string; data: ColumnTitle }) =>
+      columnService.editColumn(columnId, data),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['board'] })
     },
