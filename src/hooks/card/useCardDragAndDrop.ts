@@ -32,51 +32,55 @@ export const useCardDragAndDrop = (columns: Column[] | undefined) => {
     const isOverACard = over.data.current?.type === 'card'
     const isOverAColumn = over.data.current?.type === 'column'
 
-    if (isOverACard) {
-      setCards(cards => {
-        if (!cards) return
+    const updateCardColumn = (
+      cards: Card[],
+      activeId: string,
+      newColumnId: string
+    ) => {
+      const activeCardIndex = cards.findIndex(c => c.id === activeId)
 
-        const activeCardIndex = cards.findIndex(c => c.id === activeId)
-        const overCardIndex = cards.findIndex(c => c.id === overId)
+      if (activeCardIndex !== -1) {
+        cards[activeCardIndex].columnId = newColumnId
 
-        const activeCard = cards[activeCardIndex!]
-        const overCard = cards[overCardIndex!]
+        return arrayMove(cards, activeCardIndex, activeCardIndex)
+      }
 
-        if (
-          activeCard &&
-          overCard &&
-          activeCard.columnId !== overCard.columnId
-        ) {
-          activeCard.columnId = overCard.columnId
-
-          return arrayMove(
-            cards,
-            activeCardIndex,
-            Math.max(0, overCardIndex - 1)
-          )
-        }
-
-        return arrayMove(cards, activeCardIndex, overCardIndex)
-      })
+      return cards
     }
 
-    if (isOverAColumn) {
-      setCards(cards => {
-        if (!cards) return
+    const handleCardMove = (
+      cards: Card[],
+      activeId: string,
+      overId: string
+    ) => {
+      const activeCardIndex = cards.findIndex(c => c.id === activeId)
+      const overCardIndex = cards.findIndex(c => c.id === overId)
 
-        const activeCardIndex = cards.findIndex(c => c.id === activeId)
+      if (activeCardIndex === -1 || overCardIndex === -1) return cards
 
-        const activeCard = cards[activeCardIndex]
+      const activeCard = cards[activeCardIndex]
+      const overCard = cards[overCardIndex]
 
-        if (activeCard) {
-          activeCard.columnId = overId
+      if (overCard && activeCard.columnId !== overCard.columnId) {
+        activeCard.columnId = overCard.columnId
 
-          return arrayMove(cards, activeCardIndex, activeCardIndex)
-        }
+        return arrayMove(cards, activeCardIndex, Math.max(0, overCardIndex - 1))
+      }
 
-        return cards
-      })
+      return arrayMove(cards, activeCardIndex, overCardIndex)
     }
+
+    setCards(cards => {
+      if (!cards) return cards
+
+      if (isOverACard) {
+        return handleCardMove(cards, activeId, overId)
+      }
+
+      if (isOverAColumn) {
+        return updateCardColumn(cards, activeId, overId)
+      }
+    })
   }
 
   const onDragEnd = ({ over }: DragEndEvent) => {
