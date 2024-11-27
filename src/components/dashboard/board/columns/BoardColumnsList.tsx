@@ -3,8 +3,9 @@ import type { Column } from 'types'
 import {
   DndContext,
   DragOverlay,
-  PointerSensor,
+  MouseSensor,
   pointerWithin,
+  TouchSensor,
   useSensor,
   useSensors
 } from '@dnd-kit/core'
@@ -29,7 +30,10 @@ export const BoardColumnsList = ({
     useCardDragAndDrop(columns)
 
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+    useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, {
+      activationConstraint: { distance: 8, delay: 250, tolerance: 5 }
+    })
   )
 
   return (
