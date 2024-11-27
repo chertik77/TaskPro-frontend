@@ -27,10 +27,6 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
     setCards(initialColumns?.flatMap(c => c.cards))
   }, [initialColumns])
 
-  useEffect(() => {
-    console.log('cards changed')
-  }, [cards])
-
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active) return
 
