@@ -48,7 +48,7 @@ export const BoardColumnsList = ({
   )
 
   return (
-    <div className='flex gap-[34px]'>
+    <div className='flex touch-manipulation gap-[34px]'>
       <DndContext
         sensors={sensors}
         collisionDetection={pointerWithin}
