@@ -27,6 +27,10 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
     setCards(initialColumns?.flatMap(c => c.cards))
   }, [initialColumns])
 
+  useEffect(() => {
+    console.log('cards changed')
+  }, [cards])
+
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active) return
 
@@ -103,9 +107,10 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
     const activeId = active.id as string
     const overId = over.id as string
 
+    const isActiveACard = active?.data.current?.type === 'card'
     const isActiveAColumn = active?.data.current?.type === 'column'
 
-    if (isActiveAColumn && activeId === overId) return
+    if ((isActiveACard || isActiveAColumn) && activeId === overId) return
 
     const activeColumnIndex = columns.findIndex(col => col.id === activeId)
     const overColumnIndex = columns.findIndex(col => col.id === overId)
