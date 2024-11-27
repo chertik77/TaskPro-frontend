@@ -1,8 +1,12 @@
 import type { Card, Column } from 'types'
 
 import { useMemo } from 'react'
-import { useDroppable } from '@dnd-kit/core'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy
+} from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
@@ -39,15 +43,37 @@ export const BoardColumnsItem = ({
 
   const cardsIds = useMemo(() => filteredCards?.map(c => c.id), [filteredCards])
 
-  const { setNodeRef } = useDroppable({
+  const {
+    setNodeRef,
+    attributes,
+    listeners,
+    transition,
+    transform,
+    isDragging
+  } = useSortable({
     id: column.id,
-    data: { type: 'column' }
+    data: { type: 'column', column }
   })
 
-  return (
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform)
+  }
+
+  return isDragging ? (
+    <div
+      className='w-[334px] rounded-lg border-2 border-brand bg-white-gray-secondary opacity-60
+        violet:border-brand-secondary dark:bg-black'
+      ref={setNodeRef}
+      style={style}
+    />
+  ) : (
     <div
       className='flex w-[334px] flex-col'
-      ref={setNodeRef}>
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}>
       <BoardColumnsActions column={column} />
       <ScrollArea.Root
         type='scroll'

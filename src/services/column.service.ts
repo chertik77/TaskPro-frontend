@@ -1,4 +1,4 @@
-import type { ColumnTitle } from 'types'
+import type { ColumnTitle, UpdateOrderData } from 'types'
 
 import { axiosInstance } from 'api'
 import { ApiEndpoints } from 'config'
@@ -14,5 +14,9 @@ export const columnService = {
 
   async deleteColumn(columnId: string) {
     await axiosInstance.delete(`${ApiEndpoints.Column}/${columnId}`)
+  },
+
+  async updateColumnsOrder(boardId: string, data: UpdateOrderData) {
+    await axiosInstance.patch(`${ApiEndpoints.Column}/${boardId}/order`, data)
   }
 }

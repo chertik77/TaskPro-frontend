@@ -1,4 +1,5 @@
 import type { CardSchema } from 'lib/schemas'
+import type { UpdateOrderData } from 'types'
 
 import { axiosInstance } from 'api'
 import { ApiEndpoints } from 'config'
@@ -16,7 +17,7 @@ export const cardService = {
     await axiosInstance.delete(`${ApiEndpoints.Card}/${cardId}`)
   },
 
-  async updateCardsOrder(columnId: string, data: { ids: string[] }) {
+  async updateCardsOrder(columnId: string, data: UpdateOrderData) {
     await axiosInstance.patch(`${ApiEndpoints.Card}/${columnId}/order`, data)
   }
 }

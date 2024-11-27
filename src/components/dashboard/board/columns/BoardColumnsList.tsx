@@ -1,5 +1,6 @@
 import type { Column } from 'types'
 
+import { useMemo } from 'react'
 import {
   DndContext,
   DragOverlay,
@@ -9,25 +10,35 @@ import {
   useSensor,
   useSensors
 } from '@dnd-kit/core'
+import { SortableContext } from '@dnd-kit/sortable'
 import { createPortal } from 'react-dom'
 
-import { useCardDragAndDrop } from 'hooks/card'
+import { useDragAndDrop } from 'hooks'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'
 
 type BoardColumnsListProps = {
-  columns: Column[] | undefined
+  initialColumns: Column[] | undefined
   backgroundIdentifier: string | undefined
 }
 
 export const BoardColumnsList = ({
-  columns,
+  initialColumns,
   backgroundIdentifier
 }: BoardColumnsListProps) => {
-  const { cards, activeCard, onDragStart, onDragOver, onDragEnd } =
-    useCardDragAndDrop(columns)
+  const {
+    columns,
+    cards,
+    activeColumn,
+    activeCard,
+    onDragStart,
+    onDragOver,
+    onDragEnd
+  } = useDragAndDrop(initialColumns)
+
+  const columnsIds = useMemo(() => columns?.map(c => c.id), [columns])
 
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
@@ -44,17 +55,25 @@ export const BoardColumnsList = ({
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}>
-        {columns?.map(column => (
-          <BoardColumnsItem
-            column={column}
-            key={column.id}
-            cards={cards?.filter(card => card.columnId === column.id)}
-            backgroundIdentifier={backgroundIdentifier}
-          />
-        ))}
+        <SortableContext items={columnsIds || []}>
+          {columns?.map(column => (
+            <BoardColumnsItem
+              column={column}
+              key={column.id}
+              cards={cards?.filter(card => card.columnId === column.id)}
+              backgroundIdentifier={backgroundIdentifier}
+            />
+          ))}
+        </SortableContext>
         <BoardAddColumnBtn />
         {createPortal(
           <DragOverlay>
+            {activeColumn && (
+              <BoardColumnsItem
+                column={activeColumn}
+                cards={cards?.filter(card => card.columnId === activeColumn.id)}
+              />
+            )}
             {activeCard && <BoardCard card={activeCard!} />}
           </DragOverlay>,
           document.body

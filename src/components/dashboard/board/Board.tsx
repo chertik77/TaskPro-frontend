@@ -37,7 +37,7 @@ export const Board = () => {
           <Loader className='absolute inset-0 m-auto' />
         ) : (
           <BoardColumnsList
-            columns={data?.columns}
+            initialColumns={data?.columns}
             backgroundIdentifier={data?.background.identifier}
           />
         )}

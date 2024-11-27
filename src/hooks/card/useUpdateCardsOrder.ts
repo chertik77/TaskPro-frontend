@@ -1,3 +1,5 @@
+import type { UpdateOrderData } from 'types'
+
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
@@ -8,7 +10,7 @@ export const useUpdateCardsOrder = () => {
 
   return useMutation({
     mutationKey: ['updateCardsOrder'],
-    mutationFn: ({ columnId, ids }: { ids: string[]; columnId: string }) =>
+    mutationFn: ({ columnId, ids }: UpdateOrderData & { columnId: string }) =>
       cardService.updateCardsOrder(columnId, { ids }),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['board'] })
