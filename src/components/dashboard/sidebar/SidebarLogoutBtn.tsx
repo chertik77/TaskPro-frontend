@@ -1,6 +1,10 @@
+import { useSidebar } from 'contexts/sidebar.context'
+
 import { useLogoutUser } from 'hooks/auth'
 
 export const SidebarLogoutBtn = () => {
+  const { isSidebarOpen } = useSidebar()
+
   const { mutate, isPending } = useLogoutUser()
 
   return (
@@ -15,7 +19,7 @@ export const SidebarLogoutBtn = () => {
           group-hover:violet:text-brand-third group-focus:violet:text-brand-third'>
         <use href='/icons.svg#icon-logout' />
       </svg>
-      {isPending ? 'Logging out...' : 'Log out'}
+      {isSidebarOpen && 'Log out'}
     </button>
   )
 }
