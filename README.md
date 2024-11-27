@@ -14,7 +14,7 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 - **Task Management Made Simple:** Add, edit, and prioritize tasks. Use filters to focus on high-priority items.
 
-- **Drag and Drop:** Move tasks around easily with drag-and-drop, making your workflow smooth and hassle-free.
+- **Drag and Drop:** Move tasks or columns around easily with drag-and-drop feature, making your workflow smooth and hassle-free.
 
 - **Switch Themes:** Choose between light, dark, or violet themes to match your style and mood.
 
