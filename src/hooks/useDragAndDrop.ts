@@ -7,13 +7,14 @@ import { arrayMove } from '@dnd-kit/sortable'
 import { useUpdateCardsOrder } from './card'
 import { useUpdateColumnsOrder } from './column'
 
+const findIndexById = <T extends { id: string }>(array: T[], id: string) =>
+  array.findIndex(item => item.id === id)
+
 export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
   const [columns, setColumns] = useState(initialColumns)
-
   const [cards, setCards] = useState(initialColumns?.flatMap(c => c.cards))
 
   const [activeCard, setActiveCard] = useState<Card | null>(null)
-
   const [activeColumn, setActiveColumn] = useState<Column | null>(null)
 
   const { mutate: updateCardsOrder } = useUpdateCardsOrder()
@@ -32,13 +33,9 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
 
     const data = active.data.current
 
-    if (data?.type === 'column') {
-      return setActiveColumn(data.column)
-    }
+    if (data?.type === 'column') return setActiveColumn(data.column)
 
-    if (data?.type === 'card') {
-      return setActiveCard(data.card)
-    }
+    if (data?.type === 'card') return setActiveCard(data.card)
   }
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
@@ -49,47 +46,39 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
 
     if (activeId === overId) return
 
-    const isActiveACard = active.data.current?.type === 'card'
-    const isOverACard = over.data.current?.type === 'card'
-    const isOverAColumn = over.data.current?.type === 'column'
+    const isDraggingACard = active.data.current?.type === 'card'
+    const isDraggineOverACard = over.data.current?.type === 'card'
+    const isDraggineOverAColumn = over.data.current?.type === 'column'
 
-    if (!isActiveACard) return
+    if (!isDraggingACard) return
 
-    setCards(cards => {
-      if (!cards) return cards
+    setCards(prevCards => {
+      if (!prevCards) return prevCards
 
-      if (isActiveACard && isOverACard) {
-        const activeCardIndex = cards.findIndex(c => c.id === activeId)
-        const overCardIndex = cards.findIndex(c => c.id === overId)
+      const activeCardIndex = findIndexById(prevCards, activeId)
+      const overCardIndex = findIndexById(prevCards, overId)
 
-        if (activeCardIndex === -1 || overCardIndex === -1) return cards
-
-        const activeCard = cards[activeCardIndex]
-        const overCard = cards[overCardIndex]
+      if (isDraggingACard && isDraggineOverACard) {
+        const activeCard = prevCards[activeCardIndex]
+        const overCard = prevCards[overCardIndex]
 
         if (overCard && activeCard.columnId !== overCard.columnId) {
           activeCard.columnId = overCard.columnId
 
           return arrayMove(
-            cards,
+            prevCards,
             activeCardIndex,
             Math.max(0, overCardIndex - 1)
           )
         }
 
-        return arrayMove(cards, activeCardIndex, overCardIndex)
+        return arrayMove(prevCards, activeCardIndex, overCardIndex)
       }
 
-      if (isActiveACard && isOverAColumn) {
-        const activeCardIndex = cards.findIndex(c => c.id === activeId)
+      if (isDraggingACard && isDraggineOverAColumn) {
+        prevCards[activeCardIndex].columnId = overId
 
-        if (activeCardIndex !== -1) {
-          cards[activeCardIndex].columnId = overId
-
-          return arrayMove(cards, activeCardIndex, activeCardIndex)
-        }
-
-        return cards
+        return arrayMove(prevCards, activeCardIndex, activeCardIndex)
       }
     })
   }
@@ -98,42 +87,51 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
     setActiveColumn(null)
     setActiveCard(null)
 
-    if (!over || !cards || !columns) return
+    if (!active || !over || !cards || !columns) return
 
     const activeId = active.id as string
     const overId = over.id as string
 
-    const isActiveACard = active?.data.current?.type === 'card'
-    const isActiveAColumn = active?.data.current?.type === 'column'
+    const isDraggingACard = active.data.current?.type === 'card'
+    const isDraggingAColumn = active.data.current?.type === 'column'
 
-    if ((isActiveACard || isActiveAColumn) && activeId === overId) return
+    if (isDraggingACard) {
+      const overCard = cards.find(c => c.id === overId)
 
-    const activeColumnIndex = columns.findIndex(col => col.id === activeId)
-    const overColumnIndex = columns.findIndex(col => col.id === overId)
+      if (overCard) {
+        updateCardsOrder({
+          columnId: overCard.columnId,
+          ids: cards
+            .filter(c => c.columnId === overCard.columnId)
+            .map(c => c.id)
+        })
+      }
 
-    const updatedColumns = arrayMove(
-      columns,
-      activeColumnIndex,
-      overColumnIndex
-    )
-
-    setColumns(updatedColumns)
-
-    const overColumn = updatedColumns[overColumnIndex]
-    const overCard = cards.find(c => c.id === over.id)
-
-    if (overColumn) {
-      updateColumnsOrder({
-        boardId: overColumn.boardId,
-        ids: updatedColumns.map(c => c.id)
-      })
+      return
     }
 
-    if (overCard) {
-      updateCardsOrder({
-        columnId: overCard.columnId,
-        ids: cards.filter(c => c.columnId === overCard.columnId).map(c => c.id)
-      })
+    if (isDraggingAColumn) {
+      const activeColumnIndex = findIndexById(columns, activeId)
+      const overColumnIndex = findIndexById(columns, overId)
+
+      if (activeColumnIndex === overColumnIndex) return
+
+      const updatedColumns = arrayMove(
+        columns,
+        activeColumnIndex,
+        overColumnIndex
+      )
+
+      setColumns(updatedColumns)
+
+      const overColumn = updatedColumns[overColumnIndex]
+
+      if (overColumn) {
+        updateColumnsOrder({
+          boardId: overColumn.boardId,
+          ids: updatedColumns.map(c => c.id)
+        })
+      }
     }
   }
 
