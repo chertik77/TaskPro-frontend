@@ -10,7 +10,7 @@ import {
   useSensor,
   useSensors
 } from '@dnd-kit/core'
-import { SortableContext } from '@dnd-kit/sortable'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { createPortal } from 'react-dom'
 
 import { useDragAndDrop } from 'hooks'
@@ -55,7 +55,9 @@ export const BoardColumnsList = ({
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}>
-        <SortableContext items={columnsIds || []}>
+        <SortableContext
+          items={columnsIds || []}
+          strategy={verticalListSortingStrategy}>
           {columns?.map(column => (
             <BoardColumnsItem
               column={column}
