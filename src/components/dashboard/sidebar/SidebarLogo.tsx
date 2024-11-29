@@ -1,5 +1,4 @@
 import { useSidebar } from 'contexts/sidebar.context'
-import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 import { Link } from 'react-router-dom'
 
@@ -10,12 +9,10 @@ import { BurgerMenu } from '../modals'
 export const SidebarLogo = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
-  const { isSidebarOpen, setIsSidebarOpen } = useSidebar()
+  const { isSidebarOpen } = useSidebar()
 
   return (
-    <div
-      className='mb-[70px] flex items-center gap-2 pl-3.5 tablet:mb-[60px] tablet:px-6
-        desktop:pt-6'>
+    <div className='mb-[70px] flex items-center gap-2 pl-3.5 pt-6 tablet:mb-[60px] tablet:px-6'>
       <Link
         to={Pages.Dashboard}
         onClick={closeBurgerMenu}>
@@ -33,14 +30,12 @@ export const SidebarLogo = () => {
           />
         </svg>
       </Link>
-      <h1 className='text-md font-semibold violet:text-white'>Task Pro</h1>
       {isSidebarOpen && (
-        <button
-          onClick={() => setIsSidebarOpen(false)}
-          type='button'
-          className='ml-auto max-desktop:hidden'>
-          <BiSidebar className='size-5 violet:text-white' />
-        </button>
+        <h1
+          className='text-md font-semibold transition-transform duration-300 ease-in-out
+            violet:text-white'>
+          Task Pro
+        </h1>
       )}
     </div>
   )

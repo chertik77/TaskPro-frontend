@@ -18,12 +18,11 @@ export const Sidebar = () => {
     <ScrollArea.Root
       type='scroll'
       className={cn(
-        'row-span-2 hidden overflow-hidden',
-        isSidebarOpen && 'desktop:block'
+        `row-span-2 hidden bg-white-primary transition-all duration-300
+        dark:bg-black-secondary desktop:block`,
+        isSidebarOpen ? 'w-[200px] tablet:w-7xl' : 'w-20'
       )}>
-      <ScrollArea.Viewport
-        className='h-dvh w-56 bg-white violet:bg-brand-secondary dark:bg-black-secondary
-          tablet:w-7xl'>
+      <ScrollArea.Viewport className='h-dvh violet:bg-brand-secondary dark:bg-black-secondary'>
         <aside className='flex h-dvh flex-col'>
           <div>
             <SidebarLogo />
@@ -31,7 +30,7 @@ export const Sidebar = () => {
             <SidebarBoardsList />
           </div>
           <div className='mt-auto pb-6'>
-            <SidebarUserSupport />
+            {isSidebarOpen && <SidebarUserSupport />}
             <SidebarLogoutBtn />
           </div>
         </aside>

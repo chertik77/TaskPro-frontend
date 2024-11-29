@@ -9,8 +9,9 @@ export const SidebarUserSupport = () => {
 
   return (
     <div
-      className='mx-3.5 h-[238px] rounded-lg bg-white-gray p-3.5 violet:bg-gray-secondary
-        dark:bg-black-third tablet:mx-6 tablet:h-[272px] tablet:p-5'>
+      className='mx-3.5 h-[238px] w-[177px] rounded-lg bg-white-gray p-3.5
+        violet:bg-gray-secondary dark:bg-black-third tablet:mx-6 tablet:h-[272px]
+        tablet:w-[212px] tablet:p-5'>
       <div className='mb-3.5'>
         <picture>
           <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />

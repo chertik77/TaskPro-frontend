@@ -1,5 +1,6 @@
 import type { Board } from 'types'
 
+import { useSidebar } from 'contexts/sidebar.context'
 import { useModal } from 'react-modal-state'
 
 import { Button } from 'components/ui'
@@ -17,6 +18,8 @@ export const SidebarListActiveItem = ({
 
   const { close } = useModal(BurgerMenu)
 
+  const { isSidebarOpen } = useSidebar()
+
   const { mutate, isPending } = useDeleteBoard()
 
   const handleBoardEdit = () => {
@@ -27,20 +30,24 @@ export const SidebarListActiveItem = ({
   return (
     <div className='flex gap-5'>
       <div className='flex items-center gap-2'>
-        <Button
-          onClick={handleBoardEdit}
-          iconName='pencil'
-          iconClassName='violet:stroke-white/50'
-        />
-        <Button
-          onClick={() => {
-            close()
-            mutate()
-          }}
-          iconName='trash'
-          disabled={isPending}
-          iconClassName='violet:stroke-white/50'
-        />
+        {isSidebarOpen && (
+          <>
+            <Button
+              onClick={handleBoardEdit}
+              iconName='pencil'
+              iconClassName='violet:stroke-white/50'
+            />
+            <Button
+              onClick={() => {
+                close()
+                mutate()
+              }}
+              iconName='trash'
+              disabled={isPending}
+              iconClassName='violet:stroke-white/50'
+            />
+          </>
+        )}
       </div>
       <div className='h-4xl w-1 rounded-l-lg bg-brand violet:bg-white' />
     </div>

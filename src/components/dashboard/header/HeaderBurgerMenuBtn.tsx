@@ -24,12 +24,22 @@ export const HeaderBurgerMenuBtn = () => {
       />
     </button>
   ) : (
-    <button
-      className='desktop:hidden'
-      onClick={open}>
-      <svg className='size-6 stroke-black dark:stroke-white'>
-        <use href='/icons.svg#icon-menu' />
-      </svg>
-    </button>
+    <>
+      <button
+        onClick={open}
+        type='button'
+        className='desktop:hidden'>
+        <svg className='size-6 stroke-black dark:stroke-white'>
+          <use href='/icons.svg#icon-menu' />
+        </svg>
+      </button>
+
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        type='button'
+        className='mr-auto hidden pr-1 desktop:block'>
+        <BiSidebar className='size-5 violet:text-black' />
+      </button>
+    </>
   )
 }
