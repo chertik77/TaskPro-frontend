@@ -4,7 +4,7 @@ import type { Coordinates } from '@dnd-kit/utilities'
 import type { ClassValue } from 'clsx'
 import type { Priority } from 'constants/priorities'
 
-import { closestCenter, pointerWithin } from '@dnd-kit/core'
+import { closestCorners, pointerWithin } from '@dnd-kit/core'
 import { clsx } from 'clsx'
 import { format, isToday } from 'date-fns'
 import { twMerge } from 'tailwind-merge'
@@ -38,7 +38,7 @@ export const collisionDetectionAlgorithm = (args: {
 
   if (type === 'card') return pointerWithin(args)
 
-  if (type === 'column') return closestCenter(args)
+  if (type === 'column') return closestCorners(args)
 
   return pointerWithin(args)
 }
