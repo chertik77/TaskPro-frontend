@@ -13,10 +13,11 @@ export const DashboardPage = () => {
       className={cn(
         'grid h-dvh grid-rows-[60px,1fr] transition-all duration-300',
         isSidebarOpen
-          ? 'grid-cols-[200px,1fr] tablet:grid-cols-[260px,1fr]'
-          : 'grid-cols-[80px,1fr]'
+          ? 'desktop:grid-cols-[260px,1fr]'
+          : 'desktop:grid-cols-[80px,1fr]'
       )}>
       <Sidebar />
+
       <Header />
       <Outlet />
     </div>
