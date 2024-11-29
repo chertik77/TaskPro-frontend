@@ -47,8 +47,8 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
     if (activeId === overId) return
 
     const isDraggingACard = active.data.current?.type === 'card'
-    const isDraggineOverACard = over.data.current?.type === 'card'
-    const isDraggineOverAColumn = over.data.current?.type === 'column'
+    const isDraggingOverACard = over.data.current?.type === 'card'
+    const isDraggingOverAColumn = over.data.current?.type === 'column'
 
     if (!isDraggingACard) return
 
@@ -58,7 +58,7 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
       const activeCardIndex = findIndexById(prevCards, activeId)
       const overCardIndex = findIndexById(prevCards, overId)
 
-      if (isDraggingACard && isDraggineOverACard) {
+      if (isDraggingACard && isDraggingOverACard) {
         const activeCard = prevCards[activeCardIndex]
         const overCard = prevCards[overCardIndex]
 
@@ -75,7 +75,7 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
         return arrayMove(prevCards, activeCardIndex, overCardIndex)
       }
 
-      if (isDraggingACard && isDraggineOverAColumn) {
+      if (isDraggingACard && isDraggingOverAColumn) {
         prevCards[activeCardIndex].columnId = overId
 
         return arrayMove(prevCards, activeCardIndex, activeCardIndex)
