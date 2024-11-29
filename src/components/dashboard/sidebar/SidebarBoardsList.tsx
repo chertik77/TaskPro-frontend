@@ -42,7 +42,11 @@ export const SidebarBoardsList = () => {
         navigate(`${Pages.Dashboard}/${v}`)
         closeBurgerMenu()
       }}
-      className={cn('mb-20 text-base', data?.length === 0 && 'mb-auto')}>
+      className={cn(
+        isSidebarOpen ? 'mb-0' : 'mb-20',
+        data?.length === 0 && 'mb-auto',
+        'text-base'
+      )}>
       {data?.map(board => (
         <Item
           className={cn(
@@ -57,7 +61,11 @@ export const SidebarBoardsList = () => {
           key={board.id}
           value={board.id}>
           <div className='flex items-center gap-1 tablet:gap-2'>
-            <svg className='size-lg stroke-current'>
+            <svg
+              className={cn(
+                'size-6 stroke-current transition-all duration-300 ease-in-out',
+                isSidebarOpen && 'size-lg'
+              )}>
               <use href={`/icons.svg#${board.icon}`} />
             </svg>
             {isSidebarOpen && (
