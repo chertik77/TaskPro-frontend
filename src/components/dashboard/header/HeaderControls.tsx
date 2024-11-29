@@ -18,7 +18,7 @@ export const HeaderControls = () => {
       <button
         onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
         type='button'
-        className='mr-auto'>
+        className='mr-auto max-desktop:hidden'>
         <BiSidebar className='size-5 violet:text-black' />
       </button>
       <button
