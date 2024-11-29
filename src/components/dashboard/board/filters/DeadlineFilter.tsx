@@ -4,14 +4,14 @@ import { RadioInput } from 'components/ui'
 
 import { useCardFilters } from 'hooks/card'
 
-import { priorities } from 'constants/priorities'
+import { deadlines } from 'constants/deadlines'
 
-export const PriorityFilter = () => {
-  const { setSearchParams, cardPriority } = useCardFilters()
+export const DeadlineFilter = () => {
+  const { setSearchParams, cardDeadline } = useCardFilters()
 
   const handleParamsChange = (v: string) => {
     setSearchParams(searchParams => {
-      searchParams.set('priority', v)
+      searchParams.set('deadline', v)
 
       return searchParams
     })
@@ -20,19 +20,19 @@ export const PriorityFilter = () => {
   return (
     <Root
       className='flex flex-col gap-2'
-      value={cardPriority}
+      value={cardDeadline}
       onValueChange={handleParamsChange}>
-      {priorities.map(priority => (
+      {deadlines.map(deadline => (
         <label
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black
             hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
             hocus:dark:text-white'
-          key={priority}>
+          key={deadline}>
           <RadioInput
-            value={priority}
-            checked={priority === cardPriority}
+            value={deadline}
+            checked={deadline === cardDeadline}
           />
-          {priority}
+          {deadline}
         </label>
       ))}
     </Root>

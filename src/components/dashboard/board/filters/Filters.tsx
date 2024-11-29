@@ -2,6 +2,7 @@ import * as Popover from '@radix-ui/react-popover'
 
 import { useCardFilters } from 'hooks/card'
 
+import { DeadlineFilter } from './DeadlineFilter'
 import { PriorityFilter } from './PriorityFilter'
 
 export const Filters = () => {
@@ -29,19 +30,22 @@ export const Filters = () => {
             </svg>
           </Popover.Close>
           <div className='my-3.5 flex justify-between'>
-            <h3>Label color</h3>
+            <h3>Priority</h3>
             <button
               type='button'
               className='text-sm underline opacity-50 focus:outline-none hocus:text-brand-hover
                 hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
               onClick={() => {
                 searchParams.delete('priority')
+                searchParams.delete('deadline')
                 setSearchParams(searchParams)
               }}>
               Show all
             </button>
           </div>
           <PriorityFilter />
+          <h3 className='my-3.5'>Deadline</h3>
+          <DeadlineFilter />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

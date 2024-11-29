@@ -17,7 +17,7 @@ import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useCardFilters } from 'hooks/card'
 
 import { cn } from 'lib'
-import { getFilteredCardsByPriority } from 'lib/filters'
+import { getFilteredCards } from 'lib/filters'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardColumnsActions } from './BoardColumnsActions'
@@ -35,11 +35,14 @@ export const BoardColumnsItem = ({
 }: BoardColumnsItemProps) => {
   const { open } = useModal(AddCardModal)
 
-  const { cardPriority } = useCardFilters()
+  const { cardPriority, cardDeadline } = useCardFilters()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
-  const filteredCards = getFilteredCardsByPriority(cards!, cardPriority)
+  const filteredCards = getFilteredCards(cards!, {
+    priority: cardPriority,
+    deadline: cardDeadline
+  })
 
   const cardsIds = useMemo(() => filteredCards?.map(c => c.id), [filteredCards])
 
