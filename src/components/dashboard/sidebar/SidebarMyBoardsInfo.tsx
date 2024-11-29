@@ -1,4 +1,3 @@
-import { useSidebar } from 'contexts/sidebar.context'
 import { useModal } from 'react-modal-state'
 
 import { cn } from 'lib'
@@ -9,29 +8,18 @@ export const SidebarMyBoardsInfo = () => {
   const { open } = useModal(NewBoardModal)
 
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
-  const { isSidebarOpen } = useSidebar()
 
   return (
-    <div className={cn('mb-10 px-3.5', isSidebarOpen && 'tablet:px-6')}>
-      <div className='h-5'>
-        <p
-          className={cn(
-            `mb-2 overflow-hidden text-sm text-black/50 transition-all duration-300
-            violet:text-white/50 dark:text-white/50`,
-            isSidebarOpen ? 'opacity-100' : 'h-0 opacity-0'
-          )}>
-          My boards
-        </p>
-      </div>
+    <div className='mb-10 px-3.5 tablet:px-6'>
+      <p
+        className='mb-2 overflow-hidden text-sm text-black/50 violet:text-white/50
+          dark:text-white/50'>
+        My boards
+      </p>
       <div
-        className={cn(
-          `flex items-center justify-center border-y border-black/10 py-3.5
-          violet:border-white/10 dark:border-white/10`,
-          isSidebarOpen && 'justify-between'
-        )}>
-        {isSidebarOpen && (
-          <p className='w-[76px] violet:text-white'>Create a new board</p>
-        )}
+        className='flex items-center justify-between border-y border-black/10 py-3.5
+          violet:border-white/10 dark:border-white/10'>
+        <p className='w-[76px] violet:text-white'>Create a new board</p>
         <button
           type='button'
           className={cn(

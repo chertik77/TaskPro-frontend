@@ -1,6 +1,5 @@
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
-import { useSidebar } from 'contexts/sidebar.context'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,8 +16,6 @@ import { BurgerMenu } from '../modals'
 import { SidebarListActiveItem } from './SidebarListActiveItem'
 
 export const SidebarBoardsList = () => {
-  const { isSidebarOpen } = useSidebar()
-
   const boardId = useGetBoardId()
 
   const navigate = useNavigate()
@@ -42,37 +39,26 @@ export const SidebarBoardsList = () => {
         navigate(`${Pages.Dashboard}/${v}`)
         closeBurgerMenu()
       }}
-      className={cn(
-        isSidebarOpen ? 'mb-0' : 'mb-20',
-        data?.length === 0 && 'mb-auto',
-        'text-base'
-      )}>
+      className={cn('mb-10 text-base', data?.length === 0 && 'mb-auto')}>
       {data?.map(board => (
         <Item
           className={cn(
-            `flex h-4xl w-full items-center justify-between pl-7 text-black/50 transition-all
-            duration-300 ease-in-out focus:outline-none aria-checked:bg-white-gray
-            aria-checked:text-black violet:text-white/50 aria-checked:violet:bg-white/50
+            `flex h-4xl w-full items-center justify-between pl-3.5 text-black/50
+            focus:outline-none aria-checked:bg-white-gray aria-checked:text-black
+            violet:text-white/50 aria-checked:violet:bg-white/50
             aria-checked:violet:text-white dark:text-white/50
-            aria-checked:dark:bg-black-third aria-checked:dark:text-white`,
-            isSidebarOpen && 'pl-3.5 transition-all duration-300 tablet:pl-6'
+            aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6`
           )}
           checked={board.id === boardId}
           key={board.id}
           value={board.id}>
           <div className='flex items-center gap-1 tablet:gap-2'>
-            <svg
-              className={cn(
-                'size-6 stroke-current transition-all duration-300 ease-in-out',
-                isSidebarOpen && 'size-lg'
-              )}>
+            <svg className='size-lg stroke-current'>
               <use href={`/icons.svg#${board.icon}`} />
             </svg>
-            {isSidebarOpen && (
-              <p className='w-[105px] truncate text-left tablet:w-[122px]'>
-                {board?.title}
-              </p>
-            )}
+            <p className='w-[105px] truncate text-left tablet:w-[122px]'>
+              {board?.title}
+            </p>
           </div>
           {board.id === boardId && <SidebarListActiveItem board={board} />}
         </Item>

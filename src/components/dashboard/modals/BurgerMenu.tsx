@@ -16,7 +16,7 @@ export const BurgerMenu = () => {
       onClose={close}
       classNames={{
         modal: `m-0 flex min-h-dvh w-[225px] flex-col bg-white
-        pb-6 px-0 pt-default violet:bg-brand-secondary dark:bg-black-secondary
+        pb-6 px-0 pt-3.5 violet:bg-brand-secondary dark:bg-black-secondary
         tablet:w-7xl tablet:pt-6`
       }}
       focusTrapped={false}

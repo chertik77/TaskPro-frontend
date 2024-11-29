@@ -1,7 +1,9 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { useSidebar } from 'contexts/sidebar.context'
+import { useSelector } from 'react-redux'
 
 import { Scrollbar } from 'components/ui'
+
+import { selectIsSidebarOpen } from 'redux/sidebar.slice'
 
 import { cn } from 'lib'
 
@@ -12,17 +14,17 @@ import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
 import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => {
-  const { isSidebarOpen } = useSidebar()
+  const isSidebarOpen = useSelector(selectIsSidebarOpen)
 
   return (
     <ScrollArea.Root
       type='scroll'
       className={cn(
-        `row-span-2 hidden bg-white-primary transition-all duration-300
-        dark:bg-black-secondary desktop:block`,
-        isSidebarOpen ? 'w-[200px] tablet:w-7xl' : 'w-20'
+        `row-span-2 hidden bg-white-primary violet:bg-brand-secondary
+        dark:bg-black-secondary`,
+        isSidebarOpen && 'desktop:block'
       )}>
-      <ScrollArea.Viewport className='h-dvh violet:bg-brand-secondary dark:bg-black-secondary'>
+      <ScrollArea.Viewport className='h-dvh'>
         <aside className='flex h-dvh flex-col'>
           <div>
             <SidebarLogo />
@@ -30,7 +32,7 @@ export const Sidebar = () => {
             <SidebarBoardsList />
           </div>
           <div className='mt-auto pb-6'>
-            {isSidebarOpen && <SidebarUserSupport />}
+            <SidebarUserSupport />
             <SidebarLogoutBtn />
           </div>
         </aside>

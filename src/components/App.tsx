@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { SidebarProvider } from 'contexts/sidebar.context'
 import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
@@ -52,15 +51,7 @@ export const App = () => {
         />
         <Route
           path={Pages.Dashboard}
-          element={
-            <PrivateRoute
-              component={
-                <SidebarProvider>
-                  <DashboardPage />
-                </SidebarProvider>
-              }
-            />
-          }>
+          element={<PrivateRoute component={<DashboardPage />} />}>
           <Route
             index
             element={<EmptyBoard />}

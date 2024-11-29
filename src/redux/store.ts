@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+import { sidebarReducer } from './sidebar.slice'
 import { userReducer } from './user.slice'
 
 const persistConfig = {
@@ -12,7 +13,8 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer(persistConfig, userReducer)
+    user: persistReducer(persistConfig, userReducer),
+    sidebar: persistReducer(persistConfig, sidebarReducer)
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: false })
