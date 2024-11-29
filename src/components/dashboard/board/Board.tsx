@@ -18,8 +18,8 @@ export const Board = () => {
   return (
     <ScrollArea.Root
       type='scroll'
-      className='relative flex flex-col overflow-hidden bg-cover bg-center px-5 pt-3.5
-        tablet:px-8 tablet:pt-xl desktop:px-6 desktop:pt-sm'
+      className='relative flex flex-col overflow-hidden bg-cover bg-center pl-5 pt-3.5
+        tablet:pl-8 tablet:pt-xl desktop:pl-6 desktop:pt-sm'
       style={{
         backgroundImage: `url(${!isPending && data?.background?.url})`
       }}>

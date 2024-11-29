@@ -5,7 +5,6 @@ import {
   DndContext,
   DragOverlay,
   MouseSensor,
-  pointerWithin,
   TouchSensor,
   useSensor,
   useSensors
@@ -17,6 +16,8 @@ import {
 import { createPortal } from 'react-dom'
 
 import { useDragAndDrop } from 'hooks'
+
+import { collisionDetectionAlgorithm } from 'lib'
 
 import { BoardCard } from '../cards/BoardCard'
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'
@@ -54,7 +55,7 @@ export const BoardColumnsList = ({
     <div className='flex touch-manipulation gap-[34px]'>
       <DndContext
         sensors={sensors}
-        collisionDetection={pointerWithin}
+        collisionDetection={collisionDetectionAlgorithm}
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}>

@@ -10,7 +10,7 @@ export const Filters = () => {
 
   return (
     <Popover.Root>
-      <Popover.Trigger className='flex items-center gap-2'>
+      <Popover.Trigger className='flex items-center gap-2 pr-5 desktop:pr-6'>
         <svg className='size-4 stroke-black/80 dark:stroke-white/80'>
           <use href='/icons.svg#icon-filter' />
         </svg>

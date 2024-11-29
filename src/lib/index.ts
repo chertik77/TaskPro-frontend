@@ -1,6 +1,10 @@
+import type { Active, ClientRect, DroppableContainer } from '@dnd-kit/core'
+import type { RectMap } from '@dnd-kit/core/dist/store'
+import type { Coordinates } from '@dnd-kit/utilities'
 import type { ClassValue } from 'clsx'
 import type { Priority } from 'constants/priorities'
 
+import { closestCenter, pointerWithin } from '@dnd-kit/core'
 import { clsx } from 'clsx'
 import { format, isToday } from 'date-fns'
 import { twMerge } from 'tailwind-merge'
@@ -22,3 +26,19 @@ export const formatTodayDate = (date: Date) =>
   isToday(date)
     ? `Today, ${format(date, 'MMMM d')}`
     : format(date, 'dd/MM/yyyy')
+
+export const collisionDetectionAlgorithm = (args: {
+  active: Active
+  collisionRect: ClientRect
+  droppableRects: RectMap
+  droppableContainers: DroppableContainer[]
+  pointerCoordinates: Coordinates | null
+}) => {
+  const type = args.active?.data.current?.type
+
+  if (type === 'card') return pointerWithin(args)
+
+  if (type === 'column') return closestCenter(args)
+
+  return pointerWithin(args)
+}
