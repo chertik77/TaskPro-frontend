@@ -11,7 +11,7 @@ import { useDeleteCard } from 'hooks/card'
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
-  const { mutate } = useDeleteCard(card.id)
+  const { mutate } = useDeleteCard()
 
   return (
     <div className='ml-auto flex gap-2'>
@@ -25,7 +25,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         iconName='pencil'
       />
       <Button
-        onClick={() => mutate()}
+        onClick={() => mutate(card.id)}
         iconName='trash'
       />
     </div>

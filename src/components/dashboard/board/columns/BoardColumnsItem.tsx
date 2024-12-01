@@ -84,7 +84,7 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-275px)]': !isTabletAndBelow,
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
-        <ScrollArea.Viewport className='h-full !overflow-clip'>
+        <ScrollArea.Viewport className='h-full'>
           <SortableContext
             items={cardsIds || []}
             strategy={verticalListSortingStrategy}>
