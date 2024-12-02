@@ -25,7 +25,7 @@ export const EditCardModal = () => {
     { defaultValues: { title, description } }
   )
 
-  const { mutate, isPending } = useEditCard(id, reset)
+  const { mutate, isPending } = useEditCard(reset)
 
   useEffect(() => {
     reset({ title, priority, deadline: new Date(deadline), description })
@@ -44,7 +44,8 @@ export const EditCardModal = () => {
         close()
         reset()
       }}>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form
+        onSubmit={handleSubmit(data => mutate({ cardId: id, cardData: data }))}>
         <Field
           errors={formState.errors}
           inputName='title'
