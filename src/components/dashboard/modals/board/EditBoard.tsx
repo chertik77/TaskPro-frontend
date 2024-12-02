@@ -26,7 +26,7 @@ export const EditBoardModal = () => {
     { defaultValues: { title: board.title } }
   )
 
-  const { mutate, isPending } = useEditBoard(reset)
+  const { isPending } = useEditBoard()
 
   useEffect(() => {
     reset({
@@ -51,7 +51,8 @@ export const EditBoardModal = () => {
       }}>
       <form
         onSubmit={handleSubmit(data =>
-          mutate({ boardId: board.id, boardData: data })
+          // mutate({ boardId: board.id, boardData: data })
+          console.log(data)
         )}>
         <Field
           {...register('title')}
