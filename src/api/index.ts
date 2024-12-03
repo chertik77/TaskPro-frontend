@@ -23,7 +23,7 @@ axiosInstance.interceptors.request.use(config => {
 createAuthRefreshInterceptor(axiosInstance, async () => {
   const refreshToken = store.getState().user.refreshToken
 
-  authService
+  return authService
     .getTokens({ refreshToken })
     .then(r => store.dispatch(saveTokens(r)))
     .catch(() => store.dispatch(logout()))
