@@ -25,16 +25,16 @@ export const Board = () => {
       style={{
         backgroundImage: `url(${!isPending && data?.background?.url})`
       }}>
-      <div
-        className={cn(
-          'mb-[39px] flex justify-between text-black tablet:mb-xl desktop:mb-sm',
-          data?.background.hasWhiteTextColor && 'text-white',
-          data?.background.identifier === 'default' && 'dark:text-white'
-        )}>
-        <p className='tablet:text-lg'>{data?.title}</p>
-        {!isPending && <Filters />}
-      </div>
       <ScrollArea.Viewport className='w-full flex-1 pb-4'>
+        <div
+          className={cn(
+            'mb-[39px] flex justify-between text-black tablet:mb-xl desktop:mb-sm',
+            data?.background.hasWhiteTextColor && 'text-white',
+            data?.background.identifier === 'default' && 'dark:text-white'
+          )}>
+          <p className='tablet:text-lg'>{data?.title}</p>
+          {!isPending && <Filters />}
+        </div>
         {isPending ? (
           <Loader className='absolute inset-0 m-auto' />
         ) : (
