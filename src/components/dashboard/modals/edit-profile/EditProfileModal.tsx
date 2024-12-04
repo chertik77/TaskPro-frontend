@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useModal } from 'react-modal-state'
 import { useSelector } from 'react-redux'
 
@@ -19,10 +20,12 @@ export const EditProfileModal = () => {
 
   const { isPending, mutateAsync, mutate } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset, watch } = useAppForm(
-    EditUserSchema,
-    { defaultValues: { name: initialName, email: initialEmail } }
-  )
+  const { handleSubmit, register, formState, reset, watch } =
+    useAppForm(EditUserSchema)
+
+  useEffect(() => {
+    reset({ name: initialName, email: initialEmail })
+  }, [initialEmail, initialName, reset])
 
   const isFormReadyForSubmit =
     watch('name') !== initialName ||

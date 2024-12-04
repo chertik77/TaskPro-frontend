@@ -1,14 +1,14 @@
 import type { UseFormProps } from 'react-hook-form'
-import type { BaseSchema, Output } from 'valibot'
+import type { BaseSchema, Input } from 'valibot'
 
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 
-export const useAppForm = (
-  schema: BaseSchema,
-  options?: UseFormProps<Output<typeof schema>>
+export const useAppForm = <S extends BaseSchema>(
+  schema: S,
+  options?: UseFormProps<Input<S>>
 ) =>
-  useForm<Output<typeof schema>>({
+  useForm<Input<S>>({
     resolver: valibotResolver(schema),
     mode: 'onChange',
     ...options
