@@ -13,6 +13,7 @@ export const SigninForm = () => {
   return (
     <form onSubmit={handleSubmit(data => mutate(data))}>
       <Field
+        autoFocus
         {...register('email')}
         placeholder='Enter your email'
         inputName='email'

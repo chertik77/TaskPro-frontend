@@ -13,6 +13,7 @@ export const SignupForm = () => {
   return (
     <form onSubmit={handleSubmit(data => mutate(data))}>
       <Field
+        autoFocus
         errors={formState.errors}
         inputName='name'
         autoComplete='name'
