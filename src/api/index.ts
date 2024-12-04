@@ -25,6 +25,6 @@ createAuthRefreshInterceptor(axiosInstance, async () => {
 
   return authService
     .getTokens({ refreshToken })
-    .then(r => store.dispatch(saveTokens(r)))
+    .then(r => store.dispatch(saveTokens(r.data)))
     .catch(() => store.dispatch(logout()))
 })

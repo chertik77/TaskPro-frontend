@@ -22,9 +22,6 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
 
   useEffect(() => {
     setColumns(initialColumns)
-  }, [initialColumns])
-
-  useEffect(() => {
     setCards(initialColumns?.flatMap(c => c.cards))
   }, [initialColumns])
 

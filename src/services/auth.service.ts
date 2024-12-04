@@ -32,10 +32,8 @@ export const authService = {
     return response.data
   },
 
-  async getTokens(data: { refreshToken: string }) {
-    const response = await axiosInstance.post<Tokens>(ApiEndpoints.Tokens, data)
-
-    return response.data
+  getTokens(data: { refreshToken: string }) {
+    return axiosInstance.post<Tokens>(ApiEndpoints.Tokens, data)
   },
 
   async logout() {
