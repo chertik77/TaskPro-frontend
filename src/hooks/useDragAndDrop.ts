@@ -124,14 +124,12 @@ export const useDragAndDrop = (initialColumns: Column[] | undefined) => {
 
       setColumns(updatedColumns)
 
-      const overColumn = updatedColumns[overColumnIndex]
+      const activeColumn = updatedColumns[activeColumnIndex]
 
-      if (overColumn) {
-        updateColumnsOrder({
-          boardId: overColumn.boardId,
-          ids: updatedColumns.map(c => c.id)
-        })
-      }
+      updateColumnsOrder({
+        boardId: activeColumn.boardId,
+        ids: updatedColumns.map(c => c.id)
+      })
     }
   }
 
