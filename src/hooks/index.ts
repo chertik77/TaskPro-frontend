@@ -1,3 +1,3 @@
 export * from './useAppForm'
-export * from './useDragAndDrop'
+export * from './useDocumentTitle'
 export * from './useTabletAndBelowMediaQuery'

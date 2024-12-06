@@ -27,6 +27,11 @@ export const formatTodayDate = (date: Date) =>
     ? `Today, ${format(date, 'MMMM d')}`
     : format(date, 'dd/MM/yyyy')
 
+export const findIndexById = <T extends { id: string }>(
+  array: T[],
+  id: string
+) => array.findIndex(item => item.id === id)
+
 export const collisionDetectionAlgorithm = (args: {
   active: Active
   collisionRect: ClientRect
