@@ -13,13 +13,10 @@ import { Filters } from './filters/Filters'
 export const Board = () => {
   const { data, isPending } = useGetBoardById()
 
-  // const { viewportRef, onWheel } = useAutomaticHorizontalWheelScroll()
-
   useDocumentTitle(data?.title as string)
 
   return (
     <ScrollArea.Root
-      type='scroll'
       className='relative flex flex-col overflow-hidden bg-cover bg-center pl-5 pt-3.5
         tablet:pl-8 tablet:pt-xl desktop:pl-6 desktop:pt-sm'
       style={{
