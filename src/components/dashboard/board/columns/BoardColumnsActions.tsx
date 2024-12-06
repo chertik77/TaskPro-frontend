@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { EditText } from 'react-edit-text'
 import { toast } from 'sonner'
 
-import { Button } from 'components/ui'
+import { Button, Loader } from 'components/ui'
 
 import { useDeleteColumn, useEditColumn } from 'hooks/column'
 
@@ -14,10 +14,12 @@ import {
   REQUIRED_COLUMN_TITLE_LENGTH
 } from 'constants/titles'
 
+import { cn } from 'lib'
+
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  const { mutate: deleteColumn } = useDeleteColumn()
+  const { mutate: deleteColumn, isPending: isDeleting } = useDeleteColumn()
 
   const { mutate } = useEditColumn()
 
@@ -32,23 +34,34 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
 
   return (
     <div
-      className='mb-3.5 flex h-3xl min-w-8xl items-center rounded-lg bg-white px-5 py-lg
-        dark:bg-black'>
-      <EditText
-        onSave={handleColumnEdit}
-        value={columnTitle}
-        onEditMode={() => {
-          if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
-        }}
-        onChange={e => setColumnTitle(e.target.value)}
-        className='w-[250px] hover:bg-transparent'
-        inputClassName='outline-none bg-transparent'
-      />
-      <Button
-        className='ml-auto'
-        onClick={() => deleteColumn(column.id)}
-        iconName='trash'
-      />
+      className={cn(
+        `mb-3.5 flex h-3xl min-w-8xl items-center justify-center rounded-lg bg-white px-5
+        py-lg dark:bg-black`
+      )}>
+      {isDeleting ? (
+        <div className='flex items-center gap-2'>
+          <Loader />
+          Deleting...
+        </div>
+      ) : (
+        <>
+          <EditText
+            onSave={handleColumnEdit}
+            value={columnTitle}
+            onEditMode={() => {
+              if (columnTitle === DEFAULT_COLUMN_TITLE) setColumnTitle('')
+            }}
+            onChange={e => setColumnTitle(e.target.value)}
+            className='w-[250px] hover:bg-transparent'
+            inputClassName='outline-none bg-transparent'
+          />
+          <Button
+            className='ml-auto'
+            onClick={() => deleteColumn(column.id)}
+            iconName='trash'
+          />
+        </>
+      )}
     </div>
   )
 }

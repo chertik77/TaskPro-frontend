@@ -2,7 +2,7 @@ import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { ReactNode } from 'react'
 import type { Card, Column } from 'types'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   DndContext,
   DragOverlay,
@@ -40,6 +40,11 @@ export const DragAndDropProvider = ({
 
   const [activeCard, setActiveCard] = useState<Card | null>(null)
   const [activeColumn, setActiveColumn] = useState<Column | null>(null)
+
+  useEffect(() => {
+    setColumns(initialColumns)
+    setCards(initialColumns?.flatMap(c => c.cards))
+  }, [initialColumns])
 
   const cardHandlers = useCardDragHandlers({ cards, setCards, setActiveCard })
   const columnHandlers = useColumnDragHandlers({
