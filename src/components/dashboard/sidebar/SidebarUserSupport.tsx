@@ -9,18 +9,15 @@ export const SidebarUserSupport = () => {
 
   return (
     <div
-      className='mx-3.5 mb-6 h-[238px] w-[177px] rounded-lg bg-white-gray p-3.5
-        violet:bg-gray-secondary dark:bg-black-third tablet:mx-6 tablet:h-[272px]
-        tablet:w-[212px] tablet:p-5'>
-      <div className='mb-3.5'>
-        <picture>
-          <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />
-          <img
-            src='/images/2.avif'
-            alt='Need help icon'
-          />
-        </picture>
-      </div>
+      className='mx-3.5 mb-6 rounded-lg bg-white-gray p-3.5 violet:bg-gray-secondary
+        dark:bg-black-third tablet:mx-6 tablet:p-5'>
+      <picture className='mb-3.5 block'>
+        <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />
+        <img
+          src='/images/helpIcon.avif'
+          alt='Need help icon'
+        />
+      </picture>
       <p className='mb-lg text-sm violet:text-white tablet:text-base'>
         If you need help with
         <span className='text-brand violet:text-brand-secondary'> TaskPro</span>

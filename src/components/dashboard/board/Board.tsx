@@ -25,25 +25,25 @@ export const Board = () => {
       style={{
         backgroundImage: `url(${!isPending && data?.background?.url})`
       }}>
-      <ScrollArea.Viewport className='w-full flex-1 pb-4'>
-        <div
-          className={cn(
-            'mb-[39px] flex justify-between text-black tablet:mb-xl desktop:mb-sm',
-            data?.background.hasWhiteTextColor && 'text-white',
-            data?.background.identifier === 'default' && 'dark:text-white'
-          )}>
-          <p className='tablet:text-lg'>{data?.title}</p>
-          {!isPending && <Filters />}
-        </div>
-        {isPending ? (
-          <Loader className='absolute inset-0 m-auto' />
-        ) : (
+      <div
+        className={cn(
+          'mb-[39px] flex justify-between text-black tablet:mb-xl desktop:mb-sm',
+          data?.background.hasWhiteTextColor && 'text-white',
+          data?.background.identifier === 'default' && 'dark:text-white'
+        )}>
+        <p className='tablet:text-lg'>{data?.title}</p>
+        {!isPending && <Filters />}
+      </div>
+      {isPending ? (
+        <Loader className='absolute inset-0 m-auto' />
+      ) : (
+        <ScrollArea.Viewport className='w-full flex-1 pb-4'>
           <BoardColumnsList
             initialColumns={data?.columns}
             backgroundIdentifier={data?.background.identifier}
           />
-        )}
-      </ScrollArea.Viewport>
+        </ScrollArea.Viewport>
+      )}
       <Scrollbar
         backgroundIdentifier={data?.background.identifier}
         scrollBarClassName='mx-5 mb-2 h-3 tablet:mx-8 desktop:mx-6'
