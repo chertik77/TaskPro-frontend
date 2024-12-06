@@ -4,14 +4,14 @@ import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 
 import { EditCardModal } from 'components/dashboard/modals'
-import { Button } from 'components/ui'
+import { Button, Loader } from 'components/ui'
 
 import { useDeleteCard } from 'hooks/card'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
-  const { mutate } = useDeleteCard()
+  const { mutate, isPending } = useDeleteCard()
 
   return (
     <div className='ml-auto flex gap-2'>
@@ -24,10 +24,14 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         onClick={() => open(card)}
         iconName='pencil'
       />
-      <Button
-        onClick={() => mutate(card.id)}
-        iconName='trash'
-      />
+      {isPending ? (
+        <Loader className='size-4 border-2' />
+      ) : (
+        <Button
+          onClick={() => mutate(card.id)}
+          iconName='trash'
+        />
+      )}
     </div>
   )
 }
