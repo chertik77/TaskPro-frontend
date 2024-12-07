@@ -72,7 +72,7 @@ export const BoardColumnsItem = ({
     />
   ) : (
     <div
-      className='flex w-[334px] cursor-grab flex-col'
+      className='flex w-[334px] cursor-grab flex-col focus-visible:outline-none'
       ref={setNodeRef}
       style={style}
       {...attributes}
