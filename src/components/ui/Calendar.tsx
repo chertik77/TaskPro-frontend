@@ -23,13 +23,13 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
       head_row: 'flex gap-[11px]',
       head_cell: 'text-black/50 dark:text-white/50',
       nav_button_previous:
-        'absolute left-0 disabled:opacity-20 disabled:cursor-not-allowed',
+        'absolute left-0 disabled:opacity-20 disabled:cursor-not-allowed focus-visible:styled-outline',
       nav: 'flex items-center',
-      nav_button_next: 'absolute right-0',
+      nav_button_next: 'absolute right-0 focus-visible:styled-outline',
       table: '!mt-3.5',
       row: 'flex gap-[11px] mt-[11px]',
       cell: 'p-0 text-base',
-      day: 'h-5 w-5 text-base rounded-full',
+      day: 'h-5 w-5 text-base rounded-full focus-visible:styled-outline',
       day_selected:
         'bg-brand text-black-third violet:bg-brand-secondary violet:text-white opacity-100',
       day_outside: 'opacity-20 aria-selected:opacity-100',

@@ -23,9 +23,9 @@ export const SidebarMyBoardsInfo = () => {
         <button
           type='button'
           className={cn(
-            `flex h-9 w-10 items-center justify-center rounded-lg bg-brand text-black
-            transition-all duration-300 hocus:bg-brand-hover violet:bg-brand-third
-            violet:text-white violet:hocus:bg-[#979CEA]`
+            `focus-visible:styled-outline flex h-9 w-10 items-center justify-center
+            rounded-lg bg-brand text-black transition-all duration-300 hocus:bg-brand-hover
+            violet:bg-brand-third violet:text-white violet:hocus:bg-[#979CEA]`
           )}
           onClick={() => {
             open()

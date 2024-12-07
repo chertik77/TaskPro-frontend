@@ -1,4 +1,4 @@
-import { Item, Root } from '@radix-ui/react-radio-group'
+import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
@@ -43,8 +43,8 @@ export const SidebarBoardsList = () => {
       {data?.map(board => (
         <Item
           className={cn(
-            `flex h-4xl w-full items-center justify-between pl-3.5 text-black/50
-            focus:outline-none aria-checked:bg-white-gray aria-checked:text-black
+            `focus-visible:styled-outline flex h-4xl w-full items-center justify-between
+            pl-3.5 text-black/50 aria-checked:bg-white-gray aria-checked:text-black
             violet:text-white/50 aria-checked:violet:bg-white/50
             aria-checked:violet:text-white dark:text-white/50
             aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6`
@@ -60,7 +60,9 @@ export const SidebarBoardsList = () => {
               {board?.title}
             </p>
           </div>
-          {board.id === boardId && <SidebarListActiveItem board={board} />}
+          <Indicator className='flex gap-5'>
+            <SidebarListActiveItem board={board} />
+          </Indicator>
         </Item>
       ))}
     </Root>

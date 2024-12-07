@@ -10,8 +10,8 @@ export const BoardAddColumnBtn = () => {
       disabled={isPending}
       onClick={() => mutate()}
       className='mr-5 flex h-3xl min-w-8xl max-w-8xl items-center justify-center gap-2 bg-white
-        px-[79px] disabled:opacity-100 violet:bg-white violet:text-black
-        dark:bg-black-secondary dark:text-white desktop:mr-6'>
+        px-[79px] -outline-offset-2 disabled:opacity-100 violet:bg-white
+        violet:text-black dark:bg-black-secondary dark:text-white desktop:mr-6'>
       {isPending ? (
         <>
           <Loader />

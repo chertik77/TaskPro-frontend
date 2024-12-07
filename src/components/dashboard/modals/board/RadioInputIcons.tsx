@@ -25,8 +25,8 @@ export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
               checked={field.value === icon}
               value={icon}
               key={icon}
-              className='group text-gray-500 hocus:text-gray-600 dark:text-gray-400
-                dark:hocus:text-gray-300'>
+              className='focus-visible:styled-outline group text-gray-500 hocus:text-gray-600
+                dark:text-gray-400 dark:hocus:text-gray-300'>
               <svg
                 className='size-lg stroke-current group-aria-checked:text-black
                   group-aria-checked:opacity-100 dark:group-aria-checked:text-white'>

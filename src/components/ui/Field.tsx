@@ -52,7 +52,8 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
             />
             <button
               type='button'
-              className='absolute right-lg top-4 opacity-40 peer-[.text-white]:text-white'
+              className='focus-visible:styled-outline absolute right-lg top-4 opacity-40
+                peer-[.text-white]:text-white'
               onClick={() => setShowPassword(prev => !prev)}>
               {showPassword ? (
                 <FiEyeOff className='size-lg' />

@@ -10,7 +10,7 @@ export const Filters = () => {
 
   return (
     <Popover.Root>
-      <Popover.Trigger className='flex items-center gap-2 pr-5 desktop:pr-6'>
+      <Popover.Trigger className='focus-visible:styled-outline mr-5 flex items-center gap-2 desktop:mr-6'>
         <svg className='size-4 stroke-black/80 dark:stroke-white/80'>
           <use href='/icons.svg#icon-filter' />
         </svg>
@@ -24,7 +24,7 @@ export const Filters = () => {
           <h2 className='border-b border-black/10 pb-3.5 text-lg dark:border-white/10'>
             Filters
           </h2>
-          <Popover.Close className='absolute right-3.5 top-3.5 focus:stroke-brand'>
+          <Popover.Close className='focus-visible:styled-outline absolute right-3.5 top-3.5'>
             <svg className='size-lg stroke-black dark:stroke-white'>
               <use href='/icons.svg#icon-close' />
             </svg>
@@ -33,7 +33,7 @@ export const Filters = () => {
             <h3>Priority</h3>
             <button
               type='button'
-              className='text-sm underline opacity-50 focus:outline-none hocus:text-brand-hover
+              className='focus:styled-outline text-sm underline opacity-50 hocus:text-brand-hover
                 hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
               onClick={() => {
                 searchParams.delete('priority')

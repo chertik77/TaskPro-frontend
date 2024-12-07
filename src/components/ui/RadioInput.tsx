@@ -7,7 +7,10 @@ import { cn, getPriorityColor } from 'lib'
 export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
   <RadioGroup.Item
     checked={checked}
-    className={cn('size-3.5 rounded-full', getPriorityColor(value as Priority))}
+    className={cn(
+      'focus-visible:styled-outline size-3.5 rounded-full',
+      getPriorityColor(value as Priority)
+    )}
     value={value as Priority}>
     <RadioGroup.Indicator
       // eslint-disable-next-line tailwindcss/no-custom-classname

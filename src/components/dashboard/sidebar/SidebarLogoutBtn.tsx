@@ -5,8 +5,8 @@ export const SidebarLogoutBtn = () => {
 
   return (
     <button
-      className='group flex items-center gap-3.5 bg-transparent px-6 text-md font-medium
-        violet:text-white'
+      className='focus-visible:styled-outline group flex items-center gap-3.5 bg-transparent
+        text-md font-medium violet:text-white'
       disabled={isPending}
       onClick={() => mutate()}>
       <svg

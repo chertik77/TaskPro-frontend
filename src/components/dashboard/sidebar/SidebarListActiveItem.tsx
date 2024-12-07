@@ -2,8 +2,6 @@ import type { Board } from 'types'
 
 import { useModal } from 'react-modal-state'
 
-import { Button } from 'components/ui'
-
 import { useDeleteBoard } from 'hooks/board'
 
 import { BurgerMenu, EditBoardModal } from '../modals'
@@ -17,7 +15,7 @@ export const SidebarListActiveItem = ({
 
   const { close } = useModal(BurgerMenu)
 
-  const { mutate, isPending } = useDeleteBoard()
+  const { mutate } = useDeleteBoard()
 
   const handleBoardEdit = () => {
     close()
@@ -25,24 +23,42 @@ export const SidebarListActiveItem = ({
   }
 
   return (
-    <div className='flex gap-5'>
+    <>
       <div className='flex items-center gap-2'>
-        <Button
+        <div
+          role='button'
+          tabIndex={0}
+          onKeyDown={e => {
+            if (e.code === 'Enter' || e.code === 'Space') handleBoardEdit()
+          }}
           onClick={handleBoardEdit}
-          iconName='pencil'
-          iconClassName='violet:stroke-white/50'
-        />
-        <Button
+          className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
+            dark:hocus:*:stroke-white-primary'>
+          <svg className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'>
+            <use href='/icons.svg#icon-pencil' />
+          </svg>
+        </div>
+        <div
+          role='button'
+          tabIndex={0}
+          onKeyDown={e => {
+            if (e.code === 'Enter' || e.code === 'Space') {
+              close()
+              mutate()
+            }
+          }}
           onClick={() => {
             close()
             mutate()
           }}
-          iconName='trash'
-          disabled={isPending}
-          iconClassName='violet:stroke-white/50'
-        />
+          className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
+            dark:hocus:*:stroke-white-primary'>
+          <svg className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'>
+            <use href='/icons.svg#icon-trash' />
+          </svg>
+        </div>
       </div>
       <div className='h-4xl w-1 rounded-l-lg bg-brand violet:bg-white' />
-    </div>
+    </>
   )
 }

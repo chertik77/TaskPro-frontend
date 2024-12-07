@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 
 import { selectUserTheme } from 'redux/user.slice'
 
+import { cn } from 'lib'
 import images from 'lib/json/board-bg-images.json'
 
 type RadioInputBgImagesProps = {
@@ -30,7 +31,9 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
               <Item
                 checked={field.value === id}
                 value={id}
-                className='group'
+                className={cn(
+                  'focus-visible:styled-outline group outline-offset-4'
+                )}
                 key={id}>
                 <img
                   className='group-aria-checked:scale-125'

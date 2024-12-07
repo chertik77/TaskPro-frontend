@@ -31,7 +31,7 @@ export const Sidebar = () => {
             <SidebarMyBoardsInfo />
             <SidebarBoardsList />
           </div>
-          <div className='mt-auto pb-6'>
+          <div className='mt-auto px-6 pb-6'>
             <SidebarUserSupport />
             <SidebarLogoutBtn />
           </div>

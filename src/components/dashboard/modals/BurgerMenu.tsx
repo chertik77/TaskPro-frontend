@@ -25,7 +25,7 @@ export const BurgerMenu = () => {
       <SidebarLogo />
       <SidebarMyBoardsInfo />
       <SidebarBoardsList />
-      <div className='mt-auto'>
+      <div className='mt-auto px-3.5 tablet:px-6'>
         <SidebarUserSupport />
         <SidebarLogoutBtn />
       </div>

@@ -27,7 +27,9 @@ export const DatePicker = ({ control }: DatePickerProps) => {
           <Popover
             open={isCalendarOpen}
             onOpenChange={setIsCalendarOpen}>
-            <Trigger className='mb-[40px] flex items-center gap-1 text-brand violet:text-brand-secondary'>
+            <Trigger
+              className='focus-visible:styled-outline mb-[40px] flex items-center gap-1 text-brand
+                violet:text-brand-secondary'>
               {formatTodayDate(field.value)}
               <MdKeyboardArrowDown className='size-lg text-current' />
             </Trigger>

@@ -13,6 +13,7 @@ export const SidebarLogo = () => {
       className='mb-[70px] flex items-center gap-2 pl-3.5 tablet:mb-[60px] tablet:pl-6
         desktop:pt-6'>
       <Link
+        className='focus-visible:styled-outline'
         to={Pages.Dashboard}
         onClick={closeBurgerMenu}>
         <svg

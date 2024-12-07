@@ -15,7 +15,7 @@ export const HeaderUserInfo = () => {
     <button
       type='button'
       onClick={open}
-      className='flex items-center gap-2'>
+      className='focus-visible:styled-outline flex items-center gap-2'>
       <p>{name}</p>
       <Avatar.Root>
         <Avatar.Image
