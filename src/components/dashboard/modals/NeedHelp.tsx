@@ -1,13 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { useModal } from 'react-modal-state'
-import { useSelector } from 'react-redux'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
 import { useNeedHelp } from 'hooks/user'
-
-import { selectUser } from 'redux/user.slice'
 
 import { cn } from 'lib'
 import { HelpSchema } from 'lib/schemas'
@@ -15,11 +12,7 @@ import { HelpSchema } from 'lib/schemas'
 export const NeedHelpModal = () => {
   const { close } = useModal(NeedHelpModal)
 
-  const { email } = useSelector(selectUser)
-
-  const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema, {
-    defaultValues: { email }
-  })
+  const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema)
 
   const { mutate, isPending } = useNeedHelp(reset)
 
