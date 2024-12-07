@@ -67,7 +67,7 @@ export const useCardDragHandlers = ({
 
     if (!cards || !over) return
 
-    const overCard = cards.find(c => c.id === over?.id)
+    const overCard = cards.find(c => c.id === over.id)
 
     if (overCard) {
       updateCardsOrder({
