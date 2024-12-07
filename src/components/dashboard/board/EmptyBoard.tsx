@@ -13,8 +13,8 @@ export const EmptyBoard = () => {
         Before starting your project, it is essential{' '}
         <button
           onClick={open}
-          className='text-brand hocus:text-brand-hover violet:text-brand-secondary
-            violet:hocus:text-brand-third'>
+          className='focus-visible:styled-outline text-brand hocus:text-brand-hover
+            violet:text-brand-secondary violet:hocus:text-brand-third'>
           to create a board
         </button>{' '}
         to visualize and track all the necessary tasks and milestones. This
