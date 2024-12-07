@@ -6,21 +6,11 @@ import { Pages } from 'config'
 
 export const HomePage = () => (
   <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>
-    <picture>
-      <source
-        media='(min-width: 768px)'
-        srcSet='/images/Welcome_tab_desktop.avif 1x, /images/Welcome_tab_desktop@2x.avif 2x'
-      />
-      <source
-        media='(max-width: 767px)'
-        srcSet='/images/Welcome_phone.avif 1x, /images/Welcome_phone@2x.avif 2x'
-      />
-      <img
-        src='images/Welcome_tab_desktop.avif'
-        alt='user-with-notebook'
-        loading='lazy'
-      />
-    </picture>
+    <img
+      className='size-[124px] tablet:size-[162px]'
+      src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568457/TaskPro/welcome.png'
+      alt='User with notebook'
+    />
     <div className='mt-6 flex items-center gap-3.5'>
       <svg className='size-10 tablet:size-12'>
         <use href='/icons.svg#icon-logo' />

@@ -11,13 +11,11 @@ export const SidebarUserSupport = () => {
     <div
       className='mx-3.5 mb-6 rounded-lg bg-white-gray p-3.5 violet:bg-gray-secondary
         dark:bg-black-third tablet:mx-6 tablet:p-5'>
-      <picture className='mb-3.5 block'>
-        <source srcSet='/images/helpIcon.avif 1x, /images/helpIcon@2x.avif 2x' />
-        <img
-          src='/images/helpIcon.avif'
-          alt='Need help icon'
-        />
-      </picture>
+      <img
+        className='mb-3.5 h-[78px] w-[54px]'
+        src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568218/TaskPro/need_help.png'
+        alt='Need help icon'
+      />
       <p className='mb-lg text-sm violet:text-white tablet:text-base'>
         If you need help with
         <span className='text-brand violet:text-brand-secondary'> TaskPro</span>
