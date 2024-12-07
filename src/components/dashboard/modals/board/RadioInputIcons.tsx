@@ -4,7 +4,7 @@ import type { Control } from 'react-hook-form'
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
 
-import icons from 'lib/json/board-icons.json'
+import { icons } from 'constants/icons'
 
 type RadioInputIconsProps = {
   control: Control<BoardSchema>
@@ -20,17 +20,17 @@ export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
         <Root
           className='mt-3.5 flex items-center gap-2'
           onValueChange={field.onChange}>
-          {icons.map(({ id }) => (
+          {icons.map(icon => (
             <Item
-              checked={field.value === id}
-              value={id}
-              key={id}
+              checked={field.value === icon}
+              value={icon}
+              key={icon}
               className='group text-gray-500 hocus:text-gray-600 dark:text-gray-400
                 dark:hocus:text-gray-300'>
               <svg
                 className='size-lg stroke-current group-aria-checked:text-black
                   group-aria-checked:opacity-100 dark:group-aria-checked:text-white'>
-                <use href={`/icons.svg#${id}`} />
+                <use href={`/icons.svg#${icon}`} />
               </svg>
             </Item>
           ))}

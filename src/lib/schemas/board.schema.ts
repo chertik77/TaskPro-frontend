@@ -1,5 +1,7 @@
 import * as v from 'valibot'
 
+import { icons } from 'constants/icons'
+
 export const TitleSchema = v.object({
   title: v.string([
     v.toTrimmed(),
@@ -9,7 +11,7 @@ export const TitleSchema = v.object({
 
 export const BoardSchema = v.object({
   ...TitleSchema.entries,
-  icon: v.string(),
+  icon: v.picklist(icons),
   background: v.string()
 })
 

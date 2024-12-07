@@ -1,3 +1,5 @@
+import type { Icon } from 'constants/icons'
+
 import { useEffect } from 'react'
 import { useModal, useModalInstance } from 'react-modal-state'
 
@@ -18,7 +20,7 @@ export const EditBoardModal = () => {
     id: string
     background: string
     title: string
-    icon: string
+    icon: Icon
   }>()
 
   const { register, reset, handleSubmit, control, formState } = useAppForm(

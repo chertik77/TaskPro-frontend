@@ -15,7 +15,7 @@ export const NewBoardModal = () => {
 
   const { register, formState, reset, handleSubmit, control } = useAppForm(
     BoardSchema,
-    { defaultValues: { icon: 'icon-project-1', background: 'default' } }
+    { defaultValues: { icon: 'project', background: 'default' } }
   )
 
   const { mutate, isPending } = useAddBoard(reset)
