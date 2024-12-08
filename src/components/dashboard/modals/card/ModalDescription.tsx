@@ -2,7 +2,6 @@ import type { CardSchema } from 'lib/schemas'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef } from 'react'
-import { ErrorMessage } from '@hookform/error-message'
 
 import { cn } from 'lib'
 
@@ -27,10 +26,8 @@ export const ModalDescription = forwardRef<
       )}
       {...props}
     />
-    <ErrorMessage
-      errors={errors}
-      name='description'
-      render={({ message }) => <p className='mb-3.5 text-red-600'>{message}</p>}
-    />
+    {errors.description && (
+      <p className='mb-3.5 text-red-600'>{errors.description.message}</p>
+    )}
   </>
 ))

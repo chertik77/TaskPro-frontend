@@ -10,8 +10,8 @@ import { CardSchema } from 'lib/schemas'
 import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
-export const AddCardModal = () => {
-  const { close } = useModal(AddCardModal)
+export const NewCardModal = () => {
+  const { close } = useModal(NewCardModal)
 
   const { register, handleSubmit, formState, reset, control } = useAppForm(
     CardSchema,
@@ -38,10 +38,7 @@ export const AddCardModal = () => {
           errors={formState.errors}
           {...register('description')}
         />
-        <ModalPriorities
-          control={control}
-          errors={formState.errors}
-        />
+        <ModalPriorities control={control} />
         <DatePicker control={control} />
         <Button
           isPlusIcon

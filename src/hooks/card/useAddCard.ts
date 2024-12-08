@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { AddCardModal } from 'components/dashboard/modals'
+import { NewCardModal } from 'components/dashboard/modals'
 
 import { cardService } from 'services'
 
@@ -14,7 +14,7 @@ export const useAddCard = (reset: UseFormReset<CardSchema>) => {
 
   const { data: column } = useModalInstance<string>()
 
-  const { close } = useModal(AddCardModal)
+  const { close } = useModal(NewCardModal)
 
   return useMutation({
     mutationKey: ['addCard'],

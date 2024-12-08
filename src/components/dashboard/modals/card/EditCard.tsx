@@ -56,10 +56,7 @@ export const EditCardModal = () => {
           errors={formState.errors}
           {...register('description')}
         />
-        <ModalPriorities
-          errors={formState.errors}
-          control={control}
-        />
+        <ModalPriorities control={control} />
         <DatePicker control={control} />
         <Button
           type='submit'

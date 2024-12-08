@@ -1,7 +1,6 @@
 import type { CardSchema } from 'lib/schemas'
-import type { Control, FieldErrors } from 'react-hook-form'
+import type { Control } from 'react-hook-form'
 
-import { ErrorMessage } from '@hookform/error-message'
 import { Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
 
@@ -9,21 +8,17 @@ import { RadioInput } from 'components/ui'
 
 import { priorities } from 'constants/priorities'
 
-type AddCardModalPrioritiesProps = {
+type ModalPrioritiesProps = {
   control: Control<CardSchema>
-  errors: FieldErrors<CardSchema>
 }
 
-export const ModalPriorities = ({
-  control,
-  errors
-}: AddCardModalPrioritiesProps) => (
+export const ModalPriorities = ({ control }: ModalPrioritiesProps) => (
   <>
     <p className='mb-1 text-sm text-black/50 dark:text-white/50'>Label color</p>
     <Controller
       name='priority'
       control={control}
-      render={({ field }) => (
+      render={({ field, formState }) => (
         <>
           <Root
             onValueChange={field.onChange}
@@ -36,13 +31,11 @@ export const ModalPriorities = ({
               />
             ))}
           </Root>
-          <ErrorMessage
-            name={field.name}
-            errors={errors}
-            render={({ message }) => (
-              <p className='mb-3.5 text-red-600'>{message}</p>
-            )}
-          />
+          {formState.errors.priority && (
+            <p className='mb-3.5 text-red-600'>
+              {formState.errors.priority.message}
+            </p>
+          )}
         </>
       )}
     />

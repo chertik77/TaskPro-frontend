@@ -10,7 +10,7 @@ import { CSS } from '@dnd-kit/utilities'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
-import { AddCardModal } from 'components/dashboard/modals'
+import { NewCardModal } from 'components/dashboard/modals'
 import { Button, Scrollbar } from 'components/ui'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
@@ -33,7 +33,7 @@ export const BoardColumnsItem = ({
   cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { open } = useModal(AddCardModal)
+  const { open } = useModal(NewCardModal)
 
   const { cardPriority, cardDeadline } = useCardFilters()
 

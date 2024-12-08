@@ -1,4 +1,3 @@
-import { ErrorMessage } from '@hookform/error-message'
 import { useModal } from 'react-modal-state'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
@@ -42,13 +41,11 @@ export const NeedHelpModal = () => {
             formState.errors && 'mb-sm'
           )}
         />
-        <ErrorMessage
-          errors={formState.errors}
-          name='comment'
-          render={({ message }) => (
-            <p className='mb-3.5 text-red-600'>{message}</p>
-          )}
-        />
+        {formState.errors.comment && (
+          <p className='mb-3.5 text-red-600'>
+            {formState.errors.comment.message}
+          </p>
+        )}
         <Button
           type='submit'
           disabled={isPending}>
