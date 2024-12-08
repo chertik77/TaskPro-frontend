@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { DashboardPage, HomePage, SigninPage, SignupPage } from 'pages'
+import { AuthPage, DashboardPage, HomePage } from 'pages'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
@@ -43,11 +43,11 @@ export const App = () => {
         />
         <Route
           path={Pages.Signin}
-          element={<PublicOnlyRoute component={<SigninPage />} />}
+          element={<PublicOnlyRoute component={<AuthPage />} />}
         />
         <Route
           path={Pages.Signup}
-          element={<PublicOnlyRoute component={<SignupPage />} />}
+          element={<PublicOnlyRoute component={<AuthPage />} />}
         />
         <Route
           path={Pages.Dashboard}

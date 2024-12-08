@@ -29,7 +29,7 @@ export const HomePage = () => (
     </Link>
     <Link
       to={Pages.Signin}
-      className='mt-3.5 text-black'>
+      className='focus-visible:styled-outline mt-3.5 text-black'>
       Log In
     </Link>
   </div>
