@@ -2,7 +2,6 @@ import type { InputHTMLAttributes } from 'react'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef, useState } from 'react'
-import { ErrorMessage } from '@hookform/error-message'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 import { cn } from 'lib'
@@ -78,13 +77,11 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
             {...props}
           />
         )}
-        <ErrorMessage
-          errors={errors}
-          name={inputName}
-          render={({ message }) => (
-            <p className='mb-3.5 text-red-600'>{message}</p>
-          )}
-        />
+        {errors[inputName] && (
+          <p className='mb-3.5 text-red-600'>
+            {errors[inputName].message as string}
+          </p>
+        )}
       </>
     )
   }
