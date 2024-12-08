@@ -13,7 +13,7 @@ export const boardService = {
 
   async getBoardById(boardId: string) {
     const response = await axiosInstance.get<Board>(
-      `${ApiEndpoints.Board}/${boardId}`
+      ApiEndpoints.BoardById(boardId)
     )
 
     return response.data
@@ -27,7 +27,7 @@ export const boardService = {
 
   async editBoard(boardId: string, data: BoardSchema) {
     const response = await axiosInstance.put<Board>(
-      `${ApiEndpoints.Board}/${boardId}`,
+      ApiEndpoints.BoardById(boardId),
       data
     )
 
@@ -35,6 +35,6 @@ export const boardService = {
   },
 
   async deleteBoard(boardId: string) {
-    await axiosInstance.delete(`${ApiEndpoints.Board}/${boardId}`)
+    await axiosInstance.delete(ApiEndpoints.BoardById(boardId))
   }
 }
