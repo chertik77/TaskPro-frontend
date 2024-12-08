@@ -33,7 +33,7 @@ export const Filters = () => {
             <h3>Priority</h3>
             <button
               type='button'
-              className='focus:styled-outline text-sm underline opacity-50 hocus:text-brand-hover
+              className='focus-visible:styled-outline text-sm underline opacity-50 hocus:text-brand-hover
                 hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
               onClick={() => {
                 searchParams.delete('priority')
