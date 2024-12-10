@@ -38,7 +38,8 @@ export const BoardCard = ({ card }: { card: Card }) => {
     <div
       className={cn(
         `relative mb-2 h-5xl cursor-grab touch-manipulation overflow-hidden rounded-lg
-        bg-white py-3.5 pl-6 pr-5 last:mb-0 focus-visible:outline-none dark:bg-black`
+        bg-white py-3.5 pl-6 pr-5 last:mb-0 focus-visible:outline-none dark:bg-black`,
+        isDragging && 'select-none'
       )}
       {...listeners}
       {...attributes}

@@ -2,11 +2,24 @@ import type { Column } from 'types'
 
 import { useMemo } from 'react'
 import {
+  DndContext,
+  DragOverlay,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors
+} from '@dnd-kit/core'
+import {
   horizontalListSortingStrategy,
   SortableContext
 } from '@dnd-kit/sortable'
+import { createPortal } from 'react-dom'
 
-import { DragAndDropProvider } from '../DragAndDropProvider'
+import { useDragAndDrop } from 'hooks/useDragAndDrop'
+
+import { collisionDetectionAlgorithm } from 'lib'
+
+import { BoardCard } from '../cards/BoardCard'
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'
 
@@ -19,6 +32,23 @@ export const BoardColumnsList = ({
   initialColumns,
   backgroundIdentifier
 }: BoardColumnsListProps) => {
+  const {
+    columns,
+    cards,
+    activeColumn,
+    activeCard,
+    onDragStart,
+    onDragOver,
+    onDragEnd
+  } = useDragAndDrop(initialColumns)
+
+  const sensors = useSensors(
+    useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, {
+      activationConstraint: { distance: 8, delay: 250, tolerance: 5 }
+    })
+  )
+
   const columnsIds = useMemo(
     () => initialColumns?.map(c => c.id),
     [initialColumns]
@@ -26,25 +56,38 @@ export const BoardColumnsList = ({
 
   return (
     <div className='flex touch-manipulation gap-[34px]'>
-      <DragAndDropProvider initialColumns={initialColumns}>
-        {({ columns, cards }) => (
-          <>
-            <SortableContext
-              items={columnsIds || []}
-              strategy={horizontalListSortingStrategy}>
-              {columns?.map(column => (
-                <BoardColumnsItem
-                  column={column}
-                  key={column.id}
-                  cards={cards?.filter(card => card.columnId === column.id)}
-                  backgroundIdentifier={backgroundIdentifier}
-                />
-              ))}
-            </SortableContext>
-            <BoardAddColumnBtn />
-          </>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={collisionDetectionAlgorithm}
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDragEnd={onDragEnd}>
+        <SortableContext
+          items={columnsIds || []}
+          strategy={horizontalListSortingStrategy}>
+          {columns?.map(column => (
+            <BoardColumnsItem
+              column={column}
+              key={column.id}
+              cards={cards?.filter(card => card.columnId === column.id)}
+              backgroundIdentifier={backgroundIdentifier}
+            />
+          ))}
+        </SortableContext>
+        <BoardAddColumnBtn />
+        {createPortal(
+          <DragOverlay>
+            {activeColumn && (
+              <BoardColumnsItem
+                column={activeColumn}
+                cards={cards?.filter(card => card.columnId === activeColumn.id)}
+              />
+            )}
+            {activeCard && <BoardCard card={activeCard!} />}
+          </DragOverlay>,
+          document.body
         )}
-      </DragAndDropProvider>
+      </DndContext>
     </div>
   )
 }

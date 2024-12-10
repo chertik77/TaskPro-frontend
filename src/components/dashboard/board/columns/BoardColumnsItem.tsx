@@ -72,7 +72,11 @@ export const BoardColumnsItem = ({
     />
   ) : (
     <div
-      className='flex w-[334px] cursor-grab flex-col focus-visible:outline-none'
+      className={cn(
+        `flex w-[334px] cursor-grab touch-manipulation flex-col
+        focus-visible:outline-none`,
+        isDragging && 'select-none'
+      )}
       ref={setNodeRef}
       style={style}
       {...attributes}
