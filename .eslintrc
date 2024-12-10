@@ -85,6 +85,14 @@
       "warn",
       { "whitelist": ["shadow-none"] }
     ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "name": "react-redux",
+        "importNames": ["useDispatch", "useSelector"],
+        "message": "Please import useAppDispatch or useAppSelector from `hooks/redux` instead."
+      }
+    ],
     "no-restricted-syntax": [
       "error",
       {
