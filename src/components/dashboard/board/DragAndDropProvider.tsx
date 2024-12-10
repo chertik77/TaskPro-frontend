@@ -2,7 +2,7 @@ import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { ReactNode } from 'react'
 import type { Card, Column } from 'types'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   DndContext,
   DragOverlay,
@@ -24,6 +24,8 @@ import { BoardColumnsItem } from './columns/BoardColumnsItem'
 type Children = {
   columns: Column[] | undefined
   cards: Card[] | undefined
+  columnsIds: string[] | undefined
+  cardsIds: string[] | undefined
 }
 
 type DragAndDropProviderProps = {
@@ -77,6 +79,9 @@ export const DragAndDropProvider = ({
     if (data?.type === 'card') cardHandlers.onDragEnd(event)
   }
 
+  const columnsIds = useMemo(() => columns?.map(col => col.id), [columns])
+  const cardsIds = useMemo(() => cards?.map(c => c.id), [cards])
+
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, {
@@ -91,12 +96,13 @@ export const DragAndDropProvider = ({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDragEnd={onDragEnd}>
-      {children({ columns, cards })}
+      {children({ columns, cards, cardsIds, columnsIds })}
       {createPortal(
         <DragOverlay>
           {activeColumn && (
             <BoardColumnsItem
               column={activeColumn}
+              cardsIds={cardsIds}
               cards={cards?.filter(card => card.columnId === activeColumn.id)}
             />
           )}

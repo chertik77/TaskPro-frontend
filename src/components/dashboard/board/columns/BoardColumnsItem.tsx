@@ -1,6 +1,5 @@
 import type { Card, Column } from 'types'
 
-import { useMemo } from 'react'
 import {
   SortableContext,
   useSortable,
@@ -25,12 +24,14 @@ import { BoardColumnsActions } from './BoardColumnsActions'
 type BoardColumnsItemProps = {
   column: Column
   cards: Card[] | undefined
+  cardsIds: string[] | undefined
   backgroundIdentifier?: string
 }
 
 export const BoardColumnsItem = ({
   column,
   cards,
+  cardsIds,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
   const { open } = useModal(NewCardModal)
@@ -43,8 +44,6 @@ export const BoardColumnsItem = ({
     priority: cardPriority,
     deadline: cardDeadline
   })
-
-  const cardsIds = useMemo(() => filteredCards?.map(c => c.id), [filteredCards])
 
   const {
     setNodeRef,
