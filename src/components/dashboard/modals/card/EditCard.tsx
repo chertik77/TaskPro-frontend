@@ -1,7 +1,7 @@
 import type { Card } from 'types'
 
 import { useEffect } from 'react'
-import { useModal, useModalInstance } from 'react-modal-state'
+import { useModalInstance } from 'react-modal-state'
 
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
@@ -14,21 +14,19 @@ import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
 export const EditCardModal = () => {
-  const { close } = useModal(EditCardModal)
-
   const {
     data: { title, description, id, priority, deadline }
   } = useModalInstance<Card>()
 
   const { register, handleSubmit, formState, control, reset } = useAppForm(
     CardSchema,
-    { defaultValues: { title, description } }
+    { defaultValues: { priority, deadline } }
   )
 
   const { mutate, isPending } = useEditCard(reset)
 
   useEffect(() => {
-    reset({ title, priority, deadline: new Date(deadline), description })
+    reset({ title, priority, deadline, description })
   }, [deadline, description, priority, title, reset])
 
   const fields = ['title', 'priority', 'description', 'deadline'] as const
@@ -38,12 +36,7 @@ export const EditCardModal = () => {
   )
 
   return (
-    <Modal
-      modalTitle='Edit card'
-      onClose={() => {
-        close()
-        reset()
-      }}>
+    <Modal modalTitle='Edit card'>
       <form
         onSubmit={handleSubmit(data => mutate({ cardId: id, cardData: data }))}>
         <Field

@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useModal } from 'react-modal-state'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
@@ -14,8 +13,6 @@ import { EditUserSchema } from 'lib/schemas'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  const { close } = useModal(EditProfileModal)
-
   const { name: initialName, email: initialEmail } = useAppSelector(selectUser)
 
   const { isPending, mutateAsync, mutate } = useEditProfile()
@@ -33,12 +30,7 @@ export const EditProfileModal = () => {
     (watch('password') && formState.isValid)
 
   return (
-    <Modal
-      modalTitle='Edit profile'
-      onClose={() => {
-        reset()
-        close()
-      }}>
+    <Modal modalTitle='Edit profile'>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <EditAvatar changeUserAvatar={mutateAsync} />
         <Field

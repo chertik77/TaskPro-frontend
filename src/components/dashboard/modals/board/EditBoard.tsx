@@ -1,7 +1,7 @@
 import type { Icon } from 'constants/icons'
 
 import { useEffect } from 'react'
-import { useModal, useModalInstance } from 'react-modal-state'
+import { useModalInstance } from 'react-modal-state'
 
 import { Button, Field, Modal } from 'components/ui'
 
@@ -14,29 +14,23 @@ import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 
 export const EditBoardModal = () => {
-  const { close } = useModal(EditBoardModal)
-
-  const { data: board } = useModalInstance<{
+  const {
+    data: { id, background, title, icon }
+  } = useModalInstance<{
     id: string
     background: string
     title: string
     icon: Icon
   }>()
 
-  const { register, reset, handleSubmit, control, formState } = useAppForm(
-    BoardSchema,
-    { defaultValues: { title: board.title } }
-  )
+  const { register, reset, handleSubmit, control, formState } =
+    useAppForm(BoardSchema)
 
   const { mutate, isPending } = useEditBoard(reset)
 
   useEffect(() => {
-    reset({
-      icon: board.icon,
-      title: board.title,
-      background: board.background
-    })
-  }, [board.background, board.icon, board.title, reset])
+    reset({ icon, title, background })
+  }, [background, icon, title, reset])
 
   const fields = ['icon', 'title', 'background'] as const
 
@@ -45,15 +39,10 @@ export const EditBoardModal = () => {
   )
 
   return (
-    <Modal
-      modalTitle='Edit board'
-      onClose={() => {
-        close()
-        reset()
-      }}>
+    <Modal modalTitle='Edit board'>
       <form
         onSubmit={handleSubmit(data =>
-          mutate({ boardId: board.id, boardData: data })
+          mutate({ boardId: id, boardData: data })
         )}>
         <Field
           {...register('title')}

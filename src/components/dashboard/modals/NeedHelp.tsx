@@ -1,5 +1,3 @@
-import { useModal } from 'react-modal-state'
-
 import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
@@ -9,19 +7,12 @@ import { cn } from 'lib'
 import { HelpSchema } from 'lib/schemas'
 
 export const NeedHelpModal = () => {
-  const { close } = useModal(NeedHelpModal)
-
   const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema)
 
   const { mutate, isPending } = useNeedHelp(reset)
 
   return (
-    <Modal
-      modalTitle='Need help'
-      onClose={() => {
-        close()
-        reset()
-      }}>
+    <Modal modalTitle='Need help'>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('email')}
