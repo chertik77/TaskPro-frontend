@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import * as Select from '@radix-ui/react-select'
-import { useSelector } from 'react-redux'
 
+import { useAppSelector } from 'hooks/redux'
 import { useChangeTheme } from 'hooks/user'
 
 import { selectUserTheme } from 'redux/user.slice'
@@ -9,7 +9,7 @@ import { selectUserTheme } from 'redux/user.slice'
 import { themes } from 'constants/themes'
 
 export const HeaderThemeSelect = () => {
-  const theme = useSelector(selectUserTheme)
+  const theme = useAppSelector(selectUserTheme)
 
   const { mutate } = useChangeTheme()
 

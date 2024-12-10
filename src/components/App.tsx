@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { AuthPage, DashboardPage, HomePage } from 'pages'
-import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
 import { PrivateRoute, PublicOnlyRoute } from 'components/routes'
+
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
 
@@ -16,9 +17,9 @@ import { EmptyBoard } from './dashboard/board/EmptyBoard'
 import { Layout } from './Layout'
 
 export const App = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const { data, isSuccess } = useQuery({
     queryKey: ['user'],

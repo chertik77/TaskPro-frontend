@@ -4,7 +4,8 @@ import type { EditUserSchema } from 'lib/schemas'
 import type { User } from 'types'
 
 import { useRef } from 'react'
-import { useSelector } from 'react-redux'
+
+import { useAppSelector } from 'hooks/redux'
 
 import { selectUser } from 'redux/user.slice'
 
@@ -20,7 +21,7 @@ type EditAvatarProps = {
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const { avatar } = useSelector(selectUser)
+  const { avatar } = useAppSelector(selectUser)
 
   return (
     <div className='mb-[25px] flex justify-center'>

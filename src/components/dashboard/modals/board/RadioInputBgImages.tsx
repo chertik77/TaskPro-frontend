@@ -3,7 +3,8 @@ import type { Control } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
-import { useSelector } from 'react-redux'
+
+import { useAppSelector } from 'hooks/redux'
 
 import { selectUserTheme } from 'redux/user.slice'
 
@@ -15,7 +16,7 @@ type RadioInputBgImagesProps = {
 }
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
-  const theme = useSelector(selectUserTheme)
+  const theme = useAppSelector(selectUserTheme)
 
   return (
     <>

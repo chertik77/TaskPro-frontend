@@ -1,19 +1,19 @@
 import { useHotkeys } from 'react-hotkeys-hook'
-import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
 import { Header, Sidebar } from 'components/dashboard'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { selectIsSidebarOpen, setIsSidebarOpen } from 'redux/sidebar.slice'
 
 import { cn } from 'lib'
 
 export const DashboardPage = () => {
-  const isSidebarOpen = useSelector(selectIsSidebarOpen)
+  const isSidebarOpen = useAppSelector(selectIsSidebarOpen)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 

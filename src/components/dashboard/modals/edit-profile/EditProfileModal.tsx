@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useModal } from 'react-modal-state'
-import { useSelector } from 'react-redux'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
+import { useAppSelector } from 'hooks/redux'
 import { useEditProfile } from 'hooks/user'
 
 import { selectUser } from 'redux/user.slice'
@@ -16,7 +16,7 @@ import { EditAvatar } from './EditAvatar'
 export const EditProfileModal = () => {
   const { close } = useModal(EditProfileModal)
 
-  const { name: initialName, email: initialEmail } = useSelector(selectUser)
+  const { name: initialName, email: initialEmail } = useAppSelector(selectUser)
 
   const { isPending, mutateAsync, mutate } = useEditProfile()
 

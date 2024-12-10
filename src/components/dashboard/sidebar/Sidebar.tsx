@@ -1,7 +1,8 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { useSelector } from 'react-redux'
 
 import { Scrollbar } from 'components/ui'
+
+import { useAppSelector } from 'hooks/redux'
 
 import { selectIsSidebarOpen } from 'redux/sidebar.slice'
 
@@ -14,7 +15,7 @@ import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
 import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => {
-  const isSidebarOpen = useSelector(selectIsSidebarOpen)
+  const isSidebarOpen = useAppSelector(selectIsSidebarOpen)
 
   return (
     <ScrollArea.Root
