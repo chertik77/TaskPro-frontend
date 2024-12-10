@@ -1,14 +1,15 @@
 import { useGoogleLogin } from '@react-oauth/google'
 import { FcGoogle } from 'react-icons/fc'
-import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
+
+import { useAppDispatch } from 'hooks/redux'
 
 import { authenticate } from 'redux/user.slice'
 
 import { authService } from 'services'
 
 export const GoogleSignin = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const signinWithGoogle = useGoogleLogin({
     flow: 'auth-code',

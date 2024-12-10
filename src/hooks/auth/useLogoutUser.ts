@@ -1,16 +1,17 @@
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
 
 import { BurgerMenu } from 'components/dashboard/modals'
+
+import { useAppDispatch } from 'hooks/redux'
 
 import { logout } from 'redux/user.slice'
 
 import { authService } from 'services'
 
 export const useLogoutUser = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 

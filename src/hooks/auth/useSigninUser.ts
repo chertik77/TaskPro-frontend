@@ -2,15 +2,16 @@ import type { SigninSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation } from '@tanstack/react-query'
-import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
+
+import { useAppDispatch } from 'hooks/redux'
 
 import { authenticate } from 'redux/user.slice'
 
 import { authService } from 'services'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   return useMutation({
     mutationKey: ['signin'],
