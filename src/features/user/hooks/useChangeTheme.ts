@@ -1,9 +1,9 @@
 import type { Theme } from 'constants/themes'
-import type { User } from 'types'
+import type { User } from '../model'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { userService } from 'services'
+import { userService } from '../model'
 
 export const useChangeTheme = () => {
   const queryClient = useQueryClient()

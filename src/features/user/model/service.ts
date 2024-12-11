@@ -1,5 +1,5 @@
-import type { EditUserSchema, HelpSchema } from 'lib/schemas'
-import type { User } from 'types'
+import type { EditUserSchema, HelpSchema } from './schema'
+import type { User } from './types'
 
 import { axiosInstance } from 'api'
 import { ApiEndpoints } from 'config'

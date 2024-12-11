@@ -1,15 +1,14 @@
 import { useEffect } from 'react'
+import { useEditProfile } from 'features/user/hooks'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
-import { useEditProfile } from 'hooks/user'
 
 import { selectUser } from 'redux/user.slice'
 
-import { EditUserSchema } from 'lib/schemas'
-
+import { EditUserSchema } from '../model'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {

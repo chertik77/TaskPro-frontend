@@ -1,4 +1,3 @@
-import type { SignupSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation } from '@tanstack/react-query'
@@ -8,7 +7,7 @@ import { useAppDispatch } from 'hooks/redux'
 
 import { authenticate } from 'redux/user.slice'
 
-import { authService } from 'services'
+import { authService, SignupSchema } from '../model'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
   const dispatch = useAppDispatch()

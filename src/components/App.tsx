@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { userService } from 'features/user/model'
 import { AuthPage, DashboardPage, HomePage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
@@ -10,7 +11,6 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
 
 import { Pages } from 'config'
-import { userService } from 'services'
 
 import { Board } from './dashboard'
 import { EmptyBoard } from './dashboard/board/EmptyBoard'

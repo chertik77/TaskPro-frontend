@@ -1,4 +1,4 @@
-import type { Priority } from 'constants/priorities'
+import type { Priority } from 'features/user/model/constants'
 
 export type ColumnTitle = {
   title: string

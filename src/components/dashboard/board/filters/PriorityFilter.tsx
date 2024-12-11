@@ -1,10 +1,9 @@
 import { Root } from '@radix-ui/react-radio-group'
+import { priorities } from 'features/user/model/constants'
 
 import { RadioInput } from 'components/ui'
 
 import { useCardFilters } from 'hooks/card'
-
-import { priorities } from 'constants/priorities'
 
 export const PriorityFilter = () => {
   const { setSearchParams, cardPriority } = useCardFilters()

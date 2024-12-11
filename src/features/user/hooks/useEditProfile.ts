@@ -2,9 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { EditProfileModal } from 'components/dashboard/modals'
-
-import { userService } from 'services'
+import { EditProfileModal } from '../components'
+import { userService } from '../model'
 
 export const useEditProfile = () => {
   const queryClient = useQueryClient()

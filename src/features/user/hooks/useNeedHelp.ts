@@ -1,13 +1,11 @@
-import type { HelpSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { NeedHelpModal } from 'components/dashboard/modals'
-
-import { userService } from 'services'
+import { NeedHelpModal } from '../components'
+import { HelpSchema, userService } from '../model'
 
 export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {
   const { close } = useModal(NeedHelpModal)

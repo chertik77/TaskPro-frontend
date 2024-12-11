@@ -18,22 +18,5 @@ export const SignupSchema = v.object({
   ...SigninSchema.entries
 })
 
-export const EditUserSchema = v.partial(
-  v.object({
-    ...SignupSchema.entries,
-    avatar: v.instance(File)
-  })
-)
-
-export const HelpSchema = v.object({
-  email: SigninSchema.entries.email,
-  comment: v.string([
-    v.toTrimmed(),
-    v.minLength(5, 'Please enter at least 5 characters.')
-  ])
-})
-
 export type SigninSchema = v.Output<typeof SigninSchema>
 export type SignupSchema = v.Output<typeof SignupSchema>
-export type EditUserSchema = v.Output<typeof EditUserSchema>
-export type HelpSchema = v.Output<typeof HelpSchema>

@@ -1,4 +1,4 @@
-import { useLogoutUser } from 'hooks/auth'
+import { useLogoutUser } from 'features/authentication/hooks'
 
 export const SidebarLogoutBtn = () => {
   const { mutate, isPending } = useLogoutUser()

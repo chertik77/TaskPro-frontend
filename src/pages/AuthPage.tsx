@@ -1,11 +1,10 @@
-import { useLocation } from 'react-router-dom'
-
 import {
   AuthFormNavigation,
   AuthLayout,
   SigninForm,
   SignupForm
-} from 'components/auth'
+} from 'features/authentication/components'
+import { useLocation } from 'react-router-dom'
 
 export const AuthPage = () => {
   const { pathname } = useLocation()

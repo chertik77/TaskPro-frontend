@@ -1,5 +1,5 @@
 import type { Deadline } from 'constants/deadlines'
-import type { Priority } from 'constants/priorities'
+import type { Priority } from 'features/user/model/constants'
 import type { Card } from 'types'
 
 import { addDays, isAfter, isBefore, isToday, startOfToday } from 'date-fns'

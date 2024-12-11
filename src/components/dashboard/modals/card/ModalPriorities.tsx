@@ -2,11 +2,10 @@ import type { CardSchema } from 'lib/schemas'
 import type { Control } from 'react-hook-form'
 
 import { Root } from '@radix-ui/react-radio-group'
+import { priorities } from 'features/user/model/constants'
 import { Controller } from 'react-hook-form'
 
 import { RadioInput } from 'components/ui'
-
-import { priorities } from 'constants/priorities'
 
 type ModalPrioritiesProps = {
   control: Control<CardSchema>

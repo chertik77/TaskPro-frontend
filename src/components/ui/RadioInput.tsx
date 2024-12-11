@@ -1,4 +1,4 @@
-import type { Priority } from 'constants/priorities'
+import type { Priority } from 'features/user/model/constants'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 

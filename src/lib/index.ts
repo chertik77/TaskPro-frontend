@@ -2,7 +2,7 @@ import type { Active, ClientRect, DroppableContainer } from '@dnd-kit/core'
 import type { RectMap } from '@dnd-kit/core/dist/store'
 import type { Coordinates } from '@dnd-kit/utilities'
 import type { ClassValue } from 'clsx'
-import type { Priority } from 'constants/priorities'
+import type { Priority } from 'features/user/model/constants'
 
 import { pointerWithin, rectIntersection } from '@dnd-kit/core'
 import { clsx } from 'clsx'

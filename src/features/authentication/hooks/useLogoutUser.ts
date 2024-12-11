@@ -8,7 +8,7 @@ import { useAppDispatch } from 'hooks/redux'
 
 import { logout } from 'redux/user.slice'
 
-import { authService } from 'services'
+import { authService } from '../model'
 
 export const useLogoutUser = () => {
   const dispatch = useAppDispatch()

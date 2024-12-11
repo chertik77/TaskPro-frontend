@@ -1,6 +1,5 @@
+import { GoogleSignin } from 'features/authentication/components'
 import { Link } from 'react-router-dom'
-
-import { GoogleSignin } from 'components/auth/GoogleSignin'
 
 import { Pages } from 'config'
 

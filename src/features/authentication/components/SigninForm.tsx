@@ -1,9 +1,10 @@
+import { useSigninUser } from 'features/authentication/hooks'
+
 import { Button, Field, Loader } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useSigninUser } from 'hooks/auth'
 
-import { SigninSchema } from 'lib/schemas'
+import { SigninSchema } from '../model'
 
 export const SigninForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(SigninSchema)
