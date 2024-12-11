@@ -1,5 +1,6 @@
 import type { Card } from 'types'
 
+import { memo } from 'react'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
@@ -9,7 +10,7 @@ import { BoardCardActions } from './BoardCardActions'
 import { BoardCardDeadline } from './BoardCardDeadline'
 import { BoardCardPriority } from './BoardCardPriority'
 
-export const BoardCard = ({ card }: { card: Card }) => {
+export const BoardCard = memo(({ card }: { card: Card }) => {
   const {
     setNodeRef,
     attributes,
@@ -63,4 +64,4 @@ export const BoardCard = ({ card }: { card: Card }) => {
       </div>
     </div>
   )
-}
+})

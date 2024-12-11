@@ -1,4 +1,5 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { DragAndDropProvider } from 'context/dnd.context'
 
 import { Loader, Scrollbar } from 'components/ui'
 
@@ -35,10 +36,11 @@ export const Board = () => {
         <Loader className='absolute inset-0 m-auto' />
       ) : (
         <ScrollArea.Viewport className='w-full flex-1 pb-4'>
-          <BoardColumnsList
-            initialColumns={data?.columns}
-            backgroundIdentifier={data?.background.identifier}
-          />
+          <DragAndDropProvider initialColumns={data?.columns}>
+            <BoardColumnsList
+              backgroundIdentifier={data?.background.identifier}
+            />
+          </DragAndDropProvider>
         </ScrollArea.Viewport>
       )}
       <Scrollbar

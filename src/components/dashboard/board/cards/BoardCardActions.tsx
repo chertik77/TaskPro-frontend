@@ -1,17 +1,16 @@
 import type { Card } from 'types'
 
+import { useDragAndDrop } from 'context/dnd.context'
 import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 
 import { EditCardModal } from 'components/dashboard/modals'
-import { Button, Loader } from 'components/ui'
-
-import { useDeleteCard } from 'hooks/card'
+import { Button } from 'components/ui'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
-  const { mutate, isPending } = useDeleteCard()
+  const { deleteCard } = useDragAndDrop()
 
   return (
     <div className='ml-auto flex gap-2'>
@@ -24,14 +23,10 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         onClick={() => open(card)}
         iconName='pencil'
       />
-      {isPending ? (
-        <Loader className='size-4 border-2' />
-      ) : (
-        <Button
-          onClick={() => mutate(card.id)}
-          iconName='trash'
-        />
-      )}
+      <Button
+        onClick={() => deleteCard(card.id)}
+        iconName='trash'
+      />
     </div>
   )
 }
