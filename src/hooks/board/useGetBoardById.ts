@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { boardService } from 'services'
 
 import { useGetBoardId } from './useGetBoardId'

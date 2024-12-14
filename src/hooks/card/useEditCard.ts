@@ -10,7 +10,7 @@ import { EditCardModal } from 'components/dashboard/modals'
 
 import { useGetBoardId } from 'hooks/board'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { cardService } from 'services'
 
 export const useEditCard = (reset: UseFormReset<CardSchema>) => {

@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { useGetBoardId } from 'hooks/board'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { cardService } from 'services'
 
 export const useDeleteCard = () => {

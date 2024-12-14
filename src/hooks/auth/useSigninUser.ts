@@ -8,7 +8,7 @@ import { useAppDispatch } from 'hooks/redux'
 
 import { authenticate } from 'redux/user.slice'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { authService } from 'services'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {

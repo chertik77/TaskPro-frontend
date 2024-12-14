@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { useGetBoardId } from 'hooks/board'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { DEFAULT_COLUMN_TITLE } from 'constants/titles'
 import { columnService } from 'services'
 

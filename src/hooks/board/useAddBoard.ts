@@ -8,8 +8,7 @@ import { toast } from 'sonner'
 
 import { NewBoardModal } from 'components/dashboard/modals'
 
-import { Pages } from 'config'
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys, Pages } from 'config'
 import { boardService } from 'services'
 
 export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {

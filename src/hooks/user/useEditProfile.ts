@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 
 import { EditProfileModal } from 'components/dashboard/modals'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { userService } from 'services'
 
 export const useEditProfile = () => {

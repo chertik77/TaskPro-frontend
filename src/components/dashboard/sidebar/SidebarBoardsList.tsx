@@ -7,8 +7,7 @@ import { Loader } from 'components/ui'
 
 import { useGetBoardId } from 'hooks/board'
 
-import { Pages } from 'config'
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys, Pages } from 'config'
 import { boardService } from 'services'
 
 import { cn } from 'lib'

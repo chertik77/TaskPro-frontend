@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { NeedHelpModal } from 'components/dashboard/modals'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { userService } from 'services'
 
 export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {

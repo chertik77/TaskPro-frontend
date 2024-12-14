@@ -9,8 +9,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
 
-import { Pages } from 'config'
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys, Pages } from 'config'
 import { userService } from 'services'
 
 import { Board } from './dashboard'

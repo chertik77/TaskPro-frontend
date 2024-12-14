@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 
 import { EditBoardModal } from 'components/dashboard/modals'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { boardService } from 'services'
 
 export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {

@@ -3,7 +3,7 @@ import type { User } from 'types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys } from 'config'
 import { userService } from 'services'
 
 export const useChangeTheme = () => {

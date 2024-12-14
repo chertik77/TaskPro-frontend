@@ -4,8 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
-import { Pages } from 'config'
-import { CacheKeys } from 'constants/cache-keys'
+import { CacheKeys, Pages } from 'config'
 import { boardService } from 'services'
 
 import { useGetBoardId } from '.'
