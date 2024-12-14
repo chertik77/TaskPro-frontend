@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 
 import { EditProfileModal } from 'components/dashboard/modals'
 
+import { CacheKeys } from 'constants/cache-keys'
 import { userService } from 'services'
 
 export const useEditProfile = () => {
@@ -12,12 +13,12 @@ export const useEditProfile = () => {
   const { close } = useModal(EditProfileModal)
 
   return useMutation({
-    mutationKey: ['editUser'],
+    mutationKey: [CacheKeys.EditUserProfile],
     mutationFn: userService.updateUserCredentials,
     onSuccess() {
       close()
       toast.success('Your profile has been successfully updated.')
-      queryClient.invalidateQueries({ queryKey: ['user'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.User] })
     },
     onError(e) {
       toast.error(

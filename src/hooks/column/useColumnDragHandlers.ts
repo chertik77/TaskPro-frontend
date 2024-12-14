@@ -43,10 +43,7 @@ export const useColumnDragHandlers = ({
 
     setColumns(updatedColumns)
 
-    updateColumnsOrder({
-      boardId: updatedColumns[activeColumnIndex].boardId,
-      ids: updatedColumns.map(c => c.id)
-    })
+    updateColumnsOrder({ ids: updatedColumns.map(c => c.id) })
   }
 
   return { onDragStart, onDragEnd }

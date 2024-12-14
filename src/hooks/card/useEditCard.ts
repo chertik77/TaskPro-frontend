@@ -10,6 +10,7 @@ import { EditCardModal } from 'components/dashboard/modals'
 
 import { useGetBoardId } from 'hooks/board'
 
+import { CacheKeys } from 'constants/cache-keys'
 import { cardService } from 'services'
 
 export const useEditCard = (reset: UseFormReset<CardSchema>) => {
@@ -20,7 +21,7 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
   const { close } = useModal(EditCardModal)
 
   return useMutation({
-    mutationKey: ['editCard'],
+    mutationKey: [CacheKeys.EditCard],
     mutationFn: ({
       cardId,
       cardData
@@ -29,15 +30,18 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
       cardData: CardSchema
     }) => cardService.editCard(cardId, cardData),
     onMutate: async ({ cardId, cardData }) => {
-      await queryClient.cancelQueries({ queryKey: ['board', boardId] })
+      await queryClient.cancelQueries({ queryKey: [CacheKeys.Board, boardId] })
 
       close()
       reset()
 
-      const previousBoard = queryClient.getQueryData<Board>(['board', boardId])
+      const previousBoard = queryClient.getQueryData<Board>([
+        CacheKeys.Board,
+        boardId
+      ])
 
       queryClient.setQueryData<Board>(
-        ['board', boardId],
+        [CacheKeys.Board, boardId],
         oldBoard =>
           oldBoard && {
             ...oldBoard,
@@ -53,13 +57,16 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['board', boardId], context?.previousBoard),
+      queryClient.setQueryData(
+        [CacheKeys.Board, boardId],
+        context?.previousBoard
+      ),
         toast.error(
           'Unexpected error during task update. We apologize for the inconvenience. Please try again later.'
         )
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['board', boardId] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
     }
   })
 }

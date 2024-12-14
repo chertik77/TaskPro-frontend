@@ -7,20 +7,25 @@ import { toast } from 'sonner'
 
 import { NewCardModal } from 'components/dashboard/modals'
 
+import { useGetBoardId } from 'hooks/board'
+
+import { CacheKeys } from 'constants/cache-keys'
 import { cardService } from 'services'
 
 export const useAddCard = (reset: UseFormReset<CardSchema>) => {
   const queryClient = useQueryClient()
+
+  const boardId = useGetBoardId()
 
   const { data: column } = useModalInstance<string>()
 
   const { close } = useModal(NewCardModal)
 
   return useMutation({
-    mutationKey: ['addCard'],
+    mutationKey: [CacheKeys.AddCard],
     mutationFn: (data: CardSchema) => cardService.addNewCard(column, data),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['board'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
       close()
       reset()
     },

@@ -9,6 +9,7 @@ import { toast } from 'sonner'
 import { NewBoardModal } from 'components/dashboard/modals'
 
 import { Pages } from 'config'
+import { CacheKeys } from 'constants/cache-keys'
 import { boardService } from 'services'
 
 export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
@@ -19,13 +20,13 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
   const { close } = useModal(NewBoardModal)
 
   return useMutation({
-    mutationKey: ['addBoard'],
+    mutationKey: [CacheKeys.AddBoard],
     mutationFn: boardService.addNewBoard,
     onSuccess(data) {
       close()
       reset()
       navigate(`${Pages.Dashboard}/${data.id}`)
-      queryClient.invalidateQueries({ queryKey: ['boards'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Boards] })
     },
     onError() {
       toast.error(

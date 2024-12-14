@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import { Pages } from 'config'
+import { CacheKeys } from 'constants/cache-keys'
 import { boardService } from 'services'
 
 import { useGetBoardId } from '.'
@@ -17,15 +18,17 @@ export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: ['deleteBoard'],
+    mutationKey: [CacheKeys.DeleteBoard],
     mutationFn: () => boardService.deleteBoard(boardId!),
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ['boards'] })
+      await queryClient.cancelQueries({ queryKey: [CacheKeys.Boards] })
 
-      const previousBoards = queryClient.getQueryData<Board[]>(['boards'])
+      const previousBoards = queryClient.getQueryData<Board[]>([
+        CacheKeys.Boards
+      ])
 
       queryClient.setQueryData<Board[]>(
-        ['boards'],
+        [CacheKeys.Boards],
         oldBoards => oldBoards && oldBoards.filter(b => b.id !== boardId)
       )
 
@@ -34,13 +37,13 @@ export const useDeleteBoard = () => {
       return { previousBoards }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['boards'], context?.previousBoards),
+      queryClient.setQueryData([CacheKeys.Boards], context?.previousBoards),
         toast.error(
           'An error occurred while deleting the board. Our technical team has been notified. Please try again shortly.'
         )
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['boards'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Boards] })
     }
   })
 }

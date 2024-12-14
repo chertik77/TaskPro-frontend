@@ -3,17 +3,22 @@ import type { ColumnTitle } from 'types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { useGetBoardId } from 'hooks/board'
+
+import { CacheKeys } from 'constants/cache-keys'
 import { columnService } from 'services'
 
 export const useEditColumn = () => {
   const queryClient = useQueryClient()
 
+  const boardId = useGetBoardId()
+
   return useMutation({
-    mutationKey: ['editColumn'],
+    mutationKey: [CacheKeys.EditColumn],
     mutationFn: ({ columnId, data }: { columnId: string; data: ColumnTitle }) =>
       columnService.editColumn(columnId, data),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['board'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
     },
     onError() {
       toast.error(

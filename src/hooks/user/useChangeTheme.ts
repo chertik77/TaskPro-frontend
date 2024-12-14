@@ -3,21 +3,22 @@ import type { User } from 'types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
+import { CacheKeys } from 'constants/cache-keys'
 import { userService } from 'services'
 
 export const useChangeTheme = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: ['changeTheme'],
+    mutationKey: [CacheKeys.ChangeUserTheme],
     mutationFn: userService.changeUserTheme,
     onMutate: async (theme: Theme) => {
-      await queryClient.cancelQueries({ queryKey: ['user'] })
+      await queryClient.cancelQueries({ queryKey: [CacheKeys.User] })
 
-      const previousUser = queryClient.getQueryData<User>(['user'])
+      const previousUser = queryClient.getQueryData<User>([CacheKeys.User])
 
       queryClient.setQueryData<User>(
-        ['user'],
+        [CacheKeys.User],
         oldUser =>
           oldUser && {
             ...oldUser,
@@ -28,10 +29,10 @@ export const useChangeTheme = () => {
       return { previousUser }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['user'], context?.previousUser)
+      queryClient.setQueryData([CacheKeys.User], context?.previousUser)
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.User] })
     }
   })
 }

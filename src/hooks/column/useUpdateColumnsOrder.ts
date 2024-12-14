@@ -3,17 +3,22 @@ import type { UpdateOrderData } from 'types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { useGetBoardId } from 'hooks/board'
+
+import { CacheKeys } from 'constants/cache-keys'
 import { columnService } from 'services'
 
 export const useUpdateColumnsOrder = () => {
   const queryClient = useQueryClient()
 
+  const boardId = useGetBoardId()
+
   return useMutation({
-    mutationKey: ['updateColumnsOrder'],
-    mutationFn: ({ boardId, ids }: UpdateOrderData & { boardId: string }) =>
-      columnService.updateColumnsOrder(boardId, { ids }),
+    mutationKey: [CacheKeys.UpdateColumnsOrder],
+    mutationFn: ({ ids }: UpdateOrderData) =>
+      columnService.updateColumnsOrder(boardId!, { ids }),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['board'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
     },
     onError() {
       toast.error(

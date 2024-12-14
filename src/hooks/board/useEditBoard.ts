@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 
 import { EditBoardModal } from 'components/dashboard/modals'
 
+import { CacheKeys } from 'constants/cache-keys'
 import { boardService } from 'services'
 
 export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
@@ -16,7 +17,7 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
   const { close } = useModal(EditBoardModal)
 
   return useMutation({
-    mutationKey: ['editBoard'],
+    mutationKey: [CacheKeys.EditBoard],
     mutationFn: ({
       boardId,
       boardData
@@ -25,15 +26,17 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
       boardData: BoardSchema
     }) => boardService.editBoard(boardId, boardData),
     onMutate: async ({ boardId, boardData: { title, icon } }) => {
-      await queryClient.cancelQueries({ queryKey: ['boards'] })
+      await queryClient.cancelQueries({ queryKey: [CacheKeys.Boards] })
 
       close()
       reset()
 
-      const previousBoards = queryClient.getQueryData<Board[]>(['boards'])
+      const previousBoards = queryClient.getQueryData<Board[]>([
+        CacheKeys.Boards
+      ])
 
       queryClient.setQueryData<Board[]>(
-        ['boards'],
+        [CacheKeys.Boards],
         oldBoards =>
           oldBoards &&
           oldBoards.map(b => (b.id === boardId ? { ...b, title, icon } : b))
@@ -42,16 +45,16 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
       return { previousBoards }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['boards'], context?.previousBoards),
+      queryClient.setQueryData([CacheKeys.Boards], context?.previousBoards),
         toast.error(
           'Failed to update the board. Please try again. If the problem persists, contact support.'
         )
     },
     onSettled: (data, _, variables) => {
-      queryClient.invalidateQueries({ queryKey: ['boards'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Boards] })
 
       if (data?.id === variables.boardId) {
-        queryClient.invalidateQueries({ queryKey: ['board'] })
+        queryClient.invalidateQueries({ queryKey: [CacheKeys.Boards] })
       }
     }
   })

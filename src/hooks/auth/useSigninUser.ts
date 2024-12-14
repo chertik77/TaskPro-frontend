@@ -8,13 +8,14 @@ import { useAppDispatch } from 'hooks/redux'
 
 import { authenticate } from 'redux/user.slice'
 
+import { CacheKeys } from 'constants/cache-keys'
 import { authService } from 'services'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   const dispatch = useAppDispatch()
 
   return useMutation({
-    mutationKey: ['signin'],
+    mutationKey: [CacheKeys.Signin],
     mutationFn: authService.signin,
     onSuccess(data) {
       reset()

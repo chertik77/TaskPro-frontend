@@ -3,20 +3,21 @@ import { toast } from 'sonner'
 
 import { useGetBoardId } from 'hooks/board'
 
+import { CacheKeys } from 'constants/cache-keys'
 import { DEFAULT_COLUMN_TITLE } from 'constants/titles'
 import { columnService } from 'services'
 
 export const useAddColumn = () => {
-  const boardId = useGetBoardId()
-
   const queryClient = useQueryClient()
 
+  const boardId = useGetBoardId()
+
   return useMutation({
-    mutationKey: ['addColumn'],
+    mutationKey: [CacheKeys.AddColumn],
     mutationFn: () =>
       columnService.addNewColumn(boardId!, { title: DEFAULT_COLUMN_TITLE }),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['board'] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
     },
     onError() {
       toast.error(

@@ -8,6 +8,7 @@ import { Loader } from 'components/ui'
 import { useGetBoardId } from 'hooks/board'
 
 import { Pages } from 'config'
+import { CacheKeys } from 'constants/cache-keys'
 import { boardService } from 'services'
 
 import { cn } from 'lib'
@@ -23,7 +24,7 @@ export const SidebarBoardsList = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   const { data, isPending } = useQuery({
-    queryKey: ['boards'],
+    queryKey: [CacheKeys.Boards],
     queryFn: () => boardService.getAllBoards()
   })
 

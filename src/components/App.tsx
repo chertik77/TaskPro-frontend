@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
 
 import { Pages } from 'config'
+import { CacheKeys } from 'constants/cache-keys'
 import { userService } from 'services'
 
 import { Board } from './dashboard'
@@ -22,7 +23,7 @@ export const App = () => {
   const dispatch = useAppDispatch()
 
   const { data, isSuccess } = useQuery({
-    queryKey: ['user'],
+    queryKey: [CacheKeys.User],
     queryFn: userService.getCurrentUser,
     enabled: isLoggedIn
   })
