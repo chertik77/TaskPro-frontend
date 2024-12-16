@@ -15,7 +15,7 @@ export const SidebarListActiveItem = ({
 
   const { close } = useModal(BurgerMenu)
 
-  const { mutate } = useDeleteBoard()
+  const { mutate: deleteBoard } = useDeleteBoard()
 
   const handleBoardEdit = () => {
     close()
@@ -44,12 +44,12 @@ export const SidebarListActiveItem = ({
           onKeyDown={e => {
             if (e.code === 'Enter' || e.code === 'Space') {
               close()
-              mutate()
+              deleteBoard(id)
             }
           }}
           onClick={() => {
             close()
-            mutate()
+            deleteBoard(id)
           }}
           className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
             dark:hocus:*:stroke-white-primary'>

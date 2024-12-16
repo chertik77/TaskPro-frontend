@@ -16,7 +16,7 @@ export const useUpdateColumnsOrder = () => {
   return useMutation({
     mutationKey: [CacheKeys.UpdateColumnsOrder],
     mutationFn: ({ ids }: UpdateOrderData) =>
-      columnService.updateColumnsOrder(boardId!, { ids }),
+      columnService.updateColumnsOrder(boardId, { ids }),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
     },

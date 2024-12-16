@@ -1,11 +1,9 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { Loader } from 'components/ui'
-
-import { useGetBoardId } from 'hooks/board'
 
 import { CacheKeys, Pages } from 'config'
 import { boardService } from 'services'
@@ -16,9 +14,9 @@ import { BurgerMenu } from '../modals'
 import { SidebarListActiveItem } from './SidebarListActiveItem'
 
 export const SidebarBoardsList = () => {
-  const boardId = useGetBoardId()
-
   const navigate = useNavigate()
+
+  const { pathname } = useLocation()
 
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
@@ -34,7 +32,7 @@ export const SidebarBoardsList = () => {
     </div>
   ) : (
     <Root
-      value={boardId}
+      value={pathname.split('/').pop()}
       onValueChange={v => {
         navigate(`${Pages.Dashboard}/${v}`)
         closeBurgerMenu()
@@ -49,7 +47,6 @@ export const SidebarBoardsList = () => {
             aria-checked:violet:text-white dark:text-white/50
             aria-checked:dark:bg-black-third aria-checked:dark:text-white tablet:pl-6`
           )}
-          checked={board.id === boardId}
           key={board.id}
           value={board.id}>
           <div className='flex items-center gap-1 tablet:gap-2'>
