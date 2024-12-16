@@ -3,22 +3,19 @@ import type { Dispatch, SetStateAction } from 'react'
 import type { Card } from 'types'
 
 import { arrayMove } from '@dnd-kit/sortable'
+import { type DragAndDropContext } from 'context/dnd.context'
 
 import { findIndexById } from 'lib'
 
 import { useUpdateCardsOrder } from './useUpdateCardsOrder'
 
-type UseCardDragHandlersProps = {
-  cards: Card[] | undefined
-  setCards: Dispatch<SetStateAction<Card[] | undefined>>
-  setActiveCard: Dispatch<SetStateAction<Card | null>>
-}
-
 export const useCardDragHandlers = ({
   cards,
   setCards,
   setActiveCard
-}: UseCardDragHandlersProps) => {
+}: Pick<DragAndDropContext, 'cards' | 'setCards'> & {
+  setActiveCard: Dispatch<SetStateAction<Card | null>>
+}) => {
   const { mutate: updateCardsOrder } = useUpdateCardsOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {

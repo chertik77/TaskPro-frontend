@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
+import { useDragAndDrop } from 'context/dnd.context'
 
 import { useGetBoardId } from 'hooks/board'
 
@@ -9,18 +9,19 @@ import { columnService } from 'services'
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()
 
+  const { setColumns, setCards } = useDragAndDrop()
+
   const boardId = useGetBoardId()
 
   return useMutation({
     mutationKey: [CacheKeys.DeleteColumn],
     mutationFn: (columnId: string) => columnService.deleteColumn(columnId),
+    onMutate: async columnId => {
+      setColumns(prevColumns => prevColumns?.filter(c => c.id !== columnId))
+      setCards(prevCards => prevCards?.filter(c => c.columnId !== columnId))
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
-    },
-    onError: () => {
-      toast.error(
-        'Unexpected error during column deletion. We apologize for the inconvenience. Please try again later.'
-      )
     }
   })
 }

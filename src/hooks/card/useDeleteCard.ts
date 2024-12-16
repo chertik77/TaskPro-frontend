@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
-
-import { useGetBoardId } from 'hooks/board'
+import { useDragAndDrop } from 'context/dnd.context'
 
 import { CacheKeys } from 'config'
 import { cardService } from 'services'
@@ -9,18 +7,16 @@ import { cardService } from 'services'
 export const useDeleteCard = () => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { setCards } = useDragAndDrop()
 
   return useMutation({
     mutationKey: [CacheKeys.DeleteCard],
     mutationFn: (cardId: string) => cardService.deleteCard(cardId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
+    onMutate: async cardId => {
+      setCards(prevCards => prevCards?.filter(c => c.id !== cardId))
     },
-    onError: () => {
-      toast.error(
-        'An error occurred while deleting the task. Our technical team has been notified. Please try again shortly.'
-      )
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board] })
     }
   })
 }

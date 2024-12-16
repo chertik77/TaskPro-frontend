@@ -3,22 +3,19 @@ import type { Dispatch, SetStateAction } from 'react'
 import type { Column } from 'types'
 
 import { arrayMove } from '@dnd-kit/sortable'
+import { type DragAndDropContext } from 'context/dnd.context'
 
 import { findIndexById } from 'lib'
 
 import { useUpdateColumnsOrder } from './useUpdateColumnsOrder'
 
-type UseCardDragHandlersProps = {
-  columns: Column[] | undefined
-  setColumns: Dispatch<SetStateAction<Column[] | undefined>>
-  setActiveColumn: Dispatch<SetStateAction<Column | null>>
-}
-
 export const useColumnDragHandlers = ({
   columns,
   setColumns,
   setActiveColumn
-}: UseCardDragHandlersProps) => {
+}: Pick<DragAndDropContext, 'columns' | 'setColumns'> & {
+  setActiveColumn: Dispatch<SetStateAction<Column | null>>
+}) => {
   const { mutate: updateColumnsOrder } = useUpdateColumnsOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {

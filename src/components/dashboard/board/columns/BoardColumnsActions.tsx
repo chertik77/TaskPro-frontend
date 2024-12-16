@@ -2,13 +2,12 @@ import type { onSaveProps } from 'react-edit-text'
 import type { Column } from 'types'
 
 import { useState } from 'react'
-import { useDragAndDrop } from 'context/dnd.context'
 import { EditText } from 'react-edit-text'
 import { toast } from 'sonner'
 
 import { Button } from 'components/ui'
 
-import { useEditColumn } from 'hooks/column'
+import { useDeleteColumn, useEditColumn } from 'hooks/column'
 
 import {
   DEFAULT_COLUMN_TITLE,
@@ -20,9 +19,9 @@ import { cn } from 'lib'
 export const BoardColumnsActions = ({ column }: { column: Column }) => {
   const [columnTitle, setColumnTitle] = useState(column.title)
 
-  const { deleteColumn } = useDragAndDrop()
+  const { mutate: deleteColumn } = useDeleteColumn()
 
-  const { mutate } = useEditColumn()
+  const { mutate: editColumn } = useEditColumn()
 
   const handleColumnEdit = ({ value, previousValue }: onSaveProps) => {
     if (value.trim().length < REQUIRED_COLUMN_TITLE_LENGTH) {
@@ -30,7 +29,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
 
       return toast.error('Column title must be at least 3 characters long.')
     }
-    mutate({ columnId: column.id, data: { title: value } })
+    editColumn({ columnId: column.id, data: { title: value } })
   }
 
   return (

@@ -1,16 +1,17 @@
 import type { Card } from 'types'
 
-import { useDragAndDrop } from 'context/dnd.context'
 import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 
 import { EditCardModal } from 'components/dashboard/modals'
 import { Button } from 'components/ui'
 
+import { useDeleteCard } from 'hooks/card'
+
 export const BoardCardActions = ({ card }: { card: Card }) => {
   const { open } = useModal(EditCardModal)
 
-  const { deleteCard } = useDragAndDrop()
+  const { mutate: deleteCard } = useDeleteCard()
 
   return (
     <div className='ml-auto flex gap-2'>

@@ -1,15 +1,8 @@
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
-import type { ReactNode } from 'react'
+import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import type { Card, Column } from 'types'
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState
-} from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import {
   DndContext,
   DragOverlay,
@@ -23,26 +16,26 @@ import { createPortal } from 'react-dom'
 import { BoardCard } from 'components/dashboard/board/cards/BoardCard'
 import { BoardColumnsItem } from 'components/dashboard/board/columns/BoardColumnsItem'
 
-import { useCardDragHandlers, useDeleteCard } from 'hooks/card'
-import { useColumnDragHandlers, useDeleteColumn } from 'hooks/column'
+import { useCardDragHandlers } from 'hooks/card'
+import { useColumnDragHandlers } from 'hooks/column'
 
 import { collisionDetectionAlgorithm } from 'lib'
 
-type DragAndDropContext = {
+export type DragAndDropContext = {
+  setColumns: Dispatch<SetStateAction<Column[] | undefined>>
+  setCards: Dispatch<SetStateAction<Card[] | undefined>>
   columns: Column[] | undefined
   cards: Card[] | undefined
   columnsIds: string[] | undefined
   cardsIds: string[] | undefined
-  deleteColumn: (columnId: string) => void
-  deleteCard: (cardId: string) => void
 }
-
-const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
 type DragAndDropProviderProps = {
   children: ReactNode
   initialColumns: Column[] | undefined
 }
+
+const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
 export const DragAndDropProvider = ({
   children,
@@ -65,29 +58,6 @@ export const DragAndDropProvider = ({
     setColumns,
     setActiveColumn
   })
-
-  const { mutate: deleteColumnMutation } = useDeleteColumn()
-  const { mutate: deleteCardMutation } = useDeleteCard()
-
-  const deleteColumn = useCallback(
-    (columnId: string) => {
-      setColumns(columns?.filter(col => col.id !== columnId))
-
-      setCards(cards?.filter(c => c.columnId !== columnId))
-
-      deleteColumnMutation(columnId)
-    },
-    [columns, cards, deleteColumnMutation]
-  )
-
-  const deleteCard = useCallback(
-    (cardId: string) => {
-      setCards(cards?.filter(c => c.id !== cardId))
-
-      deleteCardMutation(cardId)
-    },
-    [cards, deleteCardMutation]
-  )
 
   const onDragStart = (event: DragStartEvent) => {
     if (!event.active) return
@@ -122,17 +92,9 @@ export const DragAndDropProvider = ({
     })
   )
 
-  const contextValue: DragAndDropContext = {
-    columns,
-    cards,
-    cardsIds,
-    columnsIds,
-    deleteColumn,
-    deleteCard
-  }
-
   return (
-    <DragAndDropContext.Provider value={contextValue}>
+    <DragAndDropContext.Provider
+      value={{ setColumns, setCards, columns, cards, columnsIds, cardsIds }}>
       <DndContext
         sensors={sensors}
         collisionDetection={collisionDetectionAlgorithm}

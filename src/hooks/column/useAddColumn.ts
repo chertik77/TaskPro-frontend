@@ -17,7 +17,7 @@ export const useAddColumn = () => {
     mutationFn: () =>
       columnService.addNewColumn(boardId, { title: DEFAULT_COLUMN_TITLE }),
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board, boardId] })
+      queryClient.invalidateQueries({ queryKey: [CacheKeys.Board] })
     },
     onError() {
       toast.error(
