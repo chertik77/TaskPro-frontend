@@ -1,9 +1,11 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Loader } from 'components/ui'
+
+import { useGetBoardId } from 'hooks/board'
 
 import { CacheKeys, Pages } from 'config'
 import { boardService } from 'services'
@@ -16,13 +18,13 @@ import { SidebarListActiveItem } from './SidebarListActiveItem'
 export const SidebarBoardsList = () => {
   const navigate = useNavigate()
 
-  const { pathname } = useLocation()
+  const boardId = useGetBoardId()
 
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   const { data, isPending } = useQuery({
     queryKey: [CacheKeys.Boards],
-    queryFn: () => boardService.getAllBoards()
+    queryFn: boardService.getAllBoards
   })
 
   return isPending ? (
@@ -32,7 +34,7 @@ export const SidebarBoardsList = () => {
     </div>
   ) : (
     <Root
-      value={pathname.split('/').pop()}
+      value={boardId}
       onValueChange={v => {
         navigate(`${Pages.Dashboard}/${v}`)
         closeBurgerMenu()
