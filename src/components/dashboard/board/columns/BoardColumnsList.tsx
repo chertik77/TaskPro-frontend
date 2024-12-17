@@ -16,8 +16,6 @@ export const BoardColumnsList = ({
 }: BoardColumnsListProps) => {
   const { columns, cards, columnsIds } = useDragAndDrop()
 
-  console.log(cards)
-
   return (
     <div className='flex touch-manipulation gap-[34px]'>
       <SortableContext

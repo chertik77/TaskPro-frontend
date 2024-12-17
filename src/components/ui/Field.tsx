@@ -42,7 +42,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
                 violet:focus:border-opacity-100 dark:autofill:text-fill-white`,
                 className,
                 {
-                  'mb-3.5': errors[inputName],
+                  'mb-2': errors[inputName],
                   'mb-6': !errors[inputName]
                 }
               )}
