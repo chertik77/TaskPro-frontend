@@ -1,9 +1,9 @@
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
+import type { DragAndDropContext } from 'context/dnd.context'
 import type { Dispatch, SetStateAction } from 'react'
 import type { Card } from 'types'
 
 import { arrayMove } from '@dnd-kit/sortable'
-import { type DragAndDropContext } from 'context/dnd.context'
 
 import { findIndexById } from 'lib'
 
