@@ -33,9 +33,9 @@ export const EditCardModal = () => {
 
   const isFormReadyForSubmit =
     value.title?.trim() !== title ||
-    value.description.trim() !== description ||
+    value.description?.trim() !== description ||
     value.priority !== priority ||
-    value.deadline !== deadline
+    new Date(value.deadline).getTime() !== new Date(deadline).getTime()
 
   return (
     <Modal modalTitle='Edit card'>
