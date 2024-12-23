@@ -5,7 +5,7 @@ import { useModalInstance } from 'react-modal-state'
 
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
+import { useAppForm, useSubmitDisabled } from 'hooks'
 import { useEditCard } from 'hooks/card'
 
 import { CardSchema } from 'lib/schemas'
@@ -29,13 +29,18 @@ export const EditCardModal = () => {
     reset({ title, priority, deadline: new Date(deadline), description })
   }, [deadline, description, priority, title, reset])
 
-  const value = watch()
+  const { isSubmitDisabled } = useSubmitDisabled(watch, {
+    title,
+    description,
+    deadline,
+    priority
+  })
 
-  const isFormReadyForSubmit =
-    value.title?.trim() !== title ||
-    value.description?.trim() !== description ||
-    value.priority !== priority ||
-    new Date(value.deadline).getTime() !== new Date(deadline).getTime()
+  // const isFormReadyForSubmit =
+  //   value.title !== title ||
+  //   value.description !== description ||
+  //   value.priority !== priority ||
+  //   new Date(value.deadline).getTime() !== new Date(deadline).getTime()
 
   return (
     <Modal modalTitle='Edit card'>
@@ -45,11 +50,11 @@ export const EditCardModal = () => {
           errors={formState.errors}
           inputName='title'
           placeholder='Title'
-          {...register('title')}
+          {...register('title', { setValueAs: value => value.trim() })}
         />
         <ModalDescription
           errors={formState.errors}
-          {...register('description')}
+          {...register('description', { setValueAs: value => value.trim() })}
         />
         <ModalPriorities control={control} />
         <DatePicker control={control} />
@@ -57,7 +62,7 @@ export const EditCardModal = () => {
           type='submit'
           isPlusIcon
           shouldShowLoader={isPending}
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || isSubmitDisabled}>
           {!isPending && 'Edit'}
         </Button>
       </form>

@@ -5,7 +5,7 @@ import { useModalInstance } from 'react-modal-state'
 
 import { Button, Field, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
+import { useAppForm, useSubmitDisabled } from 'hooks'
 import { useEditBoard } from 'hooks/board'
 
 import { BoardSchema } from 'lib/schemas'
@@ -25,24 +25,23 @@ export const EditBoardModal = () => {
   const { register, reset, handleSubmit, control, formState, watch } =
     useAppForm(BoardSchema, { defaultValues: { icon, background } })
 
+  const { isSubmitDisabled } = useSubmitDisabled(watch, {
+    title,
+    background,
+    icon
+  })
+
   const { mutate, isPending } = useEditBoard(reset)
 
   useEffect(() => {
     reset({ icon, title, background })
   }, [background, icon, title, reset])
 
-  const value = watch()
-
-  const isFormReadyForSubmit =
-    value.title?.trim() !== title ||
-    value.background !== background ||
-    value.icon !== icon
-
   return (
     <Modal modalTitle='Edit board'>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
-          {...register('title')}
+          {...register('title', { setValueAs: value => value.trim() })}
           inputName='title'
           placeholder='Title'
           errors={formState.errors}
@@ -53,7 +52,7 @@ export const EditBoardModal = () => {
           type='submit'
           isPlusIcon
           shouldShowLoader={isPending}
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || isSubmitDisabled}>
           {!isPending && 'Edit'}
         </Button>
       </form>

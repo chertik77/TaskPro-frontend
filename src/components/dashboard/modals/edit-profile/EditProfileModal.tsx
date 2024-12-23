@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
-import { useAppForm } from 'hooks'
+import { useAppForm, useSubmitDisabled } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
 import { useEditProfile } from 'hooks/user'
 
@@ -20,14 +20,14 @@ export const EditProfileModal = () => {
   const { handleSubmit, register, formState, reset, watch } =
     useAppForm(EditUserSchema)
 
+  const { isSubmitDisabled } = useSubmitDisabled(watch, {
+    name: initialName,
+    email: initialEmail
+  })
+
   useEffect(() => {
     reset({ name: initialName, email: initialEmail })
   }, [initialEmail, initialName, reset])
-
-  const isFormReadyForSubmit =
-    watch('name')?.trim() !== initialName ||
-    watch('email')?.trim() !== initialEmail ||
-    (watch('password')?.trim() && formState.isValid)
 
   return (
     <Modal modalTitle='Edit profile'>
@@ -37,13 +37,13 @@ export const EditProfileModal = () => {
           errors={formState.errors}
           inputName='name'
           placeholder='Enter your name'
-          {...register('name')}
+          {...register('name', { setValueAs: value => value.trim() })}
         />
         <Field
           errors={formState.errors}
           inputName='email'
           placeholder='Enter your email'
-          {...register('email')}
+          {...register('email', { setValueAs: value => value.trim() })}
         />
         <Field
           errors={formState.errors}
@@ -52,12 +52,12 @@ export const EditProfileModal = () => {
           inputPasswordPlaceholder='Create a password'
           isPasswordInput
           {...register('password', {
-            setValueAs: value => (!value ? undefined : value)
+            setValueAs: value => (!value ? undefined : value.trim())
           })}
         />
         <Button
           type='submit'
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || isSubmitDisabled}>
           {isPending ? <Loader /> : 'Send'}
         </Button>
       </form>
