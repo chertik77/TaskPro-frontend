@@ -6,11 +6,7 @@ import { useDeleteBoard } from 'hooks/board'
 
 import { BurgerMenu, EditBoardModal } from '../modals'
 
-export const SidebarListActiveItem = ({
-  board: { id, title, icon, background }
-}: {
-  board: Board
-}) => {
+export const SidebarListActiveItem = ({ board }: { board: Board }) => {
   const { open } = useModal(EditBoardModal)
 
   const { close } = useModal(BurgerMenu)
@@ -19,7 +15,7 @@ export const SidebarListActiveItem = ({
 
   const handleBoardEdit = () => {
     close()
-    open({ id, title, icon, background: background.identifier })
+    open(board)
   }
 
   return (
@@ -44,12 +40,12 @@ export const SidebarListActiveItem = ({
           onKeyDown={e => {
             if (e.code === 'Enter' || e.code === 'Space') {
               close()
-              deleteBoard(id)
+              deleteBoard()
             }
           }}
           onClick={() => {
             close()
-            deleteBoard(id)
+            deleteBoard()
           }}
           className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
             dark:hocus:*:stroke-white-primary'>

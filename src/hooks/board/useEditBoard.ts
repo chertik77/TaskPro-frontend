@@ -11,21 +11,19 @@ import { EditBoardModal } from 'components/dashboard/modals'
 import { CacheKeys } from 'config'
 import { boardService } from 'services'
 
+import { useGetBoardId } from './useGetBoardId'
+
 export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
   const queryClient = useQueryClient()
+
+  const boardId = useGetBoardId()
 
   const { close } = useModal(EditBoardModal)
 
   return useMutation({
     mutationKey: [CacheKeys.EditBoard],
-    mutationFn: ({
-      boardId,
-      boardData
-    }: {
-      boardId: string
-      boardData: BoardSchema
-    }) => boardService.editBoard(boardId, boardData),
-    onMutate: async ({ boardId, boardData: { title, icon } }) => {
+    mutationFn: (data: BoardSchema) => boardService.editBoard(boardId!, data),
+    onMutate: async ({ title, icon }) => {
       await queryClient.cancelQueries({ queryKey: [CacheKeys.Boards] })
 
       close()
@@ -50,10 +48,10 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
           'Failed to update the board. Please try again. If the problem persists, contact support.'
         )
     },
-    onSettled: (data, _, variables) => {
+    onSettled: data => {
       queryClient.invalidateQueries({ queryKey: [CacheKeys.Boards] })
 
-      if (data?.id === variables.boardId) {
+      if (data?.id === boardId) {
         queryClient.invalidateQueries({ queryKey: [CacheKeys.Board] })
       }
     }

@@ -7,15 +7,19 @@ import { toast } from 'sonner'
 import { CacheKeys, Pages } from 'config'
 import { boardService } from 'services'
 
-export const useDeleteBoard = () => {
-  const navigate = useNavigate()
+import { useGetBoardId } from './useGetBoardId'
 
+export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
+
+  const boardId = useGetBoardId()
+
+  const navigate = useNavigate()
 
   return useMutation({
     mutationKey: [CacheKeys.DeleteBoard],
-    mutationFn: (boardId: string) => boardService.deleteBoard(boardId),
-    onMutate: async boardId => {
+    mutationFn: () => boardService.deleteBoard(boardId!),
+    onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: [CacheKeys.Boards] })
 
       const previousBoards = queryClient.getQueryData<Board[]>([

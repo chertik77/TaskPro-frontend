@@ -10,7 +10,7 @@ export const useGetBoardById = () => {
 
   return useQuery({
     queryKey: [CacheKeys.Board, boardId],
-    queryFn: () => boardService.getBoardById(boardId),
+    queryFn: () => boardService.getBoardById(boardId!),
     enabled: !!boardId
   })
 }

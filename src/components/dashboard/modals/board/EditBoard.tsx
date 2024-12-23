@@ -15,9 +15,8 @@ import { RadioInputIcons } from './RadioInputIcons'
 
 export const EditBoardModal = () => {
   const {
-    data: { id, background, title, icon }
+    data: { background, title, icon }
   } = useModalInstance<{
-    id: string
     background: string
     title: string
     icon: Icon
@@ -40,10 +39,7 @@ export const EditBoardModal = () => {
 
   return (
     <Modal modalTitle='Edit board'>
-      <form
-        onSubmit={handleSubmit(data =>
-          mutate({ boardId: id, boardData: data })
-        )}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('title')}
           inputName='title'
