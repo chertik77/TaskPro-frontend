@@ -17,10 +17,8 @@ export const EditProfileModal = () => {
 
   const { isPending, mutateAsync, mutate } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset, watch } = useAppForm(
-    EditUserSchema,
-    { shouldUnregister: false }
-  )
+  const { handleSubmit, register, formState, reset, watch } =
+    useAppForm(EditUserSchema)
 
   useEffect(() => {
     reset({ name: initialName, email: initialEmail })
@@ -32,7 +30,9 @@ export const EditProfileModal = () => {
     (watch('password') && formState.isValid)
 
   return (
-    <Modal modalTitle='Edit profile'>
+    <Modal
+      modalTitle='Edit profile'
+      onClose={reset}>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <EditAvatar changeUserAvatar={mutateAsync} />
         <Field
