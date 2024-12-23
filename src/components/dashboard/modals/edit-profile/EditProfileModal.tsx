@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
-import { useAppForm, useSubmitDisabled } from 'hooks'
+import { useAppForm } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
 import { useEditProfile } from 'hooks/user'
 
@@ -20,10 +20,10 @@ export const EditProfileModal = () => {
   const { handleSubmit, register, formState, reset, watch } =
     useAppForm(EditUserSchema)
 
-  const { isSubmitDisabled } = useSubmitDisabled(watch, {
-    name: initialName,
-    email: initialEmail
-  })
+  const isFormReadyForSubmit =
+    watch('name') !== initialName ||
+    watch('email') !== initialEmail ||
+    (watch('password') && formState.isValid)
 
   useEffect(() => {
     reset({ name: initialName, email: initialEmail })
@@ -57,7 +57,7 @@ export const EditProfileModal = () => {
         />
         <Button
           type='submit'
-          disabled={isPending || isSubmitDisabled}>
+          disabled={isPending || !isFormReadyForSubmit}>
           {isPending ? <Loader /> : 'Send'}
         </Button>
       </form>
