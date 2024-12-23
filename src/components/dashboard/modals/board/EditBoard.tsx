@@ -40,11 +40,7 @@ export const EditBoardModal = () => {
 
   return (
     <Modal modalTitle='Edit board'>
-      <form
-        onSubmit={handleSubmit(data => {
-          console.log(data.title)
-          mutate(data)
-        })}>
+      <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('title')}
           inputName='title'
