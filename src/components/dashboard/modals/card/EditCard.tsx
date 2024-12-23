@@ -18,22 +18,24 @@ export const EditCardModal = () => {
     data: { title, description, id, priority, deadline }
   } = useModalInstance<Card>()
 
-  const { register, handleSubmit, formState, control, reset } = useAppForm(
-    CardSchema,
-    { defaultValues: { priority, deadline } }
-  )
+  const { register, handleSubmit, formState, control, reset, watch } =
+    useAppForm(CardSchema, {
+      defaultValues: { priority, deadline: new Date(deadline) }
+    })
 
   const { mutate, isPending } = useEditCard(reset)
 
   useEffect(() => {
-    reset({ title, priority, deadline, description })
+    reset({ title, priority, deadline: new Date(deadline), description })
   }, [deadline, description, priority, title, reset])
 
-  const fields = ['title', 'priority', 'description', 'deadline'] as const
+  const value = watch()
 
-  const isFormReadyForSubmit = fields.some(
-    field => formState.dirtyFields[field]
-  )
+  const isFormReadyForSubmit =
+    value.title?.trim() !== title ||
+    value.description.trim() !== description ||
+    value.priority !== priority ||
+    value.deadline !== deadline
 
   return (
     <Modal modalTitle='Edit card'>

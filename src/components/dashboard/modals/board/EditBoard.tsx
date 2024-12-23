@@ -22,8 +22,8 @@ export const EditBoardModal = () => {
     icon: Icon
   }>()
 
-  const { register, reset, handleSubmit, control, formState } =
-    useAppForm(BoardSchema)
+  const { register, reset, handleSubmit, control, formState, watch } =
+    useAppForm(BoardSchema, { defaultValues: { icon, background } })
 
   const { mutate, isPending } = useEditBoard(reset)
 
@@ -31,15 +31,20 @@ export const EditBoardModal = () => {
     reset({ icon, title, background })
   }, [background, icon, title, reset])
 
-  const fields = ['icon', 'title', 'background'] as const
+  const value = watch()
 
-  const isFormReadyForSubmit = fields.some(
-    field => formState.dirtyFields[field]
-  )
+  const isFormReadyForSubmit =
+    value.title?.trim() !== title ||
+    value.background !== background ||
+    value.icon !== icon
 
   return (
     <Modal modalTitle='Edit board'>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form
+        onSubmit={handleSubmit(data => {
+          console.log(data.title)
+          mutate(data)
+        })}>
         <Field
           {...register('title')}
           inputName='title'

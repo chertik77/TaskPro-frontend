@@ -55,7 +55,7 @@ export const SidebarBoardsList = () => {
             <svg className='size-lg stroke-current'>
               <use href={`/icons.svg#${board.icon}`} />
             </svg>
-            <p className='w-[105px] truncate text-left tablet:w-[122px]'>
+            <p className='w-[105px] truncate whitespace-pre text-left tablet:w-[122px]'>
               {board?.title}
             </p>
           </div>

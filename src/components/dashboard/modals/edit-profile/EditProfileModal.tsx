@@ -24,10 +24,15 @@ export const EditProfileModal = () => {
     reset({ name: initialName, email: initialEmail })
   }, [initialEmail, initialName, reset])
 
-  const isFormReadyForSubmit =
-    watch('name') !== initialName ||
-    watch('email') !== initialEmail ||
-    (watch('password') && formState.isValid)
+  const isFormReadyForSubmit = (() => {
+    const { name, email, password } = watch()
+
+    const isNameChanged = name?.trim() !== initialName
+    const isEmailChanged = email?.trim() !== initialEmail
+    const isPasswordValid = password?.trim() && formState.isValid
+
+    return isNameChanged || isEmailChanged || isPasswordValid
+  })()
 
   return (
     <Modal modalTitle='Edit profile'>

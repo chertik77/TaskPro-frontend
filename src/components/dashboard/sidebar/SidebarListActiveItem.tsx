@@ -6,7 +6,11 @@ import { useDeleteBoard } from 'hooks/board'
 
 import { BurgerMenu, EditBoardModal } from '../modals'
 
-export const SidebarListActiveItem = ({ board }: { board: Board }) => {
+export const SidebarListActiveItem = ({
+  board: { icon, title, background }
+}: {
+  board: Board
+}) => {
   const { open } = useModal(EditBoardModal)
 
   const { close } = useModal(BurgerMenu)
@@ -15,7 +19,7 @@ export const SidebarListActiveItem = ({ board }: { board: Board }) => {
 
   const handleBoardEdit = () => {
     close()
-    open(board)
+    open({ icon, title, background: background.identifier })
   }
 
   return (
