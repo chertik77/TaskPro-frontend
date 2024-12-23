@@ -26,7 +26,7 @@ export const EditProfileModal = () => {
   }, [initialEmail, initialName, reset])
 
   const isFormReadyForSubmit = keyof(EditUserSchema).options.some(
-    field => formState.dirtyFields[field] && formState.isValid
+    f => formState.dirtyFields[f] && formState.isValid
   )
 
   return (

@@ -35,7 +35,7 @@ export const EditBoardModal = () => {
   }, [background, icon, title, reset])
 
   const isFormReadyForSubmit = keyof(BoardSchema).options.some(
-    field => formState.dirtyFields[field] && formState.isValid
+    f => formState.dirtyFields[f]
   )
 
   return (

@@ -31,7 +31,7 @@ export const EditCardModal = () => {
   }, [deadline, description, priority, title, reset])
 
   const isFormReadyForSubmit = keyof(CardSchema).options.some(
-    field => formState.dirtyFields[field] && formState.isValid
+    f => formState.dirtyFields[f]
   )
 
   return (
