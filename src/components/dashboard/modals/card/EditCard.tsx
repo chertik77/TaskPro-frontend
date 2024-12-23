@@ -2,10 +2,11 @@ import type { Card } from 'types'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { keyof } from 'valibot'
 
 import { Button, DatePicker, Field, Modal } from 'components/ui'
 
-import { useAppForm, useSubmitDisabled } from 'hooks'
+import { useAppForm } from 'hooks'
 import { useEditCard } from 'hooks/card'
 
 import { CardSchema } from 'lib/schemas'
@@ -18,10 +19,10 @@ export const EditCardModal = () => {
     data: { title, description, id, priority, deadline }
   } = useModalInstance<Card>()
 
-  const { register, handleSubmit, formState, control, reset, watch } =
-    useAppForm(CardSchema, {
-      defaultValues: { priority, deadline: new Date(deadline) }
-    })
+  const { register, handleSubmit, formState, control, reset } = useAppForm(
+    CardSchema,
+    { defaultValues: { priority, deadline: new Date(deadline) } }
+  )
 
   const { mutate, isPending } = useEditCard(reset)
 
@@ -29,21 +30,14 @@ export const EditCardModal = () => {
     reset({ title, priority, deadline: new Date(deadline), description })
   }, [deadline, description, priority, title, reset])
 
-  const { isSubmitDisabled } = useSubmitDisabled(watch, {
-    title,
-    description,
-    deadline,
-    priority
-  })
-
-  // const isFormReadyForSubmit =
-  //   value.title !== title ||
-  //   value.description !== description ||
-  //   value.priority !== priority ||
-  //   new Date(value.deadline).getTime() !== new Date(deadline).getTime()
+  const isFormReadyForSubmit = keyof(CardSchema).options.some(
+    field => formState.dirtyFields[field] && formState.isValid
+  )
 
   return (
-    <Modal modalTitle='Edit card'>
+    <Modal
+      modalTitle='Edit card'
+      onAnimationEnd={reset}>
       <form
         onSubmit={handleSubmit(data => mutate({ cardId: id, cardData: data }))}>
         <Field
@@ -62,7 +56,7 @@ export const EditCardModal = () => {
           type='submit'
           isPlusIcon
           shouldShowLoader={isPending}
-          disabled={isPending || isSubmitDisabled}>
+          disabled={isPending || !isFormReadyForSubmit}>
           {!isPending && 'Edit'}
         </Button>
       </form>

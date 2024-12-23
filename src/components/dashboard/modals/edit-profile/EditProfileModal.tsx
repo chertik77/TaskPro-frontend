@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { keyof } from 'valibot'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 
@@ -17,22 +18,21 @@ export const EditProfileModal = () => {
 
   const { isPending, mutateAsync, mutate } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset, watch } =
+  const { handleSubmit, register, formState, reset } =
     useAppForm(EditUserSchema)
 
   useEffect(() => {
     reset({ name: initialName, email: initialEmail })
   }, [initialEmail, initialName, reset])
 
-  const isFormReadyForSubmit =
-    watch('name') !== initialName ||
-    watch('email') !== initialEmail ||
-    (watch('password') && formState.isValid)
+  const isFormReadyForSubmit = keyof(EditUserSchema).options.some(
+    field => formState.dirtyFields[field] && formState.isValid
+  )
 
   return (
     <Modal
       modalTitle='Edit profile'
-      onClose={reset}>
+      onAnimationEnd={reset}>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <EditAvatar changeUserAvatar={mutateAsync} />
         <Field
