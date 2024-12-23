@@ -53,8 +53,6 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
     onSettled: (data, _, variables) => {
       queryClient.invalidateQueries({ queryKey: [CacheKeys.Boards] })
 
-      console.log('data', data)
-      console.log('variables', variables)
       if (data?.id === variables.boardId) {
         queryClient.invalidateQueries({ queryKey: [CacheKeys.Board] })
       }
