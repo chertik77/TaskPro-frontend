@@ -1,8 +1,4 @@
 export enum CacheKeys {
-  Signup = 'signup',
-  Signin = 'signin',
-  Logout = 'logout',
-
   User = 'user',
   UserHelp = 'userHelp',
   EditUserProfile = 'editUserProfile',

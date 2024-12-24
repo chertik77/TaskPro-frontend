@@ -7,11 +7,3 @@ export type User = {
   email: string
   avatar: string
 }
-
-export type AuthResponse = {
-  refreshToken: string
-  accessToken: string
-  user: User
-}
-
-export type Tokens = Omit<AuthResponse, 'user'>

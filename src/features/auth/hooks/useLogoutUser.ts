@@ -8,8 +8,8 @@ import { useAppDispatch } from 'hooks/redux'
 
 import { logout } from 'redux/user.slice'
 
-import { CacheKeys } from 'config'
-import { authService } from 'services'
+import { authService } from '../auth.service'
+import { AuthCacheKeys } from '../config'
 
 export const useLogoutUser = () => {
   const dispatch = useAppDispatch()
@@ -17,7 +17,7 @@ export const useLogoutUser = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   return useMutation({
-    mutationKey: [CacheKeys.Logout],
+    mutationKey: [AuthCacheKeys.Logout],
     mutationFn: authService.logout,
     onSuccess() {
       dispatch(logout())

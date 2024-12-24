@@ -1,9 +1,10 @@
+import { useSignupUser } from 'features/auth/hooks'
+
 import { Button, Field, Loader } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useSignupUser } from 'hooks/auth'
 
-import { SignupSchema } from 'lib/schemas'
+import { SignupSchema } from '../auth.schema'
 
 export const SignupForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(SignupSchema)

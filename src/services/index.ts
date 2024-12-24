@@ -1,4 +1,3 @@
-export * from './auth.service'
 export * from './board.service'
 export * from './card.service'
 export * from './column.service'

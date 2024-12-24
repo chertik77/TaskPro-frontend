@@ -1,14 +1,15 @@
 import type { AxiosAuthRefreshRequestConfig } from 'axios-auth-refresh'
 import type { SigninSchema, SignupSchema } from 'lib/schemas'
-import type { AuthResponse, Tokens } from 'types'
+import type { AuthResponse, Tokens } from './auth.types'
 
 import { axiosInstance } from 'api'
-import { ApiEndpoints } from 'config'
+
+import { AuthApiEndpoints } from './config'
 
 export const authService = {
   async signup(data: SignupSchema) {
     const response = await axiosInstance.post<AuthResponse>(
-      ApiEndpoints.Signup,
+      AuthApiEndpoints.Signup,
       data
     )
 
@@ -21,7 +22,7 @@ export const authService = {
     }
 
     const response = await axiosInstance.post<AuthResponse>(
-      ApiEndpoints.Signin,
+      AuthApiEndpoints.Signin,
       data,
       requestConfig
     )
@@ -31,7 +32,7 @@ export const authService = {
 
   async signinWithGoogle(code: string) {
     const response = await axiosInstance.post<AuthResponse>(
-      ApiEndpoints.Google,
+      AuthApiEndpoints.Google,
       { code }
     )
 
@@ -39,10 +40,10 @@ export const authService = {
   },
 
   getTokens(data: { refreshToken: string }) {
-    return axiosInstance.post<Tokens>(ApiEndpoints.Tokens, data)
+    return axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, data)
   },
 
   async logout() {
-    await axiosInstance.post(ApiEndpoints.Logout)
+    await axiosInstance.post(AuthApiEndpoints.Logout)
   }
 }

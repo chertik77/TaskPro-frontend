@@ -1,10 +1,9 @@
 import axios from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
+import { authService } from 'features/auth/auth.service'
 
 import { store } from 'redux/store'
 import { logout, saveTokens } from 'redux/user.slice'
-
-import { authService } from 'services'
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL

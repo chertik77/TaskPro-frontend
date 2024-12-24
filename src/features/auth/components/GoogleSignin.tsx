@@ -6,7 +6,7 @@ import { useAppDispatch } from 'hooks/redux'
 
 import { authenticate } from 'redux/user.slice'
 
-import { authService } from 'services'
+import { authService } from '../auth.service'
 
 export const GoogleSignin = () => {
   const dispatch = useAppDispatch()
