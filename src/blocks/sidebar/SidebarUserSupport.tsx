@@ -1,4 +1,4 @@
-import { NeedHelpModal } from 'features/user/components'
+import { NeedHelpModal } from 'features/user/components/modals'
 import { useModal } from 'react-modal-state'
 
 import { BurgerMenu } from './BurgerMenu'

@@ -1,5 +1,6 @@
+import { ThemeSelect } from 'features/user/components'
+
 import { HeaderControls } from './HeaderControls'
-import { HeaderThemeSelect } from './HeaderThemeSelect'
 import { HeaderUserInfo } from './HeaderUserInfo'
 
 export const Header = () => (
@@ -8,7 +9,7 @@ export const Header = () => (
       duration-300 dark:bg-black'>
     <HeaderControls />
     <div className='flex items-center gap-3.5'>
-      <HeaderThemeSelect />
+      <ThemeSelect />
       <HeaderUserInfo />
     </div>
   </header>

@@ -1,8 +1,5 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
-import { useQuery } from '@tanstack/react-query'
-import { boardService } from 'features/kanban/board/board.service'
-import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
+import { useGetAllBoards, useGetBoardId } from 'features/kanban/board/hooks'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 
@@ -22,10 +19,7 @@ export const SidebarBoardsList = () => {
 
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
-  const { data, isPending } = useQuery({
-    queryKey: [BoardCacheKeys.Boards],
-    queryFn: boardService.getAllBoards
-  })
+  const { data, isPending } = useGetAllBoards()
 
   return isPending ? (
     <div className='flex h-4xl items-center gap-2 pl-3.5 violet:text-white tablet:pl-6'>

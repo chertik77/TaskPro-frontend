@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { EditProfileModal } from '../components'
+import { EditProfileModal } from '../components/modals'
 import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'
 

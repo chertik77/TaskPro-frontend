@@ -13,7 +13,10 @@ import {
   EditCardModal,
   NewCardModal
 } from 'features/kanban/card/components/modals'
-import { EditProfileModal, NeedHelpModal } from 'features/user/components'
+import {
+  EditProfileModal,
+  NeedHelpModal
+} from 'features/user/components/modals'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Provider } from 'react-redux'

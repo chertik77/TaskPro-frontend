@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { NeedHelpModal } from '../components'
+import { NeedHelpModal } from '../components/modals'
 import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'
 

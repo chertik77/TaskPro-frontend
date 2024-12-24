@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useEditProfile } from 'features/user/hooks'
+import { EditUserSchema } from 'features/user/user.schema'
 import { keyof } from 'valibot'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
@@ -9,7 +10,6 @@ import { useAppSelector } from 'hooks/redux'
 
 import { selectUser } from 'redux/user.slice'
 
-import { EditUserSchema } from '../user.schema'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
