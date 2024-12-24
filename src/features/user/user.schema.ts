@@ -16,7 +16,5 @@ export const HelpSchema = v.object({
   ])
 })
 
-export type SigninSchema = v.Output<typeof SigninSchema>
-export type SignupSchema = v.Output<typeof SignupSchema>
 export type EditUserSchema = v.Output<typeof EditUserSchema>
 export type HelpSchema = v.Output<typeof HelpSchema>

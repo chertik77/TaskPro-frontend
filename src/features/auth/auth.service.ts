@@ -1,5 +1,5 @@
 import type { AxiosAuthRefreshRequestConfig } from 'axios-auth-refresh'
-import type { SigninSchema, SignupSchema } from 'lib/schemas'
+import type { SigninSchema, SignupSchema } from './auth.schema'
 import type { AuthResponse, Tokens } from './auth.types'
 
 import { axiosInstance } from 'api'

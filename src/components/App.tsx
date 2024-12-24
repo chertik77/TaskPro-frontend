@@ -1,37 +1,17 @@
-import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useGetCurrentUser } from 'features/user/hooks'
 import { AuthPage, DashboardPage, HomePage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
 import { PrivateRoute, PublicOnlyRoute } from 'components/routes'
 
-import { useAppDispatch, useAppSelector } from 'hooks/redux'
-
-import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
-
-import { CacheKeys, Pages } from 'config'
-import { userService } from 'services'
+import { Pages } from 'config'
 
 import { Board } from './dashboard'
 import { EmptyBoard } from './dashboard/board/EmptyBoard'
 import { Layout } from './Layout'
 
 export const App = () => {
-  const isLoggedIn = useAppSelector(selectIsLoggedIn)
-
-  const dispatch = useAppDispatch()
-
-  const { data, isSuccess } = useQuery({
-    queryKey: [CacheKeys.User],
-    queryFn: userService.getCurrentUser,
-    enabled: isLoggedIn
-  })
-
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(updateUser(data))
-    }
-  }, [data, dispatch, isSuccess])
+  useGetCurrentUser()
 
   return (
     <Routes>

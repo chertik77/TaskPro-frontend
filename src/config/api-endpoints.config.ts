@@ -1,9 +1,4 @@
 export const ApiEndpoints = {
-  User: '/user',
-  UserMe: '/user/me',
-  UserTheme: '/user/theme',
-  UserHelp: '/user/help',
-
   Board: '/board',
   BoardById: (boardId: string) => `${ApiEndpoints.Board}/${boardId}`,
 

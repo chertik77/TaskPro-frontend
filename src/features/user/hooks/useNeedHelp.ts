@@ -1,20 +1,19 @@
-import type { HelpSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
+import type { HelpSchema } from '../user.schema'
 
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { NeedHelpModal } from 'components/dashboard/modals'
-
-import { CacheKeys } from 'config'
-import { userService } from 'services'
+import { NeedHelpModal } from '../components'
+import { UserCacheKeys } from '../config'
+import { userService } from '../user.service'
 
 export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {
   const { close } = useModal(NeedHelpModal)
 
   return useMutation({
-    mutationKey: [CacheKeys.UserHelp],
+    mutationKey: [UserCacheKeys.UserHelp],
     mutationFn: userService.askForHelp,
     onSuccess() {
       reset()

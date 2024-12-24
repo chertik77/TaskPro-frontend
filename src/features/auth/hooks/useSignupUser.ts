@@ -1,5 +1,5 @@
-import type { SignupSchema } from 'lib/schemas'
 import type { UseFormReset } from 'react-hook-form'
+import type { SignupSchema } from '../auth.schema'
 
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'

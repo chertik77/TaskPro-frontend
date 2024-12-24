@@ -1,9 +1,4 @@
 export enum CacheKeys {
-  User = 'user',
-  UserHelp = 'userHelp',
-  EditUserProfile = 'editUserProfile',
-  ChangeUserTheme = 'changeUserTheme',
-
   Boards = 'boards',
   Board = 'board',
   AddBoard = 'addBoard',

@@ -1,10 +1,11 @@
 import { Button, Field, Loader, Modal } from 'components/ui'
 
 import { useAppForm } from 'hooks'
-import { useNeedHelp } from 'hooks/user'
 
 import { cn } from 'lib'
-import { HelpSchema } from 'lib/schemas'
+
+import { useNeedHelp } from '../hooks'
+import { HelpSchema } from '../user.schema'
 
 export const NeedHelpModal = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema)

@@ -1,7 +1,7 @@
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
-import type { EditUserSchema } from 'lib/schemas'
-import type { User } from 'types'
+import type { EditUserSchema } from '../user.schema'
+import type { User } from '../user.types'
 
 import { useRef } from 'react'
 

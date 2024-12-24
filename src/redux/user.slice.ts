@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { AuthResponse, Tokens } from 'features/auth/auth.types'
-import type { User } from 'types'
+import type { User } from 'features/user/user.types'
 
 import { createSlice } from '@reduxjs/toolkit'
 
