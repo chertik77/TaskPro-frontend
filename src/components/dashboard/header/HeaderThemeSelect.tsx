@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
 import * as Select from '@radix-ui/react-select'
 import { useChangeTheme } from 'features/user/hooks'
+import { DEFAULT_THEME, THEMES } from 'features/user/user.constants'
 
 import { useAppSelector } from 'hooks/redux'
 
 import { selectUserTheme } from 'redux/user.slice'
-
-import { themes } from 'constants/themes'
 
 export const HeaderThemeSelect = () => {
   const theme = useAppSelector(selectUserTheme)
@@ -19,7 +18,7 @@ export const HeaderThemeSelect = () => {
     root.className = theme
 
     return () => {
-      root.className = 'light'
+      root.className = DEFAULT_THEME
     }
   }, [theme])
 
@@ -56,7 +55,7 @@ export const HeaderThemeSelect = () => {
             pr-11 pt-lg shadow-select violet:border-white-gray-secondary
             dark:bg-black-fourth'>
           <Select.Viewport>
-            {themes.map(theme => (
+            {THEMES.map(theme => (
               <Select.Item
                 key={theme}
                 className='mb-1 cursor-pointer text-base outline-none data-[highlighted]:text-brand

@@ -1,4 +1,4 @@
-import type { Theme } from 'constants/themes'
+import type { Theme } from '../user.constants'
 import type { User } from '../user.types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'

@@ -1,4 +1,4 @@
-import type { Theme } from 'constants/themes'
+import type { Theme } from './user.constants'
 
 export type User = {
   id: string
