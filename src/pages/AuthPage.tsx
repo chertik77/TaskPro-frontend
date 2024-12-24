@@ -7,14 +7,16 @@ import {
   SignupForm
 } from 'components/auth'
 
+import { Pages } from 'config'
+
 export const AuthPage = () => {
   const { pathname } = useLocation()
 
   return (
     <AuthLayout>
       <AuthFormNavigation />
-      {pathname === '/signin' && <SigninForm />}
-      {pathname === '/signup' && <SignupForm />}
+      {pathname === Pages.Signin && <SigninForm />}
+      {pathname === Pages.Signup && <SignupForm />}
     </AuthLayout>
   )
 }
