@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { Pages } from 'config'
 
-import { BurgerMenu } from '../modals'
+import { BurgerMenu } from './BurgerMenu'
 
 export const SidebarLogo = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)

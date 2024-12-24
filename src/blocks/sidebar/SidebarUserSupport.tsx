@@ -1,7 +1,7 @@
 import { NeedHelpModal } from 'features/user/components'
 import { useModal } from 'react-modal-state'
 
-import { BurgerMenu } from '../modals'
+import { BurgerMenu } from './BurgerMenu'
 
 export const SidebarUserSupport = () => {
   const { open } = useModal(NeedHelpModal)

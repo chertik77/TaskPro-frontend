@@ -1,11 +1,11 @@
 import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
 
-import { SidebarBoardsList } from 'components/dashboard/sidebar/SidebarBoardsList'
-import { SidebarLogo } from 'components/dashboard/sidebar/SidebarLogo'
-import { SidebarLogoutBtn } from 'components/dashboard/sidebar/SidebarLogoutBtn'
-import { SidebarMyBoardsInfo } from 'components/dashboard/sidebar/SidebarMyBoardsInfo'
-import { SidebarUserSupport } from 'components/dashboard/sidebar/SidebarUserSupport'
+import { SidebarBoardsList } from './SidebarBoardsList'
+import { SidebarLogo } from './SidebarLogo'
+import { SidebarLogoutBtn } from './SidebarLogoutBtn'
+import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
+import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const BurgerMenu = () => {
   const { isOpen, close } = useModalInstance()

@@ -4,6 +4,7 @@ import { StrictMode } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import {
   EditBoardModal,
   NewBoardModal
@@ -20,7 +21,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import { App } from 'components/App'
-import { BurgerMenu } from 'components/dashboard/modals'
 
 import { persistor, store } from 'redux/store'
 

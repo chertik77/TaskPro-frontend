@@ -12,7 +12,7 @@ import { Pages } from 'config'
 
 import { cn } from 'lib'
 
-import { BurgerMenu } from '../modals'
+import { BurgerMenu } from './BurgerMenu'
 import { SidebarListActiveItem } from './SidebarListActiveItem'
 
 export const SidebarBoardsList = () => {

@@ -1,11 +1,10 @@
+import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { selectIsSidebarOpen, setIsSidebarOpen } from 'redux/sidebar.slice'
-
-import { BurgerMenu } from '../modals/BurgerMenu'
 
 export const HeaderControls = () => {
   const { open } = useModal(BurgerMenu)

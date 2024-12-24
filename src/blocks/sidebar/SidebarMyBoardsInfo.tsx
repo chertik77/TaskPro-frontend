@@ -3,7 +3,7 @@ import { useModal } from 'react-modal-state'
 
 import { cn } from 'lib'
 
-import { BurgerMenu } from '../modals'
+import { BurgerMenu } from './BurgerMenu'
 
 export const SidebarMyBoardsInfo = () => {
   const { open } = useModal(NewBoardModal)

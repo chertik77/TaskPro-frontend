@@ -4,7 +4,7 @@ import { EditBoardModal } from 'features/kanban/board/components/modals'
 import { useDeleteBoard } from 'features/kanban/board/hooks'
 import { useModal } from 'react-modal-state'
 
-import { BurgerMenu } from '../modals'
+import { BurgerMenu } from './BurgerMenu'
 
 export const SidebarListActiveItem = ({
   board: { icon, title, background }
