@@ -1,14 +1,14 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
+import { boardService } from 'features/kanban/board/board.service'
+import { BoardCacheKeys } from 'features/kanban/board/config'
+import { useGetBoardId } from 'features/kanban/board/hooks'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 
 import { Loader } from 'components/ui'
 
-import { useGetBoardId } from 'hooks/board'
-
-import { CacheKeys, Pages } from 'config'
-import { boardService } from 'services'
+import { Pages } from 'config'
 
 import { cn } from 'lib'
 
@@ -23,7 +23,7 @@ export const SidebarBoardsList = () => {
   const { close: closeBurgerMenu } = useModal(BurgerMenu)
 
   const { data, isPending } = useQuery({
-    queryKey: [CacheKeys.Boards],
+    queryKey: [BoardCacheKeys.Boards],
     queryFn: boardService.getAllBoards
   })
 

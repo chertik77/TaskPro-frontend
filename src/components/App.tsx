@@ -1,3 +1,4 @@
+import { Board } from 'features/kanban/board/components/Board'
 import { useGetCurrentUser } from 'features/user/hooks'
 import { AuthPage, DashboardPage, HomePage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
@@ -6,8 +7,7 @@ import { PrivateRoute, PublicOnlyRoute } from 'components/routes'
 
 import { Pages } from 'config'
 
-import { Board } from './dashboard'
-import { EmptyBoard } from './dashboard/board/EmptyBoard'
+import { EmptyBoard } from '../features/kanban/board/components/EmptyBoard'
 import { Layout } from './Layout'
 
 export const App = () => {

@@ -4,6 +4,14 @@ import { StrictMode } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import {
+  EditBoardModal,
+  NewBoardModal
+} from 'features/kanban/board/components/modals'
+import {
+  EditCardModal,
+  NewCardModal
+} from 'features/kanban/card/components/modals'
 import { EditProfileModal, NeedHelpModal } from 'features/user/components'
 import ReactDOM from 'react-dom/client'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
@@ -12,13 +20,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import { App } from 'components/App'
-import {
-  BurgerMenu,
-  EditBoardModal,
-  EditCardModal,
-  NewBoardModal,
-  NewCardModal
-} from 'components/dashboard/modals'
+import { BurgerMenu } from 'components/dashboard/modals'
 
 import { persistor, store } from 'redux/store'
 

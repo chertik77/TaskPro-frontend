@@ -1,8 +1,9 @@
+import { NewBoardModal } from 'features/kanban/board/components/modals'
 import { useModal } from 'react-modal-state'
 
 import { cn } from 'lib'
 
-import { BurgerMenu, NewBoardModal } from '../modals'
+import { BurgerMenu } from '../modals'
 
 export const SidebarMyBoardsInfo = () => {
   const { open } = useModal(NewBoardModal)

@@ -1,10 +1,10 @@
-import type { Board } from 'types'
+import type { Board } from 'features/kanban/board/board.types'
 
+import { EditBoardModal } from 'features/kanban/board/components/modals'
+import { useDeleteBoard } from 'features/kanban/board/hooks'
 import { useModal } from 'react-modal-state'
 
-import { useDeleteBoard } from 'hooks/board'
-
-import { BurgerMenu, EditBoardModal } from '../modals'
+import { BurgerMenu } from '../modals'
 
 export const SidebarListActiveItem = ({
   board: { icon, title, background }
