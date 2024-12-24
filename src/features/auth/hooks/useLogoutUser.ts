@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
+import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { useAppDispatch } from 'hooks/redux'
 
 import { logout } from 'redux/user.slice'

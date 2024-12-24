@@ -1,6 +1,7 @@
 import * as Avatar from '@radix-ui/react-avatar'
-import { EditProfileModal } from 'features/user/components/modals'
 import { useModal } from 'react-modal-state'
+
+import { EditProfileModal } from 'features/user/components/modals'
 
 import { useAppSelector } from 'hooks/redux'
 

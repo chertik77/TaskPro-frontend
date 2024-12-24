@@ -1,7 +1,8 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
-import { useGetAllBoards, useGetBoardId } from 'features/kanban/board/hooks'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
+
+import { useGetAllBoards, useGetBoardId } from 'features/kanban/board/hooks'
 
 import { Loader } from 'components/ui'
 

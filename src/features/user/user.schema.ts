@@ -1,5 +1,6 @@
-import { SigninSchema, SignupSchema } from 'features/auth/auth.schema'
 import * as v from 'valibot'
+
+import { SigninSchema, SignupSchema } from 'features/auth/auth.schema'
 
 export const EditUserSchema = v.partial(
   v.object({

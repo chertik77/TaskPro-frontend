@@ -2,9 +2,10 @@ import type { onSaveProps } from 'react-edit-text'
 import type { Column } from '../column.types'
 
 import { useState } from 'react'
-import { useDeleteColumn, useEditColumn } from 'features/kanban/column/hooks'
 import { EditText } from 'react-edit-text'
 import { toast } from 'sonner'
+
+import { useDeleteColumn, useEditColumn } from 'features/kanban/column/hooks'
 
 import { Button } from 'components/ui'
 

@@ -1,11 +1,11 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+
 import { useGetBoardById } from 'features/kanban/board/hooks'
 import { BoardColumnsList } from 'features/kanban/column/components/BoardColumnsList'
 import { DragAndDropProvider } from 'features/kanban/dnd/dnd.context'
 import { Filters } from 'features/kanban/filters/components/Filters'
 
 import { Loader, Scrollbar } from 'components/ui'
-
 import { useDocumentTitle } from 'hooks'
 
 import { cn } from 'lib'

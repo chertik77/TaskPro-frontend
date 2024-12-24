@@ -5,7 +5,6 @@ import { useModalInstance } from 'react-modal-state'
 import { keyof } from 'valibot'
 
 import { Button, Field, Modal } from 'components/ui'
-
 import { useAppForm } from 'hooks'
 
 import { BoardSchema } from '../../board.schema'

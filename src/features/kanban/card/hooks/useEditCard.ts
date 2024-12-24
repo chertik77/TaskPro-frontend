@@ -3,10 +3,11 @@ import type { UseFormReset } from 'react-hook-form'
 import type { CardSchema } from '../card.schema'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
+
+import { BoardCacheKeys } from 'features/kanban/board/config'
+import { useGetBoardId } from 'features/kanban/board/hooks'
 
 import { cardService } from '../card.service'
 import { EditCardModal } from '../components/modals'

@@ -3,6 +3,7 @@ import type { AuthResponse, Tokens } from 'features/auth/auth.types'
 import type { User } from 'features/user/user.types'
 
 import { createSlice } from '@reduxjs/toolkit'
+
 import { DEFAULT_THEME } from 'features/user/user.constants'
 
 export type UserInitialState = Tokens & {

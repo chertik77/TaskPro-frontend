@@ -2,6 +2,7 @@ import {
   horizontalListSortingStrategy,
   SortableContext
 } from '@dnd-kit/sortable'
+
 import { useDragAndDrop } from 'features/kanban/dnd/dnd.context'
 
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'

@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useEditProfile } from 'features/user/hooks'
-import { EditUserSchema } from 'features/user/user.schema'
 import { keyof } from 'valibot'
 
-import { Button, Field, Loader, Modal } from 'components/ui'
+import { useEditProfile } from 'features/user/hooks'
+import { EditUserSchema } from 'features/user/user.schema'
 
+import { Button, Field, Loader, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
 

@@ -1,9 +1,10 @@
-import { Board } from 'features/kanban/board/components/Board'
-import { useGetCurrentUser } from 'features/user/hooks'
-import { AuthPage, DashboardPage, HomePage } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
+import { Board } from 'features/kanban/board/components/Board'
+import { useGetCurrentUser } from 'features/user/hooks'
+
 import { PrivateRoute, PublicOnlyRoute } from 'components/routes'
+import { AuthPage, DashboardPage, HomePage } from 'pages'
 
 import { Pages } from 'config'
 

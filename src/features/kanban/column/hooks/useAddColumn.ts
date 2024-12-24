@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
+
 import { BoardCacheKeys } from 'features/kanban/board/config'
 import { useGetBoardId } from 'features/kanban/board/hooks'
-import { toast } from 'sonner'
 
 import { DEFAULT_COLUMN_TITLE } from '../column.constants'
 import { columnService } from '../column.service'

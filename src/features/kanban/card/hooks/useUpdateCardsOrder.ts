@@ -1,8 +1,9 @@
 import type { UpdateOrderData } from 'features/kanban/shared/types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { BoardCacheKeys } from 'features/kanban/board/config'
 import { toast } from 'sonner'
+
+import { BoardCacheKeys } from 'features/kanban/board/config'
 
 import { cardService } from '../card.service'
 import { CardCacheKeys } from '../config'

@@ -8,15 +8,15 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { useModal } from 'react-modal-state'
+
 import { BoardCard } from 'features/kanban/card/components/BoardCard'
 import { NewCardModal } from 'features/kanban/card/components/modals'
 import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop } from 'features/kanban/dnd/dnd.context'
 import { getFilteredCards } from 'features/kanban/filters/utils'
-import { useModal } from 'react-modal-state'
 
 import { Button, Scrollbar } from 'components/ui'
-
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
 import { cn } from 'lib'

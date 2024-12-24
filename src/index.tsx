@@ -4,7 +4,12 @@ import { StrictMode } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
+import ReactDOM from 'react-dom/client'
+import { ModalProvider, ModalRenderer } from 'react-modal-state'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
+
 import {
   EditBoardModal,
   NewBoardModal
@@ -17,12 +22,8 @@ import {
   EditProfileModal,
   NeedHelpModal
 } from 'features/user/components/modals'
-import ReactDOM from 'react-dom/client'
-import { ModalProvider, ModalRenderer } from 'react-modal-state'
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
-import { PersistGate } from 'redux-persist/integration/react'
 
+import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { App } from 'components/App'
 
 import { persistor, store } from 'redux/store'

@@ -1,7 +1,7 @@
-import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 
+import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { selectIsSidebarOpen, setIsSidebarOpen } from 'redux/sidebar.slice'

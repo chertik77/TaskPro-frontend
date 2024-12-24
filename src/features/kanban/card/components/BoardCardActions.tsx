@@ -1,8 +1,9 @@
 import type { Card } from '../card.types'
 
 import { isToday } from 'date-fns'
-import { useDeleteCard } from 'features/kanban/card/hooks'
 import { useModal } from 'react-modal-state'
+
+import { useDeleteCard } from 'features/kanban/card/hooks'
 
 import { Button } from 'components/ui'
 

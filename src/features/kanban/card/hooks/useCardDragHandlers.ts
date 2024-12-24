@@ -4,6 +4,7 @@ import type { Dispatch, SetStateAction } from 'react'
 import type { Card } from '../card.types'
 
 import { arrayMove } from '@dnd-kit/sortable'
+
 import { findIndexById } from 'features/kanban/dnd/utils'
 
 import { useUpdateCardsOrder } from './useUpdateCardsOrder'

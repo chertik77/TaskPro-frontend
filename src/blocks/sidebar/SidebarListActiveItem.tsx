@@ -1,8 +1,9 @@
 import type { Board } from 'features/kanban/board/board.types'
 
+import { useModal } from 'react-modal-state'
+
 import { EditBoardModal } from 'features/kanban/board/components/modals'
 import { useDeleteBoard } from 'features/kanban/board/hooks'
-import { useModal } from 'react-modal-state'
 
 import { BurgerMenu } from './BurgerMenu'
 

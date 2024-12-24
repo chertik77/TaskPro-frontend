@@ -1,6 +1,7 @@
 import type { Priority } from 'features/kanban/card/card.constants'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
+
 import { getPriorityColor } from 'features/kanban/card/utils'
 
 import { cn } from 'lib'

@@ -1,7 +1,6 @@
 import { useSignupUser } from 'features/auth/hooks'
 
 import { Button, Field, Loader } from 'components/ui'
-
 import { useAppForm } from 'hooks'
 
 import { SignupSchema } from '../auth.schema'

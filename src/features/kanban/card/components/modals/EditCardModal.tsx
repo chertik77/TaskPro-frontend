@@ -1,13 +1,13 @@
 import type { Card } from 'features/kanban/card/card.types'
 
 import { useEffect } from 'react'
-import { CardSchema } from 'features/kanban/card/card.schema'
-import { useEditCard } from 'features/kanban/card/hooks'
 import { useModalInstance } from 'react-modal-state'
 import { keyof } from 'valibot'
 
-import { Button, Field, Modal } from 'components/ui'
+import { CardSchema } from 'features/kanban/card/card.schema'
+import { useEditCard } from 'features/kanban/card/hooks'
 
+import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 
 import { DatePicker } from '../ui'

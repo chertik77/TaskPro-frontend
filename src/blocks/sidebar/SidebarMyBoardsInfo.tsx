@@ -1,5 +1,6 @@
-import { NewBoardModal } from 'features/kanban/board/components/modals'
 import { useModal } from 'react-modal-state'
+
+import { NewBoardModal } from 'features/kanban/board/components/modals'
 
 import { cn } from 'lib'
 
