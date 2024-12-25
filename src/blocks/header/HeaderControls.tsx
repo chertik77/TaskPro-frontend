@@ -1,13 +1,13 @@
 import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 
-import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { selectIsSidebarOpen, setIsSidebarOpen } from 'redux/sidebar.slice'
 
 export const HeaderControls = () => {
-  const { open } = useModal(BurgerMenu)
+  const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)
 
   const isSidebarOpen = useAppSelector(selectIsSidebarOpen)
 
@@ -22,7 +22,7 @@ export const HeaderControls = () => {
         <BiSidebar className='size-full violet:text-black' />
       </button>
       <button
-        onClick={open}
+        onClick={openSidebarMobileModal}
         type='button'
         className='desktop:hidden'>
         <svg className='size-6 stroke-black dark:stroke-white'>

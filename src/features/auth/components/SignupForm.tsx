@@ -8,10 +8,10 @@ import { SignupSchema } from '../auth.schema'
 export const SignupForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(SignupSchema)
 
-  const { mutate, isPending } = useSignupUser(reset)
+  const { mutate: signup, isPending } = useSignupUser(reset)
 
   return (
-    <form onSubmit={handleSubmit(data => mutate(data))}>
+    <form onSubmit={handleSubmit(data => signup(data))}>
       <Field
         autoFocus
         errors={formState.errors}

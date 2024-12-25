@@ -1,14 +1,23 @@
+import { useModal } from 'react-modal-state'
+
 import { useLogoutUser } from 'features/auth/hooks'
 
+import { SidebarMobileModal } from './SidebarMobileModal'
+
 export const SidebarLogoutBtn = () => {
-  const { mutate, isPending } = useLogoutUser()
+  const { mutate: logoutUser, isPending } = useLogoutUser()
+
+  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <button
       className='focus-visible:styled-outline group flex items-center gap-3.5 bg-transparent
         text-md font-medium violet:text-white'
       disabled={isPending}
-      onClick={() => mutate()}>
+      onClick={() => {
+        closeSidebarMobileModal()
+        logoutUser()
+      }}>
       <svg
         className='size-8 text-brand transition-colors group-hover:text-brand-hover
           group-focus:text-brand-hover violet:text-white

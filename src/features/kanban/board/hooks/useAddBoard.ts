@@ -17,13 +17,13 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
 
   const queryClient = useQueryClient()
 
-  const { close } = useModal(NewBoardModal)
+  const { close: closeNewBoardModal } = useModal(NewBoardModal)
 
   return useMutation({
     mutationKey: [BoardCacheKeys.AddBoard],
     mutationFn: boardService.addNewBoard,
     onSuccess(data) {
-      close()
+      closeNewBoardModal()
       reset()
       navigate(`${Pages.Dashboard}/${data.id}`)
       queryClient.invalidateQueries({ queryKey: [BoardCacheKeys.Boards] })

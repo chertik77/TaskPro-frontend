@@ -15,7 +15,7 @@ import { EditAvatar } from './EditAvatar'
 export const EditProfileModal = () => {
   const { name: initialName, email: initialEmail } = useAppSelector(selectUser)
 
-  const { isPending, mutateAsync, mutate } = useEditProfile()
+  const { mutate: editProfile, isPending } = useEditProfile()
 
   const { handleSubmit, register, formState, reset } =
     useAppForm(EditUserSchema)
@@ -32,8 +32,8 @@ export const EditProfileModal = () => {
     <Modal
       modalTitle='Edit profile'
       onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
-        <EditAvatar changeUserAvatar={mutateAsync} />
+      <form onSubmit={handleSubmit(data => editProfile(data))}>
+        <EditAvatar changeUserAvatar={editProfile} />
         <Field
           errors={formState.errors}
           inputName='name'

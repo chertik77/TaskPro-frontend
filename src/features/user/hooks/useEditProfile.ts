@@ -9,13 +9,13 @@ import { userService } from '../user.service'
 export const useEditProfile = () => {
   const queryClient = useQueryClient()
 
-  const { close } = useModal(EditProfileModal)
+  const { close: closeEditProfileModal } = useModal(EditProfileModal)
 
   return useMutation({
     mutationKey: [UserCacheKeys.EditUserProfile],
     mutationFn: userService.updateUserCredentials,
     onSuccess() {
-      close()
+      closeEditProfileModal()
       toast.success('Your profile has been successfully updated.')
       queryClient.invalidateQueries({ queryKey: [UserCacheKeys.User] })
     },

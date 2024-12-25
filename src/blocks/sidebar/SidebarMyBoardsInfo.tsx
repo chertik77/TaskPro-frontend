@@ -4,12 +4,12 @@ import { NewBoardModal } from 'features/kanban/board/components/modals'
 
 import { cn } from 'lib'
 
-import { BurgerMenu } from './BurgerMenu'
+import { SidebarMobileModal } from './SidebarMobileModal'
 
 export const SidebarMyBoardsInfo = () => {
-  const { open } = useModal(NewBoardModal)
+  const { open: openNewBoardModal } = useModal(NewBoardModal)
 
-  const { close: closeBurgerMenu } = useModal(BurgerMenu)
+  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <div className='mb-10 px-3.5 tablet:px-6'>
@@ -30,8 +30,8 @@ export const SidebarMyBoardsInfo = () => {
             violet:bg-brand-third violet:text-white violet:hocus:bg-[#979CEA]`
           )}
           onClick={() => {
-            open()
-            closeBurgerMenu()
+            openNewBoardModal()
+            closeSidebarMobileModal()
           }}>
           <svg className='size-5'>
             <use href='/icons.svg#icon-plus-min' />

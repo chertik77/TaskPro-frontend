@@ -7,7 +7,7 @@ import { SidebarLogoutBtn } from './SidebarLogoutBtn'
 import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
 import { SidebarUserSupport } from './SidebarUserSupport'
 
-export const BurgerMenu = () => {
+export const SidebarMobileModal = () => {
   const { isOpen, close } = useModalInstance()
 
   return (

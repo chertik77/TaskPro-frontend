@@ -11,7 +11,7 @@ import { DEFAULT_THEME, THEMES } from '../user.constants'
 export const ThemeSelect = () => {
   const theme = useAppSelector(selectUserTheme)
 
-  const { mutate } = useChangeTheme()
+  const { mutate: changeUserTheme } = useChangeTheme()
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -25,7 +25,7 @@ export const ThemeSelect = () => {
 
   return (
     <Select.Root
-      onValueChange={mutate}
+      onValueChange={changeUserTheme}
       value={theme}>
       <Select.Trigger className='focus-visible:styled-outline flex items-center gap-1'>
         <Select.Value placeholder='Theme' />

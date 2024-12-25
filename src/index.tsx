@@ -23,7 +23,7 @@ import {
   NeedHelpModal
 } from 'features/user/components/modals'
 
-import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 import { App } from 'components/App'
 
 import { persistor, store } from 'redux/store'
@@ -62,7 +62,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <ModalRenderer Component={NewCardModal} />
                 <ModalRenderer Component={EditCardModal} />
                 <ModalRenderer Component={EditProfileModal} />
-                <ModalRenderer Component={BurgerMenu} />
+                <ModalRenderer Component={SidebarMobileModal} />
               </ModalProvider>
             </PersistGate>
           </Provider>

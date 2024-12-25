@@ -3,7 +3,7 @@ import { useModal } from 'react-modal-state'
 import { NewBoardModal } from './modals'
 
 export const EmptyBoard = () => {
-  const { open } = useModal(NewBoardModal)
+  const { open: openNewBoardModal } = useModal(NewBoardModal)
 
   return (
     <div className='flex items-center justify-center'>
@@ -12,7 +12,7 @@ export const EmptyBoard = () => {
           tablet:w-[486px] tablet:text-base'>
         Before starting your project, it is essential{' '}
         <button
-          onClick={open}
+          onClick={openNewBoardModal}
           className='focus-visible:styled-outline text-brand hocus:text-brand-hover
             violet:text-brand-secondary violet:hocus:text-brand-third'>
           to create a board

@@ -13,11 +13,11 @@ export const NewBoardModal = () => {
     { defaultValues: { icon: 'project', background: 'default' } }
   )
 
-  const { mutate, isPending } = useAddBoard(reset)
+  const { mutate: addBoard, isPending } = useAddBoard(reset)
 
   return (
     <Modal modalTitle='New board'>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form onSubmit={handleSubmit(data => addBoard(data))}>
         <Field
           {...register('title')}
           inputName='title'

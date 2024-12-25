@@ -24,7 +24,7 @@ export const EditCardModal = () => {
     { defaultValues: { priority, deadline: new Date(deadline) } }
   )
 
-  const { mutate, isPending } = useEditCard(reset)
+  const { mutate: editCard, isPending } = useEditCard(reset)
 
   useEffect(() => {
     reset({ title, priority, deadline: new Date(deadline), description })
@@ -39,7 +39,9 @@ export const EditCardModal = () => {
       modalTitle='Edit card'
       onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
       <form
-        onSubmit={handleSubmit(data => mutate({ cardId: id, cardData: data }))}>
+        onSubmit={handleSubmit(data =>
+          editCard({ cardId: id, cardData: data })
+        )}>
         <Field
           errors={formState.errors}
           inputName='title'

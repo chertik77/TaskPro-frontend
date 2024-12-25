@@ -16,14 +16,14 @@ export const useAddCard = (reset: UseFormReset<CardSchema>) => {
 
   const { data: column } = useModalInstance<string>()
 
-  const { close } = useModal(NewCardModal)
+  const { close: closeNewCardModal } = useModal(NewCardModal)
 
   return useMutation({
     mutationKey: [CardCacheKeys.AddCard],
     mutationFn: (data: CardSchema) => cardService.addNewCard(column, data),
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: [BoardCacheKeys.Board] })
-      close()
+      closeNewCardModal()
       reset()
     },
     onError() {

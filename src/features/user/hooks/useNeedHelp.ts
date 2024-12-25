@@ -10,14 +10,14 @@ import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'
 
 export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {
-  const { close } = useModal(NeedHelpModal)
+  const { close: closeNeedHelpModal } = useModal(NeedHelpModal)
 
   return useMutation({
     mutationKey: [UserCacheKeys.UserHelp],
     mutationFn: userService.askForHelp,
     onSuccess() {
       reset()
-      close()
+      closeNeedHelpModal()
       toast.success('Your help request has been sent successfully!')
     },
     onError() {

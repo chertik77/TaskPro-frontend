@@ -9,11 +9,11 @@ import { cn } from 'lib'
 export const NeedHelpModal = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema)
 
-  const { mutate, isPending } = useNeedHelp(reset)
+  const { mutate: sendHelpRequest, isPending } = useNeedHelp(reset)
 
   return (
     <Modal modalTitle='Need help'>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form onSubmit={handleSubmit(data => sendHelpRequest(data))}>
         <Field
           {...register('email')}
           inputName='email'

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { Pages } from 'config'
 
-import { BurgerMenu } from './BurgerMenu'
+import { SidebarMobileModal } from './SidebarMobileModal'
 
 export const SidebarLogo = () => {
-  const { close: closeBurgerMenu } = useModal(BurgerMenu)
+  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <div
@@ -15,7 +15,7 @@ export const SidebarLogo = () => {
       <Link
         className='focus-visible:styled-outline'
         to={Pages.Dashboard}
-        onClick={closeBurgerMenu}>
+        onClick={closeSidebarMobileModal}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='32'

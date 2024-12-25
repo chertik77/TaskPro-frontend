@@ -18,7 +18,7 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
 
   const boardId = useGetBoardId()
 
-  const { close } = useModal(EditCardModal)
+  const { close: closeEditCardModal } = useModal(EditCardModal)
 
   return useMutation({
     mutationKey: [CardCacheKeys.EditCard],
@@ -34,7 +34,7 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
         queryKey: [BoardCacheKeys.Board, boardId]
       })
 
-      close()
+      closeEditCardModal()
       reset()
 
       const previousBoard = queryClient.getQueryData<Board>([

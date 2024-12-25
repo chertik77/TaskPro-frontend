@@ -10,7 +10,7 @@ import { Button } from 'components/ui'
 import { EditCardModal } from './modals'
 
 export const BoardCardActions = ({ card }: { card: Card }) => {
-  const { open } = useModal(EditCardModal)
+  const { open: openEditCardModal } = useModal(EditCardModal)
 
   const { mutate: deleteCard } = useDeleteCard()
 
@@ -22,7 +22,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         </svg>
       )}
       <Button
-        onClick={() => open(card)}
+        onClick={() => openEditCardModal(card)}
         iconName='pencil'
       />
       <Button

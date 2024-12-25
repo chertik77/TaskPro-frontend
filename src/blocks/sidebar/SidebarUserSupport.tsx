@@ -2,12 +2,12 @@ import { useModal } from 'react-modal-state'
 
 import { NeedHelpModal } from 'features/user/components/modals'
 
-import { BurgerMenu } from './BurgerMenu'
+import { SidebarMobileModal } from './SidebarMobileModal'
 
 export const SidebarUserSupport = () => {
-  const { open } = useModal(NeedHelpModal)
+  const { open: openNeedHelpModal } = useModal(NeedHelpModal)
 
-  const { close: closeBurgerMenu } = useModal(BurgerMenu)
+  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <div
@@ -26,8 +26,8 @@ export const SidebarUserSupport = () => {
       </p>
       <button
         onClick={() => {
-          open()
-          closeBurgerMenu()
+          openNeedHelpModal()
+          closeSidebarMobileModal()
         }}
         className='focus-visible:styled-outline flex items-center gap-2 text-sm font-medium
           transition-colors hocus:text-brand-hover violet:text-white

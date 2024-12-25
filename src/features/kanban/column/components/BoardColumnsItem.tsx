@@ -29,7 +29,7 @@ export const BoardColumnsItem = ({
   cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { open } = useModal(NewCardModal)
+  const { open: openNewCardModal } = useModal(NewCardModal)
 
   const { cardPriority, cardDeadline } = useCardFilters()
 
@@ -94,7 +94,7 @@ export const BoardColumnsItem = ({
       <Button
         isPlusIcon
         className='mt-3.5'
-        onClick={() => open(column.id)}>
+        onClick={() => openNewCardModal(column.id)}>
         Add another card
       </Button>
     </div>

@@ -10,17 +10,17 @@ import { Pages } from 'config'
 
 import { cn } from 'lib'
 
-import { BurgerMenu } from './BurgerMenu'
 import { SidebarListActiveItem } from './SidebarListActiveItem'
+import { SidebarMobileModal } from './SidebarMobileModal'
 
 export const SidebarBoardsList = () => {
   const navigate = useNavigate()
 
   const boardId = useGetBoardId()
 
-  const { close: closeBurgerMenu } = useModal(BurgerMenu)
+  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
-  const { data, isPending } = useGetAllBoards()
+  const { data: boards, isPending } = useGetAllBoards()
 
   return isPending ? (
     <div className='flex h-4xl items-center gap-2 pl-3.5 violet:text-white tablet:pl-6'>
@@ -32,10 +32,10 @@ export const SidebarBoardsList = () => {
       value={boardId}
       onValueChange={v => {
         navigate(`${Pages.Dashboard}/${v}`)
-        closeBurgerMenu()
+        closeSidebarMobileModal()
       }}
-      className={cn('mb-10 text-base', data?.length === 0 && 'mb-auto')}>
-      {data?.map(board => (
+      className={cn('mb-10 text-base', boards?.length === 0 && 'mb-auto')}>
+      {boards?.map(board => (
         <Item
           className={cn(
             `focus-visible:styled-outline flex h-4xl w-full items-center justify-between

@@ -5,22 +5,22 @@ import { useModal } from 'react-modal-state'
 import { EditBoardModal } from 'features/kanban/board/components/modals'
 import { useDeleteBoard } from 'features/kanban/board/hooks'
 
-import { BurgerMenu } from './BurgerMenu'
+import { SidebarMobileModal } from './SidebarMobileModal'
 
 export const SidebarListActiveItem = ({
   board: { icon, title, background }
 }: {
   board: Board
 }) => {
-  const { open } = useModal(EditBoardModal)
+  const { open: openEditBoardModal } = useModal(EditBoardModal)
 
-  const { close } = useModal(BurgerMenu)
+  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   const { mutate: deleteBoard } = useDeleteBoard()
 
   const handleBoardEdit = () => {
     close()
-    open({ icon, title, background: background.identifier })
+    openEditBoardModal({ icon, title, background: background.identifier })
   }
 
   return (
@@ -44,12 +44,12 @@ export const SidebarListActiveItem = ({
           tabIndex={0}
           onKeyDown={e => {
             if (e.code === 'Enter' || e.code === 'Space') {
-              close()
+              closeSidebarMobileModal()
               deleteBoard()
             }
           }}
           onClick={() => {
-            close()
+            closeSidebarMobileModal()
             deleteBoard()
           }}
           className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black

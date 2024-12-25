@@ -1,4 +1,4 @@
-import type { UseMutateAsyncFunction } from '@tanstack/react-query'
+import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import type { EditUserSchema } from 'features/user/user.schema'
 import type { User } from 'features/user/user.types'
@@ -10,12 +10,7 @@ import { useAppSelector } from 'hooks/redux'
 import { selectUser } from 'redux/user.slice'
 
 type EditAvatarProps = {
-  changeUserAvatar: UseMutateAsyncFunction<
-    User,
-    AxiosError,
-    EditUserSchema,
-    unknown
-  >
+  changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema, unknown>
 }
 
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {

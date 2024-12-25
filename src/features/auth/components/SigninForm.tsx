@@ -8,10 +8,10 @@ import { SigninSchema } from '../auth.schema'
 export const SigninForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(SigninSchema)
 
-  const { mutate, isPending } = useSigninUser(reset)
+  const { mutate: signin, isPending } = useSigninUser(reset)
 
   return (
-    <form onSubmit={handleSubmit(data => mutate(data))}>
+    <form onSubmit={handleSubmit(data => signin(data))}>
       <Field
         autoFocus
         {...register('email')}

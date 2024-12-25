@@ -27,7 +27,7 @@ export const EditBoardModal = () => {
     { defaultValues: { icon, background } }
   )
 
-  const { mutate, isPending } = useEditBoard(reset)
+  const { mutate: editBoard, isPending } = useEditBoard(reset)
 
   useEffect(() => {
     reset({ icon, title, background })
@@ -41,7 +41,7 @@ export const EditBoardModal = () => {
     <Modal
       modalTitle='Edit board'
       onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form onSubmit={handleSubmit(data => editBoard(data))}>
         <Field
           {...register('title', { setValueAs: value => value.trim() })}
           inputName='title'

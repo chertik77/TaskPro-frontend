@@ -14,11 +14,11 @@ export const NewCardModal = () => {
     { defaultValues: { priority: 'Without', deadline: new Date() } }
   )
 
-  const { mutate, isPending } = useAddCard(reset)
+  const { mutate: addCard, isPending } = useAddCard(reset)
 
   return (
     <Modal modalTitle='Add card'>
-      <form onSubmit={handleSubmit(data => mutate(data))}>
+      <form onSubmit={handleSubmit(data => addCard(data))}>
         <Field
           errors={formState.errors}
           inputName='title'

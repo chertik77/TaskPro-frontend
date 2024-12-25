@@ -16,7 +16,7 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
 
   const boardId = useGetBoardId()
 
-  const { close } = useModal(EditBoardModal)
+  const { close: closeEditBoardModal } = useModal(EditBoardModal)
 
   return useMutation({
     mutationKey: [BoardCacheKeys.EditBoard],
@@ -24,7 +24,7 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
     onMutate: async ({ title, icon }) => {
       await queryClient.cancelQueries({ queryKey: [BoardCacheKeys.Boards] })
 
-      close()
+      closeEditBoardModal()
       reset()
 
       const previousBoards = queryClient.getQueryData<Board[]>([

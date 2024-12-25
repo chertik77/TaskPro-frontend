@@ -10,12 +10,12 @@ import { selectUser } from 'redux/user.slice'
 export const HeaderUserInfo = () => {
   const { name, avatar } = useAppSelector(selectUser)
 
-  const { open } = useModal(EditProfileModal)
+  const { open: openEditProfileModal } = useModal(EditProfileModal)
 
   return (
     <button
       type='button'
-      onClick={open}
+      onClick={openEditProfileModal}
       className='focus-visible:styled-outline flex items-center gap-2'>
       <p>{name}</p>
       <Avatar.Root>
