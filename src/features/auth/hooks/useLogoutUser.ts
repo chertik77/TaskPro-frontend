@@ -18,6 +18,9 @@ export const useLogoutUser = () => {
   return useMutation({
     mutationKey: [AuthCacheKeys.Logout],
     mutationFn: authService.logout,
+    onMutate() {
+      closeBurgerMenu()
+    },
     onSuccess() {
       dispatch(logout())
     },
@@ -25,9 +28,6 @@ export const useLogoutUser = () => {
       toast.error(
         'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
       )
-    },
-    onSettled() {
-      closeBurgerMenu()
     }
   })
 }
