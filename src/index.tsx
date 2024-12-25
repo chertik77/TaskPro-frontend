@@ -10,21 +10,16 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import {
-  EditBoardModal,
-  NewBoardModal
-} from 'features/kanban/board/components/modals'
-import {
-  EditCardModal,
-  NewCardModal
-} from 'features/kanban/card/components/modals'
-import {
-  EditProfileModal,
-  NeedHelpModal
-} from 'features/user/components/modals'
-
-import { BurgerMenu } from 'blocks/sidebar/BurgerMenu'
 import { App } from 'components/App'
+import {
+  BurgerMenu,
+  EditBoardModal,
+  EditCardModal,
+  EditProfileModal,
+  NeedHelpModal,
+  NewBoardModal,
+  NewCardModal
+} from 'components/dashboard/modals'
 
 import { persistor, store } from 'redux/store'
 
