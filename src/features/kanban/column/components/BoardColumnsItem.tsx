@@ -5,7 +5,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
-import { BoardCard } from 'features/kanban/card/components/BoardCard'
+import { BoardCard } from 'features/kanban/card/components'
 import { NewCardModal } from 'features/kanban/card/components/modals'
 import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'

@@ -14,7 +14,7 @@ import {
 } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
 
-import { BoardCard } from 'features/kanban/card/components/BoardCard'
+import { BoardCard } from 'features/kanban/card/components'
 import { useCardDragHandlers } from 'features/kanban/card/hooks'
 import { BoardColumnsItem } from 'features/kanban/column/components/BoardColumnsItem'
 import { useColumnDragHandlers } from 'features/kanban/column/hooks'
