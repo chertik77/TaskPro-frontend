@@ -40,7 +40,7 @@ export const EditBoardModal = () => {
   return (
     <Modal
       modalTitle='Edit board'
-      onAnimationEnd={reset}>
+      onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <Field
           {...register('title', { setValueAs: value => value.trim() })}

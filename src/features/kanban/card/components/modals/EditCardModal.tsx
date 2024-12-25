@@ -37,7 +37,7 @@ export const EditCardModal = () => {
   return (
     <Modal
       modalTitle='Edit card'
-      onAnimationEnd={reset}>
+      onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
       <form
         onSubmit={handleSubmit(data => mutate({ cardId: id, cardData: data }))}>
         <Field

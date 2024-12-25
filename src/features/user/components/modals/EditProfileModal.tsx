@@ -31,7 +31,7 @@ export const EditProfileModal = () => {
   return (
     <Modal
       modalTitle='Edit profile'
-      onAnimationEnd={reset}>
+      onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
       <form onSubmit={handleSubmit(data => mutate(data))}>
         <EditAvatar changeUserAvatar={mutateAsync} />
         <Field
