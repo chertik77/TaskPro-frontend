@@ -1,7 +1,8 @@
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Outlet } from 'react-router-dom'
 
-import { Header, Sidebar } from 'blocks'
+import { Header, Sidebar } from 'components/dashboard'
+
 import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 

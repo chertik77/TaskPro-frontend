@@ -5,7 +5,7 @@ import {
   AuthLayout,
   SigninForm,
   SignupForm
-} from 'features/auth/components'
+} from 'components/auth'
 
 import { Pages } from 'config'
 
