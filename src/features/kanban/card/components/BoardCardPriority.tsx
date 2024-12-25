@@ -1,4 +1,4 @@
-import type { Priority } from '../card.constants'
+import type { Priority } from 'features/kanban/shared/constants'
 
 import { cn } from 'lib'
 

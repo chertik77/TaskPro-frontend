@@ -1,14 +1,15 @@
-import type { Icon } from '../../board.constants'
+import type { Icon } from 'features/kanban/board/board.constants'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 import { keyof } from 'valibot'
 
+import { BoardSchema } from 'features/kanban/board/board.schema'
+import { useEditBoard } from 'features/kanban/board/hooks'
+
 import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 
-import { BoardSchema } from '../../board.schema'
-import { useEditBoard } from '../../hooks'
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 

@@ -1,5 +1,4 @@
-import type { Deadline } from 'features/kanban/filters/filters.constants'
-import type { Priority } from '../card.constants'
+import type { Deadline, Priority } from 'features/kanban/shared/constants'
 
 import { useSearchParams } from 'react-router-dom'
 

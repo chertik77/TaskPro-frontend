@@ -1,12 +1,11 @@
+import type { CardSchema } from 'features/kanban/card/card.schema'
 import type { Control } from 'react-hook-form'
-import type { CardSchema } from '../../card.schema'
 
 import { Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
 
-import { RadioInput } from 'features/kanban/shared/components/ui'
-
-import { PRIORITIES } from '../../card.constants'
+import { RadioInput } from 'features/kanban/shared/components'
+import { PRIORITIES } from 'features/kanban/shared/constants'
 
 type ModalPrioritiesProps = {
   control: Control<CardSchema>

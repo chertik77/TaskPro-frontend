@@ -1,6 +1,5 @@
-import type { Priority } from 'features/kanban/card/card.constants'
 import type { Card } from 'features/kanban/card/card.types'
-import type { Deadline } from '../filters.constants'
+import type { Deadline, Priority } from 'features/kanban/shared/constants'
 
 import { addDays, isAfter, isBefore, isToday, startOfToday } from 'date-fns'
 

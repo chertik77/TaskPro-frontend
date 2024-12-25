@@ -3,7 +3,7 @@ import type { Card } from 'features/kanban/card/card.types'
 import type { Column } from 'features/kanban/column/column.types'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useEffect, useMemo, useState } from 'react'
 import {
   DndContext,
   DragOverlay,
@@ -35,7 +35,7 @@ type DragAndDropProviderProps = {
   initialColumns: Column[] | undefined
 }
 
-const DragAndDropContext = createContext<DragAndDropContext | null>(null)
+export const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
 export const DragAndDropProvider = ({
   children,
@@ -117,14 +117,4 @@ export const DragAndDropProvider = ({
       </DndContext>
     </DragAndDropContext.Provider>
   )
-}
-
-export const useDragAndDrop = () => {
-  const context = useContext(DragAndDropContext)
-
-  if (!context) {
-    throw new Error('useDragAndDrop must be used within a DragAndDropProvider')
-  }
-
-  return context
 }

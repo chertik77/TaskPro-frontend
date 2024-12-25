@@ -1,4 +1,4 @@
-import type { Priority } from '../card.constants'
+import type { Priority } from 'features/kanban/shared/constants'
 
 export const getPriorityColor = (priority: Priority) => {
   const priorityColors: { [key: string]: string } = {

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useDragAndDrop } from 'features/kanban/dnd/dnd.context'
+import { useDragAndDrop } from 'features/kanban/dnd/hooks'
 
 import { cardService } from '../card.service'
 import { CardCacheKeys } from '../config'

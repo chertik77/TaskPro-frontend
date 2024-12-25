@@ -1,7 +1,6 @@
 import type { Card } from '../card.types'
 
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
+import { useKanbanSortable } from 'features/kanban/dnd/hooks'
 
 import { cn } from 'lib'
 
@@ -11,22 +10,11 @@ import { BoardCardDeadline } from './BoardCardDeadline'
 import { BoardCardPriority } from './BoardCardPriority'
 
 export const BoardCard = ({ card }: { card: Card }) => {
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transition,
-    transform,
-    isDragging
-  } = useSortable({
-    id: card.id,
-    data: { type: 'card', card }
-  })
-
-  const style = {
-    transition,
-    transform: CSS.Transform.toString(transform)
-  }
+  const { style, setNodeRef, attributes, listeners, isDragging } =
+    useKanbanSortable({
+      id: card.id,
+      data: { type: 'card', card }
+    })
 
   return isDragging ? (
     <div

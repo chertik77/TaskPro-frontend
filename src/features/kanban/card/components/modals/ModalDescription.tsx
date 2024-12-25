@@ -1,5 +1,5 @@
+import type { CardSchema } from 'features/kanban/card/card.schema'
 import type { FieldErrors } from 'react-hook-form'
-import type { CardSchema } from '../../card.schema'
 
 import { forwardRef } from 'react'
 

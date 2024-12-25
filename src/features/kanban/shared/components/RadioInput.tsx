@@ -1,4 +1,4 @@
-import type { Priority } from 'features/kanban/card/card.constants'
+import type { Priority } from '../constants'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 

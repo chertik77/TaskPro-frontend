@@ -1,8 +1,8 @@
 import { Root } from '@radix-ui/react-radio-group'
 
-import { PRIORITIES } from 'features/kanban/card/card.constants'
 import { useCardFilters } from 'features/kanban/card/hooks'
-import { RadioInput } from 'features/kanban/shared/components/ui'
+import { RadioInput } from 'features/kanban/shared/components'
+import { PRIORITIES } from 'features/kanban/shared/constants'
 
 export const PriorityFilter = () => {
   const { setSearchParams, cardPriority } = useCardFilters()

@@ -1,19 +1,14 @@
 import type { Card } from 'features/kanban/card/card.types'
 import type { Column } from '../column.types'
 
-import {
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy
-} from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
 import { BoardCard } from 'features/kanban/card/components/BoardCard'
 import { NewCardModal } from 'features/kanban/card/components/modals'
 import { useCardFilters } from 'features/kanban/card/hooks'
-import { useDragAndDrop } from 'features/kanban/dnd/dnd.context'
+import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
 import { getFilteredCards } from 'features/kanban/filters/utils'
 
 import { Button, Scrollbar } from 'components/ui'
@@ -47,22 +42,11 @@ export const BoardColumnsItem = ({
     deadline: cardDeadline
   })
 
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transition,
-    transform,
-    isDragging
-  } = useSortable({
-    id: column.id,
-    data: { type: 'column', column }
-  })
-
-  const style = {
-    transition,
-    transform: CSS.Transform.toString(transform)
-  }
+  const { style, setNodeRef, attributes, listeners, isDragging } =
+    useKanbanSortable({
+      id: column.id,
+      data: { type: 'column', column }
+    })
 
   return isDragging ? (
     <div

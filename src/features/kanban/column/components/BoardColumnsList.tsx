@@ -3,7 +3,7 @@ import {
   SortableContext
 } from '@dnd-kit/sortable'
 
-import { useDragAndDrop } from 'features/kanban/dnd/dnd.context'
+import { useDragAndDrop } from 'features/kanban/dnd/hooks'
 
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'
