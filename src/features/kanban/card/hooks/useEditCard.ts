@@ -64,7 +64,7 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
         context?.previousBoard
       ),
         toast.error(
-          'Unexpected error during task update. We apologize for the inconvenience. Please try again later.'
+          'An error occurred while editing the task. Please try again shortly.'
         )
     },
     onSettled: () => {

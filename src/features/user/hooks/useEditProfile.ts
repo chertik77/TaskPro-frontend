@@ -22,7 +22,7 @@ export const useEditProfile = () => {
     onError(e) {
       toast.error(
         e.response?.status === 409
-          ? 'Profile update unsuccessful. Another user is already registered with the provided email address. Please use a different email.'
+          ? 'An account with this email address already exists. Please use a different email.'
           : 'Failed to update profile. Please try again. If the problem persists, contact support.'
       )
     }

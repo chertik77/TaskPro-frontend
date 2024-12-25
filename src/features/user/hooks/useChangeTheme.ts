@@ -2,6 +2,7 @@ import type { Theme } from '../user.constants'
 import type { User } from '../user.types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'
@@ -30,6 +31,7 @@ export const useChangeTheme = () => {
     },
     onError: (_, __, context) => {
       queryClient.setQueryData([UserCacheKeys.User], context?.previousUser)
+      toast.error('We couldn’t update your theme. Please try again')
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: [UserCacheKeys.User] })

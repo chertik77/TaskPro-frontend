@@ -28,7 +28,7 @@ export const useAddCard = (reset: UseFormReset<CardSchema>) => {
     },
     onError() {
       toast.error(
-        'Unexpected error during task creation. We apologize for the inconvenience. Please try again later.'
+        'An error occurred while creating the task. Please try again shortly.'
       )
     }
   })

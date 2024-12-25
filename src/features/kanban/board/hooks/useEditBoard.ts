@@ -46,7 +46,7 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
         context?.previousBoards
       ),
         toast.error(
-          'Failed to update the board. Please try again. If the problem persists, contact support.'
+          'An error occurred while editing the board. Please try again shortly.'
         )
     },
     onSettled: data => {

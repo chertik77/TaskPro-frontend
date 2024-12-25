@@ -22,7 +22,7 @@ export const useAddColumn = () => {
     },
     onError() {
       toast.error(
-        'Unexpected error during column addition. We apologize for the inconvenience. Please try again later.'
+        'An error occurred while creating the column. Please try again shortly.'
       )
     }
   })

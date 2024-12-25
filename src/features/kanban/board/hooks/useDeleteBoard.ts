@@ -42,7 +42,7 @@ export const useDeleteBoard = () => {
         context?.previousBoards
       ),
         toast.error(
-          'An error occurred while deleting the board. Our technical team has been notified. Please try again shortly.'
+          'An error occurred while deleting the board. Please try again shortly.'
         )
     },
     onSettled: () => {

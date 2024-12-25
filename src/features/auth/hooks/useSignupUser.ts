@@ -24,7 +24,7 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
     onError: e =>
       toast.error(
         e.response?.status === 409
-          ? 'Another user is already registered with the provided email address. Please use a different email.'
+          ? 'An account with this email address already exists. Please sign in or use a different email.'
           : 'An error occurred during sign-up. Our technical team has been notified. Please try again shortly.'
       )
   })

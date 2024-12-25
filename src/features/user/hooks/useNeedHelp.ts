@@ -21,7 +21,7 @@ export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {
       toast.success('Your help request has been sent successfully!')
     },
     onError() {
-      toast.error('An error occurred while sending your help request.')
+      toast.error('We couldn’t send your help request. Please try again.')
     }
   })
 }

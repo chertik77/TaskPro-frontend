@@ -20,7 +20,7 @@ export const useEditColumn = () => {
     },
     onError() {
       toast.error(
-        'Unexpected error during column update. We apologize for the inconvenience. Please try again later.'
+        'An error occurred while editing the column. Please try again shortly.'
       )
     }
   })

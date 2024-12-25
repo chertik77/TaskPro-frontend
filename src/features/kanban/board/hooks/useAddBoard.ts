@@ -30,7 +30,7 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
     },
     onError() {
       toast.error(
-        'Unexpected error during board creation. We apologize for the inconvenience. Please try again later.'
+        'An error occurred while creating the board. Please try again shortly.'
       )
     }
   })
