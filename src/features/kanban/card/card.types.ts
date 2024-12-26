@@ -9,3 +9,5 @@ export type Card = {
   priority: Priority
   deadline: Date
 }
+
+export type EditCardModalProps = Omit<Card, 'columnId' | 'order'>

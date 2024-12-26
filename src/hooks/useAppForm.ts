@@ -10,6 +10,7 @@ export const useAppForm = <S extends BaseSchema>(
 ) =>
   useForm<Input<S>>({
     resolver: valibotResolver(schema),
+    shouldUnregister: true,
     mode: 'onChange',
     ...options
   })

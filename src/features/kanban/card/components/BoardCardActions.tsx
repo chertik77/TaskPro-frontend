@@ -1,4 +1,4 @@
-import type { Card } from '../card.types'
+import type { Card, EditCardModalProps } from '../card.types'
 
 import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
@@ -14,6 +14,16 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
 
   const { mutate: deleteCard } = useDeleteCard()
 
+  const handleEditCardModal = () => {
+    openEditCardModal<EditCardModalProps>({
+      id: card.id,
+      title: card.title,
+      description: card.description,
+      priority: card.priority,
+      deadline: new Date(card.deadline)
+    })
+  }
+
   return (
     <div className='ml-auto flex gap-2'>
       {isToday(card.deadline) && (
@@ -22,7 +32,7 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
         </svg>
       )}
       <Button
-        onClick={() => openEditCardModal(card)}
+        onClick={handleEditCardModal}
         iconName='pencil'
       />
       <Button

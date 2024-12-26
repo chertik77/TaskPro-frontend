@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { keyof } from 'valibot'
 
 import { useEditProfile } from 'features/user/hooks'
 import { EditUserSchema } from 'features/user/user.schema'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
+import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
 
 import { selectUser } from 'redux/user.slice'
@@ -13,25 +12,25 @@ import { selectUser } from 'redux/user.slice'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  const { name: initialName, email: initialEmail } = useAppSelector(selectUser)
+  const { name, email } = useAppSelector(selectUser)
 
   const { mutate: editProfile, isPending } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset } =
+  const { handleSubmit, register, formState, reset, watch } =
     useAppForm(EditUserSchema)
 
-  useEffect(() => {
-    reset({ name: initialName, email: initialEmail })
-  }, [initialEmail, initialName, reset])
-
-  const isFormReadyForSubmit = keyof(EditUserSchema).options.some(
-    f => formState.dirtyFields[f] && formState.isValid
+  const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
+    { name, email, password: undefined },
+    watch,
+    ({ password }) => (password ? formState.isValid : true)
   )
 
+  useEffect(() => {
+    reset({ name, email })
+  }, [email, name, reset])
+
   return (
-    <Modal
-      modalTitle='Edit profile'
-      onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
+    <Modal modalTitle='Edit profile'>
       <form onSubmit={handleSubmit(data => editProfile(data))}>
         <EditAvatar changeUserAvatar={editProfile} />
         <Field
@@ -58,7 +57,7 @@ export const EditProfileModal = () => {
         />
         <Button
           type='submit'
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || !formState.isValid || !isFormReadyForSubmit}>
           {isPending ? <Loader /> : 'Send'}
         </Button>
       </form>

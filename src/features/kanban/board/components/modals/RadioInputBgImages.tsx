@@ -10,8 +10,6 @@ import { useAppSelector } from 'hooks/redux'
 
 import { selectUserTheme } from 'redux/user.slice'
 
-import { cn } from 'lib'
-
 type RadioInputBgImagesProps = {
   control: Control<BoardSchema>
 }
@@ -33,9 +31,7 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
               <Item
                 checked={field.value === id}
                 value={id}
-                className={cn(
-                  'focus-visible:styled-outline group outline-offset-4'
-                )}
+                className='focus-visible:styled-outline group outline-offset-4'
                 key={id}>
                 <img
                   className='group-aria-checked:scale-125'

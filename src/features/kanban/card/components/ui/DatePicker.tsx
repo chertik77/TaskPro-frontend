@@ -6,7 +6,8 @@ import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { Controller } from 'react-hook-form'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
-import { formatTodayDate } from '../../utils'
+import { formatTodayDate } from 'features/kanban/card/utils'
+
 import { Calendar } from './Calendar'
 
 type DatePickerProps = {

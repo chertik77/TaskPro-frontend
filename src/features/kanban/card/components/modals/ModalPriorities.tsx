@@ -17,25 +17,18 @@ export const ModalPriorities = ({ control }: ModalPrioritiesProps) => (
     <Controller
       name='priority'
       control={control}
-      render={({ field, formState }) => (
-        <>
-          <Root
-            onValueChange={field.onChange}
-            className='mb-3.5 flex gap-2'>
-            {PRIORITIES.map(priority => (
-              <RadioInput
-                checked={priority === field.value}
-                value={priority}
-                key={priority}
-              />
-            ))}
-          </Root>
-          {formState.errors.priority && (
-            <p className='mb-3.5 text-red-600'>
-              {formState.errors.priority.message}
-            </p>
-          )}
-        </>
+      render={({ field }) => (
+        <Root
+          onValueChange={field.onChange}
+          className='mb-3.5 flex gap-2'>
+          {PRIORITIES.map(priority => (
+            <RadioInput
+              checked={priority === field.value}
+              value={priority}
+              key={priority}
+            />
+          ))}
+        </Root>
       )}
     />
   </>

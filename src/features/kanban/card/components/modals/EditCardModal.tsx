@@ -1,46 +1,37 @@
-import type { Card } from 'features/kanban/card/card.types'
+import type { EditCardModalProps } from 'features/kanban/card/card.types'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
-import { keyof } from 'valibot'
 
 import { CardSchema } from 'features/kanban/card/card.schema'
 import { useEditCard } from 'features/kanban/card/hooks'
 
 import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
+import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 
 import { DatePicker } from '../ui'
 import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
 export const EditCardModal = () => {
-  const {
-    data: { title, description, id, priority, deadline }
-  } = useModalInstance<Card>()
+  const { data: card } = useModalInstance<EditCardModalProps>()
 
-  const { register, handleSubmit, formState, control, reset } = useAppForm(
-    CardSchema,
-    { defaultValues: { priority, deadline: new Date(deadline) } }
-  )
+  const { register, handleSubmit, formState, control, reset, watch } =
+    useAppForm(CardSchema, { shouldUnregister: false })
 
   const { mutate: editCard, isPending } = useEditCard(reset)
 
-  useEffect(() => {
-    reset({ title, priority, deadline: new Date(deadline), description })
-  }, [deadline, description, priority, title, reset])
+  const { isFormReadyForSubmit } = useIsFormReadyForSubmit(card, watch)
 
-  const isFormReadyForSubmit = keyof(CardSchema).options.some(
-    f => formState.dirtyFields[f]
-  )
+  useEffect(() => {
+    reset(card)
+  }, [reset, card])
 
   return (
-    <Modal
-      modalTitle='Edit card'
-      onAnimationEnd={() => reset({}, { keepDefaultValues: true })}>
+    <Modal modalTitle='Edit card'>
       <form
         onSubmit={handleSubmit(data =>
-          editCard({ cardId: id, cardData: data })
+          editCard({ cardId: card.id, cardData: data })
         )}>
         <Field
           errors={formState.errors}
