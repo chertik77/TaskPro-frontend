@@ -41,6 +41,7 @@ export const DatePicker = ({ control }: DatePickerProps) => {
                 align='start'>
                 <Calendar
                   mode='single'
+                  defaultMonth={field.value}
                   selected={field.value}
                   onSelect={date => {
                     field.onChange(date)
