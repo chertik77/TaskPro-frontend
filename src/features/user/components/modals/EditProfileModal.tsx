@@ -16,8 +16,10 @@ export const EditProfileModal = () => {
 
   const { mutate: editProfile, isPending } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset, watch } =
-    useAppForm(EditUserSchema)
+  const { handleSubmit, register, formState, reset, watch } = useAppForm(
+    EditUserSchema,
+    { shouldUnregister: false }
+  )
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
     { name, email, password: undefined },
