@@ -1,10 +1,10 @@
 import { useModal } from 'react-modal-state'
 
-import { NeedHelpModal } from 'features/user/components/modals'
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 
-import { SidebarMobileModal } from './SidebarMobileModal'
+import { NeedHelpModal } from './modals'
 
-export const SidebarUserSupport = () => {
+export const UserSupport = () => {
   const { open: openNeedHelpModal } = useModal(NeedHelpModal)
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)

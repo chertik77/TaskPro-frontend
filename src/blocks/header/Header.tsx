@@ -1,7 +1,6 @@
-import { ThemeSelect } from 'features/user/components'
+import { ThemeSelect, UserInfo } from 'features/user/components'
 
 import { HeaderControls } from './HeaderControls'
-import { HeaderUserInfo } from './HeaderUserInfo'
 
 export const Header = () => (
   <header
@@ -10,7 +9,7 @@ export const Header = () => (
     <HeaderControls />
     <div className='flex items-center gap-3.5'>
       <ThemeSelect />
-      <HeaderUserInfo />
+      <UserInfo />
     </div>
   </header>
 )

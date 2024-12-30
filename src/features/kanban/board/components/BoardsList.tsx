@@ -2,18 +2,17 @@ import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 
-import { useGetAllBoards, useGetBoardId } from 'features/kanban/board/hooks'
-
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 import { Loader } from 'components/ui'
 
 import { Pages } from 'config'
 
 import { cn } from 'lib'
 
-import { SidebarListActiveItem } from './SidebarListActiveItem'
-import { SidebarMobileModal } from './SidebarMobileModal'
+import { useGetAllBoards, useGetBoardId } from '../hooks'
+import { BoardsListActiveItem } from './BoardsListActiveItem'
 
-export const SidebarBoardsList = () => {
+export const BoardsList = () => {
   const navigate = useNavigate()
 
   const boardId = useGetBoardId()
@@ -55,7 +54,7 @@ export const SidebarBoardsList = () => {
             </p>
           </div>
           <Indicator className='flex gap-5'>
-            <SidebarListActiveItem board={board} />
+            <BoardsListActiveItem board={board} />
           </Indicator>
         </Item>
       ))}

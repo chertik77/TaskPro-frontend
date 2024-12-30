@@ -1,16 +1,13 @@
-import type {
-  Board,
-  EditBoardModalProps
-} from 'features/kanban/board/board.types'
+import type { Board, EditBoardModalProps } from '../board.types'
 
 import { useModal } from 'react-modal-state'
 
-import { EditBoardModal } from 'features/kanban/board/components/modals'
-import { useDeleteBoard } from 'features/kanban/board/hooks'
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 
-import { SidebarMobileModal } from './SidebarMobileModal'
+import { useDeleteBoard } from '../hooks'
+import { EditBoardModal } from './modals'
 
-export const SidebarListActiveItem = ({ board }: { board: Board }) => {
+export const BoardsListActiveItem = ({ board }: { board: Board }) => {
   const { open: openEditBoardModal } = useModal(EditBoardModal)
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)

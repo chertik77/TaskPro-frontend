@@ -1,5 +1,9 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
+import { LogoutBtn } from 'features/auth/components'
+import { BoardsList, MyBoardsInfo } from 'features/kanban/board/components'
+import { UserSupport } from 'features/user/components'
+
 import { Scrollbar } from 'components/ui'
 import { useAppSelector } from 'hooks/redux'
 
@@ -7,11 +11,7 @@ import { selectIsSidebarOpen } from 'redux/sidebar.slice'
 
 import { cn } from 'lib'
 
-import { SidebarBoardsList } from './SidebarBoardsList'
 import { SidebarLogo } from './SidebarLogo'
-import { SidebarLogoutBtn } from './SidebarLogoutBtn'
-import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
-import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const Sidebar = () => {
   const isSidebarOpen = useAppSelector(selectIsSidebarOpen)
@@ -28,12 +28,12 @@ export const Sidebar = () => {
         <aside className='flex h-dvh flex-col'>
           <div>
             <SidebarLogo />
-            <SidebarMyBoardsInfo />
-            <SidebarBoardsList />
+            <MyBoardsInfo />
+            <BoardsList />
           </div>
           <div className='mt-auto px-6 pb-6'>
-            <SidebarUserSupport />
-            <SidebarLogoutBtn />
+            <UserSupport />
+            <LogoutBtn />
           </div>
         </aside>
       </ScrollArea.Viewport>

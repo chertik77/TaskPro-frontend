@@ -1,11 +1,11 @@
 import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
 
-import { SidebarBoardsList } from './SidebarBoardsList'
+import { LogoutBtn } from 'features/auth/components'
+import { BoardsList, MyBoardsInfo } from 'features/kanban/board/components'
+import { UserSupport } from 'features/user/components'
+
 import { SidebarLogo } from './SidebarLogo'
-import { SidebarLogoutBtn } from './SidebarLogoutBtn'
-import { SidebarMyBoardsInfo } from './SidebarMyBoardsInfo'
-import { SidebarUserSupport } from './SidebarUserSupport'
 
 export const SidebarMobileModal = () => {
   const { isOpen, close } = useModalInstance()
@@ -23,11 +23,11 @@ export const SidebarMobileModal = () => {
       closeOnEsc={false}
       showCloseIcon={false}>
       <SidebarLogo />
-      <SidebarMyBoardsInfo />
-      <SidebarBoardsList />
+      <MyBoardsInfo />
+      <BoardsList />
       <div className='mt-auto px-3.5 tablet:px-6'>
-        <SidebarUserSupport />
-        <SidebarLogoutBtn />
+        <UserSupport />
+        <LogoutBtn />
       </div>
     </Modal>
   )

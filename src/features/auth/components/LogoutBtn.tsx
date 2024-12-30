@@ -1,10 +1,10 @@
 import { useModal } from 'react-modal-state'
 
-import { useLogoutUser } from 'features/auth/hooks'
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 
-import { SidebarMobileModal } from './SidebarMobileModal'
+import { useLogoutUser } from '../hooks'
 
-export const SidebarLogoutBtn = () => {
+export const LogoutBtn = () => {
   const { mutate: logoutUser, isPending } = useLogoutUser()
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)

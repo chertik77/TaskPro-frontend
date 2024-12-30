@@ -1,13 +1,13 @@
 import * as Avatar from '@radix-ui/react-avatar'
 import { useModal } from 'react-modal-state'
 
-import { EditProfileModal } from 'features/user/components/modals'
-
 import { useAppSelector } from 'hooks/redux'
 
 import { selectUser } from 'redux/user.slice'
 
-export const HeaderUserInfo = () => {
+import { EditProfileModal } from './modals'
+
+export const UserInfo = () => {
   const { name, avatar } = useAppSelector(selectUser)
 
   const { open: openEditProfileModal } = useModal(EditProfileModal)

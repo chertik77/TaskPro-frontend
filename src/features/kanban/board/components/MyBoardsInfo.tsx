@@ -1,12 +1,12 @@
 import { useModal } from 'react-modal-state'
 
-import { NewBoardModal } from 'features/kanban/board/components/modals'
+import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 
 import { cn } from 'lib'
 
-import { SidebarMobileModal } from './SidebarMobileModal'
+import { NewBoardModal } from './modals'
 
-export const SidebarMyBoardsInfo = () => {
+export const MyBoardsInfo = () => {
   const { open: openNewBoardModal } = useModal(NewBoardModal)
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
