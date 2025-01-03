@@ -2,12 +2,11 @@ import { useEffect } from 'react'
 
 import { useEditProfile } from 'features/user/hooks'
 import { EditUserSchema } from 'features/user/user.schema'
+import { selectUser } from 'features/user/user.slice'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
-
-import { selectUser } from 'redux/user.slice'
 
 import { EditAvatar } from './EditAvatar'
 

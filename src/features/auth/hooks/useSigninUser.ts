@@ -4,9 +4,9 @@ import type { SigninSchema } from '../auth.schema'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { useAppDispatch } from 'hooks/redux'
+import { authenticate } from 'features/user/user.slice'
 
-import { authenticate } from 'redux/user.slice'
+import { useAppDispatch } from 'hooks/redux'
 
 import { authService } from '../auth.service'
 import { AuthCacheKeys } from '../config'

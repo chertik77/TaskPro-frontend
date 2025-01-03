@@ -2,12 +2,11 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { LogoutBtn } from 'features/auth/components'
 import { BoardsList, MyBoardsInfo } from 'features/kanban/board/components'
+import { selectIsSidebarOpen } from 'features/sidebar/sidebar.slice'
 import { UserSupport } from 'features/user/components'
 
 import { Scrollbar } from 'components/ui'
 import { useAppSelector } from 'hooks/redux'
-
-import { selectIsSidebarOpen } from 'redux/sidebar.slice'
 
 import { cn } from 'lib'
 

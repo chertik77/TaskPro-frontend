@@ -5,10 +5,9 @@ import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
 
 import images from 'features/kanban/board/data/board-bg-images.json'
+import { selectUserTheme } from 'features/user/user.slice'
 
 import { useAppSelector } from 'hooks/redux'
-
-import { selectUserTheme } from 'redux/user.slice'
 
 type RadioInputBgImagesProps = {
   control: Control<BoardSchema>

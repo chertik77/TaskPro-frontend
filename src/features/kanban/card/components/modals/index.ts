@@ -1,2 +1,2 @@
+export * from './AddCardModal'
 export * from './EditCardModal'
-export * from './NewCardModal'

@@ -3,10 +3,10 @@ import { SpeedInsights } from '@vercel/speed-insights/react'
 import { Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
+import { selectUserTheme } from 'features/user/user.slice'
+
 import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
-
-import { selectUserTheme } from 'redux/user.slice'
 
 export const Layout = () => {
   const theme = useAppSelector(selectUserTheme)

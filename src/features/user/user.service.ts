@@ -22,9 +22,7 @@ export const userService = {
     const response = await axiosInstance.put<User>(
       UserApiEndpoints.User,
       data,
-      {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      }
+      { headers: { 'Content-Type': 'multipart/form-data' } }
     )
 
     return response.data

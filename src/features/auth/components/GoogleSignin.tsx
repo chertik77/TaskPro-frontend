@@ -2,9 +2,9 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'sonner'
 
-import { useAppDispatch } from 'hooks/redux'
+import { authenticate } from 'features/user/user.slice'
 
-import { authenticate } from 'redux/user.slice'
+import { useAppDispatch } from 'hooks/redux'
 
 import { authService } from '../auth.service'
 

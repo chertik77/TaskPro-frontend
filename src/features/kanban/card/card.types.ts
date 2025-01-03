@@ -10,4 +10,5 @@ export type Card = {
   deadline: Date
 }
 
+export type AddCardModalProps = Pick<Card, 'columnId'>
 export type EditCardModalProps = Omit<Card, 'columnId' | 'order'>

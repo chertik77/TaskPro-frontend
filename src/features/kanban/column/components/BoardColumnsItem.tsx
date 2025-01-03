@@ -1,4 +1,4 @@
-import type { Card } from 'features/kanban/card/card.types'
+import type { AddCardModalProps, Card } from 'features/kanban/card/card.types'
 import type { Column } from '../column.types'
 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
@@ -6,7 +6,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useModal } from 'react-modal-state'
 
 import { BoardCard } from 'features/kanban/card/components'
-import { NewCardModal } from 'features/kanban/card/components/modals'
+import { AddCardModal } from 'features/kanban/card/components/modals'
 import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
 import { getFilteredCards } from 'features/kanban/filters/utils'
@@ -29,7 +29,7 @@ export const BoardColumnsItem = ({
   cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { open: openNewCardModal } = useModal(NewCardModal)
+  const { open: openAddCardModal } = useModal(AddCardModal)
 
   const { cardPriority, cardDeadline } = useCardFilters()
 
@@ -94,7 +94,9 @@ export const BoardColumnsItem = ({
       <Button
         isPlusIcon
         className='mt-3.5'
-        onClick={() => openNewCardModal(column.id)}>
+        onClick={() =>
+          openAddCardModal<AddCardModalProps>({ columnId: column.id })
+        }>
         Add another card
       </Button>
     </div>

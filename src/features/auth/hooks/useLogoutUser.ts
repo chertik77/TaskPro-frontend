@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { useAppDispatch } from 'hooks/redux'
+import { logout } from 'features/user/user.slice'
 
-import { logout } from 'redux/user.slice'
+import { useAppDispatch } from 'hooks/redux'
 
 import { authService } from '../auth.service'
 import { AuthCacheKeys } from '../config'

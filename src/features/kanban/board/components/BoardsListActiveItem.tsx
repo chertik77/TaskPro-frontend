@@ -2,7 +2,7 @@ import type { Board, EditBoardModalProps } from '../board.types'
 
 import { useModal } from 'react-modal-state'
 
-import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
+import { SidebarMobileModal } from 'features/sidebar/components'
 
 import { useDeleteBoard } from '../hooks'
 import { EditBoardModal } from './modals'

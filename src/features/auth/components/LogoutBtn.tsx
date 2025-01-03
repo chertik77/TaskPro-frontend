@@ -1,6 +1,6 @@
 import { useModal } from 'react-modal-state'
 
-import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
+import { SidebarMobileModal } from 'features/sidebar/components'
 
 import { useLogoutUser } from '../hooks'
 

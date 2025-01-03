@@ -2,7 +2,8 @@ import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useModal } from 'react-modal-state'
 import { useNavigate } from 'react-router-dom'
 
-import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
+import { SidebarMobileModal } from 'features/sidebar/components'
+
 import { Loader } from 'components/ui'
 
 import { Pages } from 'config'

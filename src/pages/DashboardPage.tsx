@@ -1,11 +1,15 @@
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Outlet } from 'react-router-dom'
 
-import { Header, Sidebar } from 'blocks'
+import { Sidebar } from 'features/sidebar/components'
+import {
+  selectIsSidebarOpen,
+  setIsSidebarOpen
+} from 'features/sidebar/sidebar.slice'
+
+import { Header } from 'components/header'
 import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
-
-import { selectIsSidebarOpen, setIsSidebarOpen } from 'redux/sidebar.slice'
 
 import { cn } from 'lib'
 

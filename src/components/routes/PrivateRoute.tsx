@@ -2,9 +2,9 @@ import type { ReactElement } from 'react'
 
 import { Navigate } from 'react-router-dom'
 
-import { useAppSelector } from 'hooks/redux'
+import { selectIsLoggedIn } from 'features/user/user.slice'
 
-import { selectIsLoggedIn } from 'redux/user.slice'
+import { useAppSelector } from 'hooks/redux'
 
 import { Pages } from 'config'
 

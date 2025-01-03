@@ -1,18 +1,18 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { AuthResponse, Tokens } from 'features/auth/auth.types'
-import type { User } from 'features/user/user.types'
+import type { User } from './user.types'
 
 import { createSlice } from '@reduxjs/toolkit'
 
-import { DEFAULT_THEME } from 'features/user/user.constants'
+import { DEFAULT_THEME } from './user.constants'
 
-export type UserInitialState = Tokens & {
-  user: Omit<User, 'id'>
+export type UserInitialState = AuthResponse & {
   isLoggedIn: boolean
 }
 
 const initialState: UserInitialState = {
   user: {
+    id: '',
     name: '',
     email: '',
     avatar: '',

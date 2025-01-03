@@ -20,11 +20,7 @@ export const useChangeTheme = () => {
 
       queryClient.setQueryData<User>(
         [UserCacheKeys.User],
-        oldUser =>
-          oldUser && {
-            ...oldUser,
-            theme
-          }
+        oldUser => oldUser && { ...oldUser, theme }
       )
 
       return { previousUser }

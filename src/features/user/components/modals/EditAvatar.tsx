@@ -5,12 +5,12 @@ import type { User } from 'features/user/user.types'
 
 import { useRef } from 'react'
 
+import { selectUser } from 'features/user/user.slice'
+
 import { useAppSelector } from 'hooks/redux'
 
-import { selectUser } from 'redux/user.slice'
-
 type EditAvatarProps = {
-  changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema, unknown>
+  changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema>
 }
 
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {

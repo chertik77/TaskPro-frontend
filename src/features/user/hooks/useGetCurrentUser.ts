@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { useAppDispatch, useAppSelector } from 'hooks/redux'
+import { selectIsLoggedIn, updateUser } from 'features/user/user.slice'
 
-import { selectIsLoggedIn, updateUser } from 'redux/user.slice'
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'

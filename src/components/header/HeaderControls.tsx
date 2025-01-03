@@ -1,10 +1,13 @@
 import { BiSidebar } from 'react-icons/bi'
 import { useModal } from 'react-modal-state'
 
-import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
-import { useAppDispatch, useAppSelector } from 'hooks/redux'
+import { SidebarMobileModal } from 'features/sidebar/components'
+import {
+  selectIsSidebarOpen,
+  setIsSidebarOpen
+} from 'features/sidebar/sidebar.slice'
 
-import { selectIsSidebarOpen, setIsSidebarOpen } from 'redux/sidebar.slice'
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 export const HeaderControls = () => {
   const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)

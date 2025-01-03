@@ -2,14 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import { sidebarReducer } from './sidebar.slice'
-import { userReducer } from './user.slice'
-
-const persistConfig = { key: 'root', storage }
+import { sidebarReducer } from 'features/sidebar/sidebar.slice'
+import { userReducer } from 'features/user/user.slice'
 
 const rootReducer = combineReducers({
-  user: persistReducer(persistConfig, userReducer),
-  sidebar: persistReducer(persistConfig, sidebarReducer)
+  user: persistReducer({ key: 'user', storage }, userReducer),
+  sidebar: persistReducer({ key: 'sidebar', storage }, sidebarReducer)
 })
 
 export const store = configureStore({

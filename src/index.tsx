@@ -15,18 +15,18 @@ import {
   NewBoardModal
 } from 'features/kanban/board/components/modals'
 import {
-  EditCardModal,
-  NewCardModal
+  AddCardModal,
+  EditCardModal
 } from 'features/kanban/card/components/modals'
+import { SidebarMobileModal } from 'features/sidebar/components'
 import {
   EditProfileModal,
   NeedHelpModal
 } from 'features/user/components/modals'
 
-import { SidebarMobileModal } from 'blocks/sidebar/SidebarMobileModal'
 import { App } from 'components/App'
 
-import { persistor, store } from 'redux/store'
+import { persistor, store } from './store'
 
 import 'react-edit-text/dist/index.css'
 import 'react-responsive-modal/styles.css'
@@ -59,7 +59,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <ModalRenderer Component={EditBoardModal} />
                 <ModalRenderer Component={NewBoardModal} />
                 <ModalRenderer Component={NeedHelpModal} />
-                <ModalRenderer Component={NewCardModal} />
+                <ModalRenderer Component={AddCardModal} />
                 <ModalRenderer Component={EditCardModal} />
                 <ModalRenderer Component={EditProfileModal} />
                 <ModalRenderer Component={SidebarMobileModal} />
