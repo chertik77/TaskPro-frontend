@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useTabletAndBelowMediaQuery = (
   mediaQuery: string = '(max-width: 1439px)'
@@ -7,7 +7,7 @@ export const useTabletAndBelowMediaQuery = (
 
   const [matches, setMatches] = useState(getMatches(mediaQuery))
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const matchMedia = window.matchMedia(mediaQuery)
 
     const handleChange = () => {
