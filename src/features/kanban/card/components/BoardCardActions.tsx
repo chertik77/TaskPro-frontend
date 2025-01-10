@@ -31,17 +31,17 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
           <use href='/icons.svg#icon-bell' />
         </svg>
       )}
-      <TooltipWrapper tooltipText='Edit task'>
+      <TooltipWrapper tooltipText='Edit card'>
         <Button
           onClick={handleEditCardModal}
-          aria-label='Edit task'
+          aria-label='Edit card'
           iconName='pencil'
         />
       </TooltipWrapper>
-      <TooltipWrapper tooltipText='Delete task'>
+      <TooltipWrapper tooltipText='Delete card'>
         <Button
           onClick={() => deleteCard(card.id)}
-          aria-label='Delete task'
+          aria-label='Delete card'
           iconName='trash'
         />
       </TooltipWrapper>
