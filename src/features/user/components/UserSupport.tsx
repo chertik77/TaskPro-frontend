@@ -25,12 +25,13 @@ export const UserSupport = () => {
         team.
       </p>
       <button
+        type='button'
         onClick={() => {
           openNeedHelpModal()
           closeSidebarMobileModal()
         }}
-        className='focus-visible:styled-outline flex items-center gap-2 text-sm font-medium
-          transition-colors hocus:text-brand-hover violet:text-white
+        className='focus-visible:styled-outline flex size-max items-center gap-2 bg-transparent
+          text-sm font-medium transition-all hocus:text-brand-hover violet:text-white
           violet:hocus:text-brand-third dark:text-white-primary
           dark:hocus:text-brand-hover'>
         <svg className='size-5'>
