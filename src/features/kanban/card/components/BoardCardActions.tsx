@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 
 import { useDeleteCard } from 'features/kanban/card/hooks'
 
-import { Button } from 'components/ui'
+import { Button, TooltipWrapper } from 'components/ui'
 
 import { EditCardModal } from './modals'
 
@@ -31,14 +31,20 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
           <use href='/icons.svg#icon-bell' />
         </svg>
       )}
-      <Button
-        onClick={handleEditCardModal}
-        iconName='pencil'
-      />
-      <Button
-        onClick={() => deleteCard(card.id)}
-        iconName='trash'
-      />
+      <TooltipWrapper tooltipText='Edit task'>
+        <Button
+          onClick={handleEditCardModal}
+          aria-label='Edit task'
+          iconName='pencil'
+        />
+      </TooltipWrapper>
+      <TooltipWrapper tooltipText='Delete task'>
+        <Button
+          onClick={() => deleteCard(card.id)}
+          aria-label='Delete task'
+          iconName='trash'
+        />
+      </TooltipWrapper>
     </div>
   )
 }
