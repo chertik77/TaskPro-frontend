@@ -4,7 +4,7 @@ import { useModal } from 'react-modal-state'
 
 import { useDeleteColumn } from 'features/kanban/column/hooks'
 
-import { Button, TooltipWrapper } from 'components/ui'
+import { Button } from 'components/ui'
 
 import { cn } from 'lib'
 
@@ -22,26 +22,22 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
         py-lg dark:bg-black`
       )}>
       {column.title}
-      <TooltipWrapper tooltipText='Edit column'>
-        <Button
-          className='ml-auto mr-2'
-          aria-label='Edit column'
-          onClick={() =>
-            openEditColumnModal<EditColumnModalProps>({
-              id: column.id,
-              title: column.title
-            })
-          }
-          iconName='pencil'
-        />
-      </TooltipWrapper>
-      <TooltipWrapper tooltipText='Delete column'>
-        <Button
-          onClick={() => deleteColumn(column.id)}
-          aria-label='Delete column'
-          iconName='trash'
-        />
-      </TooltipWrapper>
+      <Button
+        className='ml-auto mr-2'
+        aria-label='Edit column'
+        onClick={() =>
+          openEditColumnModal<EditColumnModalProps>({
+            id: column.id,
+            title: column.title
+          })
+        }
+        iconName='pencil'
+      />
+      <Button
+        onClick={() => deleteColumn(column.id)}
+        aria-label='Delete column'
+        iconName='trash'
+      />
     </div>
   )
 }

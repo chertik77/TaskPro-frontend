@@ -2,8 +2,6 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
-import { TooltipWrapper } from 'components/ui'
-
 import { cn } from 'lib'
 
 import { NewBoardModal } from './modals'
@@ -24,24 +22,22 @@ export const MyBoardsInfo = () => {
         className='flex items-center justify-between border-y border-black/10 py-3.5
           violet:border-white/10 dark:border-white/10'>
         <p className='w-[76px] violet:text-white'>Create a new board</p>
-        <TooltipWrapper tooltipText='Create new board'>
-          <button
-            type='button'
-            aria-label='Create new board'
-            className={cn(
-              `focus-visible:styled-outline flex h-9 w-10 items-center justify-center
-              rounded-lg bg-brand text-black transition-all duration-300 hocus:bg-brand-hover
-              violet:bg-brand-third violet:text-white violet:hocus:bg-[#979CEA]`
-            )}
-            onClick={() => {
-              openNewBoardModal()
-              closeSidebarMobileModal()
-            }}>
-            <svg className='size-5'>
-              <use href='/icons.svg#icon-plus-min' />
-            </svg>
-          </button>
-        </TooltipWrapper>
+        <button
+          type='button'
+          aria-label='Create new board'
+          className={cn(
+            `focus-visible:styled-outline flex h-9 w-10 items-center justify-center
+            rounded-lg bg-brand text-black transition-all duration-300 hocus:bg-brand-hover
+            violet:bg-brand-third violet:text-white violet:hocus:bg-[#979CEA]`
+          )}
+          onClick={() => {
+            openNewBoardModal()
+            closeSidebarMobileModal()
+          }}>
+          <svg className='size-5'>
+            <use href='/icons.svg#icon-plus-min' />
+          </svg>
+        </button>
       </div>
     </div>
   )
