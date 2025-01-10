@@ -32,7 +32,6 @@ import { App } from 'components/App'
 
 import { persistor, store } from './store'
 
-import 'react-edit-text/dist/index.css'
 import 'react-responsive-modal/styles.css'
 import './index.css'
 
