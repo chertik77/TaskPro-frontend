@@ -5,6 +5,7 @@ import { EditUserSchema } from 'features/user/user.schema'
 import { selectUser } from 'features/user/user.slice'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
+import { PasswordField } from 'components/ui/PasswordField'
 import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
 
@@ -46,12 +47,10 @@ export const EditProfileModal = () => {
           placeholder='Enter your email'
           {...register('email', { setValueAs: value => value.trim() })}
         />
-        <Field
+        <PasswordField
           errors={formState.errors}
-          inputName='password'
           autoComplete='new-password'
-          inputPasswordPlaceholder='Create a password'
-          isPasswordInput
+          placeholder='Create a password'
           {...register('password', {
             setValueAs: value => (!value ? undefined : value.trim())
           })}

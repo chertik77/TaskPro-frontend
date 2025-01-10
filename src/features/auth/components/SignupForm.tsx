@@ -1,6 +1,7 @@
 import { useSignupUser } from 'features/auth/hooks'
 
 import { Button, Field, Loader } from 'components/ui'
+import { PasswordField } from 'components/ui/PasswordField'
 import { useAppForm } from 'hooks'
 
 import { SignupSchema } from '../auth.schema'
@@ -29,13 +30,11 @@ export const SignupForm = () => {
         placeholder='Enter your email'
         {...register('email')}
       />
-      <Field
+      <PasswordField
         errors={formState.errors}
-        inputName='password'
         autoComplete='new-password'
         className='text-white autofill:text-fill-white'
-        inputPasswordPlaceholder='Create a password'
-        isPasswordInput
+        placeholder='Create a password'
         {...register('password')}
       />
       <Button

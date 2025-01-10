@@ -1,6 +1,7 @@
 import { useSigninUser } from 'features/auth/hooks'
 
 import { Button, Field, Loader } from 'components/ui'
+import { PasswordField } from 'components/ui/PasswordField'
 import { useAppForm } from 'hooks'
 
 import { SigninSchema } from '../auth.schema'
@@ -21,13 +22,11 @@ export const SigninForm = () => {
         autoComplete='email'
         errors={formState.errors}
       />
-      <Field
+      <PasswordField
         {...register('password')}
-        isPasswordInput
         autoComplete='current-password'
         className='text-white autofill:text-fill-white'
-        inputPasswordPlaceholder='Confirm a password'
-        inputName='password'
+        placeholder='Confirm a password'
         errors={formState.errors}
       />
       <Button
