@@ -6,3 +6,5 @@ export const TitleSchema = v.object({
     v.minLength(3, 'Please enter at least 3 characters.')
   ])
 })
+
+export type TitleSchema = v.Output<typeof TitleSchema>

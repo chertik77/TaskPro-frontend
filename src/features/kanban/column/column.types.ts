@@ -8,4 +8,4 @@ export type Column = {
   cards: Card[]
 }
 
-export type ColumnTitle = Pick<Column, 'title'>
+export type EditColumnModalProps = Pick<Column, 'title' | 'id'>

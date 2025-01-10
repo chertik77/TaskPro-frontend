@@ -18,6 +18,10 @@ import {
   AddCardModal,
   EditCardModal
 } from 'features/kanban/card/components/modals'
+import {
+  AddColumnModal,
+  EditColumnModal
+} from 'features/kanban/column/components/modals'
 import { SidebarMobileModal } from 'features/sidebar/components'
 import {
   EditProfileModal,
@@ -56,11 +60,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               persistor={persistor}>
               <ModalProvider>
                 <App />
-                <ModalRenderer Component={EditBoardModal} />
                 <ModalRenderer Component={NewBoardModal} />
-                <ModalRenderer Component={NeedHelpModal} />
+                <ModalRenderer Component={EditBoardModal} />
+                <ModalRenderer Component={AddColumnModal} />
+                <ModalRenderer Component={EditColumnModal} />
                 <ModalRenderer Component={AddCardModal} />
                 <ModalRenderer Component={EditCardModal} />
+                <ModalRenderer Component={NeedHelpModal} />
                 <ModalRenderer Component={EditProfileModal} />
                 <ModalRenderer Component={SidebarMobileModal} />
               </ModalProvider>

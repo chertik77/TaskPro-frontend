@@ -8,11 +8,13 @@ import { cn } from 'lib'
 
 export type ModalProps = Partial<DialogProps> & {
   modalTitle:
-    | 'Edit profile'
-    | 'Edit board'
-    | 'Edit card'
     | 'New board'
+    | 'Edit board'
+    | 'Add column'
+    | 'Edit column'
     | 'Add card'
+    | 'Edit card'
+    | 'Edit profile'
     | 'Need help'
   children: ReactNode
 }
