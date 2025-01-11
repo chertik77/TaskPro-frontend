@@ -4,6 +4,7 @@ import { forwardRef } from 'react'
 
 import { cn } from 'lib'
 
+import { Icon } from './Icon'
 import { Loader } from './Loader'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -44,22 +45,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {...props}>
       {iconName && (
-        <svg
+        <Icon
+          name={iconName}
           className={cn(
             'size-4 stroke-black/50 dark:stroke-white-primary/50',
             iconClassName
-          )}>
-          <use href={`/icons.svg#icon-${iconName}`} />
-        </svg>
+          )}
+        />
       )}
       {isPlusIcon && (
         <>
           {shouldShowLoader ? (
             <Loader />
           ) : (
-            <svg className='size-7 stroke-transparent'>
-              <use href='/icons.svg#icon-plus' />
-            </svg>
+            <Icon
+              name='plus-square'
+              className='size-7 stroke-transparent'
+            />
           )}
           {children}
         </>

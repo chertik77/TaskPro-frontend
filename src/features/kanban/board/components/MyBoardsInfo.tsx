@@ -2,7 +2,7 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
-import { Button } from 'components/ui'
+import { Icon } from 'components/ui'
 
 import { NewBoardModal } from './modals'
 
@@ -22,7 +22,7 @@ export const MyBoardsInfo = () => {
         className='flex items-center justify-between border-y border-black/10 py-3.5
           violet:border-white/10 dark:border-white/10'>
         <p className='w-[76px] violet:text-white'>Create a new board</p>
-        <Button
+        <button
           aria-label='Create new board'
           className='focus-visible:styled-outline flex h-9 w-10 items-center justify-center
             rounded-lg bg-brand text-black transition-all duration-300 hocus:bg-brand-hover
@@ -31,10 +31,8 @@ export const MyBoardsInfo = () => {
             openNewBoardModal()
             closeSidebarMobileModal()
           }}>
-          <svg className='size-5'>
-            <use href='/icons.svg#icon-plus-min' />
-          </svg>
-        </Button>
+          <Icon name='plus' />
+        </button>
       </div>
     </div>
   )

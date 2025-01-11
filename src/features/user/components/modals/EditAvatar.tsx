@@ -7,6 +7,7 @@ import { useRef } from 'react'
 
 import { selectUser } from 'features/user/user.slice'
 
+import { Icon } from 'components/ui'
 import { useAppSelector } from 'hooks/redux'
 
 type EditAvatarProps = {
@@ -35,11 +36,12 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
         className='focus-visible:styled-outline relative size-[68px] h-[68px] rounded-xl bg-cover
           bg-center'>
         <div
-          className='absolute -bottom-3 left-[22px] size-6 rounded-lg bg-brand p-[7px]
-            violet:bg-white-gray-secondary'>
-          <svg className='size-sm'>
-            <use href='/icons.svg#icon-plus-avatar' />
-          </svg>
+          className='absolute -bottom-3 left-[22px] flex size-6 items-center justify-center
+            rounded-lg bg-brand text-black violet:bg-white-gray-secondary'>
+          <Icon
+            name='plus'
+            className='size-5'
+          />
         </div>
       </button>
     </div>

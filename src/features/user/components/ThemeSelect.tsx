@@ -3,6 +3,7 @@ import * as Select from '@radix-ui/react-select'
 
 import { selectUserTheme } from 'features/user/user.slice'
 
+import { Icon } from 'components/ui'
 import { useAppSelector } from 'hooks/redux'
 
 import { useChangeTheme } from '../hooks'
@@ -29,22 +30,11 @@ export const ThemeSelect = () => {
       value={theme}>
       <Select.Trigger className='focus-visible:styled-outline flex items-center gap-1'>
         <Select.Value placeholder='Theme' />
-        <Select.Icon>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='16'
-            height='17'
-            fill='none'>
-            <path
-              d='m4 6.5 4 4 4-4'
-              className='stroke-black dark:stroke-white'
-              stroke='#161616'
-              strokeOpacity='.8'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+        <Select.Icon asChild>
+          <Icon
+            name='chevron-down'
+            className='size-5 stroke-black dark:stroke-white'
+          />
         </Select.Icon>
       </Select.Trigger>
       <Select.Portal>

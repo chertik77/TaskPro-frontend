@@ -2,9 +2,10 @@ import type { InputHTMLAttributes } from 'react'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef, useState } from 'react'
-import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 import { cn } from 'lib'
+
+import { Icon } from './Icon'
 
 type PasswordFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   errors: FieldErrors
@@ -38,9 +39,15 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
               peer-[.text-white]:text-white'
             onClick={() => setShowPassword(prev => !prev)}>
             {showPassword ? (
-              <FiEyeOff className='size-lg' />
+              <Icon
+                name='eye-off'
+                className='size-lg'
+              />
             ) : (
-              <FiEye className='size-lg' />
+              <Icon
+                name='eye'
+                className='size-lg'
+              />
             )}
           </button>
         </div>

@@ -2,7 +2,8 @@ import type { ComponentProps } from 'react'
 
 import { isBefore, isSameDay } from 'date-fns'
 import { DayPicker } from 'react-day-picker'
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+
+import { Icon } from 'components/ui'
 
 export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
   <DayPicker
@@ -37,10 +38,16 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
     }}
     components={{
       IconLeft: () => (
-        <MdKeyboardArrowLeft className='size-6 fill-black/80 dark:fill-white' />
+        <Icon
+          name='arrow'
+          className='size-3 rotate-180 stroke-black/80 dark:stroke-white'
+        />
       ),
       IconRight: () => (
-        <MdKeyboardArrowRight className='size-6 fill-black/80 dark:fill-white' />
+        <Icon
+          name='arrow'
+          className='size-3 stroke-black/80 dark:stroke-white'
+        />
       )
     }}
     {...props}

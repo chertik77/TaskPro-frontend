@@ -2,6 +2,8 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
+import { Icon } from 'components/ui'
+
 import { NeedHelpModal } from './modals'
 
 export const UserSupport = () => {
@@ -34,9 +36,10 @@ export const UserSupport = () => {
           text-sm font-medium transition-all hocus:text-brand-hover violet:text-white
           violet:hocus:text-brand-third dark:text-white-primary
           dark:hocus:text-brand-hover'>
-        <svg className='size-5'>
-          <use href='/icons.svg#icon-help' />
-        </svg>
+        <Icon
+          name='help'
+          className='size-5'
+        />
         Need help?
       </button>
     </div>

@@ -4,6 +4,8 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
+import { Icon } from 'components/ui'
+
 import { useDeleteBoard } from '../hooks'
 import { EditBoardModal } from './modals'
 
@@ -36,9 +38,10 @@ export const BoardsListActiveItem = ({ board }: { board: Board }) => {
           onClick={handleBoardEdit}
           className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
             dark:hocus:*:stroke-white-primary'>
-          <svg className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'>
-            <use href='/icons.svg#icon-pencil' />
-          </svg>
+          <Icon
+            name='pencil'
+            className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'
+          />
         </div>
         <div
           role='button'
@@ -56,9 +59,10 @@ export const BoardsListActiveItem = ({ board }: { board: Board }) => {
           }}
           className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
             dark:hocus:*:stroke-white-primary'>
-          <svg className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'>
-            <use href='/icons.svg#icon-trash' />
-          </svg>
+          <Icon
+            name='trash'
+            className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'
+          />
         </div>
       </div>
       <div className='h-4xl w-1 rounded-l-lg bg-brand violet:bg-white' />

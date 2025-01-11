@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 
 import { useDeleteCard } from 'features/kanban/card/hooks'
 
-import { Button } from 'components/ui'
+import { Button, Icon } from 'components/ui'
 
 import { EditCardModal } from './modals'
 
@@ -27,9 +27,10 @@ export const BoardCardActions = ({ card }: { card: Card }) => {
   return (
     <div className='ml-auto flex gap-2'>
       {isToday(card.deadline) && (
-        <svg className='size-lg animate-bounce stroke-brand pr-1 violet:stroke-brand-secondary'>
-          <use href='/icons.svg#icon-bell' />
-        </svg>
+        <Icon
+          name='bell'
+          className='size-lg animate-bounce stroke-brand pr-1 violet:stroke-brand-secondary'
+        />
       )}
       <Button
         onClick={handleEditCardModal}

@@ -6,6 +6,8 @@ import { Controller } from 'react-hook-form'
 
 import { ICONS } from 'features/kanban/board/board.constants'
 
+import { Icon } from 'components/ui'
+
 type RadioInputIconsProps = {
   control: Control<BoardSchema>
 }
@@ -27,11 +29,11 @@ export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
               key={icon}
               className='focus-visible:styled-outline group text-gray-500 hocus:text-gray-600
                 dark:text-gray-400 dark:hocus:text-gray-300'>
-              <svg
+              <Icon
+                name={icon}
                 className='size-lg stroke-current group-aria-checked:text-black
-                  group-aria-checked:opacity-100 dark:group-aria-checked:text-white'>
-                <use href={`/icons.svg#${icon}`} />
-              </svg>
+                  group-aria-checked:opacity-100 dark:group-aria-checked:text-white'
+              />
             </Item>
           ))}
         </Root>

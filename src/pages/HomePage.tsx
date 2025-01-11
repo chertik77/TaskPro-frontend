@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 
 import { GoogleSignin } from 'features/auth/components/GoogleSignin'
 
+import { Icon } from 'components/ui'
+
 import { Pages } from 'config'
 
 export const HomePage = () => (
@@ -11,10 +13,11 @@ export const HomePage = () => (
       src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568457/TaskPro/welcome.png'
       alt='User with notebook'
     />
-    <div className='mt-6 flex items-center gap-3.5'>
-      <svg className='size-10 tablet:size-12'>
-        <use href='/icons.svg#icon-logo' />
-      </svg>
+    <div className='mt-6 flex items-center gap-3.5 text-white'>
+      <Icon
+        name='logo'
+        className='size-10 tablet:size-12'
+      />
       <h1 className='text-3xl text-black tablet:text-4xl'>Task Pro</h1>
     </div>
     <p className='mb-8 mt-6 w-8xl text-center text-base text-black tablet:w-[473px]'>

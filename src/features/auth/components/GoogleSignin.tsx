@@ -1,9 +1,9 @@
 import { useGoogleLogin } from '@react-oauth/google'
-import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'sonner'
 
 import { authenticate } from 'features/user/user.slice'
 
+import { Icon } from 'components/ui'
 import { useAppDispatch } from 'hooks/redux'
 
 import { authService } from '../auth.service'
@@ -29,7 +29,10 @@ export const GoogleSignin = () => {
         text-center text-white'
       type='button'
       onClick={signinWithGoogle}>
-      <FcGoogle className='size-7' />
+      <Icon
+        name='google'
+        className='size-7'
+      />
       Sign in with Google
     </button>
   )

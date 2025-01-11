@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
-import { Loader } from 'components/ui'
+import { Icon, Loader } from 'components/ui'
 
 import { Pages } from 'config'
 
@@ -47,9 +47,10 @@ export const BoardsList = () => {
           key={board.id}
           value={board.id}>
           <div className='flex items-center gap-1 tablet:gap-2'>
-            <svg className='size-lg stroke-current'>
-              <use href={`/icons.svg#${board.icon}`} />
-            </svg>
+            <Icon
+              name={board.icon}
+              className='size-lg stroke-current'
+            />
             <p className='w-[105px] truncate whitespace-pre text-left tablet:w-[122px]'>
               {board?.title}
             </p>

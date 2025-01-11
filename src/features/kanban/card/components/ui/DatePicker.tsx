@@ -4,9 +4,10 @@ import type { Control } from 'react-hook-form'
 import { useState } from 'react'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { Controller } from 'react-hook-form'
-import { MdKeyboardArrowDown } from 'react-icons/md'
 
 import { formatTodayDate } from 'features/kanban/card/utils'
+
+import { Icon } from 'components/ui'
 
 import { Calendar } from './Calendar'
 
@@ -31,7 +32,10 @@ export const DatePicker = ({ control }: DatePickerProps) => {
               className='focus-visible:styled-outline mb-[40px] flex items-center gap-1 text-brand
                 violet:text-brand-secondary'>
               {formatTodayDate(field.value)}
-              <MdKeyboardArrowDown className='size-lg text-current' />
+              <Icon
+                name='chevron-down'
+                className='size-lg stroke-current'
+              />
             </Trigger>
             <Portal>
               <Content

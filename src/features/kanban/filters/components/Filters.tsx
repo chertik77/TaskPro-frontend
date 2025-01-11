@@ -2,6 +2,8 @@ import * as Popover from '@radix-ui/react-popover'
 
 import { useCardFilters } from 'features/kanban/card/hooks'
 
+import { Icon } from 'components/ui'
+
 import { DeadlineFilter } from './DeadlineFilter'
 import { PriorityFilter } from './PriorityFilter'
 
@@ -11,9 +13,10 @@ export const Filters = () => {
   return (
     <Popover.Root>
       <Popover.Trigger className='focus-visible:styled-outline mr-5 flex items-center gap-2 desktop:mr-6'>
-        <svg className='size-4 stroke-black/80 dark:stroke-white/80'>
-          <use href='/icons.svg#icon-filter' />
-        </svg>
+        <Icon
+          name='filter'
+          className='size-4 stroke-black/80 dark:stroke-white/80'
+        />
         <h2>Filters</h2>
       </Popover.Trigger>
       <Popover.Portal>
@@ -25,9 +28,10 @@ export const Filters = () => {
             Filters
           </h2>
           <Popover.Close className='focus-visible:styled-outline absolute right-3.5 top-3.5'>
-            <svg className='size-lg stroke-black dark:stroke-white'>
-              <use href='/icons.svg#icon-close' />
-            </svg>
+            <Icon
+              name='close'
+              className='size-lg stroke-black dark:stroke-white'
+            />
           </Popover.Close>
           <div className='my-3.5 flex justify-between'>
             <h3>Priority</h3>

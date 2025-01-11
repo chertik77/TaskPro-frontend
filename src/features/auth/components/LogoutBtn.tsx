@@ -2,6 +2,8 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
+import { Icon } from 'components/ui'
+
 import { useLogoutUser } from '../hooks'
 
 export const LogoutBtn = () => {
@@ -18,12 +20,12 @@ export const LogoutBtn = () => {
         closeSidebarMobileModal()
         logoutUser()
       }}>
-      <svg
+      <Icon
+        name='logout'
         className='size-8 text-brand transition-colors group-hover:text-brand-hover
           group-focus:text-brand-hover violet:text-white
-          group-hover:violet:text-brand-third group-focus:violet:text-brand-third'>
-        <use href='/icons.svg#icon-logout' />
-      </svg>
+          group-hover:violet:text-brand-third group-focus:violet:text-brand-third'
+      />
       {isPending ? 'Logging out...' : 'Log out'}
     </button>
   )
