@@ -11,11 +11,12 @@ export const EditUserSchema = v.partial(
 
 export const HelpSchema = v.object({
   email: SigninSchema.entries.email,
-  comment: v.string([
-    v.toTrimmed(),
+  comment: v.pipe(
+    v.string(),
+    v.trim(),
     v.minLength(5, 'Please enter at least 5 characters.')
-  ])
+  )
 })
 
-export type EditUserSchema = v.Output<typeof EditUserSchema>
-export type HelpSchema = v.Output<typeof HelpSchema>
+export type EditUserSchema = v.InferInput<typeof EditUserSchema>
+export type HelpSchema = v.InferInput<typeof HelpSchema>

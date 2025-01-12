@@ -9,4 +9,4 @@ export const BoardSchema = v.object({
   background: v.string()
 })
 
-export type BoardSchema = v.Output<typeof BoardSchema>
+export type BoardSchema = v.InferInput<typeof BoardSchema>
