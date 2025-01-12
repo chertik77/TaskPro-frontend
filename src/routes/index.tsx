@@ -36,7 +36,6 @@ const IndexRoute = () => (
     </Link>
   </div>
 )
-
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
     const isSignedIn = authService.isSignedIn()

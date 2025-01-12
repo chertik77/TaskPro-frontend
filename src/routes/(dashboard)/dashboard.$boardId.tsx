@@ -9,7 +9,7 @@ type BoardRouteParams = {
   priority?: Priority
 }
 
-export const Route = createFileRoute('/(workspace)/dashboard/$boardId')({
+export const Route = createFileRoute('/(dashboard)/dashboard/$boardId')({
   component: Board,
   validateSearch: (search): BoardRouteParams => ({
     priority: search?.priority as Priority,

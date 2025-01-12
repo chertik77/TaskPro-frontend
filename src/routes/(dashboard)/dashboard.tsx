@@ -34,7 +34,7 @@ const DashboardRoute = () => {
   )
 }
 
-export const Route = createFileRoute('/(workspace)/dashboard')({
+export const Route = createFileRoute('/(dashboard)/dashboard')({
   beforeLoad: () => {
     const isSignedIn = authService.isSignedIn()
     if (!isSignedIn) throw redirect({ to: '/' })

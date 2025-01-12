@@ -16,9 +16,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as authAuthLayoutImport } from './routes/(auth)/_auth-layout'
 import { Route as authAuthLayoutSigninImport } from './routes/(auth)/_auth-layout.signin'
 import { Route as authAuthLayoutSignupImport } from './routes/(auth)/_auth-layout.signup'
-import { Route as workspaceDashboardImport } from './routes/(workspace)/dashboard'
-import { Route as workspaceDashboardBoardIdImport } from './routes/(workspace)/dashboard/$boardId'
-import { Route as workspaceDashboardIndexImport } from './routes/(workspace)/dashboard/index'
+import { Route as dashboardDashboardImport } from './routes/(dashboard)/dashboard'
+import { Route as dashboardDashboardBoardIdImport } from './routes/(dashboard)/dashboard.$boardId'
+import { Route as dashboardDashboardIndexImport } from './routes/(dashboard)/dashboard.index'
 import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
@@ -38,8 +38,8 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute
 } as any)
 
-const workspaceDashboardRoute = workspaceDashboardImport.update({
-  id: '/(workspace)/dashboard',
+const dashboardDashboardRoute = dashboardDashboardImport.update({
+  id: '/(dashboard)/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRoute
 } as any)
@@ -49,16 +49,16 @@ const authAuthLayoutRoute = authAuthLayoutImport.update({
   getParentRoute: () => authRoute
 } as any)
 
-const workspaceDashboardIndexRoute = workspaceDashboardIndexImport.update({
+const dashboardDashboardIndexRoute = dashboardDashboardIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => workspaceDashboardRoute
+  getParentRoute: () => dashboardDashboardRoute
 } as any)
 
-const workspaceDashboardBoardIdRoute = workspaceDashboardBoardIdImport.update({
+const dashboardDashboardBoardIdRoute = dashboardDashboardBoardIdImport.update({
   id: '/$boardId',
   path: '/$boardId',
-  getParentRoute: () => workspaceDashboardRoute
+  getParentRoute: () => dashboardDashboardRoute
 } as any)
 
 const authAuthLayoutSignupRoute = authAuthLayoutSignupImport.update({
@@ -98,11 +98,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authAuthLayoutImport
       parentRoute: typeof authRoute
     }
-    '/(workspace)/dashboard': {
-      id: '/(workspace)/dashboard'
+    '/(dashboard)/dashboard': {
+      id: '/(dashboard)/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
-      preLoaderRoute: typeof workspaceDashboardImport
+      preLoaderRoute: typeof dashboardDashboardImport
       parentRoute: typeof rootRoute
     }
     '/(auth)/_auth-layout/signin': {
@@ -119,19 +119,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authAuthLayoutSignupImport
       parentRoute: typeof authAuthLayoutImport
     }
-    '/(workspace)/dashboard/$boardId': {
-      id: '/(workspace)/dashboard/$boardId'
+    '/(dashboard)/dashboard/$boardId': {
+      id: '/(dashboard)/dashboard/$boardId'
       path: '/$boardId'
       fullPath: '/dashboard/$boardId'
-      preLoaderRoute: typeof workspaceDashboardBoardIdImport
-      parentRoute: typeof workspaceDashboardImport
+      preLoaderRoute: typeof dashboardDashboardBoardIdImport
+      parentRoute: typeof dashboardDashboardImport
     }
-    '/(workspace)/dashboard/': {
-      id: '/(workspace)/dashboard/'
+    '/(dashboard)/dashboard/': {
+      id: '/(dashboard)/dashboard/'
       path: '/'
       fullPath: '/dashboard/'
-      preLoaderRoute: typeof workspaceDashboardIndexImport
-      parentRoute: typeof workspaceDashboardImport
+      preLoaderRoute: typeof dashboardDashboardIndexImport
+      parentRoute: typeof dashboardDashboardImport
     }
   }
 }
@@ -162,34 +162,34 @@ const authRouteChildren: authRouteChildren = {
 
 const authRouteWithChildren = authRoute._addFileChildren(authRouteChildren)
 
-interface workspaceDashboardRouteChildren {
-  workspaceDashboardBoardIdRoute: typeof workspaceDashboardBoardIdRoute
-  workspaceDashboardIndexRoute: typeof workspaceDashboardIndexRoute
+interface dashboardDashboardRouteChildren {
+  dashboardDashboardBoardIdRoute: typeof dashboardDashboardBoardIdRoute
+  dashboardDashboardIndexRoute: typeof dashboardDashboardIndexRoute
 }
 
-const workspaceDashboardRouteChildren: workspaceDashboardRouteChildren = {
-  workspaceDashboardBoardIdRoute: workspaceDashboardBoardIdRoute,
-  workspaceDashboardIndexRoute: workspaceDashboardIndexRoute
+const dashboardDashboardRouteChildren: dashboardDashboardRouteChildren = {
+  dashboardDashboardBoardIdRoute: dashboardDashboardBoardIdRoute,
+  dashboardDashboardIndexRoute: dashboardDashboardIndexRoute
 }
 
-const workspaceDashboardRouteWithChildren =
-  workspaceDashboardRoute._addFileChildren(workspaceDashboardRouteChildren)
+const dashboardDashboardRouteWithChildren =
+  dashboardDashboardRoute._addFileChildren(dashboardDashboardRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof authAuthLayoutRouteWithChildren
-  '/dashboard': typeof workspaceDashboardRouteWithChildren
+  '/dashboard': typeof dashboardDashboardRouteWithChildren
   '/signin': typeof authAuthLayoutSigninRoute
   '/signup': typeof authAuthLayoutSignupRoute
-  '/dashboard/$boardId': typeof workspaceDashboardBoardIdRoute
-  '/dashboard/': typeof workspaceDashboardIndexRoute
+  '/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
+  '/dashboard/': typeof dashboardDashboardIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof authAuthLayoutRouteWithChildren
   '/signin': typeof authAuthLayoutSigninRoute
   '/signup': typeof authAuthLayoutSignupRoute
-  '/dashboard/$boardId': typeof workspaceDashboardBoardIdRoute
-  '/dashboard': typeof workspaceDashboardIndexRoute
+  '/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
+  '/dashboard': typeof dashboardDashboardIndexRoute
 }
 
 export interface FileRoutesById {
@@ -197,11 +197,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(auth)': typeof authRouteWithChildren
   '/(auth)/_auth-layout': typeof authAuthLayoutRouteWithChildren
-  '/(workspace)/dashboard': typeof workspaceDashboardRouteWithChildren
+  '/(dashboard)/dashboard': typeof dashboardDashboardRouteWithChildren
   '/(auth)/_auth-layout/signin': typeof authAuthLayoutSigninRoute
   '/(auth)/_auth-layout/signup': typeof authAuthLayoutSignupRoute
-  '/(workspace)/dashboard/$boardId': typeof workspaceDashboardBoardIdRoute
-  '/(workspace)/dashboard/': typeof workspaceDashboardIndexRoute
+  '/(dashboard)/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
+  '/(dashboard)/dashboard/': typeof dashboardDashboardIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -220,24 +220,24 @@ export interface FileRouteTypes {
     | '/'
     | '/(auth)'
     | '/(auth)/_auth-layout'
-    | '/(workspace)/dashboard'
+    | '/(dashboard)/dashboard'
     | '/(auth)/_auth-layout/signin'
     | '/(auth)/_auth-layout/signup'
-    | '/(workspace)/dashboard/$boardId'
-    | '/(workspace)/dashboard/'
+    | '/(dashboard)/dashboard/$boardId'
+    | '/(dashboard)/dashboard/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authRoute: typeof authRouteWithChildren
-  workspaceDashboardRoute: typeof workspaceDashboardRouteWithChildren
+  dashboardDashboardRoute: typeof dashboardDashboardRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authRoute: authRouteWithChildren,
-  workspaceDashboardRoute: workspaceDashboardRouteWithChildren
+  dashboardDashboardRoute: dashboardDashboardRouteWithChildren
 }
 
 export const routeTree = rootRoute
@@ -252,7 +252,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/(auth)",
-        "/(workspace)/dashboard"
+        "/(dashboard)/dashboard"
       ]
     },
     "/": {
@@ -272,11 +272,11 @@ export const routeTree = rootRoute
         "/(auth)/_auth-layout/signup"
       ]
     },
-    "/(workspace)/dashboard": {
-      "filePath": "(workspace)/dashboard.tsx",
+    "/(dashboard)/dashboard": {
+      "filePath": "(dashboard)/dashboard.tsx",
       "children": [
-        "/(workspace)/dashboard/$boardId",
-        "/(workspace)/dashboard/"
+        "/(dashboard)/dashboard/$boardId",
+        "/(dashboard)/dashboard/"
       ]
     },
     "/(auth)/_auth-layout/signin": {
@@ -287,13 +287,13 @@ export const routeTree = rootRoute
       "filePath": "(auth)/_auth-layout.signup.tsx",
       "parent": "/(auth)/_auth-layout"
     },
-    "/(workspace)/dashboard/$boardId": {
-      "filePath": "(workspace)/dashboard/$boardId.tsx",
-      "parent": "/(workspace)/dashboard"
+    "/(dashboard)/dashboard/$boardId": {
+      "filePath": "(dashboard)/dashboard.$boardId.tsx",
+      "parent": "/(dashboard)/dashboard"
     },
-    "/(workspace)/dashboard/": {
-      "filePath": "(workspace)/dashboard/index.tsx",
-      "parent": "/(workspace)/dashboard"
+    "/(dashboard)/dashboard/": {
+      "filePath": "(dashboard)/dashboard.index.tsx",
+      "parent": "/(dashboard)/dashboard"
     }
   }
 }

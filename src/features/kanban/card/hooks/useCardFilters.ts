@@ -4,7 +4,7 @@ type ParamKey = 'priority' | 'deadline'
 
 export const useCardFilters = () => {
   const { priority: priorityParam, deadline: deadlineParam } = useLoaderDeps({
-    from: '/(workspace)/dashboard/$boardId'
+    from: '/(dashboard)/dashboard/$boardId'
   })
 
   const navigate = useNavigate({ from: '/dashboard/$boardId' })
