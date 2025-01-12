@@ -1,25 +1,20 @@
+import { useSetAtom } from 'jotai/react'
 import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
-import {
-  selectIsSidebarOpen,
-  setIsSidebarOpen
-} from 'features/sidebar/sidebar.slice'
+import { sidebarAtom } from 'features/sidebar/sidebar.atom'
 
 import { Icon } from 'components/ui'
-import { useAppDispatch, useAppSelector } from 'hooks/redux'
 
 export const HeaderControls = () => {
   const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)
 
-  const isSidebarOpen = useAppSelector(selectIsSidebarOpen)
-
-  const dispatch = useAppDispatch()
+  const setIsSidebarOpen = useSetAtom(sidebarAtom)
 
   return (
     <>
       <button
-        onClick={() => dispatch(setIsSidebarOpen(!isSidebarOpen))}
+        onClick={() => setIsSidebarOpen(prev => !prev)}
         type='button'
         aria-label='Toggle sidebar'
         className='focus-visible:styled-outline mr-auto size-5 max-desktop:hidden'>

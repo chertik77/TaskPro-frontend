@@ -5,7 +5,7 @@ import { GoogleSignin } from 'features/auth/components'
 
 import { Icon } from 'components/ui'
 
-const HomePage = () => (
+const IndexRoute = () => (
   <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>
     <img
       className='size-[124px] tablet:size-[162px]'
@@ -42,5 +42,5 @@ export const Route = createFileRoute('/')({
     const isSignedIn = authService.isSignedIn()
     if (isSignedIn) throw redirect({ to: '/dashboard' })
   },
-  component: HomePage
+  component: IndexRoute
 })
