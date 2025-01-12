@@ -58,12 +58,8 @@ export const authService = {
     return user
   },
 
-  async getTokens(data: { refreshToken: string }) {
-    const {
-      data: { accessToken, refreshToken }
-    } = await axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, data)
-
-    authTokenService.saveTokens({ accessToken, refreshToken })
+  getTokens(data: { refreshToken: string }) {
+    return axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, data)
   },
 
   async logout() {

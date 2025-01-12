@@ -23,5 +23,6 @@ createAuthRefreshInterceptor(axiosInstance, async () => {
 
   return authService
     .getTokens({ refreshToken: tokens?.refreshToken as string })
+    .then(r => authTokenService.saveTokens(r.data))
     .catch(authTokenService.removeTokens)
 })

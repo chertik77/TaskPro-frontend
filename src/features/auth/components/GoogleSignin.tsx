@@ -1,31 +1,9 @@
-import { useGoogleLogin } from '@react-oauth/google'
-import { useNavigate } from '@tanstack/react-router'
-import { useSetAtom } from 'jotai/react'
-import { toast } from 'sonner'
-
-import { userAtom } from 'features/user/user.atom'
-
 import { Icon } from 'components/ui'
 
-import { authService } from '../auth.service'
+import { useSigninUserWithGoogle } from '../hooks'
 
 export const GoogleSignin = () => {
-  const setUser = useSetAtom(userAtom)
-
-  const navigate = useNavigate()
-
-  const signinWithGoogle = useGoogleLogin({
-    flow: 'auth-code',
-    onSuccess: async ({ code }) => {
-      const user = await authService.signinWithGoogle(code)
-      setUser(user)
-      navigate({ to: '/dashboard' })
-    },
-    onError: () =>
-      toast.error(
-        'Authentication failed: Unable to sign in with Google. Please try again.'
-      )
-  })
+  const { signinWithGoogle } = useSigninUserWithGoogle()
 
   return (
     <button
