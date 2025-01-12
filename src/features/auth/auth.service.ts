@@ -4,16 +4,24 @@ import type { AuthResponse, Tokens } from './auth.types'
 
 import { axiosInstance } from 'api'
 
+import { authTokenService } from './auth-token.service'
 import { AuthApiEndpoints } from './config'
 
 export const authService = {
-  async signup(data: SignupSchema) {
-    const response = await axiosInstance.post<AuthResponse>(
-      AuthApiEndpoints.Signup,
-      data
-    )
+  isSignedIn() {
+    return !!authTokenService.getTokens()
+  },
 
-    return response.data
+  async signup(data: SignupSchema) {
+    const {
+      data: { user, accessToken, refreshToken }
+    } = await axiosInstance.post<AuthResponse>(AuthApiEndpoints.Signup, data)
+
+    if (accessToken && refreshToken) {
+      authTokenService.saveTokens({ accessToken, refreshToken })
+    }
+
+    return user
   },
 
   async signin(data: SigninSchema) {
@@ -21,29 +29,46 @@ export const authService = {
       skipAuthRefresh: true
     }
 
-    const response = await axiosInstance.post<AuthResponse>(
+    const {
+      data: { user, accessToken, refreshToken }
+    } = await axiosInstance.post<AuthResponse>(
       AuthApiEndpoints.Signin,
       data,
       requestConfig
     )
 
-    return response.data
+    if (accessToken && refreshToken) {
+      authTokenService.saveTokens({ accessToken, refreshToken })
+    }
+
+    return user
   },
 
   async signinWithGoogle(code: string) {
-    const response = await axiosInstance.post<AuthResponse>(
-      AuthApiEndpoints.Google,
-      { code }
-    )
+    const {
+      data: { user, accessToken, refreshToken }
+    } = await axiosInstance.post<AuthResponse>(AuthApiEndpoints.Google, {
+      code
+    })
 
-    return response.data
+    if (accessToken && refreshToken) {
+      authTokenService.saveTokens({ accessToken, refreshToken })
+    }
+
+    return user
   },
 
-  getTokens(data: { refreshToken: string }) {
-    return axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, data)
+  async getTokens(data: { refreshToken: string }) {
+    const {
+      data: { accessToken, refreshToken }
+    } = await axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, data)
+
+    authTokenService.saveTokens({ accessToken, refreshToken })
   },
 
   async logout() {
     await axiosInstance.post(AuthApiEndpoints.Logout)
+
+    authTokenService.removeTokens()
   }
 }

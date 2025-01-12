@@ -1,21 +1,21 @@
 import { useGoogleLogin } from '@react-oauth/google'
+import { useSetAtom } from 'jotai/react'
 import { toast } from 'sonner'
 
-import { authenticate } from 'features/user/user.slice'
+import { userAtom } from 'features/user/user.atom'
 
 import { Icon } from 'components/ui'
-import { useAppDispatch } from 'hooks/redux'
 
 import { authService } from '../auth.service'
 
 export const GoogleSignin = () => {
-  const dispatch = useAppDispatch()
+  const setUser = useSetAtom(userAtom)
 
   const signinWithGoogle = useGoogleLogin({
     flow: 'auth-code',
     onSuccess: async ({ code }) => {
-      const r = await authService.signinWithGoogle(code)
-      dispatch(authenticate(r))
+      const user = await authService.signinWithGoogle(code)
+      setUser(user)
     },
     onError: () =>
       toast.error(

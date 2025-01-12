@@ -1,15 +1,13 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { store } from 'store'
+
+import { authService } from 'features/auth/auth.service'
 
 import { DashboardPage } from 'pages'
 
 export const Route = createFileRoute('/dashboard/')({
   beforeLoad: () => {
-    const isLoggedIn = store.getState().user.isLoggedIn
-
-    if (!isLoggedIn) {
-      throw redirect({ to: '/' })
-    }
+    const isSignedIn = authService.isSignedIn()
+    if (!isSignedIn) throw redirect({ to: '/' })
   },
   component: DashboardPage
 })

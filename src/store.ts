@@ -3,10 +3,8 @@ import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import { sidebarReducer } from 'features/sidebar/sidebar.slice'
-import { userReducer } from 'features/user/user.slice'
 
 const rootReducer = combineReducers({
-  user: persistReducer({ key: 'user', storage }, userReducer),
   sidebar: persistReducer({ key: 'sidebar', storage }, sidebarReducer)
 })
 

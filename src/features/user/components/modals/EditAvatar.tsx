@@ -4,11 +4,11 @@ import type { EditUserSchema } from 'features/user/user.schema'
 import type { User } from 'features/user/user.types'
 
 import { useRef } from 'react'
+import { useAtomValue } from 'jotai/react'
 
-import { selectUser } from 'features/user/user.slice'
+import { userAtom } from 'features/user/user.atom'
 
 import { Icon } from 'components/ui'
-import { useAppSelector } from 'hooks/redux'
 
 type EditAvatarProps = {
   changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema>
@@ -17,7 +17,7 @@ type EditAvatarProps = {
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const { avatar } = useAppSelector(selectUser)
+  const { avatar } = useAtomValue(userAtom)
 
   return (
     <div className='mb-[25px] flex justify-center'>

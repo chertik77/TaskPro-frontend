@@ -3,17 +3,16 @@ import type { SigninSchema } from '../auth.schema'
 
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
+import { useSetAtom } from 'jotai/react'
 import { toast } from 'sonner'
 
-import { authenticate } from 'features/user/user.slice'
-
-import { useAppDispatch } from 'hooks/redux'
+import { userAtom } from 'features/user/user.atom'
 
 import { authService } from '../auth.service'
 import { AuthCacheKeys } from '../config'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
-  const dispatch = useAppDispatch()
+  const setUser = useSetAtom(userAtom)
 
   const navigate = useNavigate()
 
@@ -23,7 +22,7 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
     onSuccess(data) {
       reset()
       navigate({ to: '/dashboard' })
-      dispatch(authenticate(data))
+      setUser(data)
     },
     onError: e =>
       toast.error(
