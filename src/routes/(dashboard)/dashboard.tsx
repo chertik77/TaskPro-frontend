@@ -3,6 +3,7 @@ import { useAtom } from 'jotai/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 import { authService } from 'features/auth/auth.service'
+import { boardsQueryOptions } from 'features/kanban/board/boardsQueryOptions'
 import { Sidebar } from 'features/sidebar/components'
 import { sidebarAtom } from 'features/sidebar/sidebar.atom'
 
@@ -39,5 +40,7 @@ export const Route = createFileRoute('/(dashboard)/dashboard')({
     const isSignedIn = authService.isSignedIn()
     if (!isSignedIn) throw redirect({ to: '/' })
   },
-  component: DashboardRoute
+  component: DashboardRoute,
+  loader: ({ context: { queryClient } }) =>
+    queryClient.ensureQueryData(boardsQueryOptions)
 })

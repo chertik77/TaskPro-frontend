@@ -1,4 +1,6 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+import type { QueryClient } from '@tanstack/react-query'
+
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { useAtomValue } from 'jotai/react'
@@ -62,4 +64,6 @@ const RootRoute = () => {
   )
 }
 
-export const Route = createRootRoute({ component: RootRoute })
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient
+}>()({ component: RootRoute })

@@ -1,14 +1,16 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
-import { Icon, Loader } from 'components/ui'
+import { Icon } from 'components/ui'
 
 import { cn } from 'lib'
 
-import { useGetAllBoards, useGetParamBoardId } from '../hooks'
+import { boardsQueryOptions } from '../boardsQueryOptions'
+import { useGetParamBoardId } from '../hooks'
 import { BoardsListActiveItem } from './BoardsListActiveItem'
 
 export const BoardsList = () => {
@@ -18,14 +20,9 @@ export const BoardsList = () => {
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
-  const { data: boards, isPending } = useGetAllBoards()
+  const { data: boards } = useSuspenseQuery(boardsQueryOptions)
 
-  return isPending ? (
-    <div className='mb-10 flex h-4xl items-center gap-2 pl-3.5 violet:text-white tablet:pl-6'>
-      <Loader className='size-5' />
-      Loading your boards...
-    </div>
-  ) : (
+  return (
     <Root
       value={boardId}
       onValueChange={v => {
