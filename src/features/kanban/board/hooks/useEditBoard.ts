@@ -9,12 +9,12 @@ import { toast } from 'sonner'
 import { boardService } from '../board.service'
 import { EditBoardModal } from '../components/modals'
 import { BoardCacheKeys } from '../config'
-import { useGetBoardId } from './useGetBoardId'
+import { useGetParamBoardId } from './useGetParamBoardId'
 
 export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   const { close: closeEditBoardModal } = useModal(EditBoardModal)
 

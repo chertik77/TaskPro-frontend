@@ -7,7 +7,7 @@ import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
 import { columnService } from '../column.service'
 import { EditColumnModal } from '../components/modals/EditColumnModal'
@@ -16,7 +16,7 @@ import { ColumnCacheKeys } from '../config'
 export const useEditColumn = (reset: UseFormReset<TitleSchema>) => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   const { close: closeEditColumnModal } = useModal(EditColumnModal)
 

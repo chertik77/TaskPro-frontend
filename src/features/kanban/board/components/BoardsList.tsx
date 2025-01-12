@@ -8,13 +8,13 @@ import { Icon, Loader } from 'components/ui'
 
 import { cn } from 'lib'
 
-import { useGetAllBoards, useGetBoardId } from '../hooks'
+import { useGetAllBoards, useGetParamBoardId } from '../hooks'
 import { BoardsListActiveItem } from './BoardsListActiveItem'
 
 export const BoardsList = () => {
   const navigate = useNavigate()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 

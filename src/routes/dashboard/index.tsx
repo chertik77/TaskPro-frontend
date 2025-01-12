@@ -1,16 +1,25 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { useAtomValue } from 'jotai/react'
+import { useAtom } from 'jotai/react'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { authService } from 'features/auth/auth.service'
 import { Sidebar } from 'features/sidebar/components'
 import { sidebarAtom } from 'features/sidebar/sidebar.atom'
 
 import { Header } from 'components/header'
+import { useTabletAndBelowMediaQuery } from 'hooks'
 
 import { cn } from 'lib'
 
 const DashboardRoute = () => {
-  const isSidebarOpen = useAtomValue(sidebarAtom)
+  const [isSidebarOpen, setIsSidebarOpen] = useAtom(sidebarAtom)
+
+  const isTabletAndBelow = useTabletAndBelowMediaQuery()
+
+  useHotkeys('mod+o', () => setIsSidebarOpen(!isSidebarOpen), {
+    preventDefault: true,
+    ignoreEventWhen: () => isTabletAndBelow
+  })
 
   return (
     <div

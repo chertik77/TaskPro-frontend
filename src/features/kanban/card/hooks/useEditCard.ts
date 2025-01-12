@@ -7,7 +7,7 @@ import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
 import { cardService } from '../card.service'
 import { EditCardModal } from '../components/modals'
@@ -16,7 +16,7 @@ import { CardCacheKeys } from '../config'
 export const useEditCard = (reset: UseFormReset<CardSchema>) => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   const { close: closeEditCardModal } = useModal(EditCardModal)
 

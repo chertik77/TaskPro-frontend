@@ -6,12 +6,12 @@ import { toast } from 'sonner'
 
 import { boardService } from '../board.service'
 import { BoardCacheKeys } from '../config'
-import { useGetBoardId } from './useGetBoardId'
+import { useGetParamBoardId } from './useGetParamBoardId'
 
 export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   const navigate = useNavigate()
 

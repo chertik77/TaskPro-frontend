@@ -5,7 +5,7 @@ import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 import { TitleSchema } from 'features/kanban/shared/schema'
 
 import { columnService } from '../column.service'
@@ -17,7 +17,7 @@ export const useAddColumn = (reset: UseFormReset<TitleSchema>) => {
 
   const { close: closeAddColumnModal } = useModal(AddColumnModal)
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   return useMutation({
     mutationKey: [ColumnCacheKeys.AddColumn],

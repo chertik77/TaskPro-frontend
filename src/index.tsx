@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
+import type { AxiosError } from 'axios'
+
 import { StrictMode } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -15,7 +18,19 @@ const queryClient = new QueryClient({
   }
 })
 
-export const router = createRouter({ routeTree })
+const router = createRouter({ routeTree })
+
+declare module '@tanstack/react-query' {
+  interface Register {
+    defaultError: AxiosError
+  }
+}
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
