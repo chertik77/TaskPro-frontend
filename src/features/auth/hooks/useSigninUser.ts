@@ -2,6 +2,7 @@ import type { UseFormReset } from 'react-hook-form'
 import type { SigninSchema } from '../auth.schema'
 
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
 import { authenticate } from 'features/user/user.slice'
@@ -14,11 +15,14 @@ import { AuthCacheKeys } from '../config'
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   const dispatch = useAppDispatch()
 
+  const navigate = useNavigate()
+
   return useMutation({
     mutationKey: [AuthCacheKeys.Signin],
     mutationFn: authService.signin,
     onSuccess(data) {
       reset()
+      navigate({ to: '/dashboard' })
       dispatch(authenticate(data))
     },
     onError: e =>

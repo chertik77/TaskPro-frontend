@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
 import { logout } from 'features/user/user.slice'
@@ -11,10 +12,13 @@ import { AuthCacheKeys } from '../config'
 export const useLogoutUser = () => {
   const dispatch = useAppDispatch()
 
+  const navigate = useNavigate()
+
   return useMutation({
     mutationKey: [AuthCacheKeys.Logout],
     mutationFn: authService.logout,
     onSuccess() {
+      navigate({ to: '/' })
       dispatch(logout())
     },
     onError() {

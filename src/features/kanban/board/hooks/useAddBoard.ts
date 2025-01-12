@@ -2,11 +2,9 @@ import type { UseFormReset } from 'react-hook-form'
 import type { BoardSchema } from '../board.schema'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-
-import { Pages } from 'config'
 
 import { boardService } from '../board.service'
 import { NewBoardModal } from '../components/modals'
@@ -25,7 +23,7 @@ export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
     onSuccess(data) {
       closeNewBoardModal()
       reset()
-      navigate(`${Pages.Dashboard}/${data.id}`)
+      navigate({ to: `/dashboard/$boardId`, params: { boardId: data.id } })
       queryClient.invalidateQueries({ queryKey: [BoardCacheKeys.Boards] })
     },
     onError() {

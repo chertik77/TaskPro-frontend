@@ -22,6 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/routes/dashboard/.index.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

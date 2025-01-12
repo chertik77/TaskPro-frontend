@@ -7,9 +7,8 @@ import { useModal } from 'react-modal-state'
 
 import { BoardCard } from 'features/kanban/card/components'
 import { AddCardModal } from 'features/kanban/card/components/modals'
-import { useCardFilters } from 'features/kanban/card/hooks'
+// import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
-import { getFilteredCards } from 'features/kanban/filters/utils'
 
 import { Button, Scrollbar } from 'components/ui'
 import { useTabletAndBelowMediaQuery } from 'hooks'
@@ -31,16 +30,13 @@ export const BoardColumnsItem = ({
 }: BoardColumnsItemProps) => {
   const { open: openAddCardModal } = useModal(AddCardModal)
 
-  const { cardPriority, cardDeadline } = useCardFilters()
+  // const { cardPriority, cardDeadline } = useCardFilters()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   const { cardsIds } = useDragAndDrop()
 
-  const filteredCards = getFilteredCards(cards!, {
-    priority: cardPriority,
-    deadline: cardDeadline
-  })
+  // const filteredCards = getFilteredCards(cards!)
 
   const { style, setNodeRef, attributes, listeners, isDragging } =
     useKanbanSortable({
@@ -77,7 +73,7 @@ export const BoardColumnsItem = ({
           <SortableContext
             items={cardsIds || []}
             strategy={verticalListSortingStrategy}>
-            {filteredCards?.map(card => (
+            {cards?.map(card => (
               <BoardCard
                 card={card}
                 key={card.id}

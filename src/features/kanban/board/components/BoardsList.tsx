@@ -1,12 +1,10 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
+import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
-import { useNavigate } from 'react-router-dom'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
 
 import { Icon, Loader } from 'components/ui'
-
-import { Pages } from 'config'
 
 import { cn } from 'lib'
 
@@ -31,7 +29,7 @@ export const BoardsList = () => {
     <Root
       value={boardId}
       onValueChange={v => {
-        navigate(`${Pages.Dashboard}/${v}`)
+        navigate({ to: '/dashboard/$boardId', params: { boardId: v } })
         closeSidebarMobileModal()
       }}
       className={cn('mb-10 text-base', boards?.length === 0 && 'mb-auto')}>

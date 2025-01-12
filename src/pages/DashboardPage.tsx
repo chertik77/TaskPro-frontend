@@ -1,5 +1,5 @@
+import { Outlet } from '@tanstack/react-router'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { Outlet } from 'react-router-dom'
 
 import { Sidebar } from 'features/sidebar/components'
 import {

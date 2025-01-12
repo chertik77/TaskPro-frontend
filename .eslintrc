@@ -5,7 +5,8 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:tailwindcss/recommended",
-    "plugin:@tanstack/query/recommended"
+    "plugin:@tanstack/query/recommended",
+    "plugin:@tanstack/eslint-plugin-router/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

@@ -1,9 +1,7 @@
-import { useLocation } from 'react-router-dom'
+import { useParams } from '@tanstack/react-router'
 
 export const useGetBoardId = () => {
-  const { pathname } = useLocation()
+  const { boardId } = useParams({ strict: false })
 
-  const boardId = pathname.split('/').pop()
-
-  return boardId
+  return boardId as string
 }

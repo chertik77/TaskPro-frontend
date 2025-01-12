@@ -1,14 +1,17 @@
+import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
-import { Outlet } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
+import { useGetCurrentUser } from 'features/user/hooks'
 import { selectUserTheme } from 'features/user/user.slice'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 import { useAppSelector } from 'hooks/redux'
 
-export const Layout = () => {
+const RootRoute = () => {
+  useGetCurrentUser()
+
   const theme = useAppSelector(selectUserTheme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
@@ -29,3 +32,5 @@ export const Layout = () => {
     </>
   )
 }
+
+export const Route = createRootRoute({ component: RootRoute })
