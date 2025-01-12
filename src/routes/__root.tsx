@@ -22,13 +22,13 @@ import {
   EditProfileModal,
   NeedHelpModal
 } from 'features/user/components/modals'
-import { useGetCurrentUser } from 'features/user/hooks'
+import { useGetAndSetCurrentUser } from 'features/user/hooks'
 import { userAtom } from 'features/user/user.atom'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
 const RootRoute = () => {
-  useGetCurrentUser()
+  useGetAndSetCurrentUser()
 
   const { theme } = useAtomValue(userAtom)
 

@@ -8,16 +8,16 @@ import { UserCacheKeys } from '../config'
 import { userAtom } from '../user.atom'
 import { userService } from '../user.service'
 
-export const useGetCurrentUser = () => {
+export const useGetAndSetCurrentUser = () => {
   const setUser = useSetAtom(userAtom)
 
-  const { data, isSuccess } = useQuery({
+  const { data: user, isSuccess } = useQuery({
     queryKey: [UserCacheKeys.User],
     queryFn: userService.getCurrentUser,
     enabled: authService.isSignedIn()
   })
 
   useEffect(() => {
-    if (isSuccess) setUser(data)
-  }, [data, isSuccess, setUser])
+    if (isSuccess && user) setUser(user)
+  }, [user, isSuccess, setUser])
 }
