@@ -18,12 +18,7 @@ const queryClient = new QueryClient({
   }
 })
 
-const router = createRouter({
-  routeTree,
-  context: { queryClient },
-  defaultPreload: 'intent',
-  defaultPreloadStaleTime: 0
-})
+const router = createRouter({ routeTree })
 
 declare module '@tanstack/react-query' {
   interface Register {
