@@ -1,4 +1,5 @@
 import { useGoogleLogin } from '@react-oauth/google'
+import { useNavigate } from '@tanstack/react-router'
 import { useSetAtom } from 'jotai/react'
 import { toast } from 'sonner'
 
@@ -11,11 +12,14 @@ import { authService } from '../auth.service'
 export const GoogleSignin = () => {
   const setUser = useSetAtom(userAtom)
 
+  const navigate = useNavigate()
+
   const signinWithGoogle = useGoogleLogin({
     flow: 'auth-code',
     onSuccess: async ({ code }) => {
       const user = await authService.signinWithGoogle(code)
       setUser(user)
+      navigate({ to: '/dashboard' })
     },
     onError: () =>
       toast.error(
@@ -33,7 +37,7 @@ export const GoogleSignin = () => {
         name='google'
         className='size-7'
       />
-      Sign in with Google
+      Continue with Google
     </button>
   )
 }

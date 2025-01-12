@@ -3,25 +3,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import ReactDOM from 'react-dom/client'
-import { ModalProvider, ModalRenderer } from 'react-modal-state'
-
-import {
-  EditBoardModal,
-  NewBoardModal
-} from 'features/kanban/board/components/modals'
-import {
-  AddCardModal,
-  EditCardModal
-} from 'features/kanban/card/components/modals'
-import {
-  AddColumnModal,
-  EditColumnModal
-} from 'features/kanban/column/components/modals'
-import { SidebarMobileModal } from 'features/sidebar/components'
-import {
-  EditProfileModal,
-  NeedHelpModal
-} from 'features/user/components/modals'
 
 import { routeTree } from './routeTree.gen'
 
@@ -40,18 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <QueryClientProvider client={queryClient}>
-        <ModalProvider>
-          <RouterProvider router={router} />
-          <ModalRenderer Component={NewBoardModal} />
-          <ModalRenderer Component={EditBoardModal} />
-          <ModalRenderer Component={AddColumnModal} />
-          <ModalRenderer Component={EditColumnModal} />
-          <ModalRenderer Component={AddCardModal} />
-          <ModalRenderer Component={EditCardModal} />
-          <ModalRenderer Component={NeedHelpModal} />
-          <ModalRenderer Component={EditProfileModal} />
-          <ModalRenderer Component={SidebarMobileModal} />
-        </ModalProvider>
+        <RouterProvider router={router} />
       </QueryClientProvider>
     </GoogleOAuthProvider>
   </StrictMode>
