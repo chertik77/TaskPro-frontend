@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
 import { columnService } from '../column.service'
 import { ColumnCacheKeys } from '../config'
@@ -12,7 +12,7 @@ import { ColumnCacheKeys } from '../config'
 export const useUpdateColumnsOrder = () => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   return useMutation({
     mutationKey: [ColumnCacheKeys.UpdateColumnsOrder],

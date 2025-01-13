@@ -5,21 +5,13 @@ import { RadioInput } from 'features/kanban/shared/components'
 import { DEADLINES } from 'features/kanban/shared/constants'
 
 export const DeadlineFilter = () => {
-  const { setSearchParams, cardDeadline } = useCardFilters()
-
-  const handleParamsChange = (v: string) => {
-    setSearchParams(searchParams => {
-      searchParams.set('deadline', v)
-
-      return searchParams
-    })
-  }
+  const { deadlineParam, handleParamsChange } = useCardFilters()
 
   return (
     <Root
       className='flex flex-col gap-2'
-      value={cardDeadline}
-      onValueChange={handleParamsChange}>
+      value={deadlineParam}
+      onValueChange={v => handleParamsChange('deadline', v)}>
       {DEADLINES.map(deadline => (
         <label
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black
@@ -28,7 +20,7 @@ export const DeadlineFilter = () => {
           key={deadline}>
           <RadioInput
             value={deadline}
-            checked={deadline === cardDeadline}
+            checked={deadline === deadlineParam}
           />
           {deadline}
         </label>

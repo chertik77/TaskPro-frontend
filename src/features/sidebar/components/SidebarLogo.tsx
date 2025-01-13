@@ -1,9 +1,7 @@
+import { Link } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
-import { Link } from 'react-router-dom'
 
 import { Icon } from 'components/ui'
-
-import { Pages } from 'config'
 
 import { SidebarMobileModal } from './SidebarMobileModal'
 
@@ -16,7 +14,7 @@ export const SidebarLogo = () => {
         desktop:pt-6'>
       <Link
         className='focus-visible:styled-outline text-white violet:text-brand-secondary'
-        to={Pages.Dashboard}
+        to='/dashboard'
         onClick={closeSidebarMobileModal}>
         <Icon
           name='logo'

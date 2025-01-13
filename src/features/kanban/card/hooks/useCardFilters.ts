@@ -1,12 +1,17 @@
-import type { Deadline, Priority } from 'features/kanban/shared/constants'
+import { useLoaderDeps, useNavigate } from '@tanstack/react-router'
 
-import { useSearchParams } from 'react-router-dom'
+type ParamKey = 'priority' | 'deadline'
 
 export const useCardFilters = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const { priority: priorityParam, deadline: deadlineParam } = useLoaderDeps({
+    from: '/(dashboard)/dashboard/$boardId'
+  })
 
-  const cardPriority = searchParams.get('priority') as Priority
-  const cardDeadline = searchParams.get('deadline') as Deadline
+  const navigate = useNavigate({ from: '/dashboard/$boardId' })
 
-  return { cardPriority, cardDeadline, setSearchParams, searchParams }
+  const handleParamsChange = (key: ParamKey, v: string) => {
+    navigate({ search: prev => ({ ...prev, [key]: v }) })
+  }
+
+  return { priorityParam, deadlineParam, handleParamsChange }
 }

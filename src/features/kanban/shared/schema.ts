@@ -1,10 +1,11 @@
 import * as v from 'valibot'
 
 export const TitleSchema = v.object({
-  title: v.string([
-    v.toTrimmed(),
+  title: v.pipe(
+    v.string(),
+    v.trim(),
     v.minLength(3, 'Please enter at least 3 characters.')
-  ])
+  )
 })
 
-export type TitleSchema = v.Output<typeof TitleSchema>
+export type TitleSchema = v.InferInput<typeof TitleSchema>

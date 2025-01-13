@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
 import * as Select from '@radix-ui/react-select'
 
-import { selectUserTheme } from 'features/user/user.slice'
+import { useAuthStore } from 'features/auth/auth.store'
 
 import { Icon } from 'components/ui'
-import { useAppSelector } from 'hooks/redux'
 
 import { useChangeTheme } from '../hooks'
 import { DEFAULT_THEME, THEMES } from '../user.constants'
 
 export const ThemeSelect = () => {
-  const theme = useAppSelector(selectUserTheme)
+  const theme = useAuthStore(state => state.user.theme)
 
   const { mutate: changeUserTheme } = useChangeTheme()
 

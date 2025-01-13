@@ -1,21 +1,22 @@
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { logout } from 'features/user/user.slice'
-
-import { useAppDispatch } from 'hooks/redux'
-
 import { authService } from '../auth.service'
+import { useAuthStore } from '../auth.store'
 import { AuthCacheKeys } from '../config'
 
 export const useLogoutUser = () => {
-  const dispatch = useAppDispatch()
+  const resetStore = useAuthStore(state => state.resetStore)
+
+  const navigate = useNavigate()
 
   return useMutation({
     mutationKey: [AuthCacheKeys.Logout],
     mutationFn: authService.logout,
     onSuccess() {
-      dispatch(logout())
+      navigate({ to: '/' })
+      resetStore()
     },
     onError() {
       toast.error(

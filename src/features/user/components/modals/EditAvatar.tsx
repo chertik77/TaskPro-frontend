@@ -5,10 +5,9 @@ import type { User } from 'features/user/user.types'
 
 import { useRef } from 'react'
 
-import { selectUser } from 'features/user/user.slice'
+import { useAuthStore } from 'features/auth/auth.store'
 
 import { Icon } from 'components/ui'
-import { useAppSelector } from 'hooks/redux'
 
 type EditAvatarProps = {
   changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema>
@@ -17,7 +16,7 @@ type EditAvatarProps = {
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const { avatar } = useAppSelector(selectUser)
+  const avatar = useAuthStore(state => state.user.avatar)
 
   return (
     <div className='mb-[25px] flex justify-center'>

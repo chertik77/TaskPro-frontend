@@ -5,21 +5,13 @@ import { RadioInput } from 'features/kanban/shared/components'
 import { PRIORITIES } from 'features/kanban/shared/constants'
 
 export const PriorityFilter = () => {
-  const { setSearchParams, cardPriority } = useCardFilters()
-
-  const handleParamsChange = (v: string) => {
-    setSearchParams(searchParams => {
-      searchParams.set('priority', v)
-
-      return searchParams
-    })
-  }
+  const { priorityParam, handleParamsChange } = useCardFilters()
 
   return (
     <Root
       className='flex flex-col gap-2'
-      value={cardPriority}
-      onValueChange={handleParamsChange}>
+      value={priorityParam}
+      onValueChange={v => handleParamsChange('priority', v)}>
       {PRIORITIES.map(priority => (
         <label
           className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black
@@ -28,7 +20,7 @@ export const PriorityFilter = () => {
           key={priority}>
           <RadioInput
             value={priority}
-            checked={priority === cardPriority}
+            checked={priority === priorityParam}
           />
           {priority}
         </label>

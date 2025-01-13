@@ -1,6 +1,7 @@
 import * as Popover from '@radix-ui/react-popover'
+import { Link } from '@tanstack/react-router'
 
-import { useCardFilters } from 'features/kanban/card/hooks'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
 import { Icon } from 'components/ui'
 
@@ -8,7 +9,7 @@ import { DeadlineFilter } from './DeadlineFilter'
 import { PriorityFilter } from './PriorityFilter'
 
 export const Filters = () => {
-  const { searchParams, setSearchParams } = useCardFilters()
+  const { boardId } = useGetParamBoardId()
 
   return (
     <Popover.Root>
@@ -35,17 +36,13 @@ export const Filters = () => {
           </Popover.Close>
           <div className='my-3.5 flex justify-between'>
             <h3>Priority</h3>
-            <button
-              type='button'
+            <Link
+              to='/dashboard/$boardId'
+              params={{ boardId: boardId! }}
               className='focus-visible:styled-outline text-sm underline opacity-50 hocus:text-brand-hover
-                hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'
-              onClick={() => {
-                searchParams.delete('priority')
-                searchParams.delete('deadline')
-                setSearchParams(searchParams)
-              }}>
+                hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-secondary'>
               Show all
-            </button>
+            </Link>
           </div>
           <PriorityFilter />
           <h3 className='my-3.5'>Deadline</h3>

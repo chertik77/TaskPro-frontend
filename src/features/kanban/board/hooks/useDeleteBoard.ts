@@ -1,19 +1,17 @@
 import type { Board } from '../board.types'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
-
-import { Pages } from 'config'
 
 import { boardService } from '../board.service'
 import { BoardCacheKeys } from '../config'
-import { useGetBoardId } from './useGetBoardId'
+import { useGetParamBoardId } from './useGetParamBoardId'
 
 export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   const navigate = useNavigate()
 
@@ -32,7 +30,7 @@ export const useDeleteBoard = () => {
         oldBoards => oldBoards && oldBoards.filter(b => b.id !== boardId)
       )
 
-      navigate(Pages.Dashboard, { replace: true })
+      navigate({ to: '/dashboard', replace: true })
 
       return { previousBoards }
     },

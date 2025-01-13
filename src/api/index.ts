@@ -1,16 +1,15 @@
 import axios from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
-import { store } from 'store'
 
 import { authService } from 'features/auth/auth.service'
-import { logout, saveTokens } from 'features/user/user.slice'
+import { useAuthStore } from 'features/auth/auth.store'
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL
 })
 
 axiosInstance.interceptors.request.use(config => {
-  const { accessToken } = store.getState().user
+  const { accessToken } = useAuthStore.getState()
 
   if (config?.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -20,10 +19,10 @@ axiosInstance.interceptors.request.use(config => {
 })
 
 createAuthRefreshInterceptor(axiosInstance, async () => {
-  const { refreshToken } = store.getState().user
+  const { refreshToken } = useAuthStore.getState()
 
   return authService
     .getTokens({ refreshToken })
-    .then(r => store.dispatch(saveTokens(r.data)))
-    .catch(() => store.dispatch(logout()))
+    .then(r => useAuthStore.getState().saveTokens(r.data))
+    .catch(useAuthStore.getState().resetStore)
 })

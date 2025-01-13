@@ -8,6 +8,7 @@ import { useModal } from 'react-modal-state'
 import { BoardCard } from 'features/kanban/card/components'
 import { AddCardModal } from 'features/kanban/card/components/modals'
 import { useCardFilters } from 'features/kanban/card/hooks'
+// import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
 import { getFilteredCards } from 'features/kanban/filters/utils'
 
@@ -31,15 +32,15 @@ export const BoardColumnsItem = ({
 }: BoardColumnsItemProps) => {
   const { open: openAddCardModal } = useModal(AddCardModal)
 
-  const { cardPriority, cardDeadline } = useCardFilters()
+  const { priorityParam, deadlineParam } = useCardFilters()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   const { cardsIds } = useDragAndDrop()
 
   const filteredCards = getFilteredCards(cards!, {
-    priority: cardPriority,
-    deadline: cardDeadline
+    priority: priorityParam,
+    deadline: deadlineParam
   })
 
   const { style, setNodeRef, attributes, listeners, isDragging } =

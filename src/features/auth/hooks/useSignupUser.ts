@@ -2,24 +2,25 @@ import type { UseFormReset } from 'react-hook-form'
 import type { SignupSchema } from '../auth.schema'
 
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { authenticate } from 'features/user/user.slice'
-
-import { useAppDispatch } from 'hooks/redux'
-
 import { authService } from '../auth.service'
+import { useAuthStore } from '../auth.store'
 import { AuthCacheKeys } from '../config'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
-  const dispatch = useAppDispatch()
+  const authenticate = useAuthStore(state => state.authenticate)
+
+  const navigate = useNavigate()
 
   return useMutation({
     mutationKey: [AuthCacheKeys.Signup],
     mutationFn: authService.signup,
     onSuccess(data) {
       reset()
-      dispatch(authenticate(data))
+      navigate({ to: '/dashboard' })
+      authenticate(data)
     },
     onError: e =>
       toast.error(

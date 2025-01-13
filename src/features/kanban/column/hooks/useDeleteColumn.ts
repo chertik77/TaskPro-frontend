@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetBoardId } from 'features/kanban/board/hooks'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 import { useDragAndDrop } from 'features/kanban/dnd/hooks'
 
 import { columnService } from '../column.service'
@@ -12,7 +12,7 @@ export const useDeleteColumn = () => {
 
   const { setColumns, setCards } = useDragAndDrop()
 
-  const boardId = useGetBoardId()
+  const { boardId } = useGetParamBoardId()
 
   return useMutation({
     mutationKey: [ColumnCacheKeys.DeleteColumn],
