@@ -1,10 +1,10 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
-import { useAtomValue } from 'jotai/react'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Toaster } from 'sonner'
 
+import { useAuthStore } from 'features/auth/auth.store'
 import {
   EditBoardModal,
   NewBoardModal
@@ -23,14 +23,13 @@ import {
   NeedHelpModal
 } from 'features/user/components/modals'
 import { useGetAndSetCurrentUser } from 'features/user/hooks'
-import { userAtom } from 'features/user/user.atom'
 
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
 const RootRoute = () => {
   useGetAndSetCurrentUser()
 
-  const { theme } = useAtomValue(userAtom)
+  const theme = useAuthStore(state => state.user.theme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 

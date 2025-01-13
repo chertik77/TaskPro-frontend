@@ -1,15 +1,14 @@
-import { useSetAtom } from 'jotai/react'
 import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
-import { sidebarAtom } from 'features/sidebar/sidebar.atom'
+import { useSidebarStore } from 'features/sidebar/sidebar.store'
 
 import { Icon } from 'components/ui'
 
 export const HeaderControls = () => {
   const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)
 
-  const setIsSidebarOpen = useSetAtom(sidebarAtom)
+  const setIsSidebarOpen = useSidebarStore(state => state.setIsSidebarOpen)
 
   return (
     <>

@@ -4,9 +4,8 @@ import type { EditUserSchema } from 'features/user/user.schema'
 import type { User } from 'features/user/user.types'
 
 import { useRef } from 'react'
-import { useAtomValue } from 'jotai/react'
 
-import { userAtom } from 'features/user/user.atom'
+import { useAuthStore } from 'features/auth/auth.store'
 
 import { Icon } from 'components/ui'
 
@@ -17,7 +16,7 @@ type EditAvatarProps = {
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const { avatar } = useAtomValue(userAtom)
+  const avatar = useAuthStore(state => state.user.avatar)
 
   return (
     <div className='mb-[25px] flex justify-center'>

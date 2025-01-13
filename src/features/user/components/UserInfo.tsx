@@ -1,12 +1,12 @@
 import * as Avatar from '@radix-ui/react-avatar'
-import { useAtomValue } from 'jotai/react'
 import { useModal } from 'react-modal-state'
 
-import { userAtom } from '../user.atom'
+import { useAuthStore } from 'features/auth/auth.store'
+
 import { EditProfileModal } from './modals'
 
 export const UserInfo = () => {
-  const { name, avatar } = useAtomValue(userAtom)
+  const { name, avatar } = useAuthStore(state => state.user)
 
   const { open: openEditProfileModal } = useModal(EditProfileModal)
 

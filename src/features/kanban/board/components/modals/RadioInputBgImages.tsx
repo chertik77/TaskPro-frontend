@@ -2,18 +2,17 @@ import type { BoardSchema } from 'features/kanban/board/board.schema'
 import type { Control } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
-import { useAtomValue } from 'jotai/react'
 import { Controller } from 'react-hook-form'
 
+import { useAuthStore } from 'features/auth/auth.store'
 import images from 'features/kanban/board/data/board-bg-images.json'
-import { userAtom } from 'features/user/user.atom'
 
 type RadioInputBgImagesProps = {
   control: Control<BoardSchema>
 }
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
-  const { theme } = useAtomValue(userAtom)
+  const theme = useAuthStore(state => state.user.theme)
 
   return (
     <>

@@ -1,10 +1,9 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { useAtom } from 'jotai/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import { authService } from 'features/auth/auth.service'
+import { useAuthStore } from 'features/auth/auth.store'
 import { Sidebar } from 'features/sidebar/components'
-import { sidebarAtom } from 'features/sidebar/sidebar.atom'
+import { useSidebarStore } from 'features/sidebar/sidebar.store'
 
 import { Header } from 'components/header'
 import { useTabletAndBelowMediaQuery } from 'hooks'
@@ -12,7 +11,7 @@ import { useTabletAndBelowMediaQuery } from 'hooks'
 import { cn } from 'lib'
 
 const DashboardRoute = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useAtom(sidebarAtom)
+  const { isSidebarOpen, setIsSidebarOpen } = useSidebarStore()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -36,8 +35,7 @@ const DashboardRoute = () => {
 
 export const Route = createFileRoute('/(dashboard)/dashboard')({
   beforeLoad: () => {
-    const isSignedIn = authService.isSignedIn()
-    if (!isSignedIn) throw redirect({ to: '/' })
+    if (!useAuthStore.getState().isLoggedIn) throw redirect({ to: '/' })
   },
   component: DashboardRoute
 })

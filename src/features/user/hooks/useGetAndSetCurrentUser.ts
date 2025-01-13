@@ -1,23 +1,21 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useSetAtom } from 'jotai/react'
 
-import { authService } from 'features/auth/auth.service'
+import { useAuthStore } from 'features/auth/auth.store'
 
 import { UserCacheKeys } from '../config'
-import { userAtom } from '../user.atom'
 import { userService } from '../user.service'
 
 export const useGetAndSetCurrentUser = () => {
-  const setUser = useSetAtom(userAtom)
+  const { updateUser, isLoggedIn } = useAuthStore()
 
   const { data: user, isSuccess } = useQuery({
     queryKey: [UserCacheKeys.User],
     queryFn: userService.getCurrentUser,
-    enabled: authService.isSignedIn()
+    enabled: isLoggedIn
   })
 
   useEffect(() => {
-    if (isSuccess && user) setUser(user)
-  }, [user, isSuccess, setUser])
+    if (isSuccess && user) updateUser(user)
+  }, [user, isSuccess, updateUser])
 }

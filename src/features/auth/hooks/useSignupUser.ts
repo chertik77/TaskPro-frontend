@@ -6,17 +6,21 @@ import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
 import { authService } from '../auth.service'
+import { useAuthStore } from '../auth.store'
 import { AuthCacheKeys } from '../config'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
+  const authenticate = useAuthStore(state => state.authenticate)
+
   const navigate = useNavigate()
 
   return useMutation({
     mutationKey: [AuthCacheKeys.Signup],
     mutationFn: authService.signup,
-    onSuccess() {
+    onSuccess(data) {
       reset()
       navigate({ to: '/dashboard' })
+      authenticate(data)
     },
     onError: e =>
       toast.error(

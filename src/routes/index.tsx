@@ -1,6 +1,6 @@
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
 
-import { authService } from 'features/auth/auth.service'
+import { useAuthStore } from 'features/auth/auth.store'
 import { GoogleSignin } from 'features/auth/components'
 
 import { Icon } from 'components/ui'
@@ -38,8 +38,7 @@ const IndexRoute = () => (
 )
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
-    const isSignedIn = authService.isSignedIn()
-    if (isSignedIn) throw redirect({ to: '/dashboard' })
+    if (useAuthStore.getState().isLoggedIn) throw redirect({ to: '/dashboard' })
   },
   component: IndexRoute
 })

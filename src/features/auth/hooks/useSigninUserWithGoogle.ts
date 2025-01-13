@@ -3,14 +3,18 @@ import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
 import { authService } from '../auth.service'
+import { useAuthStore } from '../auth.store'
 
 export const useSigninUserWithGoogle = () => {
+  const authenticate = useAuthStore(state => state.authenticate)
+
   const navigate = useNavigate()
 
   const signinWithGoogle = useGoogleLogin({
     flow: 'auth-code',
     onSuccess: async ({ code }) => {
-      await authService.signinWithGoogle(code)
+      const r = await authService.signinWithGoogle(code)
+      authenticate(r)
       navigate({ to: '/dashboard' })
     },
     onError: () =>

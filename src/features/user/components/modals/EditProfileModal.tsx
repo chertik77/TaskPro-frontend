@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import { useAtomValue } from 'jotai/react'
 
+import { useAuthStore } from 'features/auth/auth.store'
 import { useEditProfile } from 'features/user/hooks'
-import { userAtom } from 'features/user/user.atom'
 import { EditUserSchema } from 'features/user/user.schema'
 
 import { Button, Field, Loader, Modal } from 'components/ui'
@@ -12,7 +11,7 @@ import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  const { name, email } = useAtomValue(userAtom)
+  const { name, email } = useAuthStore(state => state.user)
 
   const { mutate: editProfile, isPending } = useEditProfile()
 

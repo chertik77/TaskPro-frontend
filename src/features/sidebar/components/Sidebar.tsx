@@ -1,5 +1,4 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { useAtomValue } from 'jotai/react'
 
 import { LogoutBtn } from 'features/auth/components'
 import { BoardsList, MyBoardsInfo } from 'features/kanban/board/components'
@@ -9,11 +8,11 @@ import { Scrollbar } from 'components/ui'
 
 import { cn } from 'lib'
 
-import { sidebarAtom } from '../sidebar.atom'
+import { useSidebarStore } from '../sidebar.store'
 import { SidebarLogo } from './SidebarLogo'
 
 export const Sidebar = () => {
-  const isSidebarOpen = useAtomValue(sidebarAtom)
+  const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
 
   return (
     <ScrollArea.Root

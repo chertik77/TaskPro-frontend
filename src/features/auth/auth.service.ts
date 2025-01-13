@@ -4,24 +4,16 @@ import type { AuthResponse, Tokens } from './auth.types'
 
 import { axiosInstance } from 'api'
 
-import { authTokenService } from './auth-token.service'
 import { AuthApiEndpoints } from './config'
 
 export const authService = {
-  isSignedIn() {
-    return !!authTokenService.getTokens()
-  },
-
   async signup(data: SignupSchema) {
-    const {
-      data: { user, accessToken, refreshToken }
-    } = await axiosInstance.post<AuthResponse>(AuthApiEndpoints.Signup, data)
+    const response = await axiosInstance.post<AuthResponse>(
+      AuthApiEndpoints.Signup,
+      data
+    )
 
-    if (accessToken && refreshToken) {
-      authTokenService.saveTokens({ accessToken, refreshToken })
-    }
-
-    return user
+    return response.data
   },
 
   async signin(data: SigninSchema) {
@@ -29,33 +21,22 @@ export const authService = {
       skipAuthRefresh: true
     }
 
-    const {
-      data: { user, accessToken, refreshToken }
-    } = await axiosInstance.post<AuthResponse>(
+    const response = await axiosInstance.post<AuthResponse>(
       AuthApiEndpoints.Signin,
       data,
       requestConfig
     )
 
-    if (accessToken && refreshToken) {
-      authTokenService.saveTokens({ accessToken, refreshToken })
-    }
-
-    return user
+    return response.data
   },
 
   async signinWithGoogle(code: string) {
-    const {
-      data: { user, accessToken, refreshToken }
-    } = await axiosInstance.post<AuthResponse>(AuthApiEndpoints.Google, {
-      code
-    })
+    const response = await axiosInstance.post<AuthResponse>(
+      AuthApiEndpoints.Google,
+      { code }
+    )
 
-    if (accessToken && refreshToken) {
-      authTokenService.saveTokens({ accessToken, refreshToken })
-    }
-
-    return user
+    return response.data
   },
 
   getTokens(data: { refreshToken: string }) {
@@ -64,7 +45,5 @@ export const authService = {
 
   async logout() {
     await axiosInstance.post(AuthApiEndpoints.Logout)
-
-    authTokenService.removeTokens()
   }
 }
