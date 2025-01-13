@@ -22,16 +22,18 @@
     "",
     "^(pages|blocks|components|hooks)(/.*)?$",
     "",
-    "^redux(/.*)?$",
-    "",
     "^(api|services|config|constants)(/.*)?$",
     "",
     "^(utils|lib)(/.*)?$",
     "",
-    "^[.]",
-    "",
     "^(?!.*[.]css$)[./].*$",
     ".css$"
+  ],
+  "overrides": [
+    {
+      "files": "**/routeTree.gen.ts",
+      "options": { "importOrder": [] }
+    }
   ],
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports",

@@ -13,13 +13,13 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as authAuthLayoutImport } from './routes/(auth)/_auth-layout'
-import { Route as authAuthLayoutSigninImport } from './routes/(auth)/_auth-layout.signin'
-import { Route as authAuthLayoutSignupImport } from './routes/(auth)/_auth-layout.signup'
-import { Route as dashboardDashboardImport } from './routes/(dashboard)/dashboard'
-import { Route as dashboardDashboardBoardIdImport } from './routes/(dashboard)/dashboard.$boardId'
-import { Route as dashboardDashboardIndexImport } from './routes/(dashboard)/dashboard.index'
 import { Route as IndexImport } from './routes/index'
+import { Route as dashboardDashboardImport } from './routes/(dashboard)/dashboard'
+import { Route as authAuthLayoutImport } from './routes/(auth)/_auth-layout'
+import { Route as dashboardDashboardIndexImport } from './routes/(dashboard)/dashboard.index'
+import { Route as dashboardDashboardBoardIdImport } from './routes/(dashboard)/dashboard.$boardId'
+import { Route as authAuthLayoutSignupImport } from './routes/(auth)/_auth-layout.signup'
+import { Route as authAuthLayoutSigninImport } from './routes/(auth)/_auth-layout.signin'
 
 // Create Virtual Routes
 
