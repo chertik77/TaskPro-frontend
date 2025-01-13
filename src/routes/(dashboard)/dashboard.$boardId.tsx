@@ -5,6 +5,5 @@ import { CardSearchSchema } from 'features/kanban/card/card.schema'
 
 export const Route = createFileRoute('/(dashboard)/dashboard/$boardId')({
   component: Board,
-  validateSearch: CardSearchSchema,
-  loaderDeps: ({ search: { priority, deadline } }) => ({ priority, deadline })
+  validateSearch: CardSearchSchema
 })

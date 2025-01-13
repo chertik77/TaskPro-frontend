@@ -1,9 +1,9 @@
-import { useLoaderDeps, useNavigate } from '@tanstack/react-router'
+import { useNavigate, useSearch } from '@tanstack/react-router'
 
 type ParamKey = 'priority' | 'deadline'
 
 export const useCardFilters = () => {
-  const { priority: priorityParam, deadline: deadlineParam } = useLoaderDeps({
+  const { priority: priorityParam, deadline: deadlineParam } = useSearch({
     from: '/(dashboard)/dashboard/$boardId'
   })
 
