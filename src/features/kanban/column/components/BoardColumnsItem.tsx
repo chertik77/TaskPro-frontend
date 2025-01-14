@@ -1,18 +1,15 @@
-import type { AddCardModalProps, Card } from 'features/kanban/card/card.types'
+import type { Card } from 'features/kanban/card/card.types'
 import type { Column } from '../column.types'
 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { useModal } from 'react-modal-state'
 
-import { BoardCard } from 'features/kanban/card/components'
-import { AddCardModal } from 'features/kanban/card/components/modals'
+import { BoardAddCardBtn, BoardCard } from 'features/kanban/card/components'
 import { useCardFilters } from 'features/kanban/card/hooks'
-// import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
 import { getFilteredCards } from 'features/kanban/filters/utils'
 
-import { Button, Scrollbar } from 'components/ui'
+import { Scrollbar } from 'components/ui'
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
 import { cn } from 'lib'
@@ -30,8 +27,6 @@ export const BoardColumnsItem = ({
   cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { open: openAddCardModal } = useModal(AddCardModal)
-
   const { priorityParam, deadlineParam } = useCardFilters()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
@@ -92,14 +87,7 @@ export const BoardColumnsItem = ({
           thumbClassName='!w-2'
         />
       </ScrollArea.Root>
-      <Button
-        isPlusIcon
-        className='mt-3.5'
-        onClick={() =>
-          openAddCardModal<AddCardModalProps>({ columnId: column.id })
-        }>
-        Add another card
-      </Button>
+      <BoardAddCardBtn columnId={column.id} />
     </div>
   )
 }
