@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -7,17 +7,15 @@ import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'
 
 export const useEditProfile = () => {
-  const queryClient = useQueryClient()
-
   const { close: closeEditProfileModal } = useModal(EditProfileModal)
 
   return useMutation({
     mutationKey: [UserCacheKeys.EditUserProfile],
     mutationFn: userService.updateUserCredentials,
+    meta: { invalidates: [[UserCacheKeys.User]] },
     onSuccess() {
       closeEditProfileModal()
       toast.success('Your profile has been successfully updated.')
-      queryClient.invalidateQueries({ queryKey: [UserCacheKeys.User] })
     },
     onError(e) {
       toast.error(

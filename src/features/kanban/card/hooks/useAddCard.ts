@@ -2,7 +2,7 @@ import type { UseFormReset } from 'react-hook-form'
 import type { CardSchema } from '../card.schema'
 import type { AddCardModalProps } from '../card.types'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
@@ -13,8 +13,6 @@ import { AddCardModal } from '../components/modals'
 import { CardCacheKeys } from '../config'
 
 export const useAddCard = (reset: UseFormReset<CardSchema>) => {
-  const queryClient = useQueryClient()
-
   const {
     data: { columnId }
   } = useModalInstance<AddCardModalProps>()
@@ -24,8 +22,8 @@ export const useAddCard = (reset: UseFormReset<CardSchema>) => {
   return useMutation({
     mutationKey: [CardCacheKeys.AddCard],
     mutationFn: (data: CardSchema) => cardService.addNewCard(columnId, data),
+    meta: { invalidates: [[BoardCacheKeys.Board]] },
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: [BoardCacheKeys.Board] })
       closeAddCardModal()
       reset()
     },
