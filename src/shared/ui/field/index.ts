@@ -1,2 +1,2 @@
-export * from './Field.ui'
-export * from './PasswordField.ui'
+export { Field } from './Field.ui'
+export { PasswordField } from './PasswordField.ui'

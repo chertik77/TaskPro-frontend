@@ -1,1 +1,1 @@
-export * from './Scrollbar.ui'
+export { Scrollbar } from './Scrollbar.ui'

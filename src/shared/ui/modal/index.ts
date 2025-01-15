@@ -1,1 +1,1 @@
-export * from './Modal.ui'
+export { Modal } from './Modal.ui'

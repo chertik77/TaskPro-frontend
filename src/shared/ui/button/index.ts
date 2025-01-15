@@ -1,1 +1,1 @@
-export * from './Button.ui'
+export { Button } from './Button.ui'
