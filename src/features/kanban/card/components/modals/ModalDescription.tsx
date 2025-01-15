@@ -2,8 +2,7 @@ import type { CardSchema } from 'features/kanban/card/card.schema'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef } from 'react'
-
-import { cn } from 'lib'
+import { cn } from 'shared/lib/cn'
 
 type ModalDescriptionProps = {
   errors: FieldErrors<CardSchema>

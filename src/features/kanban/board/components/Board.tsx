@@ -1,4 +1,5 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { cn } from 'shared/lib/cn'
 import { Loader } from 'shared/ui/loader'
 import { Scrollbar } from 'shared/ui/scrollbar'
 
@@ -8,8 +9,6 @@ import { DragAndDropProvider } from 'features/kanban/dnd/dnd.context'
 import { Filters } from 'features/kanban/filters/components'
 
 import { useDocumentTitle } from 'hooks'
-
-import { cn } from 'lib'
 
 export const Board = () => {
   const { data: board, isPending } = useGetBoardById()

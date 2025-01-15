@@ -1,3 +1,4 @@
+import { cn } from 'shared/lib/cn'
 import { Button } from 'shared/ui/button'
 import { Field } from 'shared/ui/field'
 import { Loader } from 'shared/ui/loader'
@@ -7,8 +8,6 @@ import { useNeedHelp } from 'features/user/hooks'
 import { HelpSchema } from 'features/user/user.schema'
 
 import { useAppForm } from 'hooks'
-
-import { cn } from 'lib'
 
 export const NeedHelpModal = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema)

@@ -1,6 +1,6 @@
 import type { Priority } from 'features/kanban/shared/constants'
 
-import { cn } from 'lib'
+import { cn } from 'shared/lib/cn'
 
 import { getPriorityColor } from '../utils'
 

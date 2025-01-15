@@ -1,12 +1,11 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
+import { cn } from 'shared/lib/cn'
 import { Icon } from 'shared/ui/icon'
 import { Loader } from 'shared/ui/loader'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
-
-import { cn } from 'lib'
 
 import { useGetAllBoards, useGetParamBoardId } from '../hooks'
 import { BoardsListActiveItem } from './BoardsListActiveItem'
