@@ -1,7 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
-
-import { Icon } from 'components/ui'
+import { Icon } from 'shared/ui/icon'
 
 import { SidebarMobileModal } from './SidebarMobileModal'
 

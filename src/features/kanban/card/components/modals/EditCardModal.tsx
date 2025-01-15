@@ -2,11 +2,13 @@ import type { EditCardModalProps } from 'features/kanban/card/card.types'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Modal } from 'shared/ui/modal'
 
 import { CardSchema } from 'features/kanban/card/card.schema'
 import { useEditCard } from 'features/kanban/card/hooks'
 
-import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 
 import { DatePicker } from '../ui'

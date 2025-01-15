@@ -3,13 +3,13 @@ import type { Column } from '../column.types'
 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { Scrollbar } from 'shared/ui/scrollbar'
 
 import { BoardAddCardBtn, BoardCard } from 'features/kanban/card/components'
 import { useCardFilters } from 'features/kanban/card/hooks'
 import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
 import { getFilteredCards } from 'features/kanban/filters/utils'
 
-import { Scrollbar } from 'components/ui'
 import { useTabletAndBelowMediaQuery } from 'hooks'
 
 import { cn } from 'lib'

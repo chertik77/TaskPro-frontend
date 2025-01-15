@@ -1,7 +1,10 @@
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Modal } from 'shared/ui/modal'
+
 import { CardSchema } from 'features/kanban/card/card.schema'
 import { useAddCard } from 'features/kanban/card/hooks'
 
-import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 
 import { DatePicker } from '../ui'

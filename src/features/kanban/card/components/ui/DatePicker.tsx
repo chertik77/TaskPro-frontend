@@ -4,10 +4,9 @@ import type { Control } from 'react-hook-form'
 import { useState } from 'react'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { Controller } from 'react-hook-form'
+import { Icon } from 'shared/ui/icon'
 
 import { formatTodayDate } from 'features/kanban/card/utils'
-
-import { Icon } from 'components/ui'
 
 import { Calendar } from './Calendar'
 

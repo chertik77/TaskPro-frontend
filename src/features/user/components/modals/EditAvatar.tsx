@@ -4,10 +4,9 @@ import type { EditUserSchema } from 'features/user/user.schema'
 import type { User } from 'features/user/user.types'
 
 import { useRef } from 'react'
+import { Icon } from 'shared/ui/icon'
 
 import { useAuthStore } from 'features/auth/auth.store'
-
-import { Icon } from 'components/ui'
 
 type EditAvatarProps = {
   changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema>

@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
+import { Button } from 'shared/ui/button'
+import { Field, PasswordField } from 'shared/ui/field'
+import { Loader } from 'shared/ui/loader'
+import { Modal } from 'shared/ui/modal'
 
 import { useAuthStore } from 'features/auth/auth.store'
 import { useEditProfile } from 'features/user/hooks'
 import { EditUserSchema } from 'features/user/user.schema'
 
-import { Button, Field, Loader, Modal } from 'components/ui'
-import { PasswordField } from 'components/ui/PasswordField'
 import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 
 import { EditAvatar } from './EditAvatar'

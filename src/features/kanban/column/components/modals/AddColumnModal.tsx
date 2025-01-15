@@ -1,7 +1,10 @@
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Modal } from 'shared/ui/modal'
+
 import { useAddColumn } from 'features/kanban/column/hooks'
 import { TitleSchema } from 'features/kanban/shared/schema'
 
-import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 
 export const AddColumnModal = () => {

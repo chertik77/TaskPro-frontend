@@ -1,7 +1,9 @@
+import { Button } from 'shared/ui/button'
+import { Field, PasswordField } from 'shared/ui/field'
+import { Loader } from 'shared/ui/loader'
+
 import { useSignupUser } from 'features/auth/hooks'
 
-import { Button, Field, Loader } from 'components/ui'
-import { PasswordField } from 'components/ui/PasswordField'
 import { useAppForm } from 'hooks'
 
 import { SignupSchema } from '../auth.schema'

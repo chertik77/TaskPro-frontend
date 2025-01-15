@@ -1,7 +1,10 @@
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Modal } from 'shared/ui/modal'
+
 import { BoardSchema } from 'features/kanban/board/board.schema'
 import { useAddBoard } from 'features/kanban/board/hooks'
 
-import { Button, Field, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 
 import { RadioInputBgImages } from './RadioInputBgImages'

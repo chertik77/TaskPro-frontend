@@ -1,7 +1,11 @@
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Loader } from 'shared/ui/loader'
+import { Modal } from 'shared/ui/modal'
+
 import { useNeedHelp } from 'features/user/hooks'
 import { HelpSchema } from 'features/user/user.schema'
 
-import { Button, Field, Loader, Modal } from 'components/ui'
 import { useAppForm } from 'hooks'
 
 import { cn } from 'lib'

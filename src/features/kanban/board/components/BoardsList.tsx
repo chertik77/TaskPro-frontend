@@ -1,10 +1,10 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
+import { Icon } from 'shared/ui/icon'
+import { Loader } from 'shared/ui/loader'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
-
-import { Icon, Loader } from 'components/ui'
 
 import { cn } from 'lib'
 
