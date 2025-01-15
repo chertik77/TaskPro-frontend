@@ -1,9 +1,8 @@
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
+import { Icon } from 'shared/ui/icon'
 
 import { useAuthStore } from 'features/auth/auth.store'
 import { GoogleSignin } from 'features/auth/components'
-
-import { Icon } from 'components/ui'
 
 const IndexRoute = () => (
   <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>

@@ -1,11 +1,10 @@
 import type { ButtonHTMLAttributes } from 'react'
 
 import { forwardRef } from 'react'
+import { cn } from 'shared/lib/cn'
 
-import { cn } from 'lib'
-
-import { Icon } from './Icon'
-import { Loader } from './Loader'
+import { Icon } from '../icon'
+import { Loader } from '../loader'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   iconName?: 'arrow' | 'pencil' | 'trash'

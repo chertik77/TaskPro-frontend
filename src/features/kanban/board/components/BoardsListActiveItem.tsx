@@ -1,10 +1,9 @@
 import type { Board, EditBoardModalProps } from '../board.types'
 
 import { useModal } from 'react-modal-state'
+import { Icon } from 'shared/ui/icon'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
-
-import { Icon } from 'components/ui'
 
 import { useDeleteBoard } from '../hooks'
 import { EditBoardModal } from './modals'

@@ -2,11 +2,13 @@ import type { EditColumnModalProps } from 'features/kanban/column/column.types'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Modal } from 'shared/ui/modal'
 
 import { useEditColumn } from 'features/kanban/column/hooks'
 import { TitleSchema } from 'features/kanban/shared/schema'
 
-import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 
 export const EditColumnModal = () => {

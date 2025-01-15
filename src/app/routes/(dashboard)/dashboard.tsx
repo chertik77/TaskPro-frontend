@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { cn } from 'shared/lib/cn'
 
 import { useAuthStore } from 'features/auth/auth.store'
 import { Sidebar } from 'features/sidebar/components'
@@ -7,8 +8,6 @@ import { useSidebarStore } from 'features/sidebar/sidebar.store'
 
 import { Header } from 'components/header'
 import { useTabletAndBelowMediaQuery } from 'hooks'
-
-import { cn } from 'lib'
 
 const DashboardRoute = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useSidebarStore()

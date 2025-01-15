@@ -2,11 +2,13 @@ import type { EditBoardModalProps } from 'features/kanban/board/board.types'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { Button } from 'shared/ui/button'
+import { Field } from 'shared/ui/field'
+import { Modal } from 'shared/ui/modal'
 
 import { BoardSchema } from 'features/kanban/board/board.schema'
 import { useEditBoard } from 'features/kanban/board/hooks'
 
-import { Button, Field, Modal } from 'components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 
 import { RadioInputBgImages } from './RadioInputBgImages'

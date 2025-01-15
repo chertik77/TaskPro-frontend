@@ -2,10 +2,9 @@ import type { InputHTMLAttributes } from 'react'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef, useState } from 'react'
+import { cn } from 'shared/lib/cn'
 
-import { cn } from 'lib'
-
-import { Icon } from './Icon'
+import { Icon } from '../icon'
 
 type PasswordFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   errors: FieldErrors
