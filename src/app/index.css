@@ -1,3 +1,5 @@
+@import url('react-responsive-modal/styles.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +10,7 @@
   font-display: swap;
   src:
     local('Poppins'),
-    url('fonts/PoppinsMedium.woff2') format('woff2');
+    url('./fonts/PoppinsMedium.woff2') format('woff2');
 }
 
 @font-face {
@@ -17,7 +19,7 @@
   font-display: swap;
   src:
     local('Poppins'),
-    url('fonts/PoppinsMedium.woff2') format('woff2');
+    url('./fonts/PoppinsMedium.woff2') format('woff2');
 }
 
 @font-face {
@@ -26,7 +28,7 @@
   font-display: swap;
   src:
     local('Poppins'),
-    url('fonts/PoppinsSemiBold.woff2') format('woff2');
+    url('./fonts/PoppinsSemiBold.woff2') format('woff2');
 }
 
 .hide-password-toggle::-ms-reveal,
