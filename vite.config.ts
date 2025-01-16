@@ -5,6 +5,11 @@ import { ViteMinifyPlugin } from 'vite-plugin-minify'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  plugins: [TanStackRouterVite(), react(), tsconfigPaths(), ViteMinifyPlugin()],
+  plugins: [
+    TanStackRouterVite({ routesDirectory: 'src/app/routes' }),
+    react(),
+    tsconfigPaths(),
+    ViteMinifyPlugin()
+  ],
   server: { port: 3000 }
 })
