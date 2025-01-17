@@ -1,15 +1,14 @@
 import type { UseFormReset } from 'react-hook-form'
-import type { SigninSchema } from '../auth.schema'
 
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
+import { authService, AuthTypes } from 'shared/api/auth'
+import { useAuthStore } from 'shared/store'
 import { toast } from 'sonner'
-import { useAuthStore } from 'store'
 
-import { authService } from '../auth.service'
 import { AuthCacheKeys } from '../config'
 
-export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
+export const useSigninUser = (reset: UseFormReset<AuthTypes.SigninSchema>) => {
   const authenticate = useAuthStore(state => state.authenticate)
 
   const navigate = useNavigate()

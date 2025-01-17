@@ -1,8 +1,6 @@
 import { useModal } from 'react-modal-state'
-
-import { SidebarMobileModal } from 'features/sidebar/components'
-
-import { Icon } from 'components/ui'
+import { Icon } from 'shared/components/ui'
+import { SidebarMobileModal } from 'widgets/sidebar'
 
 import { NeedHelpModal } from './modals'
 

@@ -1,9 +1,8 @@
-import type { EditUserSchema, HelpSchema } from './user.schema'
-import type { User } from './user.types'
+import type { EditUserSchema, HelpSchema, User } from './user.types'
 
 import { axiosInstance } from 'api'
 
-import { UserApiEndpoints } from './config'
+import { UserApiEndpoints } from './user.endpoints'
 
 export const userService = {
   async changeUserTheme(theme: string) {

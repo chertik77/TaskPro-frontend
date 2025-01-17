@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
+import { authService } from 'shared/api/auth'
+import { useAuthStore } from 'shared/store'
 import { toast } from 'sonner'
-import { useAuthStore } from 'store'
 
-import { authService } from '../auth.service'
 import { AuthCacheKeys } from '../config'
 
 export const useLogoutUser = () => {

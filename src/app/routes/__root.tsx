@@ -2,8 +2,10 @@ import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
+import { useTabletAndBelowMediaQuery } from 'shared/hooks'
+import { useAuthStore } from 'shared/store'
 import { Toaster } from 'sonner'
-import { useAuthStore } from 'store'
+import { SidebarMobileModal } from 'widgets/sidebar'
 
 import {
   EditBoardModal,
@@ -17,14 +19,11 @@ import {
   AddColumnModal,
   EditColumnModal
 } from 'features/kanban/column/components/modals'
-import { SidebarMobileModal } from 'features/sidebar/components'
 import {
   EditProfileModal,
   NeedHelpModal
 } from 'features/user/components/modals'
 import { useGetAndSetCurrentUser } from 'features/user/hooks'
-
-import { useTabletAndBelowMediaQuery } from 'hooks'
 
 const RootRoute = () => {
   useGetAndSetCurrentUser()

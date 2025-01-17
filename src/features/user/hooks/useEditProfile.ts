@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
+import { userService } from 'shared/api/user'
 import { toast } from 'sonner'
 
 import { EditProfileModal } from '../components/modals'
 import { UserCacheKeys } from '../config'
-import { userService } from '../user.service'
 
 export const useEditProfile = () => {
   const { close: closeEditProfileModal } = useModal(EditProfileModal)

@@ -1,8 +1,7 @@
 import type { AddCardModalProps } from '../card.types'
 
 import { useModal } from 'react-modal-state'
-
-import { Button } from 'components/ui'
+import { Button } from 'shared/components/ui'
 
 import { AddCardModal } from './modals'
 

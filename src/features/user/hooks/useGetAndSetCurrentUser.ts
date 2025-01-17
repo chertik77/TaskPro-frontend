@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useAuthStore } from 'store'
+import { userService } from 'shared/api/user'
+import { useAuthStore } from 'shared/store'
 
 import { UserCacheKeys } from '../config'
-import { userService } from '../user.service'
 
 export const useGetAndSetCurrentUser = () => {
   const { updateUser, isLoggedIn } = useAuthStore()

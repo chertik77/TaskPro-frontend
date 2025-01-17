@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
-import { useAuthStore } from 'store'
+import { UserContracts } from 'shared/api/user'
+import {
+  Button,
+  Field,
+  Loader,
+  Modal,
+  PasswordField
+} from 'shared/components/ui'
+import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
+import { useAuthStore } from 'shared/store'
 
 import { useEditProfile } from 'features/user/hooks'
-import { EditUserSchema } from 'features/user/user.schema'
-
-import { Button, Field, Loader, Modal } from 'components/ui'
-import { PasswordField } from 'components/ui/PasswordField'
-import { useAppForm, useIsFormReadyForSubmit } from 'hooks'
 
 import { EditAvatar } from './EditAvatar'
 
@@ -16,7 +20,7 @@ export const EditProfileModal = () => {
   const { mutate: editProfile, isPending } = useEditProfile()
 
   const { handleSubmit, register, formState, reset, watch } = useAppForm(
-    EditUserSchema,
+    UserContracts.EditUserSchema,
     { shouldUnregister: false }
   )
 

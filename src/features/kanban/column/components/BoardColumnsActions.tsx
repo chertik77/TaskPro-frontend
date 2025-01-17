@@ -1,12 +1,10 @@
 import type { Column, EditColumnModalProps } from '../column.types'
 
 import { useModal } from 'react-modal-state'
+import { Button } from 'shared/components/ui'
+import { cn } from 'shared/lib'
 
 import { useDeleteColumn } from 'features/kanban/column/hooks'
-
-import { Button } from 'components/ui'
-
-import { cn } from 'lib'
 
 import { EditColumnModal } from './modals'
 

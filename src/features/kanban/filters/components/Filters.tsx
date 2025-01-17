@@ -1,9 +1,8 @@
 import * as Popover from '@radix-ui/react-popover'
 import { Link } from '@tanstack/react-router'
+import { Icon } from 'shared/components/ui'
 
 import { useGetParamBoardId } from 'features/kanban/board/hooks'
-
-import { Icon } from 'components/ui'
 
 import { DeadlineFilter } from './DeadlineFilter'
 import { PriorityFilter } from './PriorityFilter'

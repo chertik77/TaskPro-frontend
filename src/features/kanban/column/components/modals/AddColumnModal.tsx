@@ -1,8 +1,8 @@
+import { Button, Field, Modal } from 'shared/components/ui'
+import { useAppForm } from 'shared/hooks'
+
 import { useAddColumn } from 'features/kanban/column/hooks'
 import { TitleSchema } from 'features/kanban/shared/schema'
-
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
 
 export const AddColumnModal = () => {
   const { register, handleSubmit, formState, reset } = useAppForm(TitleSchema)

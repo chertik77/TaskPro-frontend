@@ -1,8 +1,8 @@
 import axios from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
-import { useAuthStore } from 'store'
+import { useAuthStore } from 'shared/store'
 
-import { authService } from 'features/auth/auth.service'
+import { authService } from './auth'
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL

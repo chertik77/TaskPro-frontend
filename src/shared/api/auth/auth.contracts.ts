@@ -19,6 +19,3 @@ export const SignupSchema = v.object({
   ),
   ...SigninSchema.entries
 })
-
-export type SigninSchema = v.InferInput<typeof SigninSchema>
-export type SignupSchema = v.InferInput<typeof SignupSchema>

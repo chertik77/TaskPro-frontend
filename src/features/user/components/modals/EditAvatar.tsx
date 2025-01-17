@@ -1,15 +1,17 @@
 import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
-import type { EditUserSchema } from 'features/user/user.schema'
-import type { User } from 'features/user/user.types'
+import type { UserTypes } from 'shared/api/user'
 
 import { useRef } from 'react'
-import { useAuthStore } from 'store'
-
-import { Icon } from 'components/ui'
+import { Icon } from 'shared/components/ui'
+import { useAuthStore } from 'shared/store'
 
 type EditAvatarProps = {
-  changeUserAvatar: UseMutateFunction<User, AxiosError, EditUserSchema>
+  changeUserAvatar: UseMutateFunction<
+    UserTypes.User,
+    AxiosError,
+    UserTypes.EditUserSchema
+  >
 }
 
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {

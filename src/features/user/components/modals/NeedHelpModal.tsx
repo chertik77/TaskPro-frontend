@@ -1,13 +1,14 @@
+import { UserContracts } from 'shared/api/user'
+import { Button, Field, Loader, Modal } from 'shared/components/ui'
+import { useAppForm } from 'shared/hooks'
+import { cn } from 'shared/lib'
+
 import { useNeedHelp } from 'features/user/hooks'
-import { HelpSchema } from 'features/user/user.schema'
-
-import { Button, Field, Loader, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
-
-import { cn } from 'lib'
 
 export const NeedHelpModal = () => {
-  const { handleSubmit, register, formState, reset } = useAppForm(HelpSchema)
+  const { handleSubmit, register, formState, reset } = useAppForm(
+    UserContracts.HelpSchema
+  )
 
   const { mutate: sendHelpRequest, isPending } = useNeedHelp(reset)
 

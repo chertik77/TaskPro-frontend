@@ -2,8 +2,7 @@ import type { ComponentProps } from 'react'
 
 import { isBefore, isSameDay } from 'date-fns'
 import { DayPicker } from 'react-day-picker'
-
-import { Icon } from 'components/ui'
+import { Icon } from 'shared/components/ui'
 
 export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
   <DayPicker

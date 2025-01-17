@@ -1,10 +1,9 @@
-import type { AuthResponse, Tokens } from 'features/auth/auth.types'
-import type { User } from 'features/user/user.types'
+import type { AuthResponse, Tokens } from 'api/auth/auth.types'
+import type { UserTypes } from 'api/user'
 
+import { DEFAULT_THEME } from 'shared/constants/theme.constants'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-import { DEFAULT_THEME } from 'features/user/user.constants'
 
 type State = AuthResponse & {
   isLoggedIn: boolean
@@ -26,7 +25,7 @@ const initialState: State = {
 type Action = {
   authenticate: (data: AuthResponse) => void
   saveTokens: (tokens: Tokens) => void
-  updateUser: (user: User) => void
+  updateUser: (user: UserTypes.User) => void
   resetStore: () => void
 }
 

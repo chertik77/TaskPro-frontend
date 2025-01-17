@@ -1,10 +1,14 @@
 import type { AxiosAuthRefreshRequestConfig } from 'axios-auth-refresh'
-import type { SigninSchema, SignupSchema } from './auth.schema'
-import type { AuthResponse, Tokens } from './auth.types'
+import type {
+  AuthResponse,
+  SigninSchema,
+  SignupSchema,
+  Tokens
+} from './auth.types'
 
 import { axiosInstance } from 'api'
 
-import { AuthApiEndpoints } from './config'
+import { AuthApiEndpoints } from './auth.endpoints'
 
 export const authService = {
   async signup(data: SignupSchema) {

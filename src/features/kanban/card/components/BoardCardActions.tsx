@@ -2,10 +2,9 @@ import type { Card, EditCardModalProps } from '../card.types'
 
 import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
+import { Button, Icon } from 'shared/components/ui'
 
 import { useDeleteCard } from 'features/kanban/card/hooks'
-
-import { Button, Icon } from 'components/ui'
 
 import { EditCardModal } from './modals'
 
