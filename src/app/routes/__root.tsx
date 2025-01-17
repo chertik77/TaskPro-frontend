@@ -1,3 +1,4 @@
+import { SidebarMobileModal } from '@/blocks/sidebar'
 import { EditProfileModal } from '@/features/edit-profile/components'
 import {
   EditBoardModal,
@@ -17,7 +18,6 @@ import {
   useTabletAndBelowMediaQuery
 } from '@/shared/hooks'
 import { useAuthStore } from '@/shared/store'
-import { SidebarMobileModal } from '@/widgets/sidebar'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'

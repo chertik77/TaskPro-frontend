@@ -1,5 +1,5 @@
+import { SidebarMobileModal } from '@/blocks/sidebar'
 import { Icon } from '@/shared/components/ui'
-import { SidebarMobileModal } from '@/widgets/sidebar'
 import { useModal } from 'react-modal-state'
 
 import { NewBoardModal } from './modals'

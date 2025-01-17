@@ -1,8 +1,8 @@
+import { Header } from '@/blocks/header'
+import { Sidebar } from '@/blocks/sidebar'
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 import { useAuthStore, useSidebarStore } from '@/shared/store'
-import { Header } from '@/widgets/header'
-import { Sidebar } from '@/widgets/sidebar'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { useHotkeys } from 'react-hotkeys-hook'
 

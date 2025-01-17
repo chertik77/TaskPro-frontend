@@ -1,6 +1,6 @@
+import { SidebarMobileModal } from '@/blocks/sidebar'
 import { Icon, Loader } from '@/shared/components/ui'
 import { cn } from '@/shared/lib'
-import { SidebarMobileModal } from '@/widgets/sidebar'
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
