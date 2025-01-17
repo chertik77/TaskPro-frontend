@@ -1,6 +1,6 @@
 import { LogoutBtn } from '@/features/auth/components'
 import { BoardsList, MyBoardsInfo } from '@/features/kanban/board/components'
-import { UserSupport } from '@/features/user/components'
+import { NeedHelpModalTrigger } from '@/features/need-help/components'
 import { Scrollbar } from '@/shared/components/ui'
 import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
@@ -27,7 +27,7 @@ export const Sidebar = () => {
             <BoardsList />
           </div>
           <div className='mt-auto px-6 pb-6'>
-            <UserSupport />
+            <NeedHelpModalTrigger />
             <LogoutBtn />
           </div>
         </aside>

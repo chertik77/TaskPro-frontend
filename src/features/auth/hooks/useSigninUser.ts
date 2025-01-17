@@ -6,15 +6,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { AuthCacheKeys } from '../config'
-
 export const useSigninUser = (reset: UseFormReset<AuthTypes.SigninSchema>) => {
   const authenticate = useAuthStore(state => state.authenticate)
 
   const navigate = useNavigate()
 
   return useMutation({
-    mutationKey: [AuthCacheKeys.Signin],
+    mutationKey: ['signin'],
     mutationFn: authService.signin,
     onSuccess(data) {
       reset()

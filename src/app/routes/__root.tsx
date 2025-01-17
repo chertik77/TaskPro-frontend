@@ -1,3 +1,4 @@
+import { EditProfileModal } from '@/features/edit-profile/components'
 import {
   EditBoardModal,
   NewBoardModal
@@ -10,12 +11,11 @@ import {
   AddColumnModal,
   EditColumnModal
 } from '@/features/kanban/column/components/modals'
+import { NeedHelpModal } from '@/features/need-help/components'
 import {
-  EditProfileModal,
-  NeedHelpModal
-} from '@/features/user/components/modals'
-import { useGetAndSetCurrentUser } from '@/features/user/hooks'
-import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
+  useGetAndSetCurrentUser,
+  useTabletAndBelowMediaQuery
+} from '@/shared/hooks'
 import { useAuthStore } from '@/shared/store'
 import { SidebarMobileModal } from '@/widgets/sidebar'
 import { createRootRoute, Outlet } from '@tanstack/react-router'

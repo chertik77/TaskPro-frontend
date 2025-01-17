@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useEditProfile } from '@/features/user/hooks'
 import { UserContracts } from '@/shared/api/user'
 import {
   Button,
@@ -11,6 +10,7 @@ import {
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import { useAuthStore } from '@/shared/store'
 
+import { useEditProfile } from '../hooks'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {

@@ -1,4 +1,5 @@
-import { ThemeSelect, UserInfo } from '@/features/user/components'
+import { ThemeSelect } from '@/features/change-theme/components'
+import { EditProfileModalTrigger } from '@/features/edit-profile/components'
 
 import { HeaderControls } from './HeaderControls'
 
@@ -9,7 +10,7 @@ export const Header = () => (
     <HeaderControls />
     <div className='flex items-center gap-3.5'>
       <ThemeSelect />
-      <UserInfo />
+      <EditProfileModalTrigger />
     </div>
   </header>
 )

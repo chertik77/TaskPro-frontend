@@ -6,14 +6,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { NeedHelpModal } from '../components/modals'
-import { UserCacheKeys } from '../config'
+import { NeedHelpModal } from '../components'
 
 export const useNeedHelp = (reset: UseFormReset<UserTypes.HelpSchema>) => {
   const { close: closeNeedHelpModal } = useModal(NeedHelpModal)
 
   return useMutation({
-    mutationKey: [UserCacheKeys.UserHelp],
+    mutationKey: ['needHelp'],
     mutationFn: userService.askForHelp,
     onSuccess() {
       reset()

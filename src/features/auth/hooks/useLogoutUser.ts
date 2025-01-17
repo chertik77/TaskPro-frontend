@@ -4,15 +4,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { AuthCacheKeys } from '../config'
-
 export const useLogoutUser = () => {
   const resetStore = useAuthStore(state => state.resetStore)
 
   const navigate = useNavigate()
 
   return useMutation({
-    mutationKey: [AuthCacheKeys.Logout],
+    mutationKey: ['logout'],
     mutationFn: authService.logout,
     onSuccess() {
       navigate({ to: '/' })

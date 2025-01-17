@@ -2,9 +2,9 @@ import { useAuthStore } from '@/shared/store'
 import * as Avatar from '@radix-ui/react-avatar'
 import { useModal } from 'react-modal-state'
 
-import { EditProfileModal } from './modals'
+import { EditProfileModal } from '.'
 
-export const UserInfo = () => {
+export const EditProfileModalTrigger = () => {
   const { name, avatar } = useAuthStore(state => state.user)
 
   const { open: openEditProfileModal } = useModal(EditProfileModal)

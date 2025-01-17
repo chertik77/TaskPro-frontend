@@ -1,6 +1,6 @@
 import { LogoutBtn } from '@/features/auth/components'
 import { BoardsList, MyBoardsInfo } from '@/features/kanban/board/components'
-import { UserSupport } from '@/features/user/components'
+import { NeedHelpModalTrigger } from '@/features/need-help/components'
 import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
 
@@ -25,7 +25,7 @@ export const SidebarMobileModal = () => {
       <MyBoardsInfo />
       <BoardsList />
       <div className='mt-auto px-3.5 tablet:px-6'>
-        <UserSupport />
+        <NeedHelpModalTrigger />
         <LogoutBtn />
       </div>
     </Modal>

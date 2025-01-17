@@ -1,4 +1,5 @@
 export * from './useAppForm'
 export * from './useDocumentTitle'
+export * from './useGetAndSetCurrentUser'
 export * from './useIsFormReadyForSubmit'
 export * from './useTabletAndBelowMediaQuery'

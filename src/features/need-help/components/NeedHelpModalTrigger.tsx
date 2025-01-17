@@ -2,9 +2,9 @@ import { Icon } from '@/shared/components/ui'
 import { SidebarMobileModal } from '@/widgets/sidebar'
 import { useModal } from 'react-modal-state'
 
-import { NeedHelpModal } from './modals'
+import { NeedHelpModal } from './NeedHelpModal'
 
-export const UserSupport = () => {
+export const NeedHelpModalTrigger = () => {
   const { open: openNeedHelpModal } = useModal(NeedHelpModal)
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
