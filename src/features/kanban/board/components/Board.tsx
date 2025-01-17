@@ -1,7 +1,7 @@
 import { useGetBoardById } from '@/features/kanban/board/hooks'
+import { Filters } from '@/features/kanban/card/components/filters'
 import { BoardColumnsList } from '@/features/kanban/column/components'
 import { DragAndDropProvider } from '@/features/kanban/dnd/dnd.context'
-import { Filters } from '@/features/kanban/filters/components'
 import { Loader, Scrollbar } from '@/shared/components/ui'
 import { useDocumentTitle } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
