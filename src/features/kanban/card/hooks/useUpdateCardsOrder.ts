@@ -1,10 +1,9 @@
-import type { UpdateOrderData } from 'shared/types'
+import type { UpdateOrderData } from '@/shared/types'
 
+import { BoardCacheKeys } from '@/features/kanban/board/config'
+import { cardService } from '@/shared/api/card'
 import { useMutation } from '@tanstack/react-query'
-import { cardService } from 'shared/api/card'
 import { toast } from 'sonner'
-
-import { BoardCacheKeys } from 'features/kanban/board/config'
 
 import { CardCacheKeys } from '../config'
 

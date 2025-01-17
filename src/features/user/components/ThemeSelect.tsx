@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
+import { Icon } from '@/shared/components/ui'
+import { DEFAULT_THEME, THEMES } from '@/shared/constants'
+import { useAuthStore } from '@/shared/store'
 import * as Select from '@radix-ui/react-select'
-import { Icon } from 'shared/components/ui'
-import { DEFAULT_THEME, THEMES } from 'shared/constants'
-import { useAuthStore } from 'shared/store'
 
 import { useChangeTheme } from '../hooks'
 

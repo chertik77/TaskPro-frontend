@@ -1,10 +1,10 @@
+import type { BoardTypes } from '@/shared/api/board'
 import type { UseFormReset } from 'react-hook-form'
-import type { BoardTypes } from 'shared/api/board'
 
+import { boardService } from '@/shared/api/board'
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
-import { boardService } from 'shared/api/board'
 import { toast } from 'sonner'
 
 import { NewBoardModal } from '../components/modals'

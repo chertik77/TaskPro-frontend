@@ -1,11 +1,15 @@
+import type { CardTypes } from '@/shared/api/card'
+import type { Card } from '@/shared/api/card/card.types'
+import type { ColumnTypes } from '@/shared/api/column'
+import type { Column } from '@/shared/api/column/column.types'
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
-import type { CardTypes } from 'shared/api/card'
-import type { Card } from 'shared/api/card/card.types'
-import type { ColumnTypes } from 'shared/api/column'
-import type { Column } from 'shared/api/column/column.types'
 
 import { createContext, useEffect, useMemo, useState } from 'react'
+import { BoardCard } from '@/features/kanban/card/components'
+import { useCardDragHandlers } from '@/features/kanban/card/hooks'
+import { BoardColumnsItem } from '@/features/kanban/column/components/BoardColumnsItem'
+import { useColumnDragHandlers } from '@/features/kanban/column/hooks'
 import {
   DndContext,
   DragOverlay,
@@ -15,11 +19,6 @@ import {
   useSensors
 } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
-
-import { BoardCard } from 'features/kanban/card/components'
-import { useCardDragHandlers } from 'features/kanban/card/hooks'
-import { BoardColumnsItem } from 'features/kanban/column/components/BoardColumnsItem'
-import { useColumnDragHandlers } from 'features/kanban/column/hooks'
 
 import { collisionDetectionAlgorithm } from './utils'
 

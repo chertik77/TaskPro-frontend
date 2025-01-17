@@ -1,9 +1,9 @@
+import type { UserTypes } from '@/shared/api/user'
 import type { UseFormReset } from 'react-hook-form'
-import type { UserTypes } from 'shared/api/user'
 
+import { userService } from '@/shared/api/user'
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { userService } from 'shared/api/user'
 import { toast } from 'sonner'
 
 import { NeedHelpModal } from '../components/modals'

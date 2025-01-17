@@ -1,4 +1,4 @@
-import type { UpdateOrderData } from 'shared/types'
+import type { UpdateOrderData } from '@/shared/types'
 import type { ColumnSchema } from './column.types'
 
 import { axiosInstance } from '..'

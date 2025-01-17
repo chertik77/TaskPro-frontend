@@ -1,9 +1,8 @@
+import { useDragAndDrop } from '@/features/kanban/dnd/hooks'
 import {
   horizontalListSortingStrategy,
   SortableContext
 } from '@dnd-kit/sortable'
-
-import { useDragAndDrop } from 'features/kanban/dnd/hooks'
 
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'

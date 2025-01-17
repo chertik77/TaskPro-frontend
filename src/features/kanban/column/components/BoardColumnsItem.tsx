@@ -1,16 +1,15 @@
-import type { CardTypes } from 'shared/api/card'
-import type { ColumnTypes } from 'shared/api/column'
+import type { CardTypes } from '@/shared/api/card'
+import type { ColumnTypes } from '@/shared/api/column'
 
+import { BoardAddCardBtn, BoardCard } from '@/features/kanban/card/components'
+import { useCardFilters } from '@/features/kanban/card/hooks'
+import { getFilteredCards } from '@/features/kanban/card/utils'
+import { useDragAndDrop, useKanbanSortable } from '@/features/kanban/dnd/hooks'
+import { Scrollbar } from '@/shared/components/ui'
+import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
+import { cn } from '@/shared/lib'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { Scrollbar } from 'shared/components/ui'
-import { useTabletAndBelowMediaQuery } from 'shared/hooks'
-import { cn } from 'shared/lib'
-
-import { BoardAddCardBtn, BoardCard } from 'features/kanban/card/components'
-import { useCardFilters } from 'features/kanban/card/hooks'
-import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
-import { getFilteredCards } from 'features/kanban/filters/utils'
 
 import { BoardColumnsActions } from './BoardColumnsActions'
 

@@ -1,10 +1,9 @@
-import type { ColumnTypes } from 'shared/api/column'
+import type { ColumnTypes } from '@/shared/api/column'
 
+import { useDeleteColumn } from '@/features/kanban/column/hooks'
+import { Button } from '@/shared/components/ui'
+import { cn } from '@/shared/lib'
 import { useModal } from 'react-modal-state'
-import { Button } from 'shared/components/ui'
-import { cn } from 'shared/lib'
-
-import { useDeleteColumn } from 'features/kanban/column/hooks'
 
 import { EditColumnModal } from './modals'
 

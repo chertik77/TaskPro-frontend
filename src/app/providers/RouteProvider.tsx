@@ -1,8 +1,8 @@
+import { routeTree } from '@/routeTree.gen'
 import {
   createRouter,
   RouterProvider as TanStackRouterProvider
 } from '@tanstack/react-router'
-import { routeTree } from 'routeTree.gen'
 
 declare module '@tanstack/react-router' {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

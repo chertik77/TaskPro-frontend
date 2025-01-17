@@ -1,12 +1,11 @@
+import type { CardTypes } from '@/shared/api/card'
 import type { UseFormReset } from 'react-hook-form'
-import type { CardTypes } from 'shared/api/card'
 
+import { BoardCacheKeys } from '@/features/kanban/board/config'
+import { cardService } from '@/shared/api/card'
 import { useMutation } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
-import { cardService } from 'shared/api/card'
 import { toast } from 'sonner'
-
-import { BoardCacheKeys } from 'features/kanban/board/config'
 
 import { AddCardModal } from '../components/modals'
 import { CardCacheKeys } from '../config'

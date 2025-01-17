@@ -1,4 +1,4 @@
-import type { UpdateOrderData } from 'shared/types'
+import type { UpdateOrderData } from '@/shared/types'
 import type { CardSchema } from './card.types'
 
 import { axiosInstance } from '..'

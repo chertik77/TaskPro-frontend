@@ -1,4 +1,4 @@
-import type { CardTypes } from 'shared/api/card'
+import type { CardTypes } from '@/shared/api/card'
 
 import { addDays, isAfter, isBefore, isToday, startOfToday } from 'date-fns'
 

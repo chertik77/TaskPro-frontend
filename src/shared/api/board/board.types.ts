@@ -1,4 +1,4 @@
-import type { ICONS } from 'shared/constants'
+import type { ICONS } from '@/shared/constants'
 import type { InferInput } from 'valibot'
 import type { ColumnTypes } from '../column'
 

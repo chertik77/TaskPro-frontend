@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
+import { userService } from '@/shared/api/user'
+import { useAuthStore } from '@/shared/store'
 import { useQuery } from '@tanstack/react-query'
-import { userService } from 'shared/api/user'
-import { useAuthStore } from 'shared/store'
 
 import { UserCacheKeys } from '../config'
 

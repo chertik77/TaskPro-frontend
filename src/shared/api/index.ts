@@ -1,6 +1,6 @@
+import { useAuthStore } from '@/shared/store'
 import axios from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
-import { useAuthStore } from 'shared/store'
 
 import { authService } from './auth'
 

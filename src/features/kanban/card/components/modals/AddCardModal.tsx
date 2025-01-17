@@ -1,8 +1,7 @@
-import { CardContracts } from 'shared/api/card'
-import { Button, Field, Modal } from 'shared/components/ui'
-import { useAppForm } from 'shared/hooks'
-
-import { useAddCard } from 'features/kanban/card/hooks'
+import { useAddCard } from '@/features/kanban/card/hooks'
+import { CardContracts } from '@/shared/api/card'
+import { Button, Field, Modal } from '@/shared/components/ui'
+import { useAppForm } from '@/shared/hooks'
 
 import { DatePicker } from '../ui'
 import { ModalDescription } from './ModalDescription'

@@ -1,7 +1,7 @@
+import { authService } from '@/shared/api/auth'
+import { useAuthStore } from '@/shared/store'
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { authService } from 'shared/api/auth'
-import { useAuthStore } from 'shared/store'
 import { toast } from 'sonner'
 
 import { AuthCacheKeys } from '../config'

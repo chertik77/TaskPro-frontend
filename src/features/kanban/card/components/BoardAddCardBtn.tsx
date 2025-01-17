@@ -1,7 +1,7 @@
-import type { CardTypes } from 'shared/api/card'
+import type { CardTypes } from '@/shared/api/card'
 
+import { Button } from '@/shared/components/ui'
 import { useModal } from 'react-modal-state'
-import { Button } from 'shared/components/ui'
 
 import { AddCardModal } from './modals'
 

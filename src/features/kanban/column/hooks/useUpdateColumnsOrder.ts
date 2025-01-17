@@ -1,11 +1,10 @@
-import type { UpdateOrderData } from 'shared/types'
+import type { UpdateOrderData } from '@/shared/types'
 
+import { BoardCacheKeys } from '@/features/kanban/board/config'
+import { useGetParamBoardId } from '@/features/kanban/board/hooks'
+import { columnService } from '@/shared/api/column'
 import { useMutation } from '@tanstack/react-query'
-import { columnService } from 'shared/api/column'
 import { toast } from 'sonner'
-
-import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
 import { ColumnCacheKeys } from '../config'
 

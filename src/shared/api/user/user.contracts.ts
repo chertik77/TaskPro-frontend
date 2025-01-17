@@ -1,4 +1,4 @@
-import { AuthContracts } from 'shared/api/auth'
+import { AuthContracts } from '@/shared/api/auth'
 import * as v from 'valibot'
 
 export const EditUserSchema = v.partial(

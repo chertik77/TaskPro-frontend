@@ -1,10 +1,10 @@
+import { LogoutBtn } from '@/features/auth/components'
+import { BoardsList, MyBoardsInfo } from '@/features/kanban/board/components'
+import { UserSupport } from '@/features/user/components'
 import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
-import { SidebarLogo } from 'widgets/sidebar/SidebarLogo'
 
-import { LogoutBtn } from 'features/auth/components'
-import { BoardsList, MyBoardsInfo } from 'features/kanban/board/components'
-import { UserSupport } from 'features/user/components'
+import { SidebarLogo } from './SidebarLogo'
 
 export const SidebarMobileModal = () => {
   const { isOpen, close } = useModalInstance()

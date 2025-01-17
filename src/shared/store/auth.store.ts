@@ -1,7 +1,7 @@
-import type { AuthTypes } from 'shared/api/auth'
-import type { UserTypes } from 'shared/api/user'
+import type { AuthTypes } from '@/shared/api/auth'
+import type { UserTypes } from '@/shared/api/user'
 
-import { DEFAULT_THEME } from 'shared/constants'
+import { DEFAULT_THEME } from '@/shared/constants'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 

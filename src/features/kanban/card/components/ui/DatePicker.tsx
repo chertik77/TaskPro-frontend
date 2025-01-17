@@ -1,12 +1,11 @@
+import type { CardTypes } from '@/shared/api/card'
 import type { Control } from 'react-hook-form'
-import type { CardTypes } from 'shared/api/card'
 
 import { useState } from 'react'
+import { formatTodayDate } from '@/features/kanban/card/utils'
+import { Icon } from '@/shared/components/ui'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { Controller } from 'react-hook-form'
-import { Icon } from 'shared/components/ui'
-
-import { formatTodayDate } from 'features/kanban/card/utils'
 
 import { Calendar } from './Calendar'
 

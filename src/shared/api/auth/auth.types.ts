@@ -1,4 +1,4 @@
-import type { UserTypes } from 'shared/api/user'
+import type { UserTypes } from '@/shared/api/user'
 import type { InferInput } from 'valibot'
 import type { SigninSchema, SignupSchema } from './auth.contracts'
 

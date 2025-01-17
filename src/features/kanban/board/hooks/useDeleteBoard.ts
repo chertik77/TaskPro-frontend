@@ -1,6 +1,6 @@
+import { boardService, BoardTypes } from '@/shared/api/board'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { boardService, BoardTypes } from 'shared/api/board'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from '../config'

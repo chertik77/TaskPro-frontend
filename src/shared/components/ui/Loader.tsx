@@ -1,4 +1,4 @@
-import { cn } from 'shared/lib'
+import { cn } from '@/shared/lib'
 
 export const Loader = ({ className }: { className?: string }) => (
   <div

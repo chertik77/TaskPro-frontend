@@ -1,6 +1,6 @@
+import { Icon } from '@/shared/components/ui'
+import { SidebarMobileModal } from '@/widgets/sidebar'
 import { useModal } from 'react-modal-state'
-import { Icon } from 'shared/components/ui'
-import { SidebarMobileModal } from 'widgets/sidebar'
 
 import { NeedHelpModal } from './modals'
 

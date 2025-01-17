@@ -1,4 +1,4 @@
-import type { CardTypes } from 'shared/api/card'
+import type { CardTypes } from '@/shared/api/card'
 
 export const getPriorityColor = (priority: CardTypes.Priority) => {
   const priorityColors: { [key: string]: string } = {

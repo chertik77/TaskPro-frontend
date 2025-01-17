@@ -1,7 +1,7 @@
+import { authService } from '@/shared/api/auth'
+import { useAuthStore } from '@/shared/store'
 import { useGoogleLogin } from '@react-oauth/google'
 import { useNavigate } from '@tanstack/react-router'
-import { authService } from 'shared/api/auth'
-import { useAuthStore } from 'shared/store'
 import { toast } from 'sonner'
 
 export const useSigninUserWithGoogle = () => {

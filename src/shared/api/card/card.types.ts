@@ -1,4 +1,4 @@
-import type { DEADLINES, PRIORITIES } from 'shared/constants'
+import type { DEADLINES, PRIORITIES } from '@/shared/constants'
 import type { InferInput } from 'valibot'
 import type { CardSchema } from './card.conracts'
 

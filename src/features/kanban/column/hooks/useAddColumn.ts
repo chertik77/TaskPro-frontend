@@ -1,13 +1,12 @@
+import type { ColumnTypes } from '@/shared/api/column'
 import type { UseFormReset } from 'react-hook-form'
-import type { ColumnTypes } from 'shared/api/column'
 
+import { BoardCacheKeys } from '@/features/kanban/board/config'
+import { useGetParamBoardId } from '@/features/kanban/board/hooks'
+import { columnService } from '@/shared/api/column'
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
-import { columnService } from 'shared/api/column'
 import { toast } from 'sonner'
-
-import { BoardCacheKeys } from 'features/kanban/board/config'
-import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
 import { AddColumnModal } from '../components/modals'
 import { ColumnCacheKeys } from '../config'

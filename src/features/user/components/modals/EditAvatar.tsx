@@ -1,10 +1,10 @@
+import type { UserTypes } from '@/shared/api/user'
 import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
-import type { UserTypes } from 'shared/api/user'
 
 import { useRef } from 'react'
-import { Icon } from 'shared/components/ui'
-import { useAuthStore } from 'shared/store'
+import { Icon } from '@/shared/components/ui'
+import { useAuthStore } from '@/shared/store'
 
 type EditAvatarProps = {
   changeUserAvatar: UseMutateFunction<

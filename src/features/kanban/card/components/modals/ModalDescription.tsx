@@ -1,8 +1,8 @@
+import type { CardTypes } from '@/shared/api/card'
 import type { FieldErrors } from 'react-hook-form'
-import type { CardTypes } from 'shared/api/card'
 
 import { forwardRef } from 'react'
-import { cn } from 'shared/lib'
+import { cn } from '@/shared/lib'
 
 type ModalDescriptionProps = {
   errors: FieldErrors<CardTypes.CardSchema>

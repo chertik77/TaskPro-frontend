@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
-import { UserContracts } from 'shared/api/user'
+import { useEditProfile } from '@/features/user/hooks'
+import { UserContracts } from '@/shared/api/user'
 import {
   Button,
   Field,
   Loader,
   Modal,
   PasswordField
-} from 'shared/components/ui'
-import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
-import { useAuthStore } from 'shared/store'
-
-import { useEditProfile } from 'features/user/hooks'
+} from '@/shared/components/ui'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { useAuthStore } from '@/shared/store'
 
 import { EditAvatar } from './EditAvatar'
 

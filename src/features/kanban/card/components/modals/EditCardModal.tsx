@@ -1,12 +1,11 @@
-import type { CardTypes } from 'shared/api/card'
+import type { CardTypes } from '@/shared/api/card'
 
 import { useEffect } from 'react'
+import { useEditCard } from '@/features/kanban/card/hooks'
+import { CardContracts } from '@/shared/api/card'
+import { Button, Field, Modal } from '@/shared/components/ui'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import { useModalInstance } from 'react-modal-state'
-import { CardContracts } from 'shared/api/card'
-import { Button, Field, Modal } from 'shared/components/ui'
-import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
-
-import { useEditCard } from 'features/kanban/card/hooks'
 
 import { DatePicker } from '../ui'
 import { ModalDescription } from './ModalDescription'

@@ -1,4 +1,4 @@
-import { ThemeSelect, UserInfo } from 'features/user/components'
+import { ThemeSelect, UserInfo } from '@/features/user/components'
 
 import { HeaderControls } from './HeaderControls'
 

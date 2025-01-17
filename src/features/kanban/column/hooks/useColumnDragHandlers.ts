@@ -1,11 +1,10 @@
+import type { DragAndDropContext } from '@/features/kanban/dnd/dnd.context'
+import type { ColumnTypes } from '@/shared/api/column'
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
-import type { DragAndDropContext } from 'features/kanban/dnd/dnd.context'
 import type { Dispatch, SetStateAction } from 'react'
-import type { ColumnTypes } from 'shared/api/column'
 
+import { findIndexById } from '@/features/kanban/dnd/utils'
 import { arrayMove } from '@dnd-kit/sortable'
-
-import { findIndexById } from 'features/kanban/dnd/utils'
 
 import { useUpdateColumnsOrder } from './useUpdateColumnsOrder'
 

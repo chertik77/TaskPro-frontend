@@ -1,4 +1,4 @@
-import type { THEMES } from 'shared/constants'
+import type { THEMES } from '@/shared/constants'
 import type { InferInput } from 'valibot'
 import type { EditUserSchema, HelpSchema } from './user.contracts'
 

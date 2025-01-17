@@ -2,7 +2,7 @@ import type { InputHTMLAttributes } from 'react'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef } from 'react'
-import { cn } from 'shared/lib'
+import { cn } from '@/shared/lib'
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   inputName: string

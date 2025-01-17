@@ -1,6 +1,6 @@
-import type { CardTypes } from 'shared/api/card'
+import type { CardTypes } from '@/shared/api/card'
 
-import { cn } from 'shared/lib'
+import { cn } from '@/shared/lib'
 
 import { getPriorityColor } from '../utils'
 

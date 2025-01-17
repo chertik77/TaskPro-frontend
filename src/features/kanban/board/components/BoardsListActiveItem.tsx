@@ -1,8 +1,8 @@
-import type { BoardTypes } from 'shared/api/board'
+import type { BoardTypes } from '@/shared/api/board'
 
+import { Icon } from '@/shared/components/ui'
+import { SidebarMobileModal } from '@/widgets/sidebar'
 import { useModal } from 'react-modal-state'
-import { Icon } from 'shared/components/ui'
-import { SidebarMobileModal } from 'widgets/sidebar'
 
 import { useDeleteBoard } from '../hooks'
 import { EditBoardModal } from './modals'

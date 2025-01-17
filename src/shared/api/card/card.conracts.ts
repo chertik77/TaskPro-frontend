@@ -1,4 +1,4 @@
-import { DEADLINES, PRIORITIES } from 'shared/constants'
+import { DEADLINES, PRIORITIES } from '@/shared/constants'
 import * as v from 'valibot'
 
 export const CardSchema = v.object({

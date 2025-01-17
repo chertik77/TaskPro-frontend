@@ -1,5 +1,5 @@
+import { userService, UserTypes } from '@/shared/api/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { userService, UserTypes } from 'shared/api/user'
 import { toast } from 'sonner'
 
 import { UserCacheKeys } from '../config'

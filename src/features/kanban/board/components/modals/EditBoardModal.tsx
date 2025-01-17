@@ -1,12 +1,11 @@
-import type { BoardTypes } from 'shared/api/board'
+import type { BoardTypes } from '@/shared/api/board'
 
 import { useEffect } from 'react'
+import { useEditBoard } from '@/features/kanban/board/hooks'
+import { BoardContracts } from '@/shared/api/board'
+import { Button, Field, Modal } from '@/shared/components/ui'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import { useModalInstance } from 'react-modal-state'
-import { BoardContracts } from 'shared/api/board'
-import { Button, Field, Modal } from 'shared/components/ui'
-import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
-
-import { useEditBoard } from 'features/kanban/board/hooks'
 
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
