@@ -1,16 +1,16 @@
 import type { UseFormReset } from 'react-hook-form'
-import type { BoardSchema } from '../board.schema'
+import type { BoardTypes } from 'shared/api/board'
 
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
+import { boardService } from 'shared/api/board'
 import { toast } from 'sonner'
 
-import { boardService } from '../board.service'
 import { NewBoardModal } from '../components/modals'
 import { BoardCacheKeys } from '../config'
 
-export const useAddBoard = (reset: UseFormReset<BoardSchema>) => {
+export const useAddBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const navigate = useNavigate()
 
   const { close: closeNewBoardModal } = useModal(NewBoardModal)

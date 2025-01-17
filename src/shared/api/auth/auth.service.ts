@@ -6,8 +6,7 @@ import type {
   Tokens
 } from './auth.types'
 
-import { axiosInstance } from 'api'
-
+import { axiosInstance } from '..'
 import { AuthApiEndpoints } from './auth.endpoints'
 
 export const authService = {

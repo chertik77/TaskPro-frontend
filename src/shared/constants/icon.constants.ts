@@ -8,5 +8,3 @@ export const ICONS = [
   'colors',
   'hexagon'
 ] as const
-
-export type Icon = (typeof ICONS)[number]

@@ -1,5 +1,5 @@
-import type { BoardSchema } from 'features/kanban/board/board.schema'
 import type { Control } from 'react-hook-form'
+import type { BoardTypes } from 'shared/api/board'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
@@ -8,7 +8,7 @@ import { useAuthStore } from 'shared/store'
 import images from 'features/kanban/board/data/board-bg-images.json'
 
 type RadioInputBgImagesProps = {
-  control: Control<BoardSchema>
+  control: Control<BoardTypes.BoardSchema>
 }
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {

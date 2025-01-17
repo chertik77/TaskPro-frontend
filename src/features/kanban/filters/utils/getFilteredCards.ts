@@ -1,18 +1,17 @@
-import type { Card } from 'features/kanban/card/card.types'
-import type { Deadline, Priority } from 'features/kanban/shared/constants'
+import type { CardTypes } from 'shared/api/card'
 
 import { addDays, isAfter, isBefore, isToday, startOfToday } from 'date-fns'
 
 type CardFilters = {
-  priority?: Priority
-  deadline?: Deadline
+  priority?: CardTypes.Priority
+  deadline?: CardTypes.Deadline
 }
 
 const today = startOfToday()
 const nextWeek = addDays(today, 7)
 
 export const getFilteredCards = (
-  cards: Card[],
+  cards: CardTypes.Card[],
   { priority, deadline }: CardFilters
 ) => {
   if (!priority && !deadline) return cards

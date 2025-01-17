@@ -1,20 +1,19 @@
-import type { EditColumnModalProps } from 'features/kanban/column/column.types'
-
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { ColumnContracts, ColumnTypes } from 'shared/api/column'
 import { Button, Field, Modal } from 'shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
 
 import { useEditColumn } from 'features/kanban/column/hooks'
-import { TitleSchema } from 'features/kanban/shared/schema'
 
 export const EditColumnModal = () => {
   const {
     data: { title, id }
-  } = useModalInstance<EditColumnModalProps>()
+  } = useModalInstance<ColumnTypes.EditColumnModalProps>()
 
-  const { register, handleSubmit, formState, reset, watch } =
-    useAppForm(TitleSchema)
+  const { register, handleSubmit, formState, reset, watch } = useAppForm(
+    ColumnContracts.ColumnSchema
+  )
 
   const { mutate: editColumn, isPending } = useEditColumn(reset)
 

@@ -1,19 +1,21 @@
-import type { Board } from 'features/kanban/board/board.types'
-import type { TitleSchema } from 'features/kanban/shared/schema'
 import type { UseFormReset } from 'react-hook-form'
+import type { BoardTypes } from 'shared/api/board'
+import type { ColumnTypes } from 'shared/api/column'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
+import { columnService } from 'shared/api/column'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
 import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
-import { columnService } from '../column.service'
 import { EditColumnModal } from '../components/modals/EditColumnModal'
 import { ColumnCacheKeys } from '../config'
 
-export const useEditColumn = (reset: UseFormReset<TitleSchema>) => {
+export const useEditColumn = (
+  reset: UseFormReset<ColumnTypes.ColumnSchema>
+) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -22,8 +24,13 @@ export const useEditColumn = (reset: UseFormReset<TitleSchema>) => {
 
   return useMutation({
     mutationKey: [ColumnCacheKeys.EditColumn],
-    mutationFn: ({ columnId, data }: { columnId: string; data: TitleSchema }) =>
-      columnService.editColumn(columnId, data),
+    mutationFn: ({
+      columnId,
+      data
+    }: {
+      columnId: string
+      data: ColumnTypes.ColumnSchema
+    }) => columnService.editColumn(columnId, data),
     onMutate: async ({ columnId, data: { title } }) => {
       await queryClient.cancelQueries({
         queryKey: [BoardCacheKeys.Board, boardId]
@@ -32,12 +39,12 @@ export const useEditColumn = (reset: UseFormReset<TitleSchema>) => {
       closeEditColumnModal()
       reset()
 
-      const previousBoard = queryClient.getQueryData<Board>([
+      const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
         BoardCacheKeys.Board,
         boardId
       ])
 
-      queryClient.setQueryData<Board>(
+      queryClient.setQueryData<BoardTypes.Board>(
         [BoardCacheKeys.Board, boardId],
         oldBoard =>
           oldBoard && {

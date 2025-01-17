@@ -1,7 +1,9 @@
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
-import type { Card } from 'features/kanban/card/card.types'
-import type { Column } from 'features/kanban/column/column.types'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
+import type { CardTypes } from 'shared/api/card'
+import type { Card } from 'shared/api/card/card.types'
+import type { ColumnTypes } from 'shared/api/column'
+import type { Column } from 'shared/api/column/column.types'
 
 import { createContext, useEffect, useMemo, useState } from 'react'
 import {
@@ -22,10 +24,10 @@ import { useColumnDragHandlers } from 'features/kanban/column/hooks'
 import { collisionDetectionAlgorithm } from './utils'
 
 export type DragAndDropContext = {
-  setColumns: Dispatch<SetStateAction<Column[] | undefined>>
-  setCards: Dispatch<SetStateAction<Card[] | undefined>>
-  columns: Column[] | undefined
-  cards: Card[] | undefined
+  setColumns: Dispatch<SetStateAction<ColumnTypes.Column[] | undefined>>
+  setCards: Dispatch<SetStateAction<CardTypes.Card[] | undefined>>
+  columns: ColumnTypes.Column[] | undefined
+  cards: CardTypes.Card[] | undefined
   columnsIds: string[] | undefined
   cardsIds: string[] | undefined
 }

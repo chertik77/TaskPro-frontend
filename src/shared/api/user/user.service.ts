@@ -1,7 +1,6 @@
 import type { EditUserSchema, HelpSchema, User } from './user.types'
 
-import { axiosInstance } from 'api'
-
+import { axiosInstance } from '..'
 import { UserApiEndpoints } from './user.endpoints'
 
 export const userService = {

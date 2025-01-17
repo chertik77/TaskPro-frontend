@@ -1,14 +1,13 @@
-import type { BoardSchema } from 'features/kanban/board/board.schema'
 import type { Control } from 'react-hook-form'
+import type { BoardTypes } from 'shared/api/board'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
 import { Icon } from 'shared/components/ui'
-
-import { ICONS } from 'features/kanban/board/board.constants'
+import { ICONS } from 'shared/constants'
 
 type RadioInputIconsProps = {
-  control: Control<BoardSchema>
+  control: Control<BoardTypes.BoardSchema>
 }
 
 export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (

@@ -1,5 +1,5 @@
-import type { Card } from 'features/kanban/card/card.types'
-import type { Column } from '../column.types'
+import type { CardTypes } from 'shared/api/card'
+import type { ColumnTypes } from 'shared/api/column'
 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
@@ -15,8 +15,8 @@ import { getFilteredCards } from 'features/kanban/filters/utils'
 import { BoardColumnsActions } from './BoardColumnsActions'
 
 type BoardColumnsItemProps = {
-  column: Column
-  cards: Card[] | undefined
+  column: ColumnTypes.Column
+  cards: CardTypes.Card[] | undefined
   backgroundIdentifier?: string
 }
 

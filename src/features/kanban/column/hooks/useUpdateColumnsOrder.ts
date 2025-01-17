@@ -1,12 +1,12 @@
-import type { UpdateOrderData } from 'features/kanban/shared/types'
+import type { UpdateOrderData } from 'shared/types'
 
 import { useMutation } from '@tanstack/react-query'
+import { columnService } from 'shared/api/column'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
 import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
-import { columnService } from '../column.service'
 import { ColumnCacheKeys } from '../config'
 
 export const useUpdateColumnsOrder = () => {

@@ -1,21 +1,21 @@
-import type { EditBoardModalProps } from 'features/kanban/board/board.types'
+import type { BoardTypes } from 'shared/api/board'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { BoardContracts } from 'shared/api/board'
 import { Button, Field, Modal } from 'shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
 
-import { BoardSchema } from 'features/kanban/board/board.schema'
 import { useEditBoard } from 'features/kanban/board/hooks'
 
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 
 export const EditBoardModal = () => {
-  const { data: board } = useModalInstance<EditBoardModalProps>()
+  const { data: board } = useModalInstance<BoardTypes.EditBoardModalProps>()
 
   const { register, reset, handleSubmit, control, formState, watch } =
-    useAppForm(BoardSchema, { shouldUnregister: false })
+    useAppForm(BoardContracts.BoardSchema, { shouldUnregister: false })
 
   const { mutate: editBoard, isPending } = useEditBoard(reset)
 

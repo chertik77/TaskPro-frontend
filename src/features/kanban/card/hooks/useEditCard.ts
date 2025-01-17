@@ -1,19 +1,19 @@
-import type { Board } from 'features/kanban/board/board.types'
 import type { UseFormReset } from 'react-hook-form'
-import type { CardSchema } from '../card.schema'
+import type { BoardTypes } from 'shared/api/board'
+import type { CardTypes } from 'shared/api/card'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
+import { cardService } from 'shared/api/card'
 import { toast } from 'sonner'
 
 import { BoardCacheKeys } from 'features/kanban/board/config'
 import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
-import { cardService } from '../card.service'
 import { EditCardModal } from '../components/modals'
 import { CardCacheKeys } from '../config'
 
-export const useEditCard = (reset: UseFormReset<CardSchema>) => {
+export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -27,7 +27,7 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
       cardData
     }: {
       cardId: string
-      cardData: CardSchema
+      cardData: CardTypes.CardSchema
     }) => cardService.editCard(cardId, cardData),
     onMutate: async ({ cardId, cardData }) => {
       await queryClient.cancelQueries({
@@ -37,12 +37,12 @@ export const useEditCard = (reset: UseFormReset<CardSchema>) => {
       closeEditCardModal()
       reset()
 
-      const previousBoard = queryClient.getQueryData<Board>([
+      const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
         BoardCacheKeys.Board,
         boardId
       ])
 
-      queryClient.setQueryData<Board>(
+      queryClient.setQueryData<BoardTypes.Board>(
         [BoardCacheKeys.Board, boardId],
         oldBoard =>
           oldBoard && {

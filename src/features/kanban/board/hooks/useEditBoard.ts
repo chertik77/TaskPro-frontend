@@ -1,17 +1,16 @@
 import type { UseFormReset } from 'react-hook-form'
-import type { BoardSchema } from '../board.schema'
-import type { Board } from '../board.types'
+import type { BoardTypes } from 'shared/api/board'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
+import { boardService } from 'shared/api/board'
 import { toast } from 'sonner'
 
-import { boardService } from '../board.service'
 import { EditBoardModal } from '../components/modals'
 import { BoardCacheKeys } from '../config'
 import { useGetParamBoardId } from './useGetParamBoardId'
 
-export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
+export const useEditBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -20,18 +19,19 @@ export const useEditBoard = (reset: UseFormReset<BoardSchema>) => {
 
   return useMutation({
     mutationKey: [BoardCacheKeys.EditBoard],
-    mutationFn: (data: BoardSchema) => boardService.editBoard(boardId!, data),
+    mutationFn: (data: BoardTypes.BoardSchema) =>
+      boardService.editBoard(boardId!, data),
     onMutate: async ({ title, icon }) => {
       await queryClient.cancelQueries({ queryKey: [BoardCacheKeys.Boards] })
 
       closeEditBoardModal()
       reset()
 
-      const previousBoards = queryClient.getQueryData<Board[]>([
+      const previousBoards = queryClient.getQueryData<BoardTypes.Board[]>([
         BoardCacheKeys.Boards
       ])
 
-      queryClient.setQueryData<Board[]>(
+      queryClient.setQueryData<BoardTypes.Board[]>(
         [BoardCacheKeys.Boards],
         oldBoards =>
           oldBoards &&

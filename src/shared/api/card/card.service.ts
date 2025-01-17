@@ -1,9 +1,8 @@
-import type { UpdateOrderData } from '../shared/types'
-import type { CardSchema } from './card.schema'
+import type { UpdateOrderData } from 'shared/types'
+import type { CardSchema } from './card.types'
 
-import { axiosInstance } from 'api'
-
-import { CardApiEndpoints } from './config'
+import { axiosInstance } from '..'
+import { CardApiEndpoints } from './card.endpoints'
 
 export const cardService = {
   async addNewCard(columnId: string, data: CardSchema) {

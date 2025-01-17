@@ -1,11 +1,11 @@
-import type { EditCardModalProps } from 'features/kanban/card/card.types'
+import type { CardTypes } from 'shared/api/card'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
+import { CardContracts } from 'shared/api/card'
 import { Button, Field, Modal } from 'shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from 'shared/hooks'
 
-import { CardSchema } from 'features/kanban/card/card.schema'
 import { useEditCard } from 'features/kanban/card/hooks'
 
 import { DatePicker } from '../ui'
@@ -13,10 +13,10 @@ import { ModalDescription } from './ModalDescription'
 import { ModalPriorities } from './ModalPriorities'
 
 export const EditCardModal = () => {
-  const { data: card } = useModalInstance<EditCardModalProps>()
+  const { data: card } = useModalInstance<CardTypes.EditCardModalProps>()
 
   const { register, handleSubmit, formState, control, reset, watch } =
-    useAppForm(CardSchema, { shouldUnregister: false })
+    useAppForm(CardContracts.CardSchema, { shouldUnregister: false })
 
   const { mutate: editCard, isPending } = useEditCard(reset)
 

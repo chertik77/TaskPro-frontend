@@ -1,4 +1,4 @@
-import type { AddCardModalProps } from '../card.types'
+import type { CardTypes } from 'shared/api/card'
 
 import { useModal } from 'react-modal-state'
 import { Button } from 'shared/components/ui'
@@ -12,7 +12,9 @@ export const BoardAddCardBtn = ({ columnId }: { columnId: string }) => {
     <Button
       isPlusIcon
       className='mt-3.5'
-      onClick={() => openAddCardModal<AddCardModalProps>({ columnId })}>
+      onClick={() =>
+        openAddCardModal<CardTypes.AddCardModalProps>({ columnId })
+      }>
       Add another card
     </Button>
   )

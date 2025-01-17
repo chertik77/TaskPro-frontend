@@ -1,9 +1,7 @@
-import type { BoardSchema } from './board.schema'
-import type { Board } from './board.types'
+import type { Board, BoardSchema } from './board.types'
 
-import { axiosInstance } from 'api'
-
-import { BoardApiEndpoints } from './config'
+import { axiosInstance } from '..'
+import { BoardApiEndpoints } from './board.endpoints'
 
 export const boardService = {
   async getAllBoards() {

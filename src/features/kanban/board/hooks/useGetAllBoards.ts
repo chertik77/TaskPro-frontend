@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
+import { boardService } from 'shared/api/board'
 
-import { boardService } from '../board.service'
 import { BoardCacheKeys } from '../config'
 
 export const useGetAllBoards = () =>
