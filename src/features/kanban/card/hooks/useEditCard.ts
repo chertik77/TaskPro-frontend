@@ -2,7 +2,6 @@ import type { BoardTypes } from '@/shared/api/board'
 import type { CardTypes } from '@/shared/api/card'
 import type { UseFormReset } from 'react-hook-form'
 
-import { BoardCacheKeys } from '@/features/kanban/board/config'
 import { useGetParamBoardId } from '@/features/kanban/board/hooks'
 import { cardService } from '@/shared/api/card'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -10,7 +9,6 @@ import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { EditCardModal } from '../components/modals'
-import { CardCacheKeys } from '../config'
 
 export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const queryClient = useQueryClient()
@@ -20,7 +18,7 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const { close: closeEditCardModal } = useModal(EditCardModal)
 
   return useMutation({
-    mutationKey: [CardCacheKeys.EditCard],
+    mutationKey: ['editCard'],
     mutationFn: ({
       cardId,
       cardData
@@ -30,19 +28,19 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
     }) => cardService.editCard(cardId, cardData),
     onMutate: async ({ cardId, cardData }) => {
       await queryClient.cancelQueries({
-        queryKey: [BoardCacheKeys.Board, boardId]
+        queryKey: ['board', boardId]
       })
 
       closeEditCardModal()
       reset()
 
       const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
-        BoardCacheKeys.Board,
+        'board',
         boardId
       ])
 
       queryClient.setQueryData<BoardTypes.Board>(
-        [BoardCacheKeys.Board, boardId],
+        ['board', boardId],
         oldBoard =>
           oldBoard && {
             ...oldBoard,
@@ -58,17 +56,14 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(
-        [BoardCacheKeys.Board, boardId],
-        context?.previousBoard
-      ),
+      queryClient.setQueryData(['board', boardId], context?.previousBoard),
         toast.error(
           'An error occurred while editing the task. Please try again shortly.'
         )
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [BoardCacheKeys.Board, boardId]
+        queryKey: ['board', boardId]
       })
     }
   })

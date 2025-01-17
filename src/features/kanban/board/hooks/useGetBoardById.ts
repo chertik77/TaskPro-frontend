@@ -1,14 +1,13 @@
 import { boardService } from '@/shared/api/board'
 import { useQuery } from '@tanstack/react-query'
 
-import { BoardCacheKeys } from '../config'
 import { useGetParamBoardId } from './useGetParamBoardId'
 
 export const useGetBoardById = () => {
   const { boardId } = useGetParamBoardId()
 
   return useQuery({
-    queryKey: [BoardCacheKeys.Board, boardId],
+    queryKey: ['board', boardId],
     queryFn: () => boardService.getBoardById(boardId!),
     enabled: !!boardId
   })

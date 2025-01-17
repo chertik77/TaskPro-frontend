@@ -1,17 +1,14 @@
-import { BoardCacheKeys } from '@/features/kanban/board/config'
 import { useDragAndDrop } from '@/features/kanban/dnd/hooks'
 import { cardService } from '@/shared/api/card'
 import { useMutation } from '@tanstack/react-query'
-
-import { CardCacheKeys } from '../config'
 
 export const useDeleteCard = () => {
   const { setCards } = useDragAndDrop()
 
   return useMutation({
-    mutationKey: [CardCacheKeys.DeleteCard],
+    mutationKey: ['deleteCard'],
     mutationFn: (cardId: string) => cardService.deleteCard(cardId),
-    meta: { invalidates: [[BoardCacheKeys.Board]] },
+    meta: { invalidates: [['board']] },
     onMutate: async cardId => {
       setCards(prevCards => prevCards?.filter(c => c.id !== cardId))
     }

@@ -8,7 +8,6 @@ import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { NewBoardModal } from '../components/modals'
-import { BoardCacheKeys } from '../config'
 
 export const useAddBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const navigate = useNavigate()
@@ -16,9 +15,9 @@ export const useAddBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const { close: closeNewBoardModal } = useModal(NewBoardModal)
 
   return useMutation({
-    mutationKey: [BoardCacheKeys.AddBoard],
+    mutationKey: ['addBoard'],
     mutationFn: boardService.addNewBoard,
-    meta: { invalidates: [[BoardCacheKeys.Boards]] },
+    meta: { invalidates: [['boards']] },
     onSuccess(data) {
       closeNewBoardModal()
       reset()
