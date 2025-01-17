@@ -4,8 +4,7 @@ import type { EditUserSchema } from 'features/user/user.schema'
 import type { User } from 'features/user/user.types'
 
 import { useRef } from 'react'
-
-import { useAuthStore } from 'features/auth/auth.store'
+import { useAuthStore } from 'store'
 
 import { Icon } from 'components/ui'
 

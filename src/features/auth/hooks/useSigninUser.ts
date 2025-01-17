@@ -4,9 +4,9 @@ import type { SigninSchema } from '../auth.schema'
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
+import { useAuthStore } from 'store'
 
 import { authService } from '../auth.service'
-import { useAuthStore } from '../auth.store'
 import { AuthCacheKeys } from '../config'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {

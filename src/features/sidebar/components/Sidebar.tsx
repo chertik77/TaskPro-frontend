@@ -1,4 +1,5 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { useSidebarStore } from 'store'
 
 import { LogoutBtn } from 'features/auth/components'
 import { BoardsList, MyBoardsInfo } from 'features/kanban/board/components'
@@ -8,7 +9,6 @@ import { Scrollbar } from 'components/ui'
 
 import { cn } from 'lib'
 
-import { useSidebarStore } from '../sidebar.store'
 import { SidebarLogo } from './SidebarLogo'
 
 export const Sidebar = () => {

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-
-import { useAuthStore } from 'features/auth/auth.store'
+import { useAuthStore } from 'store'
 
 import { UserCacheKeys } from '../config'
 import { userService } from '../user.service'

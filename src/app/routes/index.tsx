@@ -1,6 +1,6 @@
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
+import { useAuthStore } from 'store'
 
-import { useAuthStore } from 'features/auth/auth.store'
 import { GoogleSignin } from 'features/auth/components'
 
 import { Icon } from 'components/ui'

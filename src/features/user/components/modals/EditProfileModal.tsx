@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
+import { useAuthStore } from 'store'
 
-import { useAuthStore } from 'features/auth/auth.store'
 import { useEditProfile } from 'features/user/hooks'
 import { EditUserSchema } from 'features/user/user.schema'
 

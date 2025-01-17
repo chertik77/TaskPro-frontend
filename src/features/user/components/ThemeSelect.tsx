@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import * as Select from '@radix-ui/react-select'
-
-import { useAuthStore } from 'features/auth/auth.store'
+import { useAuthStore } from 'store'
 
 import { Icon } from 'components/ui'
 

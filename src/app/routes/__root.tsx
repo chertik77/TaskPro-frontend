@@ -3,8 +3,8 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { ModalProvider, ModalRenderer } from 'react-modal-state'
 import { Toaster } from 'sonner'
+import { useAuthStore } from 'store'
 
-import { useAuthStore } from 'features/auth/auth.store'
 import {
   EditBoardModal,
   NewBoardModal

@@ -1,5 +1,5 @@
+import type { AuthResponse, Tokens } from 'features/auth/auth.types'
 import type { User } from 'features/user/user.types'
-import type { AuthResponse, Tokens } from './auth.types'
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'

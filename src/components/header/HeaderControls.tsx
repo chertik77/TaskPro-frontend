@@ -1,7 +1,7 @@
 import { useModal } from 'react-modal-state'
+import { useSidebarStore } from 'store'
 
 import { SidebarMobileModal } from 'features/sidebar/components'
-import { useSidebarStore } from 'features/sidebar/sidebar.store'
 
 import { Icon } from 'components/ui'
 
