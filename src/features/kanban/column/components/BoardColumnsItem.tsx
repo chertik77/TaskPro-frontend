@@ -1,14 +1,14 @@
 import type { CardTypes } from '@/shared/api/card'
 import type { ColumnTypes } from '@/shared/api/column'
 
-import { BoardAddCardBtn, BoardCard } from '@/features/kanban/card/components'
-import { useCardFilters } from '@/features/kanban/card/hooks'
-import { getFilteredCards } from '@/features/kanban/card/utils'
-import { useDragAndDrop, useKanbanSortable } from '@/features/kanban/dnd/hooks'
+import {
+  BoardAddCardBtn,
+  BoardCardList
+} from '@/features/kanban/card/components'
+import { useKanbanSortable } from '@/features/kanban/dnd/hooks'
 import { Scrollbar } from '@/shared/components/ui'
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { BoardColumnsActions } from './BoardColumnsActions'
@@ -24,16 +24,7 @@ export const BoardColumnsItem = ({
   cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { priorityParam, deadlineParam } = useCardFilters()
-
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
-
-  const { cards: allCards } = useDragAndDrop()
-
-  const filteredCards = getFilteredCards(cards!, {
-    priority: priorityParam,
-    deadline: deadlineParam
-  })
 
   const { style, setNodeRef, attributes, listeners, isDragging } =
     useKanbanSortable({
@@ -67,16 +58,7 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         <ScrollArea.Viewport className='h-full'>
-          <SortableContext
-            items={allCards || []}
-            strategy={verticalListSortingStrategy}>
-            {filteredCards?.map(card => (
-              <BoardCard
-                card={card}
-                key={card.id}
-              />
-            ))}
-          </SortableContext>
+          <BoardCardList cards={cards} />
         </ScrollArea.Viewport>
         <Scrollbar
           backgroundIdentifier={backgroundIdentifier}
