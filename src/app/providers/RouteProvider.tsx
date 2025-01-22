@@ -3,6 +3,7 @@ import {
   createRouter,
   RouterProvider as TanStackRouterProvider
 } from '@tanstack/react-router'
+import { ModalProvider } from 'react-modal-state'
 
 declare module '@tanstack/react-router' {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
@@ -13,4 +14,9 @@ declare module '@tanstack/react-router' {
 
 const router = createRouter({ routeTree, defaultPendingMinMs: 0 })
 
-export const RouterProvider = () => <TanStackRouterProvider router={router} />
+export const RouterProvider = () => (
+  <TanStackRouterProvider
+    router={router}
+    Wrap={({ children }) => <ModalProvider>{children}</ModalProvider>}
+  />
+)

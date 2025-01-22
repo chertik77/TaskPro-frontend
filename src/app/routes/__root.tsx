@@ -21,7 +21,7 @@ import { useAuthStore } from '@/shared/store'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
-import { ModalProvider, ModalRenderer } from 'react-modal-state'
+import { ModalRenderer } from 'react-modal-state'
 import { Toaster } from 'sonner'
 
 const RootRoute = () => {
@@ -43,18 +43,16 @@ const RootRoute = () => {
         theme={theme === 'dark' ? 'dark' : 'light'}
         className='text-balance'
       />
-      <ModalProvider>
-        <Outlet />
-        <ModalRenderer Component={NewBoardModal} />
-        <ModalRenderer Component={EditBoardModal} />
-        <ModalRenderer Component={AddColumnModal} />
-        <ModalRenderer Component={EditColumnModal} />
-        <ModalRenderer Component={AddCardModal} />
-        <ModalRenderer Component={EditCardModal} />
-        <ModalRenderer Component={NeedHelpModal} />
-        <ModalRenderer Component={EditProfileModal} />
-        <ModalRenderer Component={SidebarMobileModal} />
-      </ModalProvider>
+      <Outlet />
+      <ModalRenderer Component={NewBoardModal} />
+      <ModalRenderer Component={EditBoardModal} />
+      <ModalRenderer Component={AddColumnModal} />
+      <ModalRenderer Component={EditColumnModal} />
+      <ModalRenderer Component={AddCardModal} />
+      <ModalRenderer Component={EditCardModal} />
+      <ModalRenderer Component={NeedHelpModal} />
+      <ModalRenderer Component={EditProfileModal} />
+      <ModalRenderer Component={SidebarMobileModal} />
     </>
   )
 }
