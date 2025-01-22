@@ -28,7 +28,7 @@ export const BoardColumnsItem = ({
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
-  const { cardsIds } = useDragAndDrop()
+  const { cards: allCards } = useDragAndDrop()
 
   const filteredCards = getFilteredCards(cards!, {
     priority: priorityParam,
@@ -68,7 +68,7 @@ export const BoardColumnsItem = ({
         })}>
         <ScrollArea.Viewport className='h-full'>
           <SortableContext
-            items={cardsIds || []}
+            items={allCards || []}
             strategy={verticalListSortingStrategy}>
             {filteredCards?.map(card => (
               <BoardCard

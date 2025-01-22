@@ -14,12 +14,12 @@ type BoardColumnsListProps = {
 export const BoardColumnsList = ({
   backgroundIdentifier
 }: BoardColumnsListProps) => {
-  const { columns, cards, columnsIds } = useDragAndDrop()
+  const { columns, cards } = useDragAndDrop()
 
   return (
     <div className='flex touch-manipulation gap-[34px]'>
       <SortableContext
-        items={columnsIds || []}
+        items={columns || []}
         strategy={horizontalListSortingStrategy}>
         {columns?.map(column => (
           <BoardColumnsItem

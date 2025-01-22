@@ -5,7 +5,7 @@ import type { Column } from '@/shared/api/column/column.types'
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 
-import { createContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { BoardCard } from '@/features/kanban/card/components'
 import { useCardDragHandlers } from '@/features/kanban/card/hooks'
 import { BoardColumnsItem } from '@/features/kanban/column/components/BoardColumnsItem'
@@ -27,8 +27,6 @@ export type DragAndDropContext = {
   setCards: Dispatch<SetStateAction<CardTypes.Card[] | undefined>>
   columns: ColumnTypes.Column[] | undefined
   cards: CardTypes.Card[] | undefined
-  columnsIds: string[] | undefined
-  cardsIds: string[] | undefined
 }
 
 type DragAndDropProviderProps = {
@@ -83,9 +81,6 @@ export const DragAndDropProvider = ({
     if (data?.type === 'card') cardHandlers.onDragEnd(event)
   }
 
-  const columnsIds = useMemo(() => columns?.map(col => col.id), [columns])
-  const cardsIds = useMemo(() => cards?.map(c => c.id), [cards])
-
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, {
@@ -95,7 +90,7 @@ export const DragAndDropProvider = ({
 
   return (
     <DragAndDropContext.Provider
-      value={{ setColumns, setCards, columns, cards, columnsIds, cardsIds }}>
+      value={{ setColumns, setCards, columns, cards }}>
       <DndContext
         sensors={sensors}
         collisionDetection={collisionDetectionAlgorithm}
