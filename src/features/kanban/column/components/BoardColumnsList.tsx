@@ -1,9 +1,8 @@
+import { useDragAndDrop } from '@/features/kanban/dnd/hooks'
 import {
   horizontalListSortingStrategy,
   SortableContext
 } from '@dnd-kit/sortable'
-
-import { useDragAndDrop } from 'features/kanban/dnd/hooks'
 
 import { BoardAddColumnBtn } from './BoardAddColumnBtn'
 import { BoardColumnsItem } from './BoardColumnsItem'
@@ -15,12 +14,12 @@ type BoardColumnsListProps = {
 export const BoardColumnsList = ({
   backgroundIdentifier
 }: BoardColumnsListProps) => {
-  const { columns, cards, columnsIds } = useDragAndDrop()
+  const { columns, cards } = useDragAndDrop()
 
   return (
     <div className='flex touch-manipulation gap-[34px]'>
       <SortableContext
-        items={columnsIds || []}
+        items={columns || []}
         strategy={horizontalListSortingStrategy}>
         {columns?.map(column => (
           <BoardColumnsItem

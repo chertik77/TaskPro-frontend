@@ -1,18 +1,16 @@
-import type { CardSchema } from 'features/kanban/card/card.schema'
+import type { CardTypes } from '@/shared/api/card'
 import type { Control } from 'react-hook-form'
 
 import { useState } from 'react'
+import { formatTodayDate } from '@/features/kanban/card/utils'
+import { Icon } from '@/shared/components/ui'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { Controller } from 'react-hook-form'
-
-import { formatTodayDate } from 'features/kanban/card/utils'
-
-import { Icon } from 'components/ui'
 
 import { Calendar } from './Calendar'
 
 type DatePickerProps = {
-  control: Control<CardSchema>
+  control: Control<CardTypes.CardSchema>
 }
 
 export const DatePicker = ({ control }: DatePickerProps) => {

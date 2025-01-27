@@ -1,11 +1,12 @@
-import { useAddColumn } from 'features/kanban/column/hooks'
-import { TitleSchema } from 'features/kanban/shared/schema'
-
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
+import { useAddColumn } from '@/features/kanban/column/hooks'
+import { ColumnContracts } from '@/shared/api/column'
+import { Button, Field, Modal } from '@/shared/components/ui'
+import { useAppForm } from '@/shared/hooks'
 
 export const AddColumnModal = () => {
-  const { register, handleSubmit, formState, reset } = useAppForm(TitleSchema)
+  const { register, handleSubmit, formState, reset } = useAppForm(
+    ColumnContracts.ColumnSchema
+  )
 
   const { mutate: addColumn, isPending } = useAddColumn(reset)
 

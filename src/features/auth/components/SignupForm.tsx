@@ -1,13 +1,12 @@
-import { useSignupUser } from 'features/auth/hooks'
-
-import { Button, Field, Loader } from 'components/ui'
-import { PasswordField } from 'components/ui/PasswordField'
-import { useAppForm } from 'hooks'
-
-import { SignupSchema } from '../auth.schema'
+import { useSignupUser } from '@/features/auth/hooks'
+import { AuthContracts } from '@/shared/api/auth'
+import { Button, Field, Loader, PasswordField } from '@/shared/components/ui'
+import { useAppForm } from '@/shared/hooks'
 
 export const SignupForm = () => {
-  const { handleSubmit, register, formState, reset } = useAppForm(SignupSchema)
+  const { handleSubmit, register, formState, reset } = useAppForm(
+    AuthContracts.SignupSchema
+  )
 
   const { mutate: signup, isPending } = useSignupUser(reset)
 

@@ -1,21 +1,19 @@
-import type { Card, EditCardModalProps } from '../card.types'
+import type { CardTypes } from '@/shared/api/card'
 
+import { useDeleteCard } from '@/features/kanban/card/hooks'
+import { Button, Icon } from '@/shared/components/ui'
 import { isToday } from 'date-fns'
 import { useModal } from 'react-modal-state'
 
-import { useDeleteCard } from 'features/kanban/card/hooks'
-
-import { Button, Icon } from 'components/ui'
-
 import { EditCardModal } from './modals'
 
-export const BoardCardActions = ({ card }: { card: Card }) => {
+export const BoardCardActions = ({ card }: { card: CardTypes.Card }) => {
   const { open: openEditCardModal } = useModal(EditCardModal)
 
   const { mutate: deleteCard } = useDeleteCard()
 
   const handleEditCardModal = () => {
-    openEditCardModal<EditCardModalProps>({
+    openEditCardModal<CardTypes.EditCardModalProps>({
       id: card.id,
       title: card.title,
       description: card.description,

@@ -1,12 +1,6 @@
-import type { Card } from '../card.types'
-
 import { format } from 'date-fns'
 
-type BoardCardDeadlineProps = {
-  deadline: Card['deadline']
-}
-
-export const BoardCardDeadline = ({ deadline }: BoardCardDeadlineProps) => (
+export const BoardCardDeadline = ({ deadline }: { deadline: Date }) => (
   <div>
     <p className='mb-1 text-extrasm text-black/50 dark:text-white/50'>
       Deadline

@@ -1,24 +1,21 @@
-import type { Card } from 'features/kanban/card/card.types'
-import type { Column } from '../column.types'
+import type { CardTypes } from '@/shared/api/card'
+import type { ColumnTypes } from '@/shared/api/column'
 
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import {
+  BoardAddCardBtn,
+  BoardCardList
+} from '@/features/kanban/card/components'
+import { useKanbanSortable } from '@/features/kanban/dnd/hooks'
+import { Scrollbar } from '@/shared/components/ui'
+import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
+import { cn } from '@/shared/lib'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-
-import { BoardAddCardBtn, BoardCard } from 'features/kanban/card/components'
-import { useCardFilters } from 'features/kanban/card/hooks'
-import { useDragAndDrop, useKanbanSortable } from 'features/kanban/dnd/hooks'
-import { getFilteredCards } from 'features/kanban/filters/utils'
-
-import { Scrollbar } from 'components/ui'
-import { useTabletAndBelowMediaQuery } from 'hooks'
-
-import { cn } from 'lib'
 
 import { BoardColumnsActions } from './BoardColumnsActions'
 
 type BoardColumnsItemProps = {
-  column: Column
-  cards: Card[] | undefined
+  column: ColumnTypes.Column
+  cards: CardTypes.Card[] | undefined
   backgroundIdentifier?: string
 }
 
@@ -27,16 +24,7 @@ export const BoardColumnsItem = ({
   cards,
   backgroundIdentifier
 }: BoardColumnsItemProps) => {
-  const { priorityParam, deadlineParam } = useCardFilters()
-
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
-
-  const { cardsIds } = useDragAndDrop()
-
-  const filteredCards = getFilteredCards(cards!, {
-    priority: priorityParam,
-    deadline: deadlineParam
-  })
 
   const { style, setNodeRef, attributes, listeners, isDragging } =
     useKanbanSortable({
@@ -70,16 +58,7 @@ export const BoardColumnsItem = ({
           'h-[calc(100dvh-300px)]': isTabletAndBelow
         })}>
         <ScrollArea.Viewport className='h-full'>
-          <SortableContext
-            items={cardsIds || []}
-            strategy={verticalListSortingStrategy}>
-            {filteredCards?.map(card => (
-              <BoardCard
-                card={card}
-                key={card.id}
-              />
-            ))}
-          </SortableContext>
+          <BoardCardList cards={cards} />
         </ScrollArea.Viewport>
         <Scrollbar
           backgroundIdentifier={backgroundIdentifier}

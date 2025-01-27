@@ -1,15 +1,14 @@
-import type { Card } from '../card.types'
+import type { CardTypes } from '@/shared/api/card'
 
-import { useKanbanSortable } from 'features/kanban/dnd/hooks'
-
-import { cn } from 'lib'
+import { useKanbanSortable } from '@/features/kanban/dnd/hooks'
+import { cn } from '@/shared/lib'
 
 import { getPriorityColor } from '../utils'
 import { BoardCardActions } from './BoardCardActions'
 import { BoardCardDeadline } from './BoardCardDeadline'
 import { BoardCardPriority } from './BoardCardPriority'
 
-export const BoardCard = ({ card }: { card: Card }) => {
+export const BoardCard = ({ card }: { card: CardTypes.Card }) => {
   const { style, setNodeRef, attributes, listeners, isDragging } =
     useKanbanSortable({
       id: card.id,

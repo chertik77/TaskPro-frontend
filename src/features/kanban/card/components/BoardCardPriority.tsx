@@ -1,11 +1,11 @@
-import type { Priority } from 'features/kanban/shared/constants'
+import type { CardTypes } from '@/shared/api/card'
 
-import { cn } from 'lib'
+import { cn } from '@/shared/lib'
 
 import { getPriorityColor } from '../utils'
 
 type BoardCardPriorityProps = {
-  priority: Priority
+  priority: CardTypes.Priority
 }
 
 export const BoardCardPriority = ({ priority }: BoardCardPriorityProps) => (

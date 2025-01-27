@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "target": "ES2020",
     "verbatimModuleSyntax": true,
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2023"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "paths": { "@/*": ["src/*"] },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

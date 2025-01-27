@@ -1,16 +1,17 @@
-import type { Column, EditColumnModalProps } from '../column.types'
+import type { ColumnTypes } from '@/shared/api/column'
 
+import { useDeleteColumn } from '@/features/kanban/column/hooks'
+import { Button } from '@/shared/components/ui'
+import { cn } from '@/shared/lib'
 import { useModal } from 'react-modal-state'
-
-import { useDeleteColumn } from 'features/kanban/column/hooks'
-
-import { Button } from 'components/ui'
-
-import { cn } from 'lib'
 
 import { EditColumnModal } from './modals'
 
-export const BoardColumnsActions = ({ column }: { column: Column }) => {
+type BoardColumnsActionsProps = {
+  column: ColumnTypes.Column
+}
+
+export const BoardColumnsActions = ({ column }: BoardColumnsActionsProps) => {
   const { mutate: deleteColumn } = useDeleteColumn()
 
   const { open: openEditColumnModal } = useModal(EditColumnModal)
@@ -26,7 +27,7 @@ export const BoardColumnsActions = ({ column }: { column: Column }) => {
         className='ml-auto mr-2'
         aria-label='Edit column'
         onClick={() =>
-          openEditColumnModal<EditColumnModalProps>({
+          openEditColumnModal<ColumnTypes.EditColumnModalProps>({
             id: column.id,
             title: column.title
           })

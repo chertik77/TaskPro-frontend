@@ -1,34 +1,27 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
-import { ModalProvider, ModalRenderer } from 'react-modal-state'
-import { Toaster } from 'sonner'
-import { useAuthStore } from 'store'
-
+import { SidebarMobileModal } from '@/blocks/sidebar'
+import { EditProfileModal } from '@/features/edit-profile/components'
 import {
   EditBoardModal,
   NewBoardModal
-} from 'features/kanban/board/components/modals'
+} from '@/features/kanban/board/components/modals'
 import {
   AddCardModal,
   EditCardModal
-} from 'features/kanban/card/components/modals'
+} from '@/features/kanban/card/components/modals'
 import {
   AddColumnModal,
   EditColumnModal
-} from 'features/kanban/column/components/modals'
-import { SidebarMobileModal } from 'features/sidebar/components'
-import {
-  EditProfileModal,
-  NeedHelpModal
-} from 'features/user/components/modals'
-import { useGetAndSetCurrentUser } from 'features/user/hooks'
-
-import { useTabletAndBelowMediaQuery } from 'hooks'
+} from '@/features/kanban/column/components/modals'
+import { NeedHelpModal } from '@/features/need-help/components'
+import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
+import { useAuthStore } from '@/shared/store'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
+import { ModalRenderer } from 'react-modal-state'
+import { Toaster } from 'sonner'
 
 const RootRoute = () => {
-  useGetAndSetCurrentUser()
-
   const theme = useAuthStore(state => state.user.theme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
@@ -45,18 +38,16 @@ const RootRoute = () => {
         theme={theme === 'dark' ? 'dark' : 'light'}
         className='text-balance'
       />
-      <ModalProvider>
-        <Outlet />
-        <ModalRenderer Component={NewBoardModal} />
-        <ModalRenderer Component={EditBoardModal} />
-        <ModalRenderer Component={AddColumnModal} />
-        <ModalRenderer Component={EditColumnModal} />
-        <ModalRenderer Component={AddCardModal} />
-        <ModalRenderer Component={EditCardModal} />
-        <ModalRenderer Component={NeedHelpModal} />
-        <ModalRenderer Component={EditProfileModal} />
-        <ModalRenderer Component={SidebarMobileModal} />
-      </ModalProvider>
+      <Outlet />
+      <ModalRenderer Component={NewBoardModal} />
+      <ModalRenderer Component={EditBoardModal} />
+      <ModalRenderer Component={AddColumnModal} />
+      <ModalRenderer Component={EditColumnModal} />
+      <ModalRenderer Component={AddCardModal} />
+      <ModalRenderer Component={EditCardModal} />
+      <ModalRenderer Component={NeedHelpModal} />
+      <ModalRenderer Component={EditProfileModal} />
+      <ModalRenderer Component={SidebarMobileModal} />
     </>
   )
 }

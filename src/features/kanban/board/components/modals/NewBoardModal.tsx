@@ -1,15 +1,14 @@
-import { BoardSchema } from 'features/kanban/board/board.schema'
-import { useAddBoard } from 'features/kanban/board/hooks'
-
-import { Button, Field, Modal } from 'components/ui'
-import { useAppForm } from 'hooks'
+import { useAddBoard } from '@/features/kanban/board/hooks'
+import { BoardContracts } from '@/shared/api/board'
+import { Button, Field, Modal } from '@/shared/components/ui'
+import { useAppForm } from '@/shared/hooks'
 
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'
 
 export const NewBoardModal = () => {
   const { register, formState, reset, handleSubmit, control } = useAppForm(
-    BoardSchema,
+    BoardContracts.BoardSchema,
     { defaultValues: { icon: 'project', background: 'default' } }
   )
 

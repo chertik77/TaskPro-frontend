@@ -1,13 +1,10 @@
+import { Header } from '@/blocks/header'
+import { Sidebar } from '@/blocks/sidebar'
+import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
+import { cn } from '@/shared/lib'
+import { useAuthStore, useSidebarStore } from '@/shared/store'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { useAuthStore, useSidebarStore } from 'store'
-
-import { Sidebar } from 'features/sidebar/components'
-
-import { Header } from 'components/header'
-import { useTabletAndBelowMediaQuery } from 'hooks'
-
-import { cn } from 'lib'
 
 const DashboardRoute = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useSidebarStore()
