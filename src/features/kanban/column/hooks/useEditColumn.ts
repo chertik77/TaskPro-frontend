@@ -1,18 +1,19 @@
-import type { BoardTypes } from '@/shared/api/board'
-import type { ColumnTypes } from '@/shared/api/column'
+import type { Board } from 'features/kanban/board/board.types'
+import type { TitleSchema } from 'features/kanban/shared/schema'
 import type { UseFormReset } from 'react-hook-form'
 
-import { useGetParamBoardId } from '@/features/kanban/board/hooks'
-import { columnService } from '@/shared/api/column'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { EditColumnModal } from '../components/modals/EditColumnModal'
+import { BoardCacheKeys } from 'features/kanban/board/config'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
-export const useEditColumn = (
-  reset: UseFormReset<ColumnTypes.ColumnSchema>
-) => {
+import { columnService } from '../column.service'
+import { EditColumnModal } from '../components/modals/EditColumnModal'
+import { ColumnCacheKeys } from '../config'
+
+export const useEditColumn = (reset: UseFormReset<TitleSchema>) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -20,29 +21,24 @@ export const useEditColumn = (
   const { close: closeEditColumnModal } = useModal(EditColumnModal)
 
   return useMutation({
-    mutationKey: ['editColumn'],
-    mutationFn: ({
-      columnId,
-      data
-    }: {
-      columnId: string
-      data: ColumnTypes.ColumnSchema
-    }) => columnService.editColumn(columnId, data),
+    mutationKey: [ColumnCacheKeys.EditColumn],
+    mutationFn: ({ columnId, data }: { columnId: string; data: TitleSchema }) =>
+      columnService.editColumn(columnId, data),
     onMutate: async ({ columnId, data: { title } }) => {
       await queryClient.cancelQueries({
-        queryKey: ['board', boardId]
+        queryKey: [BoardCacheKeys.Board, boardId]
       })
 
       closeEditColumnModal()
       reset()
 
-      const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
-        'board',
+      const previousBoard = queryClient.getQueryData<Board>([
+        BoardCacheKeys.Board,
         boardId
       ])
 
-      queryClient.setQueryData<BoardTypes.Board>(
-        ['board', boardId],
+      queryClient.setQueryData<Board>(
+        [BoardCacheKeys.Board, boardId],
         oldBoard =>
           oldBoard && {
             ...oldBoard,
@@ -55,14 +51,17 @@ export const useEditColumn = (
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['board', boardId], context?.previousBoard),
+      queryClient.setQueryData(
+        [BoardCacheKeys.Board, boardId],
+        context?.previousBoard
+      ),
         toast.error(
           'An error occurred while editing the column. Please try again shortly.'
         )
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['board', boardId]
+        queryKey: [BoardCacheKeys.Board, boardId]
       })
     }
   })

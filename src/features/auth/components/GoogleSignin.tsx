@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/components/ui'
+import { Icon } from 'components/ui'
 
 import { useSigninUserWithGoogle } from '../hooks'
 

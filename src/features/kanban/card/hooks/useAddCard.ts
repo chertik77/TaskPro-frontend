@@ -1,25 +1,28 @@
-import type { CardTypes } from '@/shared/api/card'
 import type { UseFormReset } from 'react-hook-form'
+import type { CardSchema } from '../card.schema'
+import type { AddCardModalProps } from '../card.types'
 
-import { cardService } from '@/shared/api/card'
 import { useMutation } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { AddCardModal } from '../components/modals'
+import { BoardCacheKeys } from 'features/kanban/board/config'
 
-export const useAddCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
+import { cardService } from '../card.service'
+import { AddCardModal } from '../components/modals'
+import { CardCacheKeys } from '../config'
+
+export const useAddCard = (reset: UseFormReset<CardSchema>) => {
   const {
     data: { columnId }
-  } = useModalInstance<CardTypes.AddCardModalProps>()
+  } = useModalInstance<AddCardModalProps>()
 
   const { close: closeAddCardModal } = useModal(AddCardModal)
 
   return useMutation({
-    mutationKey: ['addCard'],
-    mutationFn: (data: CardTypes.CardSchema) =>
-      cardService.addNewCard(columnId, data),
-    meta: { invalidates: [['board']] },
+    mutationKey: [CardCacheKeys.AddCard],
+    mutationFn: (data: CardSchema) => cardService.addNewCard(columnId, data),
+    meta: { invalidates: [[BoardCacheKeys.Board]] },
     onSuccess() {
       closeAddCardModal()
       reset()

@@ -1,7 +1,8 @@
-import { useAddCard } from '@/features/kanban/card/hooks'
-import { CardContracts } from '@/shared/api/card'
-import { Button, Field, Modal } from '@/shared/components/ui'
-import { useAppForm } from '@/shared/hooks'
+import { CardSchema } from 'features/kanban/card/card.schema'
+import { useAddCard } from 'features/kanban/card/hooks'
+
+import { Button, Field, Modal } from 'components/ui'
+import { useAppForm } from 'hooks'
 
 import { DatePicker } from '../ui'
 import { ModalDescription } from './ModalDescription'
@@ -9,7 +10,7 @@ import { ModalPriorities } from './ModalPriorities'
 
 export const AddCardModal = () => {
   const { register, handleSubmit, formState, reset, control } = useAppForm(
-    CardContracts.CardSchema,
+    CardSchema,
     { defaultValues: { priority: 'Without', deadline: new Date() } }
   )
 

@@ -1,5 +1,6 @@
-import { Button, Icon } from '@/shared/components/ui'
 import { useModal } from 'react-modal-state'
+
+import { Button, Icon } from 'components/ui'
 
 import { AddColumnModal } from './modals'
 

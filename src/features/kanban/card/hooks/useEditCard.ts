@@ -1,16 +1,19 @@
-import type { BoardTypes } from '@/shared/api/board'
-import type { CardTypes } from '@/shared/api/card'
+import type { Board } from 'features/kanban/board/board.types'
 import type { UseFormReset } from 'react-hook-form'
+import type { CardSchema } from '../card.schema'
 
-import { useGetParamBoardId } from '@/features/kanban/board/hooks'
-import { cardService } from '@/shared/api/card'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { EditCardModal } from '../components/modals'
+import { BoardCacheKeys } from 'features/kanban/board/config'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
 
-export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
+import { cardService } from '../card.service'
+import { EditCardModal } from '../components/modals'
+import { CardCacheKeys } from '../config'
+
+export const useEditCard = (reset: UseFormReset<CardSchema>) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -18,29 +21,29 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const { close: closeEditCardModal } = useModal(EditCardModal)
 
   return useMutation({
-    mutationKey: ['editCard'],
+    mutationKey: [CardCacheKeys.EditCard],
     mutationFn: ({
       cardId,
       cardData
     }: {
       cardId: string
-      cardData: CardTypes.CardSchema
+      cardData: CardSchema
     }) => cardService.editCard(cardId, cardData),
     onMutate: async ({ cardId, cardData }) => {
       await queryClient.cancelQueries({
-        queryKey: ['board', boardId]
+        queryKey: [BoardCacheKeys.Board, boardId]
       })
 
       closeEditCardModal()
       reset()
 
-      const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
-        'board',
+      const previousBoard = queryClient.getQueryData<Board>([
+        BoardCacheKeys.Board,
         boardId
       ])
 
-      queryClient.setQueryData<BoardTypes.Board>(
-        ['board', boardId],
+      queryClient.setQueryData<Board>(
+        [BoardCacheKeys.Board, boardId],
         oldBoard =>
           oldBoard && {
             ...oldBoard,
@@ -56,14 +59,17 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['board', boardId], context?.previousBoard),
+      queryClient.setQueryData(
+        [BoardCacheKeys.Board, boardId],
+        context?.previousBoard
+      ),
         toast.error(
           'An error occurred while editing the task. Please try again shortly.'
         )
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ['board', boardId]
+        queryKey: [BoardCacheKeys.Board, boardId]
       })
     }
   })

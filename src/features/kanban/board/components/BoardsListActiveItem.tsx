@@ -1,17 +1,15 @@
-import type { BoardTypes } from '@/shared/api/board'
+import type { Board, EditBoardModalProps } from '../board.types'
 
-import { SidebarMobileModal } from '@/blocks/sidebar'
-import { Icon } from '@/shared/components/ui'
 import { useModal } from 'react-modal-state'
+
+import { SidebarMobileModal } from 'features/sidebar/components'
+
+import { Icon } from 'components/ui'
 
 import { useDeleteBoard } from '../hooks'
 import { EditBoardModal } from './modals'
 
-type BoardsListActiveItemProps = {
-  board: BoardTypes.Board
-}
-
-export const BoardsListActiveItem = ({ board }: BoardsListActiveItemProps) => {
+export const BoardsListActiveItem = ({ board }: { board: Board }) => {
   const { open: openEditBoardModal } = useModal(EditBoardModal)
 
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
@@ -20,7 +18,7 @@ export const BoardsListActiveItem = ({ board }: BoardsListActiveItemProps) => {
 
   const handleBoardEdit = () => {
     closeSidebarMobileModal()
-    openEditBoardModal<BoardTypes.EditBoardModalProps>({
+    openEditBoardModal<EditBoardModalProps>({
       title: board.title,
       icon: board.icon,
       background: board.background.identifier

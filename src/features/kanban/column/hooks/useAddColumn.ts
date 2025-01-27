@@ -1,24 +1,27 @@
-import type { ColumnTypes } from '@/shared/api/column'
 import type { UseFormReset } from 'react-hook-form'
 
-import { useGetParamBoardId } from '@/features/kanban/board/hooks'
-import { columnService } from '@/shared/api/column'
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { AddColumnModal } from '../components/modals'
+import { BoardCacheKeys } from 'features/kanban/board/config'
+import { useGetParamBoardId } from 'features/kanban/board/hooks'
+import { TitleSchema } from 'features/kanban/shared/schema'
 
-export const useAddColumn = (reset: UseFormReset<ColumnTypes.ColumnSchema>) => {
+import { columnService } from '../column.service'
+import { AddColumnModal } from '../components/modals'
+import { ColumnCacheKeys } from '../config'
+
+export const useAddColumn = (reset: UseFormReset<TitleSchema>) => {
   const { close: closeAddColumnModal } = useModal(AddColumnModal)
 
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationKey: ['addColumn'],
-    mutationFn: ({ title }: ColumnTypes.ColumnSchema) =>
+    mutationKey: [ColumnCacheKeys.AddColumn],
+    mutationFn: ({ title }: TitleSchema) =>
       columnService.addNewColumn(boardId!, { title }),
-    meta: { invalidates: [['board']] },
+    meta: { invalidates: [[BoardCacheKeys.Board]] },
     onSuccess() {
       closeAddColumnModal()
       reset()

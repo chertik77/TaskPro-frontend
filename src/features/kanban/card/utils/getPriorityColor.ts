@@ -1,6 +1,6 @@
-import type { CardTypes } from '@/shared/api/card'
+import type { Priority } from 'features/kanban/shared/constants'
 
-export const getPriorityColor = (priority: CardTypes.Priority) => {
+export const getPriorityColor = (priority: Priority) => {
   const priorityColors: { [key: string]: string } = {
     Low: 'bg-priority-low',
     Medium: 'bg-priority-medium',
