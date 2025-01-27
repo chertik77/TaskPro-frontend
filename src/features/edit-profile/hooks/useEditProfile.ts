@@ -8,6 +8,7 @@ import { EditProfileModal } from '../components'
 
 export const useEditProfile = () => {
   const updateUser = useAuthStore(state => state.updateUser)
+
   const { close: closeEditProfileModal } = useModal(EditProfileModal)
 
   return useMutation({
