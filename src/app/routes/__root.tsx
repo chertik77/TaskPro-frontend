@@ -13,10 +13,7 @@ import {
   EditColumnModal
 } from '@/features/kanban/column/components/modals'
 import { NeedHelpModal } from '@/features/need-help/components'
-import {
-  useGetAndSetCurrentUser,
-  useTabletAndBelowMediaQuery
-} from '@/shared/hooks'
+import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { useAuthStore } from '@/shared/store'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
@@ -25,8 +22,6 @@ import { ModalRenderer } from 'react-modal-state'
 import { Toaster } from 'sonner'
 
 const RootRoute = () => {
-  useGetAndSetCurrentUser()
-
   const theme = useAuthStore(state => state.user.theme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()

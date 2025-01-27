@@ -9,6 +9,13 @@ type State = AuthTypes.AuthResponse & {
   isLoggedIn: boolean
 }
 
+type Action = {
+  authenticate: (data: AuthTypes.AuthResponse) => void
+  saveTokens: (tokens: AuthTypes.Tokens) => void
+  updateUser: (user: Partial<UserTypes.User>) => void
+  resetStore: () => void
+}
+
 const initialState: State = {
   user: {
     id: '',
@@ -22,13 +29,6 @@ const initialState: State = {
   isLoggedIn: false
 }
 
-type Action = {
-  authenticate: (data: AuthTypes.AuthResponse) => void
-  saveTokens: (tokens: AuthTypes.Tokens) => void
-  updateUser: (user: UserTypes.User) => void
-  resetStore: () => void
-}
-
 export const useAuthStore = create(
   persist<State & Action>(
     set => ({
@@ -36,7 +36,7 @@ export const useAuthStore = create(
       authenticate: data => set({ ...data, isLoggedIn: true }),
       saveTokens: ({ accessToken, refreshToken }) =>
         set({ accessToken, refreshToken }),
-      updateUser: user => set({ user }),
+      updateUser: user => set(s => ({ ...s, user: { ...s.user, ...user } })),
       resetStore: () => {
         set(initialState)
         useAuthStore.persist.clearStorage()
