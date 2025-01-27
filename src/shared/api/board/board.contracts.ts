@@ -1,5 +1,6 @@
-import { ICONS } from '@/shared/constants'
 import * as v from 'valibot'
+
+import { ICONS } from '@/shared/constants'
 
 export const BoardSchema = v.object({
   title: v.pipe(

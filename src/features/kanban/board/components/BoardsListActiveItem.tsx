@@ -1,8 +1,10 @@
 import type { BoardTypes } from '@/shared/api/board'
 
-import { SidebarMobileModal } from '@/blocks/sidebar'
-import { Icon } from '@/shared/components/ui'
 import { useModal } from 'react-modal-state'
+
+import { SidebarMobileModal } from '@/blocks/sidebar'
+
+import { Icon } from '@/shared/components/ui'
 
 import { useDeleteBoard } from '../hooks'
 import { EditBoardModal } from './modals'

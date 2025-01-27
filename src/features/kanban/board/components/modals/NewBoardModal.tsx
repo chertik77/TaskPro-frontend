@@ -1,4 +1,5 @@
 import { useAddBoard } from '@/features/kanban/board/hooks'
+
 import { BoardContracts } from '@/shared/api/board'
 import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'

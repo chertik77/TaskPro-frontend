@@ -1,7 +1,9 @@
+import { Root } from '@radix-ui/react-radio-group'
+
 import { useCardFilters } from '@/features/kanban/card/hooks'
 import { RadioInput } from '@/features/kanban/shared/components'
+
 import { DEADLINES } from '@/shared/constants'
-import { Root } from '@radix-ui/react-radio-group'
 
 export const DeadlineFilter = () => {
   const { deadlineParam, handleParamsChange } = useCardFilters()

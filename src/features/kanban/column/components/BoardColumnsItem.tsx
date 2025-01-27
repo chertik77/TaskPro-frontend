@@ -1,15 +1,17 @@
 import type { CardTypes } from '@/shared/api/card'
 import type { ColumnTypes } from '@/shared/api/column'
 
+import * as ScrollArea from '@radix-ui/react-scroll-area'
+
 import {
   BoardAddCardBtn,
   BoardCardList
 } from '@/features/kanban/card/components'
 import { useKanbanSortable } from '@/features/kanban/dnd/hooks'
+
 import { Scrollbar } from '@/shared/components/ui'
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { BoardColumnsActions } from './BoardColumnsActions'
 

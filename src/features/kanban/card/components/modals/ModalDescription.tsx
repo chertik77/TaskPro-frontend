@@ -2,6 +2,7 @@ import type { CardTypes } from '@/shared/api/card'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef } from 'react'
+
 import { cn } from '@/shared/lib'
 
 type ModalDescriptionProps = {

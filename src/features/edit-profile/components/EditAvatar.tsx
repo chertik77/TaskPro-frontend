@@ -3,6 +3,7 @@ import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 
 import { useRef } from 'react'
+
 import { Icon } from '@/shared/components/ui'
 import { useAuthStore } from '@/shared/store'
 

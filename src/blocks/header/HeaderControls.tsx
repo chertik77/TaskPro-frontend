@@ -1,7 +1,9 @@
+import { useModal } from 'react-modal-state'
+
 import { SidebarMobileModal } from '@/blocks/sidebar'
+
 import { Icon } from '@/shared/components/ui'
 import { useSidebarStore } from '@/shared/store'
-import { useModal } from 'react-modal-state'
 
 export const HeaderControls = () => {
   const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)

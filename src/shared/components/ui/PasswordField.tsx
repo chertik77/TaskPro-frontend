@@ -2,6 +2,7 @@ import type { InputHTMLAttributes } from 'react'
 import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef, useState } from 'react'
+
 import { cn } from '@/shared/lib'
 
 import { Icon } from './Icon'

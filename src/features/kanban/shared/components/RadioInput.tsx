@@ -1,8 +1,10 @@
 import type { CardTypes } from '@/shared/api/card'
 
-import { getPriorityColor } from '@/features/kanban/card/utils'
-import { cn } from '@/shared/lib'
 import * as RadioGroup from '@radix-ui/react-radio-group'
+
+import { getPriorityColor } from '@/features/kanban/card/utils'
+
+import { cn } from '@/shared/lib'
 
 export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
   <RadioGroup.Item

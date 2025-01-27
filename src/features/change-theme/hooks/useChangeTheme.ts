@@ -1,7 +1,8 @@
-import { userService, UserTypes } from '@/shared/api/user'
-import { useAuthStore } from '@/shared/store'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
+
+import { userService, UserTypes } from '@/shared/api/user'
+import { useAuthStore } from '@/shared/store'
 
 export const useChangeTheme = () => {
   const previousUser = useAuthStore(state => state.user)

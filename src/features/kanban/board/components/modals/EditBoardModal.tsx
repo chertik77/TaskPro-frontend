@@ -1,11 +1,13 @@
 import type { BoardTypes } from '@/shared/api/board'
 
 import { useEffect } from 'react'
+import { useModalInstance } from 'react-modal-state'
+
 import { useEditBoard } from '@/features/kanban/board/hooks'
+
 import { BoardContracts } from '@/shared/api/board'
 import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
-import { useModalInstance } from 'react-modal-state'
 
 import { RadioInputBgImages } from './RadioInputBgImages'
 import { RadioInputIcons } from './RadioInputIcons'

@@ -1,6 +1,7 @@
 import type { CardTypes } from '@/shared/api/card'
 
 import { useKanbanSortable } from '@/features/kanban/dnd/hooks'
+
 import { cn } from '@/shared/lib'
 
 import { getPriorityColor } from '../utils'

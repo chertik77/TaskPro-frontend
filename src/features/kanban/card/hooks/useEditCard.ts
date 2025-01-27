@@ -2,11 +2,13 @@ import type { BoardTypes } from '@/shared/api/board'
 import type { CardTypes } from '@/shared/api/card'
 import type { UseFormReset } from 'react-hook-form'
 
-import { useGetParamBoardId } from '@/features/kanban/board/hooks'
-import { cardService } from '@/shared/api/card'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
+
+import { useGetParamBoardId } from '@/features/kanban/board/hooks'
+
+import { cardService } from '@/shared/api/card'
 
 import { EditCardModal } from '../components/modals'
 

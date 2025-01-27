@@ -1,9 +1,11 @@
 import type { ColumnTypes } from '@/shared/api/column'
 
+import { useModal } from 'react-modal-state'
+
 import { useDeleteColumn } from '@/features/kanban/column/hooks'
+
 import { Button } from '@/shared/components/ui'
 import { cn } from '@/shared/lib'
-import { useModal } from 'react-modal-state'
 
 import { EditColumnModal } from './modals'
 

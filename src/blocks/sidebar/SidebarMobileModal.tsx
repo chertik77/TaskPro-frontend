@@ -1,8 +1,9 @@
+import { useModalInstance } from 'react-modal-state'
+import { Modal } from 'react-responsive-modal'
+
 import { LogoutBtn } from '@/features/auth/components'
 import { BoardsList, MyBoardsInfo } from '@/features/kanban/board/components'
 import { NeedHelpModalTrigger } from '@/features/need-help/components'
-import { useModalInstance } from 'react-modal-state'
-import { Modal } from 'react-responsive-modal'
 
 import { SidebarLogo } from './SidebarLogo'
 

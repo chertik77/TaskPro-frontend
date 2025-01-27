@@ -1,9 +1,11 @@
 import type { UpdateOrderData } from '@/shared/types'
 
-import { useGetParamBoardId } from '@/features/kanban/board/hooks'
-import { columnService } from '@/shared/api/column'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
+
+import { useGetParamBoardId } from '@/features/kanban/board/hooks'
+
+import { columnService } from '@/shared/api/column'
 
 export const useUpdateColumnsOrder = () => {
   const { boardId } = useGetParamBoardId()

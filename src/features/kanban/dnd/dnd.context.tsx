@@ -6,10 +6,6 @@ import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 
 import { createContext, useEffect, useState } from 'react'
-import { BoardCard } from '@/features/kanban/card/components'
-import { useCardDragHandlers } from '@/features/kanban/card/hooks'
-import { BoardColumnsItem } from '@/features/kanban/column/components/BoardColumnsItem'
-import { useColumnDragHandlers } from '@/features/kanban/column/hooks'
 import {
   DndContext,
   DragOverlay,
@@ -19,6 +15,11 @@ import {
   useSensors
 } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
+
+import { BoardCard } from '@/features/kanban/card/components'
+import { useCardDragHandlers } from '@/features/kanban/card/hooks'
+import { BoardColumnsItem } from '@/features/kanban/column/components/BoardColumnsItem'
+import { useColumnDragHandlers } from '@/features/kanban/column/hooks'
 
 import { collisionDetectionAlgorithm } from './utils'
 

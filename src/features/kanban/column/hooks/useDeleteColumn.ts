@@ -1,6 +1,8 @@
-import { useDragAndDrop } from '@/features/kanban/dnd/hooks'
-import { columnService } from '@/shared/api/column'
 import { useMutation } from '@tanstack/react-query'
+
+import { useDragAndDrop } from '@/features/kanban/dnd/hooks'
+
+import { columnService } from '@/shared/api/column'
 
 export const useDeleteColumn = () => {
   const { setColumns, setCards } = useDragAndDrop()

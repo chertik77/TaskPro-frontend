@@ -3,8 +3,9 @@ import type { ColumnTypes } from '@/shared/api/column'
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 import type { Dispatch, SetStateAction } from 'react'
 
-import { findIndexById } from '@/features/kanban/dnd/utils'
 import { arrayMove } from '@dnd-kit/sortable'
+
+import { findIndexById } from '@/features/kanban/dnd/utils'
 
 import { useUpdateColumnsOrder } from './useUpdateColumnsOrder'
 
