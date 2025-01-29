@@ -38,7 +38,7 @@ const IndexRoute = () => (
 )
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
-    if (useAuthStore.getState().isLoggedIn) throw redirect({ to: '/dashboard' })
+    if (useAuthStore.getState().signedIn()) throw redirect({ to: '/dashboard' })
   },
   component: IndexRoute
 })

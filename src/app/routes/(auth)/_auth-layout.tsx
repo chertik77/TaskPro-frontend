@@ -6,7 +6,7 @@ import { useAuthStore } from '@/shared/store'
 
 export const Route = createFileRoute('/(auth)/_auth-layout')({
   beforeLoad: () => {
-    if (useAuthStore.getState().isLoggedIn) throw redirect({ to: '/dashboard' })
+    if (useAuthStore.getState().signedIn()) throw redirect({ to: '/dashboard' })
   },
   component: () => (
     <AuthLayout>

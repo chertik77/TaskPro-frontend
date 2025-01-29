@@ -91,7 +91,7 @@
     <symbol fill="none" viewBox="0 0 16 17" id="chevron-down" xmlns="http://www.w3.org/2000/svg">
 <path d="m4 6.5 4 4 4-4" stroke-opacity=".8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
-<symbol stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" id="sidebar" xmlns="http://www.w3.org/2000/svg">
+<symbol stroke-width="0" viewBox="0 0 24 24" id="sidebar" xmlns="http://www.w3.org/2000/svg">
 <path d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 19V7h6v12H4zm8 0V7h8V5l.002 14H12z" stroke="none"/>
 <path d="M6 10h2v2H6zm0 4h2v2H6z" stroke="none"/>
 </symbol>

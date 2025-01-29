@@ -19,7 +19,7 @@ export const HeaderControls = () => {
         className='focus-visible:styled-outline mr-auto size-5 max-desktop:hidden'>
         <Icon
           name='sidebar'
-          className='size-full fill-white violet:text-black'
+          className='size-full fill-white violet:fill-black/80'
         />
       </button>
       <button

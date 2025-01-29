@@ -6,18 +6,15 @@ import { persist } from 'zustand/middleware'
 
 import { DEFAULT_THEME } from '@/shared/constants'
 
-type State = AuthTypes.AuthResponse & {
-  isLoggedIn: boolean
-}
-
 type Action = {
   authenticate: (data: AuthTypes.AuthResponse) => void
   saveTokens: (tokens: AuthTypes.Tokens) => void
   updateUser: (user: Partial<UserTypes.User>) => void
   resetStore: () => void
+  signedIn: () => boolean
 }
 
-const initialState: State = {
+const initialState: AuthTypes.AuthResponse = {
   user: {
     id: '',
     name: '',
@@ -26,22 +23,21 @@ const initialState: State = {
     theme: DEFAULT_THEME
   },
   accessToken: '',
-  refreshToken: '',
-  isLoggedIn: false
+  refreshToken: ''
 }
 
 export const useAuthStore = create(
-  persist<State & Action>(
-    set => ({
+  persist<AuthTypes.AuthResponse & Action>(
+    (set, get) => ({
       ...initialState,
-      authenticate: data => set({ ...data, isLoggedIn: true }),
-      saveTokens: ({ accessToken, refreshToken }) =>
-        set({ accessToken, refreshToken }),
-      updateUser: user => set(s => ({ ...s, user: { ...s.user, ...user } })),
+      authenticate: set,
+      saveTokens: set,
+      updateUser: user => set(s => ({ user: { ...s.user, ...user } })),
       resetStore: () => {
         set(initialState)
         useAuthStore.persist.clearStorage()
-      }
+      },
+      signedIn: () => [get().accessToken, get().refreshToken].every(Boolean)
     }),
     { name: 'auth' }
   )
