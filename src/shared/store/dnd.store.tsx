@@ -17,10 +17,9 @@ import {
 import { createPortal } from 'react-dom'
 
 import { useCardDragHandlers } from '@/features/card/hooks'
+import { CardListItem } from '@/features/card/list/components'
 import { useColumnDragHandlers } from '@/features/column/hooks'
-
-import { CardListItem } from '@/blocks/kanban/card'
-import { ColumnListItem } from '@/blocks/kanban/column'
+import { ColumnListItem } from '@/features/column/list/components'
 
 export type DragAndDropContext = {
   setColumns: Dispatch<SetStateAction<ColumnTypes.Column[] | undefined>>

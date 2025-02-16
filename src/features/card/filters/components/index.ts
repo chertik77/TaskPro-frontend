@@ -1,2 +1,1 @@
-export * from './DeadlineFilter'
-export * from './PriorityFilter'
+export * from './Filters'

@@ -4,10 +4,9 @@ import type { ColumnTypes } from '@/shared/api/column'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { AddCardModalTrigger } from '@/features/card/add-card/components'
+import { CardList } from '@/features/card/list/components'
 import { DeleteColumnTrigger } from '@/features/column/delete-column/components'
 import { EditColumnTrigger } from '@/features/column/edit-column/components'
-
-import { CardList } from '@/blocks/kanban/card'
 
 import { Scrollbar } from '@/shared/components/ui'
 import { useKanbanSortable, useTabletAndBelowMediaQuery } from '@/shared/hooks'

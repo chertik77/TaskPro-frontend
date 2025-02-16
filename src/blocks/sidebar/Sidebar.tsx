@@ -1,15 +1,14 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { LogoutBtn } from '@/features/auth/components'
+import { BoardList } from '@/features/board/list/components'
 import { NeedHelpModalTrigger } from '@/features/need-help/components'
-
-import { MyBoardsInfo } from '@/blocks/board-info'
 
 import { Scrollbar } from '@/shared/components/ui'
 import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
-import { BoardList } from '../board-list'
+import { SidebarBoardInfo } from './SidebarBoardInfo'
 import { SidebarLogo } from './SidebarLogo'
 
 export const Sidebar = () => {
@@ -27,7 +26,7 @@ export const Sidebar = () => {
         <aside className='flex h-dvh flex-col'>
           <div>
             <SidebarLogo />
-            <MyBoardsInfo />
+            <SidebarBoardInfo />
             <BoardList />
           </div>
           <div className='mt-auto px-6 pb-6'>

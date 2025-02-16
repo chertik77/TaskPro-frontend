@@ -1,13 +1,11 @@
 import * as Popover from '@radix-ui/react-popover'
 import { Link } from '@tanstack/react-router'
 
-import {
-  DeadlineFilter,
-  PriorityFilter
-} from '@/features/card/filters/components'
-
 import { Icon } from '@/shared/components/ui'
 import { useGetParamBoardId } from '@/shared/hooks'
+
+import { DeadlineFilter } from './DeadlineFilter'
+import { PriorityFilter } from './PriorityFilter'
 
 export const Filters = () => {
   const { boardId } = useGetParamBoardId()

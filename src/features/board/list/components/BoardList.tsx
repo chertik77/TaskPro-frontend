@@ -2,14 +2,13 @@ import { Root } from '@radix-ui/react-radio-group'
 import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
 
-import { useGetAllBoards } from '@/features/board/hooks'
-
 import { SidebarMobileModal } from '@/blocks/sidebar'
 
 import { Loader } from '@/shared/components/ui'
 import { useGetParamBoardId } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 
+import { useGetAllBoards } from '../hooks'
 import { BoardListItem } from './BoardListItem'
 
 export const BoardList = () => {

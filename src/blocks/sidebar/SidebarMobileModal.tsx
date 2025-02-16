@@ -2,11 +2,10 @@ import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
 
 import { LogoutBtn } from '@/features/auth/components'
+import { BoardList } from '@/features/board/list/components'
 import { NeedHelpModalTrigger } from '@/features/need-help/components'
 
-import { MyBoardsInfo } from '@/blocks/board-info'
-
-import { BoardList } from '../board-list'
+import { SidebarBoardInfo } from './SidebarBoardInfo'
 import { SidebarLogo } from './SidebarLogo'
 
 export const SidebarMobileModal = () => {
@@ -25,7 +24,7 @@ export const SidebarMobileModal = () => {
       closeOnEsc={false}
       showCloseIcon={false}>
       <SidebarLogo />
-      <MyBoardsInfo />
+      <SidebarBoardInfo />
       <BoardList />
       <div className='mt-auto px-3.5 tablet:px-6'>
         <NeedHelpModalTrigger />

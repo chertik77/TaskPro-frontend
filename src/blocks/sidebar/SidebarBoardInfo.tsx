@@ -1,6 +1,6 @@
 import { AddBoardModalTrigger } from '@/features/board/add-board/components'
 
-export const MyBoardsInfo = () => (
+export const SidebarBoardInfo = () => (
   <div className='mb-10 px-3.5 tablet:px-6'>
     <p
       className='mb-2 overflow-hidden text-sm text-black/50 violet:text-white/50
