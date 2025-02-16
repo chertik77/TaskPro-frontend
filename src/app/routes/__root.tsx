@@ -4,19 +4,13 @@ import { SpeedInsights } from '@vercel/speed-insights/react'
 import { ModalRenderer } from 'react-modal-state'
 import { Toaster } from 'sonner'
 
+import { AddBoardModal } from '@/features/board/add-board/components'
+import { EditBoardModal } from '@/features/board/edit-board/components'
+import { AddCardModal } from '@/features/card/add-card/components'
+import { EditCardModal } from '@/features/card/edit-card/components'
+import { AddColumnModal } from '@/features/column/add-column/components'
+import { EditColumnModal } from '@/features/column/edit-column/components'
 import { EditProfileModal } from '@/features/edit-profile/components'
-import {
-  EditBoardModal,
-  NewBoardModal
-} from '@/features/kanban/board/components/modals'
-import {
-  AddCardModal,
-  EditCardModal
-} from '@/features/kanban/card/components/modals'
-import {
-  AddColumnModal,
-  EditColumnModal
-} from '@/features/kanban/column/components/modals'
 import { NeedHelpModal } from '@/features/need-help/components'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
@@ -42,7 +36,7 @@ const RootRoute = () => {
         className='text-balance'
       />
       <Outlet />
-      <ModalRenderer Component={NewBoardModal} />
+      <ModalRenderer Component={AddBoardModal} />
       <ModalRenderer Component={EditBoardModal} />
       <ModalRenderer Component={AddColumnModal} />
       <ModalRenderer Component={EditColumnModal} />

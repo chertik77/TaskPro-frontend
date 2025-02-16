@@ -1,7 +1,8 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { LogoutBtn } from '@/features/auth/components'
-import { BoardsList, MyBoardsInfo } from '@/features/kanban/board/components'
+import { MyBoardsInfo } from '@/features/board/components'
+import { BoardList } from '@/features/board/list/components'
 import { NeedHelpModalTrigger } from '@/features/need-help/components'
 
 import { Scrollbar } from '@/shared/components/ui'
@@ -26,7 +27,7 @@ export const Sidebar = () => {
           <div>
             <SidebarLogo />
             <MyBoardsInfo />
-            <BoardsList />
+            <BoardList />
           </div>
           <div className='mt-auto px-6 pb-6'>
             <NeedHelpModalTrigger />

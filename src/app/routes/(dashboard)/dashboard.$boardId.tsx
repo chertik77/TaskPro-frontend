@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { Board } from '@/features/kanban/board/components'
+import { Board } from '@/features/board/components'
 
 import { CardContracts } from '@/shared/api/card'
 
