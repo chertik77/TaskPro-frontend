@@ -18,6 +18,7 @@ declare module '@tanstack/react-query' {
     }
   }
 }
+
 const queryClient = new QueryClient({
   mutationCache: new MutationCache({
     onSuccess: (_data, _variables, _context, mutation) => {

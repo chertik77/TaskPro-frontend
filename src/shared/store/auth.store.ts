@@ -33,11 +33,11 @@ export const useAuthStore = create(
       authenticate: set,
       saveTokens: set,
       updateUser: user => set(s => ({ user: { ...s.user, ...user } })),
+      signedIn: () => [get().accessToken, get().refreshToken].every(Boolean),
       resetStore: () => {
         set(initialState)
         useAuthStore.persist.clearStorage()
-      },
-      signedIn: () => [get().accessToken, get().refreshToken].every(Boolean)
+      }
     }),
     { name: 'auth' }
   )
