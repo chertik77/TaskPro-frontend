@@ -1,12 +1,17 @@
 import type { BoardTypes } from '@/shared/api/board'
+import type { UserTypes } from '@/shared/api/user'
 import type { Control } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
+import { useQuery } from '@tanstack/react-query'
 import { Controller } from 'react-hook-form'
 
-import images from '@/features/board/data/board-bg-images.json'
-
 import { useAuthStore } from '@/shared/store'
+
+type BoardImages = {
+  id: string
+  icon: string | Record<UserTypes.Theme, string>
+}[]
 
 type RadioInputBgImagesProps = {
   control: Control<BoardTypes.BoardSchema>
@@ -14,6 +19,12 @@ type RadioInputBgImagesProps = {
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
   const theme = useAuthStore(state => state.user.theme)
+
+  const { data: boardImages } = useQuery<BoardImages>({
+    queryKey: ['board-bg-images'],
+    queryFn: async () =>
+      await fetch('/board-bg-images.json').then(res => res.json())
+  })
 
   return (
     <>
@@ -25,7 +36,7 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
           <Root
             className='mb-10 mt-3.5 flex max-w-[280px] flex-wrap gap-2'
             onValueChange={field.onChange}>
-            {images.map(({ id, icon }) => (
+            {boardImages?.map(({ id, icon }) => (
               <Item
                 checked={field.value === id}
                 value={id}
