@@ -3,12 +3,8 @@ import type { BoardTypes } from '@/shared/api/board'
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 
-import {
-  RadioInputBgImages,
-  RadioInputIcons
-} from '@/features/board/components'
-
 import { BoardContracts } from '@/shared/api/board'
+import { RadioInputBgImages, RadioInputIcons } from '@/shared/components'
 import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 

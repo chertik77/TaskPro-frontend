@@ -1,7 +1,4 @@
-import {
-  RadioInputBgImages,
-  RadioInputIcons
-} from '@/features/board/components'
+import { RadioInputBgImages, RadioInputIcons } from '@/blocks/board-info'
 
 import { BoardContracts } from '@/shared/api/board'
 import { Button, Field, Modal } from '@/shared/components/ui'

@@ -1,14 +1,15 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { LogoutBtn } from '@/features/auth/components'
-import { MyBoardsInfo } from '@/features/board/components'
-import { BoardList } from '@/features/board/list/components'
 import { NeedHelpModalTrigger } from '@/features/need-help/components'
+
+import { MyBoardsInfo } from '@/blocks/board-info'
 
 import { Scrollbar } from '@/shared/components/ui'
 import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
+import { BoardList } from '../board-list'
 import { SidebarLogo } from './SidebarLogo'
 
 export const Sidebar = () => {

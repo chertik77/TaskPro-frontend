@@ -1,5 +1,0 @@
-export * from './MyBoardsInfo'
-export * from './RadioInputBgImages'
-export * from './RadioInputIcons'
-export * from './EmptyBoard'
-export * from './Board'

@@ -1,8 +1,9 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useGetBoardById } from '@/features/board/hooks'
-import { Filters } from '@/features/card/filters/components'
-import { ColumnList } from '@/features/column/list/components'
+
+import { ColumnList } from '@/blocks/kanban/column'
+import { Filters } from '@/blocks/kanban/filters'
 
 import { Loader, Scrollbar } from '@/shared/components/ui'
 import { useDocumentTitle } from '@/shared/hooks'
