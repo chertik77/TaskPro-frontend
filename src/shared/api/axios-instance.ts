@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 import { useAuthStore } from '@/shared/store'
 
@@ -30,14 +30,26 @@ axiosInstance.interceptors.response.use(
     ) {
       originalRequest._retry = true
 
-      const { refreshToken } = useAuthStore.getState()
+      try {
+        const { refreshToken } = useAuthStore.getState()
 
-      await authService
-        .getTokens(refreshToken)
-        .then(tokens => useAuthStore.getState().saveTokens(tokens))
-        .catch(useAuthStore.getState().resetStore)
+        const tokens = await authService.getTokens(refreshToken)
 
-      return axiosInstance(originalRequest)
+        useAuthStore.getState().saveTokens(tokens)
+
+        return axiosInstance(originalRequest)
+      } catch (e) {
+        if (
+          e instanceof AxiosError &&
+          e.response?.data?.message === 'jwt expired'
+        ) {
+          useAuthStore.getState().resetStore()
+        }
+
+        throw e
+      }
     }
+
+    throw error
   }
 )
