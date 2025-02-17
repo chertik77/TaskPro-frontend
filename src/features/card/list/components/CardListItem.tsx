@@ -48,8 +48,7 @@ export const CardListItem = ({ card }: { card: CardTypes.Card }) => {
       <p className='mb-3.5 line-clamp-2 text-sm text-black/70 dark:text-white/50'>
         {card.description}
       </p>
-      {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}
-      <div className='flex items-end border-t-[1px] border-black/10 pt-3.5 dark:border-white/10'>
+      <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
         <CardListItemPriority priority={card.priority} />
         <CardListItemDeadline deadline={card.deadline} />
         <div className='ml-auto flex gap-2'>
