@@ -36,6 +36,7 @@ const IndexRoute = () => (
     </Link>
   </div>
 )
+
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
     if (useAuthStore.getState().signedIn()) throw redirect({ to: '/dashboard' })

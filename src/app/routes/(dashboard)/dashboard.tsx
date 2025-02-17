@@ -1,22 +1,17 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { useHotkeys } from 'react-hotkeys-hook'
+
+import { useSidebarToggleShortcut } from '@/features/toggle-sidebar/hooks'
 
 import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib'
 import { useAuthStore, useSidebarStore } from '@/shared/store'
 
 const DashboardRoute = () => {
-  const { isSidebarOpen, setIsSidebarOpen } = useSidebarStore()
+  const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
-
-  useHotkeys('mod+o', () => setIsSidebarOpen(!isSidebarOpen), {
-    preventDefault: true,
-    ignoreEventWhen: () => isTabletAndBelow
-  })
+  useSidebarToggleShortcut()
 
   return (
     <div

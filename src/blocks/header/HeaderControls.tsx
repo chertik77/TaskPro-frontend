@@ -1,27 +1,17 @@
 import { useModal } from 'react-modal-state'
 
+import { ToggleSidebarTrigger } from '@/features/toggle-sidebar/components'
+
 import { SidebarMobileModal } from '@/blocks/sidebar'
 
 import { Icon } from '@/shared/components/ui'
-import { useSidebarStore } from '@/shared/store'
 
 export const HeaderControls = () => {
   const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)
 
-  const setIsSidebarOpen = useSidebarStore(state => state.setIsSidebarOpen)
-
   return (
     <>
-      <button
-        onClick={() => setIsSidebarOpen(prev => !prev)}
-        type='button'
-        aria-label='Toggle sidebar'
-        className='focus-visible:styled-outline mr-auto size-5 max-desktop:hidden'>
-        <Icon
-          name='sidebar'
-          className='size-full fill-white violet:fill-black/80'
-        />
-      </button>
+      <ToggleSidebarTrigger />
       <button
         onClick={openSidebarMobileModal}
         type='button'
