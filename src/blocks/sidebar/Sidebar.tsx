@@ -24,11 +24,9 @@ export const Sidebar = () => {
       )}>
       <ScrollArea.Viewport className='h-dvh'>
         <aside className='flex h-dvh flex-col'>
-          <div>
-            <SidebarLogo />
-            <SidebarBoardInfo />
-            <BoardList />
-          </div>
+          <SidebarLogo />
+          <SidebarBoardInfo />
+          <BoardList />
           <div className='mt-auto px-6 pb-6'>
             <NeedHelpModalTrigger />
             <LogoutBtn />
