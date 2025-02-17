@@ -1,6 +1,6 @@
 import type { Board, BoardSchema } from './board.types'
 
-import { axiosInstance } from '..'
+import { axiosInstance } from '../axios-instance'
 import { BoardApiEndpoints } from './board.endpoints'
 
 export const boardService = {

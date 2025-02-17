@@ -1,4 +1,3 @@
-import type { AxiosAuthRefreshRequestConfig } from 'axios-auth-refresh'
 import type {
   AuthResponse,
   SigninSchema,
@@ -6,7 +5,7 @@ import type {
   Tokens
 } from './auth.types'
 
-import { axiosInstance } from '..'
+import { axiosInstance } from '../axios-instance'
 import { AuthApiEndpoints } from './auth.endpoints'
 
 export const authService = {
@@ -20,14 +19,10 @@ export const authService = {
   },
 
   async signin(data: SigninSchema) {
-    const requestConfig: AxiosAuthRefreshRequestConfig = {
-      skipAuthRefresh: true
-    }
-
     const response = await axiosInstance.post<AuthResponse>(
       AuthApiEndpoints.Signin,
       data,
-      requestConfig
+      { skipAuthRefresh: true }
     )
 
     return response.data
@@ -42,8 +37,12 @@ export const authService = {
     return response.data
   },
 
-  getTokens(data: { refreshToken: string }) {
-    return axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, data)
+  async getTokens(refreshToken: string) {
+    const response = await axiosInstance.post<Tokens>(AuthApiEndpoints.Tokens, {
+      refreshToken
+    })
+
+    return response.data
   },
 
   async logout() {

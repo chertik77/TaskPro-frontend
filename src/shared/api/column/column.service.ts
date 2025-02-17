@@ -1,7 +1,7 @@
 import type { UpdateOrderData } from '@/shared/types'
 import type { ColumnSchema } from './column.types'
 
-import { axiosInstance } from '..'
+import { axiosInstance } from '../axios-instance'
 import { ColumnApiEndpoints } from './column.endpoints'
 
 export const columnService = {
