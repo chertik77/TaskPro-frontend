@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
-import { AuthFormNavigation, AuthLayout } from '@/features/auth/components'
+import { AuthFormNavigation, AuthLayout } from '@/blocks/auth-layout'
 
 import { useAuthStore } from '@/shared/store'
 

@@ -1,8 +1,8 @@
-import { useSigninUser } from '@/features/auth/hooks'
-
 import { AuthContracts } from '@/shared/api/auth'
 import { Button, Field, Loader, PasswordField } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'
+
+import { useSigninUser } from '../hooks'
 
 export const SigninForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(

@@ -1,8 +1,8 @@
-import { useSignupUser } from '@/features/auth/hooks'
-
 import { AuthContracts } from '@/shared/api/auth'
 import { Button, Field, Loader, PasswordField } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'
+
+import { useSignupUser } from '../hooks'
 
 export const SignupForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(

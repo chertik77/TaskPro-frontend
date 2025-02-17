@@ -1,7 +1,7 @@
 import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
 
-import { LogoutBtn } from '@/features/auth/components'
+import { LogoutBtn } from '@/features/auth/logout/components'
 import { BoardList } from '@/features/board/list/components'
 import { NeedHelpModalTrigger } from '@/features/need-help/components'
 
