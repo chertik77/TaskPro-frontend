@@ -10,8 +10,8 @@ import { AddCardModal } from '@/features/card/add-card'
 import { EditCardModal } from '@/features/card/edit-card'
 import { AddColumnModal } from '@/features/column/add-column'
 import { EditColumnModal } from '@/features/column/edit-column'
-import { EditProfileModal } from '@/features/edit-profile'
-import { NeedHelpModal } from '@/features/need-help'
+import { EditProfileModal } from '@/features/user/edit-profile'
+import { NeedHelpModal } from '@/features/user/need-help'
 
 import { useAuthStore } from '@/entities/auth'
 

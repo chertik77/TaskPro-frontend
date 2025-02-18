@@ -1,7 +1,7 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { LogoutBtn } from '@/features/auth/logout'
-import { NeedHelpModalTrigger } from '@/features/need-help'
+import { NeedHelpModalTrigger } from '@/features/user/need-help'
 
 import { Scrollbar } from '@/shared/components'
 import { cn } from '@/shared/lib'

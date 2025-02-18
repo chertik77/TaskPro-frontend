@@ -2,7 +2,7 @@ import { useModalInstance } from 'react-modal-state'
 import { Modal } from 'react-responsive-modal'
 
 import { LogoutBtn } from '@/features/auth/logout'
-import { NeedHelpModalTrigger } from '@/features/need-help'
+import { NeedHelpModalTrigger } from '@/features/user/need-help'
 
 import { SidebarBoardInfo } from './SidebarBoardInfo'
 import { SidebarBoardList } from './SidebarBoardList'
