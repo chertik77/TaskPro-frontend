@@ -1,4 +1,4 @@
-import type { BoardTypes } from '@/shared/api/board'
+import type { BoardTypes } from '@/entities/board'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation } from '@tanstack/react-query'
@@ -6,9 +6,9 @@ import { useNavigate } from '@tanstack/react-router'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { boardService } from '@/shared/api/board'
+import { boardService } from '@/entities/board'
 
-import { AddBoardModal } from '../components'
+import { AddBoardModal } from '..'
 
 export const useAddBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const navigate = useNavigate()

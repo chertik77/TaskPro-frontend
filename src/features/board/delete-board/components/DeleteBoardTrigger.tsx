@@ -2,9 +2,9 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
 
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 
-import { useDeleteBoard } from '../hooks'
+import { useDeleteBoard } from '../hooks/useDeleteBoard'
 
 export const DeleteBoardTrigger = () => {
   const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)

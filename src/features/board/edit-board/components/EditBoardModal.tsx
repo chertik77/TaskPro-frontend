@@ -1,14 +1,18 @@
-import type { BoardTypes } from '@/shared/api/board'
+import type { BoardTypes } from '@/entities/board'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 
-import { BoardContracts } from '@/shared/api/board'
-import { RadioInputBgImages, RadioInputIcons } from '@/shared/components'
-import { Button, Field, Modal } from '@/shared/components/ui'
+import {
+  BoardContracts,
+  RadioInputBgImages,
+  RadioInputIcons
+} from '@/entities/board'
+
+import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
-import { useEditBoard } from '../hooks'
+import { useEditBoard } from '../hooks/useEditBoard'
 
 export const EditBoardModal = () => {
   const { data: board } = useModalInstance<BoardTypes.EditBoardModalProps>()

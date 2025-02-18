@@ -1,15 +1,16 @@
-import type { BoardTypes } from '@/shared/api/board'
-import type { ColumnTypes } from '@/shared/api/column'
+import type { BoardTypes } from '@/entities/board'
+import type { ColumnTypes } from '@/entities/column'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { columnService } from '@/shared/api/column'
+import { columnService } from '@/entities/column'
+
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditColumnModal } from '../components'
+import { EditColumnModal } from '..'
 
 export const useEditColumn = (
   reset: UseFormReset<ColumnTypes.ColumnSchema>

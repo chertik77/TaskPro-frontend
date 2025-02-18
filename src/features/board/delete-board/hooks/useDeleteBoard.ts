@@ -2,7 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { boardService, BoardTypes } from '@/shared/api/board'
+import { boardService, BoardTypes } from '@/entities/board'
+
 import { useGetParamBoardId } from '@/shared/hooks'
 
 export const useDeleteBoard = () => {

@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 import { useSidebarStore } from '@/shared/store'
 
 export const ToggleSidebarTrigger = () => {

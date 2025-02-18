@@ -1,6 +1,6 @@
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 
-import { useSigninUserWithGoogle } from '../hooks'
+import { useSigninUserWithGoogle } from '../hooks/useSigninUserWithGoogle'
 
 export const GoogleSignin = () => {
   const { signinWithGoogle } = useSigninUserWithGoogle()

@@ -1,9 +1,13 @@
-import { BoardContracts } from '@/shared/api/board'
-import { RadioInputBgImages, RadioInputIcons } from '@/shared/components'
-import { Button, Field, Modal } from '@/shared/components/ui'
+import {
+  BoardContracts,
+  RadioInputBgImages,
+  RadioInputIcons
+} from '@/entities/board'
+
+import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
 
-import { useAddBoard } from '../hooks'
+import { useAddBoard } from '../hooks/useAddBoard'
 
 export const AddBoardModal = () => {
   const { register, formState, reset, handleSubmit, control } = useAppForm(

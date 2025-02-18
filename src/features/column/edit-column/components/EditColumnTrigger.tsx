@@ -1,8 +1,8 @@
-import type { ColumnTypes } from '@/shared/api/column'
+import type { ColumnTypes } from '@/entities/column'
 
 import { useModal } from 'react-modal-state'
 
-import { Button } from '@/shared/components/ui'
+import { Button } from '@/shared/components'
 
 import { EditColumnModal } from './EditColumnModal'
 

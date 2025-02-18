@@ -1,11 +1,14 @@
+import type { ColumnTypes } from '@/entities/column'
+
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 
-import { ColumnContracts, ColumnTypes } from '@/shared/api/column'
-import { Button, Field, Modal } from '@/shared/components/ui'
+import { ColumnContracts } from '@/entities/column'
+
+import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
-import { useEditColumn } from '../hooks'
+import { useEditColumn } from '../hooks/useEditColumn'
 
 export const EditColumnModal = () => {
   const {

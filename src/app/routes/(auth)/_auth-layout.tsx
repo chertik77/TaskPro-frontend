@@ -1,8 +1,8 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
-import { AuthFormNavigation, AuthLayout } from '@/blocks/auth-layout'
+import { useAuthStore } from '@/entities/auth'
 
-import { useAuthStore } from '@/shared/store'
+import { AuthFormNavigation, AuthLayout } from '@/blocks/auth-layout'
 
 export const Route = createFileRoute('/(auth)/_auth-layout')({
   beforeLoad: () => {

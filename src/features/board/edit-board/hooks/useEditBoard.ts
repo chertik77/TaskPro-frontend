@@ -1,14 +1,15 @@
-import type { BoardTypes } from '@/shared/api/board'
+import type { BoardTypes } from '@/entities/board'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { boardService } from '@/shared/api/board'
+import { boardService } from '@/entities/board'
+
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditBoardModal } from '../components'
+import { EditBoardModal } from '..'
 
 export const useEditBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const queryClient = useQueryClient()

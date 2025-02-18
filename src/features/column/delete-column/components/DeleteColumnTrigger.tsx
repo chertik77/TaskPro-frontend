@@ -1,6 +1,6 @@
-import { Button } from '@/shared/components/ui'
+import { Button } from '@/shared/components'
 
-import { useDeleteColumn } from '../hooks'
+import { useDeleteColumn } from '../hooks/useDeleteColumn'
 
 export const DeleteColumnTrigger = ({ columnId }: { columnId: string }) => {
   const { mutate: deleteColumn } = useDeleteColumn()
