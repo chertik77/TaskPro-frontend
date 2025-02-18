@@ -1,9 +1,11 @@
+import { memo } from 'react'
 import { useDndMonitor } from '@dnd-kit/core'
 import {
   horizontalListSortingStrategy,
   SortableContext
 } from '@dnd-kit/sortable'
 
+import { useCardDragHandlers } from '@/features/card'
 import { useColumnDragHandlers } from '@/features/column'
 import { AddColumnTrigger } from '@/features/column/add-column'
 
@@ -15,10 +17,26 @@ type ColumnListProps = {
   backgroundIdentifier: string | undefined
 }
 
-export const ColumnList = ({ backgroundIdentifier }: ColumnListProps) => {
+export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
   const { columns, cards } = useDragAndDrop()
 
-  useDndMonitor(useColumnDragHandlers())
+  const cardHandlers = useCardDragHandlers()
+
+  const columnHandlers = useColumnDragHandlers()
+
+  useDndMonitor({
+    onDragStart: e => {
+      cardHandlers.onDragStart(e)
+      columnHandlers.onDragStart(e)
+    },
+    onDragOver: e => {
+      cardHandlers.onDragOver(e)
+    },
+    onDragEnd: e => {
+      cardHandlers.onDragEnd(e)
+      columnHandlers.onDragEnd(e)
+    }
+  })
 
   return (
     <div className='flex touch-manipulation gap-[34px]'>
@@ -37,4 +55,4 @@ export const ColumnList = ({ backgroundIdentifier }: ColumnListProps) => {
       </SortableContext>
     </div>
   )
-}
+})

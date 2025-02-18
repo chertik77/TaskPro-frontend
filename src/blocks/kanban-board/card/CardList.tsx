@@ -1,9 +1,8 @@
 import type { CardTypes } from '@/entities/card'
 
-import { useDndMonitor } from '@dnd-kit/core'
+import { memo } from 'react'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
-import { useCardDragHandlers } from '@/features/card'
 import { useFilteredCards } from '@/features/card/filter-cards'
 
 import { useDragAndDrop } from '@/entities/dnd'
@@ -14,10 +13,8 @@ type CardListProps = {
   cards: CardTypes.Card[] | undefined
 }
 
-export const CardList = ({ cards }: CardListProps) => {
+export const CardList = memo(({ cards }: CardListProps) => {
   const { cards: allCards } = useDragAndDrop()
-
-  useDndMonitor(useCardDragHandlers())
 
   const filteredCards = useFilteredCards(cards!)
 
@@ -33,4 +30,4 @@ export const CardList = ({ cards }: CardListProps) => {
       ))}
     </SortableContext>
   )
-}
+})

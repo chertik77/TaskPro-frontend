@@ -18,7 +18,7 @@ export const cardService = {
     await axiosInstance.delete(CardApiEndpoints.CardById(cardId))
   },
 
-  async updateCardsOrder(columnId: string, data: UpdateOrderData) {
+  async updateCardOrder(columnId: string, data: UpdateOrderData) {
     await axiosInstance.patch(CardApiEndpoints.CardOrder(columnId), data)
   }
 }

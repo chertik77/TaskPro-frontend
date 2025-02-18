@@ -18,7 +18,7 @@ export const columnService = {
     await axiosInstance.delete(ColumnApiEndpoints.ColumnById(columnId))
   },
 
-  async updateColumnsOrder(boardId: string, data: UpdateOrderData) {
+  async updateColumnOrder(boardId: string, data: UpdateOrderData) {
     await axiosInstance.patch(ColumnApiEndpoints.ColumnOrder(boardId), data)
   }
 }

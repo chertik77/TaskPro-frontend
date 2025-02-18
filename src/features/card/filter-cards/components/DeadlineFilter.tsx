@@ -10,7 +10,7 @@ export const DeadlineFilter = () => {
   return (
     <Root
       className='flex flex-col gap-2'
-      value={deadlineParam}
+      value={deadlineParam ?? ''}
       onValueChange={v => handleParamsChange('deadline', v)}>
       {DEADLINES.map(deadline => (
         <label

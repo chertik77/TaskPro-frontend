@@ -7,10 +7,12 @@ import { useCardFilters } from '../hooks/useCardFilters'
 export const PriorityFilter = () => {
   const { priorityParam, handleParamsChange } = useCardFilters()
 
+  console.log(priorityParam)
+
   return (
     <Root
       className='flex flex-col gap-2'
-      value={priorityParam}
+      value={priorityParam ?? ''}
       onValueChange={v => handleParamsChange('priority', v)}>
       {PRIORITIES.map(priority => (
         <label

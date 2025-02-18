@@ -7,13 +7,13 @@ import { columnService } from '@/entities/column'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 
-export const useUpdateColumnsOrder = () => {
+export const useUpdateColumnOrder = () => {
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationKey: ['updateColumnsOrder'],
+    mutationKey: ['updateColumnOrder'],
     mutationFn: ({ ids }: UpdateOrderData) =>
-      columnService.updateColumnsOrder(boardId!, { ids }),
+      columnService.updateColumnOrder(boardId!, { ids }),
     meta: { invalidates: [['board']] },
     onError() {
       toast.error(

@@ -6,12 +6,12 @@ import { useDragAndDrop } from '@/entities/dnd'
 
 import { findIndexById } from '@/shared/utils'
 
-import { useUpdateCardsOrder } from './useUpdateCardsOrder'
+import { useUpdateCardOrder } from './useUpdateCardOrder'
 
 export const useCardDragHandlers = () => {
   const { cards, setCards, setActiveCard } = useDragAndDrop()
 
-  const { mutate: updateCardsOrder } = useUpdateCardsOrder()
+  const { mutate: updateCardOrder } = useUpdateCardOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'card') return
@@ -71,14 +71,8 @@ export const useCardDragHandlers = () => {
 
     const overCard = cards.find(c => c.id === over.id)
 
-    console.log(overCard?.columnId)
-
     if (overCard) {
-      console.log({
-        columnId: overCard.columnId,
-        ids: cards.filter(c => c.columnId === overCard.columnId).map(c => c.id)
-      })
-      updateCardsOrder({
+      updateCardOrder({
         columnId: overCard.columnId,
         ids: cards.filter(c => c.columnId === overCard.columnId).map(c => c.id)
       })

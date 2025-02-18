@@ -5,11 +5,11 @@ import { toast } from 'sonner'
 
 import { cardService } from '@/entities/card'
 
-export const useUpdateCardsOrder = () =>
+export const useUpdateCardOrder = () =>
   useMutation({
-    mutationKey: ['updateCardsOrder'],
+    mutationKey: ['updateCardOrder'],
     mutationFn: ({ columnId, ids }: UpdateOrderData & { columnId: string }) =>
-      cardService.updateCardsOrder(columnId, { ids }),
+      cardService.updateCardOrder(columnId, { ids }),
     meta: { invalidates: [['board']] },
     onError() {
       toast.error(

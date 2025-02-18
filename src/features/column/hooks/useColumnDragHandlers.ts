@@ -6,12 +6,12 @@ import { useDragAndDrop } from '@/entities/dnd'
 
 import { findIndexById } from '@/shared/utils'
 
-import { useUpdateColumnsOrder } from './useUpdateColumnsOrder'
+import { useUpdateColumnOrder } from './useUpdateColumnOrder'
 
 export const useColumnDragHandlers = () => {
   const { columns, setColumns, setActiveColumn } = useDragAndDrop()
 
-  const { mutate: updateColumnsOrder } = useUpdateColumnsOrder()
+  const { mutate: updateColumnOrder } = useUpdateColumnOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'column') return
@@ -24,7 +24,7 @@ export const useColumnDragHandlers = () => {
 
     setActiveColumn(null)
 
-    if (!active || !over || !columns) return
+    if (!over || !columns) return
 
     const activeColumnIndex = findIndexById(columns, active.id as string)
     const overColumnIndex = findIndexById(columns, over.id as string)
@@ -39,7 +39,7 @@ export const useColumnDragHandlers = () => {
 
     setColumns(updatedColumns)
 
-    updateColumnsOrder({ ids: updatedColumns.map(c => c.id) })
+    updateColumnOrder({ ids: updatedColumns.map(c => c.id) })
   }
 
   return { onDragStart, onDragEnd }
