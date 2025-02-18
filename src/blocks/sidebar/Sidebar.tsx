@@ -4,7 +4,7 @@ import { LogoutBtn } from '@/features/auth/logout'
 import { NeedHelpModalTrigger } from '@/features/need-help'
 
 import { Scrollbar } from '@/shared/components'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 import { SidebarBoardInfo } from './SidebarBoardInfo'

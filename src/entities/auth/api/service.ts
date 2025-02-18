@@ -5,8 +5,7 @@ import type {
   Tokens
 } from '../model/types'
 
-import { axiosInstance } from '@/shared/lib/axios'
-
+import { axiosInstance } from './axios'
 import { AuthApiEndpoints } from './endpoints'
 
 export const authService = {

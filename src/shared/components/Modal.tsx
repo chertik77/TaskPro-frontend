@@ -4,7 +4,7 @@ import type { ModalProps as DialogProps } from 'react-responsive-modal'
 import { useModalInstance } from 'react-modal-state'
 import { Modal as Dialog } from 'react-responsive-modal'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 type ModalProps = Partial<DialogProps> & {
   modalTitle:

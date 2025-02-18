@@ -1,33 +1,17 @@
-import type { CardTypes } from '@/entities/card'
-import type { ColumnTypes } from '@/entities/column'
-import type { Dispatch, ReactNode, SetStateAction } from 'react'
+import type { Card } from '@/entities/card/@x/dnd'
+import type { Column } from '@/entities/column/@x/dnd'
+import type { DragAndDropContext, DragAndDropProviderProps } from './types'
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import {
   DndContext,
   MouseSensor,
-  pointerWithin,
-  rectIntersection,
   TouchSensor,
   useSensor,
   useSensors
 } from '@dnd-kit/core'
 
-type DragAndDropContext = {
-  setColumns: Dispatch<SetStateAction<ColumnTypes.Column[] | undefined>>
-  setCards: Dispatch<SetStateAction<CardTypes.Card[] | undefined>>
-  columns: ColumnTypes.Column[] | undefined
-  cards: CardTypes.Card[] | undefined
-  activeCard: CardTypes.Card | null
-  activeColumn: ColumnTypes.Column | null
-  setActiveCard: Dispatch<SetStateAction<CardTypes.Card | null>>
-  setActiveColumn: Dispatch<SetStateAction<ColumnTypes.Column | null>>
-}
-
-type DragAndDropProviderProps = {
-  children: ReactNode
-  initialColumns: ColumnTypes.Column[] | undefined
-}
+import { collisionDetection } from './utils'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
@@ -38,10 +22,8 @@ export const DragAndDropProvider = ({
   const [columns, setColumns] = useState(initialColumns)
   const [cards, setCards] = useState(initialColumns?.flatMap(c => c.cards))
 
-  const [activeCard, setActiveCard] = useState<CardTypes.Card | null>(null)
-  const [activeColumn, setActiveColumn] = useState<ColumnTypes.Column | null>(
-    null
-  )
+  const [activeCard, setActiveCard] = useState<Card | null>(null)
+  const [activeColumn, setActiveColumn] = useState<Column | null>(null)
 
   useEffect(() => {
     setColumns(initialColumns)
@@ -69,13 +51,7 @@ export const DragAndDropProvider = ({
       }}>
       <DndContext
         sensors={sensors}
-        collisionDetection={args => {
-          const type = args.active.data.current?.type
-
-          return type === 'column'
-            ? rectIntersection(args)
-            : pointerWithin(args)
-        }}>
+        collisionDetection={collisionDetection}>
         {children}
       </DndContext>
     </DragAndDropContext.Provider>

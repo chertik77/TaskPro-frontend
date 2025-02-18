@@ -2,7 +2,7 @@ import { UserContracts } from '@/entities/user'
 
 import { Button, Field, Loader, Modal } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 import { useNeedHelp } from '../hooks/useNeedHelp'
 

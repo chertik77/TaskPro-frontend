@@ -9,9 +9,9 @@ import { EditColumnTrigger } from '@/features/column/edit-column'
 
 import { Scrollbar } from '@/shared/components'
 import { useKanbanSortable, useTabletAndBelowMediaQuery } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
-import { CardList } from './CardList'
+import { CardList } from '../card/CardList'
 
 type ColumnListItemProps = {
   column: ColumnTypes.Column

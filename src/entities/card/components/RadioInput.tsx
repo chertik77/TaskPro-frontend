@@ -2,7 +2,7 @@ import type { Priority } from '../model/types'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 import { getPriorityColor } from '..'
 

@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
 import { columnService } from '@/entities/column'
-
-import { useDragAndDrop } from '@/shared/store'
+import { useDragAndDrop } from '@/entities/dnd'
 
 export const useDeleteColumn = () => {
   const { setColumns, setCards } = useDragAndDrop()

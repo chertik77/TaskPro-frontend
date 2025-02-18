@@ -6,7 +6,7 @@ import { DeleteBoardTrigger } from '@/features/board/delete-board'
 import { EditBoardModalTrigger } from '@/features/board/edit-board'
 
 import { Icon } from '@/shared/components'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 type SidebarBoardListItemProps = {
   board: BoardTypes.Board

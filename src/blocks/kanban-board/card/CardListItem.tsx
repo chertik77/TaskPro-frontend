@@ -9,7 +9,7 @@ import { getPriorityColor } from '@/entities/card'
 
 import { Icon } from '@/shared/components'
 import { useKanbanSortable } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 import { CardListItemDeadline } from './CardListItemDeadline'
 import { CardListItemPriority } from './CardListItemPriority'

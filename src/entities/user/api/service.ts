@@ -1,6 +1,6 @@
 import type { EditUserSchema, HelpSchema, User } from '../model/types'
 
-import { axiosInstance } from '@/shared/lib/axios'
+import { axiosInstance } from '@/entities/auth/@x/user'
 
 import { UserApiEndpoints } from './endpoints'
 

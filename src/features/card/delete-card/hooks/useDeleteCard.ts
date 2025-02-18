@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
 import { cardService } from '@/entities/card'
-
-import { useDragAndDrop } from '@/shared/store'
+import { useDragAndDrop } from '@/entities/dnd'
 
 export const useDeleteCard = () => {
   const { setCards } = useDragAndDrop()

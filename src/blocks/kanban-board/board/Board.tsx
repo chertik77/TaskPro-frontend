@@ -2,14 +2,15 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useGetBoardById } from '@/features/board/get-board-by-id'
 
+import { DragAndDropProvider } from '@/entities/dnd'
+
 import { Loader, Scrollbar } from '@/shared/components'
 import { useDocumentTitle } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
-import { DragAndDropProvider } from '@/shared/store'
+import { cn } from '@/shared/lib'
 
-import { ColumnList } from './ColumnList'
-import { Filters } from './Filters'
-import { KanbanDragOverlay } from './KanbanDragOverlay'
+import { ColumnList } from '../column/ColumnList'
+import { KanbanDragOverlay } from '../dnd/KanbanDragOverlay'
+import { Filters } from '../filters/Filters'
 
 export const Board = () => {
   const { data: board, isPending } = useGetBoardById()

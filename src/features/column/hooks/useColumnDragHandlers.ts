@@ -2,7 +2,8 @@ import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
-import { useDragAndDrop } from '@/shared/store'
+import { useDragAndDrop } from '@/entities/dnd'
+
 import { findIndexById } from '@/shared/utils'
 
 import { useUpdateColumnsOrder } from './useUpdateColumnsOrder'

@@ -1,6 +1,6 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 type ScrollbarProps = {
   orientation?: 'vertical' | 'horizontal'

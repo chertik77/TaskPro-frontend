@@ -7,7 +7,7 @@ import {
 import { useColumnDragHandlers } from '@/features/column'
 import { AddColumnTrigger } from '@/features/column/add-column'
 
-import { useDragAndDrop } from '@/shared/store'
+import { useDragAndDrop } from '@/entities/dnd'
 
 import { ColumnListItem } from './ColumnListItem'
 

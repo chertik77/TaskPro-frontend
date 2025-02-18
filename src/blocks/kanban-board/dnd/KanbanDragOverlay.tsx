@@ -1,10 +1,10 @@
 import { DragOverlay } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
 
-import { useDragAndDrop } from '@/shared/store'
+import { useDragAndDrop } from '@/entities/dnd'
 
-import { CardListItem } from './CardListItem'
-import { ColumnListItem } from './ColumnListItem'
+import { CardListItem } from '../card/CardListItem'
+import { ColumnListItem } from '../column/ColumnListItem'
 
 export const KanbanDragOverlay = () => {
   const { activeCard, activeColumn, cards } = useDragAndDrop()

@@ -1,7 +1,7 @@
 import type { UpdateOrderData } from '@/shared/types'
 import type { CardSchema } from '../model/types'
 
-import { axiosInstance } from '@/shared/lib/axios'
+import { axiosInstance } from '@/entities/auth/@x/card'
 
 import { CardApiEndpoints } from './endpoints'
 

@@ -3,7 +3,7 @@ import type { CardSchema } from '../model/types'
 
 import { forwardRef } from 'react'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 type ModalDescriptionProps = {
   errors: FieldErrors<CardSchema>

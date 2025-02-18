@@ -1,6 +1,6 @@
 import type { Board, BoardSchema } from '../model/types'
 
-import { axiosInstance } from '@/shared/lib/axios'
+import { axiosInstance } from '@/entities/auth/@x/board'
 
 import { BoardApiEndpoints } from './endpoints'
 

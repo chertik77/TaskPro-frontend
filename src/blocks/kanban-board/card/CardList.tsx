@@ -6,7 +6,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useCardDragHandlers } from '@/features/card'
 import { useFilteredCards } from '@/features/card/filter-cards'
 
-import { useDragAndDrop } from '@/shared/store'
+import { useDragAndDrop } from '@/entities/dnd'
 
 import { CardListItem } from './CardListItem'
 

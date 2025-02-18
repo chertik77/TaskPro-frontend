@@ -1,6 +1,6 @@
 import { CardTypes, getPriorityColor } from '@/entities/card'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 type CardListItemPriorityProps = {
   priority: CardTypes.Priority

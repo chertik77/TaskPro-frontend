@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
-import { authService, useAuthStore } from '@/entities/auth'
+import { useAuthStore } from '../model/store'
+import { authService } from './service'
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL
