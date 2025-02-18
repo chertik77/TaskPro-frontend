@@ -4,7 +4,7 @@ import { SidebarMobileModal } from '@/blocks/sidebar'
 
 import { Icon } from '@/shared/components'
 
-import { useLogoutUser } from '../hooks'
+import { useLogoutUser } from '../hooks/useLogoutUser'
 
 export const LogoutBtn = () => {
   const { mutate: logoutUser, isPending } = useLogoutUser()

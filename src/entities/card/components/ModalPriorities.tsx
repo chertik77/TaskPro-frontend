@@ -1,5 +1,5 @@
 import type { Control } from 'react-hook-form'
-import type { CardTypes } from '..'
+import type { CardSchema } from '../model/types'
 
 import { Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
@@ -7,7 +7,7 @@ import { Controller } from 'react-hook-form'
 import { PRIORITIES, RadioInput } from '..'
 
 type ModalPrioritiesProps = {
-  control: Control<CardTypes.CardSchema>
+  control: Control<CardSchema>
 }
 
 export const ModalPriorities = ({ control }: ModalPrioritiesProps) => (

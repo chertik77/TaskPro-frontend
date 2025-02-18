@@ -1,5 +1,5 @@
 import type { Control } from 'react-hook-form'
-import type { CardTypes } from '..'
+import type { CardSchema } from '../model/types'
 
 import { useState } from 'react'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
@@ -16,7 +16,7 @@ const formatTodayDate = (date: Date) =>
     : format(date, 'dd/MM/yyyy')
 
 type DatePickerProps = {
-  control: Control<CardTypes.CardSchema>
+  control: Control<CardSchema>
 }
 
 export const DatePicker = ({ control }: DatePickerProps) => {

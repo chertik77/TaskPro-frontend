@@ -1,6 +1,6 @@
 import type { Theme } from '@/entities/user/@x/board'
 import type { Control } from 'react-hook-form'
-import type { BoardTypes } from '..'
+import type { BoardSchema } from '../model/types'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
@@ -16,7 +16,7 @@ type BoardImages = {
 }[]
 
 type RadioInputBgImagesProps = {
-  control: Control<BoardTypes.BoardSchema>
+  control: Control<BoardSchema>
 }
 
 export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {

@@ -1,4 +1,4 @@
-import type { CardTypes } from '..'
+import type { Priority } from './types'
 
 const priorityColors: Record<string, string> = {
   Low: 'bg-priority-low',
@@ -7,5 +7,5 @@ const priorityColors: Record<string, string> = {
   default: 'bg-black/30 dark:bg-white/30'
 }
 
-export const getPriorityColor = (priority: CardTypes.Priority) =>
+export const getPriorityColor = (priority: Priority) =>
   priorityColors[priority] || priorityColors.default

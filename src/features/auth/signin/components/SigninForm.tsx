@@ -3,7 +3,7 @@ import { AuthContracts } from '@/entities/auth'
 import { Button, Field, Loader, PasswordField } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
 
-import { useSigninUser } from '../hooks'
+import { useSigninUser } from '../hooks/useSigninUser'
 
 export const SigninForm = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(

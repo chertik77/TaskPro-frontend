@@ -1,5 +1,4 @@
 import type { User } from '@/entities/user/@x/auth'
-import type { AuthTypes } from '..'
 import type { AuthResponse, Tokens } from './types'
 
 import { create } from 'zustand'
@@ -28,7 +27,7 @@ const initialState: AuthResponse = {
 }
 
 export const useAuthStore = create(
-  persist<AuthTypes.AuthResponse & Action>(
+  persist<AuthResponse & Action>(
     (set, get) => ({
       ...initialState,
       authenticate: set,

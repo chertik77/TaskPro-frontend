@@ -1,5 +1,5 @@
 import type { Control } from 'react-hook-form'
-import type { BoardTypes } from '..'
+import type { BoardSchema } from '../model/types'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
@@ -9,7 +9,7 @@ import { Icon } from '@/shared/components'
 import { ICONS } from '../model/constants'
 
 type RadioInputIconsProps = {
-  control: Control<BoardTypes.BoardSchema>
+  control: Control<BoardSchema>
 }
 
 export const RadioInputIcons = ({ control }: RadioInputIconsProps) => (
