@@ -1,7 +1,8 @@
-import { useAuthStore } from '@/entities/auth'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 import { useSidebarToggleShortcut } from '@/features/toggle-sidebar'
+
+import { useAuthStore } from '@/entities/auth'
 
 import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'

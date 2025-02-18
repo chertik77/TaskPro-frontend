@@ -1,5 +1,6 @@
-import { DEADLINES, RadioInput } from '@/entities/card'
 import { Root } from '@radix-ui/react-radio-group'
+
+import { DEADLINES, RadioInput } from '@/entities/card'
 
 import { useCardFilters } from '../hooks/useCardFilters'
 

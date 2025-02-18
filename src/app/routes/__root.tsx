@@ -1,4 +1,3 @@
-import { useAuthStore } from '@/entities/auth'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -13,6 +12,8 @@ import { AddColumnModal } from '@/features/column/add-column'
 import { EditColumnModal } from '@/features/column/edit-column'
 import { EditProfileModal } from '@/features/edit-profile'
 import { NeedHelpModal } from '@/features/need-help'
+
+import { useAuthStore } from '@/entities/auth'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
 

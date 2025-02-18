@@ -1,8 +1,9 @@
 import type { UpdateOrderData } from '@/shared/types'
 
-import { columnService } from '@/entities/column'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
+
+import { columnService } from '@/entities/column'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 

@@ -1,10 +1,11 @@
 import type { CardTypes } from '@/entities/card'
 
-import { getPriorityColor } from '@/entities/card'
 import { isToday } from 'date-fns'
 
 import { DeleteCardTrigger } from '@/features/card/delete-card'
 import { EditCardModalTrigger } from '@/features/card/edit-card'
+
+import { getPriorityColor } from '@/entities/card'
 
 import { Icon } from '@/shared/components/ui'
 import { useKanbanSortable } from '@/shared/hooks'

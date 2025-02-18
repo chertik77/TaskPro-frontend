@@ -1,6 +1,7 @@
-import { useAuthStore } from '@/entities/auth'
 import * as Avatar from '@radix-ui/react-avatar'
 import { useModal } from 'react-modal-state'
+
+import { useAuthStore } from '@/entities/auth'
 
 import { EditProfileModal } from '..'
 

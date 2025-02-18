@@ -1,7 +1,8 @@
-import { useAuthStore } from '@/entities/auth'
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
 
 import { GoogleSignin } from '@/features/auth/google'
+
+import { useAuthStore } from '@/entities/auth'
 
 import { Icon } from '@/shared/components/ui'
 

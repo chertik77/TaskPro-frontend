@@ -1,5 +1,6 @@
-import { useAuthStore } from '@/entities/auth'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+
+import { useAuthStore } from '@/entities/auth'
 
 import { AuthFormNavigation, AuthLayout } from '@/blocks/auth-layout'
 

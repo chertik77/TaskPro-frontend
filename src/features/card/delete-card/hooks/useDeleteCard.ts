@@ -1,5 +1,6 @@
-import { cardService } from '@/entities/card'
 import { useMutation } from '@tanstack/react-query'
+
+import { cardService } from '@/entities/card'
 
 import { useDragAndDrop } from '@/shared/store'
 

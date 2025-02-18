@@ -1,10 +1,11 @@
 import type { UserTypes } from '@/entities/user'
 import type { UseFormReset } from 'react-hook-form'
 
-import { userService } from '@/entities/user'
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
+
+import { userService } from '@/entities/user'
 
 import { NeedHelpModal } from '..'
 

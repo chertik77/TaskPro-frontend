@@ -2,10 +2,11 @@ import type { UserTypes } from '@/entities/user'
 import type { Control } from 'react-hook-form'
 import type { BoardTypes } from '..'
 
-import { useAuthStore } from '@/entities/auth'
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 import { Controller } from 'react-hook-form'
+
+import { useAuthStore } from '@/entities/auth'
 
 import { cn } from '@/shared/lib/cn'
 

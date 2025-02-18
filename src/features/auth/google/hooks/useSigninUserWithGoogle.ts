@@ -1,7 +1,8 @@
-import { authService, useAuthStore } from '@/entities/auth'
 import { useGoogleLogin } from '@react-oauth/google'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
+
+import { authService, useAuthStore } from '@/entities/auth'
 
 export const useSigninUserWithGoogle = () => {
   const authenticate = useAuthStore(state => state.authenticate)

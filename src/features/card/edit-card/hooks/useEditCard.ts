@@ -2,10 +2,11 @@ import type { BoardTypes } from '@/entities/board'
 import type { CardTypes } from '@/entities/card'
 import type { UseFormReset } from 'react-hook-form'
 
-import { cardService } from '@/entities/card'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
+
+import { cardService } from '@/entities/card'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 

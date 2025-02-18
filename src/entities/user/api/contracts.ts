@@ -1,5 +1,6 @@
-import { AuthContracts } from '@/entities/auth'
 import * as v from 'valibot'
+
+import { AuthContracts } from '@/entities/auth'
 
 export const EditUserSchema = v.partial(
   v.object({

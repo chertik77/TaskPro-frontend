@@ -1,5 +1,6 @@
-import { PRIORITIES, RadioInput } from '@/entities/card'
 import { Root } from '@radix-ui/react-radio-group'
+
+import { PRIORITIES, RadioInput } from '@/entities/card'
 
 import { useCardFilters } from '../hooks/useCardFilters'
 

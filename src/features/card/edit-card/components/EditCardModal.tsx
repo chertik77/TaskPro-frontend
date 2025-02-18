@@ -1,13 +1,14 @@
 import type { CardTypes } from '@/entities/card'
 
 import { useEffect } from 'react'
+import { useModalInstance } from 'react-modal-state'
+
 import {
   CardContracts,
   DatePicker,
   ModalDescription,
   ModalPriorities
 } from '@/entities/card'
-import { useModalInstance } from 'react-modal-state'
 
 import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'

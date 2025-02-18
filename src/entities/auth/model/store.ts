@@ -1,9 +1,10 @@
 import type { UserTypes } from '@/entities/user'
 import type { AuthTypes } from '..'
 
-import { DEFAULT_THEME } from '@/entities/user'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+
+import { DEFAULT_THEME } from '@/entities/user'
 
 type Action = {
   authenticate: (data: AuthTypes.AuthResponse) => void

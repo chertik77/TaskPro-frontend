@@ -1,5 +1,6 @@
-import { columnService } from '@/entities/column'
 import { useMutation } from '@tanstack/react-query'
+
+import { columnService } from '@/entities/column'
 
 import { useDragAndDrop } from '@/shared/store'
 

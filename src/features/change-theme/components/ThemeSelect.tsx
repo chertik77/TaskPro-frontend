@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
+import * as Select from '@radix-ui/react-select'
+
 import { useAuthStore } from '@/entities/auth'
 import { DEFAULT_THEME, THEMES } from '@/entities/user'
-import * as Select from '@radix-ui/react-select'
 
 import { Icon } from '@/shared/components/ui'
 

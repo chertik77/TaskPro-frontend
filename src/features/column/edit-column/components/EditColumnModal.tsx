@@ -1,8 +1,9 @@
 import type { ColumnTypes } from '@/entities/column'
 
 import { useEffect } from 'react'
-import { ColumnContracts } from '@/entities/column'
 import { useModalInstance } from 'react-modal-state'
+
+import { ColumnContracts } from '@/entities/column'
 
 import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
