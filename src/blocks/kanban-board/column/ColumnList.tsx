@@ -18,9 +18,7 @@ type ColumnListProps = {
 export const ColumnList = ({ backgroundIdentifier }: ColumnListProps) => {
   const { columns, cards } = useDragAndDrop()
 
-  const { onDragStart, onDragEnd } = useColumnDragHandlers()
-
-  useDndMonitor({ onDragStart, onDragEnd })
+  useDndMonitor(useColumnDragHandlers())
 
   return (
     <div className='flex touch-manipulation gap-[34px]'>

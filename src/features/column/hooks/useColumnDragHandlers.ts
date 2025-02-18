@@ -16,7 +16,7 @@ export const useColumnDragHandlers = () => {
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'column') return
 
-    setActiveColumn(active.data.current?.column)
+    setActiveColumn(active.data.current?.entity)
   }
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {

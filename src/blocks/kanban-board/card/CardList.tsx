@@ -15,11 +15,9 @@ type CardListProps = {
 }
 
 export const CardList = ({ cards }: CardListProps) => {
-  const { onDragStart, onDragOver, onDragEnd } = useCardDragHandlers()
-
-  useDndMonitor({ onDragStart, onDragOver, onDragEnd })
-
   const { cards: allCards } = useDragAndDrop()
+
+  useDndMonitor(useCardDragHandlers())
 
   const filteredCards = useFilteredCards(cards!)
 

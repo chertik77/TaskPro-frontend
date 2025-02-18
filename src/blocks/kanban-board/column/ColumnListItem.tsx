@@ -1,6 +1,8 @@
 import type { CardTypes } from '@/entities/card'
 import type { ColumnTypes } from '@/entities/column'
+import type { HTMLAttributes } from 'react'
 
+import { forwardRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { AddCardModalTrigger } from '@/features/card/add-card'
@@ -21,12 +23,17 @@ type ColumnListItemProps = {
   backgroundIdentifier?: string
 }
 
-const WhileDraggingComponent = () => (
+const WhileDraggingComponent = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement>
+>((props, ref) => (
   <div
+    {...props}
     className='w-[334px] rounded-lg border-2 border-brand bg-white-gray-secondary opacity-60
       violet:border-brand-secondary dark:bg-black'
+    ref={ref}
   />
-)
+))
 
 export const ColumnListItem = ({
   column,

@@ -1,5 +1,7 @@
 import type { CardTypes } from '@/entities/card'
+import type { HTMLAttributes } from 'react'
 
+import { forwardRef } from 'react'
 import { isToday } from 'date-fns'
 
 import { DeleteCardTrigger } from '@/features/card/delete-card'
@@ -14,19 +16,24 @@ import { cn } from '@/shared/lib'
 import { CardListItemDeadline } from './CardListItemDeadline'
 import { CardListItemPriority } from './CardListItemPriority'
 
-const WhileDraggingComponent = () => (
+const WhileDraggingComponent = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement>
+>((props, ref) => (
   <div
+    {...props}
     className='mb-2 h-5xl rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
       last:mb-0 violet:border-brand-secondary dark:bg-black'
+    ref={ref}
   />
-)
+))
 
 export const CardListItem = ({ card }: { card: CardTypes.Card }) => (
   <Draggable
     entity={card}
     draggableType='card'
     WhileDraggingComponent={WhileDraggingComponent}>
-    {({ setNodeRef, attributes, listeners, style, isDragging }) => (
+    {({ setNodeRef, style, attributes, listeners, isDragging }) => (
       <div
         className={cn(
           `relative mb-2 h-5xl cursor-grab touch-manipulation overflow-hidden rounded-lg
