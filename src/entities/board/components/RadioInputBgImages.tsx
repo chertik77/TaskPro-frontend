@@ -1,4 +1,4 @@
-import type { UserTypes } from '@/entities/user'
+import type { Theme } from '@/entities/user/@x/board'
 import type { Control } from 'react-hook-form'
 import type { BoardTypes } from '..'
 
@@ -6,13 +6,13 @@ import { Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 import { Controller } from 'react-hook-form'
 
-import { useAuthStore } from '@/entities/auth'
+import { useAuthStore } from '@/entities/auth/@x/board'
 
 import { cn } from '@/shared/lib/cn'
 
 type BoardImages = {
   id: string
-  icon: string | Record<UserTypes.Theme, string>
+  icon: string | Record<Theme, string>
 }[]
 
 type RadioInputBgImagesProps = {

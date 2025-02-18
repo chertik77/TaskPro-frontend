@@ -2,7 +2,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useGetBoardById } from '@/features/board/get-board-by-id'
 
-import { Loader, Scrollbar } from '@/shared/components/ui'
+import { Loader, Scrollbar } from '@/shared/components'
 import { useDocumentTitle } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 import { DragAndDropProvider } from '@/shared/store'

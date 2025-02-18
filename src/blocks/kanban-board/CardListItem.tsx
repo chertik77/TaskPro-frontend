@@ -7,7 +7,7 @@ import { EditCardModalTrigger } from '@/features/card/edit-card'
 
 import { getPriorityColor } from '@/entities/card'
 
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 import { useKanbanSortable } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 

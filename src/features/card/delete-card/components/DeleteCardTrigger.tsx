@@ -1,4 +1,4 @@
-import { Button } from '@/shared/components/ui'
+import { Button } from '@/shared/components'
 
 import { useDeleteCard } from '../hooks/useDeleteCard'
 

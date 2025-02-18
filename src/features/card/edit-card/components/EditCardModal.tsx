@@ -10,7 +10,7 @@ import {
   ModalPriorities
 } from '@/entities/card'
 
-import { Button, Field, Modal } from '@/shared/components/ui'
+import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { useEditCard } from '../hooks/useEditCard'

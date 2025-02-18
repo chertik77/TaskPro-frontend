@@ -1,4 +1,4 @@
-import { Button } from '@/shared/components/ui'
+import { Button } from '@/shared/components'
 
 import { useDeleteColumn } from '../hooks/useDeleteColumn'
 

@@ -4,7 +4,7 @@ import { ToggleSidebarTrigger } from '@/features/toggle-sidebar'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
 
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 
 export const HeaderControls = () => {
   const { open: openSidebarMobileModal } = useModal(SidebarMobileModal)

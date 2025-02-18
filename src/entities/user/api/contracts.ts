@@ -1,16 +1,16 @@
 import * as v from 'valibot'
 
-import { AuthContracts } from '@/entities/auth'
+import { SigninSchema, SignupSchema } from '@/entities/auth/@x/user'
 
 export const EditUserSchema = v.partial(
   v.object({
-    ...AuthContracts.SignupSchema.entries,
+    ...SignupSchema.entries,
     avatar: v.instance(File)
   })
 )
 
 export const HelpSchema = v.object({
-  email: AuthContracts.SigninSchema.entries.email,
+  email: SigninSchema.entries.email,
   comment: v.pipe(
     v.string(),
     v.trim(),

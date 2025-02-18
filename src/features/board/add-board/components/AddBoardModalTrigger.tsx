@@ -2,7 +2,7 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
 
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 
 import { AddBoardModal } from './AddBoardModal'
 

@@ -1,4 +1,4 @@
-import type { CardTypes } from '@/entities/card'
+import type { Card } from '@/entities/card/@x/column'
 import type { InferInput } from 'valibot'
 import type { ColumnSchema } from '../api/contracts'
 
@@ -7,7 +7,7 @@ export type Column = {
   title: string
   order: number
   boardId: string
-  cards: CardTypes.Card[]
+  cards: Card[]
 }
 
 export type ColumnSchema = InferInput<typeof ColumnSchema>

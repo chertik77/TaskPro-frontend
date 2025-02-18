@@ -7,7 +7,7 @@ import { AddCardModalTrigger } from '@/features/card/add-card'
 import { DeleteColumnTrigger } from '@/features/column/delete-column'
 import { EditColumnTrigger } from '@/features/column/edit-column'
 
-import { Scrollbar } from '@/shared/components/ui'
+import { Scrollbar } from '@/shared/components'
 import { useKanbanSortable, useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 

@@ -1,6 +1,6 @@
 import { UserContracts } from '@/entities/user'
 
-import { Button, Field, Loader, Modal } from '@/shared/components/ui'
+import { Button, Field, Loader, Modal } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 

@@ -2,7 +2,7 @@ import type { CardTypes } from '@/entities/card'
 
 import { useModal } from 'react-modal-state'
 
-import { Button } from '@/shared/components/ui'
+import { Button } from '@/shared/components'
 
 import { EditCardModal } from './EditCardModal'
 

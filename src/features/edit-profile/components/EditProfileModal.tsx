@@ -9,7 +9,7 @@ import {
   Loader,
   Modal,
   PasswordField
-} from '@/shared/components/ui'
+} from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { useEditProfile } from '../hooks/useEditProfile'

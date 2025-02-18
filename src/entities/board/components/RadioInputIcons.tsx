@@ -4,7 +4,7 @@ import type { BoardTypes } from '..'
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { Controller } from 'react-hook-form'
 
-import { Icon } from '@/shared/components/ui'
+import { Icon } from '@/shared/components'
 
 import { ICONS } from '../model/constants'
 

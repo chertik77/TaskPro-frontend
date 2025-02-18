@@ -1,11 +1,11 @@
-import type { UserTypes } from '@/entities/user'
+import type { User } from '@/entities/user/@x/auth'
 import type { InferInput } from 'valibot'
 import type { SigninSchema, SignupSchema } from '../api/contracts'
 
 export type AuthResponse = {
   refreshToken: string
   accessToken: string
-  user: UserTypes.User
+  user: User
 }
 
 export type Tokens = Omit<AuthResponse, 'user'>

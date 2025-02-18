@@ -4,7 +4,7 @@ import { useModal } from 'react-modal-state'
 
 import { useGetAllBoards } from '@/features/board/get-all-boards'
 
-import { Loader } from '@/shared/components/ui'
+import { Loader } from '@/shared/components'
 import { useGetParamBoardId } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 

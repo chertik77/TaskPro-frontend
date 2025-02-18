@@ -1,4 +1,4 @@
-import type { ColumnTypes } from '@/entities/column'
+import type { Column } from '@/entities/column/@x/board'
 import type { InferInput } from 'valibot'
 import type { BoardSchema } from '../api/contracts'
 import type { ICONS } from './constants'
@@ -12,7 +12,7 @@ export type Board = {
     identifier: string
     url: string
   }
-  columns: ColumnTypes.Column[]
+  columns: Column[]
 }
 
 export type BoardSchema = InferInput<typeof BoardSchema>
