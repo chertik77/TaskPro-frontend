@@ -5,9 +5,9 @@ import {
   SortableContext
 } from '@dnd-kit/sortable'
 
-import { useCardDragHandlers } from '@/features/card'
-import { useColumnDragHandlers } from '@/features/column'
+import { useCardDragHandlers } from '@/features/card/move-card'
 import { AddColumnTrigger } from '@/features/column/add-column'
+import { useColumnDragHandlers } from '@/features/column/move-column'
 
 import { useDragAndDrop } from '@/entities/dnd'
 
@@ -25,12 +25,10 @@ export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
   const columnHandlers = useColumnDragHandlers()
 
   useDndMonitor({
+    onDragOver: cardHandlers.onDragOver,
     onDragStart: e => {
       cardHandlers.onDragStart(e)
       columnHandlers.onDragStart(e)
-    },
-    onDragOver: e => {
-      cardHandlers.onDragOver(e)
     },
     onDragEnd: e => {
       cardHandlers.onDragEnd(e)
