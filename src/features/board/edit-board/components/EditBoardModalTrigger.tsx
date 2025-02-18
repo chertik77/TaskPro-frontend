@@ -1,4 +1,4 @@
-import type { BoardTypes } from '@/shared/api/board'
+import type { BoardTypes } from '@/entities/board'
 
 import { useModal } from 'react-modal-state'
 

@@ -1,6 +1,6 @@
+import { columnService } from '@/entities/column'
 import { useMutation } from '@tanstack/react-query'
 
-import { columnService } from '@/shared/api/column'
 import { useDragAndDrop } from '@/shared/store'
 
 export const useDeleteColumn = () => {

@@ -1,5 +1,5 @@
-import { ThemeSelect } from '@/features/change-theme/components'
-import { EditProfileModalTrigger } from '@/features/edit-profile/components'
+import { ThemeSelect } from '@/features/change-theme'
+import { EditProfileModalTrigger } from '@/features/edit-profile'
 
 import { HeaderControls } from './HeaderControls'
 

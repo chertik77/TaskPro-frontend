@@ -1,12 +1,10 @@
-import type { CardTypes } from '@/shared/api/card'
-import type { ColumnTypes } from '@/shared/api/column'
-import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
+import type { CardTypes } from '@/entities/card'
+import type { ColumnTypes } from '@/entities/column'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import {
   DndContext,
-  DragOverlay,
   MouseSensor,
   pointerWithin,
   rectIntersection,
@@ -14,18 +12,16 @@ import {
   useSensor,
   useSensors
 } from '@dnd-kit/core'
-import { createPortal } from 'react-dom'
 
-import { useCardDragHandlers } from '@/features/card/hooks'
-import { CardListItem } from '@/features/card/list/components'
-import { useColumnDragHandlers } from '@/features/column/hooks'
-import { ColumnListItem } from '@/features/column/list/components'
-
-export type DragAndDropContext = {
+type DragAndDropContext = {
   setColumns: Dispatch<SetStateAction<ColumnTypes.Column[] | undefined>>
   setCards: Dispatch<SetStateAction<CardTypes.Card[] | undefined>>
   columns: ColumnTypes.Column[] | undefined
   cards: CardTypes.Card[] | undefined
+  activeCard: CardTypes.Card | null
+  activeColumn: ColumnTypes.Column | null
+  setActiveCard: Dispatch<SetStateAction<CardTypes.Card | null>>
+  setActiveColumn: Dispatch<SetStateAction<ColumnTypes.Column | null>>
 }
 
 type DragAndDropProviderProps = {
@@ -52,37 +48,6 @@ export const DragAndDropProvider = ({
     setCards(initialColumns?.flatMap(c => c.cards))
   }, [initialColumns])
 
-  const cardHandlers = useCardDragHandlers({ cards, setCards, setActiveCard })
-  const columnHandlers = useColumnDragHandlers({
-    columns,
-    setColumns,
-    setActiveColumn
-  })
-
-  const onDragStart = (event: DragStartEvent) => {
-    if (!event.active) return
-
-    const data = event.active.data.current
-
-    if (data?.type === 'column') columnHandlers.onDragStart(event)
-
-    if (data?.type === 'card') cardHandlers.onDragStart(event)
-  }
-
-  const onDragOver = (event: DragOverEvent) => {
-    const data = event.active.data.current
-
-    if (data?.type === 'card') cardHandlers.onDragOver(event)
-  }
-
-  const onDragEnd = (event: DragEndEvent) => {
-    const data = event.active.data.current
-
-    if (data?.type === 'column') columnHandlers.onDragEnd(event)
-
-    if (data?.type === 'card') cardHandlers.onDragEnd(event)
-  }
-
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, {
@@ -92,7 +57,16 @@ export const DragAndDropProvider = ({
 
   return (
     <DragAndDropContext.Provider
-      value={{ setColumns, setCards, columns, cards }}>
+      value={{
+        setColumns,
+        setCards,
+        columns,
+        cards,
+        activeCard,
+        activeColumn,
+        setActiveCard,
+        setActiveColumn
+      }}>
       <DndContext
         sensors={sensors}
         collisionDetection={args => {
@@ -101,23 +75,8 @@ export const DragAndDropProvider = ({
           return type === 'column'
             ? rectIntersection(args)
             : pointerWithin(args)
-        }}
-        onDragStart={onDragStart}
-        onDragOver={onDragOver}
-        onDragEnd={onDragEnd}>
+        }}>
         {children}
-        {createPortal(
-          <DragOverlay>
-            {activeColumn && (
-              <ColumnListItem
-                column={activeColumn}
-                cards={cards?.filter(c => c.columnId === activeColumn.id)}
-              />
-            )}
-            {activeCard && <CardListItem card={activeCard} />}
-          </DragOverlay>,
-          document.body
-        )}
       </DndContext>
     </DragAndDropContext.Provider>
   )

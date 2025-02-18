@@ -1,9 +1,10 @@
-import { UserContracts } from '@/shared/api/user'
+import { UserContracts } from '@/entities/user'
+
 import { Button, Field, Loader, Modal } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
 
-import { useNeedHelp } from '../hooks'
+import { useNeedHelp } from '../hooks/useNeedHelp'
 
 export const NeedHelpModal = () => {
   const { handleSubmit, register, formState, reset } = useAppForm(

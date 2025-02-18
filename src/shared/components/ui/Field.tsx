@@ -3,7 +3,7 @@ import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef } from 'react'
 
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   inputName: string

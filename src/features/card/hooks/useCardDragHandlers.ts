@@ -1,29 +1,31 @@
-import type { CardTypes } from '@/shared/api/card'
-import type { DragAndDropContext } from '@/shared/store'
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
-import type { Dispatch, SetStateAction } from 'react'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
+import { useDragAndDrop } from '@/shared/store'
 import { findIndexById } from '@/shared/utils'
 
 import { useUpdateCardsOrder } from './useUpdateCardsOrder'
 
-export const useCardDragHandlers = ({
-  cards,
-  setCards,
-  setActiveCard
-}: Pick<DragAndDropContext, 'cards' | 'setCards'> & {
-  setActiveCard: Dispatch<SetStateAction<CardTypes.Card | null>>
-}) => {
+export const useCardDragHandlers = () => {
+  const { cards, setCards, setActiveCard } = useDragAndDrop()
+
   const { mutate: updateCardsOrder } = useUpdateCardsOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {
+    if (!active || active.data.current?.type !== 'card') return
+
     setActiveCard(active.data.current?.card)
   }
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
-    if (!over || active.id === over.id) return
+    if (
+      !over ||
+      active.id === over.id ||
+      active.data.current?.type !== 'card'
+    ) {
+      return
+    }
 
     const isDraggingOverACard = over.data.current?.type === 'card'
     const isDraggingOverAColumn = over.data.current?.type === 'column'
@@ -59,7 +61,9 @@ export const useCardDragHandlers = ({
     })
   }
 
-  const onDragEnd = ({ over }: DragEndEvent) => {
+  const onDragEnd = ({ active, over }: DragEndEvent) => {
+    if (!active || active.data.current?.type !== 'card') return
+
     setActiveCard(null)
 
     if (!cards || !over) return

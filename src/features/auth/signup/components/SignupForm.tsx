@@ -1,4 +1,5 @@
-import { AuthContracts } from '@/shared/api/auth'
+import { AuthContracts } from '@/entities/auth'
+
 import { Button, Field, Loader, PasswordField } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'
 

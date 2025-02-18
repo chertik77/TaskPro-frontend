@@ -1,28 +1,26 @@
-import type { ColumnTypes } from '@/shared/api/column'
-import type { DragAndDropContext } from '@/shared/store'
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
-import type { Dispatch, SetStateAction } from 'react'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
+import { useDragAndDrop } from '@/shared/store'
 import { findIndexById } from '@/shared/utils'
 
 import { useUpdateColumnsOrder } from './useUpdateColumnsOrder'
 
-export const useColumnDragHandlers = ({
-  columns,
-  setColumns,
-  setActiveColumn
-}: Pick<DragAndDropContext, 'columns' | 'setColumns'> & {
-  setActiveColumn: Dispatch<SetStateAction<ColumnTypes.Column | null>>
-}) => {
+export const useColumnDragHandlers = () => {
+  const { columns, setColumns, setActiveColumn } = useDragAndDrop()
+
   const { mutate: updateColumnsOrder } = useUpdateColumnsOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {
+    if (!active || active.data.current?.type !== 'column') return
+
     setActiveColumn(active.data.current?.column)
   }
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
+    if (!active || active.data.current?.type !== 'column') return
+
     setActiveColumn(null)
 
     if (!active || !over || !columns) return

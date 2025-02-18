@@ -3,7 +3,7 @@ import type { FieldErrors } from 'react-hook-form'
 
 import { forwardRef, useState } from 'react'
 
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
 
 import { Icon } from './Icon'
 

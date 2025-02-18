@@ -1,9 +1,8 @@
 import type { UpdateOrderData } from '@/shared/types'
 
+import { cardService } from '@/entities/card'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
-
-import { cardService } from '@/shared/api/card'
 
 export const useUpdateCardsOrder = () =>
   useMutation({

@@ -1,4 +1,4 @@
-import type { ColumnTypes } from '@/shared/api/column'
+import type { ColumnTypes } from '@/entities/column'
 
 import { useModal } from 'react-modal-state'
 

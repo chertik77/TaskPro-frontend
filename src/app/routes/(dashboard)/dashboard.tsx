@@ -1,12 +1,13 @@
+import { useAuthStore } from '@/entities/auth'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
-import { useSidebarToggleShortcut } from '@/features/toggle-sidebar/hooks'
+import { useSidebarToggleShortcut } from '@/features/toggle-sidebar'
 
 import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'
 
-import { cn } from '@/shared/lib'
-import { useAuthStore, useSidebarStore } from '@/shared/store'
+import { cn } from '@/shared/lib/cn'
+import { useSidebarStore } from '@/shared/store'
 
 const DashboardRoute = () => {
   const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)

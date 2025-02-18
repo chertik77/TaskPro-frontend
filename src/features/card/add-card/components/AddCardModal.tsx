@@ -1,9 +1,14 @@
-import { CardContracts } from '@/shared/api/card'
-import { ModalDescription, ModalPriorities } from '@/shared/components'
-import { Button, DatePicker, Field, Modal } from '@/shared/components/ui'
+import {
+  CardContracts,
+  DatePicker,
+  ModalDescription,
+  ModalPriorities
+} from '@/entities/card'
+
+import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'
 
-import { useAddCard } from '../hooks'
+import { useAddCard } from '../hooks/useAddCard'
 
 export const AddCardModal = () => {
   const { register, handleSubmit, formState, reset, control } = useAppForm(

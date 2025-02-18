@@ -1,4 +1,4 @@
-import { AddBoardModalTrigger } from '@/features/board/add-board/components'
+import { AddBoardModalTrigger } from '@/features/board/add-board'
 
 export const SidebarBoardInfo = () => (
   <div className='mb-10 px-3.5 tablet:px-6'>

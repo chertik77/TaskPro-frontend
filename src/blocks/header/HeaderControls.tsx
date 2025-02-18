@@ -1,6 +1,6 @@
 import { useModal } from 'react-modal-state'
 
-import { ToggleSidebarTrigger } from '@/features/toggle-sidebar/components'
+import { ToggleSidebarTrigger } from '@/features/toggle-sidebar'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
 

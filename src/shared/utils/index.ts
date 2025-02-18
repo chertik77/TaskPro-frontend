@@ -1,2 +1,1 @@
-export * from './getPriorityColor'
-export * from './findIndexById'
+export { findIndexById } from './findIndexById'

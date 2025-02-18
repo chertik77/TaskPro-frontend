@@ -1,14 +1,18 @@
-import type { CardTypes } from '@/shared/api/card'
+import type { CardTypes } from '@/entities/card'
 
 import { useEffect } from 'react'
+import {
+  CardContracts,
+  DatePicker,
+  ModalDescription,
+  ModalPriorities
+} from '@/entities/card'
 import { useModalInstance } from 'react-modal-state'
 
-import { CardContracts } from '@/shared/api/card'
-import { ModalDescription, ModalPriorities } from '@/shared/components'
-import { Button, DatePicker, Field, Modal } from '@/shared/components/ui'
+import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
-import { useEditCard } from '../hooks'
+import { useEditCard } from '../hooks/useEditCard'
 
 export const EditCardModal = () => {
   const { data: card } = useModalInstance<CardTypes.EditCardModalProps>()

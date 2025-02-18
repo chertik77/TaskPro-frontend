@@ -1,13 +1,12 @@
-import type { CardTypes } from '@/shared/api/card'
+import type { CardTypes } from '@/entities/card'
 import type { UseFormReset } from 'react-hook-form'
 
+import { cardService } from '@/entities/card'
 import { useMutation } from '@tanstack/react-query'
 import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { cardService } from '@/shared/api/card'
-
-import { AddCardModal } from '../components'
+import { AddCardModal } from '..'
 
 export const useAddCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const {

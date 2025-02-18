@@ -1,8 +1,9 @@
-import { ColumnContracts } from '@/shared/api/column'
+import { ColumnContracts } from '@/entities/column'
+
 import { Button, Field, Modal } from '@/shared/components/ui'
 import { useAppForm } from '@/shared/hooks'
 
-import { useAddColumn } from '../hooks'
+import { useAddColumn } from '../hooks/useAddColumn'
 
 export const AddColumnModal = () => {
   const { register, handleSubmit, formState, reset } = useAppForm(
