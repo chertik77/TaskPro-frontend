@@ -58,10 +58,10 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['board', boardId], context?.previousBoard),
-        toast.error(
-          'An error occurred while editing the task. Please try again shortly.'
-        )
+      queryClient.setQueryData(['board', boardId], context?.previousBoard)
+      toast.error(
+        'An error occurred while editing the task. Please try again shortly.'
+      )
     },
     onSettled: () => {
       queryClient.invalidateQueries({

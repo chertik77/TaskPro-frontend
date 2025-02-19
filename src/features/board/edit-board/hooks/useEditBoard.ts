@@ -42,10 +42,10 @@ export const useEditBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
       return { previousBoards }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['boards'], context?.previousBoards),
-        toast.error(
-          'An error occurred while editing the board. Please try again shortly.'
-        )
+      queryClient.setQueryData(['boards'], context?.previousBoards)
+      toast.error(
+        'An error occurred while editing the board. Please try again shortly.'
+      )
     },
     onSettled: data => {
       queryClient.invalidateQueries({ queryKey: ['boards'] })

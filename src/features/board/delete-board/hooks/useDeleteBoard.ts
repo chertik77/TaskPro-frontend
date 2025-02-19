@@ -33,10 +33,10 @@ export const useDeleteBoard = () => {
       return { previousBoards }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['boards'], context?.previousBoards),
-        toast.error(
-          'An error occurred while deleting the board. Please try again shortly.'
-        )
+      queryClient.setQueryData(['boards'], context?.previousBoards)
+      toast.error(
+        'An error occurred while deleting the board. Please try again shortly.'
+      )
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['boards'] })

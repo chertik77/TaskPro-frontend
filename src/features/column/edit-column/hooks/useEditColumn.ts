@@ -57,10 +57,10 @@ export const useEditColumn = (
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['board', boardId], context?.previousBoard),
-        toast.error(
-          'An error occurred while editing the column. Please try again shortly.'
-        )
+      queryClient.setQueryData(['board', boardId], context?.previousBoard)
+      toast.error(
+        'An error occurred while editing the column. Please try again shortly.'
+      )
     },
     onSettled: () => {
       queryClient.invalidateQueries({
