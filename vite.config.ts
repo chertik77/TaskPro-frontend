@@ -6,7 +6,10 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({ routesDirectory: 'src/app/routes' }),
+    TanStackRouterVite({
+      generatedRouteTree: 'src/shared/lib/react-router/routeTree.gen.ts',
+      routesDirectory: 'src/app/routes'
+    }),
     react(),
     tsconfigPaths(),
     ViteMinifyPlugin()
