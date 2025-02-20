@@ -6,9 +6,8 @@ import { cn } from '@/shared/lib'
 
 import { getPriorityColor } from '..'
 
-export const RadioInput = ({ value, checked }: RadioGroup.RadioProps) => (
+export const RadioInput = ({ value }: RadioGroup.RadioGroupProps) => (
   <RadioGroup.Item
-    checked={checked}
     className={cn(
       'focus-visible:styled-outline size-3.5 rounded-full',
       getPriorityColor(value as Priority)

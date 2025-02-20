@@ -18,11 +18,11 @@ export const ModalPriorities = ({ control }: ModalPrioritiesProps) => (
       control={control}
       render={({ field }) => (
         <Root
-          onValueChange={field.onChange}
-          className='mb-3.5 flex gap-2'>
+          className='mb-3.5 flex gap-2'
+          value={field.value}
+          onValueChange={field.onChange}>
           {PRIORITIES.map(priority => (
             <RadioInput
-              checked={priority === field.value}
               value={priority}
               key={priority}
             />

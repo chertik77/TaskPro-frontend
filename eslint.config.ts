@@ -1,23 +1,19 @@
 import eslintPluginJs from '@eslint/js'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
 import eslintPluginRouter from '@tanstack/eslint-plugin-router'
-import eslintTsParser from '@typescript-eslint/parser'
-import { projectStructurePlugin } from 'eslint-plugin-project-structure'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
-import { independentModulesConfig } from './independentModules.mjs'
 import eslintPluginTailwind from 'eslint-plugin-tailwindcss'
 
 export default eslintTypescript.config(
   { ignores: ['**/vite-env.d.ts'] },
   {
     languageOptions: {
-      parser: eslintTsParser,
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
+      globals: { ...globals.browser },
+      parser: eslintTypescript.parser
     }
   },
   eslintPluginJs.configs.recommended,
@@ -64,8 +60,6 @@ export default eslintTypescript.config(
     }
   },
   {
-    plugins: { react: eslintPluginReact },
-    settings: { react: { version: 'detect' } },
     rules: {
       'react/react-in-jsx-scope': 'off',
       'react/display-name': 'off',
@@ -99,7 +93,6 @@ export default eslintTypescript.config(
     rules: { ...eslintPluginReactHooks.configs.recommended.rules }
   },
   {
-    plugins: { tailwindcss: eslintPluginTailwind },
     settings: { tailwindcss: { callees: ['cn'] } },
     rules: {
       'tailwindcss/migration-from-tailwind-2': 'off',
@@ -108,14 +101,15 @@ export default eslintTypescript.config(
         { whitelist: ['shadow-none'] }
       ]
     }
-  },
-  {
-    plugins: { 'project-structure': projectStructurePlugin },
-    rules: {
-      'project-structure/independent-modules': [
-        'error',
-        independentModulesConfig
-      ]
-    }
   }
+  //? Remove when list of files can be completely ignored
+  // {
+  //   plugins: { 'project-structure': projectStructurePlugin },
+  //   rules: {
+  //     'project-structure/independent-modules': [
+  //       'error',
+  //       independentModulesConfig
+  //     ]
+  //   }
+  // }
 )

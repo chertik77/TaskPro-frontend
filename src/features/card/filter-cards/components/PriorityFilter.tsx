@@ -20,10 +20,7 @@ export const PriorityFilter = () => {
             hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
             hocus:dark:text-white'
           key={priority}>
-          <RadioInput
-            value={priority}
-            checked={priority === priorityParam}
-          />
+          <RadioInput value={priority} />
           {priority}
         </label>
       ))}

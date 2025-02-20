@@ -18,10 +18,7 @@ export const DeadlineFilter = () => {
             hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
             hocus:dark:text-white'
           key={deadline}>
-          <RadioInput
-            value={deadline}
-            checked={deadline === deadlineParam}
-          />
+          <RadioInput value={deadline} />
           {deadline}
         </label>
       ))}
