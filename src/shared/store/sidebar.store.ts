@@ -5,16 +5,25 @@ type ReactStyleStateSetter<T> = T | ((prev: T) => T)
 
 export const useSidebarStore = create(
   persist(
-    combine({ isSidebarOpen: true }, set => ({
-      setIsSidebarOpen: (
-        newStateOrSetterFn: ReactStyleStateSetter<boolean>
-      ) => {
-        set(({ isSidebarOpen }) => {
+    combine({ isOpen: true, isOpenOnMobile: false }, set => ({
+      setIsOpen: (newStateOrSetterFn: ReactStyleStateSetter<boolean>) => {
+        set(({ isOpen }) => {
           if (typeof newStateOrSetterFn === 'boolean') {
-            return { isSidebarOpen: newStateOrSetterFn }
+            return { isOpen: newStateOrSetterFn }
           }
 
-          return { isSidebarOpen: newStateOrSetterFn(isSidebarOpen) }
+          return { isOpen: newStateOrSetterFn(isOpen) }
+        })
+      },
+      setIsOpenOnMobile: (
+        newStateOrSetterFn: ReactStyleStateSetter<boolean>
+      ) => {
+        set(({ isOpenOnMobile }) => {
+          if (typeof newStateOrSetterFn === 'boolean') {
+            return { isOpenOnMobile: newStateOrSetterFn }
+          }
+
+          return { isOpenOnMobile: newStateOrSetterFn(isOpenOnMobile) }
         })
       }
     })),

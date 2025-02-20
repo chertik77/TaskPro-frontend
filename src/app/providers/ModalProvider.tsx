@@ -14,8 +14,6 @@ import { EditColumnModal } from '@/features/column/edit-column'
 import { EditProfileModal } from '@/features/user/edit-profile'
 import { NeedHelpModal } from '@/features/user/need-help'
 
-import { SidebarMobileModal } from '@/blocks/sidebar'
-
 export const ModalProvider = ({ children }: PropsWithChildren) => (
   <ReactModalStateProvider>
     {children}
@@ -27,6 +25,5 @@ export const ModalProvider = ({ children }: PropsWithChildren) => (
     <ModalRenderer Component={EditCardModal} />
     <ModalRenderer Component={NeedHelpModal} />
     <ModalRenderer Component={EditProfileModal} />
-    <ModalRenderer Component={SidebarMobileModal} />
   </ReactModalStateProvider>
 )

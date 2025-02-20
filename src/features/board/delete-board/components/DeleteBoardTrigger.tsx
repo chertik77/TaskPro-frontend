@@ -1,13 +1,10 @@
-import { useModal } from 'react-modal-state'
-
-import { SidebarMobileModal } from '@/blocks/sidebar'
-
+import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 import { useDeleteBoard } from '../hooks/useDeleteBoard'
 
 export const DeleteBoardTrigger = () => {
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
+  const setIsOpenOnMobile = useSidebarStore(state => state.setIsOpenOnMobile)
 
   const { mutate: deleteBoard } = useDeleteBoard()
 
@@ -18,12 +15,12 @@ export const DeleteBoardTrigger = () => {
       aria-label='Delete board'
       onKeyDown={e => {
         if (e.code === 'Enter' || e.code === 'Space') {
-          closeSidebarMobileModal()
+          setIsOpenOnMobile(false)
           deleteBoard()
         }
       }}
       onClick={() => {
-        closeSidebarMobileModal()
+        setIsOpenOnMobile(false)
         deleteBoard()
       }}
       className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black

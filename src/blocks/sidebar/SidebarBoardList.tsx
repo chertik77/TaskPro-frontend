@@ -1,6 +1,5 @@
 import { Root } from '@radix-ui/react-radio-group'
 import { useNavigate } from '@tanstack/react-router'
-import { useModal } from 'react-modal-state'
 
 import { useGetAllBoards } from '@/features/board/get-all-boards'
 
@@ -9,14 +8,13 @@ import { cn } from '@/shared/lib/cn'
 import { Loader } from '@/shared/ui'
 
 import { SidebarBoardListItem } from './SidebarBoardListItem'
-import { SidebarMobileModal } from './SidebarMobileModal'
 
 export const SidebarBoardList = () => {
   const navigate = useNavigate()
 
   const { boardId } = useGetParamBoardId()
 
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
+  // const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   const { data: boards, isPending } = useGetAllBoards()
 
@@ -30,7 +28,7 @@ export const SidebarBoardList = () => {
       value={boardId}
       onValueChange={v => {
         navigate({ to: '/dashboard/$boardId', params: { boardId: v } })
-        closeSidebarMobileModal()
+        // closeSidebarMobileModal()
       }}
       className={cn('mb-10 text-base', boards?.length === 0 && 'mb-auto')}>
       {boards?.map(board => (

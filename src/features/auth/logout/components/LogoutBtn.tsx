@@ -1,7 +1,4 @@
-import { useModal } from 'react-modal-state'
-
-import { SidebarMobileModal } from '@/blocks/sidebar'
-
+import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 import { useLogoutUser } from '../hooks/useLogoutUser'
@@ -9,7 +6,7 @@ import { useLogoutUser } from '../hooks/useLogoutUser'
 export const LogoutBtn = () => {
   const { mutate: logoutUser, isPending } = useLogoutUser()
 
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
+  const setIsOpenOnMobile = useSidebarStore(state => state.setIsOpenOnMobile)
 
   return (
     <button
@@ -17,7 +14,7 @@ export const LogoutBtn = () => {
         text-md font-medium violet:text-white'
       disabled={isPending}
       onClick={() => {
-        closeSidebarMobileModal()
+        setIsOpenOnMobile(false)
         logoutUser()
       }}>
       <Icon

@@ -1,15 +1,11 @@
 import { useModal } from 'react-modal-state'
 
-import { SidebarMobileModal } from '@/blocks/sidebar'
-
 import { Icon } from '@/shared/ui'
 
 import { NeedHelpModal } from './NeedHelpModal'
 
 export const NeedHelpModalTrigger = () => {
   const { open: openNeedHelpModal } = useModal(NeedHelpModal)
-
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <div
@@ -30,7 +26,6 @@ export const NeedHelpModalTrigger = () => {
         type='button'
         onClick={() => {
           openNeedHelpModal()
-          closeSidebarMobileModal()
         }}
         className='focus-visible:styled-outline flex size-max items-center gap-2 bg-transparent
           text-sm font-medium transition-all hocus:text-brand-hover violet:text-white

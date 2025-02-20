@@ -1,12 +1,10 @@
 import { Link } from '@tanstack/react-router'
-import { useModal } from 'react-modal-state'
 
 import { Icon } from '@/shared/ui'
 
-import { SidebarMobileModal } from './SidebarMobileModal'
-
+// eslint-disable-next-line arrow-body-style
 export const SidebarLogo = () => {
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
+  // const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <div
@@ -14,8 +12,7 @@ export const SidebarLogo = () => {
         desktop:pt-6'>
       <Link
         className='focus-visible:styled-outline text-white violet:text-brand-secondary'
-        to='/dashboard'
-        onClick={closeSidebarMobileModal}>
+        to='/dashboard'>
         <Icon
           name='logo'
           className='size-8 fill-black-third violet:fill-white-gray-secondary'

@@ -1,15 +1,11 @@
 import { useModal } from 'react-modal-state'
 
-import { SidebarMobileModal } from '@/blocks/sidebar'
-
 import { Icon } from '@/shared/ui'
 
 import { AddBoardModal } from './AddBoardModal'
 
 export const AddBoardModalTrigger = () => {
   const { open: openNewBoardModal } = useModal(AddBoardModal)
-
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
 
   return (
     <button
@@ -18,10 +14,7 @@ export const AddBoardModalTrigger = () => {
       className='focus-visible:styled-outline flex h-9 w-10 items-center justify-center
         rounded-lg bg-brand text-black transition-all duration-300 hocus:bg-brand-hover
         violet:bg-brand-third violet:text-white violet:hocus:bg-[#979CEA]'
-      onClick={() => {
-        openNewBoardModal()
-        closeSidebarMobileModal()
-      }}>
+      onClick={openNewBoardModal}>
       <Icon name='plus' />
     </button>
   )

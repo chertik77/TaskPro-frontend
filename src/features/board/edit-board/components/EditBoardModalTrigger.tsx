@@ -2,8 +2,6 @@ import type { BoardTypes } from '@/entities/board'
 
 import { useModal } from 'react-modal-state'
 
-import { SidebarMobileModal } from '@/blocks/sidebar'
-
 import { Icon } from '@/shared/ui'
 
 import { EditBoardModal } from './EditBoardModal'
@@ -17,10 +15,7 @@ export const EditBoardModalTrigger = ({
 }: EditBoardModalTriggerProps) => {
   const { open: openEditBoardModal } = useModal(EditBoardModal)
 
-  const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
-
   const handleBoardEdit = () => {
-    closeSidebarMobileModal()
     openEditBoardModal<BoardTypes.EditBoardModalProps>({
       title: board.title,
       icon: board.icon,
