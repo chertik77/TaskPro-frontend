@@ -1,11 +1,13 @@
 import eslintPluginJs from '@eslint/js'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
 import eslintPluginRouter from '@tanstack/eslint-plugin-router'
+import { projectStructurePlugin } from 'eslint-plugin-project-structure'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
+import { independentModulesConfig } from './independentModules.mjs'
 import eslintPluginTailwind from 'eslint-plugin-tailwindcss'
 
 export default eslintTypescript.config(
@@ -107,15 +109,14 @@ export default eslintTypescript.config(
         { whitelist: ['shadow-none'] }
       ]
     }
+  },
+  {
+    plugins: { 'project-structure': projectStructurePlugin },
+    rules: {
+      'project-structure/independent-modules': [
+        'error',
+        independentModulesConfig
+      ]
+    }
   }
-  //? Remove when list of files can be completely ignored
-  // {
-  //   plugins: { 'project-structure': projectStructurePlugin },
-  //   rules: {
-  //     'project-structure/independent-modules': [
-  //       'error',
-  //       independentModulesConfig
-  //     ]
-  //   }
-  // }
 )

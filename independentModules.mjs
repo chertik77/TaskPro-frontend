@@ -10,10 +10,10 @@ const createEntityRule = folderName => ({
   pattern: `src/entities/${folderName}/**`,
   allowImportsFrom: [
     '{family_3}/**',
-    'src/shared/**',
+    'src/shared/**/index.ts',
     `src/entities/**/@x/${folderName}.ts`
   ],
-  errorMessage: `Entities may only: (1) import within their own folder, (2) use another entity through its @x/${folderName} folder inside the target entity, or (3) import from shared modules. Direct entity-to-entity imports are not allowed.`
+  errorMessage: `Entities may only: (1) import within their own folder, (2) use another entity through its @x/${folderName} folder inside the target entity, or (3) import from shared modules through their public api (index.ts). Direct entity-to-entity imports are not allowed.`
 })
 
 export const independentModulesConfig = createIndependentModules({
@@ -23,30 +23,35 @@ export const independentModulesConfig = createIndependentModules({
       pattern: 'src/app/**',
       allowImportsFrom: [
         '{family_1}/**',
-        'src/features/**',
-        'src/blocks/**',
-        'src/entities/**',
-        'src/shared/**'
-      ]
+        'src/features/**/index.ts',
+        'src/blocks/**/index.ts',
+        'src/entities/**/index.ts',
+        'src/shared/**/index.ts'
+      ],
+      errorMessage: `App may only import from its own family (at least 1 common path part), features, blocks, entities, or shared modules through their public api (index.ts).`
     },
     {
       name: 'Features',
       pattern: 'src/features/**',
-      allowImportsFrom: ['{family_3}/**', 'src/shared/**', 'src/entities/**'],
+      allowImportsFrom: [
+        '{family_3}/**',
+        'src/shared/**/index.ts',
+        'src/entities/**/index.ts'
+      ],
       errorMessage:
-        'A feature may only import from its own family (at least 3 common path parts), shared modules, or entities.'
+        'A feature may only import from its own family (at least 3 common path parts), shared modules, or entities through their public api (index.ts).'
     },
     {
       name: 'Blocks',
       pattern: 'src/blocks/**',
       allowImportsFrom: [
         '{family_3}/**',
-        'src/shared/**',
-        'src/entities/**',
-        'src/features/**'
+        'src/shared/**/index.ts',
+        'src/entities/**/index.ts',
+        'src/features/**/index.ts'
       ],
       errorMessage:
-        'A block may only import from its own family (at least 3 common path parts), shared modules, entities, or features.'
+        'A block may only import from its own family (at least 3 common path parts), shared modules, entities, or features through their public api (index.ts).'
     },
     createEntityRule('auth'),
     createEntityRule('user'),
