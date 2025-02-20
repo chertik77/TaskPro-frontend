@@ -3,14 +3,8 @@ import { useEffect } from 'react'
 import { useAuthStore } from '@/entities/auth'
 import { UserContracts } from '@/entities/user'
 
-import {
-  Button,
-  Field,
-  Loader,
-  Modal,
-  PasswordField
-} from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { Button, Field, Loader, Modal, PasswordField } from '@/shared/ui'
 
 import { useEditProfile } from '../hooks/useEditProfile'
 import { EditAvatar } from './EditAvatar'

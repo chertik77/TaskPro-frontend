@@ -1,2 +1,2 @@
-export * from './Sidebar'
-export * from './SidebarMobileModal'
+export { Sidebar } from './Sidebar'
+export { SidebarMobileModal } from './SidebarMobileModal'

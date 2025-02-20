@@ -6,7 +6,7 @@ import { useRef } from 'react'
 
 import { useAuthStore } from '@/entities/auth'
 
-import { Icon } from '@/shared/components'
+import { Icon } from '@/shared/ui'
 
 type EditAvatarProps = {
   changeUserAvatar: UseMutateFunction<

@@ -1,2 +1,2 @@
-export * from './board/EmptyBoard'
-export * from './board/Board'
+export { EmptyBoard } from './board/EmptyBoard'
+export { Board } from './board/Board'

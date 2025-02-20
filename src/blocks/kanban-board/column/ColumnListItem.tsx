@@ -11,9 +11,9 @@ import { EditColumnTrigger } from '@/features/column/edit-column'
 
 import { Draggable } from '@/entities/dnd'
 
-import { Scrollbar } from '@/shared/components'
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
+import { Scrollbar } from '@/shared/ui'
 
 import { CardList } from '../card/CardList'
 

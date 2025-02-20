@@ -2,7 +2,7 @@ import { useModal } from 'react-modal-state'
 
 import { SidebarMobileModal } from '@/blocks/sidebar'
 
-import { Icon } from '@/shared/components'
+import { Icon } from '@/shared/ui'
 
 import { useLogoutUser } from '../hooks/useLogoutUser'
 

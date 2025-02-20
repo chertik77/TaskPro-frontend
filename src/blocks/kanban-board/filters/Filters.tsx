@@ -3,8 +3,8 @@ import { Link } from '@tanstack/react-router'
 
 import { DeadlineFilter, PriorityFilter } from '@/features/card/filter-cards'
 
-import { Icon } from '@/shared/components'
 import { useGetParamBoardId } from '@/shared/hooks'
+import { Icon } from '@/shared/ui'
 
 export const Filters = () => {
   const { boardId } = useGetParamBoardId()

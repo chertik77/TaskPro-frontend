@@ -4,9 +4,9 @@ import { useGetBoardById } from '@/features/board/get-board-by-id'
 
 import { DragAndDropProvider } from '@/entities/dnd'
 
-import { Loader, Scrollbar } from '@/shared/components'
 import { useDocumentTitle } from '@/shared/hooks'
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
+import { Loader, Scrollbar } from '@/shared/ui'
 
 import { ColumnList } from '../column/ColumnList'
 import { KanbanDragOverlay } from '../dnd/KanbanDragOverlay'

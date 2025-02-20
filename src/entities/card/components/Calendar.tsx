@@ -4,7 +4,7 @@ import type { ChevronProps } from 'react-day-picker'
 import { isBefore, isSameDay } from 'date-fns'
 import { DayPicker } from 'react-day-picker'
 
-import { Icon } from '@/shared/components'
+import { Icon } from '@/shared/ui'
 
 export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
   <DayPicker

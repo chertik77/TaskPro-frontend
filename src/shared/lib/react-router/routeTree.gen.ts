@@ -12,14 +12,14 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
-import { Route as rootRoute } from './app/routes/__root'
-import { Route as IndexImport } from './app/routes/index'
-import { Route as dashboardDashboardImport } from './app/routes/(dashboard)/dashboard'
-import { Route as authAuthLayoutImport } from './app/routes/(auth)/_auth-layout'
-import { Route as dashboardDashboardIndexImport } from './app/routes/(dashboard)/dashboard.index'
-import { Route as dashboardDashboardBoardIdImport } from './app/routes/(dashboard)/dashboard.$boardId'
-import { Route as authAuthLayoutSignupImport } from './app/routes/(auth)/_auth-layout.signup'
-import { Route as authAuthLayoutSigninImport } from './app/routes/(auth)/_auth-layout.signin'
+import { Route as rootRoute } from './../../../app/routes/__root'
+import { Route as IndexImport } from './../../../app/routes/index'
+import { Route as dashboardDashboardImport } from './../../../app/routes/(dashboard)/dashboard'
+import { Route as authAuthLayoutImport } from './../../../app/routes/(auth)/_auth-layout'
+import { Route as dashboardDashboardIndexImport } from './../../../app/routes/(dashboard)/dashboard.index'
+import { Route as dashboardDashboardBoardIdImport } from './../../../app/routes/(dashboard)/dashboard.$boardId'
+import { Route as authAuthLayoutSignupImport } from './../../../app/routes/(auth)/_auth-layout.signup'
+import { Route as authAuthLayoutSigninImport } from './../../../app/routes/(auth)/_auth-layout.signin'
 
 // Create Virtual Routes
 

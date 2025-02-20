@@ -1,7 +1,7 @@
 import { AuthContracts } from '@/entities/auth'
 
-import { Button, Field, Loader, PasswordField } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
+import { Button, Field, Loader, PasswordField } from '@/shared/ui'
 
 import { useSigninUser } from '../hooks/useSigninUser'
 

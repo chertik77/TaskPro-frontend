@@ -4,9 +4,9 @@ import { useModal } from 'react-modal-state'
 
 import { useGetAllBoards } from '@/features/board/get-all-boards'
 
-import { Loader } from '@/shared/components'
 import { useGetParamBoardId } from '@/shared/hooks'
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
+import { Loader } from '@/shared/ui'
 
 import { SidebarBoardListItem } from './SidebarBoardListItem'
 import { SidebarMobileModal } from './SidebarMobileModal'

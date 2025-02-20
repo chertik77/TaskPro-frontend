@@ -6,7 +6,7 @@ import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
 import { format, isToday } from 'date-fns'
 import { Controller } from 'react-hook-form'
 
-import { Icon } from '@/shared/components'
+import { Icon } from '@/shared/ui'
 
 import { Calendar } from './Calendar'
 

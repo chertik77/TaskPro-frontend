@@ -5,8 +5,8 @@ import { Indicator, Item } from '@radix-ui/react-radio-group'
 import { DeleteBoardTrigger } from '@/features/board/delete-board'
 import { EditBoardModalTrigger } from '@/features/board/edit-board'
 
-import { Icon } from '@/shared/components'
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
+import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {
   board: BoardTypes.Board

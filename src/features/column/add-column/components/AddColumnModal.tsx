@@ -1,7 +1,7 @@
 import { ColumnContracts } from '@/entities/column'
 
-import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
+import { Button, Field, Modal } from '@/shared/ui'
 
 import { useAddColumn } from '../hooks/useAddColumn'
 

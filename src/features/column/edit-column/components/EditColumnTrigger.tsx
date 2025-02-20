@@ -2,7 +2,7 @@ import type { ColumnTypes } from '@/entities/column'
 
 import { useModal } from 'react-modal-state'
 
-import { Button } from '@/shared/components'
+import { Button } from '@/shared/ui'
 
 import { EditColumnModal } from './EditColumnModal'
 

@@ -5,8 +5,8 @@ import {
   ModalPriorities
 } from '@/entities/card'
 
-import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm } from '@/shared/hooks'
+import { Button, Field, Modal } from '@/shared/ui'
 
 import { useAddCard } from '../hooks/useAddCard'
 

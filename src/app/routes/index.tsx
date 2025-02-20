@@ -4,7 +4,7 @@ import { GoogleSignin } from '@/features/auth/google'
 
 import { useAuthStore } from '@/entities/auth'
 
-import { Icon } from '@/shared/components'
+import { Icon } from '@/shared/ui'
 
 const IndexRoute = () => (
   <div className='flex h-dvh flex-col items-center justify-center bg-welcome-page-gradient'>

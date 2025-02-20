@@ -9,8 +9,8 @@ import {
   RadioInputIcons
 } from '@/entities/board'
 
-import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { Button, Field, Modal } from '@/shared/ui'
 
 import { useEditBoard } from '../hooks/useEditBoard'
 

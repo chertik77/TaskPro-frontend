@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-export const AuthFormNavigation = () => (
+export const AuthNavigation = () => (
   <div className='mb-10 text-lg'>
     <Link
       to='/signup'

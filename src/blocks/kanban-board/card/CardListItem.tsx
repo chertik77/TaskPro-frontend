@@ -10,8 +10,8 @@ import { EditCardModalTrigger } from '@/features/card/edit-card'
 import { getPriorityColor } from '@/entities/card'
 import { Draggable } from '@/entities/dnd'
 
-import { Icon } from '@/shared/components'
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
+import { Icon } from '@/shared/ui'
 
 import { CardListItemDeadline } from './CardListItemDeadline'
 import { CardListItemPriority } from './CardListItemPriority'

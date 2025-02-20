@@ -5,8 +5,8 @@ import { useModalInstance } from 'react-modal-state'
 
 import { ColumnContracts } from '@/entities/column'
 
-import { Button, Field, Modal } from '@/shared/components'
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { Button, Field, Modal } from '@/shared/ui'
 
 import { useEditColumn } from '../hooks/useEditColumn'
 

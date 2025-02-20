@@ -8,7 +8,7 @@ import { Controller } from 'react-hook-form'
 
 import { useAuthStore } from '@/entities/auth/@x/board'
 
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
 
 type BoardImages = {
   id: string

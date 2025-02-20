@@ -7,7 +7,7 @@ import { useAuthStore } from '@/entities/auth'
 import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'
 
-import { cn } from '@/shared/lib'
+import { cn } from '@/shared/lib/cn'
 import { useSidebarStore } from '@/shared/store'
 
 const DashboardRoute = () => {
