@@ -60,6 +60,12 @@ export default eslintTypescript.config(
     }
   },
   {
+    files: ['**/ambient/*.d.ts'],
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': 'off'
+    }
+  },
+  {
     rules: {
       'react/react-in-jsx-scope': 'off',
       'react/display-name': 'off',
