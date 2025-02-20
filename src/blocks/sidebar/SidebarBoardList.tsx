@@ -5,6 +5,7 @@ import { useGetAllBoards } from '@/features/board/get-all-boards'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
+import { useSidebarStore } from '@/shared/store'
 import { Loader } from '@/shared/ui'
 
 import { SidebarBoardListItem } from './SidebarBoardListItem'
@@ -14,7 +15,9 @@ export const SidebarBoardList = () => {
 
   const { boardId } = useGetParamBoardId()
 
-  // const { close: closeSidebarMobileModal } = useModal(SidebarMobileModal)
+  const toggleMobileSidebar = useSidebarStore(
+    state => state.toggleMobileSidebar
+  )
 
   const { data: boards, isPending } = useGetAllBoards()
 
@@ -28,7 +31,7 @@ export const SidebarBoardList = () => {
       value={boardId}
       onValueChange={v => {
         navigate({ to: '/dashboard/$boardId', params: { boardId: v } })
-        // closeSidebarMobileModal()
+        toggleMobileSidebar(false)
       }}
       className={cn('mb-10 text-base', boards?.length === 0 && 'mb-auto')}>
       {boards?.map(board => (

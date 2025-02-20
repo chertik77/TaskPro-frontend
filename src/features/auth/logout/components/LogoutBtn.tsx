@@ -6,7 +6,9 @@ import { useLogoutUser } from '../hooks/useLogoutUser'
 export const LogoutBtn = () => {
   const { mutate: logoutUser, isPending } = useLogoutUser()
 
-  const setIsOpenOnMobile = useSidebarStore(state => state.setIsOpenOnMobile)
+  const toggleMobileSidebar = useSidebarStore(
+    state => state.toggleMobileSidebar
+  )
 
   return (
     <button
@@ -14,7 +16,7 @@ export const LogoutBtn = () => {
         text-md font-medium violet:text-white'
       disabled={isPending}
       onClick={() => {
-        setIsOpenOnMobile(false)
+        toggleMobileSidebar(false)
         logoutUser()
       }}>
       <Icon

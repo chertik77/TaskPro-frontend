@@ -14,7 +14,7 @@ import { SidebarLogo } from './SidebarLogo'
 import { SidebarMenu } from './SidebarMenu'
 
 export const Sidebar = () => {
-  const isSidebarOpen = useSidebarStore(state => state.isOpen)
+  const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 768px)')
 

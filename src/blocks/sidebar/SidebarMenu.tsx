@@ -10,12 +10,12 @@ import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
 
 export const SidebarMenu = () => {
-  const { isOpenOnMobile, setIsOpenOnMobile } = useSidebarStore()
+  const { isMobileSidebarOpen, toggleSidebar } = useSidebarStore()
 
   return (
     <Modal
-      open={isOpenOnMobile}
-      onClose={() => setIsOpenOnMobile(false)}
+      open={isMobileSidebarOpen}
+      onClose={() => toggleSidebar(false)}
       classNames={{
         modal: `m-0 flex min-h-dvh w-[225px] flex-col bg-white
         pb-6 px-0 pt-3.5 violet:bg-brand-secondary dark:bg-black-secondary

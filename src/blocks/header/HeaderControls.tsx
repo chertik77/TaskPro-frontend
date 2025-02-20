@@ -4,13 +4,15 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const HeaderControls = () => {
-  const setIsOpenOnMobile = useSidebarStore(state => state.setIsOpenOnMobile)
+  const toggleMobileSidebar = useSidebarStore(
+    state => state.toggleMobileSidebar
+  )
 
   return (
     <>
       <ToggleSidebarTrigger />
       <button
-        onClick={() => setIsOpenOnMobile(true)}
+        onClick={() => toggleMobileSidebar(true)}
         type='button'
         aria-label='Open sidebar menu'
         className='desktop:hidden'>
