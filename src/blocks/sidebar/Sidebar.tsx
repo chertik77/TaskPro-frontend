@@ -6,7 +6,6 @@ import { NeedHelpModalTrigger } from '@/features/user/need-help'
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 import { useSidebarStore } from '@/shared/store'
-import { Scrollbar } from '@/shared/ui'
 
 import { SidebarBoardInfo } from './SidebarBoardInfo'
 import { SidebarBoardList } from './SidebarBoardList'
@@ -38,7 +37,9 @@ export const Sidebar = () => {
           </div>
         </aside>
       </ScrollArea.Viewport>
-      <Scrollbar scrollBarClassName='w-1' />
+      <ScrollArea.Scrollbar className='w-1 bg-transparent'>
+        <ScrollArea.Thumb className='rounded-[26px] bg-white/60' />
+      </ScrollArea.Scrollbar>
     </ScrollArea.Root>
   )
 }

@@ -13,7 +13,6 @@ import { Draggable } from '@/entities/dnd'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
-import { Scrollbar } from '@/shared/ui'
 
 import { CardList } from '../card/CardList'
 
@@ -76,11 +75,15 @@ export const ColumnListItem = ({
             <ScrollArea.Viewport className='h-full'>
               <CardList cards={cards} />
             </ScrollArea.Viewport>
-            <Scrollbar
-              backgroundIdentifier={backgroundIdentifier}
-              scrollBarClassName='w-2'
-              thumbClassName='!w-2'
-            />
+            <ScrollArea.Scrollbar className='w-2 bg-transparent'>
+              <ScrollArea.Thumb
+                className={cn(
+                  'rounded-[26px] bg-white/60',
+                  backgroundIdentifier === 'default' &&
+                    '!w-2 bg-gray-light violet:bg-black/20 dark:bg-white/10'
+                )}
+              />
+            </ScrollArea.Scrollbar>
           </ScrollArea.Root>
           <AddCardModalTrigger columnId={column.id} />
         </div>

@@ -6,7 +6,7 @@ import { DragAndDropProvider } from '@/entities/dnd'
 
 import { useDocumentTitle } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
-import { Loader, Scrollbar } from '@/shared/ui'
+import { Loader } from '@/shared/ui'
 
 import { ColumnList } from '../column/ColumnList'
 import { KanbanDragOverlay } from '../dnd/KanbanDragOverlay'
@@ -43,12 +43,17 @@ export const Board = () => {
           </DragAndDropProvider>
         </ScrollArea.Viewport>
       )}
-      <Scrollbar
-        backgroundIdentifier={board?.background.identifier}
-        scrollBarClassName='mx-5 mb-2 h-3 tablet:mx-8 desktop:mx-6'
-        thumbClassName='!h-3'
-        orientation='horizontal'
-      />
+      <ScrollArea.Scrollbar
+        className='mx-5 mb-2 h-3 bg-transparent tablet:mx-8 desktop:mx-6'
+        orientation='vertical'>
+        <ScrollArea.Thumb
+          className={cn(
+            '!h-3 rounded-[26px] bg-white/60',
+            board?.background.identifier === 'default' &&
+              'bg-gray-light violet:bg-black/20 dark:bg-white/10'
+          )}
+        />
+      </ScrollArea.Scrollbar>
     </ScrollArea.Root>
   )
 }
