@@ -22,7 +22,7 @@ export const SidebarBoardList = () => {
   const { data: boards, isPending } = useGetAllBoards()
 
   return isPending ? (
-    <div className='mb-10 flex h-4xl items-center gap-2 pl-3.5 violet:text-white tablet:pl-6'>
+    <div className='mb-10 flex h-[61px] items-center gap-2 pl-3.5 violet:text-white tablet:pl-6'>
       <Loader className='size-5' />
       Loading your boards...
     </div>

@@ -26,10 +26,10 @@ export const DeleteBoardTrigger = () => {
         deleteBoard()
       }}
       className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
-        dark:hocus:*:stroke-white-primary'>
+        dark:hocus:*:stroke-white-soft'>
       <Icon
         name='trash'
-        className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-primary/50'
+        className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-soft/50'
       />
     </div>
   )

@@ -1,7 +1,8 @@
 import type { Config } from 'tailwindcss/types/config'
 
+import animatePlugin from 'tailwindcss-animate'
+import textFillPlugin from 'tailwindcss-text-fill'
 import plugin from 'tailwindcss/plugin'
-import { createThemes } from 'tw-colors'
 
 export default {
   darkMode: 'class',
@@ -14,78 +15,79 @@ export default {
       screens: { sm: '375px', md: '768px', lg: '1440px' }
     },
     backgroundImage: {
-      'welcome-page-gradient':
-        'linear-gradient(180deg, #fff 25%, #BEDBB0 92.19%)'
+      'soft-green': 'linear-gradient(180deg, #fff 25%, #BEDBB0 92.19%)'
     },
-    boxShadow: { select: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)' },
+    boxShadow: { main: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)' },
+    colors: {
+      black: '#161616',
+      'black-soft': '#121212',
+      'black-muted': '#1F1F1F',
+      'black-deep': '#151515',
+
+      gray: '#ECEDFD66',
+      'gray-light': '#E8E8E8',
+
+      white: '#FFFFFF',
+      'white-soft': '#FCFCFC',
+      'white-muted': '#F6F6F7',
+      'white-gray': '#ECEDFD',
+
+      brand: '#BEDBB0',
+      'brand-light': '#9DC888',
+      'brand-violet': '#5255BC',
+      'brand-violet-light': '#7B7EDE',
+      'brand-violet-muted': '#979CEA',
+      'brand-violet-soft': '#B8BCFD',
+
+      transparent: 'transparent',
+      current: 'currentColor',
+      blue: '#8FA1D0',
+      red: '#DC2626',
+      pink: '#E09CB5'
+    },
+    fontSize: {
+      xs: [
+        '8px',
+        { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.16px' }
+      ],
+      sm: [
+        '10px',
+        { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.2px' }
+      ],
+      md: ['12px', { lineHeight: 'normal', letterSpacing: '-0.24px' }],
+      base: ['14px', { lineHeight: '1.28', letterSpacing: '-0.28px' }],
+      lg: ['16px', { lineHeight: 'normal', letterSpacing: '-0.64px' }],
+      xl: [
+        '18px',
+        { lineHeight: 'normal', fontWeight: 500, letterSpacing: '-0.36px' }
+      ],
+      '2xl': [
+        '28px',
+        { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-1.12px' }
+      ],
+      '3xl': [
+        '40px',
+        { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-1.6px' }
+      ]
+    },
     extend: {
       spacing: {
-        sm: '10px',
-        lg: '18px',
-        xl: '26px',
-        '2xl': '49px',
-        '3xl': '56px',
-        '4xl': '61px',
-        '5xl': '154px',
-        '7xl': '260px',
-        '8xl': '335px'
+        4.5: '18px',
+        84: '335px'
       },
       screens: {
         mobile: '375px',
         tablet: '768px',
         desktop: '1440px'
-      },
-      colors: {
-        black: '#161616',
-        'black-secondary': '#121212',
-        'black-third': '#1F1F1F',
-        'black-fourth': '#151515',
-        brand: '#BEDBB0',
-        'brand-hover': '#9DC888',
-        'brand-secondary': '#5255BC',
-        'brand-secondary-hover': '##7B7EDE',
-        'brand-third': '#B8BCFD',
-        'white-primary': '#FCFCFC',
-        'white-gray': '#F6F6F7',
-        'white-gray-secondary': '#ECEDFD',
-        'gray-secondary': '#ECEDFD66',
-        'priority-low': '#8FA1D0',
-        'priority-medium': '#E09CB5',
-        'scroll-white': '#E8E8E8'
-      },
-      fontSize: {
-        extrasm: [
-          '8px',
-          { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.16px' }
-        ],
-        xs: [
-          '10px',
-          { lineHeight: 'normal', fontWeight: 400, letterSpacing: '-0.2px' }
-        ],
-        sm: ['12px', { lineHeight: 'normal', letterSpacing: '-0.24px' }],
-        base: ['14px', { lineHeight: '1.28', letterSpacing: '-0.28px' }],
-        md: ['16px', { lineHeight: 'normal', letterSpacing: '-0.64px' }],
-        lg: [
-          '18px',
-          { lineHeight: 'normal', fontWeight: 500, letterSpacing: '-0.36px' }
-        ],
-        '3xl': [
-          '28px',
-          { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-1.12px' }
-        ],
-        '4xl': [
-          '40px',
-          { lineHeight: 'normal', fontWeight: 600, letterSpacing: '-1.6px' }
-        ]
       }
     }
   },
   plugins: [
-    require('tailwindcss-text-fill'),
-    require('tailwindcss-animate'),
+    textFillPlugin,
+    animatePlugin,
     plugin(({ addVariant }) => {
+      addVariant('violet', ':is(:where(.violet) &)')
       addVariant('hocus', ['&:hover', '&:focus-visible', '&:active'])
-    }),
-    createThemes({ violet: {} })
+    })
   ]
 } satisfies Config

@@ -13,7 +13,7 @@ export const LogoutBtn = () => {
   return (
     <button
       className='focus-visible:styled-outline group flex items-center gap-3.5 bg-transparent
-        text-md font-medium violet:text-white'
+        text-lg font-medium violet:text-white'
       disabled={isPending}
       onClick={() => {
         toggleMobileSidebar(false)
@@ -21,9 +21,10 @@ export const LogoutBtn = () => {
       }}>
       <Icon
         name='logout'
-        className='size-8 text-brand transition-colors group-hover:text-brand-hover
-          group-focus:text-brand-hover violet:text-white
-          group-hover:violet:text-brand-third group-focus:violet:text-brand-third'
+        className='size-8 text-brand transition-colors group-hover:text-brand-light
+          group-focus:text-brand-light violet:text-white
+          group-hover:violet:text-brand-violet-soft
+          group-focus:violet:text-brand-violet-soft'
       />
       {isPending ? 'Logging out...' : 'Log out'}
     </button>

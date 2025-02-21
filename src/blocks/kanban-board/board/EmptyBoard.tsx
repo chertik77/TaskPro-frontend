@@ -8,13 +8,13 @@ export const EmptyBoard = () => {
   return (
     <div className='flex items-center justify-center'>
       <div
-        className='w-8xl text-center text-sm text-black/70 dark:text-white-gray-secondary
-          tablet:w-[486px] tablet:text-base'>
+        className='w-84 text-center text-md text-black/70 dark:text-white-gray tablet:w-[486px]
+          tablet:text-base'>
         Before starting your project, it is essential{' '}
         <button
           onClick={openNewBoardModal}
-          className='focus-visible:styled-outline text-brand hocus:text-brand-hover
-            violet:text-brand-secondary violet:hocus:text-brand-third'>
+          className='focus-visible:styled-outline text-brand violet:text-brand-violet
+            hocus:text-brand-light violet:hocus:text-brand-violet-soft'>
           to create a board
         </button>{' '}
         to visualize and track all the necessary tasks and milestones. This

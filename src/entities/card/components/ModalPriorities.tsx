@@ -12,7 +12,7 @@ type ModalPrioritiesProps = {
 
 export const ModalPriorities = ({ control }: ModalPrioritiesProps) => (
   <>
-    <p className='mb-1 text-sm text-black/50 dark:text-white/50'>Label color</p>
+    <p className='mb-1 text-md text-black/50 dark:text-white/50'>Label color</p>
     <Controller
       name='priority'
       control={control}

@@ -18,8 +18,8 @@ export const SidebarMenu = () => {
       onClose={() => toggleSidebar(false)}
       classNames={{
         modal: `m-0 flex min-h-dvh w-[225px] flex-col bg-white
-        pb-6 px-0 pt-3.5 violet:bg-brand-secondary dark:bg-black-secondary
-        tablet:w-7xl tablet:pt-6`
+        pb-6 px-0 pt-3.5 violet:bg-brand-violet dark:bg-black-soft
+        tablet:w-[260px] tablet:pt-6`
       }}
       focusTrapped={false}
       closeOnEsc={false}

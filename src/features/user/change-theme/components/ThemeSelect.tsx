@@ -41,17 +41,16 @@ export const ThemeSelect = () => {
           align='end'
           sideOffset={5}
           position='popper'
-          className='animation w-[105px] rounded-lg border border-brand bg-white-primary pb-3.5 pl-lg
-            pr-11 pt-lg shadow-select violet:border-white-gray-secondary
-            dark:bg-black-fourth'>
+          className='animation w-[105px] rounded-lg border border-brand bg-white-soft pb-3.5 pl-4.5
+            pr-11 pt-4.5 shadow-main violet:border-white-gray dark:bg-black-deep'>
           <Select.Viewport>
             {THEMES.map(theme => (
               <Select.Item
                 key={theme}
                 className='mb-1 cursor-pointer text-base outline-none data-[highlighted]:text-brand
-                  data-[state=checked]:text-brand data-[highlighted]:underline hocus:text-brand
-                  violet:data-[state=checked]:text-brand-secondary
-                  violet:hocus:text-brand-secondary dark:text-white/30
+                  data-[state=checked]:text-brand data-[highlighted]:underline
+                  violet:data-[state=checked]:text-brand-violet hocus:text-brand
+                  violet:hocus:text-brand-violet dark:text-white/30
                   dark:data-[state=checked]:text-brand dark:hocus:text-brand'
                 value={theme}>
                 <Select.ItemText>

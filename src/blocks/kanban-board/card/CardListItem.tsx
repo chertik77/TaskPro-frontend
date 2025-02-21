@@ -22,8 +22,8 @@ const WhileDraggingComponent = forwardRef<
 >((props, ref) => (
   <div
     {...props}
-    className='mb-2 h-5xl rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
-      last:mb-0 violet:border-brand-secondary dark:bg-black'
+    className='mb-2 h-[154px] rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5
+      opacity-60 last:mb-0 violet:border-brand-violet dark:bg-black'
     ref={ref}
   />
 ))
@@ -36,8 +36,9 @@ export const CardListItem = ({ card }: { card: CardTypes.Card }) => (
     {({ setNodeRef, style, attributes, listeners, isDragging }) => (
       <div
         className={cn(
-          `relative mb-2 h-5xl cursor-grab touch-manipulation overflow-hidden rounded-lg
-          bg-white py-3.5 pl-6 pr-5 last:mb-0 focus-visible:outline-none dark:bg-black`,
+          `relative mb-2 h-[154px] cursor-grab touch-manipulation overflow-hidden
+          rounded-lg bg-white py-3.5 pl-6 pr-5 last:mb-0 focus-visible:outline-none
+          dark:bg-black`,
           isDragging && 'select-none'
         )}
         {...listeners}
@@ -51,7 +52,7 @@ export const CardListItem = ({ card }: { card: CardTypes.Card }) => (
           )}
         />
         <p className='mb-2 text-base font-semibold'>{card.title}</p>
-        <p className='mb-3.5 line-clamp-2 text-sm text-black/70 dark:text-white/50'>
+        <p className='mb-3.5 line-clamp-2 text-md text-black/70 dark:text-white/50'>
           {card.description}
         </p>
         <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
@@ -61,7 +62,7 @@ export const CardListItem = ({ card }: { card: CardTypes.Card }) => (
             {isToday(card.deadline) && (
               <Icon
                 name='bell'
-                className='size-lg animate-bounce stroke-brand pr-1 violet:stroke-brand-secondary'
+                className='size-4.5 animate-bounce stroke-brand pr-1 violet:stroke-brand-violet'
               />
             )}
             <EditCardModalTrigger card={card} />

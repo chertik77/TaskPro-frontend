@@ -1,8 +1,8 @@
 import type { Priority } from './types'
 
 const priorityColors: Record<string, string> = {
-  Low: 'bg-priority-low',
-  Medium: 'bg-priority-medium',
+  Low: 'bg-blue',
+  Medium: 'bg-pink',
   High: 'bg-brand',
   default: 'bg-black/30 dark:bg-white/30'
 }

@@ -20,17 +20,17 @@ export const Board = () => {
   return (
     <ScrollArea.Root
       className='relative flex flex-col overflow-hidden bg-cover bg-center pl-5 pt-3.5
-        tablet:pl-8 tablet:pt-xl desktop:pl-6 desktop:pt-sm'
+        tablet:pl-8 tablet:pt-[26px] desktop:pl-6 desktop:pt-2.5'
       style={{
         backgroundImage: `url(${!isPending && board?.background?.url})`
       }}>
       <div
         className={cn(
-          'mb-[39px] flex justify-between text-black tablet:mb-xl desktop:mb-sm',
+          'mb-[39px] flex justify-between text-black tablet:mb-[26px] desktop:mb-2.5',
           board?.background.hasWhiteTextColor && 'text-white',
           board?.background.identifier === 'default' && 'dark:text-white'
         )}>
-        <p className='whitespace-pre tablet:text-lg'>{board?.title}</p>
+        <p className='whitespace-pre tablet:text-xl'>{board?.title}</p>
         {!isPending && <Filters />}
       </div>
       {isPending ? (

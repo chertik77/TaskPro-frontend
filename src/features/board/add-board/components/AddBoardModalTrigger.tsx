@@ -12,8 +12,9 @@ export const AddBoardModalTrigger = () => {
       type='button'
       aria-label='Create new board'
       className='focus-visible:styled-outline flex h-9 w-10 items-center justify-center
-        rounded-lg bg-brand text-black transition-all duration-300 hocus:bg-brand-hover
-        violet:bg-brand-third violet:text-white violet:hocus:bg-[#979CEA]'
+        rounded-lg bg-brand text-black transition-all duration-300
+        violet:bg-brand-violet-soft violet:text-white hocus:bg-brand-light
+        violet:hocus:bg-brand-violet-muted'
       onClick={openNewBoardModal}>
       <Icon name='plus' />
     </button>

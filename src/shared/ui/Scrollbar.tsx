@@ -20,9 +20,9 @@ export const Scrollbar = ({
     orientation={orientation}>
     <ScrollArea.Thumb
       className={cn(
-        'rounded-xl bg-white/60',
+        'rounded-[26px] bg-white/60',
         backgroundIdentifier === 'default' &&
-          'bg-scroll-white violet:bg-black/20 dark:bg-white/10',
+          'bg-gray-light violet:bg-black/20 dark:bg-white/10',
         thumbClassName
       )}
     />

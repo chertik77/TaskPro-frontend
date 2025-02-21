@@ -28,13 +28,13 @@ export const Modal = ({ children, modalTitle, ...props }: ModalProps) => {
       onClose={close}
       center
       classNames={{
-        modal: `${cn('shadow-none m-0 w-8xl rounded-lg p-6 dark:bg-black tablet:w-[350px]', modalTitle === 'Need help' && 'max-tablet:w-8xl')}`,
+        modal: `${cn('shadow-none m-0 w-84 rounded-lg p-6 dark:bg-black tablet:w-[350px]', modalTitle === 'Need help' && 'max-tablet:w-84')}`,
         closeButton: 'focus-visible:styled-outline',
-        closeIcon: 'dark:fill-white size-lg',
+        closeIcon: 'dark:fill-white size-4.5',
         overlay: 'backdrop-saturate-150 backdrop-blur-md'
       }}
       {...props}>
-      <h4 className='mb-6 text-lg'>{modalTitle}</h4>
+      <h4 className='mb-6 text-xl'>{modalTitle}</h4>
       {children}
     </Dialog>
   )

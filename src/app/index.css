@@ -51,6 +51,6 @@
   }
 
   .styled-outline {
-    @apply outline outline-2 outline-brand violet:outline-brand-secondary;
+    @apply outline outline-2 outline-brand violet:outline-brand-violet;
   }
 }

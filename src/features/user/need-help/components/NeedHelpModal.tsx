@@ -27,17 +27,15 @@ export const NeedHelpModal = () => {
           {...register('comment')}
           placeholder='Comment'
           className={cn(
-            `mb-6 block h-5xl w-full resize-none rounded-lg border border-brand
-            border-opacity-40 bg-transparent px-lg py-3.5 outline-none
-            placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-secondary
+            `mb-6 block h-[154px] w-full resize-none rounded-lg border border-brand
+            border-opacity-40 bg-transparent px-4.5 py-3.5 outline-none
+            placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-violet
             violet:border-opacity-40 violet:focus:border-opacity-100`,
             formState.errors.comment && 'mb-2'
           )}
         />
         {formState.errors.comment && (
-          <p className='mb-3.5 text-red-600'>
-            {formState.errors.comment.message}
-          </p>
+          <p className='mb-3.5 text-red'>{formState.errors.comment.message}</p>
         )}
         <Button
           type='submit'

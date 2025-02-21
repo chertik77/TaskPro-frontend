@@ -42,9 +42,7 @@ export const RadioInputBgImages = ({ control }: RadioInputBgImagesProps) => {
             )}
             onValueChange={field.onChange}>
             {isPending ? (
-              <p className='text-gray-secondary'>
-                Loading board backgrounds...
-              </p>
+              <p className='text-gray'>Loading board backgrounds...</p>
             ) : (
               boardImages?.map(({ id, icon }) => (
                 <Item

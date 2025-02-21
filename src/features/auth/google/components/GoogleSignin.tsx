@@ -7,7 +7,7 @@ export const GoogleSignin = () => {
 
   return (
     <button
-      className='flex w-8xl items-center justify-center gap-2 rounded-lg bg-black py-2.5
+      className='flex w-84 items-center justify-center gap-2 rounded-lg bg-black py-2.5
         text-center text-white'
       type='button'
       onClick={signinWithGoogle}>

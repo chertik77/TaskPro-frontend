@@ -24,7 +24,7 @@ export const DatePicker = ({ control }: DatePickerProps) => {
 
   return (
     <div className='relative'>
-      <p className='mb-1 text-sm text-black/50 dark:text-white/50'>Deadline</p>
+      <p className='mb-1 text-md text-black/50 dark:text-white/50'>Deadline</p>
       <Controller
         control={control}
         name='deadline'
@@ -34,11 +34,11 @@ export const DatePicker = ({ control }: DatePickerProps) => {
             onOpenChange={setIsCalendarOpen}>
             <Trigger
               className='focus-visible:styled-outline mb-[40px] flex items-center gap-1 text-brand
-                violet:text-brand-secondary'>
+                violet:text-brand-violet'>
               {formatTodayDate(field.value)}
               <Icon
                 name='chevron-down'
-                className='size-lg stroke-current'
+                className='size-4.5 stroke-current'
               />
             </Trigger>
             <Portal>

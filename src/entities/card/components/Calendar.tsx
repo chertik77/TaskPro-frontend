@@ -15,23 +15,23 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
     disabled={date =>
       isBefore(date, new Date()) && !isSameDay(date, new Date())
     }
-    className='relative rounded-lg border border-brand bg-white p-lg
-      violet:border-brand-secondary dark:bg-black-third'
+    className='relative rounded-lg border border-brand bg-white p-4.5
+      violet:border-brand-violet dark:bg-black-muted'
     classNames={{
       month_caption: 'border-b border-black/20 dark:border-white/20 pb-3.5',
-      caption_label: 'text-md font-medium flex items-center justify-center',
+      caption_label: 'text-lg font-medium flex items-center justify-center',
       weekdays: 'flex gap-[11px]',
       weekday: 'text-black/50 dark:text-white/50',
       button_previous:
-        'absolute left-lg top-6 disabled:opacity-20 disabled:cursor-not-allowed focus-visible:styled-outline',
+        'absolute left-4.5 top-6 disabled:opacity-20 disabled:cursor-not-allowed focus-visible:styled-outline',
       nav: 'flex items-center',
-      button_next: 'absolute right-lg top-6 focus-visible:styled-outline',
+      button_next: 'absolute right-4.5 top-6 focus-visible:styled-outline',
       month_grid: '!mt-3.5',
       week: 'flex gap-[11px] mt-[11px] justify-end',
       day: 'p-0 text-base rounded-full',
       day_button: 'h-5 w-5 focus-visible:styled-outline',
       selected:
-        'bg-brand text-black-third violet:bg-brand-secondary violet:text-white opacity-100',
+        'bg-brand text-black-muted violet:bg-brand-violet violet:text-white opacity-100',
       outside: 'opacity-20 aria-selected:opacity-100',
       disabled: 'opacity-20 cursor-not-allowed'
     }}

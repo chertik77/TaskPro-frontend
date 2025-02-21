@@ -14,7 +14,7 @@ export const DeadlineFilter = () => {
       onValueChange={v => handleParamsChange('deadline', v)}>
       {DEADLINES.map(deadline => (
         <label
-          className='flex items-center gap-2 text-sm text-black/50 has-[:checked]:text-black
+          className='flex items-center gap-2 text-md text-black/50 has-[:checked]:text-black
             hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
             hocus:dark:text-white'
           key={deadline}>

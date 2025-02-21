@@ -32,14 +32,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       className={cn(
         !iconName &&
-          `focus-visible:styled-outline flex h-2xl w-full items-center justify-center
+          `focus-visible:styled-outline flex h-12 w-full items-center justify-center
           rounded-lg bg-brand text-base font-medium text-black transition-colors
-          disabled:cursor-not-allowed disabled:opacity-50 hocus:bg-brand-hover
-          violet:bg-brand-secondary violet:text-white
-          violet:hocus:bg-brand-secondary-hover`,
+          disabled:cursor-not-allowed disabled:opacity-50 violet:bg-brand-violet
+          violet:text-white hocus:bg-brand-light violet:hocus:bg-brand-violet-light`,
         iconName &&
           `focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
-          dark:hocus:*:stroke-white-primary`,
+          dark:hocus:*:stroke-white-soft`,
         isPlusIcon && 'gap-2',
         className
       )}
@@ -48,7 +47,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <Icon
           name={iconName}
           className={cn(
-            'size-4 stroke-black/50 dark:stroke-white-primary/50',
+            'size-4 stroke-black/50 dark:stroke-white-soft/50',
             iconClassName
           )}
         />

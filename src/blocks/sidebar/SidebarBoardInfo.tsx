@@ -3,7 +3,7 @@ import { AddBoardModalTrigger } from '@/features/board/add-board'
 export const SidebarBoardInfo = () => (
   <div className='mb-10 px-3.5 tablet:px-6'>
     <p
-      className='mb-2 overflow-hidden text-sm text-black/50 violet:text-white/50
+      className='mb-2 overflow-hidden text-md text-black/50 violet:text-white/50
         dark:text-white/50'>
       My boards
     </p>
