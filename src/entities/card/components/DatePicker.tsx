@@ -3,17 +3,12 @@ import type { CardSchema } from '../model/types'
 
 import { useState } from 'react'
 import { Content, Popover, Portal, Trigger } from '@radix-ui/react-popover'
-import { format, isToday } from 'date-fns'
 import { Controller } from 'react-hook-form'
 
 import { Icon } from '@/shared/ui'
 
+import { formatTodayDate } from '../model/utils'
 import { Calendar } from './Calendar'
-
-const formatTodayDate = (date: Date) =>
-  isToday(date)
-    ? `Today, ${format(date, 'MMMM d')}`
-    : format(date, 'dd/MM/yyyy')
 
 type DatePickerProps = {
   control: Control<CardSchema>
@@ -49,6 +44,7 @@ export const DatePicker = ({ control }: DatePickerProps) => {
                 align='start'>
                 <Calendar
                   mode='single'
+                  startMonth={field.value}
                   defaultMonth={field.value}
                   selected={field.value}
                   onSelect={date => {

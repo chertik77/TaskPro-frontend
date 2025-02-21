@@ -1,7 +1,6 @@
 import type { ComponentProps } from 'react'
 import type { ChevronProps } from 'react-day-picker'
 
-import { isBefore, isSameDay } from 'date-fns'
 import { DayPicker } from 'react-day-picker'
 
 import { Icon } from '@/shared/ui'
@@ -11,10 +10,7 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
     weekStartsOn={1}
     showOutsideDays
     fixedWeeks
-    startMonth={new Date()}
-    disabled={date =>
-      isBefore(date, new Date()) && !isSameDay(date, new Date())
-    }
+    autoFocus
     className='relative rounded-lg border border-brand bg-white p-4.5
       violet:border-brand-violet dark:bg-black-muted'
     classNames={{

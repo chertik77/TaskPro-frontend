@@ -1,5 +1,7 @@
 import type { Priority } from './types'
 
+import { format, isToday } from 'date-fns'
+
 const priorityColors: Record<string, string> = {
   Low: 'bg-blue',
   Medium: 'bg-pink',
@@ -9,3 +11,8 @@ const priorityColors: Record<string, string> = {
 
 export const getPriorityColor = (priority: Priority) =>
   priorityColors[priority] || priorityColors.default
+
+export const formatTodayDate = (date: Date) =>
+  isToday(date)
+    ? `Today, ${format(date, 'MMMM d')}`
+    : format(date, 'dd/MM/yyyy')
