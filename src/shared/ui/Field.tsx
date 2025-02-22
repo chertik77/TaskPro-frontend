@@ -16,11 +16,10 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
       <input
         type='text'
         className={cn(
-          `mb-3.5 h-12 w-full rounded-lg border border-brand border-opacity-40
-          bg-transparent px-4.5 outline-none placeholder:opacity-40 autofill:bg-clip-text
-          autofill:text-fill-black focus:border-opacity-100 violet:border-brand-violet
-          violet:border-opacity-40 violet:focus:border-opacity-100
-          dark:autofill:text-fill-white`,
+          `mb-3.5 h-12 w-full rounded-lg border border-brand/40 bg-transparent px-4.5
+          outline-none placeholder:opacity-40 autofill:bg-clip-text
+          autofill:text-fill-black focus:border-brand violet:border-brand-violet/40
+          violet:focus:border-brand-violet dark:autofill:text-fill-white`,
           className,
           errors[inputName] && 'mb-2'
         )}

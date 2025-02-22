@@ -18,10 +18,10 @@ export const ModalDescription = forwardRef<
       ref={ref}
       placeholder='Description'
       className={cn(
-        `mb-6 block h-[154px] w-full resize-none rounded-lg border border-brand
-        border-opacity-40 bg-transparent px-4.5 py-3.5 outline-none
-        placeholder:opacity-40 focus:border-opacity-100 violet:border-brand-violet
-        violet:border-opacity-40 violet:focus:border-opacity-100`,
+        `mb-6 block h-[154px] w-full resize-none rounded-lg border border-brand/40
+        bg-transparent px-4.5 py-3.5 outline-none placeholder:opacity-40
+        focus:border-brand violet:border-brand-violet/40
+        violet:focus:border-brand-violet`,
         errors.description && 'mb-2'
       )}
       {...props}

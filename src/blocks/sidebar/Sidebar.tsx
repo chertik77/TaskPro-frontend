@@ -15,7 +15,7 @@ import { SidebarMenu } from './SidebarMenu'
 export const Sidebar = () => {
   const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 768px)')
+  const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
 
   return isTabletAndBelow ? (
     <SidebarMenu />

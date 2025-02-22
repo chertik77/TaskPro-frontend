@@ -24,6 +24,7 @@ export default eslintTypescript.config(
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
   ...eslintPluginTailwind.configs['flat/recommended'],
+  { settings: { tailwindcss: { callees: ['cn'] } } },
   {
     rules: {
       'no-restricted-syntax': [
@@ -99,16 +100,6 @@ export default eslintTypescript.config(
   {
     plugins: { 'react-hooks': eslintPluginReactHooks },
     rules: { ...eslintPluginReactHooks.configs.recommended.rules }
-  },
-  {
-    settings: { tailwindcss: { callees: ['cn'] } },
-    rules: {
-      'tailwindcss/migration-from-tailwind-2': 'off',
-      'tailwindcss/no-custom-classname': [
-        'warn',
-        { whitelist: ['shadow-none'] }
-      ]
-    }
   },
   {
     plugins: { 'project-structure': projectStructurePlugin },
