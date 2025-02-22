@@ -2,8 +2,6 @@ import type { ReactNode } from 'react'
 
 import { useModal } from 'react-modal-state'
 
-import { Icon } from '@/shared/ui'
-
 import { AddBoardModal } from './AddBoardModal'
 
 type AddBoardModalTriggerProps = {
@@ -24,7 +22,6 @@ export const AddBoardModalTrigger = ({
       className={className}
       onClick={openAddBoardModal}>
       {children}
-      <Icon name='plus' />
     </button>
   )
 }
