@@ -10,7 +10,7 @@ import { columnService } from '@/entities/column'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditColumnModal } from '..'
+import { EditColumnModal } from '../components/EditColumnModal'
 
 export const useEditColumn = (
   reset: UseFormReset<ColumnTypes.ColumnSchema>

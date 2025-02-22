@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { cardService } from '@/entities/card'
 
-import { AddCardModal } from '..'
+import { AddCardModal } from '../components/AddCardModal'
 
 export const useAddCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const {

@@ -9,7 +9,7 @@ import { boardService } from '@/entities/board'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditBoardModal } from '..'
+import { EditBoardModal } from '../components/EditBoardModal'
 
 export const useEditBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const queryClient = useQueryClient()

@@ -10,7 +10,7 @@ import { cardService } from '@/entities/card'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditCardModal } from '..'
+import { EditCardModal } from '../components/EditCardModal'
 
 export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const queryClient = useQueryClient()

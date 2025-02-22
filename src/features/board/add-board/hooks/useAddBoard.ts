@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 
 import { boardService } from '@/entities/board'
 
-import { AddBoardModal } from '..'
+import { AddBoardModal } from '../components/AddBoardModal'
 
 export const useAddBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const navigate = useNavigate()

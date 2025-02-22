@@ -3,7 +3,7 @@ import { useModal } from 'react-modal-state'
 
 import { useAuthStore } from '@/entities/auth'
 
-import { EditProfileModal } from '..'
+import { EditProfileModal } from './EditProfileModal'
 
 export const EditProfileModalTrigger = () => {
   const { name, avatar } = useAuthStore(state => state.user)

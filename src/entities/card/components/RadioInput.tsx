@@ -4,7 +4,7 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import { cn } from '@/shared/lib/cn'
 
-import { getPriorityColor } from '..'
+import { getPriorityColor } from '../model/utils'
 
 export const RadioInput = ({ value }: RadioGroup.RadioGroupProps) => (
   <RadioGroup.Item

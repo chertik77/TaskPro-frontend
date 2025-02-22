@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import { useAuthStore } from '@/entities/auth'
 import { userService } from '@/entities/user'
 
-import { EditProfileModal } from '..'
+import { EditProfileModal } from '../components/EditProfileModal'
 
 export const useEditProfile = () => {
   const updateUser = useAuthStore(state => state.updateUser)

@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 import { userService } from '@/entities/user'
 
-import { NeedHelpModal } from '..'
+import { NeedHelpModal } from '../components/NeedHelpModal'
 
 export const useNeedHelp = (reset: UseFormReset<UserTypes.HelpSchema>) => {
   const { close: closeNeedHelpModal } = useModal(NeedHelpModal)

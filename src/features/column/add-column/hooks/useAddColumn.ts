@@ -9,7 +9,7 @@ import { columnService } from '@/entities/column'
 
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { AddColumnModal } from '..'
+import { AddColumnModal } from '../components/AddColumnModal'
 
 export const useAddColumn = (reset: UseFormReset<ColumnTypes.ColumnSchema>) => {
   const { close: closeAddColumnModal } = useModal(AddColumnModal)
