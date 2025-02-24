@@ -75,7 +75,10 @@ export default eslintTypescript.config(
       'react/jsx-no-useless-fragment': 'error',
       'react/boolean-prop-naming': [
         'error',
-        { rule: '^is[A-Z]([A-Za-z0-9]?)+', validateNested: true }
+        {
+          rule: '^(is|has|should|can|enable)[A-Z]([A-Za-z0-9]?)+',
+          validateNested: true
+        }
       ],
       'react/destructuring-assignment': [
         'warn',
