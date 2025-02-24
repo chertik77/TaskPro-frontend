@@ -1,7 +1,7 @@
 import { ColumnContracts } from '@/entities/column'
 
 import { useAppForm } from '@/shared/hooks'
-import { Button, Field, Modal } from '@/shared/ui'
+import { Field, Modal, PlusButton } from '@/shared/ui'
 
 import { useAddColumn } from '../hooks/useAddColumn'
 
@@ -22,13 +22,12 @@ export const AddColumnModal = () => {
           placeholder='Title'
           {...register('title')}
         />
-        <Button
-          isPlusIcon
+        <PlusButton
           type='submit'
           shouldShowLoader={isPending}
           disabled={isPending}>
-          {!isPending && 'Add'}
-        </Button>
+          Add
+        </PlusButton>
       </form>
     </Modal>
   )

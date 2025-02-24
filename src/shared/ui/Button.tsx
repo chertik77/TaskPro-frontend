@@ -4,28 +4,14 @@ import { forwardRef } from 'react'
 
 import { cn } from '../lib/cn'
 import { Icon } from './Icon'
-import { Loader } from './Loader'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   iconName?: 'arrow' | 'pencil' | 'trash'
   iconClassName?: string
-  shouldShowLoader?: boolean
-  isPlusIcon?: boolean
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      iconClassName,
-      className,
-      shouldShowLoader,
-      isPlusIcon,
-      children,
-      iconName,
-      ...props
-    },
-    ref
-  ) => (
+  ({ iconClassName, className, children, iconName, ...props }, ref) => (
     <button
       type='button'
       ref={ref}
@@ -38,7 +24,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         iconName &&
           `focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
           dark:hocus:*:stroke-white-soft`,
-        isPlusIcon && 'gap-2',
         className
       )}
       {...props}>
@@ -51,20 +36,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           )}
         />
       )}
-      {isPlusIcon && (
-        <>
-          {shouldShowLoader ? (
-            <Loader />
-          ) : (
-            <Icon
-              name='plus-square'
-              className='size-7 stroke-transparent'
-            />
-          )}
-          {children}
-        </>
-      )}
-      {!iconName && !isPlusIcon && children}
+      {!iconName && children}
     </button>
   )
 )

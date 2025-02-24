@@ -10,7 +10,7 @@ import {
 } from '@/entities/board'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
-import { Button, Field, Modal } from '@/shared/ui'
+import { Field, Modal, PlusButton } from '@/shared/ui'
 
 import { useEditBoard } from '../hooks/useEditBoard'
 
@@ -39,13 +39,12 @@ export const EditBoardModal = () => {
         />
         <RadioInputIcons control={control} />
         <RadioInputBgImages control={control} />
-        <Button
+        <PlusButton
           type='submit'
-          isPlusIcon
           shouldShowLoader={isPending}
           disabled={isPending || !isFormReadyForSubmit}>
-          {!isPending && 'Edit'}
-        </Button>
+          Edit
+        </PlusButton>
       </form>
     </Modal>
   )

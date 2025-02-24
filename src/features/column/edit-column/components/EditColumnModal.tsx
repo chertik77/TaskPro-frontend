@@ -6,7 +6,7 @@ import { useModalInstance } from 'react-modal-state'
 import { ColumnContracts } from '@/entities/column'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
-import { Button, Field, Modal } from '@/shared/ui'
+import { Field, Modal, PlusButton } from '@/shared/ui'
 
 import { useEditColumn } from '../hooks/useEditColumn'
 
@@ -37,13 +37,12 @@ export const EditColumnModal = () => {
           placeholder='Title'
           {...register('title', { setValueAs: value => value.trim() })}
         />
-        <Button
+        <PlusButton
           type='submit'
-          isPlusIcon
           shouldShowLoader={isPending}
           disabled={isPending || !isFormReadyForSubmit}>
-          {!isPending && 'Edit'}
-        </Button>
+          Edit
+        </PlusButton>
       </form>
     </Modal>
   )

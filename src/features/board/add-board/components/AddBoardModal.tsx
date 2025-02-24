@@ -5,7 +5,7 @@ import {
 } from '@/entities/board'
 
 import { useAppForm } from '@/shared/hooks'
-import { Button, Field, Modal } from '@/shared/ui'
+import { Field, Modal, PlusButton } from '@/shared/ui'
 
 import { useAddBoard } from '../hooks/useAddBoard'
 
@@ -28,13 +28,12 @@ export const AddBoardModal = () => {
         />
         <RadioInputIcons control={control} />
         <RadioInputBgImages control={control} />
-        <Button
+        <PlusButton
           type='submit'
-          isPlusIcon
           shouldShowLoader={isPending}
           disabled={isPending}>
-          {!isPending && 'Create'}
-        </Button>
+          Create
+        </PlusButton>
       </form>
     </Modal>
   )

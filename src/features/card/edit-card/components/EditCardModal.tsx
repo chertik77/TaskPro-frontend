@@ -11,7 +11,7 @@ import {
 } from '@/entities/card'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
-import { Button, Field, Modal } from '@/shared/ui'
+import { Field, Modal, PlusButton } from '@/shared/ui'
 
 import { useEditCard } from '../hooks/useEditCard'
 
@@ -47,13 +47,12 @@ export const EditCardModal = () => {
         />
         <ModalPriorities control={control} />
         <DatePicker control={control} />
-        <Button
+        <PlusButton
           type='submit'
-          isPlusIcon
           shouldShowLoader={isPending}
           disabled={isPending || !isFormReadyForSubmit}>
-          {!isPending && 'Edit'}
-        </Button>
+          Edit
+        </PlusButton>
       </form>
     </Modal>
   )

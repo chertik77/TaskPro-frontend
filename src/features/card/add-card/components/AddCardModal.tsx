@@ -6,7 +6,7 @@ import {
 } from '@/entities/card'
 
 import { useAppForm } from '@/shared/hooks'
-import { Button, Field, Modal } from '@/shared/ui'
+import { Field, Modal, PlusButton } from '@/shared/ui'
 
 import { useAddCard } from '../hooks/useAddCard'
 
@@ -33,13 +33,12 @@ export const AddCardModal = () => {
         />
         <ModalPriorities control={control} />
         <DatePicker control={control} />
-        <Button
-          isPlusIcon
+        <PlusButton
           type='submit'
           shouldShowLoader={isPending}
           disabled={isPending}>
-          {!isPending && 'Add'}
-        </Button>
+          Add
+        </PlusButton>
       </form>
     </Modal>
   )
