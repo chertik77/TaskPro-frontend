@@ -45,7 +45,7 @@ export const Board = () => {
       )}
       <ScrollArea.Scrollbar
         className='mx-5 mb-2 h-3 bg-transparent tablet:mx-8 desktop:mx-6'
-        orientation='vertical'>
+        orientation='horizontal'>
         <ScrollArea.Thumb
           className={cn(
             '!h-3 rounded-[26px] bg-white/60',
