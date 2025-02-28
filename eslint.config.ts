@@ -11,19 +11,21 @@ import { independentModulesConfig } from './independentModules.mjs'
 import eslintPluginTailwind from 'eslint-plugin-tailwindcss'
 
 export default eslintTypescript.config(
+  eslintPluginJs.configs.recommended,
+  eslintTypescript.configs.recommended,
+  eslintPluginReact.configs.flat.recommended,
+  eslintPluginReactHooks.configs['recommended-latest'],
+  ...eslintPluginRouter.configs['flat/recommended'],
+  ...eslintPluginQuery.configs['flat/recommended'],
+  ...eslintPluginTailwind.configs['flat/recommended'],
   { ignores: ['**/vite-env.d.ts'] },
   {
     languageOptions: {
       globals: { ...globals.browser },
-      parser: eslintTypescript.parser
+      parser: eslintTypescript.parser,
+      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
     }
   },
-  eslintPluginJs.configs.recommended,
-  eslintTypescript.configs.recommended,
-  eslintPluginReact.configs.flat.recommended,
-  ...eslintPluginRouter.configs['flat/recommended'],
-  ...eslintPluginQuery.configs['flat/recommended'],
-  ...eslintPluginTailwind.configs['flat/recommended'],
   { settings: { tailwindcss: { callees: ['cn'] } } },
   {
     rules: {
@@ -98,11 +100,6 @@ export default eslintTypescript.config(
       ],
       'react/self-closing-comp': ['warn', { component: true, html: true }]
     }
-  },
-  //? Simplify when https://github.com/facebook/react/pull/30774 is released
-  {
-    plugins: { 'react-hooks': eslintPluginReactHooks },
-    rules: { ...eslintPluginReactHooks.configs.recommended.rules }
   },
   {
     plugins: { 'project-structure': projectStructurePlugin },
