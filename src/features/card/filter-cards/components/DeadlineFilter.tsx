@@ -1,6 +1,6 @@
-import { Root } from '@radix-ui/react-radio-group'
+import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 
-import { DEADLINES, RadioInput } from '@/entities/card'
+import { DEADLINES } from '@/entities/card'
 
 import { useCardFilters } from '../hooks/useCardFilters'
 
@@ -18,7 +18,15 @@ export const DeadlineFilter = () => {
             hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
             hocus:dark:text-white'
           key={deadline}>
-          <RadioInput value={deadline} />
+          <Item
+            className='focus-visible:styled-outline size-3.5 rounded-full bg-black/30 dark:bg-white/30'
+            value={deadline}>
+            <Indicator
+              className='flex justify-center rounded-full after:size-3 after:rounded-full after:border-2
+                after:border-white after:bg-black/30 after:dark:border-black
+                dark:after:bg-white/30'
+            />
+          </Item>
           {deadline}
         </label>
       ))}

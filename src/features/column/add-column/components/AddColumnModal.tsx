@@ -1,34 +1,53 @@
 import { ColumnContracts } from '@/entities/column'
 
 import { useAppForm } from '@/shared/hooks'
-import { Field, Modal, PlusButton } from '@/shared/ui'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+  Input,
+  Modal,
+  PlusButton
+} from '@/shared/ui'
 
 import { useAddColumn } from '../hooks/useAddColumn'
 
 export const AddColumnModal = () => {
-  const { register, handleSubmit, formState, reset } = useAppForm(
-    ColumnContracts.ColumnSchema
-  )
+  const form = useAppForm(ColumnContracts.ColumnSchema)
 
-  const { mutate: addColumn, isPending } = useAddColumn(reset)
+  const { mutate: addColumn, isPending } = useAddColumn(form.reset)
 
   return (
     <Modal modalTitle='Add column'>
-      <form onSubmit={handleSubmit(data => addColumn(data))}>
-        <Field
-          errors={formState.errors}
-          className='mb-6'
-          inputName='title'
-          placeholder='Title'
-          {...register('title')}
-        />
-        <PlusButton
-          type='submit'
-          shouldShowLoader={isPending}
-          disabled={isPending}>
-          Add
-        </PlusButton>
-      </form>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(data => addColumn(data))}
+          className='space-y-6'>
+          <FormField
+            control={form.control}
+            name='title'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder='Title'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <PlusButton
+            type='submit'
+            shouldShowLoader={isPending}
+            disabled={isPending}>
+            Add
+          </PlusButton>
+        </form>
+      </Form>
     </Modal>
   )
 }

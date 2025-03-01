@@ -3,16 +3,24 @@ import type { ChevronProps } from 'react-day-picker'
 
 import { DayPicker } from 'react-day-picker'
 
+import { cn } from '@/shared/lib/cn'
 import { Icon } from '@/shared/ui'
 
-export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
+export const Calendar = ({
+  className,
+  classNames,
+  ...props
+}: ComponentProps<typeof DayPicker>) => (
   <DayPicker
     weekStartsOn={1}
     showOutsideDays
     fixedWeeks
     autoFocus
-    className='relative rounded-lg border border-brand bg-white p-4.5
-      violet:border-brand-violet dark:bg-black-muted'
+    className={cn(
+      `relative rounded-lg border border-brand bg-white p-4.5
+      violet:border-brand-violet dark:bg-black-muted`,
+      className
+    )}
     classNames={{
       month_caption: 'border-b border-black/20 dark:border-white/20 pb-3.5',
       caption_label: 'text-lg font-medium flex items-center justify-center',
@@ -29,7 +37,8 @@ export const Calendar = ({ ...props }: ComponentProps<typeof DayPicker>) => (
       selected:
         'bg-brand text-black-muted violet:bg-brand-violet violet:text-white opacity-100',
       outside: 'opacity-20 aria-selected:opacity-100',
-      disabled: 'opacity-20 cursor-not-allowed'
+      disabled: 'opacity-20 cursor-not-allowed',
+      ...classNames
     }}
     components={{
       Chevron: ({ orientation }: ChevronProps) =>

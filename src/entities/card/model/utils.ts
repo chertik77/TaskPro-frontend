@@ -2,15 +2,15 @@ import type { Priority } from './types'
 
 import { format, isToday } from 'date-fns'
 
-const priorityColors: Record<string, string> = {
+const priorityColors: Record<Priority, string> = {
   Low: 'bg-blue',
   Medium: 'bg-pink',
   High: 'bg-brand',
-  default: 'bg-black/30 dark:bg-white/30'
+  Without: 'bg-black/30 dark:bg-white/30'
 }
 
 export const getPriorityColor = (priority: Priority) =>
-  priorityColors[priority] || priorityColors.default
+  priorityColors[priority] || priorityColors.Without
 
 export const formatTodayDate = (date: Date) =>
   isToday(date)

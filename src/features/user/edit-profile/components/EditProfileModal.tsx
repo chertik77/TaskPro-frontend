@@ -4,7 +4,18 @@ import { useAuthStore } from '@/entities/auth'
 import { UserContracts } from '@/entities/user'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
-import { Button, Field, Loader, Modal, PasswordField } from '@/shared/ui'
+import {
+  Button,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+  Input,
+  Loader,
+  Modal,
+  PasswordInput
+} from '@/shared/ui'
 
 import { useEditProfile } from '../hooks/useEditProfile'
 import { EditAvatar } from './EditAvatar'
@@ -14,51 +25,83 @@ export const EditProfileModal = () => {
 
   const { mutate: editProfile, isPending } = useEditProfile()
 
-  const { handleSubmit, register, formState, reset, watch } = useAppForm(
-    UserContracts.EditUserSchema,
-    { shouldUnregister: false }
-  )
+  const form = useAppForm(UserContracts.EditUserSchema, {
+    defaultValues: { name, email }
+  })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
     { name, email, password: undefined },
-    watch,
-    ({ password }) => (password ? formState.isValid : true)
+    form.watch,
+    ({ password }) => (password ? form.formState.isValid : true)
   )
 
   useEffect(() => {
-    reset({ name, email })
-  }, [email, name, reset])
+    form.reset({ name, email })
+  }, [email, form, name])
 
   return (
     <Modal modalTitle='Edit profile'>
-      <form onSubmit={handleSubmit(data => editProfile(data))}>
-        <EditAvatar changeUserAvatar={editProfile} />
-        <Field
-          errors={formState.errors}
-          inputName='name'
-          placeholder='Enter your name'
-          {...register('name', { setValueAs: value => value.trim() })}
-        />
-        <Field
-          errors={formState.errors}
-          inputName='email'
-          placeholder='Enter your email'
-          {...register('email', { setValueAs: value => value.trim() })}
-        />
-        <PasswordField
-          errors={formState.errors}
-          autoComplete='new-password'
-          placeholder='Create a password'
-          {...register('password', {
-            setValueAs: value => (!value ? undefined : value.trim())
-          })}
-        />
-        <Button
-          type='submit'
-          disabled={isPending || !formState.isValid || !isFormReadyForSubmit}>
-          {isPending ? <Loader /> : 'Send'}
-        </Button>
-      </form>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(data => editProfile(data))}
+          className='space-y-3.5'>
+          <EditAvatar changeUserAvatar={editProfile} />
+          <FormField
+            control={form.control}
+            name='name'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder='Enter your name'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder='Enter your email'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <PasswordInput
+                    autoComplete='new-password'
+                    placeholder='Create a password'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            type='submit'
+            className='!mt-6'
+            disabled={
+              isPending || !form.formState.isValid || !isFormReadyForSubmit
+            }>
+            {isPending ? <Loader /> : 'Send'}
+          </Button>
+        </form>
+      </Form>
     </Modal>
   )
 }

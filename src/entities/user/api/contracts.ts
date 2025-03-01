@@ -2,12 +2,7 @@ import * as v from 'valibot'
 
 import { SigninSchema, SignupSchema } from '@/entities/auth/@x/user'
 
-export const EditUserSchema = v.partial(
-  v.object({
-    ...SignupSchema.entries,
-    avatar: v.instance(File)
-  })
-)
+export const EditUserSchema = v.partial(v.object(SignupSchema.entries))
 
 export const HelpSchema = v.object({
   email: SigninSchema.entries.email,
