@@ -15,6 +15,7 @@ export const LogoutBtn = () => {
       className='focus-visible:styled-outline group flex items-center gap-3.5 bg-transparent
         text-lg font-medium violet:text-white'
       disabled={isPending}
+      aria-label='Log out'
       onClick={() => {
         toggleMobileSidebar(false)
         logoutUser()

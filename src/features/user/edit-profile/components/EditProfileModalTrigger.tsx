@@ -13,6 +13,7 @@ export const EditProfileModalTrigger = () => {
   return (
     <button
       type='button'
+      aria-label='Edit profile'
       onClick={openEditProfileModal}
       className='focus-visible:styled-outline flex items-center gap-2'>
       <p>{name}</p>

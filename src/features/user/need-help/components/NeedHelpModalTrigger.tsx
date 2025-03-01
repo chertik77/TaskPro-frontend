@@ -24,9 +24,8 @@ export const NeedHelpModalTrigger = () => {
       </p>
       <button
         type='button'
-        onClick={() => {
-          openNeedHelpModal()
-        }}
+        aria-label='Open need help modal'
+        onClick={openNeedHelpModal}
         className='focus-visible:styled-outline flex size-max items-center gap-2 bg-transparent
           text-md font-medium transition-all violet:text-white hocus:text-brand-light
           violet:hocus:text-brand-violet-soft dark:text-white-soft

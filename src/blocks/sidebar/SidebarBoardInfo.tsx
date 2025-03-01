@@ -9,7 +9,7 @@ export const SidebarBoardInfo = () => (
         dark:text-white/50'>
       My boards
     </p>
-    <div
+    <span
       className='flex items-center justify-between border-y border-black/10 py-3.5
         violet:border-white/10 dark:border-white/10'>
       <p className='w-[76px] violet:text-white'>Create a new board</p>
@@ -20,6 +20,6 @@ export const SidebarBoardInfo = () => (
           violet:hocus:bg-brand-violet-muted'>
         <Icon name='plus' />
       </AddBoardModalTrigger>
-    </div>
+    </span>
   </div>
 )

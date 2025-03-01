@@ -9,9 +9,11 @@ import { useCardDragHandlers } from '@/features/card/move-card'
 import { AddColumnTrigger } from '@/features/column/add-column'
 import { useColumnDragHandlers } from '@/features/column/move-column'
 
-import { useDragAndDrop } from '@/entities/dnd'
+import { Draggable, useDragAndDrop } from '@/entities/dnd'
 
-import { ColumnListItem } from './ColumnListItem'
+import { cn } from '@/shared/lib/cn'
+
+import { ColumnDraggingState, ColumnListItem } from './ColumnListItem'
 
 type ColumnListProps = {
   backgroundIdentifier: string | undefined
@@ -37,20 +39,37 @@ export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
   })
 
   return (
-    <div className='flex touch-manipulation gap-[34px]'>
+    <ul className='flex touch-manipulation gap-[34px]'>
       <SortableContext
         items={columns || []}
         strategy={horizontalListSortingStrategy}>
         {columns?.map(column => (
-          <ColumnListItem
-            column={column}
+          <Draggable
+            entity={column}
             key={column.id}
-            cards={cards?.filter(card => card.columnId === column.id)}
-            backgroundIdentifier={backgroundIdentifier}
-          />
+            draggableType='column'
+            WhileDraggingComponent={ColumnDraggingState}>
+            {({ setNodeRef, style, attributes, listeners, isDragging }) => (
+              <li
+                className={cn(
+                  'w-[334px] cursor-grab touch-manipulation focus-visible:outline-none',
+                  isDragging && 'select-none'
+                )}
+                ref={setNodeRef}
+                style={style}
+                {...attributes}
+                {...listeners}>
+                <ColumnListItem
+                  column={column}
+                  cards={cards?.filter(c => c.columnId === column.id)}
+                  backgroundIdentifier={backgroundIdentifier}
+                />
+              </li>
+            )}
+          </Draggable>
         ))}
         <AddColumnTrigger />
       </SortableContext>
-    </div>
+    </ul>
   )
 })
