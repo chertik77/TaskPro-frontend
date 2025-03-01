@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { omit } from 'valibot'
 
 import { useAuthStore } from '@/entities/auth'
 import { UserContracts } from '@/entities/user'
@@ -25,7 +26,7 @@ export const EditProfileModal = () => {
 
   const { mutate: editProfile, isPending } = useEditProfile()
 
-  const form = useAppForm(UserContracts.EditUserSchema, {
+  const form = useAppForm(omit(UserContracts.EditUserSchema, ['avatar']), {
     defaultValues: { name, email }
   })
 
