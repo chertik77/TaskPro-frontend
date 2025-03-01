@@ -11,16 +11,9 @@ export const DeleteBoardTrigger = () => {
   const { mutate: deleteBoard } = useDeleteBoard()
 
   return (
-    <div
-      role='button'
-      tabIndex={0}
+    <button
+      type='button'
       aria-label='Delete board'
-      onKeyDown={e => {
-        if (e.code === 'Enter' || e.code === 'Space') {
-          toggleMobileSidebar(false)
-          deleteBoard()
-        }
-      }}
       onClick={() => {
         toggleMobileSidebar(false)
         deleteBoard()
@@ -31,6 +24,6 @@ export const DeleteBoardTrigger = () => {
         name='trash'
         className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-soft/50'
       />
-    </div>
+    </button>
   )
 }

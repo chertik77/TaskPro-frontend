@@ -24,13 +24,9 @@ export const EditBoardModalTrigger = ({
   }
 
   return (
-    <div
-      role='button'
-      tabIndex={0}
+    <button
+      type='button'
       aria-label='Edit board'
-      onKeyDown={e => {
-        if (e.code === 'Enter' || e.code === 'Space') handleBoardEdit()
-      }}
       onClick={handleBoardEdit}
       className='focus-visible:styled-outline hocus:*:stroke-black violet:hocus:*:stroke-black
         dark:hocus:*:stroke-white-soft'>
@@ -38,6 +34,6 @@ export const EditBoardModalTrigger = ({
         name='pencil'
         className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-soft/50'
       />
-    </div>
+    </button>
   )
 }
