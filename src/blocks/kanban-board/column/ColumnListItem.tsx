@@ -27,10 +27,10 @@ const WhileDraggingComponent = forwardRef<
   HTMLAttributes<HTMLDivElement>
 >((props, ref) => (
   <div
+    ref={ref}
     {...props}
     className='w-[334px] rounded-lg border-2 border-brand bg-white-gray opacity-60
       violet:border-brand-violet dark:bg-black'
-    ref={ref}
   />
 ))
 
