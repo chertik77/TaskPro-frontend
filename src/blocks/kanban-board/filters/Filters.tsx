@@ -20,7 +20,7 @@ export const Filters = () => {
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className='animation w-[300px] rounded-lg bg-white-soft p-6 shadow-main dark:bg-black-deep'
+          className='fade-zoom w-[300px] rounded-lg bg-white-soft p-6 shadow-main dark:bg-black-deep'
           collisionPadding={10}>
           <h2 className='border-b border-black/10 pb-3.5 text-xl dark:border-white/10'>
             Filters

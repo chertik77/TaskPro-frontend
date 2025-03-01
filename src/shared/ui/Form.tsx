@@ -52,7 +52,6 @@ const useFormField = () => {
     id,
     name: fieldContext.name,
     formItemId: `${id}-form-item`,
-    formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
     ...fieldState
   }
@@ -89,7 +88,7 @@ const FormLabel = forwardRef<
   return (
     <label
       ref={ref}
-      className={cn(error && 'text-red', className)}
+      className={cn('block', error && 'text-red', className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -100,17 +99,13 @@ const FormControl = forwardRef<
   ElementRef<typeof Slot>,
   ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
+  const { error, formItemId, formMessageId } = useFormField()
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
+      aria-describedby={formMessageId}
       aria-invalid={!!error}
       {...props}
     />

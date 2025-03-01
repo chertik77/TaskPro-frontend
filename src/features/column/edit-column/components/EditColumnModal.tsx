@@ -1,11 +1,3 @@
-import type { ColumnTypes } from '@/entities/column'
-
-import { useEffect } from 'react'
-import { useModalInstance } from 'react-modal-state'
-
-import { ColumnContracts } from '@/entities/column'
-
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import {
   Form,
   FormControl,
@@ -18,26 +10,12 @@ import {
 } from '@/shared/ui'
 
 import { useEditColumn } from '../hooks/useEditColumn'
+import { useEditColumnForm } from '../hooks/useEditColumnForm'
 
 export const EditColumnModal = () => {
-  const {
-    data: { title, id }
-  } = useModalInstance<ColumnTypes.EditColumnModalProps>()
-
-  const form = useAppForm(ColumnContracts.ColumnSchema, {
-    defaultValues: { title }
-  })
+  const { form, initialColumn, isFormReadyForSubmit } = useEditColumnForm()
 
   const { mutate: editColumn, isPending } = useEditColumn(form.reset)
-
-  const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    { title },
-    form.watch
-  )
-
-  useEffect(() => {
-    form.reset({ title })
-  }, [form, title])
 
   return (
     <Modal modalTitle='Edit column'>
@@ -45,7 +23,7 @@ export const EditColumnModal = () => {
         <form
           className='space-y-6'
           onSubmit={form.handleSubmit(data =>
-            editColumn({ columnId: id, data })
+            editColumn({ columnId: initialColumn.id, data })
           )}>
           <FormField
             control={form.control}

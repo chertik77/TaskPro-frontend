@@ -41,7 +41,7 @@ export const ThemeSelect = () => {
           align='end'
           sideOffset={5}
           position='popper'
-          className='animation w-[105px] rounded-lg border border-brand bg-white-soft pb-3.5 pl-4.5
+          className='fade-zoom w-[105px] rounded-lg border border-brand bg-white-soft pb-3.5 pl-4.5
             pr-11 pt-4.5 shadow-main violet:border-white-gray dark:bg-black-deep'>
           <Select.Viewport>
             {THEMES.map(theme => (

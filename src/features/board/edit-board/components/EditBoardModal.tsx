@@ -1,51 +1,81 @@
-import type { BoardTypes } from '@/entities/board'
-
-import { useEffect } from 'react'
-import { useModalInstance } from 'react-modal-state'
+import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 
 import {
-  BoardContracts,
-  RadioInputBgImages,
-  RadioInputIcons
-} from '@/entities/board'
-
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
-import { Field, Modal, PlusButton } from '@/shared/ui'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+  Modal,
+  PlusButton
+} from '@/shared/ui'
 
 import { useEditBoard } from '../hooks/useEditBoard'
+import { useEditBoardForm } from '../hooks/useEditBoardForm'
 
 export const EditBoardModal = () => {
-  const { data: board } = useModalInstance<BoardTypes.EditBoardModalProps>()
+  const { form, isFormReadyForSubmit } = useEditBoardForm()
 
-  const { register, reset, handleSubmit, control, formState, watch } =
-    useAppForm(BoardContracts.BoardSchema, { shouldUnregister: false })
-
-  const { mutate: editBoard, isPending } = useEditBoard(reset)
-
-  const { isFormReadyForSubmit } = useIsFormReadyForSubmit(board, watch)
-
-  useEffect(() => {
-    reset(board)
-  }, [reset, board])
+  const { mutate: editBoard, isPending } = useEditBoard(form.reset)
 
   return (
     <Modal modalTitle='Edit board'>
-      <form onSubmit={handleSubmit(data => editBoard(data))}>
-        <Field
-          {...register('title', { setValueAs: value => value.trim() })}
-          inputName='title'
-          placeholder='Title'
-          errors={formState.errors}
-        />
-        <RadioInputIcons control={control} />
-        <RadioInputBgImages control={control} />
-        <PlusButton
-          type='submit'
-          shouldShowLoader={isPending}
-          disabled={isPending || !isFormReadyForSubmit}>
-          Edit
-        </PlusButton>
-      </form>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(data => editBoard(data))}
+          className='space-y-6'>
+          <FormField
+            control={form.control}
+            name='title'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder='Title'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='icon'
+            render={({ field }) => (
+              <FormItem className='space-y-3.5'>
+                <FormLabel>Icons</FormLabel>
+                <FormControl>
+                  <FormIconSelector field={field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='background'
+            render={({ field }) => (
+              <FormItem className='space-y-3.5'>
+                <FormLabel>Background</FormLabel>
+                <FormControl>
+                  <FormBgImageSelector field={field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <PlusButton
+            type='submit'
+            className='!mt-10'
+            shouldShowLoader={isPending}
+            disabled={isPending || !isFormReadyForSubmit}>
+            Edit
+          </PlusButton>
+        </form>
+      </Form>
     </Modal>
   )
 }
