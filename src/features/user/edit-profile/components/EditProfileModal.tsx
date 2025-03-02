@@ -1,10 +1,3 @@
-import { useEffect } from 'react'
-import { omit } from 'valibot'
-
-import { useAuthStore } from '@/entities/auth'
-import { UserContracts } from '@/entities/user'
-
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import {
   Button,
   Form,
@@ -19,26 +12,13 @@ import {
 } from '@/shared/ui'
 
 import { useEditProfile } from '../hooks/useEditProfile'
+import { useEditProfileForm } from '../hooks/useEditProfileForm'
 import { EditAvatar } from './EditAvatar'
 
 export const EditProfileModal = () => {
-  const { name, email } = useAuthStore(state => state.user)
+  const { form, isFormReadyForSubmit } = useEditProfileForm()
 
   const { mutate: editProfile, isPending } = useEditProfile()
-
-  const form = useAppForm(omit(UserContracts.EditUserSchema, ['avatar']), {
-    defaultValues: { name, email }
-  })
-
-  const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    { name, email, password: undefined },
-    form.watch,
-    ({ password }) => (password ? form.formState.isValid : true)
-  )
-
-  useEffect(() => {
-    form.reset({ name, email })
-  }, [email, form, name])
 
   return (
     <Modal modalTitle='Edit profile'>
