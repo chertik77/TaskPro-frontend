@@ -3,7 +3,7 @@ import { Icon } from '@/shared/ui'
 import { useSigninUserWithGoogle } from '../hooks/useSigninUserWithGoogle'
 
 export const GoogleSignin = () => {
-  const { signinWithGoogle } = useSigninUserWithGoogle()
+  const signinWithGoogle = useSigninUserWithGoogle()
 
   return (
     <button

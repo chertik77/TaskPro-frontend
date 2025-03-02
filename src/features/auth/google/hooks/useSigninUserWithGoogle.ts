@@ -9,7 +9,7 @@ export const useSigninUserWithGoogle = () => {
 
   const navigate = useNavigate()
 
-  const signinWithGoogle = useGoogleLogin({
+  return useGoogleLogin({
     flow: 'auth-code',
     onSuccess: async ({ code }) => {
       const r = await authService.signinWithGoogle(code)
@@ -21,6 +21,4 @@ export const useSigninUserWithGoogle = () => {
         'Authentication failed: Unable to sign in with Google. Please try again.'
       )
   })
-
-  return { signinWithGoogle }
 }
