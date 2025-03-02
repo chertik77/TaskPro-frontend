@@ -17,18 +17,14 @@ import { Route as IndexImport } from './../../../app/routes/index'
 import { Route as dashboardDashboardImport } from './../../../app/routes/(dashboard)/dashboard'
 import { Route as authAuthLayoutImport } from './../../../app/routes/(auth)/_auth-layout'
 import { Route as dashboardDashboardBoardIdImport } from './../../../app/routes/(dashboard)/dashboard.$boardId'
+import { Route as authAuthLayoutSignupImport } from './../../../app/routes/(auth)/_auth-layout.signup'
+import { Route as authAuthLayoutSigninImport } from './../../../app/routes/(auth)/_auth-layout.signin'
 
 // Create Virtual Routes
 
 const authImport = createFileRoute('/(auth)')()
 const dashboardDashboardIndexLazyImport = createFileRoute(
   '/(dashboard)/dashboard/'
-)()
-const authAuthLayoutSignupLazyImport = createFileRoute(
-  '/(auth)/_auth-layout/signup'
-)()
-const authAuthLayoutSigninLazyImport = createFileRoute(
-  '/(auth)/_auth-layout/signin'
 )()
 
 // Create/Update Routes
@@ -62,39 +58,25 @@ const dashboardDashboardIndexLazyRoute = dashboardDashboardIndexLazyImport
     getParentRoute: () => dashboardDashboardRoute
   } as any)
   .lazy(() =>
-    import('./../../../app/routes/(dashboard)/dashboard.index.lazy').then(
-      d => d.Route
-    )
-  )
-
-const authAuthLayoutSignupLazyRoute = authAuthLayoutSignupLazyImport
-  .update({
-    id: '/signup',
-    path: '/signup',
-    getParentRoute: () => authAuthLayoutRoute
-  } as any)
-  .lazy(() =>
-    import('./../../../app/routes/(auth)/_auth-layout.signup.lazy').then(
-      d => d.Route
-    )
-  )
-
-const authAuthLayoutSigninLazyRoute = authAuthLayoutSigninLazyImport
-  .update({
-    id: '/signin',
-    path: '/signin',
-    getParentRoute: () => authAuthLayoutRoute
-  } as any)
-  .lazy(() =>
-    import('./../../../app/routes/(auth)/_auth-layout.signin.lazy').then(
-      d => d.Route
-    )
+    import('../../../app/routes/(dashboard)/dashboard.index').then(d => d.Route)
   )
 
 const dashboardDashboardBoardIdRoute = dashboardDashboardBoardIdImport.update({
   id: '/$boardId',
   path: '/$boardId',
   getParentRoute: () => dashboardDashboardRoute
+} as any)
+
+const authAuthLayoutSignupRoute = authAuthLayoutSignupImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => authAuthLayoutRoute
+} as any)
+
+const authAuthLayoutSigninRoute = authAuthLayoutSigninImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => authAuthLayoutRoute
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -129,26 +111,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof dashboardDashboardImport
       parentRoute: typeof rootRoute
     }
-    '/(dashboard)/dashboard/$boardId': {
-      id: '/(dashboard)/dashboard/$boardId'
-      path: '/$boardId'
-      fullPath: '/dashboard/$boardId'
-      preLoaderRoute: typeof dashboardDashboardBoardIdImport
-      parentRoute: typeof dashboardDashboardImport
-    }
     '/(auth)/_auth-layout/signin': {
       id: '/(auth)/_auth-layout/signin'
       path: '/signin'
       fullPath: '/signin'
-      preLoaderRoute: typeof authAuthLayoutSigninLazyImport
+      preLoaderRoute: typeof authAuthLayoutSigninImport
       parentRoute: typeof authAuthLayoutImport
     }
     '/(auth)/_auth-layout/signup': {
       id: '/(auth)/_auth-layout/signup'
       path: '/signup'
       fullPath: '/signup'
-      preLoaderRoute: typeof authAuthLayoutSignupLazyImport
+      preLoaderRoute: typeof authAuthLayoutSignupImport
       parentRoute: typeof authAuthLayoutImport
+    }
+    '/(dashboard)/dashboard/$boardId': {
+      id: '/(dashboard)/dashboard/$boardId'
+      path: '/$boardId'
+      fullPath: '/dashboard/$boardId'
+      preLoaderRoute: typeof dashboardDashboardBoardIdImport
+      parentRoute: typeof dashboardDashboardImport
     }
     '/(dashboard)/dashboard/': {
       id: '/(dashboard)/dashboard/'
@@ -163,13 +145,13 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface authAuthLayoutRouteChildren {
-  authAuthLayoutSigninLazyRoute: typeof authAuthLayoutSigninLazyRoute
-  authAuthLayoutSignupLazyRoute: typeof authAuthLayoutSignupLazyRoute
+  authAuthLayoutSigninRoute: typeof authAuthLayoutSigninRoute
+  authAuthLayoutSignupRoute: typeof authAuthLayoutSignupRoute
 }
 
 const authAuthLayoutRouteChildren: authAuthLayoutRouteChildren = {
-  authAuthLayoutSigninLazyRoute: authAuthLayoutSigninLazyRoute,
-  authAuthLayoutSignupLazyRoute: authAuthLayoutSignupLazyRoute
+  authAuthLayoutSigninRoute: authAuthLayoutSigninRoute,
+  authAuthLayoutSignupRoute: authAuthLayoutSignupRoute
 }
 
 const authAuthLayoutRouteWithChildren = authAuthLayoutRoute._addFileChildren(
@@ -202,17 +184,17 @@ const dashboardDashboardRouteWithChildren =
 export interface FileRoutesByFullPath {
   '/': typeof authAuthLayoutRouteWithChildren
   '/dashboard': typeof dashboardDashboardRouteWithChildren
+  '/signin': typeof authAuthLayoutSigninRoute
+  '/signup': typeof authAuthLayoutSignupRoute
   '/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
-  '/signin': typeof authAuthLayoutSigninLazyRoute
-  '/signup': typeof authAuthLayoutSignupLazyRoute
   '/dashboard/': typeof dashboardDashboardIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof authAuthLayoutRouteWithChildren
+  '/signin': typeof authAuthLayoutSigninRoute
+  '/signup': typeof authAuthLayoutSignupRoute
   '/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
-  '/signin': typeof authAuthLayoutSigninLazyRoute
-  '/signup': typeof authAuthLayoutSignupLazyRoute
   '/dashboard': typeof dashboardDashboardIndexLazyRoute
 }
 
@@ -222,9 +204,9 @@ export interface FileRoutesById {
   '/(auth)': typeof authRouteWithChildren
   '/(auth)/_auth-layout': typeof authAuthLayoutRouteWithChildren
   '/(dashboard)/dashboard': typeof dashboardDashboardRouteWithChildren
+  '/(auth)/_auth-layout/signin': typeof authAuthLayoutSigninRoute
+  '/(auth)/_auth-layout/signup': typeof authAuthLayoutSignupRoute
   '/(dashboard)/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
-  '/(auth)/_auth-layout/signin': typeof authAuthLayoutSigninLazyRoute
-  '/(auth)/_auth-layout/signup': typeof authAuthLayoutSignupLazyRoute
   '/(dashboard)/dashboard/': typeof dashboardDashboardIndexLazyRoute
 }
 
@@ -233,21 +215,21 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/dashboard/$boardId'
     | '/signin'
     | '/signup'
+    | '/dashboard/$boardId'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard/$boardId' | '/signin' | '/signup' | '/dashboard'
+  to: '/' | '/signin' | '/signup' | '/dashboard/$boardId' | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/(auth)'
     | '/(auth)/_auth-layout'
     | '/(dashboard)/dashboard'
-    | '/(dashboard)/dashboard/$boardId'
     | '/(auth)/_auth-layout/signin'
     | '/(auth)/_auth-layout/signup'
+    | '/(dashboard)/dashboard/$boardId'
     | '/(dashboard)/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -303,17 +285,17 @@ export const routeTree = rootRoute
         "/(dashboard)/dashboard/"
       ]
     },
-    "/(dashboard)/dashboard/$boardId": {
-      "filePath": "(dashboard)/dashboard.$boardId.tsx",
-      "parent": "/(dashboard)/dashboard"
-    },
     "/(auth)/_auth-layout/signin": {
-      "filePath": "(auth)/_auth-layout.signin.lazy.tsx",
+      "filePath": "(auth)/_auth-layout.signin.tsx",
       "parent": "/(auth)/_auth-layout"
     },
     "/(auth)/_auth-layout/signup": {
-      "filePath": "(auth)/_auth-layout.signup.lazy.tsx",
+      "filePath": "(auth)/_auth-layout.signup.tsx",
       "parent": "/(auth)/_auth-layout"
+    },
+    "/(dashboard)/dashboard/$boardId": {
+      "filePath": "(dashboard)/dashboard.$boardId.tsx",
+      "parent": "/(dashboard)/dashboard"
     },
     "/(dashboard)/dashboard/": {
       "filePath": "(dashboard)/dashboard.index.lazy.tsx",
