@@ -12,19 +12,19 @@ export const useEditColumnForm = () => {
     useModalInstance<ColumnTypes.EditColumnModalProps>()
 
   const form = useAppForm(ColumnContracts.ColumnSchema, {
-    defaultValues: { title: initialColumn.title }
+    shouldUnregister: false
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    { title: initialColumn.title },
+    initialColumn,
     form.watch
   )
 
   const { reset } = form
 
   useEffect(() => {
-    reset({ title: initialColumn.title })
-  }, [reset, initialColumn.title])
+    reset(initialColumn)
+  }, [reset, initialColumn])
 
   return { form, initialColumn, isFormReadyForSubmit }
 }

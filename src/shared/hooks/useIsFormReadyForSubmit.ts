@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 export const useIsFormReadyForSubmit = <T extends FieldValues>(
   initialValues: T,
   watch: UseFormWatch<T>,
-  extraValidation?: (values: T) => boolean
+  extraValidation: (values: T) => boolean = () => true
 ) => {
   const watchedValues = watch()
 
@@ -14,6 +14,8 @@ export const useIsFormReadyForSubmit = <T extends FieldValues>(
       const currentValue = watchedValues[key]
       const initialValue = initialValues[key]
 
+      console.log(currentValue, initialValue)
+
       if (currentValue instanceof Date && initialValue instanceof Date) {
         return currentValue.getTime() !== initialValue.getTime()
       }
@@ -21,7 +23,7 @@ export const useIsFormReadyForSubmit = <T extends FieldValues>(
       return currentValue !== initialValue
     })
 
-    return hasChanged && extraValidation?.(watchedValues)
+    return hasChanged && extraValidation(watchedValues)
   }, [initialValues, extraValidation, watchedValues])
 
   return { isFormReadyForSubmit }
