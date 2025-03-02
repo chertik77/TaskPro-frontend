@@ -29,7 +29,7 @@ export const CardListItem = ({ card }: CardListItemProps) => (
     {({ setNodeRef, isDragging, attributes, listeners, style }) => (
       <li
         className={cn(
-          'cursor-grab touch-manipulation focus-visible:outline-none',
+          'cursor-grab touch-manipulation list-none focus-visible:outline-none',
           isDragging && 'select-none'
         )}
         {...listeners}
@@ -69,14 +69,13 @@ export const CardListItem = ({ card }: CardListItemProps) => (
   </Draggable>
 )
 
-export const CardDraggingState = forwardRef<
-  HTMLDivElement,
-  ComponentProps<'div'>
->((props, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className='h-[154px] rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
-      violet:border-brand-violet dark:bg-black'
-  />
-))
+const CardDraggingState = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
+  (props, ref) => (
+    <div
+      ref={ref}
+      {...props}
+      className='h-[154px] rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
+        violet:border-brand-violet dark:bg-black'
+    />
+  )
+)

@@ -38,7 +38,7 @@ export const ColumnListItem = ({
       {({ setNodeRef, isDragging, attributes, listeners, style }) => (
         <li
           className={cn(
-            'w-[334px] cursor-grab touch-manipulation focus-visible:outline-none',
+            'w-[334px] cursor-grab touch-manipulation list-none focus-visible:outline-none',
             isDragging && 'select-none'
           )}
           ref={setNodeRef}
@@ -46,8 +46,8 @@ export const ColumnListItem = ({
           {...attributes}
           {...listeners}>
           <div
-            className='mb-3.5 flex h-14 min-w-84 items-center justify-center rounded-lg bg-white px-5
-              py-4.5 dark:bg-black'>
+            className='mb-3.5 flex h-14 items-center justify-center rounded-lg bg-white px-5 py-4.5
+              dark:bg-black'>
             {column.title}
             <EditColumnTrigger column={column} />
             <DeleteColumnTrigger columnId={column.id} />
@@ -78,14 +78,13 @@ export const ColumnListItem = ({
   )
 }
 
-export const ColumnDraggingState = forwardRef<
-  HTMLDivElement,
-  ComponentProps<'div'>
->((props, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className='w-[334px] rounded-lg border-2 border-brand bg-white-gray opacity-60
-      violet:border-brand-violet dark:bg-black'
-  />
-))
+const ColumnDraggingState = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
+  (props, ref) => (
+    <div
+      ref={ref}
+      {...props}
+      className='w-84 rounded-lg border-2 border-brand bg-white-gray opacity-60
+        violet:border-brand-violet dark:bg-black'
+    />
+  )
+)

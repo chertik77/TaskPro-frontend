@@ -16,6 +16,7 @@ import { Route as rootRoute } from './../../../app/routes/__root'
 import { Route as IndexImport } from './../../../app/routes/index'
 import { Route as dashboardDashboardImport } from './../../../app/routes/(dashboard)/dashboard'
 import { Route as authAuthLayoutImport } from './../../../app/routes/(auth)/_auth-layout'
+import { Route as dashboardDashboardIndexImport } from './../../../app/routes/(dashboard)/dashboard.index'
 import { Route as dashboardDashboardBoardIdImport } from './../../../app/routes/(dashboard)/dashboard.$boardId'
 import { Route as authAuthLayoutSignupImport } from './../../../app/routes/(auth)/_auth-layout.signup'
 import { Route as authAuthLayoutSigninImport } from './../../../app/routes/(auth)/_auth-layout.signin'
@@ -23,9 +24,6 @@ import { Route as authAuthLayoutSigninImport } from './../../../app/routes/(auth
 // Create Virtual Routes
 
 const authImport = createFileRoute('/(auth)')()
-const dashboardDashboardIndexLazyImport = createFileRoute(
-  '/(dashboard)/dashboard/'
-)()
 
 // Create/Update Routes
 
@@ -51,15 +49,11 @@ const authAuthLayoutRoute = authAuthLayoutImport.update({
   getParentRoute: () => authRoute
 } as any)
 
-const dashboardDashboardIndexLazyRoute = dashboardDashboardIndexLazyImport
-  .update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => dashboardDashboardRoute
-  } as any)
-  .lazy(() =>
-    import('../../../app/routes/(dashboard)/dashboard.index').then(d => d.Route)
-  )
+const dashboardDashboardIndexRoute = dashboardDashboardIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => dashboardDashboardRoute
+} as any)
 
 const dashboardDashboardBoardIdRoute = dashboardDashboardBoardIdImport.update({
   id: '/$boardId',
@@ -136,7 +130,7 @@ declare module '@tanstack/react-router' {
       id: '/(dashboard)/dashboard/'
       path: '/'
       fullPath: '/dashboard/'
-      preLoaderRoute: typeof dashboardDashboardIndexLazyImport
+      preLoaderRoute: typeof dashboardDashboardIndexImport
       parentRoute: typeof dashboardDashboardImport
     }
   }
@@ -170,12 +164,12 @@ const authRouteWithChildren = authRoute._addFileChildren(authRouteChildren)
 
 interface dashboardDashboardRouteChildren {
   dashboardDashboardBoardIdRoute: typeof dashboardDashboardBoardIdRoute
-  dashboardDashboardIndexLazyRoute: typeof dashboardDashboardIndexLazyRoute
+  dashboardDashboardIndexRoute: typeof dashboardDashboardIndexRoute
 }
 
 const dashboardDashboardRouteChildren: dashboardDashboardRouteChildren = {
   dashboardDashboardBoardIdRoute: dashboardDashboardBoardIdRoute,
-  dashboardDashboardIndexLazyRoute: dashboardDashboardIndexLazyRoute
+  dashboardDashboardIndexRoute: dashboardDashboardIndexRoute
 }
 
 const dashboardDashboardRouteWithChildren =
@@ -187,7 +181,7 @@ export interface FileRoutesByFullPath {
   '/signin': typeof authAuthLayoutSigninRoute
   '/signup': typeof authAuthLayoutSignupRoute
   '/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
-  '/dashboard/': typeof dashboardDashboardIndexLazyRoute
+  '/dashboard/': typeof dashboardDashboardIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -195,7 +189,7 @@ export interface FileRoutesByTo {
   '/signin': typeof authAuthLayoutSigninRoute
   '/signup': typeof authAuthLayoutSignupRoute
   '/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
-  '/dashboard': typeof dashboardDashboardIndexLazyRoute
+  '/dashboard': typeof dashboardDashboardIndexRoute
 }
 
 export interface FileRoutesById {
@@ -207,7 +201,7 @@ export interface FileRoutesById {
   '/(auth)/_auth-layout/signin': typeof authAuthLayoutSigninRoute
   '/(auth)/_auth-layout/signup': typeof authAuthLayoutSignupRoute
   '/(dashboard)/dashboard/$boardId': typeof dashboardDashboardBoardIdRoute
-  '/(dashboard)/dashboard/': typeof dashboardDashboardIndexLazyRoute
+  '/(dashboard)/dashboard/': typeof dashboardDashboardIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -298,7 +292,7 @@ export const routeTree = rootRoute
       "parent": "/(dashboard)/dashboard"
     },
     "/(dashboard)/dashboard/": {
-      "filePath": "(dashboard)/dashboard.index.lazy.tsx",
+      "filePath": "(dashboard)/dashboard.index.tsx",
       "parent": "/(dashboard)/dashboard"
     }
   }
