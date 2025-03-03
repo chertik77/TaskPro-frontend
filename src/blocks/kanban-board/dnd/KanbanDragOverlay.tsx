@@ -7,16 +7,11 @@ import { CardListItem } from '../card/CardListItem'
 import { ColumnListItem } from '../column/ColumnListItem'
 
 export const KanbanDragOverlay = () => {
-  const { activeCard, activeColumn, cards } = useDragAndDrop()
+  const { activeCard, activeColumn } = useDragAndDrop()
 
   return createPortal(
     <DragOverlay>
-      {activeColumn && (
-        <ColumnListItem
-          column={activeColumn}
-          cards={cards?.filter(c => c.columnId === activeColumn.id)}
-        />
-      )}
+      {activeColumn && <ColumnListItem column={activeColumn} />}
       {activeCard && <CardListItem card={activeCard} />}
     </DragOverlay>,
     document.body
