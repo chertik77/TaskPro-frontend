@@ -23,7 +23,7 @@ export const Sidebar = () => {
     <ScrollArea.Root
       type='scroll'
       className={cn(
-        'row-span-2 hidden bg-white-soft violet:bg-brand-violet dark:bg-black-soft',
+        'row-span-2 hidden bg-white violet:bg-brand-violet dark:bg-black-soft',
         isSidebarOpen && 'desktop:block'
       )}>
       <ScrollArea.Viewport className='h-dvh'>
