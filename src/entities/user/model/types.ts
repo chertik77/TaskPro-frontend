@@ -12,4 +12,5 @@ export type User = {
 
 export type Theme = (typeof THEMES)[number]
 export type EditUserSchema = InferInput<typeof EditUserSchema>
+export type EditProfileModalProps = Pick<User, 'name' | 'email'>
 export type HelpSchema = InferInput<typeof HelpSchema>

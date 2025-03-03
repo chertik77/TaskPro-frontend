@@ -1,3 +1,5 @@
+import type { UserTypes } from '@/entities/user'
+
 import * as Avatar from '@radix-ui/react-avatar'
 import { useModal } from 'react-modal-state'
 
@@ -6,7 +8,7 @@ import { useAuthStore } from '@/entities/auth'
 import { EditProfileModal } from './EditProfileModal'
 
 export const EditProfileModalTrigger = () => {
-  const { name, avatar } = useAuthStore(state => state.user)
+  const { name, email, avatar } = useAuthStore(state => state.user)
 
   const { open: openEditProfileModal } = useModal(EditProfileModal)
 
@@ -14,7 +16,9 @@ export const EditProfileModalTrigger = () => {
     <button
       type='button'
       aria-label='Edit profile'
-      onClick={openEditProfileModal}
+      onClick={() =>
+        openEditProfileModal<UserTypes.EditProfileModalProps>({ name, email })
+      }
       className='focus-visible:styled-outline flex items-center gap-2'>
       <p>{name}</p>
       <Avatar.Root>

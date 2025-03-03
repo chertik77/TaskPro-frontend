@@ -1,20 +1,21 @@
 import { useEffect } from 'react'
+import { useModalInstance } from 'react-modal-state'
 import { omit } from 'valibot'
 
-import { useAuthStore } from '@/entities/auth'
-import { UserContracts } from '@/entities/user'
+import { UserContracts, UserTypes } from '@/entities/user'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 export const useEditProfileForm = () => {
-  const initialUser = useAuthStore(state => state.user)
+  const { data: initialUser } =
+    useModalInstance<UserTypes.EditProfileModalProps>()
 
   const form = useAppForm(omit(UserContracts.EditUserSchema, ['avatar']), {
-    defaultValues: initialUser
+    shouldUnregister: false
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    { name: initialUser.name, email: initialUser.email, password: undefined },
+    { ...initialUser, password: undefined },
     form.watch,
     ({ password }) => (password ? form.formState.isValid : true)
   )

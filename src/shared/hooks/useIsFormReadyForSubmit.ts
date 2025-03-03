@@ -14,8 +14,6 @@ export const useIsFormReadyForSubmit = <T extends FieldValues>(
       const currentValue = watchedValues[key]
       const initialValue = initialValues[key]
 
-      console.log(currentValue, initialValue)
-
       if (currentValue instanceof Date && initialValue instanceof Date) {
         return currentValue.getTime() !== initialValue.getTime()
       }
