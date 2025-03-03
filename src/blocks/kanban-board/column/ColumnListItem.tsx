@@ -1,4 +1,3 @@
-import type { CardTypes } from '@/entities/card'
 import type { ColumnTypes } from '@/entities/column'
 import type { ComponentProps } from 'react'
 
@@ -18,13 +17,11 @@ import { CardList } from '../card/CardList'
 
 type ColumnListItemProps = {
   column: ColumnTypes.Column
-  cards: CardTypes.Card[] | undefined
   backgroundIdentifier?: string
 }
 
 export const ColumnListItem = ({
   column,
-  cards,
   backgroundIdentifier
 }: ColumnListItemProps) => {
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
@@ -59,7 +56,7 @@ export const ColumnListItem = ({
               'h-[calc(100dvh-300px)]': isTabletAndBelow
             })}>
             <ScrollArea.Viewport className='h-full'>
-              <CardList cards={cards} />
+              <CardList currentColumnId={column.id} />
             </ScrollArea.Viewport>
             <ScrollArea.Scrollbar className='w-2 bg-transparent'>
               <ScrollArea.Thumb

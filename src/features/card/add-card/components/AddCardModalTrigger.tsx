@@ -12,11 +12,11 @@ export const AddCardModalTrigger = ({ columnId }: { columnId: string }) => {
   return (
     <PlusButton
       className='mt-3.5'
-      aria-label='Add another card'
+      aria-label='Add card'
       onClick={() =>
         openAddCardModal<CardTypes.AddCardModalProps>({ columnId })
       }>
-      Add another card
+      Add card
     </PlusButton>
   )
 }

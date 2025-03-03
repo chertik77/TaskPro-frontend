@@ -18,7 +18,7 @@ type ColumnListProps = {
 }
 
 export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
-  const { columns, cards } = useDragAndDrop()
+  const { columns } = useDragAndDrop()
 
   const cardHandlers = useCardDragHandlers()
 
@@ -45,7 +45,6 @@ export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
           <ColumnListItem
             column={column}
             key={column.id}
-            cards={cards?.filter(c => c.columnId === column.id)}
             backgroundIdentifier={backgroundIdentifier}
           />
         ))}

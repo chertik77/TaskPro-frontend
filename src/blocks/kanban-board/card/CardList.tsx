@@ -1,5 +1,3 @@
-import type { CardTypes } from '@/entities/card'
-
 import { memo } from 'react'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
@@ -10,17 +8,19 @@ import { useDragAndDrop } from '@/entities/dnd'
 import { CardListItem } from './CardListItem'
 
 type CardListProps = {
-  cards: CardTypes.Card[] | undefined
+  currentColumnId: string
 }
 
-export const CardList = memo(({ cards }: CardListProps) => {
-  const { cards: allCards } = useDragAndDrop()
+export const CardList = memo(({ currentColumnId }: CardListProps) => {
+  const { cards } = useDragAndDrop()
 
-  const filteredCards = useFilteredCards(cards!)
+  const filteredCards = useFilteredCards(
+    cards?.filter(c => c.columnId === currentColumnId) || []
+  )
 
   return (
     <SortableContext
-      items={allCards || []}
+      items={cards || []}
       strategy={verticalListSortingStrategy}>
       <ul className='space-y-2'>
         {filteredCards?.map(card => (
