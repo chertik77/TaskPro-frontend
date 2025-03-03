@@ -14,5 +14,10 @@ export default defineConfig({
     tsconfigPaths(),
     ViteMinifyPlugin()
   ],
+  build: {
+    rollupOptions: {
+      output: { manualChunks: { '@dnd-kit/core': ['@dnd-kit/core'] } }
+    }
+  },
   server: { port: 3000 }
 })
