@@ -14,8 +14,7 @@ export const useGetCurrentUser = () => {
     queryFn: userService.getCurrentUser,
     enabled: signedIn(),
     placeholderData: keepPreviousData,
-    initialData: initialUser,
-    staleTime: Infinity
+    initialData: initialUser
   })
 
   return user
