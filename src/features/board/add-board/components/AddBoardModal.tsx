@@ -21,7 +21,7 @@ import { useAddBoard } from '../hooks/useAddBoard'
 
 export const AddBoardModal = () => {
   const form = useAppForm(BoardContracts.BoardSchema, {
-    defaultValues: { icon: 'project', background: 'default' }
+    defaultValues: { title: '', icon: 'project', background: 'default' }
   })
 
   const { mutate: addBoard, isPending } = useAddBoard(form.reset)

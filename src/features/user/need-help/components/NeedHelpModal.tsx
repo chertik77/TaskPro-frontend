@@ -17,7 +17,9 @@ import {
 import { useNeedHelp } from '../hooks/useNeedHelp'
 
 export const NeedHelpModal = () => {
-  const form = useAppForm(UserContracts.HelpSchema)
+  const form = useAppForm(UserContracts.HelpSchema, {
+    defaultValues: { email: '', comment: '' }
+  })
 
   const { mutate: sendHelpRequest, isPending } = useNeedHelp(form.reset)
 

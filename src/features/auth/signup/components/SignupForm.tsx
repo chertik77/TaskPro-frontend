@@ -16,7 +16,9 @@ import {
 import { useSignupUser } from '../hooks/useSignupUser'
 
 export const SignupForm = () => {
-  const form = useAppForm(AuthContracts.SignupSchema)
+  const form = useAppForm(AuthContracts.SignupSchema, {
+    defaultValues: { name: '', email: '', password: '' }
+  })
 
   const { mutate: signup, isPending } = useSignupUser(form.reset)
 

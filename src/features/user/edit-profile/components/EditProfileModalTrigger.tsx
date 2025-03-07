@@ -3,12 +3,12 @@ import type { UserTypes } from '@/entities/user'
 import * as Avatar from '@radix-ui/react-avatar'
 import { useModal } from 'react-modal-state'
 
-import { useAuthStore } from '@/entities/auth'
+import { useGetCurrentUser } from '@/entities/user'
 
 import { EditProfileModal } from './EditProfileModal'
 
 export const EditProfileModalTrigger = () => {
-  const { name, email, avatar } = useAuthStore(state => state.user)
+  const { name, email, avatar } = useGetCurrentUser()
 
   const { open: openEditProfileModal } = useModal(EditProfileModal)
 

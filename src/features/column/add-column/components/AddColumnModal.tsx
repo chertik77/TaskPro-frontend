@@ -15,7 +15,9 @@ import {
 import { useAddColumn } from '../hooks/useAddColumn'
 
 export const AddColumnModal = () => {
-  const form = useAppForm(ColumnContracts.ColumnSchema)
+  const form = useAppForm(ColumnContracts.ColumnSchema, {
+    defaultValues: { title: '' }
+  })
 
   const { mutate: addColumn, isPending } = useAddColumn(form.reset)
 

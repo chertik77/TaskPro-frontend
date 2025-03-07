@@ -16,7 +16,9 @@ import {
 import { useSigninUser } from '../hooks/useSigninUser'
 
 export const SigninForm = () => {
-  const form = useAppForm(AuthContracts.SigninSchema)
+  const form = useAppForm(AuthContracts.SigninSchema, {
+    defaultValues: { email: '', password: '' }
+  })
 
   const { mutate: signin, isPending } = useSigninUser(form.reset)
 

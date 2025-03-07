@@ -22,7 +22,12 @@ import { useAddCard } from '../hooks/useAddCard'
 
 export const AddCardModal = () => {
   const form = useAppForm(CardContracts.CardSchema, {
-    defaultValues: { priority: 'Without', deadline: new Date() }
+    defaultValues: {
+      title: '',
+      description: '',
+      priority: 'Without',
+      deadline: new Date()
+    }
   })
 
   const { mutate: addCard, isPending } = useAddCard(form.reset)

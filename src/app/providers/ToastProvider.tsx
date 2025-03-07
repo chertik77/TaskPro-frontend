@@ -1,11 +1,11 @@
 import { Toaster } from 'sonner'
 
-import { useAuthStore } from '@/entities/auth'
+import { useGetCurrentUser } from '@/entities/user'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 
 export const ToastProvider = () => {
-  const theme = useAuthStore(state => state.user.theme)
+  const { theme } = useGetCurrentUser()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
