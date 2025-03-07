@@ -1,11 +1,7 @@
-import type {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  HTMLAttributes
-} from 'react'
+import type { ComponentProps } from 'react'
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 
-import { createContext, forwardRef, useContext, useId } from 'react'
+import { createContext, useContext, useId } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 
@@ -63,26 +59,21 @@ const FormItemContext = createContext<FormItemContextValue>(
   {} as FormItemContextValue
 )
 
-const FormItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const id = useId()
+const FormItem = ({ className, ref, ...props }: ComponentProps<'div'>) => {
+  const id = useId()
 
-    return (
-      <FormItemContext.Provider value={{ id }}>
-        <div
-          ref={ref}
-          className={cn('space-y-2', className)}
-          {...props}
-        />
-      </FormItemContext.Provider>
-    )
-  }
-)
+  return (
+    <FormItemContext.Provider value={{ id }}>
+      <div
+        ref={ref}
+        className={cn('space-y-2', className)}
+        {...props}
+      />
+    </FormItemContext.Provider>
+  )
+}
 
-const FormLabel = forwardRef<
-  HTMLLabelElement,
-  HTMLAttributes<HTMLLabelElement>
->(({ className, ...props }, ref) => {
+const FormLabel = ({ className, ref, ...props }: ComponentProps<'label'>) => {
   const { error, formItemId } = useFormField()
 
   return (
@@ -93,12 +84,9 @@ const FormLabel = forwardRef<
       {...props}
     />
   )
-})
+}
 
-const FormControl = forwardRef<
-  ElementRef<typeof Slot>,
-  ComponentPropsWithoutRef<typeof Slot>
->(({ ...props }, ref) => {
+const FormControl = ({ ref, ...props }: ComponentProps<typeof Slot>) => {
   const { error, formItemId, formMessageId } = useFormField()
 
   return (
@@ -110,12 +98,14 @@ const FormControl = forwardRef<
       {...props}
     />
   )
-})
+}
 
-const FormMessage = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement>
->(({ className, children, ...props }, ref) => {
+const FormMessage = ({
+  className,
+  ref,
+  children,
+  ...props
+}: ComponentProps<'p'>) => {
   const { error, formMessageId } = useFormField()
 
   const body = error ? String(error?.message ?? '') : children
@@ -131,6 +121,6 @@ const FormMessage = forwardRef<
       </p>
     )
   )
-})
+}
 
 export { Form, FormItem, FormLabel, FormControl, FormMessage, FormField }

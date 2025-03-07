@@ -1,7 +1,6 @@
 import type { ColumnTypes } from '@/entities/column'
 import type { ComponentProps } from 'react'
 
-import { forwardRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { AddCardModalTrigger } from '@/features/card/add-card'
@@ -75,13 +74,11 @@ export const ColumnListItem = ({
   )
 }
 
-const ColumnDraggingState = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
-  (props, ref) => (
-    <div
-      ref={ref}
-      {...props}
-      className='w-84 rounded-lg border-2 border-brand bg-white-gray opacity-60
-        violet:border-brand-violet dark:bg-black'
-    />
-  )
+const ColumnDraggingState = ({ ref, ...props }: ComponentProps<'div'>) => (
+  <div
+    ref={ref}
+    {...props}
+    className='w-84 rounded-lg border-2 border-brand bg-white-gray opacity-60
+      violet:border-brand-violet dark:bg-black'
+  />
 )

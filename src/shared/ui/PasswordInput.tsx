@@ -1,15 +1,16 @@
 import type { ComponentProps } from 'react'
 
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 
 import { cn } from '../lib/cn'
 import { Icon } from './Icon'
 import { Input } from './Input'
 
-export const PasswordInput = forwardRef<
-  HTMLInputElement,
-  ComponentProps<'input'>
->(({ className, ...props }, ref) => {
+export const PasswordInput = ({
+  className,
+  ref,
+  ...props
+}: ComponentProps<'input'>) => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
@@ -39,4 +40,4 @@ export const PasswordInput = forwardRef<
       </button>
     </div>
   )
-})
+}

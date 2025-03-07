@@ -1,27 +1,29 @@
-import type { ComponentPropsWithoutRef, ElementRef } from 'react'
+import type { ComponentProps } from 'react'
 
-import { forwardRef } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 
 import { cn } from '@/shared/lib/cn'
 
-export const PriorityRadioGroup = forwardRef<
-  ElementRef<typeof RadioGroupPrimitive.Root>,
-  ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
->(({ className, ...props }, ref) => (
+export const PriorityRadioGroup = ({
+  ref,
+  className,
+  ...props
+}: ComponentProps<typeof RadioGroupPrimitive.Root>) => (
   <RadioGroupPrimitive.Root
     ref={ref}
     className={cn('flex gap-2', className)}
     {...props}
   />
-))
+)
 
-export const PriorityRadioGroupItem = forwardRef<
-  ElementRef<typeof RadioGroupPrimitive.Item>,
-  ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
-    indicatorClassname?: string
-  }
->(({ className, indicatorClassname, ...props }, ref) => (
+export const PriorityRadioGroupItem = ({
+  ref,
+  className,
+  indicatorClassname,
+  ...props
+}: ComponentProps<typeof RadioGroupPrimitive.Item> & {
+  indicatorClassname?: string
+}) => (
   <RadioGroupPrimitive.Item
     ref={ref}
     className={cn(
@@ -37,4 +39,4 @@ export const PriorityRadioGroupItem = forwardRef<
       )}
     />
   </RadioGroupPrimitive.Item>
-))
+)

@@ -1,7 +1,6 @@
 import type { CardTypes } from '@/entities/card'
 import type { ComponentProps } from 'react'
 
-import { forwardRef } from 'react'
 import { isToday } from 'date-fns'
 
 import { DeleteCardTrigger } from '@/features/card/delete-card'
@@ -69,13 +68,11 @@ export const CardListItem = ({ card }: CardListItemProps) => (
   </Draggable>
 )
 
-const CardDraggingState = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
-  (props, ref) => (
-    <div
-      ref={ref}
-      {...props}
-      className='h-[154px] rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
-        violet:border-brand-violet dark:bg-black'
-    />
-  )
+const CardDraggingState = ({ ref, ...props }: ComponentProps<'div'>) => (
+  <div
+    ref={ref}
+    {...props}
+    className='h-[154px] rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
+      violet:border-brand-violet dark:bg-black'
+  />
 )
