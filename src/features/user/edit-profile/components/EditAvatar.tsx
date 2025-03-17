@@ -4,7 +4,7 @@ import type { AxiosError } from 'axios'
 
 import { useRef } from 'react'
 
-import { useGetCurrentUser } from '@/entities/user'
+import { useAuthStore } from '@/entities/auth'
 
 import { Icon } from '@/shared/ui'
 
@@ -19,7 +19,7 @@ type EditAvatarProps = {
 export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const { avatar } = useGetCurrentUser()
+  const avatar = useAuthStore(state => state.user.avatar)
 
   return (
     <div className='mb-[25px] flex justify-center'>

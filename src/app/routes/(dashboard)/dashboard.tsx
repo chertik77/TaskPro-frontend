@@ -15,6 +15,8 @@ const DashboardRoute = () => {
 
   useSidebarToggleShortcut()
 
+  useAuthStore(state => state.getCurrentUser)()
+
   return (
     <div
       className={cn(

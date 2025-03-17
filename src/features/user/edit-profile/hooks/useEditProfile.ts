@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
+import { useAuthStore } from '@/entities/auth'
 import { userService } from '@/entities/user'
 
 import { EditProfileModal } from '../components/EditProfileModal'
@@ -9,12 +10,14 @@ import { EditProfileModal } from '../components/EditProfileModal'
 export const useEditProfile = () => {
   const { close: closeEditProfileModal } = useModal(EditProfileModal)
 
+  const updateUser = useAuthStore(state => state.updateUser)
+
   return useMutation({
     mutationKey: ['editUserProfile'],
     mutationFn: userService.updateUserCredentials,
-    meta: { invalidates: [['user']] },
-    onSuccess() {
+    onSuccess(data) {
       closeEditProfileModal()
+      updateUser(data)
       toast.success('Your profile has been successfully updated.')
     },
     onError(e) {

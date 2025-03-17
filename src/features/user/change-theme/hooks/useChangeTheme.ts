@@ -1,32 +1,24 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { useAuthStore } from '@/entities/auth'
 import { userService, UserTypes } from '@/entities/user'
 
 export const useChangeTheme = () => {
-  const queryClient = useQueryClient()
+  const previousUser = useAuthStore(state => state.user)
+
+  const updateUser = useAuthStore(state => state.updateUser)
 
   return useMutation({
-    mutationKey: ['changeUserTheme'],
     mutationFn: userService.changeUserTheme,
     onMutate: async (theme: UserTypes.Theme) => {
-      await queryClient.cancelQueries({ queryKey: ['user'] })
-
-      const previousUser = queryClient.getQueryData<UserTypes.User>(['user'])
-
-      queryClient.setQueryData<UserTypes.User>(
-        ['user'],
-        oldUser => oldUser && { ...oldUser, theme }
-      )
+      updateUser({ theme })
 
       return { previousUser }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['user'], context?.previousUser)
+      updateUser(context?.previousUser as UserTypes.User)
       toast.error('We couldn’t update your theme. Please try again')
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] })
     }
   })
 }

@@ -5,7 +5,7 @@ import type { BoardSchema } from '../model/types'
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 
-import { useGetCurrentUser } from '@/entities/user/@x/board'
+import { useAuthStore } from '@/entities/auth/@x/board'
 
 import { FormControl, FormItem } from '@/shared/ui'
 
@@ -19,7 +19,7 @@ type FormBgImageSelectorProps = {
 }
 
 export const FormBgImageSelector = ({ field }: FormBgImageSelectorProps) => {
-  const { theme } = useGetCurrentUser()
+  const theme = useAuthStore(state => state.user.theme)
 
   const { data: boardImages, isPending } = useQuery<BoardImages>({
     queryKey: ['board-bg-images'],
