@@ -11,7 +11,6 @@ export const useUpdateColumnOrder = () => {
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationKey: ['updateColumnOrder'],
     mutationFn: ({ ids }: UpdateOrderData) =>
       columnService.updateColumnOrder(boardId!, { ids }),
     meta: { invalidates: [['board']] },

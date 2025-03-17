@@ -20,7 +20,6 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const { close: closeEditCardModal } = useModal(EditCardModal)
 
   return useMutation({
-    mutationKey: ['editCard'],
     mutationFn: ({
       cardId,
       cardData

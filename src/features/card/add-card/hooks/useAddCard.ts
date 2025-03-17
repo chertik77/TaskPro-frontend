@@ -17,7 +17,6 @@ export const useAddCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const { close: closeAddCardModal } = useModal(AddCardModal)
 
   return useMutation({
-    mutationKey: ['addCard'],
     mutationFn: (data: CardTypes.CardSchema) =>
       cardService.addNewCard(columnId, data),
     meta: { invalidates: [['board']] },

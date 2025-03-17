@@ -12,7 +12,6 @@ export const useSignupUser = (reset: UseFormReset<AuthTypes.SignupSchema>) => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationKey: ['signup'],
     mutationFn: authService.signup,
     onSuccess(data) {
       reset()

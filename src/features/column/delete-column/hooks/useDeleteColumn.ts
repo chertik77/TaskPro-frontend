@@ -7,7 +7,6 @@ export const useDeleteColumn = () => {
   const { setColumns, setCards } = useDragAndDrop()
 
   return useMutation({
-    mutationKey: ['deleteColumn'],
     mutationFn: (columnId: string) => columnService.deleteColumn(columnId),
     meta: { invalidates: [['board']] },
     onMutate: async columnId => {

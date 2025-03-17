@@ -13,7 +13,6 @@ export const useNeedHelp = (reset: UseFormReset<UserTypes.HelpSchema>) => {
   const { close: closeNeedHelpModal } = useModal(NeedHelpModal)
 
   return useMutation({
-    mutationKey: ['needHelp'],
     mutationFn: userService.askForHelp,
     onSuccess() {
       reset()

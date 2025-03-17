@@ -7,7 +7,6 @@ import { cardService } from '@/entities/card'
 
 export const useUpdateCardOrder = () =>
   useMutation({
-    mutationKey: ['updateCardOrder'],
     mutationFn: ({ columnId, ids }: UpdateOrderData & { columnId: string }) =>
       cardService.updateCardOrder(columnId, { ids }),
     meta: { invalidates: [['board']] },

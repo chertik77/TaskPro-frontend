@@ -13,7 +13,6 @@ export const useEditProfile = () => {
   const updateUser = useAuthStore(state => state.updateUser)
 
   return useMutation({
-    mutationKey: ['editUserProfile'],
     mutationFn: userService.updateUserCredentials,
     onSuccess(data) {
       closeEditProfileModal()

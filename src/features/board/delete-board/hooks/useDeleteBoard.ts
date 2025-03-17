@@ -14,7 +14,6 @@ export const useDeleteBoard = () => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationKey: ['deleteBoard'],
     mutationFn: () => boardService.deleteBoard(boardId!),
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ['boards'] })

@@ -22,7 +22,6 @@ export const useEditColumn = (
   const { close: closeEditColumnModal } = useModal(EditColumnModal)
 
   return useMutation({
-    mutationKey: ['editColumn'],
     mutationFn: ({
       columnId,
       data

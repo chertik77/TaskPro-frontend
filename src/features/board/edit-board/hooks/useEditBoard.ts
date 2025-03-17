@@ -19,7 +19,6 @@ export const useEditBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const { close: closeEditBoardModal } = useModal(EditBoardModal)
 
   return useMutation({
-    mutationKey: ['editBoard'],
     mutationFn: (data: BoardTypes.BoardSchema) =>
       boardService.editBoard(boardId!, data),
     onMutate: async ({ title, icon }) => {

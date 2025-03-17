@@ -17,7 +17,6 @@ export const useAddColumn = (reset: UseFormReset<ColumnTypes.ColumnSchema>) => {
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationKey: ['addColumn'],
     mutationFn: ({ title }: ColumnTypes.ColumnSchema) =>
       columnService.addNewColumn(boardId!, { title }),
     meta: { invalidates: [['board']] },

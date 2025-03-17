@@ -10,7 +10,6 @@ export const useLogoutUser = () => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationKey: ['logout'],
     mutationFn: authService.logout,
     onSuccess() {
       navigate({ to: '/' })

@@ -16,7 +16,6 @@ export const useAddBoard = (reset: UseFormReset<BoardTypes.BoardSchema>) => {
   const { close: closeNewBoardModal } = useModal(AddBoardModal)
 
   return useMutation({
-    mutationKey: ['addBoard'],
     mutationFn: boardService.addNewBoard,
     meta: { invalidates: [['boards']] },
     onSuccess(data) {
