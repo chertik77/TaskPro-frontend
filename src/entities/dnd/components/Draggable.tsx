@@ -2,7 +2,8 @@ import type { DraggableAttributes, UniqueIdentifier } from '@dnd-kit/core'
 import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import type { ElementType, ReactNode } from 'react'
 
-import { useKanbanSortable } from '@/shared/hooks'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 type Style = {
   transition: string | undefined
@@ -30,17 +31,22 @@ export const Draggable = ({
   entity,
   WhileDraggingComponent
 }: DraggableProps) => {
-  const sortable = useKanbanSortable({
+  const { transition, transform, ...sortable } = useSortable({
     id: entity.id,
     data: { type: draggableType, entity }
   })
 
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform)
+  }
+
   return sortable.isDragging ? (
     <WhileDraggingComponent
       ref={sortable.setNodeRef}
-      style={sortable.style}
+      style={style}
     />
   ) : (
-    children(sortable)
+    children({ ...sortable, style })
   )
 }

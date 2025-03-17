@@ -1,6 +1,5 @@
 export { useAppForm } from './useAppForm'
 export { useDocumentTitle } from './useDocumentTitle'
 export { useGetParamBoardId } from './useGetParamBoardId'
-export { useKanbanSortable } from './useKanbanSortable'
 export { useIsFormReadyForSubmit } from './useIsFormReadyForSubmit'
 export { useTabletAndBelowMediaQuery } from './useTabletAndBelowMediaQuery'
