@@ -19,6 +19,9 @@ export const useChangeTheme = () => {
     onError: (_, __, context) => {
       updateUser(context?.previousUser as UserTypes.User)
       toast.error('We couldn’t update your theme. Please try again')
+    },
+    onSettled: data => {
+      updateUser(data as UserTypes.User)
     }
   })
 }
