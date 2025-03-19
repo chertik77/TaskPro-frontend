@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
+import { router } from '@/shared/lib/react-router'
+
 import { useAuthStore } from '../model/store'
 import { authService } from './service'
 
@@ -40,9 +42,10 @@ axiosInstance.interceptors.response.use(
       } catch (e) {
         if (
           e instanceof AxiosError &&
-          e.response?.data?.message === 'jwt expired'
+          e.response?.data?.message === 'ERR_JWT_EXPIRED'
         ) {
           useAuthStore.getState().resetStore()
+          router.navigate({ to: '/' })
         }
 
         throw e
