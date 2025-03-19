@@ -45,7 +45,8 @@ axiosInstance.interceptors.response.use(
           e.response?.data?.message === 'ERR_JWT_EXPIRED'
         ) {
           useAuthStore.getState().resetStore()
-          router.navigate({ to: '/' })
+
+          return router.navigate({ to: '/' })
         }
 
         throw e
