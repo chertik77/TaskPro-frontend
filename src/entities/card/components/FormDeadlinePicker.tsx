@@ -3,6 +3,7 @@ import type { CardSchema } from '../model/types'
 
 import { useState } from 'react'
 import * as Popover from '@radix-ui/react-popover'
+import { isBefore, isToday } from 'date-fns'
 
 import { Calendar, FormControl, Icon } from '@/shared/ui'
 
@@ -40,7 +41,8 @@ export const FormDeadlinePicker = ({ field }: FormDeadlinePickerProps) => {
         align='start'>
         <Calendar
           mode='single'
-          startMonth={field.value}
+          startMonth={new Date()}
+          disabled={date => isBefore(date, new Date()) && !isToday(date)}
           defaultMonth={field.value}
           selected={field.value}
           onSelect={date => {

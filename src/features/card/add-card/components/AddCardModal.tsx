@@ -72,7 +72,7 @@ export const AddCardModal = () => {
             render={({ field }) => (
               <FormItem className='mb-3.5 space-y-1'>
                 <FormLabel className='text-md text-black/50 dark:text-white/50'>
-                  Label color
+                  Priority
                 </FormLabel>
                 <FormControl>
                   <FormPrioritySelector field={field} />

@@ -27,13 +27,15 @@ export const Calendar = ({
       weekdays: 'flex gap-[11px]',
       weekday: 'text-black/50 dark:text-white/50',
       button_previous:
-        'absolute left-4.5 top-6 disabled:opacity-20 disabled:cursor-not-allowed focus-visible:styled-outline',
+        'absolute left-4.5 top-6 aria-disabled:opacity-20 aria-disabled:cursor-not-allowed focus-visible:styled-outline',
       nav: 'flex items-center',
       button_next: 'absolute right-4.5 top-6 focus-visible:styled-outline',
       month_grid: '!mt-3.5',
       week: 'flex gap-[11px] mt-[11px] justify-end',
       day: 'p-0 text-base rounded-full',
       day_button: 'h-5 w-5 focus-visible:styled-outline',
+      today:
+        'text-brand violet:text-brand-violet aria-selected:text-black-muted aria-selected:violet:text-white',
       selected:
         'bg-brand text-black-muted violet:bg-brand-violet violet:text-white opacity-100',
       outside: 'opacity-20 aria-selected:opacity-100',
