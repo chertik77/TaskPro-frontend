@@ -22,11 +22,11 @@ export const EditProfileModal = () => {
 
   return (
     <Modal modalTitle='Edit profile'>
+      <EditAvatar changeUserAvatar={editProfile} />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data => editProfile(data))}
           className='space-y-3.5'>
-          <EditAvatar changeUserAvatar={editProfile} />
           <FormField
             control={form.control}
             name='name'
