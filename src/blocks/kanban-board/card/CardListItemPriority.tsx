@@ -1,4 +1,6 @@
-import { CardTypes, getPriorityColor } from '@/entities/card'
+import type { CardTypes } from '@/entities/card'
+
+import { getPriorityColor } from '@/entities/card'
 
 import { cn } from '@/shared/lib/cn'
 

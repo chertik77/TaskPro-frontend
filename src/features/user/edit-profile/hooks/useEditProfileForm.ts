@@ -1,8 +1,10 @@
+import type { UserTypes } from '@/entities/user'
+
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 import { omit } from 'valibot'
 
-import { UserContracts, UserTypes } from '@/entities/user'
+import { UserContracts } from '@/entities/user'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 

@@ -1,8 +1,10 @@
+import type { UserTypes } from '@/entities/user'
+
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { useAuthStore } from '@/entities/auth'
-import { userService, UserTypes } from '@/entities/user'
+import { userService } from '@/entities/user'
 
 export const useChangeTheme = () => {
   const previousUser = useAuthStore(state => state.user)

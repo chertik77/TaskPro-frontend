@@ -1,10 +1,11 @@
+import type { AuthTypes } from '@/entities/auth'
 import type { UseFormReset } from 'react-hook-form'
 
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { authService, AuthTypes, useAuthStore } from '@/entities/auth'
+import { authService, useAuthStore } from '@/entities/auth'
 
 export const useSignupUser = (reset: UseFormReset<AuthTypes.SignupSchema>) => {
   const authenticate = useAuthStore(state => state.authenticate)
