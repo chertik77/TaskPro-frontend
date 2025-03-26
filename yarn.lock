@@ -4042,10 +4042,10 @@ prettier-plugin-classnames@^0.7.6:
   resolved "https://registry.yarnpkg.com/prettier-plugin-classnames/-/prettier-plugin-classnames-0.7.7.tgz#933fa06aee308afa0258defa96883fdcc7f2a4a7"
   integrity sha512-qn+hhpru++ieZ6B6mKt7j6ETPvgOQnJvJ51Yl4rnHneK/vnFxEFOpzFmp1Urcs7Zd/JgUKiaoHIiSSw3LmPy/Q==
 
-prettier-plugin-merge@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-merge/-/prettier-plugin-merge-0.7.2.tgz#ad6ef7cdc7ae76e421dd2f36fab987fee579cad1"
-  integrity sha512-o/twjBSVjKttfBBz7KWdJxyPjEAoSh1WwkEv02XKWoyifPXVPSifgB597nntEzTo5hN63XnoZQkAdDVnt6WRLA==
+prettier-plugin-merge@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-merge/-/prettier-plugin-merge-0.7.3.tgz#461b0e5d875a8426366f105914fefd31cb49bbd3"
+  integrity sha512-5b4h5MZRFFTqlGWMWS3KOFUWTfEesXdMPjaT5LbTw9Jck7Ghu1hjrhM6P0Dfrzhf0zrqdwIjyFMtF6YG90dOXg==
   dependencies:
     diff "5.1.0"
 
