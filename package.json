@@ -31,7 +31,7 @@
     "axios": "^1.8.1",
     "date-fns": "^4.1.0",
     "react": "^19.0.0",
-    "react-day-picker": "^9.5.1",
+    "react-day-picker": "^9.6.3",
     "react-dom": "^19.0.0",
     "react-hook-form": "7.54.2",
     "react-modal-state": "^1.1.1",
