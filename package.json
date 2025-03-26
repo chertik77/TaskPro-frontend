@@ -56,7 +56,7 @@
     "clsx": "^2.1.1",
     "eslint": "^9.23.0",
     "eslint-formatter-mo": "^2.3.0",
-    "eslint-plugin-project-structure": "^3.13.2",
+    "eslint-plugin-project-structure": "^3.13.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-tailwindcss": "^3.18.0",
