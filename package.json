@@ -54,7 +54,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
-    "eslint": "^9.21.0",
+    "eslint": "^9.23.0",
     "eslint-formatter-mo": "^2.3.0",
     "eslint-plugin-project-structure": "^3.13.2",
     "eslint-plugin-react": "^7.37.4",
