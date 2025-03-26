@@ -2440,10 +2440,10 @@ eslint-formatter-mo@^2.3.0:
     string-width "^7.2.0"
     terminal-link "^3.0.0"
 
-eslint-plugin-project-structure@^3.13.2:
-  version "3.13.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-project-structure/-/eslint-plugin-project-structure-3.13.2.tgz#17d0a266964cfb570362e2c4ad25dd37a9c6efd8"
-  integrity sha512-wJJcN8Zm/M4n7rjrENlgk1IQHL51IXqTrZrW22UTKzXBhptp69OCUVnkKcNUBQuWV1xkCcMu0r+mE5Ki2PzbzQ==
+eslint-plugin-project-structure@^3.13.3:
+  version "3.13.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-project-structure/-/eslint-plugin-project-structure-3.13.3.tgz#d9ac3aff9419e56e2cba75fdcb16629b1c3f87e0"
+  integrity sha512-Id7oGa249dLVSe8JBUKEmpj6Kx05zgOnp9fogmLYFIHGUCj/ejJ+B9n+dpoUQjpweIQSENuwe1F43BEDnV3VrQ==
   dependencies:
     "@typescript-eslint/utils" "^8.21.0"
     comment-json "^4.2.5"
