@@ -30,7 +30,7 @@ export const Board = () => {
           board?.background.hasWhiteTextColor && 'text-white',
           board?.background.identifier === 'default' && 'dark:text-white'
         )}>
-        <p className='whitespace-pre tablet:text-xl'>{board?.title}</p>
+        <h2 className='whitespace-pre tablet:text-xl'>{board?.title}</h2>
         {!isPending && <Filters />}
       </div>
       {isPending ? (
