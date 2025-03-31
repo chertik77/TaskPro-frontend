@@ -1,12 +1,11 @@
 import type { BoardTypes } from '@/entities/board'
 
 import { Item } from '@radix-ui/react-roving-focus'
-import { useNavigate } from '@tanstack/react-router'
+import { useNavigate, useParams } from '@tanstack/react-router'
 
 import { DeleteBoardTrigger } from '@/features/board/delete-board'
 import { EditBoardModalTrigger } from '@/features/board/edit-board'
 
-import { useGetParamBoardId } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
@@ -16,7 +15,7 @@ type SidebarBoardListItemProps = {
 }
 
 export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
-  const { boardId } = useGetParamBoardId()
+  const { boardId } = useParams({ strict: false })
 
   const navigate = useNavigate()
 
@@ -37,8 +36,9 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
         role='option'
         tabIndex={0}
         className={cn(
-          `focus-visible:styled-outline flex h-[61px] w-full items-center justify-between
-          pl-3.5 text-black/50 violet:text-white/50 dark:text-white/50 tablet:pl-6`,
+          `focus-visible:styled-outline flex h-[61px] w-full cursor-pointer items-center
+          justify-between pl-3.5 text-black/50 violet:text-white/50 dark:text-white/50
+          tablet:pl-6`,
           boardId === board.id &&
             `bg-white-muted text-black violet:bg-white/50 violet:text-white
             dark:bg-black-muted dark:text-white`
