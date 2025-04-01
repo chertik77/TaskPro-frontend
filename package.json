@@ -46,7 +46,7 @@
     "@eslint/js": "^9.21.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@tanstack/eslint-plugin-query": "^5.66.1",
-    "@tanstack/eslint-plugin-router": "^1.112.18",
+    "@tanstack/eslint-plugin-router": "^1.114.29",
     "@tanstack/router-plugin": "^1.114.24",
     "@types/node": "^22.13.13",
     "@types/react": "^19.0.11",
