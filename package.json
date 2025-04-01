@@ -33,7 +33,7 @@
     "react": "^19.0.0",
     "react-day-picker": "^9.6.3",
     "react-dom": "^19.0.0",
-    "react-hook-form": "7.54.2",
+    "react-hook-form": "7.55.0",
     "react-modal-state": "^1.1.1",
     "react-responsive-modal": "^6.4.2",
     "sonner": "^2.0.2",
