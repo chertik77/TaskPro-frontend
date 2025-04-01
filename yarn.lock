@@ -1174,10 +1174,10 @@
   dependencies:
     "@typescript-eslint/utils" "^8.18.1"
 
-"@tanstack/eslint-plugin-router@^1.112.18":
-  version "1.114.12"
-  resolved "https://registry.yarnpkg.com/@tanstack/eslint-plugin-router/-/eslint-plugin-router-1.114.12.tgz#2243755e3039e7895cf4c027febee1662e13df7d"
-  integrity sha512-+o/1ZFpjvPyg7MFIV5WG577TR/HVxvBi9e7t6O+A99q4rfvx83XdhUa9soKCVRJROMklqWnww6ifFYgP/l04XA==
+"@tanstack/eslint-plugin-router@^1.114.29":
+  version "1.114.29"
+  resolved "https://registry.yarnpkg.com/@tanstack/eslint-plugin-router/-/eslint-plugin-router-1.114.29.tgz#dbde3243e6620df5a282b36f8aa95320ab57fb6d"
+  integrity sha512-eV1QY6TgNfl5O9NeV3vDY+lfT1KunmOivHAQd5MXqPyQd5wnw79LSdzf+8H6E4tjUFYhs6xttHTO+QSqJ8fzew==
   dependencies:
     "@typescript-eslint/utils" "^8.23.0"
 
