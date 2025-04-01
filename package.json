@@ -36,7 +36,7 @@
     "react-hook-form": "7.54.2",
     "react-modal-state": "^1.1.1",
     "react-responsive-modal": "^6.4.2",
-    "sonner": "^2.0.1",
+    "sonner": "^2.0.2",
     "valibot": "^1.0.0-rc.3",
     "zustand": "^5.0.3"
   },
