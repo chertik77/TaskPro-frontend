@@ -29,7 +29,10 @@ export const Modal = ({ children, modalTitle, ...props }: ModalProps) => {
       center
       classNames={{
         // eslint-disable-next-line tailwindcss/no-custom-classname
-        modal: `${cn('shadow-none m-0 w-84 rounded-lg p-6 dark:bg-black tablet:w-[350px]', modalTitle === 'Need help' && 'max-tablet:w-84')}`,
+        modal: cn(
+          'shadow-none m-0 w-84 rounded-lg p-6 dark:bg-black tablet:w-[350px]',
+          modalTitle === 'Need help' && 'max-tablet:w-84'
+        ),
         closeButton: 'focus-visible:styled-outline',
         closeIcon: 'dark:fill-white size-4.5',
         overlay: 'backdrop-saturate-150 backdrop-blur-md'
