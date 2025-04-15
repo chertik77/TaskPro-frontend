@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+
 import {
   Button,
   Form,
@@ -20,8 +22,12 @@ export const EditProfileModal = () => {
 
   const { mutate: editProfile, isPending } = useEditProfile()
 
+  const initialFocusRef = useRef<HTMLInputElement>(null!)
+
   return (
-    <Modal modalTitle='Edit profile'>
+    <Modal
+      modalTitle='Edit profile'
+      initialFocusRef={initialFocusRef}>
       <EditAvatar changeUserAvatar={editProfile} />
       <Form {...form}>
         <form
@@ -36,6 +42,7 @@ export const EditProfileModal = () => {
                   <Input
                     placeholder='Enter your name'
                     {...field}
+                    ref={initialFocusRef}
                   />
                 </FormControl>
                 <FormMessage />
