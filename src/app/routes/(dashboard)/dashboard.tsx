@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
-import { useSidebarToggleShortcut } from '@/features/toggle-sidebar'
+import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
 
 import { useAuthStore } from '@/entities/auth'
 

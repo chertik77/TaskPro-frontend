@@ -1,9 +1,9 @@
+import { ThemeSelect } from '@/features/user/change-theme'
+import { EditProfileModalTrigger } from '@/features/user/edit-profile'
 import {
   ToggleMobileSidebarTrigger,
   ToggleSidebarTrigger
-} from '@/features/toggle-sidebar'
-import { ThemeSelect } from '@/features/user/change-theme'
-import { EditProfileModalTrigger } from '@/features/user/edit-profile'
+} from '@/features/user/toggle-sidebar'
 
 export const Header = () => (
   <header
