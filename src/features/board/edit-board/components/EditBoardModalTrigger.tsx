@@ -7,7 +7,7 @@ import { Icon } from '@/shared/ui'
 import { EditBoardModal } from './EditBoardModal'
 
 type EditBoardModalTriggerProps = {
-  board: BoardTypes.Board
+  board: BoardTypes.BoardSchema
 }
 
 export const EditBoardModalTrigger = ({
@@ -16,7 +16,7 @@ export const EditBoardModalTrigger = ({
   const { open: openEditBoardModal } = useModal(EditBoardModal)
 
   const handleBoardEdit = () => {
-    openEditBoardModal<BoardTypes.EditBoardModalProps>({
+    openEditBoardModal<BoardTypes.EditBoardModalSchema>({
       title: board.title,
       icon: board.icon,
       background: board.background.identifier

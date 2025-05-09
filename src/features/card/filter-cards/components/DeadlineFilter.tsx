@@ -1,6 +1,6 @@
 import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
 
-import { DEADLINES } from '@/entities/card'
+import { DEADLINES } from '@/shared/constants'
 
 import { useCardFilters } from '../hooks/useCardFilters'
 

@@ -1,12 +1,10 @@
-import type { Theme } from '@/entities/user/@x/board'
-import type { ControllerRenderProps } from 'react-hook-form'
-import type { BoardSchema } from '../model/types'
+import type { Theme } from '@/shared/constants'
+import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 
-import { useAuthStore } from '@/entities/auth/@x/board'
-
+import { useAuthStore } from '@/shared/store'
 import { FormControl, FormItem } from '@/shared/ui'
 
 type BoardImages = {
@@ -14,11 +12,13 @@ type BoardImages = {
   icon: string | Record<Theme, string>
 }[]
 
-type FormBgImageSelectorProps = {
-  field: ControllerRenderProps<BoardSchema, 'background'>
+type FormBgImageSelectorProps<T extends FieldValues> = {
+  field: ControllerRenderProps<T, Path<T>>
 }
 
-export const FormBgImageSelector = ({ field }: FormBgImageSelectorProps) => {
+export const FormBgImageSelector = <T extends FieldValues>({
+  field
+}: FormBgImageSelectorProps<T>) => {
   const theme = useAuthStore(state => state.user.theme)
 
   const { data: boardImages, isPending } = useQuery<BoardImages>({

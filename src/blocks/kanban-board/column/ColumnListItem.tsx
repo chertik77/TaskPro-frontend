@@ -1,13 +1,13 @@
 import type { ColumnTypes } from '@/entities/column'
-import type { ComponentProps } from 'react'
 
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { AddCardModalTrigger } from '@/features/card/add-card'
 import { DeleteColumnTrigger } from '@/features/column/delete-column'
 import { EditColumnTrigger } from '@/features/column/edit-column'
+import { Draggable } from '@/features/drag-and-drop'
 
-import { Draggable } from '@/entities/dnd'
+import { ColumnDraggingState } from '@/entities/column'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
@@ -15,7 +15,7 @@ import { cn } from '@/shared/lib/cn'
 import { CardList } from '../card/CardList'
 
 type ColumnListItemProps = {
-  column: ColumnTypes.Column
+  column: ColumnTypes.ColumnSchema
   backgroundURL?: string | null
 }
 
@@ -73,12 +73,3 @@ export const ColumnListItem = ({
     </Draggable>
   )
 }
-
-const ColumnDraggingState = ({ ref, ...props }: ComponentProps<'div'>) => (
-  <div
-    ref={ref}
-    {...props}
-    className='w-84 rounded-lg border-2 border-brand bg-white-gray opacity-60
-      violet:border-brand-violet dark:bg-black'
-  />
-)

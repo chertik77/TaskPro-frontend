@@ -23,7 +23,7 @@ export const EditColumnModal = () => {
         <form
           className='space-y-6'
           onSubmit={form.handleSubmit(data =>
-            editColumn({ columnId: initialColumn.id, data })
+            editColumn({ columnId: initialColumn.id, ...data })
           )}>
           <FormField
             control={form.control}

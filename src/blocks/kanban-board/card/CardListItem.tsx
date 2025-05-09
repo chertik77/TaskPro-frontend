@@ -1,13 +1,12 @@
 import type { CardTypes } from '@/entities/card'
-import type { ComponentProps } from 'react'
 
 import { isToday } from 'date-fns'
 
 import { DeleteCardTrigger } from '@/features/card/delete-card'
 import { EditCardModalTrigger } from '@/features/card/edit-card'
+import { Draggable } from '@/features/drag-and-drop'
 
-import { getPriorityColor } from '@/entities/card'
-import { Draggable } from '@/entities/dnd'
+import { CardDraggingState, getPriorityColor } from '@/entities/card'
 
 import { cn } from '@/shared/lib/cn'
 import { Icon } from '@/shared/ui'
@@ -16,7 +15,7 @@ import { CardListItemDeadline } from './CardListItemDeadline'
 import { CardListItemPriority } from './CardListItemPriority'
 
 type CardListItemProps = {
-  card: CardTypes.Card
+  card: CardTypes.CardSchema
 }
 
 export const CardListItem = ({ card }: CardListItemProps) => (
@@ -66,13 +65,4 @@ export const CardListItem = ({ card }: CardListItemProps) => (
       </li>
     )}
   </Draggable>
-)
-
-const CardDraggingState = ({ ref, ...props }: ComponentProps<'div'>) => (
-  <div
-    ref={ref}
-    {...props}
-    className='h-[154px] rounded-lg border-2 border-brand bg-white py-3.5 pl-6 pr-5 opacity-60
-      violet:border-brand-violet dark:bg-black'
-  />
 )

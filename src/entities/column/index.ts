@@ -1,3 +1,3 @@
-export { columnService } from './api/service'
-export * as ColumnContracts from './api/contracts'
-export * as ColumnTypes from './model/types'
+export * as ColumnTypes from './column.types'
+export * as ColumnContracts from './column.contracts'
+export { ColumnDraggingState } from './components/ColumnDraggingState'

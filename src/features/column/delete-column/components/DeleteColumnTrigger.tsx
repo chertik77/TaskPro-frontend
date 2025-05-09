@@ -10,7 +10,7 @@ export const DeleteColumnTrigger = ({ columnId }: { columnId: string }) => {
       type='button'
       className='focus-visible:styled-outline hocus:[&_svg]:stroke-black
         violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft'
-      onClick={() => deleteColumn(columnId)}
+      onClick={() => deleteColumn({ columnId })}
       aria-label='Delete column'>
       <Icon
         name='trash'

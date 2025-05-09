@@ -1,8 +1,4 @@
-import {
-  CardContracts,
-  FormDeadlinePicker,
-  FormPrioritySelector
-} from '@/entities/card'
+import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
 
 import { useAppForm } from '@/shared/hooks'
 import {
@@ -18,10 +14,11 @@ import {
   TextArea
 } from '@/shared/ui'
 
+import { AddCardSchema } from '../add-card.contract'
 import { useAddCard } from '../hooks/useAddCard'
 
 export const AddCardModal = () => {
-  const form = useAppForm(CardContracts.CardSchema, {
+  const form = useAppForm(AddCardSchema, {
     defaultValues: {
       title: '',
       description: '',

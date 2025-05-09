@@ -26,7 +26,7 @@ export const EditCardModal = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data =>
-            editCard({ cardId: initialCard.id, cardData: data })
+            editCard({ cardId: initialCard.id, ...data })
           )}>
           <FormField
             control={form.control}

@@ -2,8 +2,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { useAuthStore } from '@/entities/auth'
-import { userService } from '@/entities/user'
+import { userService } from '@/shared/api/user'
+import { useAuthStore } from '@/shared/store'
 
 import { EditProfileModal } from '../components/EditProfileModal'
 

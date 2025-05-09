@@ -1,5 +1,3 @@
-import { UserContracts } from '@/entities/user'
-
 import { useAppForm } from '@/shared/hooks'
 import {
   Button,
@@ -15,9 +13,10 @@ import {
 } from '@/shared/ui'
 
 import { useNeedHelp } from '../hooks/useNeedHelp'
+import { HelpSchema } from '../need-help.contract'
 
 export const NeedHelpModal = () => {
-  const form = useAppForm(UserContracts.HelpSchema, {
+  const form = useAppForm(HelpSchema, {
     defaultValues: { email: '', comment: '' }
   })
 

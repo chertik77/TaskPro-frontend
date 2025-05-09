@@ -1,8 +1,4 @@
-import {
-  BoardContracts,
-  FormBgImageSelector,
-  FormIconSelector
-} from '@/entities/board'
+import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 
 import { useAppForm } from '@/shared/hooks'
 import {
@@ -17,10 +13,11 @@ import {
   PlusButton
 } from '@/shared/ui'
 
+import { AddBoardSchema } from '../add-board.contract'
 import { useAddBoard } from '../hooks/useAddBoard'
 
 export const AddBoardModal = () => {
-  const form = useAppForm(BoardContracts.BoardSchema, {
+  const form = useAppForm(AddBoardSchema, {
     defaultValues: { title: '', icon: 'project', background: 'default' }
   })
 

@@ -14,7 +14,7 @@ export const AddCardModalTrigger = ({ columnId }: { columnId: string }) => {
       className='mt-3.5'
       aria-label='Add card'
       onClick={() =>
-        openAddCardModal<CardTypes.AddCardModalProps>({ columnId })
+        openAddCardModal<CardTypes.AddCardModalSchema>({ columnId })
       }>
       Add card
     </PlusButton>

@@ -1,7 +1,7 @@
 import { DragOverlay } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
 
-import { useDragAndDrop } from '@/entities/dnd'
+import { useDragAndDrop } from '@/features/drag-and-drop'
 
 import { CardListItem } from '../card/CardListItem'
 import { ColumnListItem } from '../column/ColumnListItem'

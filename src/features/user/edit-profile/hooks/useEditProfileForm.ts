@@ -4,15 +4,15 @@ import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 import { omit } from 'valibot'
 
-import { UserContracts } from '@/entities/user'
-
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+
+import { EditUserSchema } from '../edit-profile.contract'
 
 export const useEditProfileForm = () => {
   const { data: initialUser } =
-    useModalInstance<UserTypes.EditProfileModalProps>()
+    useModalInstance<UserTypes.EditProfileModalSchema>()
 
-  const form = useAppForm(omit(UserContracts.EditUserSchema, ['avatar']), {
+  const form = useAppForm(omit(EditUserSchema, ['avatar']), {
     shouldUnregister: false
   })
 

@@ -1,17 +1,18 @@
 import type { CardTypes } from '@/entities/card'
+import type { Deadline, Priority } from '@/shared/constants'
 
 import { addDays, isAfter, isBefore, isToday, startOfToday } from 'date-fns'
 
 type CardFilters = {
-  priority?: CardTypes.Priority
-  deadline?: CardTypes.Deadline
+  priority?: Priority
+  deadline?: Deadline
 }
 
 const today = startOfToday()
 const nextWeek = addDays(today, 7)
 
 export const getFilteredCards = (
-  cards: CardTypes.Card[],
+  cards: CardTypes.CardSchema[],
   { priority, deadline }: CardFilters
 ) => {
   if (!priority && !deadline) return cards

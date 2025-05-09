@@ -1,1 +1,1 @@
-export type { Column } from '../model/types'
+export type { ColumnSchema } from '../column.types'

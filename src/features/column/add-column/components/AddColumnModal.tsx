@@ -1,5 +1,3 @@
-import { ColumnContracts } from '@/entities/column'
-
 import { useAppForm } from '@/shared/hooks'
 import {
   Form,
@@ -12,10 +10,11 @@ import {
   PlusButton
 } from '@/shared/ui'
 
+import { AddColumnSchema } from '../add-column.contract'
 import { useAddColumn } from '../hooks/useAddColumn'
 
 export const AddColumnModal = () => {
-  const form = useAppForm(ColumnContracts.ColumnSchema, {
+  const form = useAppForm(AddColumnSchema, {
     defaultValues: { title: '' }
   })
 

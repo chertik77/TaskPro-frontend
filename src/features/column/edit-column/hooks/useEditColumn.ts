@@ -1,20 +1,17 @@
 import type { BoardTypes } from '@/entities/board'
-import type { ColumnTypes } from '@/entities/column'
 import type { UseFormReset } from 'react-hook-form'
+import type { EditColumnSchema } from '../edit-column.contract'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { columnService } from '@/entities/column'
-
+import { columnService } from '@/shared/api/column'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 import { EditColumnModal } from '../components/EditColumnModal'
 
-export const useEditColumn = (
-  reset: UseFormReset<ColumnTypes.ColumnSchema>
-) => {
+export const useEditColumn = (reset: UseFormReset<EditColumnSchema>) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -22,14 +19,8 @@ export const useEditColumn = (
   const { close: closeEditColumnModal } = useModal(EditColumnModal)
 
   return useMutation({
-    mutationFn: ({
-      columnId,
-      data
-    }: {
-      columnId: string
-      data: ColumnTypes.ColumnSchema
-    }) => columnService.editColumn(columnId, data),
-    onMutate: async ({ columnId, data: { title } }) => {
+    mutationFn: columnService.editColumn,
+    onMutate: async ({ columnId, title }) => {
       await queryClient.cancelQueries({
         queryKey: ['board', boardId]
       })
@@ -37,19 +28,23 @@ export const useEditColumn = (
       closeEditColumnModal()
       reset()
 
-      const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
+      const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([
         'board',
         boardId
       ])
 
-      queryClient.setQueryData<BoardTypes.Board>(
+      queryClient.setQueryData<BoardTypes.BoardSchema>(
         ['board', boardId],
         oldBoard =>
           oldBoard && {
             ...oldBoard,
-            columns: oldBoard.columns.map(column =>
-              column.id === columnId ? { ...column, title } : column
-            )
+            columns:
+              oldBoard.columns &&
+              oldBoard.columns.map(column =>
+                column.id === columnId
+                  ? { ...column, title: title || column.title }
+                  : column
+              )
           }
       )
 

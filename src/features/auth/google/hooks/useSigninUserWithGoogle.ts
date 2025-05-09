@@ -2,7 +2,8 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { authService, useAuthStore } from '@/entities/auth'
+import { authService } from '@/shared/api/auth'
+import { useAuthStore } from '@/shared/store'
 
 export const useSigninUserWithGoogle = () => {
   const authenticate = useAuthStore(state => state.authenticate)
@@ -12,7 +13,7 @@ export const useSigninUserWithGoogle = () => {
   return useGoogleLogin({
     flow: 'auth-code',
     onSuccess: async ({ code }) => {
-      const r = await authService.signinWithGoogle(code)
+      const r = await authService.signinWithGoogle({ code })
       authenticate(r)
       navigate({ to: '/dashboard' })
     },

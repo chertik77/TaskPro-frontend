@@ -1,9 +1,9 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useGetBoardById } from '@/features/board/get-board-by-id'
+import { DragAndDropProvider } from '@/features/drag-and-drop'
 
 import { WHITE_TEXT_BOARD_BG_IDS } from '@/entities/board'
-import { DragAndDropProvider } from '@/entities/dnd'
 
 import { useDocumentTitle } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
@@ -17,8 +17,6 @@ export const Board = () => {
   const { data: board, isPending } = useGetBoardById()
 
   useDocumentTitle(board?.title as string)
-
-  console.log(board)
 
   return (
     <ScrollArea.Root

@@ -3,15 +3,15 @@ import type { BoardTypes } from '@/entities/board'
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 
-import { BoardContracts } from '@/entities/board'
-
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+
+import { EditBoardSchema } from '../edit-board.contract'
 
 export const useEditBoardForm = () => {
   const { data: initialBoard } =
-    useModalInstance<BoardTypes.EditBoardModalProps>()
+    useModalInstance<BoardTypes.EditBoardModalSchema>()
 
-  const form = useAppForm(BoardContracts.BoardSchema, {
+  const form = useAppForm(EditBoardSchema, {
     shouldUnregister: false
   })
 

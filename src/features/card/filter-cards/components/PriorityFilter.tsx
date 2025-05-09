@@ -1,10 +1,10 @@
 import {
   getPriorityColor,
-  PRIORITIES,
   PriorityRadioGroup,
   PriorityRadioGroupItem
 } from '@/entities/card'
 
+import { PRIORITIES } from '@/shared/constants'
 import { cn } from '@/shared/lib/cn'
 
 import { useCardFilters } from '../hooks/useCardFilters'

@@ -2,8 +2,7 @@ import { memo } from 'react'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
 import { useFilteredCards } from '@/features/card/filter-cards'
-
-import { useDragAndDrop } from '@/entities/dnd'
+import { useDragAndDrop } from '@/features/drag-and-drop'
 
 import { CardListItem } from './CardListItem'
 

@@ -11,7 +11,7 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {
-  board: BoardTypes.Board
+  board: BoardTypes.BoardSchema
 }
 
 export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {

@@ -1,11 +1,11 @@
-import type { CardTypes } from '@/entities/card'
+import type { Priority } from '@/shared/constants'
 
 import { getPriorityColor } from '@/entities/card'
 
 import { cn } from '@/shared/lib/cn'
 
 type CardListItemPriorityProps = {
-  priority: CardTypes.Priority
+  priority: Priority
 }
 
 export const CardListItemPriority = ({

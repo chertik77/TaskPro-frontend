@@ -1,15 +1,15 @@
-import type { UserTypes } from '@/entities/user'
 import type { UseFormReset } from 'react-hook-form'
+import type { HelpSchema } from '../need-help.contract'
 
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { userService } from '@/entities/user'
+import { userService } from '@/shared/api/user'
 
 import { NeedHelpModal } from '../components/NeedHelpModal'
 
-export const useNeedHelp = (reset: UseFormReset<UserTypes.HelpSchema>) => {
+export const useNeedHelp = (reset: UseFormReset<HelpSchema>) => {
   const { close: closeNeedHelpModal } = useModal(NeedHelpModal)
 
   return useMutation({

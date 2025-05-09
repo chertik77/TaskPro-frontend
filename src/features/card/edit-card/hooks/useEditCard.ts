@@ -1,18 +1,17 @@
 import type { BoardTypes } from '@/entities/board'
-import type { CardTypes } from '@/entities/card'
 import type { UseFormReset } from 'react-hook-form'
+import type { EditCardSchema } from '../edit-card.contract'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { cardService } from '@/entities/card'
-
+import { cardService } from '@/shared/api/card'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 import { EditCardModal } from '../components/EditCardModal'
 
-export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
+export const useEditCard = (reset: UseFormReset<EditCardSchema>) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
@@ -20,14 +19,8 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
   const { close: closeEditCardModal } = useModal(EditCardModal)
 
   return useMutation({
-    mutationFn: ({
-      cardId,
-      cardData
-    }: {
-      cardId: string
-      cardData: CardTypes.CardSchema
-    }) => cardService.editCard(cardId, cardData),
-    onMutate: async ({ cardId, cardData }) => {
+    mutationFn: cardService.editCard,
+    onMutate: async ({ cardId, ...cardData }) => {
       await queryClient.cancelQueries({
         queryKey: ['board', boardId]
       })
@@ -35,12 +28,12 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
       closeEditCardModal()
       reset()
 
-      const previousBoard = queryClient.getQueryData<BoardTypes.Board>([
+      const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([
         'board',
         boardId
       ])
 
-      queryClient.setQueryData<BoardTypes.Board>(
+      queryClient.setQueryData<BoardTypes.BoardSchema>(
         ['board', boardId],
         oldBoard =>
           oldBoard && {
@@ -48,7 +41,12 @@ export const useEditCard = (reset: UseFormReset<CardTypes.CardSchema>) => {
             columns: oldBoard.columns.map(column => ({
               ...column,
               cards: column.cards.map(card =>
-                card.id === cardId ? { ...card, ...cardData } : card
+                card.id === cardId
+                  ? {
+                      ...card,
+                      ...cardData
+                    }
+                  : card
               )
             }))
           }

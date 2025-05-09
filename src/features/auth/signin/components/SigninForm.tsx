@@ -1,5 +1,3 @@
-import { AuthContracts } from '@/entities/auth'
-
 import { useAppForm } from '@/shared/hooks'
 import {
   Button,
@@ -14,9 +12,10 @@ import {
 } from '@/shared/ui'
 
 import { useSigninUser } from '../hooks/useSigninUser'
+import { SigninSchema } from '../signin.contract'
 
 export const SigninForm = () => {
-  const form = useAppForm(AuthContracts.SigninSchema, {
+  const form = useAppForm(SigninSchema, {
     defaultValues: { email: '', password: '' }
   })
 

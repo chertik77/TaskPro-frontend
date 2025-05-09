@@ -1,13 +1,14 @@
-import type { AuthTypes } from '@/entities/auth'
 import type { UseFormReset } from 'react-hook-form'
+import type { SignupSchema } from '../signup.contract'
 
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
-import { authService, useAuthStore } from '@/entities/auth'
+import { authService } from '@/shared/api/auth'
+import { useAuthStore } from '@/shared/store'
 
-export const useSignupUser = (reset: UseFormReset<AuthTypes.SignupSchema>) => {
+export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
   const authenticate = useAuthStore(state => state.authenticate)
 
   const navigate = useNavigate()

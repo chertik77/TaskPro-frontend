@@ -1,9 +1,10 @@
+import type { Theme } from '@/shared/constants'
+
 import { useEffect } from 'react'
 import * as Select from '@radix-ui/react-select'
 
-import { useAuthStore } from '@/entities/auth'
-import { DEFAULT_THEME, THEMES } from '@/entities/user'
-
+import { DEFAULT_THEME, THEMES } from '@/shared/constants'
+import { useAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 import { useChangeTheme } from '../hooks/useChangeTheme'
@@ -25,7 +26,7 @@ export const ThemeSelect = () => {
 
   return (
     <Select.Root
-      onValueChange={changeUserTheme}
+      onValueChange={v => changeUserTheme({ theme: v as Theme })}
       value={theme}>
       <Select.Trigger className='focus-visible:styled-outline flex items-center gap-1'>
         <Select.Value placeholder='Theme' />

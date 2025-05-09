@@ -7,7 +7,7 @@ import { Icon } from '@/shared/ui'
 import { EditColumnModal } from './EditColumnModal'
 
 type EditColumnTriggerProps = {
-  column: ColumnTypes.Column
+  column: ColumnTypes.ColumnSchema
 }
 
 export const EditColumnTrigger = ({ column }: EditColumnTriggerProps) => {
@@ -19,7 +19,7 @@ export const EditColumnTrigger = ({ column }: EditColumnTriggerProps) => {
       className='focus-visible:styled-outline ml-auto mr-2 hocus:[&_svg]:stroke-black
         violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft'
       onClick={() =>
-        openEditColumnModal<ColumnTypes.EditColumnModalProps>({
+        openEditColumnModal<ColumnTypes.EditColumnModalSchema>({
           id: column.id,
           title: column.title
         })

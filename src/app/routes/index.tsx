@@ -2,8 +2,7 @@ import { createFileRoute, Link, redirect } from '@tanstack/react-router'
 
 import { GoogleSignin } from '@/features/auth/google'
 
-import { useAuthStore } from '@/entities/auth'
-
+import { useAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 const IndexRoute = () => (

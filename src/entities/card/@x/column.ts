@@ -1,1 +1,1 @@
-export type { Card } from '../model/types'
+export { CardSchema } from '../card.contracts'

@@ -1,21 +1,22 @@
-import type { ControllerRenderProps } from 'react-hook-form'
-import type { CardSchema } from '../model/types'
+import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
+import { PRIORITIES } from '@/shared/constants'
 import { cn } from '@/shared/lib/cn'
 import { FormControl, FormItem } from '@/shared/ui'
 
-import { PRIORITIES } from '../model/constants'
-import { getPriorityColor } from '../model/utils'
+import { getPriorityColor } from '../card.utils'
 import {
   PriorityRadioGroup,
   PriorityRadioGroupItem
 } from './PriorityRadioGroup'
 
-type FormPrioritySelectorProps = {
-  field: ControllerRenderProps<CardSchema, 'priority'>
+type FormPrioritySelectorProps<T extends FieldValues> = {
+  field: ControllerRenderProps<T, Path<T>>
 }
 
-export const FormPrioritySelector = ({ field }: FormPrioritySelectorProps) => (
+export const FormPrioritySelector = <T extends FieldValues>({
+  field
+}: FormPrioritySelectorProps<T>) => (
   <PriorityRadioGroup
     defaultValue={field.value}
     onValueChange={field.onChange}>

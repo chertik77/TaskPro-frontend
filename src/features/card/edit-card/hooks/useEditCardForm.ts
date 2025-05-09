@@ -3,14 +3,15 @@ import type { CardTypes } from '@/entities/card'
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
 
-import { CardContracts } from '@/entities/card'
-
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
-export const useEditCardForm = () => {
-  const form = useAppForm(CardContracts.CardSchema, { shouldUnregister: false })
+import { EditCardSchema } from '../edit-card.contract'
 
-  const { data: initialCard } = useModalInstance<CardTypes.EditCardModalProps>()
+export const useEditCardForm = () => {
+  const form = useAppForm(EditCardSchema, { shouldUnregister: false })
+
+  const { data: initialCard } =
+    useModalInstance<CardTypes.EditCardModalSchema>()
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
     initialCard,

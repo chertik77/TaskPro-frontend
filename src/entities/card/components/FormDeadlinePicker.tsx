@@ -1,5 +1,4 @@
-import type { ControllerRenderProps } from 'react-hook-form'
-import type { CardSchema } from '../model/types'
+import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
 import { useState } from 'react'
 import * as Popover from '@radix-ui/react-popover'
@@ -7,13 +6,15 @@ import { isBefore, isToday } from 'date-fns'
 
 import { Calendar, FormControl, Icon } from '@/shared/ui'
 
-import { formatTodayDate } from '../model/utils'
+import { formatTodayDate } from '../card.utils'
 
-type FormDeadlinePickerProps = {
-  field: ControllerRenderProps<CardSchema, 'deadline'>
+type FormDeadlinePickerProps<T extends FieldValues> = {
+  field: ControllerRenderProps<T, Path<T>>
 }
 
-export const FormDeadlinePicker = ({ field }: FormDeadlinePickerProps) => {
+export const FormDeadlinePicker = <T extends FieldValues>({
+  field
+}: FormDeadlinePickerProps<T>) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
 
   return (

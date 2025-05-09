@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { boardService } from '@/entities/board'
-
+import { boardService } from '@/shared/api/board'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 export const useGetBoardById = () => {
@@ -9,7 +8,7 @@ export const useGetBoardById = () => {
 
   return useQuery({
     queryKey: ['board', boardId],
-    queryFn: () => boardService.getBoardById(boardId!),
+    queryFn: () => boardService.getBoardById({ boardId: boardId! }),
     enabled: !!boardId
   })
 }

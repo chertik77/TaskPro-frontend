@@ -6,16 +6,20 @@ import { Icon } from '@/shared/ui'
 
 import { EditCardModal } from './EditCardModal'
 
-export const EditCardModalTrigger = ({ card }: { card: CardTypes.Card }) => {
+export const EditCardModalTrigger = ({
+  card
+}: {
+  card: CardTypes.CardSchema
+}) => {
   const { open: openEditCardModal } = useModal(EditCardModal)
 
   const handleEditCardModal = () => {
-    openEditCardModal<CardTypes.EditCardModalProps>({
+    openEditCardModal<CardTypes.EditCardModalSchema>({
       id: card.id,
       title: card.title,
       description: card.description,
       priority: card.priority,
-      deadline: new Date(card.deadline)
+      deadline: card.deadline
     })
   }
 

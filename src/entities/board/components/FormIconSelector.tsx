@@ -1,17 +1,17 @@
-import type { ControllerRenderProps } from 'react-hook-form'
-import type { BoardSchema } from '../model/types'
+import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
 import { Item, Root } from '@radix-ui/react-radio-group'
 
+import { ICONS } from '@/shared/constants'
 import { FormControl, FormItem, Icon } from '@/shared/ui'
 
-import { ICONS } from '../model/constants'
-
-type FormIconSelectorProps = {
-  field: ControllerRenderProps<BoardSchema, 'icon'>
+type FormIconSelectorProps<T extends FieldValues> = {
+  field: ControllerRenderProps<T, Path<T>>
 }
 
-export const FormIconSelector = ({ field }: FormIconSelectorProps) => (
+export const FormIconSelector = <T extends FieldValues>({
+  field
+}: FormIconSelectorProps<T>) => (
   <Root
     defaultValue={field.value}
     onValueChange={field.onChange}

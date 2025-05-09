@@ -1,24 +1,24 @@
-import type { ColumnTypes } from '@/entities/column'
+import type { ColumnDtoTypes } from '@/shared/api/column'
 import type { UseFormReset } from 'react-hook-form'
+import type { AddColumnSchema } from '../add-column.contract'
 
 import { useMutation } from '@tanstack/react-query'
 import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
-import { columnService } from '@/entities/column'
-
+import { columnService } from '@/shared/api/column'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 import { AddColumnModal } from '../components/AddColumnModal'
 
-export const useAddColumn = (reset: UseFormReset<ColumnTypes.ColumnSchema>) => {
+export const useAddColumn = (reset: UseFormReset<AddColumnSchema>) => {
   const { close: closeAddColumnModal } = useModal(AddColumnModal)
 
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationFn: ({ title }: ColumnTypes.ColumnSchema) =>
-      columnService.addNewColumn(boardId!, { title }),
+    mutationFn: (data: Omit<ColumnDtoTypes.AddColumnDto, 'boardId'>) =>
+      columnService.addNewColumn({ boardId: boardId!, ...data }),
     meta: { invalidates: [['board']] },
     onSuccess() {
       closeAddColumnModal()

@@ -10,7 +10,7 @@ export const DeleteCardTrigger = ({ cardId }: { cardId: string }) => {
       type='button'
       className='focus-visible:styled-outline hocus:[&_svg]:stroke-black
         violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft'
-      onClick={() => deleteCard(cardId)}
+      onClick={() => deleteCard({ cardId })}
       aria-label='Delete card'>
       <Icon
         name='trash'
