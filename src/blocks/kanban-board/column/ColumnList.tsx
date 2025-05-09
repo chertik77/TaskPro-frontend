@@ -14,10 +14,10 @@ import { useDragAndDrop } from '@/entities/dnd'
 import { ColumnListItem } from './ColumnListItem'
 
 type ColumnListProps = {
-  backgroundIdentifier: string | undefined
+  backgroundURL: string | null | undefined
 }
 
-export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
+export const ColumnList = memo(({ backgroundURL }: ColumnListProps) => {
   const { columns } = useDragAndDrop()
 
   const cardHandlers = useCardDragHandlers()
@@ -45,7 +45,7 @@ export const ColumnList = memo(({ backgroundIdentifier }: ColumnListProps) => {
           <ColumnListItem
             column={column}
             key={column.id}
-            backgroundIdentifier={backgroundIdentifier}
+            backgroundURL={backgroundURL}
           />
         ))}
         <AddColumnTrigger />

@@ -16,12 +16,12 @@ import { CardList } from '../card/CardList'
 
 type ColumnListItemProps = {
   column: ColumnTypes.Column
-  backgroundIdentifier?: string
+  backgroundURL?: string | null
 }
 
 export const ColumnListItem = ({
   column,
-  backgroundIdentifier
+  backgroundURL
 }: ColumnListItemProps) => {
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -61,7 +61,7 @@ export const ColumnListItem = ({
               <ScrollArea.Thumb
                 className={cn(
                   'rounded-[26px] bg-white/60',
-                  backgroundIdentifier === 'default' &&
+                  !backgroundURL &&
                     '!w-2 bg-gray-light violet:bg-black/20 dark:bg-white/10'
                 )}
               />

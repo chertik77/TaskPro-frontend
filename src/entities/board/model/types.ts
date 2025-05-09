@@ -8,9 +8,8 @@ export type Board = {
   title: string
   icon: Icon
   background: {
-    hasWhiteTextColor: boolean
     identifier: string
-    url: string
+    url: string | null
   }
   columns: Column[]
 }

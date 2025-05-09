@@ -1,5 +1,6 @@
 export { boardService } from './api/service'
 export * as BoardContracts from './api/contracts'
 export * as BoardTypes from './model/types'
+export { WHITE_TEXT_BOARD_BG_IDS } from './model/constants'
 export { FormBgImageSelector } from './components/FormBgImageSelector'
 export { FormIconSelector } from './components/FormIconSelector'

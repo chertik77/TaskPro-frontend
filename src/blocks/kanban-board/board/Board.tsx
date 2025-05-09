@@ -2,6 +2,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useGetBoardById } from '@/features/board/get-board-by-id'
 
+import { WHITE_TEXT_BOARD_BG_IDS } from '@/entities/board'
 import { DragAndDropProvider } from '@/entities/dnd'
 
 import { useDocumentTitle } from '@/shared/hooks'
@@ -17,18 +18,22 @@ export const Board = () => {
 
   useDocumentTitle(board?.title as string)
 
+  console.log(board)
+
   return (
     <ScrollArea.Root
       className='relative flex flex-col overflow-hidden bg-cover bg-center pl-5 pt-3.5
         tablet:pl-8 tablet:pt-[26px] desktop:pl-6 desktop:pt-2.5'
       style={{
-        backgroundImage: `url(${!isPending && board?.background?.url})`
+        backgroundImage: `url(${!isPending && board?.background.url && board.background.url})`
       }}>
       <div
         className={cn(
           'mb-[39px] flex justify-between text-black tablet:mb-[26px] desktop:mb-2.5',
-          board?.background.hasWhiteTextColor && 'text-white',
-          board?.background.identifier === 'default' && 'dark:text-white'
+          WHITE_TEXT_BOARD_BG_IDS.includes(
+            board?.background.identifier as string
+          ) && 'text-white',
+          !board?.background.url && 'dark:text-white'
         )}>
         <h2 className='whitespace-pre tablet:text-xl'>{board?.title}</h2>
         {!isPending && <Filters />}
@@ -38,7 +43,7 @@ export const Board = () => {
       ) : (
         <ScrollArea.Viewport className='w-full flex-1 pb-4'>
           <DragAndDropProvider initialColumns={board?.columns}>
-            <ColumnList backgroundIdentifier={board?.background.identifier} />
+            <ColumnList backgroundURL={board?.background.url} />
             <KanbanDragOverlay />
           </DragAndDropProvider>
         </ScrollArea.Viewport>
@@ -49,7 +54,7 @@ export const Board = () => {
         <ScrollArea.Thumb
           className={cn(
             '!h-3 rounded-[26px] bg-white/60',
-            board?.background.identifier === 'default' &&
+            !board?.background.url &&
               'bg-gray-light violet:bg-black/20 dark:bg-white/10'
           )}
         />
