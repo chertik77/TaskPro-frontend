@@ -37,8 +37,8 @@ export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
         className='focus-visible:styled-outline relative mx-auto mb-6 block size-[68px]
           cursor-pointer rounded-xl bg-cover bg-center'>
         <div
-          className='absolute -bottom-3 left-[22px] flex size-6 items-center justify-center
-            rounded-lg bg-brand text-black violet:bg-white-gray'>
+          className='bg-brand violet:bg-white-gray absolute -bottom-3 left-[22px] flex size-6
+            items-center justify-center rounded-lg text-black'>
           <Icon
             name='plus'
             className='size-5'

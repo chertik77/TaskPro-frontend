@@ -42,17 +42,17 @@ export const ThemeSelect = () => {
           align='end'
           sideOffset={5}
           position='popper'
-          className='fade-zoom w-[105px] rounded-lg border border-brand bg-white-soft pb-3.5 pl-4.5
-            pr-11 pt-4.5 shadow-main violet:border-white-gray dark:bg-black-deep'>
+          className='fade-zoom border-brand bg-white-soft shadow-main violet:border-white-gray
+            dark:bg-black-deep w-[105px] rounded-lg border pt-4.5 pr-11 pb-3.5 pl-4.5'>
           <Select.Viewport>
             {THEMES.map(theme => (
               <Select.Item
                 key={theme}
-                className='mb-1 cursor-pointer text-base outline-none data-[highlighted]:text-brand
-                  data-[state=checked]:text-brand data-[highlighted]:underline
+                className='data-[highlighted]:text-brand data-[state=checked]:text-brand
                   violet:data-[state=checked]:text-brand-violet hocus:text-brand
-                  violet:hocus:text-brand-violet dark:text-white/30
-                  dark:data-[state=checked]:text-brand dark:hocus:text-brand'
+                  violet:hocus:text-brand-violet dark:data-[state=checked]:text-brand
+                  dark:hocus:text-brand mb-1 cursor-pointer text-base outline-none
+                  data-[highlighted]:underline dark:text-white/30'
                 value={theme}>
                 <Select.ItemText>
                   {theme.charAt(0).toUpperCase() + theme.slice(1)}

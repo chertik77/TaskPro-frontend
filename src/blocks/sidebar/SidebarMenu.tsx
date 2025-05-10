@@ -27,7 +27,7 @@ export const SidebarMenu = () => {
       <SidebarLogo />
       <SidebarBoardInfo />
       <SidebarBoardList />
-      <div className='mt-auto px-3.5 tablet:px-6'>
+      <div className='tablet:px-6 mt-auto px-3.5'>
         <NeedHelpModalTrigger />
         <LogoutBtn />
       </div>

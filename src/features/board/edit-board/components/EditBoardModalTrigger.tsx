@@ -32,7 +32,7 @@ export const EditBoardModalTrigger = ({
         violet:hocus:*:stroke-white-soft dark:hocus:*:stroke-white-soft'>
       <Icon
         name='pencil'
-        className='size-4 stroke-black/50 violet:stroke-white/50 dark:stroke-white-soft/50'
+        className='violet:stroke-white/50 dark:stroke-white-soft/50 size-4 stroke-black/50'
       />
     </button>
   )

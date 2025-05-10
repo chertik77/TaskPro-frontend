@@ -35,7 +35,7 @@ export const SignupForm = () => {
                 <Input
                   autoFocus
                   autoComplete='email'
-                  className='text-white autofill:text-fill-white'
+                  className='autofill:text-fill-white text-white'
                   placeholder='Enter your name'
                   {...field}
                 />
@@ -52,7 +52,7 @@ export const SignupForm = () => {
               <FormControl>
                 <Input
                   autoComplete='email'
-                  className='text-white autofill:text-fill-white'
+                  className='autofill:text-fill-white text-white'
                   placeholder='Enter your email'
                   {...field}
                 />
@@ -69,7 +69,7 @@ export const SignupForm = () => {
               <FormControl>
                 <PasswordInput
                   autoComplete='new-password'
-                  className='text-white autofill:text-fill-white'
+                  className='autofill:text-fill-white text-white'
                   placeholder='Create a password'
                   {...field}
                 />

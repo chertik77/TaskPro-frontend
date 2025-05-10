@@ -7,7 +7,7 @@ export const ColumnDraggingState = ({
   <div
     ref={ref}
     {...props}
-    className='w-84 rounded-lg border-2 border-brand bg-white-gray opacity-60
-      violet:border-brand-violet dark:bg-black'
+    className='border-brand bg-white-gray violet:border-brand-violet w-84 rounded-lg border-2
+      opacity-60 dark:bg-black'
   />
 )

@@ -3,8 +3,8 @@ import { AddBoardModalTrigger } from '@/features/board/add-board'
 export const EmptyBoard = () => (
   <div className='flex items-center justify-center'>
     <div
-      className='w-84 text-center text-md text-black/70 dark:text-white-gray tablet:w-[486px]
-        tablet:text-base'>
+      className='text-md dark:text-white-gray tablet:w-[486px] tablet:text-base w-84 text-center
+        text-black/70'>
       Before starting your project, it is essential{' '}
       <AddBoardModalTrigger
         className='focus-visible:styled-outline text-brand violet:text-brand-violet

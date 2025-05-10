@@ -32,7 +32,7 @@ export const EditCardModalTrigger = ({
       aria-label='Edit card'>
       <Icon
         name='pencil'
-        className='size-4 stroke-black/50 dark:stroke-white-soft/50'
+        className='dark:stroke-white-soft/50 size-4 stroke-black/50'
       />
     </button>
   )

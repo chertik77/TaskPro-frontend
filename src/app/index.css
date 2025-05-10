@@ -1,8 +1,6 @@
 @import url('react-responsive-modal/styles.css');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @font-face {
   font-family: 'Poppins';
@@ -31,24 +29,148 @@
     url('./fonts/PoppinsSemiBold.woff2') format('woff2');
 }
 
-.hide-password-toggle::-ms-reveal,
-.hide-password-toggle::-ms-clear {
-  @apply pointer-events-none invisible hidden;
+@theme inline {
+  --font-*: initial;
+  --font-poppins: 'Poppins', sans-serif;
+
+  --color-*: initial;
+  --color-black: #161616;
+  --color-black-soft: #121212;
+  --color-black-muted: #1f1f1f;
+  --color-black-deep: #151515;
+  --color-gray: #ecedfd66;
+  --color-gray-light: #e8e8e8;
+  --color-white: #ffffff;
+  --color-white-soft: #fcfcfc;
+  --color-white-muted: #f6f6f7;
+  --color-white-gray: #ecedfd;
+  --color-brand: #bedbb0;
+  --color-brand-light: #9dc888;
+  --color-brand-violet: #5255bc;
+  --color-brand-violet-light: #7b7ede;
+  --color-brand-violet-muted: #979cea;
+  --color-brand-violet-soft: #f5f6ff;
+  --color-blue: #8fa1d0;
+  --color-red: #dc2626;
+  --color-pink: #e09cb5;
+
+  --text-*: initial;
+  --text-xs: 8px;
+  --text-xs--line-height: normal;
+  --text-xs--font-weight: 400;
+  --text-xs--letter-spacing: -0.16px;
+
+  --text-sm: 10px;
+  --text-sm--line-height: normal;
+  --text-sm--font-weight: 400;
+  --text-sm--letter-spacing: -0.2px;
+
+  --text-md: 12px;
+  --text-md--line-height: normal;
+  --text-md--letter-spacing: -0.24px;
+
+  --text-base: 14px;
+  --text-base--line-height: 1.28;
+  --text-base--letter-spacing: -0.28px;
+
+  --text-lg: 16px;
+  --text-lg--line-height: normal;
+  --text-lg--letter-spacing: -0.64px;
+
+  --text-xl: 18px;
+  --text-xl--line-height: normal;
+  --text-xl--font-weight: 500;
+  --text-xl--letter-spacing: -0.36px;
+
+  --text-2xl: 28px;
+  --text-2xl--line-height: normal;
+  --text-2xl--font-weight: 600;
+  --text-2xl--letter-spacing: -1.12px;
+
+  --text-3xl: 40px;
+  --text-3xl--line-height: normal;
+  --text-3xl--font-weight: 600;
+  --text-3xl--letter-spacing: -1.6px;
+
+  --breakpoint-*: initial;
+  --breakpoint-mobile: 375px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1440px;
+
+  --spacing-4.5: 18px;
+  --spacing-84: 335px;
+
+  --shadow-*: initial;
+  --shadow-main: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@custom-variant violet (&:where(.violet, .violet *));
+
+@custom-variant hocus {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+  &:focus-visible {
+    @slot;
+  }
+  &:active {
+    @slot;
+  }
+}
+
+@utility container {
+  padding-inline: 20px;
+  margin-inline: auto;
+  max-width: 375px;
+
+  @variant tablet {
+    padding-inline: 32px;
+    max-width: 768px;
+  }
+
+  @variant desktop {
+    padding-inline: 24px;
+    max-width: 1440px;
+  }
+}
+
+@utility text-fill-* {
+  -webkit-text-fill-color: --value(--color- *);
+}
+
+@utility hide-password-toggle {
+  &::-ms-reveal,
+  &::-ms-clear {
+    @apply pointer-events-none invisible hidden;
+  }
+}
+
+@utility fade-zoom {
+  @apply data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95;
+}
+
+@utility styled-outline {
+  @apply outline-brand violet:outline-brand-violet outline-2;
+}
+
+@utility bg-soft-green {
+  @apply bg-brand bg-linear-180 from-white from-25% to-[92.19%];
 }
 
 @supports (-webkit-overflow-scrolling: touch) {
   input,
   textarea {
     font-size: 16px;
-  }
-}
-
-@layer components {
-  .fade-zoom {
-    @apply data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95;
-  }
-
-  .styled-outline {
-    @apply outline outline-2 outline-brand violet:outline-brand-violet;
   }
 }

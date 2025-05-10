@@ -19,13 +19,12 @@ export const PriorityFilter = () => {
       onValueChange={v => handleParamsChange('priority', v)}>
       {PRIORITIES.map(priority => (
         <label
-          className='flex items-center gap-2 text-md text-black/50 has-[:checked]:text-black
-            hocus:text-black dark:text-white/50 has-[:checked]:dark:text-white
-            hocus:dark:text-white'
+          className='text-md hocus:text-black hocus:dark:text-white flex items-center gap-2
+            text-black/50 has-[:checked]:text-black dark:text-white/50
+            has-[:checked]:dark:text-white'
           key={priority}>
           <PriorityRadioGroupItem
             className={getPriorityColor(priority)}
-            // eslint-disable-next-line tailwindcss/no-custom-classname
             indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
             value={priority}
           />

@@ -7,7 +7,7 @@ import {
 
 export const Header = () => (
   <header
-    className='flex h-[60px] items-center justify-between bg-white-soft px-5 py-3.5
+    className='bg-white-soft flex h-[60px] items-center justify-between px-5 py-3.5
       duration-300 dark:bg-black'>
     <ToggleSidebarTrigger />
     <ToggleMobileSidebarTrigger />

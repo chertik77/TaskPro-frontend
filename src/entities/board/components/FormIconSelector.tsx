@@ -21,8 +21,8 @@ export const FormIconSelector = <T extends FieldValues>({
         <FormControl>
           <Item
             value={icon}
-            className='focus-visible:styled-outline group text-black/50 hocus:text-black
-              dark:text-white/50 dark:hocus:text-white'>
+            className='focus-visible:styled-outline group hocus:text-black dark:hocus:text-white
+              text-black/50 dark:text-white/50'>
             <Icon
               name={icon}
               className='size-4.5 stroke-current group-aria-checked:text-black

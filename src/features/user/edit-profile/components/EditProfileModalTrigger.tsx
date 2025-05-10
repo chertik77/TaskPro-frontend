@@ -30,8 +30,8 @@ export const EditProfileModalTrigger = () => {
             className='size-8 rounded-lg object-cover'
           />
           <Avatar.Fallback
-            className='flex size-8 items-center justify-center rounded-lg bg-white-muted
-              violet:bg-white-gray dark:bg-black-soft'>
+            className='bg-white-muted violet:bg-white-gray dark:bg-black-soft flex size-8 items-center
+              justify-center rounded-lg'>
             {name.charAt(0).toUpperCase()}
           </Avatar.Fallback>
         </Avatar.Root>
