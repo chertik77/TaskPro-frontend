@@ -19,7 +19,7 @@ export const useGetAccessabilityAnnouncements = ({
         const activeColumnIdx = columns.findIndex(c => c.id === active.id)
         const activeColumn = columns[activeColumnIdx]
 
-        return `Picked up Column ${activeColumn?.title} at position: ${
+        return `Picked up column ${activeColumn?.title} at position: ${
           activeColumnIdx + 1
         } of ${columns.length}`
       } else if (active.data.current?.type === 'card') {
@@ -32,8 +32,8 @@ export const useGetAccessabilityAnnouncements = ({
           cards
         )
 
-        return `Picked up Card ${
-          active.data.current.task.content
+        return `Picked up card ${
+          active.data.current.card.title
         } at position: ${cardPosition + 1} of ${
           columnCards.length
         } in column ${column?.title}`
@@ -99,7 +99,7 @@ export const useGetAccessabilityAnnouncements = ({
       ) {
         const { columnCards, cardPosition, column } = getDraggingCardData(
           over.id,
-          over.data.current.task.columnId,
+          over.data.current.card.columnId,
           columns,
           cards
         )
