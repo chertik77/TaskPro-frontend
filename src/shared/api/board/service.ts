@@ -1,4 +1,4 @@
-import type { AddBoardDto, BoardDto, BoardIdDto, EditBoardDto } from './types'
+import type { AddBoardDto, BoardIdDto, EditBoardDto } from './types'
 
 import { axiosInstance, axiosValidators } from '@/shared/lib/axios'
 
@@ -60,12 +60,17 @@ export const boardService = {
       data
     )
 
-    const response = await axiosInstance.put<BoardDto>(
+    const response = await axiosInstance.put(
       BoardApiEndpoints.BoardById(boardId),
       editBoardDto
     )
 
-    return response.data
+    const validatedResponse = axiosValidators.validateResponse(
+      BoardDtoSchema,
+      response
+    )
+
+    return validatedResponse.data
   },
 
   async deleteBoard(data: BoardIdDto) {

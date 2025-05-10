@@ -17,4 +17,4 @@ export const AddCardSchema = v.object({
   deadline: v.date()
 })
 
-export type AddCardSchema = v.InferInput<typeof AddCardSchema>
+export type AddCardSchema = v.InferOutput<typeof AddCardSchema>

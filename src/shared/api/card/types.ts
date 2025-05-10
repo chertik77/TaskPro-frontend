@@ -1,4 +1,4 @@
-import type { InferInput } from 'valibot'
+import type { InferOutput } from 'valibot'
 import type {
   AddCardDtoSchema,
   CardDtoSchema,
@@ -7,8 +7,8 @@ import type {
   UpdateCardOrderDtoSchema
 } from './contracts'
 
-export type CardDto = InferInput<typeof CardDtoSchema>
-export type CardIdDto = InferInput<typeof CardIdDtoSchema>
-export type AddCardDto = InferInput<typeof AddCardDtoSchema>
-export type EditCardDto = InferInput<typeof EditCardDtoSchema>
-export type UpdateCardOrderDto = InferInput<typeof UpdateCardOrderDtoSchema>
+export type CardDto = InferOutput<typeof CardDtoSchema>
+export type CardIdDto = InferOutput<typeof CardIdDtoSchema>
+export type AddCardDto = InferOutput<typeof AddCardDtoSchema>
+export type EditCardDto = InferOutput<typeof EditCardDtoSchema>
+export type UpdateCardOrderDto = InferOutput<typeof UpdateCardOrderDtoSchema>

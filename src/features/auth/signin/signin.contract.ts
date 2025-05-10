@@ -10,4 +10,4 @@ export const SigninSchema = v.object({
   )
 })
 
-export type SigninSchema = v.InferInput<typeof SigninSchema>
+export type SigninSchema = v.InferOutput<typeof SigninSchema>

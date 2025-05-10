@@ -10,4 +10,4 @@ export const EditColumnSchema = v.partial(
   })
 )
 
-export type EditColumnSchema = v.InferInput<typeof EditColumnSchema>
+export type EditColumnSchema = v.InferOutput<typeof EditColumnSchema>

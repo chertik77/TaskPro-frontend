@@ -71,8 +71,8 @@ export const DragAndDropProvider = ({
         }}
         onDragOver={cardHandlers.onDragOver}
         onDragEnd={e => {
-          cardHandlers.onDragStart(e)
-          columnHandlers.onDragStart(e)
+          cardHandlers.onDragEnd(e)
+          columnHandlers.onDragEnd(e)
         }}
         collisionDetection={args => {
           const type = args.active.data.current?.type

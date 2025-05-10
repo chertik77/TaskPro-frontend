@@ -23,7 +23,7 @@ export const AddCardDtoSchema = v.object({
   title: v.pipe(v.string(), v.trim(), v.minLength(3)),
   description: v.pipe(v.string(), v.trim(), v.minLength(3)),
   priority: CardDtoSchema.entries.priority,
-  deadline: CardDtoSchema.entries.deadline
+  deadline: v.date()
 })
 
 export const EditCardDtoSchema = v.intersect([

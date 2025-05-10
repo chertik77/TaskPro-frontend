@@ -38,17 +38,14 @@ export const useEditCard = (reset: UseFormReset<EditCardSchema>) => {
         oldBoard =>
           oldBoard && {
             ...oldBoard,
-            columns: oldBoard.columns.map(column => ({
-              ...column,
-              cards: column.cards.map(card =>
-                card.id === cardId
-                  ? {
-                      ...card,
-                      ...cardData
-                    }
-                  : card
-              )
-            }))
+            columns:
+              oldBoard.columns &&
+              oldBoard.columns.map(column => ({
+                ...column,
+                cards: column.cards.map(card =>
+                  card.id === cardId ? { ...card, ...cardData } : card
+                )
+              }))
           }
       )
 

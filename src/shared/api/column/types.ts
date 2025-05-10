@@ -1,4 +1,4 @@
-import type { InferInput } from 'valibot'
+import type { InferOutput } from 'valibot'
 import type {
   AddColumnDtoSchema,
   ColumnDtoSchema,
@@ -7,8 +7,8 @@ import type {
   UpdateColumnDtoSchema
 } from './contracts'
 
-export type ColumnDto = InferInput<typeof ColumnDtoSchema>
-export type ColumnIdDto = InferInput<typeof ColumnIdDtoSchema>
-export type AddColumnDto = InferInput<typeof AddColumnDtoSchema>
-export type EditColumnDto = InferInput<typeof EditColumnDtoSchema>
-export type UpdateColumnDto = InferInput<typeof UpdateColumnDtoSchema>
+export type ColumnDto = InferOutput<typeof ColumnDtoSchema>
+export type ColumnIdDto = InferOutput<typeof ColumnIdDtoSchema>
+export type AddColumnDto = InferOutput<typeof AddColumnDtoSchema>
+export type EditColumnDto = InferOutput<typeof EditColumnDtoSchema>
+export type UpdateColumnDto = InferOutput<typeof UpdateColumnDtoSchema>

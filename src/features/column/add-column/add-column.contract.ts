@@ -8,4 +8,4 @@ export const AddColumnSchema = v.object({
   )
 })
 
-export type AddColumnSchema = v.InferInput<typeof AddColumnSchema>
+export type AddColumnSchema = v.InferOutput<typeof AddColumnSchema>

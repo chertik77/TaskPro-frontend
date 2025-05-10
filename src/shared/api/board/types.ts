@@ -1,4 +1,4 @@
-import type { InferInput } from 'valibot'
+import type { InferOutput } from 'valibot'
 import type {
   AddBoardDtoSchema,
   BoardDtoSchema,
@@ -7,8 +7,8 @@ import type {
   EditBoardDtoSchema
 } from './contracts'
 
-export type BoardDto = InferInput<typeof BoardDtoSchema>
-export type BoardsDto = InferInput<typeof BoardsDtoSchema>
-export type BoardIdDto = InferInput<typeof BoardIdDtoSchema>
-export type AddBoardDto = InferInput<typeof AddBoardDtoSchema>
-export type EditBoardDto = InferInput<typeof EditBoardDtoSchema>
+export type BoardDto = InferOutput<typeof BoardDtoSchema>
+export type BoardsDto = InferOutput<typeof BoardsDtoSchema>
+export type BoardIdDto = InferOutput<typeof BoardIdDtoSchema>
+export type AddBoardDto = InferOutput<typeof AddBoardDtoSchema>
+export type EditBoardDto = InferOutput<typeof EditBoardDtoSchema>
