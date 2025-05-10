@@ -23,8 +23,7 @@ export const useAddBoard = (reset: UseFormReset<AddBoardSchema>) => {
       reset()
       navigate({ to: `/dashboard/$boardId`, params: { boardId: data.id } })
     },
-    onError(e) {
-      console.error(e)
+    onError() {
       toast.error(
         'An error occurred while creating the board. Please try again shortly.'
       )

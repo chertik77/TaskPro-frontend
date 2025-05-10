@@ -7,7 +7,7 @@ import { Icon } from '@/shared/ui'
 import { EditBoardModal } from './EditBoardModal'
 
 type EditBoardModalTriggerProps = {
-  board: BoardTypes.BoardSchema
+  board: Omit<BoardTypes.BoardSchema, 'columns'>
 }
 
 export const EditBoardModalTrigger = ({

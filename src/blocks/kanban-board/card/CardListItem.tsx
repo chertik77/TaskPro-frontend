@@ -50,7 +50,7 @@ export const CardListItem = ({ card }: CardListItemProps) => (
           <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
             <CardListItemPriority priority={card.priority} />
             <CardListItemDeadline deadline={card.deadline} />
-            <div className='ml-auto flex items-start gap-2'>
+            <div className='ml-auto flex gap-2'>
               {isToday(card.deadline) && (
                 <Icon
                   name='bell'

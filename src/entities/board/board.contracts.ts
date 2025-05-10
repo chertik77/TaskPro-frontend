@@ -15,7 +15,7 @@ export const BoardSchema = v.object({
   columns: v.undefinedable(v.array(ColumnSchema))
 })
 
-export const BoardsSchema = v.array(BoardSchema)
+export const BoardsSchema = v.array(v.omit(BoardSchema, ['columns']))
 
 export const EditBoardModalSchema = v.object({
   title: v.string(),

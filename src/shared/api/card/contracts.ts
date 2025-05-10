@@ -11,6 +11,7 @@ export const CardDtoSchema = v.object({
   order: v.number(),
   columnId: v.string(),
   priority: v.picklist(PRIORITIES),
+  //TODO: add correct date types
   deadline: v.string()
 })
 
