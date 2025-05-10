@@ -11,12 +11,12 @@ export const AddColumnTrigger = () => {
     <Button
       onClick={openAddColumnModal}
       aria-label='Add column'
-      className='mr-5 flex h-14 min-w-84 max-w-84 items-center justify-center gap-2 bg-white
-        px-[79px] -outline-offset-2 disabled:opacity-100 violet:bg-white
-        violet:text-black dark:bg-black-soft dark:text-white desktop:mr-6'>
+      className='violet:bg-white violet:text-black dark:bg-black-soft desktop:mr-6 mr-5 flex h-14
+        max-w-84 min-w-84 items-center justify-center gap-2 bg-white px-[79px]
+        -outline-offset-2 disabled:opacity-100 dark:text-white'>
       <Icon
         name='plus'
-        className='size-7 rounded-md bg-black text-white violet:bg-brand-violet dark:bg-white
+        className='violet:bg-brand-violet size-7 rounded-md bg-black text-white dark:bg-white
           dark:text-black'
       />
       Add column

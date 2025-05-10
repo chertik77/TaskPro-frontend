@@ -23,7 +23,7 @@ export const PasswordInput = ({
       />
       <button
         type='button'
-        className='focus-visible:styled-outline absolute right-4.5 top-4 opacity-40
+        className='focus-visible:styled-outline absolute top-4 right-4.5 opacity-40
           peer-[.text-white]:text-white'
         onClick={() => setShowPassword(prev => !prev)}>
         {showPassword ? (

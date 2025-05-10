@@ -11,7 +11,7 @@ export const Filters = () => {
 
   return (
     <Popover.Root>
-      <Popover.Trigger className='focus-visible:styled-outline mr-5 flex items-center gap-2 desktop:mr-6'>
+      <Popover.Trigger className='focus-visible:styled-outline desktop:mr-6 mr-5 flex items-center gap-2'>
         <Icon
           name='filter'
           className='size-4 stroke-black/80 dark:stroke-white/80'
@@ -20,12 +20,12 @@ export const Filters = () => {
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className='fade-zoom w-[300px] rounded-lg bg-white-soft p-6 shadow-main dark:bg-black-deep'
+          className='fade-zoom bg-white-soft shadow-main dark:bg-black-deep w-[300px] rounded-lg p-6'
           collisionPadding={10}>
           <h2 className='border-b border-black/10 pb-3.5 text-xl dark:border-white/10'>
             Filters
           </h2>
-          <Popover.Close className='focus-visible:styled-outline absolute right-3.5 top-3.5'>
+          <Popover.Close className='focus-visible:styled-outline absolute top-3.5 right-3.5'>
             <Icon
               name='close'
               className='size-4.5 stroke-black dark:stroke-white'
@@ -36,8 +36,8 @@ export const Filters = () => {
             <Link
               to='/dashboard/$boardId'
               params={{ boardId: boardId! }}
-              className='focus-visible:styled-outline text-md underline opacity-50 hocus:text-brand-light
-                hocus:no-underline hocus:opacity-100 violet:hocus:text-brand-violet'>
+              className='focus-visible:styled-outline text-md hocus:text-brand-light hocus:no-underline
+                hocus:opacity-100 violet:hocus:text-brand-violet underline opacity-50'>
               Show all
             </Link>
           </div>

@@ -62,7 +62,7 @@ export const ColumnListItem = ({
                 className={cn(
                   'rounded-[26px] bg-white/60',
                   !backgroundURL &&
-                    '!w-2 bg-gray-light violet:bg-black/20 dark:bg-white/10'
+                    'bg-gray-light violet:bg-black/20 !w-2 dark:bg-white/10'
                 )}
               />
             </ScrollArea.Scrollbar>

@@ -25,7 +25,6 @@ export const FormPrioritySelector = <T extends FieldValues>({
         <FormControl>
           <PriorityRadioGroupItem
             value={priority}
-            // eslint-disable-next-line tailwindcss/no-custom-classname
             indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
             className={getPriorityColor(priority)}
           />

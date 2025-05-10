@@ -25,8 +25,8 @@ export const FormDeadlinePicker = <T extends FieldValues>({
         <FormControl>
           <button
             type='button'
-            className='focus-visible:styled-outline mb-[40px] flex items-center gap-1 text-brand
-              violet:text-brand-violet'>
+            className='focus-visible:styled-outline text-brand violet:text-brand-violet mb-[40px] flex
+              items-center gap-1'>
             {formatTodayDate(field.value)}
             <Icon
               name='chevron-down'

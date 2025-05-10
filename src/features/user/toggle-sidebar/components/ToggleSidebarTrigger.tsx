@@ -9,10 +9,10 @@ export const ToggleSidebarTrigger = () => {
       onClick={() => toggleSidebar(prev => !prev)}
       type='button'
       aria-label='Toggle sidebar'
-      className='focus-visible:styled-outline mr-auto size-5 max-desktop:hidden'>
+      className='focus-visible:styled-outline max-desktop:hidden mr-auto size-5'>
       <Icon
         name='sidebar'
-        className='size-full fill-white violet:fill-black/80'
+        className='violet:fill-black/80 size-full fill-white'
       />
     </button>
   )

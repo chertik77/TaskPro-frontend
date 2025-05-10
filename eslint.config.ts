@@ -8,7 +8,6 @@ import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
 import { independentModulesConfig } from './independentModules.mjs'
-import eslintPluginTailwind from 'eslint-plugin-tailwindcss'
 
 export default eslintTypescript.config(
   eslintPluginJs.configs.recommended,
@@ -17,7 +16,6 @@ export default eslintTypescript.config(
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
-  ...eslintPluginTailwind.configs['flat/recommended'],
   { ignores: ['**/vite-env.d.ts'] },
   {
     languageOptions: {
@@ -26,7 +24,6 @@ export default eslintTypescript.config(
       parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
     }
   },
-  { settings: { tailwindcss: { callees: ['cn'] } } },
   {
     rules: {
       'no-restricted-syntax': [

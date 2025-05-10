@@ -35,16 +35,16 @@ export const CardListItem = ({ card }: CardListItemProps) => (
         ref={setNodeRef}
         style={style}>
         <div
-          className='relative h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pl-6 pr-5
+          className='relative h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
             dark:bg-black'>
           <span
             className={cn(
-              'absolute left-0 top-0 h-full w-1 rounded-l',
+              'absolute top-0 left-0 h-full w-1 rounded-l',
               getPriorityColor(card.priority)
             )}
           />
           <p className='mb-2 text-base font-semibold'>{card.title}</p>
-          <p className='mb-3.5 line-clamp-2 text-md text-black/70 dark:text-white/50'>
+          <p className='text-md mb-3.5 line-clamp-2 text-black/70 dark:text-white/50'>
             {card.description}
           </p>
           <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
@@ -54,7 +54,7 @@ export const CardListItem = ({ card }: CardListItemProps) => (
               {isToday(card.deadline) && (
                 <Icon
                   name='bell'
-                  className='size-4.5 animate-bounce stroke-brand pr-1 violet:stroke-brand-violet'
+                  className='stroke-brand violet:stroke-brand-violet size-4.5 animate-bounce pr-1'
                 />
               )}
               <EditCardModalTrigger card={card} />

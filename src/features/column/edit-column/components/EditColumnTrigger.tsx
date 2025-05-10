@@ -16,8 +16,9 @@ export const EditColumnTrigger = ({ column }: EditColumnTriggerProps) => {
   return (
     <button
       type='button'
-      className='focus-visible:styled-outline ml-auto mr-2 hocus:[&_svg]:stroke-black
-        violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft'
+      className='focus-visible:styled-outline hocus:[&_svg]:stroke-black
+        violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft mr-2
+        ml-auto'
       onClick={() =>
         openEditColumnModal<ColumnTypes.EditColumnModalSchema>({
           id: column.id,
@@ -27,7 +28,7 @@ export const EditColumnTrigger = ({ column }: EditColumnTriggerProps) => {
       aria-label='Edit column'>
       <Icon
         name='pencil'
-        className='size-4 stroke-black/50 dark:stroke-white-soft/50'
+        className='dark:stroke-white-soft/50 size-4 stroke-black/50'
       />
     </button>
   )

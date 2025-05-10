@@ -36,12 +36,12 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
         role='option'
         tabIndex={0}
         className={cn(
-          `focus-visible:styled-outline flex h-[61px] w-full cursor-pointer items-center
-          justify-between pl-3.5 text-black/50 violet:text-white/50 dark:text-white/50
-          tablet:pl-6`,
+          `focus-visible:styled-outline violet:text-white/50 tablet:pl-6 flex h-[61px]
+          w-full cursor-pointer items-center justify-between pl-3.5 text-black/50
+          dark:text-white/50`,
           boardId === board.id &&
-            `bg-white-muted text-black violet:bg-white/50 violet:text-white
-            dark:bg-black-muted dark:text-white`
+            `bg-white-muted violet:bg-white/50 violet:text-white dark:bg-black-muted
+            text-black dark:text-white`
         )}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -49,12 +49,12 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
           }
         }}
         onClick={() => handleBoardSelect(board.id)}>
-        <div className='flex items-center gap-1 tablet:gap-2'>
+        <div className='tablet:gap-2 flex items-center gap-1'>
           <Icon
             name={board.icon}
             className='size-4.5 stroke-current'
           />
-          <p className='w-[105px] truncate whitespace-pre text-left tablet:w-[122px]'>
+          <p className='tablet:w-[122px] w-[105px] truncate text-left whitespace-pre'>
             {board?.title}
           </p>
         </div>
@@ -64,7 +64,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
               <EditBoardModalTrigger board={board} />
               <DeleteBoardTrigger />
             </div>
-            <div className='h-[61px] w-1 rounded-l-lg bg-brand violet:bg-white' />
+            <div className='bg-brand violet:bg-white h-[61px] w-1 rounded-l-lg' />
           </div>
         )}
       </li>

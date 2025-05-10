@@ -9,8 +9,8 @@ export const Route = createFileRoute('/(auth)/_auth-layout')({
     if (useAuthStore.getState().signedIn()) throw redirect({ to: '/dashboard' })
   },
   component: () => (
-    <div className='flex h-dvh items-center justify-center bg-soft-green'>
-      <div className='w-84 rounded-lg bg-black p-6 tablet:w-[424px] tablet:p-10'>
+    <div className='bg-soft-green flex h-dvh items-center justify-center'>
+      <div className='tablet:w-[424px] tablet:p-10 w-84 rounded-lg bg-black p-6'>
         <AuthNavigation />
         <Outlet />
       </div>
