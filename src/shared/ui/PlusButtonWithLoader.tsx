@@ -5,16 +5,16 @@ import { Button } from './Button'
 import { Icon } from './Icon'
 import { Loader } from './Loader'
 
-type PlusButtonProps = ComponentProps<'button'> & {
+type PlusButtonWithLoaderProps = ComponentProps<'button'> & {
   shouldShowLoader?: boolean
 }
 
-export const PlusButton = ({
+export const PlusButtonWithLoader = ({
   className,
   children,
   shouldShowLoader,
   ...props
-}: PlusButtonProps) => (
+}: PlusButtonWithLoaderProps) => (
   <Button
     className={cn('gap-2', className)}
     {...props}>

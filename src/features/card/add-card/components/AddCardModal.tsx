@@ -10,7 +10,7 @@ import {
   FormMessage,
   Input,
   Modal,
-  PlusButton,
+  PlusButtonWithLoader,
   TextArea
 } from '@/shared/ui'
 
@@ -91,12 +91,12 @@ export const AddCardModal = () => {
               </FormItem>
             )}
           />
-          <PlusButton
+          <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Add
-          </PlusButton>
+          </PlusButtonWithLoader>
         </form>
       </Form>
     </Modal>
