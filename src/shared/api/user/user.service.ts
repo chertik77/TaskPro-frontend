@@ -1,4 +1,4 @@
-import type { EditUserDto, HelpDto, ThemeDto } from './types'
+import type { EditUserDto, HelpDto, ThemeDto } from './user.types'
 
 import { parse } from 'valibot'
 
@@ -9,8 +9,8 @@ import {
   HelpDtoSchema,
   ThemeDtoSchema,
   UserDtoSchema
-} from './contracts'
-import { UserApiEndpoints } from './endpoints'
+} from './user.contracts'
+import { UserApiEndpoints } from './user.endpoints'
 
 export const userService = {
   async changeUserTheme(data: ThemeDto) {

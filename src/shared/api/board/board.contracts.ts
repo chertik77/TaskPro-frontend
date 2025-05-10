@@ -2,7 +2,7 @@ import * as v from 'valibot'
 
 import { ICONS } from '@/shared/constants'
 
-import { ColumnDtoSchema } from '../column/contracts'
+import { ColumnDtoSchema } from '../column/column.contracts'
 
 export const BoardDtoSchema = v.object({
   id: v.string(),

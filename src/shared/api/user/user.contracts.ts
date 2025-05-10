@@ -2,7 +2,7 @@ import * as v from 'valibot'
 
 import { THEMES } from '@/shared/constants'
 
-import { SigninDtoSchema, SignupDtoSchema } from '../auth/contracts'
+import { SigninDtoSchema, SignupDtoSchema } from '../auth/auth.contracts'
 
 export const UserDtoSchema = v.object({
   id: v.string(),

@@ -5,7 +5,7 @@ import type {
   ColumnIdDtoSchema,
   EditColumnDtoSchema,
   UpdateColumnDtoSchema
-} from './contracts'
+} from './column.contracts'
 
 export type ColumnDto = InferOutput<typeof ColumnDtoSchema>
 export type ColumnIdDto = InferOutput<typeof ColumnIdDtoSchema>

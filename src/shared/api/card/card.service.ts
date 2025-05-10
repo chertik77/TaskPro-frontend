@@ -3,7 +3,7 @@ import type {
   CardIdDto,
   EditCardDto,
   UpdateCardOrderDto
-} from './types'
+} from './card.types'
 
 import { parse } from 'valibot'
 
@@ -13,8 +13,8 @@ import {
   AddCardDtoSchema,
   EditCardDtoSchema,
   UpdateCardOrderDtoSchema
-} from './contracts'
-import { CardApiEndpoints } from './endpoints'
+} from './card.contracts'
+import { CardApiEndpoints } from './card.endpoints'
 
 export const cardService = {
   async addNewCard(data: AddCardDto) {

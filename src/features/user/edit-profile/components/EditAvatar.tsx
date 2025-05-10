@@ -1,7 +1,7 @@
 import type { UserTypes } from '@/entities/user'
+import type { UserDtoTypes } from '@/shared/api/user'
 import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
-import type { EditUserSchema } from '../edit-profile.contract'
 
 import { useRef } from 'react'
 
@@ -12,7 +12,7 @@ type EditAvatarProps = {
   changeUserAvatar: UseMutateFunction<
     UserTypes.UserSchema,
     AxiosError,
-    EditUserSchema
+    UserDtoTypes.EditUserDto
   >
 }
 

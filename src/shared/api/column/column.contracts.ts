@@ -1,7 +1,7 @@
 import * as v from 'valibot'
 
-import { BoardIdDtoSchema } from '../board/contracts'
-import { CardDtoSchema } from '../card/contracts'
+import { BoardIdDtoSchema } from '../board/board.contracts'
+import { CardDtoSchema } from '../card/card.contracts'
 
 export const ColumnDtoSchema = v.object({
   id: v.string(),

@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { UserDtoSchema } from '../user/contracts'
+import { UserDtoSchema } from '../user/user.contracts'
 
 export const SigninDtoSchema = v.object({
   email: v.pipe(v.string(), v.trim(), v.email()),

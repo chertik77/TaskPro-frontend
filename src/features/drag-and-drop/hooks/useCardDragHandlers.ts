@@ -1,5 +1,5 @@
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
-import type { DragAndDropContext } from '../dnd.types'
+import type { CardDragHandlersProps } from '../dnd.types'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
@@ -11,7 +11,7 @@ export const useCardDragHandlers = ({
   cards,
   setCards,
   setActiveCard
-}: Pick<DragAndDropContext, 'cards' | 'setCards' | 'setActiveCard'>) => {
+}: CardDragHandlersProps) => {
   const { mutate: updateCardOrder } = useUpdateCardOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {

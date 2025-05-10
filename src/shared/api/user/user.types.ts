@@ -4,7 +4,7 @@ import type {
   HelpDtoSchema,
   ThemeDtoSchema,
   UserDtoSchema
-} from './contracts'
+} from './user.contracts'
 
 export type UserDto = InferOutput<typeof UserDtoSchema>
 export type EditUserDto = InferOutput<typeof EditUserDtoSchema>

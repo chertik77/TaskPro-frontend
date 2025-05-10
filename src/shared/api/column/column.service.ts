@@ -3,7 +3,7 @@ import type {
   ColumnIdDto,
   EditColumnDto,
   UpdateColumnDto
-} from './types'
+} from './column.types'
 
 import { parse } from 'valibot'
 
@@ -14,8 +14,8 @@ import {
   ColumnIdDtoSchema,
   EditColumnDtoSchema,
   UpdateColumnDtoSchema
-} from './contracts'
-import { ColumnApiEndpoints } from './endpoints'
+} from './column.contracts'
+import { ColumnApiEndpoints } from './column.endpoints'
 
 export const columnService = {
   async addNewColumn(data: AddColumnDto) {

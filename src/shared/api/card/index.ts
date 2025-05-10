@@ -1,3 +1,3 @@
-export { cardService } from './service'
-export * as CardDtoContracts from './contracts'
-export * as CardDtoTypes from './types'
+export { cardService } from './card.service'
+export * as CardDtoContracts from './card.contracts'
+export * as CardDtoTypes from './card.types'

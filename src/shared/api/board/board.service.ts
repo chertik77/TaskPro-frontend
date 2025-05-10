@@ -1,17 +1,17 @@
-import type { AddBoardDto, BoardIdDto, EditBoardDto } from './types'
+import type { AddBoardDto, BoardIdDto, EditBoardDto } from './board.types'
 
 import { parse } from 'valibot'
 
 import { axiosInstance } from '@/shared/lib/axios'
 
-import { TokensDtoSchema } from '../auth/contracts'
+import { TokensDtoSchema } from '../auth/auth.contracts'
 import {
   BoardDtoSchema,
   BoardIdDtoSchema,
   BoardsDtoSchema,
   EditBoardDtoSchema
-} from './contracts'
-import { BoardApiEndpoints } from './endpoints'
+} from './board.contracts'
+import { BoardApiEndpoints } from './board.endpoints'
 
 export const boardService = {
   async getAllBoards() {

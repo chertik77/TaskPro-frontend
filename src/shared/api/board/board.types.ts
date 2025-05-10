@@ -5,7 +5,7 @@ import type {
   BoardIdDtoSchema,
   BoardsDtoSchema,
   EditBoardDtoSchema
-} from './contracts'
+} from './board.contracts'
 
 export type BoardDto = InferOutput<typeof BoardDtoSchema>
 export type BoardsDto = InferOutput<typeof BoardsDtoSchema>

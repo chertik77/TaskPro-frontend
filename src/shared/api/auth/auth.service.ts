@@ -3,7 +3,7 @@ import type {
   RefreshTokenDto,
   SigninDto,
   SignupDto
-} from './types'
+} from './auth.types'
 
 import { parse } from 'valibot'
 
@@ -16,8 +16,8 @@ import {
   SigninDtoSchema,
   SignupDtoSchema,
   TokensDtoSchema
-} from './contracts'
-import { AuthApiEndpoints } from './endpoints'
+} from './auth.contracts'
+import { AuthApiEndpoints } from './auth.endpoints'
 
 export const authService = {
   async signup(data: SignupDto) {

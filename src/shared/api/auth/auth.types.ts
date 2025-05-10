@@ -6,7 +6,7 @@ import type {
   SigninDtoSchema,
   SignupDtoSchema,
   TokensDtoSchema
-} from './contracts'
+} from './auth.contracts'
 
 export type AuthResponseDto = InferOutput<typeof AuthResponseDtoSchema>
 export type TokensDto = InferOutput<typeof TokensDtoSchema>

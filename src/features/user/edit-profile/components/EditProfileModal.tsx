@@ -66,6 +66,7 @@ export const EditProfileModal = () => {
           />
           <FormField
             control={form.control}
+            defaultValue=''
             name='password'
             render={({ field }) => (
               <FormItem>

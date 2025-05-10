@@ -5,7 +5,7 @@ import type {
   CardIdDtoSchema,
   EditCardDtoSchema,
   UpdateCardOrderDtoSchema
-} from './contracts'
+} from './card.contracts'
 
 export type CardDto = InferOutput<typeof CardDtoSchema>
 export type CardIdDto = InferOutput<typeof CardIdDtoSchema>
