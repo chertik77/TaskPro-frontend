@@ -5,7 +5,9 @@ import type {
   UpdateCardOrderDto
 } from './types'
 
-import { axiosInstance, axiosValidators } from '@/shared/lib/axios'
+import { parse } from 'valibot'
+
+import { axiosInstance } from '@/shared/lib/axios'
 
 import {
   AddCardDtoSchema,
@@ -16,10 +18,7 @@ import { CardApiEndpoints } from './endpoints'
 
 export const cardService = {
   async addNewCard(data: AddCardDto) {
-    const { columnId, ...addCardDto } = axiosValidators.validateRequest(
-      AddCardDtoSchema,
-      data
-    )
+    const { columnId, ...addCardDto } = parse(AddCardDtoSchema, data)
 
     await axiosInstance.post(
       CardApiEndpoints.CardColumnById(columnId),
@@ -28,22 +27,19 @@ export const cardService = {
   },
 
   async editCard(data: EditCardDto) {
-    const { cardId, ...editCardDto } = axiosValidators.validateRequest(
-      EditCardDtoSchema,
-      data
-    )
+    const { cardId, ...editCardDto } = parse(EditCardDtoSchema, data)
 
     await axiosInstance.put(CardApiEndpoints.CardById(cardId), editCardDto)
   },
 
   async deleteCard(data: CardIdDto) {
-    const { cardId } = axiosValidators.validateRequest(EditCardDtoSchema, data)
+    const { cardId } = parse(EditCardDtoSchema, data)
 
     await axiosInstance.delete(CardApiEndpoints.CardById(cardId))
   },
 
   async updateCardOrder(data: UpdateCardOrderDto) {
-    const { columnId, ...updateCardOrderDto } = axiosValidators.validateRequest(
+    const { columnId, ...updateCardOrderDto } = parse(
       UpdateCardOrderDtoSchema,
       data
     )

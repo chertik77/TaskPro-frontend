@@ -1,9 +1,11 @@
 import type { AddBoardDto, BoardIdDto, EditBoardDto } from './types'
 
-import { axiosInstance, axiosValidators } from '@/shared/lib/axios'
+import { parse } from 'valibot'
 
+import { axiosInstance } from '@/shared/lib/axios'
+
+import { TokensDtoSchema } from '../auth/contracts'
 import {
-  AddBoardDtoSchema,
   BoardDtoSchema,
   BoardIdDtoSchema,
   BoardsDtoSchema,
@@ -15,66 +17,51 @@ export const boardService = {
   async getAllBoards() {
     const response = await axiosInstance.get(BoardApiEndpoints.Board)
 
-    const validatedResponse = axiosValidators.validateResponse(
-      BoardsDtoSchema,
-      response
-    )
+    const parsedData = parse(BoardsDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async getBoardById(data: BoardIdDto) {
-    const { boardId } = axiosValidators.validateRequest(BoardIdDtoSchema, data)
+    const { boardId } = parse(BoardIdDtoSchema, data)
 
     const response = await axiosInstance.get(
       BoardApiEndpoints.BoardById(boardId)
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      BoardDtoSchema,
-      response
-    )
+    const parsedData = parse(BoardDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async addNewBoard(data: AddBoardDto) {
-    const addBoardDto = axiosValidators.validateRequest(AddBoardDtoSchema, data)
+    const addBoardDto = parse(TokensDtoSchema, data)
 
     const response = await axiosInstance.post(
       BoardApiEndpoints.Board,
       addBoardDto
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      BoardDtoSchema,
-      response
-    )
+    const parsedData = parse(BoardDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async editBoard(data: EditBoardDto) {
-    const { boardId, ...editBoardDto } = axiosValidators.validateRequest(
-      EditBoardDtoSchema,
-      data
-    )
+    const { boardId, ...editBoardDto } = parse(EditBoardDtoSchema, data)
 
     const response = await axiosInstance.put(
       BoardApiEndpoints.BoardById(boardId),
       editBoardDto
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      BoardDtoSchema,
-      response
-    )
+    const parsedData = parse(BoardDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async deleteBoard(data: BoardIdDto) {
-    const { boardId } = axiosValidators.validateRequest(BoardIdDtoSchema, data)
+    const { boardId } = parse(BoardIdDtoSchema, data)
 
     await axiosInstance.delete(BoardApiEndpoints.BoardById(boardId))
   }

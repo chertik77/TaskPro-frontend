@@ -5,7 +5,9 @@ import type {
   SignupDto
 } from './types'
 
-import { axiosInstance, axiosValidators } from '@/shared/lib/axios'
+import { parse } from 'valibot'
+
+import { axiosInstance } from '@/shared/lib/axios'
 
 import {
   AuthResponseDtoSchema,
@@ -19,23 +21,20 @@ import { AuthApiEndpoints } from './endpoints'
 
 export const authService = {
   async signup(data: SignupDto) {
-    const signupDto = axiosValidators.validateRequest(SignupDtoSchema, data)
+    const signupDto = parse(SignupDtoSchema, data)
 
     const response = await axiosInstance.post(
       AuthApiEndpoints.Signup,
       signupDto
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      AuthResponseDtoSchema,
-      response
-    )
+    const parsedData = parse(AuthResponseDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async signin(data: SigninDto) {
-    const signinDto = axiosValidators.validateRequest(SigninDtoSchema, data)
+    const signinDto = parse(SigninDtoSchema, data)
 
     const response = await axiosInstance.post(
       AuthApiEndpoints.Signin,
@@ -43,50 +42,35 @@ export const authService = {
       { skipAuthRefresh: true }
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      AuthResponseDtoSchema,
-      response
-    )
+    const parsedData = parse(AuthResponseDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async signinWithGoogle(data: GoogleSigninDto) {
-    const googleSigninDto = axiosValidators.validateRequest(
-      GoogleSigninDtoSchema,
-      data
-    )
+    const googleSigninDto = parse(GoogleSigninDtoSchema, data)
 
     const response = await axiosInstance.post(
       AuthApiEndpoints.Google,
       googleSigninDto
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      AuthResponseDtoSchema,
-      response
-    )
+    const parsedData = parse(AuthResponseDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async getTokens(data: RefreshTokenDto) {
-    const refreshTokenDto = axiosValidators.validateRequest(
-      RefreshTokenDtoSchema,
-      data
-    )
+    const refreshTokenDto = parse(RefreshTokenDtoSchema, data)
 
     const response = await axiosInstance.post(
       AuthApiEndpoints.Tokens,
       refreshTokenDto
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      TokensDtoSchema,
-      response
-    )
+    const parsedData = parse(TokensDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async logout() {

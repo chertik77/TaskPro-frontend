@@ -1,6 +1,8 @@
 import type { EditUserDto, HelpDto, ThemeDto } from './types'
 
-import { axiosInstance, axiosValidators } from '@/shared/lib/axios'
+import { parse } from 'valibot'
+
+import { axiosInstance } from '@/shared/lib/axios'
 
 import {
   EditUserDtoSchema,
@@ -12,29 +14,26 @@ import { UserApiEndpoints } from './endpoints'
 
 export const userService = {
   async changeUserTheme(data: ThemeDto) {
-    const themeDto = axiosValidators.validateRequest(ThemeDtoSchema, data)
+    const themeDto = parse(ThemeDtoSchema, data)
 
     const response = await axiosInstance.put(
       UserApiEndpoints.UserTheme,
       themeDto
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      UserDtoSchema,
-      response
-    )
+    const parsedData = parse(UserDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async askForHelp(data: HelpDto) {
-    const helpDto = axiosValidators.validateRequest(HelpDtoSchema, data)
+    const helpDto = parse(HelpDtoSchema, data)
 
     await axiosInstance.post(UserApiEndpoints.UserHelp, helpDto)
   },
 
   async updateUserCredentials(data: EditUserDto) {
-    const editUserDto = axiosValidators.validateRequest(EditUserDtoSchema, data)
+    const editUserDto = parse(EditUserDtoSchema, data)
 
     const response = await axiosInstance.put(
       UserApiEndpoints.User,
@@ -42,22 +41,16 @@ export const userService = {
       { headers: { 'Content-Type': 'multipart/form-data' } }
     )
 
-    const validatedResponse = axiosValidators.validateResponse(
-      UserDtoSchema,
-      response
-    )
+    const parsedData = parse(UserDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   },
 
   async getCurrentUser() {
     const response = await axiosInstance.get(UserApiEndpoints.UserMe)
 
-    const validatedResponse = axiosValidators.validateResponse(
-      UserDtoSchema,
-      response
-    )
+    const parsedData = parse(UserDtoSchema, response.data)
 
-    return validatedResponse.data
+    return parsedData
   }
 }
