@@ -11,8 +11,10 @@ export const CardDtoSchema = v.object({
   order: v.number(),
   columnId: v.string(),
   priority: v.picklist(PRIORITIES),
-  //TODO: add correct date types
-  deadline: v.date()
+  deadline: v.pipe(
+    v.string(),
+    v.transform(d => new Date(d))
+  )
 })
 
 export const CardIdDtoSchema = v.object({
