@@ -14,14 +14,12 @@ export type DragAndDropProviderProps = {
   initialColumns: ColumnTypes.ColumnsSchema | undefined
 }
 
-export type CardDragHandlersProps = {
-  cards: CardTypes.CardsSchema | undefined
+export type CardDragHandlersProps = Pick<DragAndDropContext, 'cards'> & {
   setCards: Dispatch<SetStateAction<CardTypes.CardsSchema | undefined>>
   setActiveCard: Dispatch<SetStateAction<CardTypes.CardSchema | null>>
 }
 
-export type ColumnDragHandlersProps = {
-  columns: ColumnTypes.ColumnsSchema | undefined
+export type ColumnDragHandlersProps = Pick<DragAndDropContext, 'columns'> & {
   setActiveColumn: Dispatch<SetStateAction<ColumnTypes.ColumnSchema | null>>
   setColumns: Dispatch<SetStateAction<ColumnTypes.ColumnsSchema | undefined>>
 }

@@ -6,8 +6,6 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import {
   DndContext,
   MouseSensor,
-  pointerWithin,
-  rectIntersection,
   TouchSensor,
   useSensor,
   useSensors
@@ -15,6 +13,8 @@ import {
 
 import { useCardDragHandlers } from './hooks/useCardDragHandlers'
 import { useColumnDragHandlers } from './hooks/useColumnDragHandlers'
+import { useGetAccessabilityAnnouncements } from './hooks/useGetAccessabilityAnnouncements'
+import { collisionDetection } from './utils/collisionDetection'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
@@ -52,11 +52,15 @@ export const DragAndDropProvider = ({
     })
   )
 
+  const announcements = useGetAccessabilityAnnouncements({ columns, cards })
+
   return (
     <DragAndDropContext.Provider
       value={{ columns, cards, activeCard, activeColumn }}>
       <DndContext
         sensors={sensors}
+        collisionDetection={collisionDetection}
+        accessibility={{ announcements }}
         onDragStart={e => {
           cardHandlers.onDragStart(e)
           columnHandlers.onDragStart(e)
@@ -65,12 +69,7 @@ export const DragAndDropProvider = ({
         onDragEnd={e => {
           cardHandlers.onDragEnd(e)
           columnHandlers.onDragEnd(e)
-        }}
-        collisionDetection={args =>
-          args.active.data.current?.type === 'column'
-            ? rectIntersection(args)
-            : pointerWithin(args)
-        }>
+        }}>
         {children}
       </DndContext>
     </DragAndDropContext.Provider>
