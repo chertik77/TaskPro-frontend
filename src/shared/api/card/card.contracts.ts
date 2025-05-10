@@ -2,7 +2,7 @@ import * as v from 'valibot'
 
 import { PRIORITIES } from '@/shared/constants'
 
-import { ColumnIdDtoSchema } from '../column/contracts'
+import { ColumnIdDtoSchema } from '../column/column.contracts'
 
 export const CardDtoSchema = v.object({
   id: v.string(),
@@ -11,7 +11,10 @@ export const CardDtoSchema = v.object({
   order: v.number(),
   columnId: v.string(),
   priority: v.picklist(PRIORITIES),
-  deadline: v.string()
+  deadline: v.pipe(
+    v.string(),
+    v.transform(d => new Date(d))
+  )
 })
 
 export const CardIdDtoSchema = v.object({
@@ -23,7 +26,7 @@ export const AddCardDtoSchema = v.object({
   title: v.pipe(v.string(), v.trim(), v.minLength(3)),
   description: v.pipe(v.string(), v.trim(), v.minLength(3)),
   priority: CardDtoSchema.entries.priority,
-  deadline: CardDtoSchema.entries.deadline
+  deadline: v.date()
 })
 
 export const EditCardDtoSchema = v.intersect([

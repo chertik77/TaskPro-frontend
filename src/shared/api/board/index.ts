@@ -1,3 +1,3 @@
-export { boardService } from './service'
-export * as BoardDtoContracts from './contracts'
-export * as BoardDtoTypes from './types'
+export { boardService } from './board.service'
+export * as BoardDtoContracts from './board.contracts'
+export * as BoardDtoTypes from './board.types'

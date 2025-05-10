@@ -9,7 +9,7 @@ import {
   FormMessage,
   Input,
   Modal,
-  PlusButton
+  PlusButtonWithLoader
 } from '@/shared/ui'
 
 import { useEditBoard } from '../hooks/useEditBoard'
@@ -67,13 +67,13 @@ export const EditBoardModal = () => {
               </FormItem>
             )}
           />
-          <PlusButton
+          <PlusButtonWithLoader
             type='submit'
             className='!mt-10'
             shouldShowLoader={isPending}
             disabled={isPending || !isFormReadyForSubmit}>
             Edit
-          </PlusButton>
+          </PlusButtonWithLoader>
         </form>
       </Form>
     </Modal>

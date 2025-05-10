@@ -3,24 +3,23 @@ import type {
   ColumnIdDto,
   EditColumnDto,
   UpdateColumnDto
-} from './types'
+} from './column.types'
 
-import { axiosInstance, axiosValidators } from '@/shared/lib/axios'
+import { parse } from 'valibot'
+
+import { axiosInstance } from '@/shared/lib/axios'
 
 import {
   AddColumnDtoSchema,
   ColumnIdDtoSchema,
   EditColumnDtoSchema,
   UpdateColumnDtoSchema
-} from './contracts'
-import { ColumnApiEndpoints } from './endpoints'
+} from './column.contracts'
+import { ColumnApiEndpoints } from './column.endpoints'
 
 export const columnService = {
   async addNewColumn(data: AddColumnDto) {
-    const { boardId, ...addColumnDto } = axiosValidators.validateRequest(
-      AddColumnDtoSchema,
-      data
-    )
+    const { boardId, ...addColumnDto } = parse(AddColumnDtoSchema, data)
 
     await axiosInstance.post(
       ColumnApiEndpoints.ColumnBoardById(boardId),
@@ -29,10 +28,7 @@ export const columnService = {
   },
 
   async editColumn(data: EditColumnDto) {
-    const { columnId, ...editColumnDto } = axiosValidators.validateRequest(
-      EditColumnDtoSchema,
-      data
-    )
+    const { columnId, ...editColumnDto } = parse(EditColumnDtoSchema, data)
 
     await axiosInstance.put(
       ColumnApiEndpoints.ColumnById(columnId),
@@ -41,19 +37,13 @@ export const columnService = {
   },
 
   async deleteColumn(data: ColumnIdDto) {
-    const { columnId } = axiosValidators.validateRequest(
-      ColumnIdDtoSchema,
-      data
-    )
+    const { columnId } = parse(ColumnIdDtoSchema, data)
 
     await axiosInstance.delete(ColumnApiEndpoints.ColumnById(columnId))
   },
 
   async updateColumnOrder(data: UpdateColumnDto) {
-    const { boardId, ...updateColumnDto } = axiosValidators.validateRequest(
-      UpdateColumnDtoSchema,
-      data
-    )
+    const { boardId, ...updateColumnDto } = parse(UpdateColumnDtoSchema, data)
 
     await axiosInstance.patch(
       ColumnApiEndpoints.ColumnOrder(boardId),

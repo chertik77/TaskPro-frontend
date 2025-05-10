@@ -4,7 +4,7 @@ export { TextArea } from './TextArea'
 export { Icon } from './Icon'
 export { PasswordInput } from './PasswordInput'
 export { Loader } from './Loader'
-export { PlusButton } from './PlusButton'
+export { PlusButtonWithLoader } from './PlusButtonWithLoader'
 export { Calendar } from './Calendar'
 export { Modal } from './Modal'
 export {

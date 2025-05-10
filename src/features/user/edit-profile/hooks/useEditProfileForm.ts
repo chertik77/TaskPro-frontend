@@ -2,7 +2,6 @@ import type { UserTypes } from '@/entities/user'
 
 import { useEffect } from 'react'
 import { useModalInstance } from 'react-modal-state'
-import { omit } from 'valibot'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
@@ -12,7 +11,7 @@ export const useEditProfileForm = () => {
   const { data: initialUser } =
     useModalInstance<UserTypes.EditProfileModalSchema>()
 
-  const form = useAppForm(omit(EditUserSchema, ['avatar']), {
+  const form = useAppForm(EditUserSchema, {
     shouldUnregister: false
   })
 

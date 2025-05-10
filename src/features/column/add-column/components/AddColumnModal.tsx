@@ -7,7 +7,7 @@ import {
   FormMessage,
   Input,
   Modal,
-  PlusButton
+  PlusButtonWithLoader
 } from '@/shared/ui'
 
 import { AddColumnSchema } from '../add-column.contract'
@@ -41,12 +41,12 @@ export const AddColumnModal = () => {
               </FormItem>
             )}
           />
-          <PlusButton
+          <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Add
-          </PlusButton>
+          </PlusButtonWithLoader>
         </form>
       </Form>
     </Modal>

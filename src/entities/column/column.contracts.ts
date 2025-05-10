@@ -10,4 +10,6 @@ export const ColumnSchema = v.object({
   cards: v.array(CardSchema)
 })
 
+export const ColumnsSchema = v.array(ColumnSchema)
+
 export const EditColumnModalSchema = v.pick(ColumnSchema, ['title', 'id'])

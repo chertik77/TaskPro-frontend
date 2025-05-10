@@ -14,9 +14,8 @@ export const EditUserSchema = v.partial(
       v.trim(),
       v.minLength(8, 'Please enter at least 8 characters.'),
       v.maxLength(64, 'Please enter at most 64 characters.')
-    ),
-    avatar: v.instance(File)
+    )
   })
 )
 
-export type EditUserSchema = v.InferInput<typeof EditUserSchema>
+export type EditUserSchema = v.InferOutput<typeof EditUserSchema>

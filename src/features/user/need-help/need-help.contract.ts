@@ -9,4 +9,4 @@ export const HelpSchema = v.object({
   )
 })
 
-export type HelpSchema = v.InferInput<typeof HelpSchema>
+export type HelpSchema = v.InferOutput<typeof HelpSchema>

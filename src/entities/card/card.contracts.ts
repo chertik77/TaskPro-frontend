@@ -9,7 +9,7 @@ export const CardSchema = v.object({
   columnId: v.string(),
   description: v.string(),
   priority: v.picklist(PRIORITIES),
-  deadline: v.string()
+  deadline: v.date()
 })
 
 export const CardsSchema = v.array(CardSchema)

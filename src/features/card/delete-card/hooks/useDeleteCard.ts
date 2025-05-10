@@ -1,18 +1,51 @@
-import { useMutation } from '@tanstack/react-query'
+import type { BoardTypes } from '@/entities/board'
 
-// import { useDragAndDrop } from '@/features/drag-and-drop'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 import { cardService } from '@/shared/api/card'
+import { useGetParamBoardId } from '@/shared/hooks'
 
-// eslint-disable-next-line arrow-body-style
 export const useDeleteCard = () => {
-  // const { setCards } = useDragAndDrop()
+  const queryClient = useQueryClient()
+
+  const { boardId } = useGetParamBoardId()
 
   return useMutation({
+    mutationKey: ['deleteCard'],
     mutationFn: cardService.deleteCard,
-    meta: { invalidates: [['board']] }
-    // onMutate: async ({ cardId }) => {
-    //   setCards(prevCards => prevCards?.filter(c => c.id !== cardId))
-    // }
+    onMutate: async ({ cardId }) => {
+      await queryClient.cancelQueries({ queryKey: ['board', boardId] })
+
+      const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([
+        'board',
+        boardId
+      ])
+
+      queryClient.setQueryData<BoardTypes.BoardSchema>(
+        ['board', boardId],
+        oldBoard =>
+          oldBoard && {
+            ...oldBoard,
+            columns:
+              oldBoard.columns &&
+              oldBoard.columns.map(column => ({
+                ...column,
+                cards: column.cards.filter(card => card.id !== cardId)
+              }))
+          }
+      )
+
+      return { previousBoard }
+    },
+    onError: (_, __, context) => {
+      queryClient.setQueryData(['board', boardId], context?.previousBoard)
+      toast.error(
+        'An error occurred while deleting the card. Please try again shortly.'
+      )
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['board', boardId] })
+    }
   })
 }

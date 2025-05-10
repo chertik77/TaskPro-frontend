@@ -1,5 +1,5 @@
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
-import type { DragAndDropContext } from '../dnd.types'
+import type { ColumnDragHandlersProps } from '../dnd.types'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
@@ -11,7 +11,7 @@ export const useColumnDragHandlers = ({
   columns,
   setActiveColumn,
   setColumns
-}: Pick<DragAndDropContext, 'columns' | 'setActiveColumn' | 'setColumns'>) => {
+}: ColumnDragHandlersProps) => {
   const { mutate: updateColumnOrder } = useUpdateColumnOrder()
 
   const onDragStart = ({ active }: DragStartEvent) => {

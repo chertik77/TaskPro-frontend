@@ -6,7 +6,7 @@ import {
   FormMessage,
   Input,
   Modal,
-  PlusButton
+  PlusButtonWithLoader
 } from '@/shared/ui'
 
 import { useEditColumn } from '../hooks/useEditColumn'
@@ -40,12 +40,12 @@ export const EditColumnModal = () => {
               </FormItem>
             )}
           />
-          <PlusButton
+          <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending || !isFormReadyForSubmit}>
             Edit
-          </PlusButton>
+          </PlusButtonWithLoader>
         </form>
       </Form>
     </Modal>

@@ -53,12 +53,10 @@ export const independentModulesConfig = createIndependentModules({
       errorMessage:
         'A block may only import from its own family (at least 3 common path parts), shared modules, entities, or features through their public api (index.ts). Imports within the block folder from index.ts are not allowed.'
     },
-    createEntityRule('auth'),
-    createEntityRule('user'),
     createEntityRule('board'),
-    createEntityRule('column'),
     createEntityRule('card'),
-    createEntityRule('dnd'),
+    createEntityRule('column'),
+    createEntityRule('user'),
     {
       name: 'Unknown entity',
       pattern: 'src/entities/**',

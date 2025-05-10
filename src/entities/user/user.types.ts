@@ -1,5 +1,5 @@
-import type { InferInput } from 'valibot'
+import type { InferOutput } from 'valibot'
 import type { EditProfileModalSchema, UserSchema } from './user.contracts'
 
-export type UserSchema = InferInput<typeof UserSchema>
-export type EditProfileModalSchema = InferInput<typeof EditProfileModalSchema>
+export type UserSchema = InferOutput<typeof UserSchema>
+export type EditProfileModalSchema = InferOutput<typeof EditProfileModalSchema>

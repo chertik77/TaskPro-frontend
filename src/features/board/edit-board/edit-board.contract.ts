@@ -14,4 +14,4 @@ export const EditBoardSchema = v.partial(
   })
 )
 
-export type EditBoardSchema = v.InferInput<typeof EditBoardSchema>
+export type EditBoardSchema = v.InferOutput<typeof EditBoardSchema>

@@ -2,14 +2,14 @@ import * as v from 'valibot'
 
 import { THEMES } from '@/shared/constants'
 
-import { SigninDtoSchema, SignupDtoSchema } from '../auth/contracts'
+import { SigninDtoSchema, SignupDtoSchema } from '../auth/auth.contracts'
 
 export const UserDtoSchema = v.object({
   id: v.string(),
   name: v.string(),
   email: v.string(),
-  avatar: v.string(),
-  theme: v.picklist(THEMES)
+  theme: v.picklist(THEMES),
+  avatar: v.string()
 })
 
 export const EditUserDtoSchema = v.partial(

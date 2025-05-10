@@ -28,6 +28,7 @@ export const DragAndDropProvider = ({
   const [activeCard, setActiveCard] = useState<CardTypes.CardSchema | null>(
     null
   )
+
   const [activeColumn, setActiveColumn] =
     useState<ColumnTypes.ColumnSchema | null>(null)
 
@@ -53,16 +54,7 @@ export const DragAndDropProvider = ({
 
   return (
     <DragAndDropContext.Provider
-      value={{
-        setColumns,
-        setCards,
-        columns,
-        cards,
-        activeCard,
-        activeColumn,
-        setActiveCard,
-        setActiveColumn
-      }}>
+      value={{ columns, cards, activeCard, activeColumn }}>
       <DndContext
         sensors={sensors}
         onDragStart={e => {
@@ -71,16 +63,14 @@ export const DragAndDropProvider = ({
         }}
         onDragOver={cardHandlers.onDragOver}
         onDragEnd={e => {
-          cardHandlers.onDragStart(e)
-          columnHandlers.onDragStart(e)
+          cardHandlers.onDragEnd(e)
+          columnHandlers.onDragEnd(e)
         }}
-        collisionDetection={args => {
-          const type = args.active.data.current?.type
-
-          return type === 'column'
+        collisionDetection={args =>
+          args.active.data.current?.type === 'column'
             ? rectIntersection(args)
             : pointerWithin(args)
-        }}>
+        }>
         {children}
       </DndContext>
     </DragAndDropContext.Provider>

@@ -16,4 +16,4 @@ export const SignupSchema = v.object({
   )
 })
 
-export type SignupSchema = v.InferInput<typeof SignupSchema>
+export type SignupSchema = v.InferOutput<typeof SignupSchema>

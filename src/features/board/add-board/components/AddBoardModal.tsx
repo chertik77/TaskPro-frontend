@@ -10,7 +10,7 @@ import {
   FormMessage,
   Input,
   Modal,
-  PlusButton
+  PlusButtonWithLoader
 } from '@/shared/ui'
 
 import { AddBoardSchema } from '../add-board.contract'
@@ -70,13 +70,13 @@ export const AddBoardModal = () => {
               </FormItem>
             )}
           />
-          <PlusButton
+          <PlusButtonWithLoader
             type='submit'
             className='!mt-10'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Create
-          </PlusButton>
+          </PlusButtonWithLoader>
         </form>
       </Form>
     </Modal>

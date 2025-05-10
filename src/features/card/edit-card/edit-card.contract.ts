@@ -19,4 +19,4 @@ export const EditCardSchema = v.partial(
   })
 )
 
-export type EditCardSchema = v.InferInput<typeof EditCardSchema>
+export type EditCardSchema = v.InferOutput<typeof EditCardSchema>
