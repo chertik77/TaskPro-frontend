@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { useMemo } from 'react'
 import {
   horizontalListSortingStrategy,
   SortableContext
@@ -13,13 +13,15 @@ type ColumnListProps = {
   backgroundURL: string | null | undefined
 }
 
-export const ColumnList = memo(({ backgroundURL }: ColumnListProps) => {
+export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
   const { columns } = useDragAndDrop()
+
+  const columnsIds = useMemo(() => columns?.map(c => c.id), [columns])
 
   return (
     <ul className='flex touch-manipulation gap-[34px]'>
       <SortableContext
-        items={columns || []}
+        items={columnsIds || []}
         strategy={horizontalListSortingStrategy}>
         {columns?.map(column => (
           <ColumnListItem
@@ -32,4 +34,4 @@ export const ColumnList = memo(({ backgroundURL }: ColumnListProps) => {
       </SortableContext>
     </ul>
   )
-})
+}

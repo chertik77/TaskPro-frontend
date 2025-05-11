@@ -5,6 +5,7 @@ import type { DragAndDropContext, DragAndDropProviderProps } from './dnd.types'
 import { createContext, useContext, useEffect, useState } from 'react'
 import {
   DndContext,
+  KeyboardSensor,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -15,6 +16,7 @@ import { useCardDragHandlers } from './hooks/useCardDragHandlers'
 import { useColumnDragHandlers } from './hooks/useColumnDragHandlers'
 import { useGetAccessabilityAnnouncements } from './hooks/useGetAccessabilityAnnouncements'
 import { collisionDetection } from './utils/collisionDetection'
+import { coordinateGetter } from './utils/coordinateGetter'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
@@ -37,9 +39,13 @@ export const DragAndDropProvider = ({
     setCards(initialColumns?.flatMap(c => c.cards))
   }, [initialColumns])
 
-  const cardHandlers = useCardDragHandlers({ cards, setActiveCard, setCards })
+  const cardDragHandlers = useCardDragHandlers({
+    cards,
+    setActiveCard,
+    setCards
+  })
 
-  const columnHandlers = useColumnDragHandlers({
+  const columnDragHandlers = useColumnDragHandlers({
     columns,
     setActiveColumn,
     setColumns
@@ -49,7 +55,8 @@ export const DragAndDropProvider = ({
     useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, {
       activationConstraint: { distance: 8, delay: 250, tolerance: 5 }
-    })
+    }),
+    useSensor(KeyboardSensor, { coordinateGetter })
   )
 
   const announcements = useGetAccessabilityAnnouncements({ columns, cards })
@@ -62,13 +69,13 @@ export const DragAndDropProvider = ({
         collisionDetection={collisionDetection}
         accessibility={{ announcements }}
         onDragStart={e => {
-          cardHandlers.onDragStart(e)
-          columnHandlers.onDragStart(e)
+          cardDragHandlers.onDragStart(e)
+          columnDragHandlers.onDragStart(e)
         }}
-        onDragOver={cardHandlers.onDragOver}
+        onDragOver={cardDragHandlers.onDragOver}
         onDragEnd={e => {
-          cardHandlers.onDragEnd(e)
-          columnHandlers.onDragEnd(e)
+          cardDragHandlers.onDragEnd(e)
+          columnDragHandlers.onDragEnd(e)
         }}>
         {children}
       </DndContext>

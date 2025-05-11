@@ -6,5 +6,5 @@ export {
   PriorityRadioGroupItem
 } from './components/PriorityRadioGroup'
 export { FormDeadlinePicker } from './components/FormDeadlinePicker'
-export { CardDraggingState } from './components/CardDraggingState'
 export { FormPrioritySelector } from './components/FormPrioritySelector'
+export { Card } from './components/Card'

@@ -1,67 +1,54 @@
 import type { CardTypes } from '@/entities/card'
 
-import { isToday } from 'date-fns'
-
 import { DeleteCardTrigger } from '@/features/card/delete-card'
 import { EditCardModalTrigger } from '@/features/card/edit-card'
-import { Draggable } from '@/features/drag-and-drop'
 
-import { CardDraggingState, getPriorityColor } from '@/entities/card'
+import { Card } from '@/entities/card'
 
+import { useKanbanSortable } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
-import { Icon } from '@/shared/ui'
-
-import { CardListItemDeadline } from './CardListItemDeadline'
-import { CardListItemPriority } from './CardListItemPriority'
 
 type CardListItemProps = {
   card: CardTypes.CardSchema
+  isOverlay?: boolean
 }
 
-export const CardListItem = ({ card }: CardListItemProps) => (
-  <Draggable
-    draggableArguments={{ id: card.id, data: { type: 'card', card } }}
-    key={card.id}
-    WhileDraggingComponent={CardDraggingState}>
-    {({ setNodeRef, isDragging, attributes, listeners, style }) => (
-      <li
-        className={cn(
-          'cursor-grab touch-manipulation list-none focus-visible:outline-none',
-          isDragging && 'select-none'
-        )}
-        {...listeners}
-        {...attributes}
-        ref={setNodeRef}
-        style={style}>
-        <div
-          className='relative h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
-            dark:bg-black'>
-          <span
-            className={cn(
-              'absolute top-0 left-0 h-full w-1 rounded-l',
-              getPriorityColor(card.priority)
-            )}
-          />
-          <p className='mb-2 text-base font-semibold'>{card.title}</p>
-          <p className='text-md mb-3.5 line-clamp-2 text-black/70 dark:text-white/50'>
-            {card.description}
-          </p>
-          <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
-            <CardListItemPriority priority={card.priority} />
-            <CardListItemDeadline deadline={card.deadline} />
-            <div className='ml-auto flex gap-2'>
-              {isToday(card.deadline) && (
-                <Icon
-                  name='bell'
-                  className='stroke-brand violet:stroke-brand-violet size-4.5 animate-bounce pr-1'
-                />
-              )}
-              <EditCardModalTrigger card={card} />
-              <DeleteCardTrigger cardId={card.id} />
-            </div>
+export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
+  const { setNodeRef, listeners, attributes, style, isDragging } =
+    useKanbanSortable({
+      id: card.id,
+      data: { type: 'card', card },
+      attributes: { roleDescription: `Card: ${card.title}` }
+    })
+
+  return (
+    <li
+      className={cn(
+        'list-none rounded-lg transition-all',
+        isOverlay && 'styled-outline',
+        isDragging && 'opacity-60 select-none'
+      )}
+      ref={setNodeRef}
+      style={style}>
+      <Card card={card}>
+        <Card.DragActivator
+          className='absolute top-4 right-4'
+          listeners={listeners}
+          attributes={attributes}
+        />
+        <Card.PriorityIndicator />
+        <Card.Title />
+        <Card.Description />
+        <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
+          <Card.Priority />
+          <Card.Deadline />
+          <div className='ml-auto flex gap-2'>
+            <Card.DeadlineTodayIndicator />
+            <EditCardModalTrigger card={card} />
+            <DeleteCardTrigger cardId={card.id} />
           </div>
         </div>
-      </li>
-    )}
-  </Draggable>
-)
+      </Card>
+    </li>
+  )
+}
