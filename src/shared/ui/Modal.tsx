@@ -29,7 +29,7 @@ export const Modal = ({ children, modalTitle, ...props }: ModalProps) => {
       center
       classNames={{
         modal: cn(
-          'shadow-none m-0 w-84 rounded-lg p-6 dark:bg-black tablet:w-[350px]',
+          'shadow-none m-0 w-84 rounded-lg p-6 dark:!bg-black tablet:w-[350px]',
           modalTitle === 'Need help' && 'max-tablet:w-84'
         ),
         closeButton: 'focus-visible:styled-outline',
