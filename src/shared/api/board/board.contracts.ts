@@ -12,7 +12,7 @@ export const BoardDtoSchema = v.object({
     identifier: v.string(),
     url: v.nullable(v.string())
   }),
-  columns: v.undefinedable(v.array(ColumnDtoSchema))
+  columns: v.optional(v.array(ColumnDtoSchema))
 })
 
 export const BoardsDtoSchema = v.array(v.omit(BoardDtoSchema, ['columns']))

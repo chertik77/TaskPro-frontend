@@ -32,8 +32,8 @@ export const ColumnListItem = ({
   return (
     <li
       className={cn(
-        'w-[334px] list-none rounded-lg transition-all',
-        isOverlay && 'styled-outline',
+        'w-[334px] list-none rounded-lg',
+        isOverlay && 'styled-outline select-none',
         isDragging && 'opacity-60 select-none'
       )}
       ref={setNodeRef}

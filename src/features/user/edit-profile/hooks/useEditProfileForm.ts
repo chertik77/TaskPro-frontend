@@ -16,7 +16,7 @@ export const useEditProfileForm = () => {
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    { ...initialUser, password: undefined },
+    { ...initialUser, password: '' },
     form.watch,
     ({ password }) => (password ? form.formState.isValid : true)
   )
@@ -24,7 +24,7 @@ export const useEditProfileForm = () => {
   const { reset } = form
 
   useEffect(() => {
-    reset(initialUser)
+    reset({ ...initialUser, password: '' })
   }, [initialUser, reset])
 
   return { form, initialUser, isFormReadyForSubmit }

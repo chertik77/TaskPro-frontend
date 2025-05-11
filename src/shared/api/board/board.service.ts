@@ -4,8 +4,8 @@ import { parse } from 'valibot'
 
 import { axiosInstance } from '@/shared/lib/axios'
 
-import { TokensDtoSchema } from '../auth/auth.contracts'
 import {
+  AddBoardDtoSchema,
   BoardDtoSchema,
   BoardIdDtoSchema,
   BoardsDtoSchema,
@@ -35,7 +35,7 @@ export const boardService = {
   },
 
   async addNewBoard(data: AddBoardDto) {
-    const addBoardDto = parse(TokensDtoSchema, data)
+    const addBoardDto = parse(AddBoardDtoSchema, data)
 
     const response = await axiosInstance.post(
       BoardApiEndpoints.Board,

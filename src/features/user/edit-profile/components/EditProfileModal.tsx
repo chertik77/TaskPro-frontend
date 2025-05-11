@@ -66,7 +66,6 @@ export const EditProfileModal = () => {
           />
           <FormField
             control={form.control}
-            defaultValue=''
             name='password'
             render={({ field }) => (
               <FormItem>
@@ -84,9 +83,7 @@ export const EditProfileModal = () => {
           <Button
             type='submit'
             className='!mt-6'
-            disabled={
-              isPending || !form.formState.isValid || !isFormReadyForSubmit
-            }>
+            disabled={isPending || !isFormReadyForSubmit}>
             {isPending ? <Loader /> : 'Send'}
           </Button>
         </form>

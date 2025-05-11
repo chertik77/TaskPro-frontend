@@ -9,12 +9,18 @@ export const EditUserSchema = v.partial(
       v.maxLength(32, 'Please enter at most 32 characters.')
     ),
     email: v.pipe(v.string(), v.trim(), v.email('Please enter a valid email.')),
-    password: v.pipe(
-      v.string(),
-      v.trim(),
-      v.minLength(8, 'Please enter at least 8 characters.'),
-      v.maxLength(64, 'Please enter at most 64 characters.')
-    )
+    password: v.union([
+      v.pipe(
+        v.literal(''),
+        v.transform(() => undefined)
+      ),
+      v.pipe(
+        v.string(),
+        v.trim(),
+        v.minLength(8, 'Please enter at least 8 characters.'),
+        v.maxLength(64, 'Please enter at most 64 characters.')
+      )
+    ])
   })
 )
 

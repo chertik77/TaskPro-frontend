@@ -24,8 +24,8 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
   return (
     <li
       className={cn(
-        'list-none rounded-lg transition-all',
-        isOverlay && 'styled-outline',
+        'list-none rounded-lg',
+        isOverlay && 'styled-outline select-none',
         isDragging && 'opacity-60 select-none'
       )}
       ref={setNodeRef}

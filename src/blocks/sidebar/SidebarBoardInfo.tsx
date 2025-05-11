@@ -14,7 +14,7 @@ export const SidebarBoardInfo = () => (
         border-black/10 py-3.5 dark:border-white/10'>
       <p className='violet:text-white w-[76px]'>Create a new board</p>
       <AddBoardModalTrigger
-        className='focus-visible:styled-outline bg-brand violet:bg-brand-violet-soft
+        className='focus-visible:styled-outline bg-brand violet:bg-brand-violet-muted
           violet:text-white hocus:bg-brand-light violet:hocus:bg-brand-violet-muted flex
           h-9 w-10 items-center justify-center rounded-lg text-black transition-all
           duration-300'>
