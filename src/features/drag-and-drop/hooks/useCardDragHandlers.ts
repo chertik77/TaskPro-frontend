@@ -30,33 +30,31 @@ export const useCardDragHandlers = ({
     if (!isActiveACard) return
 
     if (isActiveACard && isDraggingOverACard) {
-      setTimeout(() => {
-        setCards(prevCards => {
-          if (!prevCards) return prevCards
+      setCards(prevCards => {
+        if (!prevCards) return prevCards
 
-          const activeCardIndex = findIndexById(prevCards, active.id as string)
-          const overCardIndex = findIndexById(prevCards, over.id as string)
+        const activeCardIndex = findIndexById(prevCards, active.id as string)
+        const overCardIndex = findIndexById(prevCards, over.id as string)
 
-          const activeCard = prevCards[activeCardIndex]
-          const overCard = prevCards[overCardIndex]
+        const activeCard = prevCards[activeCardIndex]
+        const overCard = prevCards[overCardIndex]
 
-          if (
-            activeCard &&
-            overCard &&
-            activeCard.columnId !== overCard.columnId
-          ) {
-            activeCard.columnId = overCard.columnId
+        if (
+          activeCard &&
+          overCard &&
+          activeCard.columnId !== overCard.columnId
+        ) {
+          activeCard.columnId = overCard.columnId
 
-            return arrayMove(
-              prevCards,
-              activeCardIndex,
-              Math.max(0, overCardIndex - 1)
-            )
-          }
+          return arrayMove(
+            prevCards,
+            activeCardIndex,
+            Math.max(0, overCardIndex - 1)
+          )
+        }
 
-          return arrayMove(prevCards, activeCardIndex, overCardIndex)
-        })
-      }, 0)
+        return arrayMove(prevCards, activeCardIndex, overCardIndex)
+      })
     }
 
     if (isActiveACard && isDraggingOverAColumn) {
