@@ -5,6 +5,7 @@ import type { ColumnSchema } from '../column.types'
 
 import { createContext, useContext } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { Slot } from '@radix-ui/react-slot'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
@@ -141,6 +142,33 @@ const ColumnScrollAreaThumb = ({
   />
 )
 
+type ColumnActionButtonProps = ComponentProps<'button'> & {
+  asChild?: boolean
+}
+
+const ColumnActionButton = ({
+  className,
+  asChild,
+  ref,
+  ...props
+}: ColumnActionButtonProps) => {
+  const Comp = asChild ? Slot : 'button'
+
+  return (
+    <Comp
+      type='button'
+      className={cn(
+        `focus-visible:styled-outline hocus:[&_svg]:stroke-black
+        violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft
+        [&_svg]:dark:stroke-white-soft/50 [&_svg]:size-4 [&_svg]:stroke-black/50`,
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+}
+
 export const Column = Object.assign(ColumnProvider, {
   Header: ColumnHeader,
   DragActivator: ColumnDragActivator,
@@ -148,5 +176,6 @@ export const Column = Object.assign(ColumnProvider, {
   ScrollArea: ColumnScrollArea,
   ScrollAreaViewport: ColumnScrollAreaViewport,
   ScrollAreaScrollbar: ColumnScrollAreaScrollbar,
-  ScrollAreaThumb: ColumnScrollAreaThumb
+  ScrollAreaThumb: ColumnScrollAreaThumb,
+  ActionButton: ColumnActionButton
 })

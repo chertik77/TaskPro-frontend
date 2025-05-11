@@ -4,6 +4,7 @@ import type { ComponentProps, ReactNode } from 'react'
 import type { CardSchema } from '../card.types'
 
 import { createContext, useContext } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 import { format, isToday } from 'date-fns'
 
 import { cn } from '@/shared/lib/cn'
@@ -152,6 +153,33 @@ const CardDeadlineTodayIndicator = ({ className }: ClassNameProps) => {
   )
 }
 
+type CardActionButtonProps = ComponentProps<'button'> & {
+  asChild?: boolean
+}
+
+const CardActionButton = ({
+  className,
+  asChild,
+  ref,
+  ...props
+}: CardActionButtonProps) => {
+  const Comp = asChild ? Slot : 'button'
+
+  return (
+    <Comp
+      type='button'
+      className={cn(
+        `focus-visible:styled-outline hocus:[&_svg]:stroke-black
+        violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft
+        [&_svg]:dark:stroke-white-soft/50 [&_svg]:size-4 [&_svg]:stroke-black/50`,
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+}
+
 export const Card = Object.assign(CardProvider, {
   DragActivator: CardDragActivator,
   PriorityIndicator: CardPriorityIndicator,
@@ -159,5 +187,6 @@ export const Card = Object.assign(CardProvider, {
   Description: CardDescription,
   Priority: CardPriority,
   Deadline: CardDeadline,
-  DeadlineTodayIndicator: CardDeadlineTodayIndicator
+  DeadlineTodayIndicator: CardDeadlineTodayIndicator,
+  ActionButton: CardActionButton
 })
