@@ -19,13 +19,13 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
 
   const navigate = useNavigate()
 
-  const toggleMobileSidebar = useSidebarStore(
-    state => state.toggleMobileSidebar
+  const toggleSidebarMobileMenu = useSidebarStore(
+    state => state.toggleSidebarMobileMenu
   )
 
   const handleBoardSelect = (id: string) => {
     navigate({ to: '/dashboard/$boardId', params: { boardId: id } })
-    toggleMobileSidebar(false)
+    toggleSidebarMobileMenu(false)
   }
 
   return (

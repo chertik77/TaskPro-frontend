@@ -4,8 +4,8 @@ import { Icon } from '@/shared/ui'
 import { useDeleteBoard } from '../hooks/useDeleteBoard'
 
 export const DeleteBoardTrigger = () => {
-  const toggleMobileSidebar = useSidebarStore(
-    state => state.toggleMobileSidebar
+  const toggleSidebarMobileMenu = useSidebarStore(
+    state => state.toggleSidebarMobileMenu
   )
 
   const { mutate: deleteBoard } = useDeleteBoard()
@@ -15,7 +15,7 @@ export const DeleteBoardTrigger = () => {
       type='button'
       aria-label='Delete board'
       onClick={() => {
-        toggleMobileSidebar(false)
+        toggleSidebarMobileMenu(false)
         deleteBoard()
       }}
       className='focus-visible:styled-outline hocus:*:stroke-black

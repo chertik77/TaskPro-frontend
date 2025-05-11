@@ -4,8 +4,8 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const SidebarLogo = () => {
-  const toggleMobileSidebar = useSidebarStore(
-    state => state.toggleMobileSidebar
+  const toggleSidebarMobileMenu = useSidebarStore(
+    state => state.toggleSidebarMobileMenu
   )
 
   return (
@@ -15,7 +15,7 @@ export const SidebarLogo = () => {
       <Link
         className='focus-visible:styled-outline violet:text-brand-violet text-white'
         to='/dashboard'
-        onClick={() => toggleMobileSidebar(false)}>
+        onClick={() => toggleSidebarMobileMenu(false)}>
         <Icon
           name='logo'
           className='fill-black-muted violet:fill-white-gray size-8'
