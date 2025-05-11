@@ -1,16 +1,16 @@
 import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
-export const ToggleMobileSidebarTrigger = () => {
-  const toggleMobileSidebar = useSidebarStore(
-    state => state.toggleMobileSidebar
+export const ToggleSidebarMobileMenuTrigger = () => {
+  const toggleSidebarMobileMenu = useSidebarStore(
+    state => state.toggleSidebarMobileMenu
   )
 
   return (
     <button
-      onClick={() => toggleMobileSidebar(true)}
+      onClick={() => toggleSidebarMobileMenu(true)}
       type='button'
-      aria-label='Toggle sidebar menu'
+      aria-label='Toggle sidebar mobile menu'
       className='desktop:hidden'>
       <Icon
         name='menu'

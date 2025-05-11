@@ -10,7 +10,7 @@ import { useSidebarStore } from '@/shared/store'
 import { SidebarBoardInfo } from './SidebarBoardInfo'
 import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
-import { SidebarMenu } from './SidebarMenu'
+import { SidebarMobileMenu } from './SidebarMobileMenu'
 
 export const Sidebar = () => {
   const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
@@ -18,7 +18,7 @@ export const Sidebar = () => {
   const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
 
   return isTabletAndBelow ? (
-    <SidebarMenu />
+    <SidebarMobileMenu />
   ) : (
     <ScrollArea.Root
       type='scroll'

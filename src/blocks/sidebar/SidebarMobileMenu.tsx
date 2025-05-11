@@ -9,17 +9,17 @@ import { SidebarBoardInfo } from './SidebarBoardInfo'
 import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
 
-export const SidebarMenu = () => {
-  const { isMobileSidebarOpen, toggleMobileSidebar } = useSidebarStore()
+export const SidebarMobileMenu = () => {
+  const { isSidebarMobileMenuOpen, toggleSidebarMobileMenu } = useSidebarStore()
 
   return (
     <Modal
-      open={isMobileSidebarOpen}
-      onClose={() => toggleMobileSidebar(false)}
+      open={isSidebarMobileMenuOpen}
+      onClose={() => toggleSidebarMobileMenu(false)}
       classNames={{
-        modal: `m-0 flex min-h-dvh w-[225px] flex-col bg-white
-        pb-6 px-0 pt-3.5 violet:bg-brand-violet dark:bg-black-soft
-        tablet:w-[260px] tablet:pt-6`
+        modal: `!m-0 !flex min-h-dvh !w-[225px] flex-col bg-white
+        !pb-6 !px-0 !pt-3.5 violet:!bg-brand-violet dark:!bg-black-soft
+        tablet:!w-[260px] tablet:!pt-6 !shadow-none`
       }}
       focusTrapped={false}
       closeOnEsc={false}

@@ -1,3 +1,3 @@
 export { ToggleSidebarTrigger } from './components/ToggleSidebarTrigger'
-export { ToggleMobileSidebarTrigger } from './components/ToggleMobileSidebarTrigger'
+export { ToggleSidebarMobileMenuTrigger } from './components/ToggleSidebarMobileMenuTrigger'
 export { useSidebarToggleShortcut } from './hooks/useSidebarToggleShortcut'
