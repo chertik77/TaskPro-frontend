@@ -17,7 +17,7 @@ export const useCardDragHandlers = ({
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'card') return
 
-    setActiveCard(active.data.current?.entity)
+    setActiveCard(active.data.current?.card)
   }
 
   const onDragOver = ({ active, over }: DragOverEvent) => {

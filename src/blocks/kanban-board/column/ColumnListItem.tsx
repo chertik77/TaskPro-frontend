@@ -27,9 +27,8 @@ export const ColumnListItem = ({
 
   return (
     <Draggable
-      entity={column}
+      draggableArguments={{ id: column.id, data: { type: 'column', column } }}
       key={column.id}
-      draggableType='column'
       WhileDraggingComponent={ColumnDraggingState}>
       {({ setNodeRef, isDragging, attributes, listeners, style }) => (
         <li

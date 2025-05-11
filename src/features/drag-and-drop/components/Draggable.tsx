@@ -1,4 +1,4 @@
-import type { DraggableAttributes, UniqueIdentifier } from '@dnd-kit/core'
+import type { DraggableAttributes, UseDraggableArguments } from '@dnd-kit/core'
 import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import type { ElementType, ReactNode } from 'react'
 
@@ -19,22 +19,17 @@ type ChildrenProps = {
 }
 
 type DraggableProps = {
-  draggableType: string
+  draggableArguments: UseDraggableArguments
   children: (props: ChildrenProps) => ReactNode
-  entity: { id: UniqueIdentifier } & Record<string, unknown>
   WhileDraggingComponent: ElementType
 }
 
 export const Draggable = ({
-  draggableType,
+  draggableArguments,
   children,
-  entity,
   WhileDraggingComponent
 }: DraggableProps) => {
-  const { transition, transform, ...sortable } = useSortable({
-    id: entity.id,
-    data: { type: draggableType, entity }
-  })
+  const { transition, transform, ...sortable } = useSortable(draggableArguments)
 
   const style = {
     transition,

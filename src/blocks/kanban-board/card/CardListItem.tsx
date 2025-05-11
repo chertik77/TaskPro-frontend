@@ -20,9 +20,8 @@ type CardListItemProps = {
 
 export const CardListItem = ({ card }: CardListItemProps) => (
   <Draggable
-    entity={card}
+    draggableArguments={{ id: card.id, data: { type: 'card', card } }}
     key={card.id}
-    draggableType='card'
     WhileDraggingComponent={CardDraggingState}>
     {({ setNodeRef, isDragging, attributes, listeners, style }) => (
       <li
