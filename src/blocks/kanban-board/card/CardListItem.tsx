@@ -32,7 +32,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
       style={style}>
       <Card card={card}>
         <Card.DragActivator
-          className='absolute top-4 right-4'
+          className='absolute top-3 right-3'
           listeners={listeners}
           attributes={attributes}
         />
