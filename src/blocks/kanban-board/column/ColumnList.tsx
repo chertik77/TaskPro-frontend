@@ -19,7 +19,7 @@ export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
   const columnsIds = useMemo(() => columns?.map(c => c.id), [columns])
 
   return (
-    <ul className='flex touch-manipulation gap-[34px]'>
+    <ul className='desktop:pl-6 tablet:pl-8 flex touch-manipulation gap-[34px] pl-5'>
       <SortableContext
         items={columnsIds || []}
         strategy={horizontalListSortingStrategy}>

@@ -3,8 +3,6 @@ import type { ColumnDragHandlersProps } from '../dnd.types'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
-import { findIndexById } from '@/shared/utils'
-
 import { useUpdateColumnOrder } from './useUpdateColumnOrder'
 
 export const useColumnDragHandlers = ({
@@ -21,14 +19,14 @@ export const useColumnDragHandlers = ({
   }
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
-    if (!active || active.data.current?.type !== 'column') return
-
     setActiveColumn(null)
+
+    if (!active || active.data.current?.type !== 'column') return
 
     if (!over || !columns) return
 
-    const activeColumnIndex = findIndexById(columns, active.id as string)
-    const overColumnIndex = findIndexById(columns, over.id as string)
+    const activeColumnIndex = columns.findIndex(c => c.id === active.id)
+    const overColumnIndex = columns.findIndex(c => c.id === over.id)
 
     if (activeColumnIndex === overColumnIndex) return
 

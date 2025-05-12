@@ -3,8 +3,6 @@ import type { CardDragHandlersProps } from '../dnd.types'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
-import { findIndexById } from '@/shared/utils'
-
 import { useUpdateCardOrder } from './useUpdateCardOrder'
 
 export const useCardDragHandlers = ({
@@ -21,20 +19,23 @@ export const useCardDragHandlers = ({
   }
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
-    if (!over || active.id === over.id) return
+    if (
+      !over ||
+      active.id === over.id ||
+      active.data.current?.type !== 'card'
+    ) {
+      return
+    }
 
-    const isActiveACard = active.data.current?.type === 'card'
     const isDraggingOverACard = over.data.current?.type === 'card'
     const isDraggingOverAColumn = over.data.current?.type === 'column'
 
-    if (!isActiveACard) return
-
-    if (isActiveACard && isDraggingOverACard) {
+    if (isDraggingOverACard) {
       setCards(prevCards => {
         if (!prevCards) return prevCards
 
-        const activeCardIndex = findIndexById(prevCards, active.id as string)
-        const overCardIndex = findIndexById(prevCards, over.id as string)
+        const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
+        const overCardIndex = prevCards.findIndex(c => c.id === over.id)
 
         const activeCard = prevCards[activeCardIndex]
         const overCard = prevCards[overCardIndex]
@@ -57,11 +58,11 @@ export const useCardDragHandlers = ({
       })
     }
 
-    if (isActiveACard && isDraggingOverAColumn) {
+    if (isDraggingOverAColumn) {
       setCards(prevCards => {
         if (!prevCards) return prevCards
 
-        const activeCardIndex = findIndexById(prevCards, active.id as string)
+        const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
         const activeCard = prevCards[activeCardIndex]
 
         if (activeCard) {
@@ -76,9 +77,9 @@ export const useCardDragHandlers = ({
   }
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
-    if (!active || active.data.current?.type !== 'card') return
-
     setActiveCard(null)
+
+    if (!active || active.data.current?.type !== 'card') return
 
     if (!cards || !over) return
 
