@@ -1,6 +1,5 @@
 import * as v from 'valibot'
 
-import { BoardIdDtoSchema } from '../board/board.contracts'
 import { CardDtoSchema } from '../card/card.contracts'
 
 export const ColumnDtoSchema = v.object({
@@ -17,7 +16,7 @@ export const ColumnIdDtoSchema = v.object({
 
 export const AddColumnDtoSchema = v.object({
   title: v.pipe(v.string(), v.trim(), v.minLength(3)),
-  boardId: v.lazy(() => BoardIdDtoSchema.entries.boardId)
+  boardId: v.string()
 })
 
 export const EditColumnDtoSchema = v.intersect([
@@ -26,6 +25,6 @@ export const EditColumnDtoSchema = v.intersect([
 ])
 
 export const UpdateColumnDtoSchema = v.object({
-  boardId: v.lazy(() => BoardIdDtoSchema.entries.boardId),
+  boardId: v.string(),
   ids: v.array(v.string())
 })

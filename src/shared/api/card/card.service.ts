@@ -1,6 +1,7 @@
 import type {
   AddCardDto,
   CardIdDto,
+  ChangeCardColumnDto,
   EditCardDto,
   UpdateCardOrderDto
 } from './card.types'
@@ -11,6 +12,7 @@ import { axiosInstance } from '@/shared/lib/axios'
 
 import {
   AddCardDtoSchema,
+  ChangeCardColumnDtoSchema,
   EditCardDtoSchema,
   UpdateCardOrderDtoSchema
 } from './card.contracts'
@@ -32,10 +34,15 @@ export const cardService = {
     await axiosInstance.put(CardApiEndpoints.CardById(cardId), editCardDto)
   },
 
-  async deleteCard(data: CardIdDto) {
-    const { cardId } = parse(EditCardDtoSchema, data)
+  async changeCardColumn(data: ChangeCardColumnDto) {
+    const changeCardColumnDto = parse(ChangeCardColumnDtoSchema, data)
 
-    await axiosInstance.delete(CardApiEndpoints.CardById(cardId))
+    await axiosInstance.patch(
+      CardApiEndpoints.CardNewColumn(
+        changeCardColumnDto.cardId,
+        changeCardColumnDto.newColumnId
+      )
+    )
   },
 
   async updateCardOrder(data: UpdateCardOrderDto) {
@@ -48,5 +55,11 @@ export const cardService = {
       CardApiEndpoints.CardOrder(columnId),
       updateCardOrderDto
     )
+  },
+
+  async deleteCard(data: CardIdDto) {
+    const { cardId } = parse(EditCardDtoSchema, data)
+
+    await axiosInstance.delete(CardApiEndpoints.CardById(cardId))
   }
 }

@@ -1,5 +1,6 @@
 import type { CardTypes } from '@/entities/card'
 
+import { ChangeCardColumnSelect } from '@/features/card/change-card-column'
 import { DeleteCardTrigger } from '@/features/card/delete-card'
 import { EditCardModalTrigger } from '@/features/card/edit-card'
 
@@ -45,6 +46,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
           <div className='ml-auto flex items-center gap-3'>
             <Card.DeadlineTodayIndicator />
             <div className='flex items-center gap-2'>
+              <ChangeCardColumnSelect card={card} />
               <EditCardModalTrigger card={card} />
               <DeleteCardTrigger cardId={card.id} />
             </div>
