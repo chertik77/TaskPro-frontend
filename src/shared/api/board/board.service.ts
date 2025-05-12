@@ -34,7 +34,7 @@ export const boardService = {
     return parsedData
   },
 
-  async addNewBoard(data: AddBoardDto) {
+  async addBoard(data: AddBoardDto) {
     const addBoardDto = parse(AddBoardDtoSchema, data)
 
     const response = await axiosInstance.post(

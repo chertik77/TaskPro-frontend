@@ -18,7 +18,7 @@ import {
 import { ColumnApiEndpoints } from './column.endpoints'
 
 export const columnService = {
-  async addNewColumn(data: AddColumnDto) {
+  async addColumn(data: AddColumnDto) {
     const { boardId, ...addColumnDto } = parse(AddColumnDtoSchema, data)
 
     await axiosInstance.post(

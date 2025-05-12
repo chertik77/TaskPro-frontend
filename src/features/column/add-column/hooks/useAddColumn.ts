@@ -18,7 +18,7 @@ export const useAddColumn = (reset: UseFormReset<AddColumnSchema>) => {
 
   return useMutation({
     mutationFn: (data: Omit<ColumnDtoTypes.AddColumnDto, 'boardId'>) =>
-      columnService.addNewColumn({ boardId: boardId!, ...data }),
+      columnService.addColumn({ boardId: boardId!, ...data }),
     meta: { invalidates: [['board']] },
     onSuccess() {
       closeAddColumnModal()

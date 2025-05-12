@@ -17,7 +17,7 @@ import {
 import { CardApiEndpoints } from './card.endpoints'
 
 export const cardService = {
-  async addNewCard(data: AddCardDto) {
+  async addCard(data: AddCardDto) {
     const { columnId, ...addCardDto } = parse(AddCardDtoSchema, data)
 
     await axiosInstance.post(

@@ -20,7 +20,7 @@ export const useAddCard = (reset: UseFormReset<AddCardSchema>) => {
 
   return useMutation({
     mutationFn: (data: Omit<CardDtoTypes.AddCardDto, 'columnId'>) =>
-      cardService.addNewCard({ columnId, ...data }),
+      cardService.addCard({ columnId, ...data }),
     meta: { invalidates: [['board']] },
     onSuccess() {
       closeAddCardModal()

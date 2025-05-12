@@ -42,10 +42,12 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
         <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
           <Card.Priority />
           <Card.Deadline />
-          <div className='ml-auto flex gap-2'>
+          <div className='ml-auto flex items-center gap-3'>
             <Card.DeadlineTodayIndicator />
-            <EditCardModalTrigger card={card} />
-            <DeleteCardTrigger cardId={card.id} />
+            <div className='flex items-center gap-2'>
+              <EditCardModalTrigger card={card} />
+              <DeleteCardTrigger cardId={card.id} />
+            </div>
           </div>
         </div>
       </Card>
