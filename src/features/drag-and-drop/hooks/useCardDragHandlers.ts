@@ -19,46 +19,45 @@ export const useCardDragHandlers = ({
   }
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
-    if (
-      !over ||
-      active.id === over.id ||
-      active.data.current?.type !== 'card'
-    ) {
-      return
-    }
+    if (!over || active.id === over.id) return
 
+    const isActiveACard = active.data.current?.type === 'card'
     const isDraggingOverACard = over.data.current?.type === 'card'
     const isDraggingOverAColumn = over.data.current?.type === 'column'
 
-    if (isDraggingOverACard) {
-      setCards(prevCards => {
-        if (!prevCards) return prevCards
+    if (!isActiveACard) return
 
-        const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
-        const overCardIndex = prevCards.findIndex(c => c.id === over.id)
+    if (isActiveACard && isDraggingOverACard) {
+      setTimeout(() => {
+        setCards(prevCards => {
+          if (!prevCards) return prevCards
 
-        const activeCard = prevCards[activeCardIndex]
-        const overCard = prevCards[overCardIndex]
+          const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
+          const overCardIndex = prevCards.findIndex(c => c.id === over.id)
 
-        if (
-          activeCard &&
-          overCard &&
-          activeCard.columnId !== overCard.columnId
-        ) {
-          activeCard.columnId = overCard.columnId
+          const activeCard = prevCards[activeCardIndex]
+          const overCard = prevCards[overCardIndex]
 
-          return arrayMove(
-            prevCards,
-            activeCardIndex,
-            Math.max(0, overCardIndex - 1)
-          )
-        }
+          if (
+            activeCard &&
+            overCard &&
+            activeCard.columnId !== overCard.columnId
+          ) {
+            activeCard.columnId = overCard.columnId
 
-        return arrayMove(prevCards, activeCardIndex, overCardIndex)
-      })
+            return arrayMove(
+              prevCards,
+              activeCardIndex,
+              Math.max(0, overCardIndex - 1)
+            )
+          }
+
+          return arrayMove(prevCards, activeCardIndex, overCardIndex)
+        })
+      }, 0)
     }
 
-    if (isDraggingOverAColumn) {
+    if (isActiveACard && isDraggingOverAColumn) {
       setCards(prevCards => {
         if (!prevCards) return prevCards
 
