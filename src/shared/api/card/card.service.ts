@@ -37,7 +37,7 @@ export const cardService = {
   async changeCardColumn(data: ChangeCardColumnDto) {
     const changeCardColumnDto = parse(ChangeCardColumnDtoSchema, data)
 
-    await axiosInstance.patch(
+    await axiosInstance.put(
       CardApiEndpoints.CardNewColumn(
         changeCardColumnDto.cardId,
         changeCardColumnDto.newColumnId

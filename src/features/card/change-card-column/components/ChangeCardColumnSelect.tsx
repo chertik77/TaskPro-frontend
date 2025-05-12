@@ -15,7 +15,10 @@ type ChangeCardColumnSelectProps = {
 export const ChangeCardColumnSelect = ({
   card
 }: ChangeCardColumnSelectProps) => {
-  const { data: columns } = useGetBoardById(data => data.columns)
+  const { data: columns } = useGetBoardById({
+    select: board => board.columns,
+    refetchOnMount: false
+  })
 
   const filteredColumns = useMemo(
     () => columns?.filter(c => c.id !== card.columnId),

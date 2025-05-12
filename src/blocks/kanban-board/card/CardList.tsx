@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { SortableContext } from '@dnd-kit/sortable'
 
 import { useFilteredCards } from '@/features/card/filter-cards'
 import { useDragAndDrop } from '@/features/drag-and-drop'
@@ -20,9 +20,7 @@ export const CardList = ({ currentColumnId }: CardListProps) => {
   )
 
   return (
-    <SortableContext
-      items={cardsIds || []}
-      strategy={verticalListSortingStrategy}>
+    <SortableContext items={cardsIds || []}>
       <ul className='space-y-2'>
         {filteredCards?.map(card => (
           <CardListItem

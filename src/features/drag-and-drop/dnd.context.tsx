@@ -52,9 +52,9 @@ export const DragAndDropProvider = ({
   })
 
   const sensors = useSensors(
-    useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(MouseSensor),
     useSensor(TouchSensor, {
-      activationConstraint: { distance: 8, delay: 250, tolerance: 5 }
+      activationConstraint: { delay: 250, tolerance: 5 }
     }),
     useSensor(KeyboardSensor, { coordinateGetter })
   )

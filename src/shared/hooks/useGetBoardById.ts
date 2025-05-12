@@ -1,4 +1,6 @@
 import type { BoardDtoTypes } from '@/shared/api/board'
+import type { UseQueryOptions } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
 
 import { useQuery } from '@tanstack/react-query'
 
@@ -6,7 +8,10 @@ import { boardService } from '@/shared/api/board'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 export const useGetBoardById = <T = BoardDtoTypes.BoardDto>(
-  select?: (data: BoardDtoTypes.BoardDto) => T
+  options?: Omit<
+    UseQueryOptions<BoardDtoTypes.BoardDto, AxiosError, T>,
+    'queryKey' | 'queryFn'
+  >
 ) => {
   const { boardId } = useGetParamBoardId()
 
@@ -14,6 +19,6 @@ export const useGetBoardById = <T = BoardDtoTypes.BoardDto>(
     queryKey: ['board', boardId],
     queryFn: () => boardService.getBoardById({ boardId: boardId! }),
     enabled: !!boardId,
-    select
+    ...options
   })
 }
