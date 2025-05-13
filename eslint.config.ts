@@ -52,7 +52,7 @@ export default eslintTypescript.config(
             'DragCancelEvent'
           ],
           message:
-            'Please import from `@/features/drag-and-drop/utils/dnd-kit.typesafe.tsx` instead.'
+            'Please import typed versions from `@/features/drag-and-drop` instead.'
         }
       ],
       'newline-before-return': 'error',

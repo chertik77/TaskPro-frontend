@@ -6,6 +6,7 @@ import type {
   Active,
   Collision,
   DndContextProps,
+  Announcements as OriginalAnnouncements,
   Over,
   Translate
 } from '@dnd-kit/core'
@@ -52,7 +53,10 @@ export type Announcements = {
   onDragOver(event: Arguments): string | undefined
   onDragEnd(event: Arguments): string | undefined
   onDragCancel(event: Arguments): string | undefined
-}
+} & Omit<
+  OriginalAnnouncements,
+  'onDragStart' | 'onDragMove' | 'onDragOver' | 'onDragEnd' | 'onDragCancel'
+>
 
 type Accessibility = Omit<
   NonNullable<Props['accessibility']>,
@@ -61,7 +65,7 @@ type Accessibility = Omit<
   announcements?: Announcements
 }
 
-export type DndContextTypesafeProps = {
+type DndContextTypesafeProps = {
   onDragStart?(event: DragStartEvent): void
   onDragMove?(event: DragMoveEvent): void
   onDragOver?(event: DragOverEvent): void
