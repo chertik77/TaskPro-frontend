@@ -8,7 +8,7 @@ export const EmptyBoard = () => (
       Before starting your project, it is essential{' '}
       <AddBoardModalTrigger
         className='focus-visible:styled-outline text-brand violet:text-brand-violet
-          hocus:text-brand-light violet:hocus:text-brand-violet-soft'>
+          hocus:text-brand-light violet:hocus:text-brand-violet-muted transition-colors'>
         to create a board
       </AddBoardModalTrigger>{' '}
       to visualize and track all the necessary tasks and milestones. This board

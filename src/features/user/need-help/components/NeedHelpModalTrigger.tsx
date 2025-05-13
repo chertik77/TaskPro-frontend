@@ -27,9 +27,8 @@ export const NeedHelpModalTrigger = () => {
         aria-label='Open need help modal'
         onClick={openNeedHelpModal}
         className='focus-visible:styled-outline text-md violet:text-white hocus:text-brand-light
-          violet:hocus:text-brand-violet-soft dark:text-white-soft
-          dark:hocus:text-brand-light flex size-max items-center gap-2 bg-transparent
-          font-medium transition-all'>
+          violet:hocus:text-brand-violet dark:text-white-soft dark:hocus:text-brand-light
+          flex size-max items-center gap-2 bg-transparent font-medium transition-all'>
         <Icon
           name='help'
           className='size-5'

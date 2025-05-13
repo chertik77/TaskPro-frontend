@@ -16,8 +16,8 @@ export const PriorityFilter = () => {
       onValueChange={v => handleParamsChange('priority', v)}>
       {PRIORITIES.map(priority => (
         <label
-          className='text-md hocus:text-black hocus:dark:text-white flex items-center gap-2
-            text-black/50 has-[:checked]:text-black dark:text-white/50
+          className='text-md hocus:text-black hocus:dark:text-white flex cursor-pointer items-center
+            gap-2 text-black/50 has-[:checked]:text-black dark:text-white/50
             has-[:checked]:dark:text-white'
           key={priority}>
           <RadioGroupItem
