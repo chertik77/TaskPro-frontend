@@ -1,7 +1,13 @@
 import type { CardTypes } from '@/entities/card'
 import type { Deadline, Priority } from '@/shared/constants'
 
-import { addDays, isAfter, isBefore, isToday, startOfToday } from 'date-fns'
+import {
+  addDays,
+  isAfter,
+  isBefore,
+  isWithinInterval,
+  startOfToday
+} from 'date-fns'
 
 type CardFilters = {
   priority?: Priority
@@ -27,20 +33,16 @@ export const getFilteredCards = (
     filteredCards = filteredCards.filter(card => {
       const cardDeadline = card.deadline
 
-      if (deadline === 'Overdue') {
-        return isBefore(cardDeadline, today)
-      }
+      if (deadline === 'Overdue') return isBefore(cardDeadline, today)
 
       if (deadline === 'Upcoming') {
-        return (
-          isToday(cardDeadline) ||
-          (isAfter(cardDeadline, today) && isBefore(cardDeadline, nextWeek))
-        )
+        return isWithinInterval(cardDeadline, {
+          start: startOfToday(),
+          end: nextWeek
+        })
       }
 
-      if (deadline === 'Far Future') {
-        return isAfter(cardDeadline, nextWeek)
-      }
+      if (deadline === 'Far Future') return isAfter(cardDeadline, nextWeek)
 
       return true
     })
