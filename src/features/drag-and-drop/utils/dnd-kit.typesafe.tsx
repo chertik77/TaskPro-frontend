@@ -9,6 +9,7 @@ import type {
   Over,
   Translate
 } from '@dnd-kit/core'
+import type { Props } from '@dnd-kit/core/dist/components/DndContext/DndContext'
 import type { RefObject } from 'react'
 
 import { DndContext as OriginalDndContext } from '@dnd-kit/core'
@@ -22,14 +23,12 @@ type DraggableData =
   | { type: 'column'; column: ColumnTypes.ColumnSchema }
 
 type TypesafeActive = {
-  id: string
   data: RefObject<DraggableData | undefined>
-} & Omit<Active, 'data' | 'id'>
+} & Omit<Active, 'data'>
 
 type TypesafeOver = {
-  id: string
   data: RefObject<DroppableData | undefined>
-} & Omit<Over, 'data' | 'id'>
+} & Omit<Over, 'data'>
 
 type DragEvent = {
   activatorEvent: Event
@@ -55,15 +54,28 @@ export type Announcements = {
   onDragCancel(event: Arguments): string | undefined
 }
 
+type Accessibility = Omit<
+  NonNullable<Props['accessibility']>,
+  'announcements'
+> & {
+  announcements?: Announcements
+}
+
 export type DndContextTypesafeProps = {
   onDragStart?(event: DragStartEvent): void
   onDragMove?(event: DragMoveEvent): void
   onDragOver?(event: DragOverEvent): void
   onDragEnd?(event: DragEndEvent): void
   onDragCancel?(event: DragCancelEvent): void
+  accessibility?: Accessibility
 } & Omit<
   DndContextProps,
-  'onDragStart' | 'onDragMove' | 'onDragOver' | 'onDragEnd' | 'onDragCancel'
+  | 'onDragStart'
+  | 'onDragMove'
+  | 'onDragOver'
+  | 'onDragEnd'
+  | 'onDragCancel'
+  | 'accessibility'
 >
 
 export const DndContext = (props: DndContextTypesafeProps) => (
