@@ -1,5 +1,5 @@
-import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 import type { ColumnDragHandlersProps } from '../dnd.types'
+import type { DragEndEvent, DragStartEvent } from '../utils/dnd-kit.typesafe'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
@@ -15,7 +15,7 @@ export const useColumnDragHandlers = ({
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'column') return
 
-    setActiveColumn(active.data.current?.column)
+    setActiveColumn(active.data.current.column)
   }
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {

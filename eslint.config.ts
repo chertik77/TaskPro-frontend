@@ -38,6 +38,23 @@ export default eslintTypescript.config(
           message: 'Prefix React is not allowed'
         }
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          name: '@dnd-kit/core',
+          importNames: [
+            'DndContext',
+            'Announcements',
+            'DragStartEvent',
+            'DragMoveEvent',
+            'DragOverEvent',
+            'DragEndEvent',
+            'DragCancelEvent'
+          ],
+          message:
+            'Please import from `@/features/drag-and-drop/utils/dnd-kit.typesafe.tsx` instead.'
+        }
+      ],
       'newline-before-return': 'error',
       'arrow-body-style': ['warn', 'as-needed']
     }

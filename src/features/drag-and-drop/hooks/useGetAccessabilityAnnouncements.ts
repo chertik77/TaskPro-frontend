@@ -1,5 +1,5 @@
-import type { Announcements } from '@dnd-kit/core'
 import type { DragAndDropContext } from '../dnd.types'
+import type { Announcements } from '../utils/dnd-kit.typesafe'
 
 import { useRef } from 'react'
 
@@ -19,7 +19,7 @@ export const useGetAccessabilityAnnouncements = ({
         const activeColumnIdx = columns.findIndex(c => c.id === active.id)
         const activeColumn = columns[activeColumnIdx]
 
-        return `Picked up column ${activeColumn?.title} at position: ${
+        return `Picked up column ${activeColumn.title} at position: ${
           activeColumnIdx + 1
         } of ${columns.length}`
       } else if (active.data.current?.type === 'card') {

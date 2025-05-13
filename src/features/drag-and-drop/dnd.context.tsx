@@ -4,7 +4,6 @@ import type { DragAndDropContext, DragAndDropProviderProps } from './dnd.types'
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import {
-  DndContext,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
@@ -17,6 +16,7 @@ import { useColumnDragHandlers } from './hooks/useColumnDragHandlers'
 import { useGetAccessabilityAnnouncements } from './hooks/useGetAccessabilityAnnouncements'
 import { collisionDetection } from './utils/collisionDetection'
 import { coordinateGetter } from './utils/coordinateGetter'
+import { DndContext } from './utils/dnd-kit.typesafe'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 

@@ -3,7 +3,6 @@
     "prettier --write",
     "eslint --fix -f mo",
     "eslint -f mo",
-    "sh -c 'tsc-files --noEmit $(find ./src -name *.d.ts ! -path \"./src/.*/*\") $0 $@'"
   ],
   "*.json": ["prettier --write"]
 }
