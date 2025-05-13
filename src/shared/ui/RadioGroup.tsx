@@ -4,7 +4,7 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 
 import { cn } from '@/shared/lib/cn'
 
-export const PriorityRadioGroup = ({
+const RadioGroup = ({
   ref,
   className,
   ...props
@@ -16,7 +16,7 @@ export const PriorityRadioGroup = ({
   />
 )
 
-export const PriorityRadioGroupItem = ({
+const RadioGroupItem = ({
   ref,
   className,
   indicatorClassname,
@@ -40,3 +40,5 @@ export const PriorityRadioGroupItem = ({
     />
   </RadioGroupPrimitive.Item>
 )
+
+export { RadioGroup, RadioGroupItem }

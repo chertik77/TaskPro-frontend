@@ -1,10 +1,16 @@
 import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
 import { useState } from 'react'
-import * as Popover from '@radix-ui/react-popover'
 import { isBefore, isToday } from 'date-fns'
 
-import { Calendar, FormControl, Icon } from '@/shared/ui'
+import {
+  Calendar,
+  FormControl,
+  Icon,
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/shared/ui'
 
 import { formatTodayDate } from '../card.utils'
 
@@ -18,14 +24,14 @@ export const FormDeadlinePicker = <T extends FieldValues>({
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
 
   return (
-    <Popover.Root
+    <Popover
       open={isCalendarOpen}
       onOpenChange={setIsCalendarOpen}>
-      <Popover.Trigger asChild>
+      <PopoverTrigger asChild>
         <FormControl>
           <button
             type='button'
-            className='focus-visible:styled-outline text-brand violet:text-brand-violet mb-[40px] flex
+            className='focus-visible:styled-outline text-brand violet:text-brand-violet mb-10 flex
               items-center gap-1'>
             {formatTodayDate(field.value)}
             <Icon
@@ -34,11 +40,9 @@ export const FormDeadlinePicker = <T extends FieldValues>({
             />
           </button>
         </FormControl>
-      </Popover.Trigger>
-      <Popover.Content
+      </PopoverTrigger>
+      <PopoverContent
         side='top'
-        sideOffset={5}
-        className='fade-zoom z-[1000]'
         align='start'>
         <Calendar
           mode='single'
@@ -51,7 +55,7 @@ export const FormDeadlinePicker = <T extends FieldValues>({
             setIsCalendarOpen(false)
           }}
         />
-      </Popover.Content>
-    </Popover.Root>
+      </PopoverContent>
+    </Popover>
   )
 }

@@ -1,11 +1,8 @@
-import {
-  getPriorityColor,
-  PriorityRadioGroup,
-  PriorityRadioGroupItem
-} from '@/entities/card'
+import { getPriorityColor } from '@/entities/card'
 
 import { PRIORITIES } from '@/shared/constants'
 import { cn } from '@/shared/lib/cn'
+import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { useCardFilters } from '../hooks/useCardFilters'
 
@@ -13,7 +10,7 @@ export const PriorityFilter = () => {
   const { priorityParam, handleParamsChange } = useCardFilters()
 
   return (
-    <PriorityRadioGroup
+    <RadioGroup
       className='flex-col'
       value={priorityParam ?? ''}
       onValueChange={v => handleParamsChange('priority', v)}>
@@ -23,7 +20,7 @@ export const PriorityFilter = () => {
             text-black/50 has-[:checked]:text-black dark:text-white/50
             has-[:checked]:dark:text-white'
           key={priority}>
-          <PriorityRadioGroupItem
+          <RadioGroupItem
             className={getPriorityColor(priority)}
             indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
             value={priority}
@@ -31,6 +28,6 @@ export const PriorityFilter = () => {
           {priority}
         </label>
       ))}
-    </PriorityRadioGroup>
+    </RadioGroup>
   )
 }

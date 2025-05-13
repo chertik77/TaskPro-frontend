@@ -5,8 +5,15 @@ export { Icon } from './Icon'
 export { PasswordInput } from './PasswordInput'
 export { Loader } from './Loader'
 export { PlusButtonWithLoader } from './PlusButtonWithLoader'
+export { RadioGroup, RadioGroupItem } from './RadioGroup'
 export { Calendar } from './Calendar'
 export { Modal } from './Modal'
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverClose
+} from './Popover'
 export {
   Form,
   FormField,

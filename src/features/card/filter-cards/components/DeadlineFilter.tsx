@@ -1,6 +1,5 @@
-import { Indicator, Item, Root } from '@radix-ui/react-radio-group'
-
 import { DEADLINES } from '@/shared/constants'
+import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { useCardFilters } from '../hooks/useCardFilters'
 
@@ -8,8 +7,8 @@ export const DeadlineFilter = () => {
   const { deadlineParam, handleParamsChange } = useCardFilters()
 
   return (
-    <Root
-      className='flex flex-col gap-2'
+    <RadioGroup
+      className='flex-col'
       value={deadlineParam ?? ''}
       onValueChange={v => handleParamsChange('deadline', v)}>
       {DEADLINES.map(deadline => (
@@ -18,18 +17,14 @@ export const DeadlineFilter = () => {
             text-black/50 has-[:checked]:text-black dark:text-white/50
             has-[:checked]:dark:text-white'
           key={deadline}>
-          <Item
-            className='focus-visible:styled-outline size-3.5 rounded-full bg-black/30 dark:bg-white/30'
-            value={deadline}>
-            <Indicator
-              className='flex justify-center rounded-full after:size-3 after:rounded-full after:border-2
-                after:border-white after:bg-black/30 dark:after:border-black
-                dark:after:bg-white/30'
-            />
-          </Item>
+          <RadioGroupItem
+            className='bg-black/30 dark:bg-white/30'
+            indicatorClassname='after:bg-black/30 dark:after:bg-white/30'
+            value={deadline}
+          />
           {deadline}
         </label>
       ))}
-    </Root>
+    </RadioGroup>
   )
 }
