@@ -24,12 +24,14 @@ type DraggableData =
   | { type: 'column'; column: ColumnTypes.ColumnSchema }
 
 type TypesafeActive = {
+  id: string
   data: RefObject<DraggableData | undefined>
-} & Omit<Active, 'data'>
+} & Omit<Active, 'data' | 'id'>
 
 type TypesafeOver = {
+  id: string
   data: RefObject<DroppableData | undefined>
-} & Omit<Over, 'data'>
+} & Omit<Over, 'data' | 'id'>
 
 type DragEvent = {
   activatorEvent: Event
