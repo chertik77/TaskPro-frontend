@@ -23,7 +23,7 @@ export const DeadlineFilter = () => {
             value={deadline}>
             <Indicator
               className='flex justify-center rounded-full after:size-3 after:rounded-full after:border-2
-                after:border-white after:bg-black/30 after:dark:border-black
+                after:border-white after:bg-black/30 dark:after:border-black
                 dark:after:bg-white/30'
             />
           </Item>

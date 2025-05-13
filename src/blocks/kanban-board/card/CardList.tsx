@@ -21,14 +21,16 @@ export const CardList = ({ currentColumnId }: CardListProps) => {
 
   return (
     <SortableContext items={cardsIds || []}>
-      <ul className='space-y-2'>
-        {filteredCards?.map(card => (
-          <CardListItem
-            key={card.id}
-            card={card}
-          />
-        ))}
-      </ul>
+      {filteredCards?.length > 0 && (
+        <ul className='space-y-2'>
+          {filteredCards?.map(card => (
+            <CardListItem
+              key={card.id}
+              card={card}
+            />
+          ))}
+        </ul>
+      )}
     </SortableContext>
   )
 }

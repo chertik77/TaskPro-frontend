@@ -30,7 +30,9 @@ export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
             backgroundURL={backgroundURL}
           />
         ))}
-        <AddColumnTrigger />
+        <li>
+          <AddColumnTrigger />
+        </li>
       </SortableContext>
     </ul>
   )

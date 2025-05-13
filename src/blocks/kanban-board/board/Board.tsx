@@ -30,7 +30,10 @@ export const Board = () => {
       className='tablet:pt-[26px] desktop:pt-2.5 relative flex flex-col overflow-hidden bg-cover
         bg-center pt-3.5'
       style={{
-        backgroundImage: `url(${!isPending && board?.background.url})`
+        backgroundImage:
+          !isPending && board?.background.url
+            ? `url(${board.background.url})`
+            : undefined
       }}>
       <div
         className={cn(

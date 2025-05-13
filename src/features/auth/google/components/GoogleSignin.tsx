@@ -10,7 +10,7 @@ export const GoogleSignin = () => {
       className='flex w-84 items-center justify-center gap-2 rounded-lg bg-black py-2.5
         text-center text-white'
       type='button'
-      aria-label='Sign in with Google'
+      aria-label='Continue with Google'
       onClick={signinWithGoogle}>
       <Icon
         name='google'
