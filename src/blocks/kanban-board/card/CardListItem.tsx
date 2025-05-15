@@ -36,6 +36,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
           listeners={listeners}
           attributes={attributes}
         />
+        <span className='sr-only'>{`Move card: ${card.title}`}</span>
         <Card.PriorityIndicator />
         <Card.Title />
         <Card.Description />

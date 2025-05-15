@@ -46,6 +46,7 @@ export const ColumnListItem = ({
               listeners={listeners}
               attributes={attributes}
             />
+            <span className='sr-only'>{`Move column: ${column.title}`}</span>
             <Column.Title />
           </div>
           <div>
