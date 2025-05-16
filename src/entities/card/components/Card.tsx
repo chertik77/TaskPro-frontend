@@ -48,31 +48,41 @@ const CardProvider = ({ card, className, children }: CardProviderProps) => (
   </CardContext.Provider>
 )
 
-type CardDragActivatorProps = ClassNameProps &
-  ComponentProps<'button'> & {
-    listeners: SyntheticListenerMap | undefined
-    attributes: DraggableAttributes
-  }
+type CardDragActivatorProps = ComponentProps<'button'> & {
+  listeners: SyntheticListenerMap | undefined
+  attributes: DraggableAttributes
+}
 
 const CardDragActivator = ({
   className,
   listeners,
   attributes,
   ...props
-}: CardDragActivatorProps) => (
-  <button
-    className={cn('focus-visible:styled-outline cursor-grab', className)}
-    {...listeners}
-    {...attributes}
-    {...props}>
-    <Icon
-      name='drag'
-      className='dark:stroke-white-soft/50 size-5 stroke-black/50'
-    />
-  </button>
-)
+}: CardDragActivatorProps) => {
+  const { card } = useCardContext()
 
-const CardPriorityIndicator = ({ className }: ClassNameProps) => {
+  return (
+    <>
+      <button
+        className={cn('focus-visible:styled-outline cursor-grab', className)}
+        aria-label='Move card'
+        {...listeners}
+        {...attributes}
+        {...props}>
+        <Icon
+          name='drag'
+          className='dark:stroke-white-soft/50 size-5 stroke-black/50'
+        />
+      </button>
+      <span className='sr-only'>{`Move card: ${card.title}`}</span>)
+    </>
+  )
+}
+
+const CardPriorityIndicator = ({
+  className,
+  ...props
+}: ComponentProps<'span'>) => {
   const { card } = useCardContext()
 
   return (
@@ -82,21 +92,24 @@ const CardPriorityIndicator = ({ className }: ClassNameProps) => {
         getPriorityColor(card.priority),
         className
       )}
+      {...props}
     />
   )
 }
 
-const CardTitle = ({ className }: ClassNameProps) => {
+const CardTitle = ({ className, ...props }: ComponentProps<'p'>) => {
   const { card } = useCardContext()
 
   return (
-    <p className={cn('mb-2 text-base font-semibold', className)}>
+    <p
+      className={cn('mb-2 text-base font-semibold', className)}
+      {...props}>
       {card.title}
     </p>
   )
 }
 
-const CardDescription = ({ className }: ClassNameProps) => {
+const CardDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   const { card } = useCardContext()
 
   return (
@@ -104,7 +117,8 @@ const CardDescription = ({ className }: ClassNameProps) => {
       className={cn(
         'text-md mb-3.5 line-clamp-2 text-black/70 dark:text-white/50',
         className
-      )}>
+      )}
+      {...props}>
       {card.description}
     </p>
   )

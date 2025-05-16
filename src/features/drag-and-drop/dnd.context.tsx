@@ -15,7 +15,7 @@ import {
 
 import { useCardDragHandlers } from './hooks/useCardDragHandlers'
 import { useColumnDragHandlers } from './hooks/useColumnDragHandlers'
-import { useGetAccessabilityAnnouncements } from './hooks/useGetAccessabilityAnnouncements'
+import { useGetAccessibilityAnnouncements } from './hooks/useGetAccessibilityAnnouncements'
 import { coordinateGetter } from './utils/coordinateGetter'
 import { DndContext } from './utils/dnd-kit.typesafe'
 
@@ -58,7 +58,7 @@ export const DragAndDropProvider = ({
     useSensor(KeyboardSensor, { coordinateGetter })
   )
 
-  const announcements = useGetAccessabilityAnnouncements({ columns, cards })
+  const announcements = useGetAccessibilityAnnouncements({ columns, cards })
 
   return (
     <DragAndDropContext.Provider

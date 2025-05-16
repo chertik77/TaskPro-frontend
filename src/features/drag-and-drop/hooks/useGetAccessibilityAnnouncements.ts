@@ -5,7 +5,7 @@ import { useRef } from 'react'
 
 import { getDraggingCardData } from '../utils/getDraggingCardData'
 
-export const useGetAccessabilityAnnouncements = ({
+export const useGetAccessibilityAnnouncements = ({
   columns,
   cards
 }: Pick<DragAndDropContext, 'columns' | 'cards'>): Announcements => {
