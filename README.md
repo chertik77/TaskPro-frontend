@@ -39,4 +39,4 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 ## Languages and Tools
 
-<a href="#"><img src="https://skillicons.dev/icons?i=ts,react,tailwind,gcp,githubactions,vercel,vite,vscode,figma" alt="tools"></a>
+<a href="#"><img src="https://go-skill-icons.vercel.app/api/icons?i=ts,react,reactquery,zustand,tailwind,gcp,githubactions,vercel,vite,vscode,figma" alt="tools"></a>
