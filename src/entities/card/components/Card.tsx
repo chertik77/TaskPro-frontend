@@ -74,7 +74,7 @@ const CardDragActivator = ({
           className='dark:stroke-white-soft/50 size-5 stroke-black/50'
         />
       </button>
-      <span className='sr-only'>{`Move card: ${card.title}`}</span>)
+      <span className='sr-only'>{`Move card: ${card.title}`}</span>
     </>
   )
 }
