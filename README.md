@@ -39,4 +39,4 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 ## Languages and Tools
 
-<a href="#"><img src="https://skills.syvixor.com/api/icons?i=ts,react,dndkit,radixui,reactquery,zustand,axios,datefns,reactdatepicker,reacthookform,valibot,tailwind,gcp,commitlint,eslint,prettier,githubactions,vercel,vite,vscode,figma" alt="tools"></a>
+<a href="#"><img src="https://skills.syvixor.com/api/icons?i=ts,react,dndkit,radixui,reactquery,zustand,axios,datefns,reactdatepicker,reacthookform,valibot,tailwind,gcp,commitlint,eslint,prettier,githubactions,yarn,vercel,vite,vscode,figma" alt="tools"></a>
