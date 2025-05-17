@@ -22,7 +22,9 @@ export const EditCardModal = () => {
   const { mutate: editCard, isPending } = useEditCard(form.reset)
 
   return (
-    <Modal modalTitle='Edit card'>
+    <Modal
+      modalTitle='Edit card'
+      modalDescription='You can edit a card here by changing its title, description, priority and deadline.'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data =>

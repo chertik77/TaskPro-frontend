@@ -27,6 +27,7 @@ export const EditProfileModal = () => {
   return (
     <Modal
       modalTitle='Edit profile'
+      modalDescription='You can update your profile information here.'
       initialFocusRef={initialFocusRef}>
       <EditAvatar changeUserAvatar={editProfile} />
       <Form {...form}>

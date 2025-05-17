@@ -24,7 +24,9 @@ export const AddBoardModal = () => {
   const { mutate: addBoard, isPending } = useAddBoard(form.reset)
 
   return (
-    <Modal modalTitle='New board'>
+    <Modal
+      modalTitle='New board'
+      modalDescription='You can create a new board here by adding a title, icon and background.'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data => addBoard(data))}

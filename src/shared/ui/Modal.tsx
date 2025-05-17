@@ -16,14 +16,25 @@ type ModalProps = Partial<DialogProps> & {
     | 'Edit card'
     | 'Edit profile'
     | 'Need help'
+  modalDescription?: string
   children: ReactNode
 }
 
-export const Modal = ({ children, modalTitle, ...props }: ModalProps) => {
+export const Modal = ({
+  children,
+  modalTitle,
+  modalDescription,
+  ...props
+}: ModalProps) => {
   const { isOpen, close } = useModalInstance()
+
+  const ariaLabelledby = `modal-title-${modalTitle}`
+  const ariaDescribedby = `modal-description-${modalDescription}`
 
   return (
     <Dialog
+      ariaLabelledby={ariaLabelledby}
+      ariaDescribedby={ariaDescribedby}
       open={isOpen}
       onClose={close}
       center
@@ -37,7 +48,18 @@ export const Modal = ({ children, modalTitle, ...props }: ModalProps) => {
         overlay: 'backdrop-saturate-150 backdrop-blur-md'
       }}
       {...props}>
-      <h4 className='mb-6 text-xl'>{modalTitle}</h4>
+      <h4
+        className='mb-6 text-xl'
+        id={ariaLabelledby}>
+        {modalTitle}
+      </h4>
+      {modalDescription && (
+        <p
+          className='sr-only'
+          id={ariaDescribedby}>
+          {modalDescription}
+        </p>
+      )}
       {children}
     </Dialog>
   )

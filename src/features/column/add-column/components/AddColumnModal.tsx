@@ -21,7 +21,9 @@ export const AddColumnModal = () => {
   const { mutate: addColumn, isPending } = useAddColumn(form.reset)
 
   return (
-    <Modal modalTitle='Add column'>
+    <Modal
+      modalTitle='Add column'
+      modalDescription='You can add a new column here by adding a title.'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data => addColumn(data))}

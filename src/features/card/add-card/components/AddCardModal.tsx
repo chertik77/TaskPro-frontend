@@ -30,7 +30,9 @@ export const AddCardModal = () => {
   const { mutate: addCard, isPending } = useAddCard(form.reset)
 
   return (
-    <Modal modalTitle='Add card'>
+    <Modal
+      modalTitle='Add card'
+      modalDescription='You can add a new card here by adding a title, description, priority and deadline.'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(data => addCard(data))}>
           <FormField

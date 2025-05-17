@@ -23,7 +23,9 @@ export const NeedHelpModal = () => {
   const { mutate: sendHelpRequest, isPending } = useNeedHelp(form.reset)
 
   return (
-    <Modal modalTitle='Need help'>
+    <Modal
+      modalTitle='Need help'
+      modalDescription='You can contact us here by sending us an email.'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data => sendHelpRequest(data))}

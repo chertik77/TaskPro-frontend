@@ -18,7 +18,9 @@ export const EditColumnModal = () => {
   const { mutate: editColumn, isPending } = useEditColumn(form.reset)
 
   return (
-    <Modal modalTitle='Edit column'>
+    <Modal
+      modalTitle='Edit column'
+      modalDescription='You can edit a column here by changing its title.'>
       <Form {...form}>
         <form
           className='space-y-6'

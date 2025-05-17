@@ -21,7 +21,9 @@ export const EditBoardModal = () => {
   const { mutate: editBoard, isPending } = useEditBoard(form.reset)
 
   return (
-    <Modal modalTitle='Edit board'>
+    <Modal
+      modalTitle='Edit board'
+      modalDescription='You can edit a board here by changing its title, icon and background.'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data => editBoard(data))}
