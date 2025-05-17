@@ -1,5 +1,5 @@
+import type { Announcements } from '@dnd-kit/core'
 import type { DragAndDropContext } from '../dnd.types'
-import type { Announcements } from '../utils/dnd-kit.typesafe'
 
 import { useRef } from 'react'
 

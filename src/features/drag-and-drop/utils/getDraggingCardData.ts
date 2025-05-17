@@ -1,8 +1,9 @@
 import type { CardTypes } from '@/entities/card'
 import type { ColumnTypes } from '@/entities/column'
+import type { UniqueIdentifier } from '@dnd-kit/core'
 
 export const getDraggingCardData = (
-  cardId: string,
+  cardId: UniqueIdentifier,
   columnId: string | null,
   columns: ColumnTypes.ColumnsSchema,
   cards: CardTypes.CardsSchema

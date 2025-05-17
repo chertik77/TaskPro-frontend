@@ -1,9 +1,5 @@
+import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { CardDragHandlersProps } from '../dnd.types'
-import type {
-  DragEndEvent,
-  DragOverEvent,
-  DragStartEvent
-} from '../utils/dnd-kit.typesafe'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
@@ -69,7 +65,7 @@ export const useCardDragHandlers = ({
         const activeCard = prevCards[activeCardIndex]
 
         if (activeCard) {
-          activeCard.columnId = over.id
+          activeCard.columnId = over.id as string
 
           return arrayMove(prevCards, activeCardIndex, activeCardIndex)
         }

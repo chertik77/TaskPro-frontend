@@ -1,5 +1,5 @@
+import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 import type { ColumnDragHandlersProps } from '../dnd.types'
-import type { DragEndEvent, DragStartEvent } from '../utils/dnd-kit.typesafe'
 
 import { arrayMove } from '@dnd-kit/sortable'
 
