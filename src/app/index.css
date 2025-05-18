@@ -1,4 +1,3 @@
-@import url('react-responsive-modal/styles.css');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -105,6 +104,53 @@
 
   --shadow-*: initial;
   --shadow-main: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+
+  --animate-modal-in: modal-in 300ms ease 0s 1 normal none running;
+  --animate-modal-out: modal-out 300ms ease 0s 1 normal none running;
+  --animate-modal-overlay-in: modal-overlay-in 300ms ease 0s 1 normal none
+    running;
+  --animate-modal-overlay-out: modal-overlay-out 300ms ease 0s 1 normal none
+    running;
+
+  @keyframes modal-overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-overlay-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes modal-in {
+    from {
+      scale: 0.96;
+      opacity: 0;
+    }
+    to {
+      scale: 100%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-out {
+    from {
+      scale: 100%;
+      opacity: 1;
+    }
+    to {
+      scale: 0.96;
+      opacity: 0;
+    }
+  }
 }
 
 @layer base {

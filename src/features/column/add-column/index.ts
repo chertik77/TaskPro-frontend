@@ -1,2 +1,1 @@
-export { AddColumnModal } from './components/AddColumnModal'
-export { AddColumnTrigger } from './components/AddColumnTrigger'
+export { AddColumnDialog } from './components/AddColumnDialog'

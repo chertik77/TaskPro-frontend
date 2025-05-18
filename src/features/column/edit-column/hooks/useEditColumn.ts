@@ -1,22 +1,21 @@
 import type { BoardTypes } from '@/entities/board'
+import type { Dispatch, SetStateAction } from 'react'
 import type { UseFormReset } from 'react-hook-form'
 import type { EditColumnSchema } from '../edit-column.contract'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { columnService } from '@/shared/api/column'
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditColumnModal } from '../components/EditColumnModal'
-
-export const useEditColumn = (reset: UseFormReset<EditColumnSchema>) => {
+export const useEditColumn = (
+  reset: UseFormReset<EditColumnSchema>,
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
-
-  const { close: closeEditColumnModal } = useModal(EditColumnModal)
 
   return useMutation({
     mutationFn: columnService.editColumn,
@@ -25,7 +24,7 @@ export const useEditColumn = (reset: UseFormReset<EditColumnSchema>) => {
         queryKey: ['board', boardId]
       })
 
-      closeEditColumnModal()
+      setIsDialogOpen(false)
       reset()
 
       const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([

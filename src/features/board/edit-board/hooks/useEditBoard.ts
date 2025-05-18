@@ -1,23 +1,22 @@
 import type { BoardTypes } from '@/entities/board'
 import type { BoardDtoTypes } from '@/shared/api/board'
+import type { Dispatch, SetStateAction } from 'react'
 import type { UseFormReset } from 'react-hook-form'
 import type { EditBoardSchema } from '../edit-board.contract'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { boardService } from '@/shared/api/board'
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditBoardModal } from '../components/EditBoardModal'
-
-export const useEditBoard = (reset: UseFormReset<EditBoardSchema>) => {
+export const useEditBoard = (
+  reset: UseFormReset<EditBoardSchema>,
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
-
-  const { close: closeEditBoardModal } = useModal(EditBoardModal)
 
   return useMutation({
     mutationFn: (data: Omit<BoardDtoTypes.EditBoardDto, 'boardId'>) =>
@@ -25,7 +24,7 @@ export const useEditBoard = (reset: UseFormReset<EditBoardSchema>) => {
     onMutate: async ({ title, icon }) => {
       await queryClient.cancelQueries({ queryKey: ['boards'] })
 
-      closeEditBoardModal()
+      setIsDialogOpen(false)
       reset()
 
       const previousBoards = queryClient.getQueryData<BoardTypes.BoardsSchema>([

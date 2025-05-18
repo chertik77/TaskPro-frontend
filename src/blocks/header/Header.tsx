@@ -1,5 +1,5 @@
 import { ThemeSelect } from '@/features/user/change-theme'
-import { EditProfileModalTrigger } from '@/features/user/edit-profile'
+import { EditProfileDialog } from '@/features/user/edit-profile'
 import {
   ToggleSidebarMobileMenuTrigger,
   ToggleSidebarTrigger
@@ -13,7 +13,7 @@ export const Header = () => (
     <ToggleSidebarMobileMenuTrigger />
     <div className='flex items-center gap-3.5'>
       <ThemeSelect />
-      <EditProfileModalTrigger />
+      <EditProfileDialog />
     </div>
   </header>
 )

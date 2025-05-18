@@ -1,21 +1,20 @@
+import type { Dispatch, SetStateAction } from 'react'
+
 import { useMutation } from '@tanstack/react-query'
-import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { userService } from '@/shared/api/user'
 import { useAuthStore } from '@/shared/store'
 
-import { EditProfileModal } from '../components/EditProfileModal'
-
-export const useEditProfile = () => {
-  const { close: closeEditProfileModal } = useModal(EditProfileModal)
-
+export const useEditProfile = (
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+) => {
   const updateUser = useAuthStore(state => state.updateUser)
 
   return useMutation({
     mutationFn: userService.updateUserCredentials,
     onSuccess(data) {
-      closeEditProfileModal()
+      setIsDialogOpen(false)
       updateUser(data)
       toast.success('Your profile has been successfully updated.')
     },

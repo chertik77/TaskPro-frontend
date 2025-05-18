@@ -1,15 +1,12 @@
-import type { UserTypes } from '@/entities/user'
-
 import { useEffect } from 'react'
-import { useModalInstance } from 'react-modal-state'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { useAuthStore } from '@/shared/store'
 
 import { EditUserSchema } from '../edit-profile.contract'
 
 export const useEditProfileForm = () => {
-  const { data: initialUser } =
-    useModalInstance<UserTypes.EditProfileModalSchema>()
+  const initialUser = useAuthStore(state => state.user)
 
   const form = useAppForm(EditUserSchema, {
     shouldUnregister: false

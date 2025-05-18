@@ -1,22 +1,21 @@
 import type { BoardTypes } from '@/entities/board'
+import type { Dispatch, SetStateAction } from 'react'
 import type { UseFormReset } from 'react-hook-form'
 import type { EditCardSchema } from '../edit-card.contract'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { cardService } from '@/shared/api/card'
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { EditCardModal } from '../components/EditCardModal'
-
-export const useEditCard = (reset: UseFormReset<EditCardSchema>) => {
+export const useEditCard = (
+  reset: UseFormReset<EditCardSchema>,
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+) => {
   const queryClient = useQueryClient()
 
   const { boardId } = useGetParamBoardId()
-
-  const { close: closeEditCardModal } = useModal(EditCardModal)
 
   return useMutation({
     mutationFn: cardService.editCard,
@@ -25,7 +24,7 @@ export const useEditCard = (reset: UseFormReset<EditCardSchema>) => {
         queryKey: ['board', boardId]
       })
 
-      closeEditCardModal()
+      setIsDialogOpen(false)
       reset()
 
       const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([

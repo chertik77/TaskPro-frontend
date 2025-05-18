@@ -4,7 +4,7 @@ import { Item } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
 
 import { DeleteBoardTrigger } from '@/features/board/delete-board'
-import { EditBoardModalTrigger } from '@/features/board/edit-board'
+import { EditBoardDialog } from '@/features/board/edit-board'
 
 import { cn } from '@/shared/lib/cn'
 import { useSidebarStore } from '@/shared/store'
@@ -61,7 +61,13 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
         {boardId === board.id && (
           <div className='flex gap-5'>
             <div className='flex items-center gap-2'>
-              <EditBoardModalTrigger board={board} />
+              <EditBoardDialog
+                data={{
+                  title: board.title,
+                  icon: board.icon,
+                  background: board.background.identifier
+                }}
+              />
               <DeleteBoardTrigger />
             </div>
             <div className='bg-brand violet:bg-white h-[61px] w-1 rounded-l-lg' />

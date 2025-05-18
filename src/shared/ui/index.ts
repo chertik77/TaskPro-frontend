@@ -7,13 +7,19 @@ export { Loader } from './Loader'
 export { PlusButtonWithLoader } from './PlusButtonWithLoader'
 export { RadioGroup, RadioGroupItem } from './RadioGroup'
 export { Calendar } from './Calendar'
-export { Modal } from './Modal'
 export {
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverClose
 } from './Popover'
+export {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogClose
+} from './Dialog'
 export {
   Form,
   FormField,
