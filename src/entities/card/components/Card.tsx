@@ -58,26 +58,19 @@ const CardDragActivator = ({
   listeners,
   attributes,
   ...props
-}: CardDragActivatorProps) => {
-  const { card } = useCardContext()
-
-  return (
-    <>
-      <button
-        className={cn('focus-visible:styled-outline cursor-grab', className)}
-        aria-label='Move card'
-        {...listeners}
-        {...attributes}
-        {...props}>
-        <Icon
-          name='drag'
-          className='dark:stroke-white-soft/50 size-5 stroke-black/50'
-        />
-      </button>
-      <span className='sr-only'>{`Move card: ${card.title}`}</span>
-    </>
-  )
-}
+}: CardDragActivatorProps) => (
+  <button
+    className={cn('focus-visible:styled-outline cursor-grab', className)}
+    aria-label='Move card'
+    {...listeners}
+    {...attributes}
+    {...props}>
+    <Icon
+      name='drag'
+      className='dark:stroke-white-soft/50 size-5 stroke-black/50'
+    />
+  </button>
+)
 
 const CardPriorityIndicator = ({
   className,

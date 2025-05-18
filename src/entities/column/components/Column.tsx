@@ -61,26 +61,19 @@ const ColumnDragActivator = ({
   attributes,
   listeners,
   ...props
-}: ColumnDragActivatorProps) => {
-  const { column } = useColumnContext()
-
-  return (
-    <>
-      <button
-        className={cn('focus-visible:styled-outline cursor-grab', className)}
-        aria-label='Move column'
-        {...attributes}
-        {...listeners}
-        {...props}>
-        <Icon
-          name='drag'
-          className='dark:stroke-white-soft/50 size-5 stroke-black/50'
-        />
-      </button>
-      <span className='sr-only'>{`Move column: ${column.title}`}</span>
-    </>
-  )
-}
+}: ColumnDragActivatorProps) => (
+  <button
+    className={cn('focus-visible:styled-outline cursor-grab', className)}
+    aria-label='Move column'
+    {...attributes}
+    {...listeners}
+    {...props}>
+    <Icon
+      name='drag'
+      className='dark:stroke-white-soft/50 size-5 stroke-black/50'
+    />
+  </button>
+)
 
 const ColumnTitle = ({ className, ...props }: ComponentProps<'p'>) => {
   const { column } = useColumnContext()

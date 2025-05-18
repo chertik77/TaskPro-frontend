@@ -31,12 +31,13 @@ const DialogContent = ({
       )}
       {...props}>
       {children}
-      <DialogPrimitive.Close className='focus-visible:styled-outline absolute top-3.5 right-3.5'>
+      <DialogPrimitive.Close
+        className='focus-visible:styled-outline absolute top-3.5 right-3.5'
+        aria-label='Close'>
         <Icon
           name='x'
           className='size-4.5 stroke-black dark:stroke-white'
         />
-        <span className='sr-only'>Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPrimitive.Portal>
