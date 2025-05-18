@@ -1,23 +1,20 @@
-import type { UserTypes } from '@/entities/user'
-import type { UserDtoTypes } from '@/shared/api/user'
-import type { UseMutateFunction } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
+import type { Dispatch, SetStateAction } from 'react'
 
 import { useRef } from 'react'
 
 import { useAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
+import { useEditProfile } from '../hooks/useEditProfile'
+
 type EditAvatarProps = {
-  changeUserAvatar: UseMutateFunction<
-    UserTypes.UserSchema,
-    AxiosError,
-    UserDtoTypes.EditUserDto
-  >
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const EditAvatar = ({ changeUserAvatar }: EditAvatarProps) => {
+export const EditAvatar = ({ setIsDialogOpen }: EditAvatarProps) => {
   const avatar = useAuthStore(state => state.user.avatar)
+
+  const { mutate: changeUserAvatar } = useEditProfile(setIsDialogOpen)
 
   const ref = useRef<HTMLInputElement>(null)
 

@@ -1,0 +1,92 @@
+import type { BoardTypes } from '@/entities/board'
+import type { Dispatch, SetStateAction } from 'react'
+
+import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+  PlusButtonWithLoader
+} from '@/shared/ui'
+
+import { useEditBoard } from '../hooks/useEditBoard'
+import { useEditBoardForm } from '../hooks/useEditBoardForm'
+
+type EditBoardFormProps = {
+  data: BoardTypes.EditBoardModalSchema
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export const EditBoardForm = ({
+  data,
+  setIsDialogOpen
+}: EditBoardFormProps) => {
+  const { form, isFormReadyForSubmit } = useEditBoardForm(data)
+
+  const { mutate: editBoard, isPending } = useEditBoard(
+    form.reset,
+    setIsDialogOpen
+  )
+
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(data => editBoard(data))}
+        className='space-y-6'>
+        <FormField
+          control={form.control}
+          name='title'
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input
+                  placeholder='Title'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='icon'
+          render={({ field }) => (
+            <FormItem className='space-y-3.5'>
+              <FormLabel>Icons</FormLabel>
+              <FormControl>
+                <FormIconSelector field={field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='background'
+          render={({ field }) => (
+            <FormItem className='space-y-3.5'>
+              <FormLabel>Background</FormLabel>
+              <FormControl>
+                <FormBgImageSelector field={field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <PlusButtonWithLoader
+          type='submit'
+          className='!mt-10'
+          shouldShowLoader={isPending}
+          disabled={isPending || !isFormReadyForSubmit}>
+          Edit
+        </PlusButtonWithLoader>
+      </form>
+    </Form>
+  )
+}

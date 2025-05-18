@@ -6,19 +6,12 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-  Input,
-  PlusButtonWithLoader
+  DialogTitle
 } from '@/shared/ui'
 
-import { useEditColumn } from '../hooks/useEditColumn'
 import { useEditColumnForm } from '../hooks/useEditColumnForm'
 import { EditColumnDialogTrigger } from './EditColumnDialogTrigger'
+import { EditColumnForm } from './EditColumnForm'
 
 type EditColumnDialogProps = {
   data: ColumnTypes.EditColumnModalSchema
@@ -27,12 +20,7 @@ type EditColumnDialogProps = {
 export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const { form, initialColumn, isFormReadyForSubmit } = useEditColumnForm(data)
-
-  const { mutate: editColumn, isPending } = useEditColumn(
-    form.reset,
-    setIsDialogOpen
-  )
+  const { form } = useEditColumnForm(data)
 
   return (
     <Dialog
@@ -44,35 +32,10 @@ export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {
         <DialogDescription className='sr-only'>
           You can edit a column here by changing its title.
         </DialogDescription>
-        <Form {...form}>
-          <form
-            className='space-y-6'
-            onSubmit={form.handleSubmit(data =>
-              editColumn({ columnId: initialColumn.id, ...data })
-            )}>
-            <FormField
-              control={form.control}
-              name='title'
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      placeholder='Title'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <PlusButtonWithLoader
-              type='submit'
-              shouldShowLoader={isPending}
-              disabled={isPending || !isFormReadyForSubmit}>
-              Edit
-            </PlusButtonWithLoader>
-          </form>
-        </Form>
+        <EditColumnForm
+          data={data}
+          setIsDialogOpen={setIsDialogOpen}
+        />
       </DialogContent>
     </Dialog>
   )

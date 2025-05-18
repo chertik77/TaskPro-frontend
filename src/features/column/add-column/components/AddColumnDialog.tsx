@@ -1,35 +1,17 @@
 import { useState } from 'react'
 
-import { useAppForm } from '@/shared/hooks'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-  Input,
-  PlusButtonWithLoader
+  DialogTitle
 } from '@/shared/ui'
 
-import { AddColumnSchema } from '../add-column.contract'
-import { useAddColumn } from '../hooks/useAddColumn'
 import { AddColumnDialogTrigger } from './AddColumnDialogTrigger'
+import { AddColumnForm } from './AddColumnForm'
 
 export const AddColumnDialog = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-
-  const form = useAppForm(AddColumnSchema, {
-    defaultValues: { title: '' }
-  })
-
-  const { mutate: addColumn, isPending } = useAddColumn(
-    form.reset,
-    setIsDialogOpen
-  )
 
   return (
     <Dialog
@@ -41,33 +23,7 @@ export const AddColumnDialog = () => {
         <DialogDescription className='sr-only'>
           You can add a new column here by adding a title.
         </DialogDescription>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(data => addColumn(data))}
-            className='space-y-6'>
-            <FormField
-              control={form.control}
-              name='title'
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      placeholder='Title'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <PlusButtonWithLoader
-              type='submit'
-              shouldShowLoader={isPending}
-              disabled={isPending}>
-              Add
-            </PlusButtonWithLoader>
-          </form>
-        </Form>
+        <AddColumnForm setIsDialogOpen={setIsDialogOpen} />
       </DialogContent>
     </Dialog>
   )
