@@ -13,19 +13,21 @@ type FormPrioritySelectorProps<T extends FieldValues> = {
 export const FormPrioritySelector = <T extends FieldValues>({
   field
 }: FormPrioritySelectorProps<T>) => (
-  <RadioGroup
-    defaultValue={field.value}
-    onValueChange={field.onChange}>
-    {PRIORITIES.map(priority => (
-      <FormItem key={priority}>
-        <FormControl>
-          <RadioGroupItem
-            value={priority}
-            indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
-            className={getPriorityColor(priority)}
-          />
-        </FormControl>
-      </FormItem>
-    ))}
-  </RadioGroup>
+  <FormControl>
+    <RadioGroup
+      value={field.value}
+      onValueChange={field.onChange}>
+      {PRIORITIES.map(priority => (
+        <FormItem key={priority}>
+          <FormControl>
+            <RadioGroupItem
+              value={priority}
+              indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
+              className={getPriorityColor(priority)}
+            />
+          </FormControl>
+        </FormItem>
+      ))}
+    </RadioGroup>
+  </FormControl>
 )

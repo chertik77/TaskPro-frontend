@@ -28,31 +28,33 @@ export const FormBgImageSelector = <T extends FieldValues>({
   })
 
   return (
-    <Root
-      defaultValue={field.value}
-      className='flex max-w-[280px] flex-wrap gap-2'
-      onValueChange={field.onChange}>
-      {isPending ? (
-        <p className='text-gray'>Loading board backgrounds...</p>
-      ) : (
-        boardImages?.map(({ id, icon }) => (
-          <FormItem key={id}>
-            <FormControl>
-              <Item
-                value={id}
-                className='focus-visible:styled-outline group outline-offset-4'>
-                <img
-                  className='group-aria-checked:scale-125'
-                  width={28}
-                  height={28}
-                  src={typeof icon === 'object' ? icon[theme] : icon}
-                  alt={id}
-                />
-              </Item>
-            </FormControl>
-          </FormItem>
-        ))
-      )}
-    </Root>
+    <FormControl>
+      <Root
+        className='flex max-w-[280px] flex-wrap gap-2'
+        value={field.value}
+        onValueChange={field.onChange}>
+        {isPending ? (
+          <p className='text-gray'>Loading board backgrounds...</p>
+        ) : (
+          boardImages?.map(({ id, icon }) => (
+            <FormItem key={id}>
+              <FormControl>
+                <Item
+                  value={id}
+                  className='focus-visible:styled-outline group outline-offset-4'>
+                  <img
+                    className='transition-transform group-aria-checked:scale-125'
+                    width={28}
+                    height={28}
+                    src={typeof icon === 'object' ? icon[theme] : icon}
+                    alt={id}
+                  />
+                </Item>
+              </FormControl>
+            </FormItem>
+          ))
+        )}
+      </Root>
+    </FormControl>
   )
 }

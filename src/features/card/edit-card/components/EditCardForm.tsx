@@ -75,9 +75,7 @@ export const EditCardForm = ({ data, setIsDialogOpen }: EditCardFormProps) => {
               <FormLabel className='text-md text-black/50 dark:text-white/50'>
                 Priority
               </FormLabel>
-              <FormControl>
-                <FormPrioritySelector field={field} />
-              </FormControl>
+              <FormPrioritySelector field={field} />
               <FormMessage />
             </FormItem>
           )}
