@@ -16,16 +16,16 @@ import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
 
 export const SidebarMobileMenu = () => {
-  const { isSidebarMobileMenuOpen, toggleSidebarMobileMenu } = useSidebarStore()
+  const { isOpenMobile, setIsOpenMobile } = useSidebarStore()
 
   return (
     <Dialog
-      open={isSidebarMobileMenuOpen}
-      onOpenChange={toggleSidebarMobileMenu}>
+      open={isOpenMobile}
+      onOpenChange={setIsOpenMobile}>
       <DialogPortal>
         <DialogOverlay
           className='data-[state=open]:animate-modal-overlay-in
-            data-[state=closed]:animate-modal-overlay-out bg-black-deep/30 fixed inset-0
+            data-[state=closed]:animate-modal-overlay-out bg-black-overlay fixed inset-0
             z-50'
         />
         <DialogContent

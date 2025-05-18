@@ -6,7 +6,7 @@ import { useSidebarStore } from '@/shared/store'
 const SIDEBAR_KEYBOARD_SHORTCUT = 'o'
 
 export const useSidebarToggleShortcut = () => {
-  const toggleSidebar = useSidebarStore(state => state.toggleSidebar)
+  const setIsOpen = useSidebarStore(state => state.setIsOpen)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -18,12 +18,12 @@ export const useSidebarToggleShortcut = () => {
         !isTabletAndBelow
       ) {
         e.preventDefault()
-        toggleSidebar(prev => !prev)
+        setIsOpen(prev => !prev)
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
 
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isTabletAndBelow, toggleSidebar])
+  }, [isTabletAndBelow, setIsOpen])
 }

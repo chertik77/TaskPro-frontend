@@ -9,7 +9,7 @@ import { cn } from '@/shared/lib/cn'
 import { useAuthStore, useSidebarStore } from '@/shared/store'
 
 const DashboardRoute = () => {
-  const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
+  const isSidebarOpen = useSidebarStore(state => state.isOpen)
 
   useSidebarToggleShortcut()
 

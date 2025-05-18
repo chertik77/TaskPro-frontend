@@ -6,9 +6,7 @@ import { useLogoutUser } from '../hooks/useLogoutUser'
 export const LogoutBtn = () => {
   const { mutate: logoutUser, isPending } = useLogoutUser()
 
-  const toggleSidebarMobileMenu = useSidebarStore(
-    state => state.toggleSidebarMobileMenu
-  )
+  const setIsOpenMobile = useSidebarStore(state => state.setIsOpenMobile)
 
   return (
     <button
@@ -18,7 +16,7 @@ export const LogoutBtn = () => {
       disabled={isPending}
       aria-label='Log out'
       onClick={() => {
-        toggleSidebarMobileMenu(false)
+        setIsOpenMobile(false)
         logoutUser()
       }}>
       <Icon
