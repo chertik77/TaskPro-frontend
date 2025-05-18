@@ -1,2 +1,1 @@
-export { EditCardModal } from './components/EditCardModal'
-export { EditCardModalTrigger } from './components/EditCardModalTrigger'
+export { EditCardDialog } from './components/EditCardDialog'

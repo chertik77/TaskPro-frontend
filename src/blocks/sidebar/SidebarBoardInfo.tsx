@@ -1,6 +1,6 @@
-import { AddBoardModalTrigger } from '@/features/board/add-board'
+import { AddBoardDialog } from '@/features/board/add-board'
 
-import { Icon } from '@/shared/ui'
+import { DialogTrigger, Icon } from '@/shared/ui'
 
 export const SidebarBoardInfo = () => (
   <div className='tablet:px-6 mb-10 px-3.5'>
@@ -13,13 +13,15 @@ export const SidebarBoardInfo = () => (
       className='violet:border-white/10 flex items-center justify-between border-y
         border-black/10 py-3.5 dark:border-white/10'>
       <p className='violet:text-white w-[76px]'>Create a new board</p>
-      <AddBoardModalTrigger
-        className='focus-visible:styled-outline bg-brand violet:bg-brand-violet-soft
-          violet:text-white hocus:bg-brand-light violet:hocus:bg-brand-violet-muted flex
-          h-9 w-10 items-center justify-center rounded-lg text-black transition-all
-          duration-300'>
-        <Icon name='plus' />
-      </AddBoardModalTrigger>
+      <AddBoardDialog>
+        <DialogTrigger
+          className='focus-visible:styled-outline bg-brand violet:bg-brand-violet-soft
+            violet:text-white hocus:bg-brand-light violet:hocus:bg-brand-violet-muted flex
+            h-9 w-10 items-center justify-center rounded-lg text-black transition-all
+            duration-300'>
+          <Icon name='plus' />
+        </DialogTrigger>
+      </AddBoardDialog>
     </span>
   </div>
 )

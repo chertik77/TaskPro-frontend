@@ -1,7 +1,7 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { LogoutBtn } from '@/features/auth/logout'
-import { NeedHelpModalTrigger } from '@/features/user/need-help'
+import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
@@ -13,7 +13,7 @@ import { SidebarLogo } from './SidebarLogo'
 import { SidebarMobileMenu } from './SidebarMobileMenu'
 
 export const Sidebar = () => {
-  const isSidebarOpen = useSidebarStore(state => state.isSidebarOpen)
+  const isSidebarOpen = useSidebarStore(state => state.isOpen)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
 
@@ -32,7 +32,7 @@ export const Sidebar = () => {
           <SidebarBoardInfo />
           <SidebarBoardList />
           <div className='mt-auto px-6 pb-6'>
-            <NeedHelpModalTrigger />
+            <NeedHelpDialog />
             <LogoutBtn />
           </div>
         </aside>

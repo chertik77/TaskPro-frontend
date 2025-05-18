@@ -1,19 +1,18 @@
 import type { ColumnDtoTypes } from '@/shared/api/column'
+import type { Dispatch, SetStateAction } from 'react'
 import type { UseFormReset } from 'react-hook-form'
 import type { AddColumnSchema } from '../add-column.contract'
 
 import { useMutation } from '@tanstack/react-query'
-import { useModal } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { columnService } from '@/shared/api/column'
 import { useGetParamBoardId } from '@/shared/hooks'
 
-import { AddColumnModal } from '../components/AddColumnModal'
-
-export const useAddColumn = (reset: UseFormReset<AddColumnSchema>) => {
-  const { close: closeAddColumnModal } = useModal(AddColumnModal)
-
+export const useAddColumn = (
+  reset: UseFormReset<AddColumnSchema>,
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+) => {
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
@@ -21,7 +20,7 @@ export const useAddColumn = (reset: UseFormReset<AddColumnSchema>) => {
       columnService.addColumn({ boardId: boardId!, ...data }),
     meta: { invalidates: [['board']] },
     onSuccess() {
-      closeAddColumnModal()
+      setIsDialogOpen(false)
       reset()
     },
     onError() {

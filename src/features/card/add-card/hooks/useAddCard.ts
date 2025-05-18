@@ -1,29 +1,24 @@
-import type { CardTypes } from '@/entities/card'
 import type { CardDtoTypes } from '@/shared/api/card'
+import type { Dispatch, SetStateAction } from 'react'
 import type { UseFormReset } from 'react-hook-form'
 import type { AddCardSchema } from '../add-card.contract'
 
 import { useMutation } from '@tanstack/react-query'
-import { useModal, useModalInstance } from 'react-modal-state'
 import { toast } from 'sonner'
 
 import { cardService } from '@/shared/api/card'
 
-import { AddCardModal } from '../components/AddCardModal'
-
-export const useAddCard = (reset: UseFormReset<AddCardSchema>) => {
-  const {
-    data: { columnId }
-  } = useModalInstance<CardTypes.AddCardModalSchema>()
-
-  const { close: closeAddCardModal } = useModal(AddCardModal)
-
-  return useMutation({
+export const useAddCard = (
+  reset: UseFormReset<AddCardSchema>,
+  columnId: string,
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+) =>
+  useMutation({
     mutationFn: (data: Omit<CardDtoTypes.AddCardDto, 'columnId'>) =>
       cardService.addCard({ columnId, ...data }),
     meta: { invalidates: [['board']] },
     onSuccess() {
-      closeAddCardModal()
+      setIsDialogOpen(false)
       reset()
     },
     onError(e) {
@@ -33,4 +28,3 @@ export const useAddCard = (reset: UseFormReset<AddCardSchema>) => {
       console.error(e)
     }
   })
-}

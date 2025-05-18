@@ -12,5 +12,3 @@ export const Providers = () => (
     </QueryClientProvider>
   </GoogleOAuthProvider>
 )
-
-export { ModalProvider } from './ModalProvider'

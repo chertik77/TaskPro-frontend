@@ -1,2 +1,1 @@
-export { NeedHelpModal } from './components/NeedHelpModal'
-export { NeedHelpModalTrigger } from './components/NeedHelpModalTrigger'
+export { NeedHelpDialog } from './components/NeedHelpDialog'

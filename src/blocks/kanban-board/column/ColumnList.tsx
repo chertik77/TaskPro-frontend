@@ -4,7 +4,7 @@ import {
   SortableContext
 } from '@dnd-kit/sortable'
 
-import { AddColumnTrigger } from '@/features/column/add-column'
+import { AddColumnDialog } from '@/features/column/add-column'
 import { useDragAndDrop } from '@/features/drag-and-drop'
 
 import { ColumnListItem } from './ColumnListItem'
@@ -31,7 +31,7 @@ export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
           />
         ))}
         <li>
-          <AddColumnTrigger />
+          <AddColumnDialog />
         </li>
       </SortableContext>
     </ul>

@@ -1,2 +1,1 @@
-export { EditProfileModal } from './components/EditProfileModal'
-export { EditProfileModalTrigger } from './components/EditProfileModalTrigger'
+export { EditProfileDialog } from './components/EditProfileDialog'

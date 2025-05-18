@@ -5,21 +5,21 @@ type StateUpdater<T> = T | ((prev: T) => T)
 
 export const useSidebarStore = create(
   persist(
-    combine({ isSidebarOpen: true, isSidebarMobileMenuOpen: false }, set => ({
-      toggleSidebar: (stateOrUpdater: StateUpdater<boolean>) => {
-        set(({ isSidebarOpen }) => ({
-          isSidebarOpen:
+    combine({ isOpen: true, isOpenMobile: false }, set => ({
+      setIsOpen: (stateOrUpdater: StateUpdater<boolean>) => {
+        set(({ isOpen }) => ({
+          isOpen:
             typeof stateOrUpdater === 'boolean'
               ? stateOrUpdater
-              : stateOrUpdater(isSidebarOpen)
+              : stateOrUpdater(isOpen)
         }))
       },
-      toggleSidebarMobileMenu: (stateOrUpdater: StateUpdater<boolean>) => {
-        set(({ isSidebarMobileMenuOpen }) => ({
-          isSidebarMobileMenuOpen:
+      setIsOpenMobile: (stateOrUpdater: StateUpdater<boolean>) => {
+        set(({ isOpenMobile }) => ({
+          isOpenMobile:
             typeof stateOrUpdater === 'boolean'
               ? stateOrUpdater
-              : stateOrUpdater(isSidebarMobileMenuOpen)
+              : stateOrUpdater(isOpenMobile)
         }))
       }
     })),

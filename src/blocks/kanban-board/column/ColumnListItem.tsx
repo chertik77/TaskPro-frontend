@@ -1,8 +1,8 @@
 import type { ColumnTypes } from '@/entities/column'
 
-import { AddCardModalTrigger } from '@/features/card/add-card'
+import { AddCardDialog } from '@/features/card/add-card'
 import { DeleteColumnTrigger } from '@/features/column/delete-column'
-import { EditColumnTrigger } from '@/features/column/edit-column'
+import { EditColumnDialog } from '@/features/column/edit-column'
 
 import { Column } from '@/entities/column'
 
@@ -49,7 +49,7 @@ export const ColumnListItem = ({
             <Column.Title />
           </div>
           <div>
-            <EditColumnTrigger column={column} />
+            <EditColumnDialog data={{ id: column.id, title: column.title }} />
             <DeleteColumnTrigger columnId={column.id} />
           </div>
         </Column.Header>
@@ -66,7 +66,7 @@ export const ColumnListItem = ({
             />
           </Column.ScrollAreaScrollbar>
         </Column.ScrollArea>
-        <AddCardModalTrigger columnId={column.id} />
+        <AddCardDialog columnId={column.id} />
       </Column>
     </li>
   )

@@ -2,11 +2,11 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const ToggleSidebarTrigger = () => {
-  const toggleSidebar = useSidebarStore(state => state.toggleSidebar)
+  const setIsOpen = useSidebarStore(state => state.setIsOpen)
 
   return (
     <button
-      onClick={() => toggleSidebar(prev => !prev)}
+      onClick={() => setIsOpen(prev => !prev)}
       type='button'
       aria-label='Toggle sidebar'
       className='focus-visible:styled-outline max-desktop:hidden mr-auto size-5'>

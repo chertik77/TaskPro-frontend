@@ -1,17 +1,13 @@
 import type { CardTypes } from '@/entities/card'
 
 import { useEffect } from 'react'
-import { useModalInstance } from 'react-modal-state'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { EditCardSchema } from '../edit-card.contract'
 
-export const useEditCardForm = () => {
+export const useEditCardForm = (initialCard: CardTypes.EditCardModalSchema) => {
   const form = useAppForm(EditCardSchema, { shouldUnregister: false })
-
-  const { data: initialCard } =
-    useModalInstance<CardTypes.EditCardModalSchema>()
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
     initialCard,

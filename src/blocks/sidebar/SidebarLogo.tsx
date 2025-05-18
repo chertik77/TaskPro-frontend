@@ -4,9 +4,7 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const SidebarLogo = () => {
-  const toggleSidebarMobileMenu = useSidebarStore(
-    state => state.toggleSidebarMobileMenu
-  )
+  const setIsOpenMobile = useSidebarStore(state => state.setIsOpenMobile)
 
   return (
     <div className='tablet:mb-[60px] tablet:pl-6 desktop:pt-6 mb-[70px] pl-3.5'>
@@ -14,7 +12,7 @@ export const SidebarLogo = () => {
         className='focus-visible:styled-outline violet:text-brand-violet inline-flex items-center
           gap-2 text-white'
         to='/dashboard'
-        onClick={() => toggleSidebarMobileMenu(false)}>
+        onClick={() => setIsOpenMobile(false)}>
         <Icon
           name='logo'
           className='fill-black-muted violet:fill-white-gray size-8'
