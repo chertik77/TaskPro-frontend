@@ -2,7 +2,7 @@ import { AddBoardDialog } from '@/features/board/add-board'
 
 import { DialogTrigger, Icon } from '@/shared/ui'
 
-export const SidebarBoardInfo = () => (
+export const SidebarBoardCreationSection = () => (
   <div className='tablet:px-6 mb-10 px-3.5'>
     <p
       className='text-md violet:text-white/50 mb-2 overflow-hidden text-black/50

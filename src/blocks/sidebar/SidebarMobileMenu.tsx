@@ -11,7 +11,7 @@ import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { useSidebarStore } from '@/shared/store'
 
-import { SidebarBoardInfo } from './SidebarBoardInfo'
+import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'
 import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
 
@@ -35,7 +35,7 @@ export const SidebarMobileMenu = () => {
             inset-x-0 top-0 z-50 flex min-h-dvh w-[225px] flex-col bg-white pt-3.5 pb-6'>
           <DialogTitle className='sr-only'>Sidebar menu</DialogTitle>
           <SidebarLogo />
-          <SidebarBoardInfo />
+          <SidebarBoardCreationSection />
           <SidebarBoardList />
           <div className='tablet:px-6 mt-auto px-3.5'>
             <NeedHelpDialog />

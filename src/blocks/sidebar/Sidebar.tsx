@@ -7,7 +7,7 @@ import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 import { useSidebarStore } from '@/shared/store'
 
-import { SidebarBoardInfo } from './SidebarBoardInfo'
+import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'
 import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
 import { SidebarMobileMenu } from './SidebarMobileMenu'
@@ -29,7 +29,7 @@ export const Sidebar = () => {
       <ScrollArea.Viewport className='h-dvh'>
         <aside className='flex h-dvh flex-col'>
           <SidebarLogo />
-          <SidebarBoardInfo />
+          <SidebarBoardCreationSection />
           <SidebarBoardList />
           <div className='mt-auto px-6 pb-6'>
             <NeedHelpDialog />
