@@ -20,8 +20,8 @@ const DialogContent = ({
   <DialogPrimitive.Portal>
     <DialogPrimitive.Overlay
       className='data-[state=open]:animate-modal-overlay-in
-        data-[state=closed]:animate-modal-overlay-out fixed inset-0 z-50 bg-[#00000080]
-        backdrop-blur-md backdrop-saturate-150'
+        data-[state=closed]:animate-modal-overlay-out bg-black-overlay fixed inset-0
+        z-50 backdrop-blur-md backdrop-saturate-150'
     />
     <DialogPrimitive.Content
       ref={ref}
