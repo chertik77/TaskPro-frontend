@@ -46,6 +46,7 @@ export const EditProfileDialog = () => {
                 <FormItem>
                   <FormControl>
                     <Input
+                      autoFocus
                       placeholder='Enter your name'
                       {...field}
                     />
