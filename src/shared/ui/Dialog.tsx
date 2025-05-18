@@ -9,8 +9,6 @@ const Dialog = DialogPrimitive.Root
 
 const DialogTrigger = DialogPrimitive.Trigger
 
-const DialogClose = DialogPrimitive.Close
-
 const DialogContent = ({
   className,
   children,
@@ -68,11 +66,4 @@ const DialogDescription = ({
   />
 )
 
-export {
-  Dialog,
-  DialogClose,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription
-}
+export { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription }
