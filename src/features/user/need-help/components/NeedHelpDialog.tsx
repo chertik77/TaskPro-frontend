@@ -5,6 +5,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -39,6 +40,9 @@ export const NeedHelpDialog = () => {
       <NeedHelpDialogTrigger />
       <DialogContent className='max-tablet:w-84'>
         <DialogTitle>Need help</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can contact us here by sending us an email.
+        </DialogDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(data => sendHelpRequest(data))}

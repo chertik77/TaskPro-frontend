@@ -4,6 +4,7 @@ import { useAppForm } from '@/shared/hooks'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -37,6 +38,9 @@ export const AddColumnDialog = () => {
       <AddColumnDialogTrigger />
       <DialogContent>
         <DialogTitle>Add column</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can add a new column here by adding a title.
+        </DialogDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(data => addColumn(data))}

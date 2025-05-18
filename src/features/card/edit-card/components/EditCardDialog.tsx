@@ -7,6 +7,7 @@ import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -44,6 +45,10 @@ export const EditCardDialog = ({ data }: EditCardDialogProps) => {
       <EditCardDialogTrigger />
       <DialogContent onCloseAutoFocus={() => form.reset()}>
         <DialogTitle>Edit card</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can edit a card here by changing its title, description, priority
+          and deadline.
+        </DialogDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(data =>

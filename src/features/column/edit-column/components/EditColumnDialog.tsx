@@ -5,6 +5,7 @@ import { useState } from 'react'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -40,6 +41,9 @@ export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {
       <EditColumnDialogTrigger />
       <DialogContent onCloseAutoFocus={() => form.reset()}>
         <DialogTitle>Edit column</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can edit a column here by changing its title.
+        </DialogDescription>
         <Form {...form}>
           <form
             className='space-y-6'

@@ -6,6 +6,7 @@ import { useAppForm } from '@/shared/hooks'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -51,6 +52,10 @@ export const AddCardDialog = ({ columnId }: AddCardDialogProps) => {
       <AddCardDialogTrigger />
       <DialogContent>
         <DialogTitle>Add card</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can add a new card here by adding a title, description, priority
+          and deadline.
+        </DialogDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(data => addCard(data))}>
             <FormField

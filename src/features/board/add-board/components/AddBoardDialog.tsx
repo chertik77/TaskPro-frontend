@@ -8,6 +8,7 @@ import { useAppForm } from '@/shared/hooks'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -45,6 +46,10 @@ export const AddBoardDialog = ({ children }: AddBoardDialogProps) => {
       {children}
       <DialogContent>
         <DialogTitle>New board</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can create a new board here by adding a title, icon and
+          background.
+        </DialogDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(data => addBoard(data))}

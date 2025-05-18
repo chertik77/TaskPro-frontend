@@ -56,4 +56,23 @@ const DialogTitle = ({
   />
 )
 
-export { Dialog, DialogClose, DialogTrigger, DialogContent, DialogTitle }
+const DialogDescription = ({
+  className,
+  ref,
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Description>) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn('text-sm', className)}
+    {...props}
+  />
+)
+
+export {
+  Dialog,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription
+}

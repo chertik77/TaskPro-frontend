@@ -4,6 +4,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -34,6 +35,9 @@ export const EditProfileDialog = () => {
       <EditProfileDialogTrigger />
       <DialogContent onCloseAutoFocus={() => form.reset()}>
         <DialogTitle>Edit profile</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can update your profile information here and change your avatar.
+        </DialogDescription>
         <EditAvatar changeUserAvatar={editProfile} />
         <Form {...form}>
           <form

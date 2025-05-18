@@ -18,6 +18,7 @@ export {
   DialogTrigger,
   DialogContent,
   DialogTitle,
+  DialogDescription,
   DialogClose
 } from './Dialog'
 export {

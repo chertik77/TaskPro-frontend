@@ -7,6 +7,7 @@ import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   Form,
   FormControl,
@@ -43,6 +44,9 @@ export const EditBoardDialog = ({ data }: EditBoardDialogProps) => {
       <EditBoardDialogTrigger />
       <DialogContent onCloseAutoFocus={() => form.reset()}>
         <DialogTitle>Edit board</DialogTitle>
+        <DialogDescription className='sr-only'>
+          You can edit a board here by changing its title, icon and background.
+        </DialogDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(data => editBoard(data))}
