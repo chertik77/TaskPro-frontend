@@ -10,7 +10,6 @@ export const useAppForm = <S extends GenericSchema<FieldValues>>(
 ) =>
   useForm<InferInput<S>>({
     resolver: valibotResolver(schema),
-    shouldUnregister: true,
     mode: 'onChange',
     ...options
   })

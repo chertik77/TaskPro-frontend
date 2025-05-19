@@ -40,8 +40,8 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "7.56.4",
     "sonner": "^2.0.3",
-    "valibot": "^1.1.0",
-    "zustand": "^5.0.4"
+    "stan-js": "^1.7.0",
+    "valibot": "^1.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

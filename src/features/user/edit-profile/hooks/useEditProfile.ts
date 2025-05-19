@@ -9,13 +9,13 @@ import { useAuthStore } from '@/shared/store'
 export const useEditProfile = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) => {
-  const updateUser = useAuthStore(state => state.updateUser)
+  const { setUser } = useAuthStore()
 
   return useMutation({
     mutationFn: userService.updateUserCredentials,
     onSuccess(data) {
       setIsDialogOpen(false)
-      updateUser(data)
+      setUser(data)
       toast.success('Your profile has been successfully updated.')
     },
     onError(e) {

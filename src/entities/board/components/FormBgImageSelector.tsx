@@ -1,7 +1,7 @@
 import type { Theme } from '@/shared/constants'
 import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
-import { Item, Root } from '@radix-ui/react-radio-group'
+import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 import { useQuery } from '@tanstack/react-query'
 
 import { useAuthStore } from '@/shared/store'
@@ -19,7 +19,9 @@ type FormBgImageSelectorProps<T extends FieldValues> = {
 export const FormBgImageSelector = <T extends FieldValues>({
   field
 }: FormBgImageSelectorProps<T>) => {
-  const theme = useAuthStore(state => state.user.theme)
+  const {
+    user: { theme }
+  } = useAuthStore()
 
   const { data: boardImages, isPending } = useQuery<BoardImages>({
     queryKey: ['board-bg-images'],
@@ -29,7 +31,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
 
   return (
     <FormControl>
-      <Root
+      <RadioGroup
         className='flex max-w-[280px] flex-wrap gap-2'
         value={field.value}
         onValueChange={field.onChange}>
@@ -39,7 +41,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
           boardImages?.map(({ id, icon }) => (
             <FormItem key={id}>
               <FormControl>
-                <Item
+                <RadioGroupItem
                   value={id}
                   className='focus-visible:styled-outline group outline-offset-4'>
                   <img
@@ -49,12 +51,12 @@ export const FormBgImageSelector = <T extends FieldValues>({
                     src={typeof icon === 'object' ? icon[theme] : icon}
                     alt={id}
                   />
-                </Item>
+                </RadioGroupItem>
               </FormControl>
             </FormItem>
           ))
         )}
-      </Root>
+      </RadioGroup>
     </FormControl>
   )
 }

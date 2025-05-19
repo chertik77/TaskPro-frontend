@@ -1,4 +1,4 @@
-import { Root } from '@radix-ui/react-roving-focus'
+import { RovingFocusGroup } from '@radix-ui/react-roving-focus'
 import { useQuery } from '@tanstack/react-query'
 
 import { boardService } from '@/shared/api/board'
@@ -19,7 +19,7 @@ export const SidebarBoardList = () => {
     </div>
   ) : (
     boards && boards.length > 0 && (
-      <Root asChild>
+      <RovingFocusGroup asChild>
         <ul
           className='mb-10 text-base'
           role='listbox'>
@@ -30,7 +30,7 @@ export const SidebarBoardList = () => {
             />
           ))}
         </ul>
-      </Root>
+      </RovingFocusGroup>
     )
   )
 }

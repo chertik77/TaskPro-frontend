@@ -9,5 +9,3 @@ export const UserSchema = v.object({
   avatar: v.string(),
   theme: v.picklist(THEMES)
 })
-
-export const EditProfileModalSchema = v.pick(UserSchema, ['name', 'email'])

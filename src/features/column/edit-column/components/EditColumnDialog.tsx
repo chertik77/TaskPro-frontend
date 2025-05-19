@@ -9,7 +9,6 @@ import {
   DialogTitle
 } from '@/shared/ui'
 
-import { useEditColumnForm } from '../hooks/useEditColumnForm'
 import { EditColumnDialogTrigger } from './EditColumnDialogTrigger'
 import { EditColumnForm } from './EditColumnForm'
 
@@ -20,14 +19,12 @@ type EditColumnDialogProps = {
 export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const { form } = useEditColumnForm(data)
-
   return (
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
       <EditColumnDialogTrigger />
-      <DialogContent onCloseAutoFocus={() => form.reset()}>
+      <DialogContent>
         <DialogTitle>Edit column</DialogTitle>
         <DialogDescription className='sr-only'>
           You can edit a column here by changing its title.

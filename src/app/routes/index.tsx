@@ -2,7 +2,7 @@ import { createFileRoute, Link, redirect } from '@tanstack/react-router'
 
 import { GoogleSignin } from '@/features/auth/google'
 
-import { useAuthStore } from '@/shared/store'
+import { getAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 const IndexRoute = () => (
@@ -39,7 +39,7 @@ const IndexRoute = () => (
 
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
-    if (useAuthStore.getState().signedIn()) throw redirect({ to: '/dashboard' })
+    if (getAuthStore().isAuthenticated) throw redirect({ to: '/dashboard' })
   },
   component: IndexRoute
 })

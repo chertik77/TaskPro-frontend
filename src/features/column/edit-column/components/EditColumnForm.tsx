@@ -23,7 +23,7 @@ export const EditColumnForm = ({
   data,
   setIsDialogOpen
 }: EditColumnFormProps) => {
-  const { form, initialColumn, isFormReadyForSubmit } = useEditColumnForm(data)
+  const { form, isFormReadyForSubmit } = useEditColumnForm(data)
 
   const { mutate: editColumn, isPending } = useEditColumn(
     form.reset,
@@ -34,8 +34,8 @@ export const EditColumnForm = ({
     <Form {...form}>
       <form
         className='space-y-6'
-        onSubmit={form.handleSubmit(data =>
-          editColumn({ columnId: initialColumn.id, ...data })
+        onSubmit={form.handleSubmit(editedColumn =>
+          editColumn({ columnId: data.id, ...editedColumn })
         )}>
         <FormField
           control={form.control}

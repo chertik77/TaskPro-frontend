@@ -6,20 +6,20 @@ import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'
 
 import { cn } from '@/shared/lib/cn'
-import { useAuthStore, useSidebarStore } from '@/shared/store'
+import { authActions, getAuthStore, useSidebarStore } from '@/shared/store'
 
 const DashboardRoute = () => {
-  const isSidebarOpen = useSidebarStore(state => state.isOpen)
+  const { isOpen } = useSidebarStore()
 
   useSidebarToggleShortcut()
 
-  useAuthStore(state => state.getCurrentUser)()
+  authActions.getCurrentUser()
 
   return (
     <div
       className={cn(
         'grid h-dvh grid-rows-[60px_1fr]',
-        isSidebarOpen && 'desktop:grid-cols-[260px_1fr]'
+        isOpen && 'desktop:grid-cols-[260px_1fr]'
       )}>
       <Sidebar />
       <Header />
@@ -30,7 +30,7 @@ const DashboardRoute = () => {
 
 export const Route = createFileRoute('/(dashboard)/dashboard')({
   beforeLoad: () => {
-    if (!useAuthStore.getState().signedIn()) throw redirect({ to: '/' })
+    if (!getAuthStore().isAuthenticated) throw redirect({ to: '/' })
   },
   component: DashboardRoute
 })

@@ -4,7 +4,7 @@ import { Icon } from '@/shared/ui'
 import { useDeleteBoard } from '../hooks/useDeleteBoard'
 
 export const DeleteBoardTrigger = () => {
-  const setIsOpenMobile = useSidebarStore(state => state.setIsOpenMobile)
+  const { setIsOpenMobile } = useSidebarStore()
 
   const { mutate: deleteBoard } = useDeleteBoard()
 

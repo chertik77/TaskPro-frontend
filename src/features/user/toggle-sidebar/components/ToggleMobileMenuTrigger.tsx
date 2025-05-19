@@ -2,7 +2,7 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const ToggleMobileMenuTrigger = () => {
-  const setIsOpenMobile = useSidebarStore(state => state.setIsOpenMobile)
+  const { setIsOpenMobile } = useSidebarStore()
 
   return (
     <button

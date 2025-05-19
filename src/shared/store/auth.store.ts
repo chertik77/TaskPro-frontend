@@ -1,49 +1,45 @@
 import type { AuthDtoTypes } from '../api/auth'
 import type { UserDtoTypes } from '../api/user'
 
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { createStore } from 'stan-js'
+import { storage } from 'stan-js/storage'
 
 import { userService } from '../api/user'
 import { DEFAULT_THEME } from '../constants'
 
-type Action = {
-  authenticate: (data: AuthDtoTypes.AuthResponseDto) => void
-  saveTokens: (tokens: AuthDtoTypes.TokensDto) => void
-  getCurrentUser: () => Promise<void>
-  updateUser: (user: Partial<UserDtoTypes.UserDto>) => void
-  resetStore: () => void
-  signedIn: () => boolean
-}
-
-const initialState: AuthDtoTypes.AuthResponseDto = {
-  user: {
-    id: '',
-    name: '',
-    email: '',
-    avatar: '',
-    theme: DEFAULT_THEME
-  },
-  accessToken: '',
-  refreshToken: ''
-}
-
-export const useAuthStore = create(
-  persist<AuthDtoTypes.AuthResponseDto & Action>(
-    (set, get) => ({
-      ...initialState,
-      authenticate: set,
-      saveTokens: set,
-      updateUser: user => set(s => ({ user: { ...s.user, ...user } })),
-      getCurrentUser: async () => {
-        set({ user: await userService.getCurrentUser() })
-      },
-      signedIn: () => [get().accessToken, get().refreshToken].every(Boolean),
-      resetStore: () => {
-        set(initialState)
-        useAuthStore.persist.clearStorage()
-      }
+export const {
+  useStore: useAuthStore,
+  getState: getAuthStore,
+  actions: authActions
+} = createStore(
+  {
+    user: storage<UserDtoTypes.UserDto>({
+      id: '',
+      name: '',
+      email: '',
+      avatar: '',
+      theme: DEFAULT_THEME
     }),
-    { name: 'auth' }
-  )
+    tokens: storage<AuthDtoTypes.TokensDto>({
+      accessToken: '',
+      refreshToken: ''
+    }),
+    get isAuthenticated() {
+      return [this.tokens.accessToken, this.tokens.refreshToken].every(Boolean)
+    }
+  },
+  ({ actions, reset }) => ({
+    authenticate: (data: AuthDtoTypes.AuthResponseDto) => {
+      const { user, ...tokens } = data
+      actions.setUser(user)
+      actions.setTokens(tokens)
+    },
+    getCurrentUser: async () => {
+      actions.setUser(await userService.getCurrentUser())
+    },
+    logout: () => {
+      reset()
+      localStorage.clear()
+    }
+  })
 )

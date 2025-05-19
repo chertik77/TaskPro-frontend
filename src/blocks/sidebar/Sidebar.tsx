@@ -13,7 +13,7 @@ import { SidebarLogo } from './SidebarLogo'
 import { SidebarMobileMenu } from './SidebarMobileMenu'
 
 export const Sidebar = () => {
-  const isSidebarOpen = useSidebarStore(state => state.isOpen)
+  const { isOpen } = useSidebarStore()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
 
@@ -24,7 +24,7 @@ export const Sidebar = () => {
       type='scroll'
       className={cn(
         'violet:bg-brand-violet dark:bg-black-soft row-span-2 hidden bg-white',
-        isSidebarOpen && 'desktop:block'
+        isOpen && 'desktop:block'
       )}>
       <ScrollArea.Viewport className='h-dvh'>
         <aside className='flex h-dvh flex-col'>

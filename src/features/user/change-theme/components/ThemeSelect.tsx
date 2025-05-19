@@ -10,7 +10,9 @@ import { Icon } from '@/shared/ui'
 import { useChangeTheme } from '../hooks/useChangeTheme'
 
 export const ThemeSelect = () => {
-  const theme = useAuthStore(state => state.user.theme)
+  const {
+    user: { theme }
+  } = useAuthStore()
 
   const { mutate: changeUserTheme } = useChangeTheme()
 

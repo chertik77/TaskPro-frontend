@@ -2,7 +2,7 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const ToggleSidebarTrigger = () => {
-  const setIsOpen = useSidebarStore(state => state.setIsOpen)
+  const { setIsOpen } = useSidebarStore()
 
   return (
     <button

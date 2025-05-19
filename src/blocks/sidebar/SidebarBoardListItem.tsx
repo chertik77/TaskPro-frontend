@@ -1,6 +1,6 @@
 import type { BoardTypes } from '@/entities/board'
 
-import { Item } from '@radix-ui/react-roving-focus'
+import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
 
 import { DeleteBoardTrigger } from '@/features/board/delete-board'
@@ -19,7 +19,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
 
   const navigate = useNavigate()
 
-  const setIsOpenMobile = useSidebarStore(state => state.setIsOpenMobile)
+  const { setIsOpenMobile } = useSidebarStore()
 
   const handleBoardSelect = (id: string) => {
     navigate({ to: '/dashboard/$boardId', params: { boardId: id } })
@@ -27,7 +27,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
   }
 
   return (
-    <Item
+    <RovingFocusGroupItem
       key={board.id}
       asChild>
       <li
@@ -72,6 +72,6 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
           </div>
         )}
       </li>
-    </Item>
+    </RovingFocusGroupItem>
   )
 }

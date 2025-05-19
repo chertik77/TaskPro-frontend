@@ -1,7 +1,13 @@
+import type { ReactNode } from '@tanstack/react-router'
+
 import * as Tabs from '@radix-ui/react-tabs'
 import { useLocation, useNavigate } from '@tanstack/react-router'
 
-export const AuthTabs = () => {
+type AuthTabsProps = {
+  children: ReactNode
+}
+
+export const AuthTabs = ({ children }: AuthTabsProps) => {
   const navigate = useNavigate()
 
   const { pathname } = useLocation()
@@ -22,6 +28,7 @@ export const AuthTabs = () => {
           Log In
         </Tabs.Trigger>
       </Tabs.List>
+      {children}
     </Tabs.Root>
   )
 }

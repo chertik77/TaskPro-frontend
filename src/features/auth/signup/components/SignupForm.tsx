@@ -33,7 +33,6 @@ export const SignupForm = () => {
             <FormItem>
               <FormControl>
                 <Input
-                  autoFocus
                   autoComplete='email'
                   className='autofill:text-fill-white text-white'
                   placeholder='Enter your name'

@@ -24,7 +24,7 @@ type EditCardFormProps = {
 }
 
 export const EditCardForm = ({ data, setIsDialogOpen }: EditCardFormProps) => {
-  const { form, initialCard, isFormReadyForSubmit } = useEditCardForm(data)
+  const { form, isFormReadyForSubmit } = useEditCardForm(data)
 
   const { mutate: editCard, isPending } = useEditCard(
     form.reset,
@@ -34,8 +34,8 @@ export const EditCardForm = ({ data, setIsDialogOpen }: EditCardFormProps) => {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(data =>
-          editCard({ cardId: initialCard.id, ...data })
+        onSubmit={form.handleSubmit(editedCard =>
+          editCard({ cardId: data.id, ...editedCard })
         )}>
         <FormField
           control={form.control}

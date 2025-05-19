@@ -9,7 +9,6 @@ import {
   DialogTitle
 } from '@/shared/ui'
 
-import { useEditBoardForm } from '../hooks/useEditBoardForm'
 import { EditBoardDialogTrigger } from './EditBoardDialogTrigger'
 import { EditBoardForm } from './EditBoardForm'
 
@@ -20,14 +19,12 @@ type EditBoardDialogProps = {
 export const EditBoardDialog = ({ data }: EditBoardDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const { form } = useEditBoardForm(data)
-
   return (
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
       <EditBoardDialogTrigger />
-      <DialogContent onCloseAutoFocus={() => form.reset()}>
+      <DialogContent>
         <DialogTitle>Edit board</DialogTitle>
         <DialogDescription className='sr-only'>
           You can edit a board here by changing its title, icon and background.

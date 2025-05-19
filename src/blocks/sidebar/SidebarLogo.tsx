@@ -4,7 +4,7 @@ import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 export const SidebarLogo = () => {
-  const setIsOpenMobile = useSidebarStore(state => state.setIsOpenMobile)
+  const { setIsOpenMobile } = useSidebarStore()
 
   return (
     <div className='tablet:mb-[60px] tablet:pl-6 desktop:pt-6 mb-[70px] pl-3.5'>

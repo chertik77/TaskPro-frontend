@@ -2,14 +2,16 @@ import axios, { AxiosError } from 'axios'
 
 import { authService } from '@/shared/api/auth'
 import { router } from '@/shared/lib/react-router'
-import { useAuthStore } from '@/shared/store'
+import { authActions, getAuthStore } from '@/shared/store'
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL
 })
 
 axiosInstance.interceptors.request.use(config => {
-  const { accessToken } = useAuthStore.getState()
+  const {
+    tokens: { accessToken }
+  } = getAuthStore()
 
   if (config?.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -31,11 +33,13 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
 
       try {
-        const { refreshToken } = useAuthStore.getState()
+        const {
+          tokens: { refreshToken }
+        } = getAuthStore()
 
         const tokens = await authService.getTokens({ refreshToken })
 
-        useAuthStore.getState().saveTokens(tokens)
+        authActions.setTokens(tokens)
 
         return axiosInstance(originalRequest)
       } catch (e) {
@@ -43,7 +47,7 @@ axiosInstance.interceptors.response.use(
           e instanceof AxiosError &&
           e.response?.data?.message === 'ERR_JWT_EXPIRED'
         ) {
-          useAuthStore.getState().resetStore()
+          authActions.logout()
 
           return router.navigate({ to: '/' })
         }

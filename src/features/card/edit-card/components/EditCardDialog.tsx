@@ -9,7 +9,6 @@ import {
   DialogTitle
 } from '@/shared/ui'
 
-import { useEditCardForm } from '../hooks/useEditCardForm'
 import { EditCardDialogTrigger } from './EditCardDialogTrigger'
 import { EditCardForm } from './EditCardForm'
 
@@ -20,14 +19,12 @@ type EditCardDialogProps = {
 export const EditCardDialog = ({ data }: EditCardDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const { form } = useEditCardForm(data)
-
   return (
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
       <EditCardDialogTrigger />
-      <DialogContent onCloseAutoFocus={() => form.reset()}>
+      <DialogContent>
         <DialogTitle>Edit card</DialogTitle>
         <DialogDescription className='sr-only'>
           You can edit a card here by changing its title, description, priority

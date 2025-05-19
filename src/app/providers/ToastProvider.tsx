@@ -4,7 +4,9 @@ import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
 import { useAuthStore } from '@/shared/store'
 
 export const ToastProvider = () => {
-  const theme = useAuthStore(state => state.user.theme)
+  const {
+    user: { theme }
+  } = useAuthStore()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 

@@ -12,7 +12,9 @@ type EditAvatarProps = {
 }
 
 export const EditAvatar = ({ setIsDialogOpen }: EditAvatarProps) => {
-  const avatar = useAuthStore(state => state.user.avatar)
+  const {
+    user: { avatar }
+  } = useAuthStore()
 
   const { mutate: changeUserAvatar } = useEditProfile(setIsDialogOpen)
 

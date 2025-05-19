@@ -1,7 +1,5 @@
 import type { ColumnTypes } from '@/entities/column'
 
-import { useEffect } from 'react'
-
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { EditColumnSchema } from '../edit-column.contract'
@@ -10,7 +8,7 @@ export const useEditColumnForm = (
   initialColumn: ColumnTypes.EditColumnModalSchema
 ) => {
   const form = useAppForm(EditColumnSchema, {
-    shouldUnregister: false
+    defaultValues: initialColumn
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
@@ -18,11 +16,5 @@ export const useEditColumnForm = (
     form.watch
   )
 
-  const { reset } = form
-
-  useEffect(() => {
-    reset(initialColumn)
-  }, [reset, initialColumn])
-
-  return { form, initialColumn, isFormReadyForSubmit }
+  return { form, isFormReadyForSubmit }
 }

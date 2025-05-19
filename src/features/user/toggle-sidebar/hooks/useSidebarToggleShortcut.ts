@@ -6,7 +6,7 @@ import { useSidebarStore } from '@/shared/store'
 const SIDEBAR_KEYBOARD_SHORTCUT = 'o'
 
 export const useSidebarToggleShortcut = () => {
-  const setIsOpen = useSidebarStore(state => state.setIsOpen)
+  const { setIsOpen } = useSidebarStore()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 

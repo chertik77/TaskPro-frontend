@@ -6,7 +6,7 @@ import { authService } from '@/shared/api/auth'
 import { useAuthStore } from '@/shared/store'
 
 export const useLogoutUser = () => {
-  const resetStore = useAuthStore(state => state.resetStore)
+  const { logout } = useAuthStore()
 
   const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ export const useLogoutUser = () => {
     mutationFn: authService.logout,
     onSuccess() {
       navigate({ to: '/' })
-      resetStore()
+      logout()
     },
     onError() {
       toast.error(

@@ -7,23 +7,23 @@ import { userService } from '@/shared/api/user'
 import { useAuthStore } from '@/shared/store'
 
 export const useChangeTheme = () => {
-  const previousUser = useAuthStore(state => state.user)
+  const { user: previousUser } = useAuthStore()
 
-  const updateUser = useAuthStore(state => state.updateUser)
+  const { setUser } = useAuthStore()
 
   return useMutation({
     mutationFn: userService.changeUserTheme,
     onMutate: async ({ theme }) => {
-      updateUser({ theme })
+      setUser(prev => ({ ...prev, theme }))
 
       return { previousUser }
     },
     onError: (_, __, context) => {
-      updateUser(context?.previousUser as UserTypes.UserSchema)
+      setUser(context?.previousUser as UserTypes.UserSchema)
       toast.error('We couldn’t update your theme. Please try again')
     },
     onSettled: data => {
-      updateUser(data as UserTypes.UserSchema)
+      setUser(data as UserTypes.UserSchema)
     }
   })
 }

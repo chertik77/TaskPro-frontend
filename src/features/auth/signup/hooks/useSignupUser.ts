@@ -9,7 +9,7 @@ import { authService } from '@/shared/api/auth'
 import { useAuthStore } from '@/shared/store'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
-  const authenticate = useAuthStore(state => state.authenticate)
+  const { authenticate } = useAuthStore()
 
   const navigate = useNavigate()
 

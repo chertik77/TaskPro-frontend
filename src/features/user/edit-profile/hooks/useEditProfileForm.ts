@@ -1,28 +1,22 @@
-import { useEffect } from 'react'
-
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import { useAuthStore } from '@/shared/store'
 
 import { EditUserSchema } from '../edit-profile.contract'
 
 export const useEditProfileForm = () => {
-  const initialUser = useAuthStore(state => state.user)
+  const {
+    user: { name, email }
+  } = useAuthStore()
 
   const form = useAppForm(EditUserSchema, {
-    shouldUnregister: false
+    defaultValues: { name, email, password: '' }
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    { ...initialUser, password: '' },
+    { name, email, password: '' },
     form.watch,
     ({ password }) => (password ? form.formState.isValid : true)
   )
 
-  const { reset } = form
-
-  useEffect(() => {
-    reset({ ...initialUser, password: '' })
-  }, [initialUser, reset])
-
-  return { form, initialUser, isFormReadyForSubmit }
+  return { form, isFormReadyForSubmit }
 }
