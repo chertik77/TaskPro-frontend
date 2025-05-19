@@ -1,4 +1,7 @@
-import type { Dispatch, SetStateAction } from 'react'
+import type { UserDtoTypes } from '@/shared/api/user'
+import type { UseMutateFunction } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
+import type { EditUserSchema } from '../edit-profile.contract'
 
 import {
   Button,
@@ -12,17 +15,22 @@ import {
   PasswordInput
 } from '@/shared/ui'
 
-import { useEditProfile } from '../hooks/useEditProfile'
 import { useEditProfileForm } from '../hooks/useEditProfileForm'
 
 type EditProfileFormProps = {
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  editProfile: UseMutateFunction<
+    EditUserSchema,
+    AxiosError,
+    UserDtoTypes.EditUserDto
+  >
+  isPending: boolean
 }
 
-export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
+export const EditProfileForm = ({
+  editProfile,
+  isPending
+}: EditProfileFormProps) => {
   const { form, isFormReadyForSubmit } = useEditProfileForm()
-
-  const { mutate: editProfile, isPending } = useEditProfile(setIsDialogOpen)
 
   return (
     <Form {...form}>

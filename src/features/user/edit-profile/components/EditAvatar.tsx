@@ -1,22 +1,30 @@
-import type { Dispatch, SetStateAction } from 'react'
+import type { UserDtoTypes } from '@/shared/api/user'
+import type { UseMutateFunction } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
+import type { EditUserSchema } from '../edit-profile.contract'
 
 import { useRef } from 'react'
 
+import { cn } from '@/shared/lib/cn'
 import { useAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
-import { useEditProfile } from '../hooks/useEditProfile'
-
 type EditAvatarProps = {
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  changeUserAvatar: UseMutateFunction<
+    EditUserSchema,
+    AxiosError,
+    UserDtoTypes.EditUserDto
+  >
+  isPending: boolean
 }
 
-export const EditAvatar = ({ setIsDialogOpen }: EditAvatarProps) => {
+export const EditAvatar = ({
+  changeUserAvatar,
+  isPending
+}: EditAvatarProps) => {
   const {
     user: { avatar }
   } = useAuthStore()
-
-  const { mutate: changeUserAvatar } = useEditProfile(setIsDialogOpen)
 
   const ref = useRef<HTMLInputElement>(null)
 
@@ -31,10 +39,14 @@ export const EditAvatar = ({ setIsDialogOpen }: EditAvatarProps) => {
       />
       <button
         type='button'
+        disabled={isPending}
         onClick={() => ref.current?.click()}
         style={{ backgroundImage: avatar && `url(${avatar})` }}
-        className='focus-visible:styled-outline relative mx-auto mb-6 block size-[68px]
-          cursor-pointer rounded-xl bg-cover bg-center'>
+        className={cn(
+          `focus-visible:styled-outline relative mx-auto mb-6 block size-[68px] rounded-xl
+          bg-cover bg-center`,
+          isPending && 'cursor-not-allowed'
+        )}>
         <div
           className='bg-brand violet:bg-white-gray absolute -bottom-3 left-[22px] flex size-6
             items-center justify-center rounded-lg text-black'>

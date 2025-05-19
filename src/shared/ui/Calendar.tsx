@@ -35,7 +35,7 @@ export const Calendar = ({
       day: 'p-0 text-base rounded-full',
       day_button: 'h-5 w-5 focus-visible:styled-outline',
       today:
-        'text-brand violet:text-brand-violet aria-selected:text-black-muted aria-selected:violet:text-white',
+        'text-brand violet:text-brand-violet aria-selected:text-black-muted violet:aria-selected:text-white',
       selected:
         'bg-brand text-black-muted violet:bg-brand-violet violet:text-white opacity-100',
       outside: 'opacity-20 aria-selected:opacity-100',
