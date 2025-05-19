@@ -12,7 +12,7 @@ export const useEditColumnForm = (
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    initialColumn,
+    form.formState.defaultValues!,
     form.watch
   )
 

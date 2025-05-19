@@ -12,7 +12,7 @@ export const useEditBoardForm = (
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    initialBoard,
+    form.formState.defaultValues!,
     form.watch
   )
 

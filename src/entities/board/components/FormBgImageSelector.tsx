@@ -7,10 +7,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useAuthStore } from '@/shared/store'
 import { FormControl, FormItem } from '@/shared/ui'
 
-type BoardImages = {
+type BoardImage = {
   id: string
   icon: string | Record<Theme, string>
-}[]
+}
 
 type FormBgImageSelectorProps<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>
@@ -23,7 +23,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
     user: { theme }
   } = useAuthStore()
 
-  const { data: boardImages, isPending } = useQuery<BoardImages>({
+  const { data: boardImages, isPending } = useQuery<BoardImage[]>({
     queryKey: ['board-bg-images'],
     queryFn: async () =>
       await fetch('/board-bg-images.json').then(res => res.json())

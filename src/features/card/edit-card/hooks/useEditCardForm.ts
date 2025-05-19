@@ -10,7 +10,7 @@ export const useEditCardForm = (initialCard: CardTypes.EditCardModalSchema) => {
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    initialCard,
+    form.formState.defaultValues!,
     form.watch
   )
 
