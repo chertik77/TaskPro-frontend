@@ -37,7 +37,7 @@ export const getFilteredCards = (
 
       if (deadline === 'Upcoming') {
         return isWithinInterval(cardDeadline, {
-          start: startOfToday(),
+          start: today,
           end: nextWeek
         })
       }
