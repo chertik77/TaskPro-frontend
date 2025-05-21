@@ -1,21 +1,15 @@
-import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 import { useDeleteBoard } from '../hooks/useDeleteBoard'
 
 export const DeleteBoardTrigger = () => {
-  const { setIsOpenMobile } = useSidebarStore()
-
   const { mutate: deleteBoard } = useDeleteBoard()
 
   return (
     <button
       type='button'
       aria-label='Delete board'
-      onClick={() => {
-        setIsOpenMobile(false)
-        deleteBoard()
-      }}
+      onClick={() => deleteBoard()}
       className='focus-visible:styled-outline hocus:*:stroke-black
         violet:hocus:*:stroke-white-soft dark:hocus:*:stroke-white-soft'>
       <Icon

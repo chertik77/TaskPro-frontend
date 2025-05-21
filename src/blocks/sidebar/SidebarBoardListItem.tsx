@@ -7,6 +7,7 @@ import { DeleteBoardTrigger } from '@/features/board/delete-board'
 import { EditBoardDialog } from '@/features/board/edit-board'
 
 import { cn } from '@/shared/lib/cn'
+import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {
@@ -18,8 +19,11 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
 
   const navigate = useNavigate()
 
+  const { setIsOpenMobile } = useSidebarStore()
+
   const handleBoardSelect = (id: string) => {
     navigate({ to: '/dashboard/$boardId', params: { boardId: id } })
+    setIsOpenMobile(false)
   }
 
   return (
