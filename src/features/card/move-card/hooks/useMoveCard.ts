@@ -29,18 +29,10 @@ export const useMoveCard = () => {
         oldBoard => {
           if (!oldBoard) return oldBoard
 
-          const updatedColumns = oldBoard.columns?.map(column => {
-            const cardToUpdate = column.cards.find(card => card.id === cardId)
-
-            if (cardToUpdate) {
-              return {
-                ...column,
-                cards: column.cards.filter(card => card.id !== cardId)
-              }
-            }
-
-            return column
-          })
+          const updatedColumns = oldBoard.columns?.map(column => ({
+            ...column,
+            cards: column.cards.filter(card => card.id !== cardId)
+          }))
 
           let movedCard: CardTypes.CardSchema | undefined
 
@@ -68,7 +60,7 @@ export const useMoveCard = () => {
                 ...column,
                 cards: [
                   ...column.cards,
-                  { ...movedCard, columnId: column.id, order: newOrder }
+                  { ...movedCard, columnId: newColumnId, order: newOrder }
                 ]
               }
             }
