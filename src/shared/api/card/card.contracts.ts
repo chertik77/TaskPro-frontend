@@ -32,6 +32,11 @@ export const EditCardDtoSchema = v.intersect([
   CardIdDtoSchema
 ])
 
+export const MoveCardDtoSchema = v.object({
+  cardId: v.string(),
+  newColumnId: v.string()
+})
+
 export const UpdateCardOrderDtoSchema = v.object({
   columnId: v.string(),
   ids: v.array(v.string())
