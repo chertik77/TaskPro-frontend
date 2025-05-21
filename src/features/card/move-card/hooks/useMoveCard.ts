@@ -1,4 +1,5 @@
 import type { BoardTypes } from '@/entities/board'
+import type { CardTypes } from '@/entities/card'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
@@ -23,24 +24,64 @@ export const useMoveCard = () => {
         boardId
       ])
 
-      console.log(cardId)
-      console.log(newColumnId)
+      queryClient.setQueryData<BoardTypes.BoardSchema>(
+        ['board', boardId],
+        oldBoard => {
+          if (!oldBoard) return oldBoard
 
-      //   queryClient.setQueryData<BoardTypes.BoardSchema>(
-      //     ['board', boardId],
-      //     oldBoard =>
-      //       oldBoard && {
-      //         ...oldBoard,
-      //         columns:
-      //           oldBoard.columns &&
-      //           oldBoard.columns.map(column => ({
-      //             ...column,
-      //             cards: column.cards.map(card =>
-      //               card.id === cardId ? { ...card, columnId: newColumnId } : card
-      //             )
-      //           }))
-      //       }
-      //   )
+          const updatedColumns = oldBoard.columns?.map(column => {
+            const cardToUpdate = column.cards.find(card => card.id === cardId)
+
+            if (cardToUpdate) {
+              return {
+                ...column,
+                cards: column.cards.filter(card => card.id !== cardId)
+              }
+            }
+
+            return column
+          })
+
+          let movedCard: CardTypes.CardSchema | undefined
+
+          oldBoard.columns?.forEach(column => {
+            const foundCard = column.cards.find(card => card.id === cardId)
+
+            if (foundCard) {
+              movedCard = foundCard
+            }
+          })
+
+          const finalColumns = updatedColumns?.map(column => {
+            if (column.id === newColumnId && movedCard) {
+              let newOrder = 1
+
+              if (column.cards.length > 0) {
+                const maxOrder = Math.max(
+                  ...column.cards.map(card => card.order || 0)
+                )
+
+                newOrder = maxOrder + 1
+              }
+
+              return {
+                ...column,
+                cards: [
+                  ...column.cards,
+                  { ...movedCard, columnId: column.id, order: newOrder }
+                ]
+              }
+            }
+
+            return column
+          })
+
+          return {
+            ...oldBoard,
+            columns: finalColumns
+          }
+        }
+      )
 
       return { previousBoard }
     },
