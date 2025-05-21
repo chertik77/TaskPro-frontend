@@ -52,7 +52,7 @@ export const MoveCardSelect = memo(
                 key={column.id}
                 className='group flex items-center gap-2'
                 value={column.id}>
-                <p className='group-focus:stroke-brand violet:group-focus:stroke-brand-violet w-20 truncate'>
+                <p className='group-focus:text-brand violet:group-focus:text-brand-violet w-20 truncate'>
                   {column.title}
                 </p>
                 <Icon
