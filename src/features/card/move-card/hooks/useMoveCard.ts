@@ -39,9 +39,7 @@ export const useMoveCard = () => {
           oldBoard.columns?.forEach(column => {
             const foundCard = column.cards.find(card => card.id === cardId)
 
-            if (foundCard) {
-              movedCard = foundCard
-            }
+            if (foundCard) movedCard = foundCard
           })
 
           const finalColumns = updatedColumns?.map(column => {
@@ -60,7 +58,7 @@ export const useMoveCard = () => {
                 ...column,
                 cards: [
                   ...column.cards,
-                  { ...movedCard, columnId: newColumnId, order: newOrder }
+                  { ...movedCard, columnId: column.id, order: newOrder }
                 ]
               }
             }
