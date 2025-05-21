@@ -1,12 +1,10 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { useQuery } from '@tanstack/react-query'
 
 import { DragAndDropProvider } from '@/features/drag-and-drop'
 
 import { WHITE_TEXT_BOARD_BG_IDS } from '@/entities/board'
 
-import { boardService } from '@/shared/api/board'
-import { useDocumentTitle, useGetParamBoardId } from '@/shared/hooks'
+import { useDocumentTitle, useGetBoardById } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
 import { Loader } from '@/shared/ui'
 
@@ -15,13 +13,7 @@ import { KanbanDragOverlay } from '../dnd/KanbanDragOverlay'
 import { Filters } from '../filters/Filters'
 
 export const Board = () => {
-  const { boardId } = useGetParamBoardId()
-
-  const { data: board, isPending } = useQuery({
-    queryKey: ['board', boardId],
-    queryFn: () => boardService.getBoardById({ boardId: boardId! }),
-    enabled: !!boardId
-  })
+  const { data: board, isPending } = useGetBoardById()
 
   useDocumentTitle(board?.title as string)
 

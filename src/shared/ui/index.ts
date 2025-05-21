@@ -14,6 +14,16 @@ export {
   PopoverClose
 } from './Popover'
 export {
+  Select,
+  SelectIcon,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectViewport,
+  SelectItem,
+  SelectItemText
+} from './Select'
+export {
   Dialog,
   DialogTrigger,
   DialogContent,

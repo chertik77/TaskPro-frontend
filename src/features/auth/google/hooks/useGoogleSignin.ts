@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import { authService } from '@/shared/api/auth'
 import { useAuthStore } from '@/shared/store'
 
-export const useSigninUserWithGoogle = () => {
+export const useGoogleSignin = () => {
   const { authenticate } = useAuthStore()
 
   const navigate = useNavigate()
