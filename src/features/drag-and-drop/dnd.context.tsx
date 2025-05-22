@@ -15,7 +15,6 @@ import {
 import { useCardDragHandlers } from './hooks/useCardDragHandlers'
 import { useColumnDragHandlers } from './hooks/useColumnDragHandlers'
 import { useGetAccessibilityAnnouncements } from './hooks/useGetAccessibilityAnnouncements'
-import { collisionDetection } from './utils/collisionDetection'
 import { coordinateGetter } from './utils/coordinateGetter'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
@@ -64,7 +63,6 @@ export const DragAndDropProvider = ({
       value={{ columns, cards, activeCard, activeColumn }}>
       <DndContext
         sensors={sensors}
-        collisionDetection={collisionDetection}
         accessibility={{ announcements }}
         onDragStart={e => {
           cardDragHandlers.onDragStart(e)
