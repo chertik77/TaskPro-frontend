@@ -1,11 +1,13 @@
 import type { BoardTypes } from '@/entities/board'
-import type { CardTypes } from '@/entities/card'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { cardService } from '@/shared/api/card'
 import { useGetParamBoardId } from '@/shared/hooks'
+
+import { addMovedCardToColumn } from '../utils/addMovedCardToColumn'
+import { getMovedCard } from '../utils/getMovedCard'
 
 export const useMoveCard = () => {
   const queryClient = useQueryClient()
@@ -34,37 +36,13 @@ export const useMoveCard = () => {
             cards: column.cards.filter(card => card.id !== cardId)
           }))
 
-          let movedCard: CardTypes.CardSchema | undefined
+          const movedCard = getMovedCard(oldBoard.columns!, cardId)
 
-          oldBoard.columns?.forEach(column => {
-            const foundCard = column.cards.find(card => card.id === cardId)
-
-            if (foundCard) movedCard = foundCard
-          })
-
-          const finalColumns = updatedColumns?.map(column => {
-            if (column.id === newColumnId && movedCard) {
-              let newOrder = 1
-
-              if (column.cards.length > 0) {
-                const maxOrder = Math.max(
-                  ...column.cards.map(card => card.order || 0)
-                )
-
-                newOrder = maxOrder + 1
-              }
-
-              return {
-                ...column,
-                cards: [
-                  ...column.cards,
-                  { ...movedCard, columnId: column.id, order: newOrder }
-                ]
-              }
-            }
-
-            return column
-          })
+          const finalColumns = addMovedCardToColumn(
+            updatedColumns!,
+            newColumnId,
+            movedCard!
+          )
 
           return {
             ...oldBoard,
