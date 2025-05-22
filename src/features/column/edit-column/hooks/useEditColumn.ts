@@ -24,9 +24,6 @@ export const useEditColumn = (
         queryKey: ['board', boardId]
       })
 
-      setIsDialogOpen(false)
-      reset()
-
       const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([
         'board',
         boardId
@@ -54,6 +51,10 @@ export const useEditColumn = (
       toast.error(
         'An error occurred while editing the column. Please try again shortly.'
       )
+    },
+    onSuccess: () => {
+      setIsDialogOpen(false)
+      reset()
     },
     onSettled: () => {
       queryClient.invalidateQueries({

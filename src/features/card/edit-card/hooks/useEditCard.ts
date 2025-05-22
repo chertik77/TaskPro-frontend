@@ -24,9 +24,6 @@ export const useEditCard = (
         queryKey: ['board', boardId]
       })
 
-      setIsDialogOpen(false)
-      reset()
-
       const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([
         'board',
         boardId
@@ -55,6 +52,10 @@ export const useEditCard = (
       toast.error(
         'An error occurred while editing the task. Please try again shortly.'
       )
+    },
+    onSuccess: () => {
+      setIsDialogOpen(false)
+      reset()
     },
     onSettled: () => {
       queryClient.invalidateQueries({

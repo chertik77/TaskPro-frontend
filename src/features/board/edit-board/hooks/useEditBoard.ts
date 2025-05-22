@@ -24,9 +24,6 @@ export const useEditBoard = (
     onMutate: async ({ title, icon }) => {
       await queryClient.cancelQueries({ queryKey: ['boards'] })
 
-      setIsDialogOpen(false)
-      reset()
-
       const previousBoards = queryClient.getQueryData<BoardTypes.BoardsSchema>([
         'boards'
       ])
@@ -49,6 +46,10 @@ export const useEditBoard = (
       toast.error(
         'An error occurred while editing the board. Please try again shortly.'
       )
+    },
+    onSuccess: () => {
+      setIsDialogOpen(false)
+      reset()
     },
     onSettled: data => {
       queryClient.invalidateQueries({ queryKey: ['boards'] })
