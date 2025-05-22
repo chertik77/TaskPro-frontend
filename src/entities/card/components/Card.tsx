@@ -39,7 +39,7 @@ const CardProvider = ({ card, className, children }: CardProviderProps) => (
   <CardContext.Provider value={{ card }}>
     <div
       className={cn(
-        `relative h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
+        `relative h-[154px] w-84 overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
         dark:bg-black`,
         className
       )}>
@@ -95,7 +95,7 @@ const CardTitle = ({ className, ...props }: ComponentProps<'p'>) => {
 
   return (
     <p
-      className={cn('mb-2 text-base font-semibold', className)}
+      className={cn('mr-12 mb-2 truncate text-base font-semibold', className)}
       {...props}>
       {card.title}
     </p>
@@ -108,7 +108,8 @@ const CardDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   return (
     <p
       className={cn(
-        'text-md mb-3.5 line-clamp-2 text-black/70 dark:text-white/50',
+        `text-md mb-3.5 line-clamp-2 max-w-[275px] break-all text-black/70
+        dark:text-white/50`,
         className
       )}
       {...props}>
