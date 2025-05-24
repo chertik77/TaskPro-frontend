@@ -22,18 +22,18 @@ export const Calendar = ({
       className
     )}
     classNames={{
-      month_caption: 'border-b border-black/20 dark:border-white/20 pb-3.5',
+      month_caption:
+        'border-b border-black/20 dark:border-white/20 pb-3.5 mb-3.5',
       caption_label: 'text-lg font-medium flex items-center justify-center',
-      weekdays: 'flex gap-[11px]',
-      weekday: 'text-black/50 dark:text-white/50',
       button_previous:
         'absolute left-4.5 top-6 aria-disabled:opacity-20 aria-disabled:cursor-not-allowed focus-visible:styled-outline',
-      nav: 'flex items-center',
       button_next: 'absolute right-4.5 top-6 focus-visible:styled-outline',
-      month_grid: '!mt-3.5',
-      week: 'flex gap-[11px] mt-[11px] justify-end',
-      day: 'p-0 text-base rounded-full',
-      day_button: 'h-5 w-5 focus-visible:styled-outline',
+      weekdays: 'flex',
+      weekday: 'w-8 text-black/50 dark:text-white/50',
+      weeks: 'block mt-1',
+      week: 'flex w-full justify-end',
+      day: 'text-base rounded-full',
+      day_button: 'size-8 focus-visible:styled-outline',
       today:
         'text-brand violet:text-brand-violet aria-selected:text-black-muted violet:aria-selected:text-white',
       selected:
