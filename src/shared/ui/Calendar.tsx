@@ -33,13 +33,14 @@ export const Calendar = ({
       weeks: 'block mt-1',
       week: 'flex w-full justify-end',
       day: 'text-base rounded-full',
-      day_button: 'size-8 focus-visible:styled-outline',
+      day_button:
+        'size-8 focus-visible:styled-outline rounded-full not-disabled:violet:hocus:bg-white-gray not-disabled:hocus:bg-gray/60',
       today:
         'text-brand violet:text-brand-violet aria-selected:text-black-muted violet:aria-selected:text-white',
       selected:
         'bg-brand text-black-muted violet:bg-brand-violet violet:text-white opacity-100',
-      outside: 'opacity-20 aria-selected:opacity-100',
-      disabled: 'opacity-20 cursor-not-allowed',
+      outside: 'opacity-20 aria-selected:opacity-100 hocus:opacity-100',
+      disabled: 'opacity-10 cursor-not-allowed',
       ...classNames
     }}
     components={{
