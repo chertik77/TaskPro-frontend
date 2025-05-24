@@ -34,7 +34,7 @@ export const Calendar = ({
       week: 'flex w-full justify-end',
       day: 'text-base rounded-full',
       day_button:
-        'size-8 focus-visible:styled-outline rounded-full not-disabled:violet:hocus:bg-white-gray not-disabled:hocus:bg-gray/60',
+        'size-8 focus-visible:styled-outline rounded-full violet:not-disabled:hocus:bg-white-gray not-disabled:hocus:bg-black/10 dark:not-disabled:hocus:bg-gray/60',
       today:
         'text-brand violet:text-brand-violet aria-selected:text-black-muted violet:aria-selected:text-white',
       selected:
