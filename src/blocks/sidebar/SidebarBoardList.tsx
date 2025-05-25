@@ -19,15 +19,13 @@ export const SidebarBoardList = () => {
     </div>
   ) : (
     boards && boards.length > 0 && (
-      <RovingFocusGroup asChild>
-        <ul className='mb-10 text-base'>
-          {boards.map(board => (
-            <SidebarBoardListItem
-              key={board.id}
-              board={board}
-            />
-          ))}
-        </ul>
+      <RovingFocusGroup className='mb-10 text-base'>
+        {boards.map(board => (
+          <SidebarBoardListItem
+            key={board.id}
+            board={board}
+          />
+        ))}
       </RovingFocusGroup>
     )
   )
