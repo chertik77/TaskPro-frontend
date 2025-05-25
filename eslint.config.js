@@ -28,9 +28,7 @@ export default eslintTypescript.config(
       globals: { ...globals.browser },
       parser: eslintTypescript.parser,
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ['*.js']
-        },
+        projectService: true,
         warnOnUnsupportedTypeScriptVersion: false
       }
     }
