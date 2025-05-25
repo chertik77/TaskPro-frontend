@@ -3,7 +3,7 @@ import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import type { ComponentProps, ReactNode } from 'react'
 import type { ColumnSchema } from '../column.types'
 
-import { createContext, useContext } from 'react'
+import { createContext, use, useMemo } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Slot } from '@radix-ui/react-slot'
 
@@ -16,7 +16,7 @@ type ColumnContext = { column: ColumnSchema }
 const ColumnContext = createContext<ColumnContext | undefined>(undefined)
 
 function useColumnContext() {
-  const context = useContext(ColumnContext)
+  const context = use(ColumnContext)
 
   if (context === undefined) {
     throw new Error(
@@ -31,9 +31,11 @@ type ColumnProviderProps = ColumnContext & {
   children: ReactNode
 }
 
-const ColumnProvider = ({ column, children }: ColumnProviderProps) => (
-  <ColumnContext.Provider value={{ column }}>{children}</ColumnContext.Provider>
-)
+const ColumnProvider = ({ column, children }: ColumnProviderProps) => {
+  const value = useMemo(() => ({ column }), [column])
+
+  return <ColumnContext value={value}>{children}</ColumnContext>
+}
 
 type ColumnHeaderProps = ComponentProps<'div'> & {
   children: ReactNode
@@ -63,6 +65,7 @@ const ColumnDragActivator = ({
   ...props
 }: ColumnDragActivatorProps) => (
   <button
+    type='button'
     className={cn('focus-visible:styled-outline cursor-grab', className)}
     aria-label='Move column'
     {...attributes}

@@ -3,7 +3,7 @@ import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import type { ComponentProps, ReactNode } from 'react'
 import type { CardSchema } from '../card.types'
 
-import { createContext, useContext } from 'react'
+import { createContext, use, useMemo } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { format, isToday } from 'date-fns'
 
@@ -17,7 +17,7 @@ type CardContext = { card: CardSchema }
 const CardContext = createContext<CardContext | undefined>(undefined)
 
 function useCardContext() {
-  const context = useContext(CardContext)
+  const context = use(CardContext)
 
   if (context === undefined) {
     throw new Error('useCardContext must be used with a CardContext.Provider')
@@ -35,18 +35,22 @@ type CardProviderProps = CardContext &
     children: ReactNode
   }
 
-const CardProvider = ({ card, className, children }: CardProviderProps) => (
-  <CardContext.Provider value={{ card }}>
-    <div
-      className={cn(
-        `relative h-[154px] w-84 overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
-        dark:bg-black`,
-        className
-      )}>
-      {children}
-    </div>
-  </CardContext.Provider>
-)
+const CardProvider = ({ card, className, children }: CardProviderProps) => {
+  const value = useMemo(() => ({ card }), [card])
+
+  return (
+    <CardContext value={value}>
+      <div
+        className={cn(
+          `relative h-[154px] w-84 overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
+          dark:bg-black`,
+          className
+        )}>
+        {children}
+      </div>
+    </CardContext>
+  )
+}
 
 type CardDragActivatorProps = ComponentProps<'button'> & {
   listeners: SyntheticListenerMap | undefined
@@ -60,6 +64,7 @@ const CardDragActivator = ({
   ...props
 }: CardDragActivatorProps) => (
   <button
+    type='button'
     className={cn('focus-visible:styled-outline cursor-grab', className)}
     aria-label='Move card'
     {...listeners}

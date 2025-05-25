@@ -20,9 +20,7 @@ export const SidebarBoardList = () => {
   ) : (
     boards && boards.length > 0 && (
       <RovingFocusGroup asChild>
-        <ul
-          className='mb-10 text-base'
-          role='listbox'>
+        <ul className='mb-10 text-base'>
           {boards.map(board => (
             <SidebarBoardListItem
               key={board.id}

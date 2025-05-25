@@ -1,9 +1,12 @@
+import eslintPluginReactModern from '@eslint-react/eslint-plugin'
 import eslintPluginJs from '@eslint/js'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
 import eslintPluginRouter from '@tanstack/eslint-plugin-router'
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
 import { projectStructurePlugin } from 'eslint-plugin-project-structure'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginNamingConvention from 'eslint-plugin-react-naming-convention'
 import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
@@ -12,7 +15,10 @@ import { independentModulesConfig } from './independentModules.mjs'
 export default eslintTypescript.config(
   eslintPluginJs.configs.recommended,
   eslintTypescript.configs.recommended,
+  eslintPluginJsxA11y.flatConfigs.strict,
   eslintPluginReact.configs.flat.recommended,
+  eslintPluginNamingConvention.configs.recommended,
+  eslintPluginReactModern.configs['recommended-type-checked'],
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
@@ -21,7 +27,12 @@ export default eslintTypescript.config(
     languageOptions: {
       globals: { ...globals.browser },
       parser: eslintTypescript.parser,
-      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['*.js']
+        },
+        warnOnUnsupportedTypeScriptVersion: false
+      }
     }
   },
   {
@@ -44,6 +55,7 @@ export default eslintTypescript.config(
   },
   {
     rules: {
+      'jsx-a11y/no-autofocus': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/consistent-indexed-object-style': 'error',

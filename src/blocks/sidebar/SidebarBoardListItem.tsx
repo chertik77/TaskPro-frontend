@@ -29,10 +29,14 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
   return (
     <RovingFocusGroupItem
       key={board.id}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleBoardSelect(board.id)
+        }
+      }}
+      onClick={() => handleBoardSelect(board.id)}
       asChild>
       <li
-        role='option'
-        tabIndex={0}
         className={cn(
           `focus-visible:styled-outline violet:text-white/50 tablet:pl-6 flex h-[61px]
           w-full cursor-pointer items-center justify-between pl-3.5 text-black/50
@@ -40,13 +44,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
           boardId === board.id &&
             `bg-white-muted violet:bg-white/50 violet:text-white dark:bg-black-muted
             text-black dark:text-white`
-        )}
-        onKeyDown={e => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleBoardSelect(board.id)
-          }
-        }}
-        onClick={() => handleBoardSelect(board.id)}>
+        )}>
         <div className='tablet:gap-2 flex items-center gap-1'>
           <Icon
             name={board.icon}

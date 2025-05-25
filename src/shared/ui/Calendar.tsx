@@ -44,18 +44,16 @@ export const Calendar = ({
       ...classNames
     }}
     components={{
-      Chevron: ({ orientation }: ChevronProps) =>
-        orientation === 'left' ? (
-          <Icon
-            name='arrow'
-            className='size-3 rotate-180 stroke-black/80 dark:stroke-white'
-          />
-        ) : (
-          <Icon
-            name='arrow'
-            className='size-3 stroke-black/80 dark:stroke-white'
-          />
-        )
+      // eslint-disable-next-line @eslint-react/no-nested-component-definitions
+      Chevron: ({ orientation }: ChevronProps) => (
+        <Icon
+          name='arrow'
+          className={cn(
+            'size-3 stroke-black/80 dark:stroke-white',
+            orientation === 'left' && 'rotate-180'
+          )}
+        />
+      )
     }}
     {...props}
   />

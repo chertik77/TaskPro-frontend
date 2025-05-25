@@ -5,7 +5,7 @@ export const useTabletAndBelowMediaQuery = (
 ) => {
   const getMatches = (query: string) => window.matchMedia(query).matches
 
-  const [matches, setMatches] = useState(getMatches(mediaQuery))
+  const [matches, setMatches] = useState(() => getMatches(mediaQuery))
 
   useEffect(() => {
     const matchMedia = window.matchMedia(mediaQuery)

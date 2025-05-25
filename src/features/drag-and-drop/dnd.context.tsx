@@ -1,8 +1,10 @@
+/* eslint-disable @eslint-react/hooks-extra/no-direct-set-state-in-use-effect */
+
 import type { CardTypes } from '@/entities/card'
 import type { ColumnTypes } from '@/entities/column'
 import type { DragAndDropContext, DragAndDropProviderProps } from './dnd.types'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, use, useEffect, useMemo, useState } from 'react'
 import {
   DndContext,
   KeyboardSensor,
@@ -58,9 +60,13 @@ export const DragAndDropProvider = ({
 
   const announcements = useGetAccessibilityAnnouncements({ columns, cards })
 
+  const value = useMemo(
+    () => ({ columns, cards, activeCard, activeColumn }),
+    [columns, cards, activeCard, activeColumn]
+  )
+
   return (
-    <DragAndDropContext.Provider
-      value={{ columns, cards, activeCard, activeColumn }}>
+    <DragAndDropContext value={value}>
       <DndContext
         sensors={sensors}
         accessibility={{ announcements }}
@@ -75,12 +81,12 @@ export const DragAndDropProvider = ({
         }}>
         {children}
       </DndContext>
-    </DragAndDropContext.Provider>
+    </DragAndDropContext>
   )
 }
 
 export const useDragAndDrop = () => {
-  const context = useContext(DragAndDropContext)
+  const context = use(DragAndDropContext)
 
   if (!context) {
     throw new Error('useDragAndDrop must be used within a DragAndDropProvider')

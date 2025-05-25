@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 
-import { createContext, useContext, useId } from 'react'
+import { createContext, use, useId, useMemo } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 
@@ -25,16 +25,20 @@ const FormField = <
   N extends FieldPath<F> = FieldPath<F>
 >({
   ...props
-}: ControllerProps<F, N>) => (
-  <FormFieldContext.Provider value={{ name: props.name }}>
-    <Controller {...props} />
-  </FormFieldContext.Provider>
-)
+}: ControllerProps<F, N>) => {
+  const value = useMemo(() => ({ name: props.name }), [props.name])
+
+  return (
+    <FormFieldContext value={value}>
+      <Controller {...props} />
+    </FormFieldContext>
+  )
+}
 
 const useFormField = () => {
-  const fieldContext = useContext(FormFieldContext)
+  const fieldContext = use(FormFieldContext)
 
-  const { id } = useContext(FormItemContext)
+  const { id } = use(FormItemContext)
 
   const { getFieldState, formState } = useFormContext()
 
@@ -62,14 +66,16 @@ const FormItemContext = createContext<FormItemContextValue>(
 const FormItem = ({ className, ref, ...props }: ComponentProps<'div'>) => {
   const id = useId()
 
+  const value = useMemo(() => ({ id }), [id])
+
   return (
-    <FormItemContext.Provider value={{ id }}>
+    <FormItemContext value={value}>
       <div
         ref={ref}
         className={cn('space-y-2', className)}
         {...props}
       />
-    </FormItemContext.Provider>
+    </FormItemContext>
   )
 }
 
