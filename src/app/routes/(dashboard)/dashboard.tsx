@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
@@ -13,7 +14,9 @@ const DashboardRoute = () => {
 
   useSidebarToggleShortcut()
 
-  authActions.getCurrentUser()
+  useEffect(() => {
+    authActions.getCurrentUser()
+  }, [])
 
   return (
     <div
