@@ -6,6 +6,8 @@ import type { AddCardSchema } from '../add-card.contract'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { boardQueries } from '@/entities/board'
+
 import { cardService } from '@/shared/api/card'
 
 export const useAddCard = (
@@ -16,15 +18,14 @@ export const useAddCard = (
   useMutation({
     mutationFn: (data: Omit<CardDtoTypes.AddCardDto, 'columnId'>) =>
       cardService.addCard({ columnId, ...data }),
-    meta: { invalidates: [['board']] },
+    meta: { invalidates: [boardQueries.boardKey()] },
     onSuccess() {
       setIsDialogOpen(false)
       reset()
     },
-    onError(e) {
+    onError() {
       toast.error(
         'An error occurred while creating the task. Please try again shortly.'
       )
-      console.error(e)
     }
   })

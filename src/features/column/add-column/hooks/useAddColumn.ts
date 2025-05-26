@@ -6,6 +6,8 @@ import type { AddColumnSchema } from '../add-column.contract'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { boardQueries } from '@/entities/board'
+
 import { columnService } from '@/shared/api/column'
 import { useGetParamBoardId } from '@/shared/hooks'
 
@@ -18,7 +20,7 @@ export const useAddColumn = (
   return useMutation({
     mutationFn: (data: Omit<ColumnDtoTypes.AddColumnDto, 'boardId'>) =>
       columnService.addColumn({ boardId: boardId!, ...data }),
-    meta: { invalidates: [['board']] },
+    meta: { invalidates: [boardQueries.boardKey()] },
     onSuccess() {
       setIsDialogOpen(false)
       reset()

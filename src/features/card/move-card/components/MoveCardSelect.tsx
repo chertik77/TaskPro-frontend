@@ -1,6 +1,5 @@
-import { memo, useMemo } from 'react'
+import { memo } from 'react'
 
-import { useGetBoardById } from '@/shared/hooks'
 import {
   Icon,
   Select,
@@ -10,6 +9,7 @@ import {
   SelectViewport
 } from '@/shared/ui'
 
+import { useGetFilteredColumns } from '../hooks/useGetFilteredColumns'
 import { useMoveCard } from '../hooks/useMoveCard'
 
 type MoveCardSelectProps = {
@@ -19,15 +19,7 @@ type MoveCardSelectProps = {
 
 export const MoveCardSelect = memo(
   ({ cardId, cardColumnId }: MoveCardSelectProps) => {
-    const { data: columns } = useGetBoardById({
-      select: board => board.columns,
-      refetchOnMount: false
-    })
-
-    const filteredColumns = useMemo(
-      () => columns?.filter(c => c.id !== cardColumnId),
-      [columns, cardColumnId]
-    )
+    const { columns, filteredColumns } = useGetFilteredColumns(cardColumnId)
 
     const { mutate: moveCard } = useMoveCard()
 

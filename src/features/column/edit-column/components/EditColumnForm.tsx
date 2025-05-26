@@ -25,10 +25,7 @@ export const EditColumnForm = ({
 }: EditColumnFormProps) => {
   const { form, isFormReadyForSubmit } = useEditColumnForm(data)
 
-  const { mutate: editColumn, isPending } = useEditColumn(
-    form.reset,
-    setIsDialogOpen
-  )
+  const { mutate: editColumn, isPending } = useEditColumn(setIsDialogOpen)
 
   return (
     <Form {...form}>

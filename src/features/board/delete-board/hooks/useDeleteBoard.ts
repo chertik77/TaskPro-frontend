@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
+import { boardQueries } from '@/entities/board'
+
 import { boardService } from '@/shared/api/board'
 import { useGetParamBoardId } from '@/shared/hooks'
 
@@ -17,14 +19,14 @@ export const useDeleteBoard = () => {
   return useMutation({
     mutationFn: () => boardService.deleteBoard({ boardId: boardId! }),
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ['boards'] })
+      await queryClient.cancelQueries({ queryKey: boardQueries.boardsKey() })
 
-      const previousBoards = queryClient.getQueryData<BoardTypes.BoardsSchema>([
-        'boards'
-      ])
+      const previousBoards = queryClient.getQueryData<BoardTypes.BoardsSchema>(
+        boardQueries.boardsKey()
+      )
 
       queryClient.setQueryData<BoardTypes.BoardsSchema>(
-        ['boards'],
+        boardQueries.boardsKey(),
         oldBoards => oldBoards && oldBoards.filter(b => b.id !== boardId)
       )
 
@@ -33,13 +35,16 @@ export const useDeleteBoard = () => {
       return { previousBoards }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['boards'], context?.previousBoards)
+      queryClient.setQueryData(
+        boardQueries.boardsKey(),
+        context?.previousBoards
+      )
       toast.error(
         'An error occurred while deleting the board. Please try again shortly.'
       )
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['boards'] })
+      queryClient.invalidateQueries({ queryKey: boardQueries.boardsKey() })
     }
   })
 }

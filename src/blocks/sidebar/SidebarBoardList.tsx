@@ -1,16 +1,14 @@
 import { RovingFocusGroup } from '@radix-ui/react-roving-focus'
 import { useQuery } from '@tanstack/react-query'
 
-import { boardService } from '@/shared/api/board'
+import { boardQueries } from '@/entities/board'
+
 import { Loader } from '@/shared/ui'
 
 import { SidebarBoardListItem } from './SidebarBoardListItem'
 
 export const SidebarBoardList = () => {
-  const { data: boards, isPending } = useQuery({
-    queryKey: ['boards'],
-    queryFn: boardService.getAllBoards
-  })
+  const { data: boards, isPending } = useQuery(boardQueries.boards())
 
   return isPending ? (
     <div className='violet:text-white tablet:pl-6 mb-10 flex h-[61px] items-center gap-2 pl-3.5'>

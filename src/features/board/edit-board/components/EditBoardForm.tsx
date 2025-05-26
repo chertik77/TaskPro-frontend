@@ -28,10 +28,7 @@ export const EditBoardForm = ({
 }: EditBoardFormProps) => {
   const { form, isFormReadyForSubmit } = useEditBoardForm(data)
 
-  const { mutate: editBoard, isPending } = useEditBoard(
-    form.reset,
-    setIsDialogOpen
-  )
+  const { mutate: editBoard, isPending } = useEditBoard(setIsDialogOpen)
 
   return (
     <Form {...form}>

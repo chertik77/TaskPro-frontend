@@ -1,7 +1,7 @@
-import type { BoardTypes } from '@/entities/board'
-
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
+
+import { boardQueries } from '@/entities/board'
 
 import { cardService } from '@/shared/api/card'
 import { useGetParamBoardId } from '@/shared/hooks'
@@ -14,55 +14,47 @@ export const useMoveCard = () => {
 
   const { boardId } = useGetParamBoardId()
 
+  const boardQueryKey = boardQueries.board(boardId).queryKey
+
   return useMutation({
     mutationFn: cardService.moveCard,
     onMutate: async ({ cardId, newColumnId }) => {
-      await queryClient.cancelQueries({
-        queryKey: ['board', boardId]
-      })
+      await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
-      const previousBoard = queryClient.getQueryData<BoardTypes.BoardSchema>([
-        'board',
-        boardId
-      ])
+      const previousBoard = queryClient.getQueryData(boardQueryKey)
 
-      queryClient.setQueryData<BoardTypes.BoardSchema>(
-        ['board', boardId],
-        oldBoard => {
-          if (!oldBoard) return oldBoard
+      queryClient.setQueryData(boardQueryKey, oldBoard => {
+        if (!oldBoard) return oldBoard
 
-          const updatedColumns = oldBoard.columns?.map(column => ({
-            ...column,
-            cards: column.cards.filter(card => card.id !== cardId)
-          }))
+        const updatedColumns = oldBoard.columns?.map(column => ({
+          ...column,
+          cards: column.cards.filter(card => card.id !== cardId)
+        }))
 
-          const movedCard = getMovedCard(oldBoard.columns!, cardId)
+        const movedCard = getMovedCard(oldBoard.columns!, cardId)
 
-          const finalColumns = addMovedCardToColumn(
-            updatedColumns!,
-            newColumnId,
-            movedCard!
-          )
+        const finalColumns = addMovedCardToColumn(
+          updatedColumns!,
+          newColumnId,
+          movedCard!
+        )
 
-          return {
-            ...oldBoard,
-            columns: finalColumns
-          }
+        return {
+          ...oldBoard,
+          columns: finalColumns
         }
-      )
+      })
 
       return { previousBoard }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(['board', boardId], context?.previousBoard)
+      queryClient.setQueryData(boardQueryKey, context?.previousBoard)
       toast.error(
         'An error occurred while moving the task. Please try again shortly.'
       )
     },
     onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['board', boardId]
-      })
+      queryClient.invalidateQueries({ queryKey: boardQueryKey })
     }
   })
 }

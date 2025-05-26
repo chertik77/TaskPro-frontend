@@ -26,10 +26,7 @@ type EditCardFormProps = {
 export const EditCardForm = ({ data, setIsDialogOpen }: EditCardFormProps) => {
   const { form, isFormReadyForSubmit } = useEditCardForm(data)
 
-  const { mutate: editCard, isPending } = useEditCard(
-    form.reset,
-    setIsDialogOpen
-  )
+  const { mutate: editCard, isPending } = useEditCard(setIsDialogOpen)
 
   return (
     <Form {...form}>

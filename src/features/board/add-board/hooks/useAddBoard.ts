@@ -6,6 +6,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 
+import { boardQueries } from '@/entities/board'
+
 import { boardService } from '@/shared/api/board'
 
 export const useAddBoard = (
@@ -16,7 +18,7 @@ export const useAddBoard = (
 
   return useMutation({
     mutationFn: boardService.addBoard,
-    meta: { invalidates: [['boards']] },
+    meta: { invalidates: [boardQueries.boardsKey()] },
     onSuccess(data) {
       setIsDialogOpen(false)
       reset()
