@@ -1,10 +1,8 @@
-/* eslint-disable @eslint-react/hooks-extra/no-direct-set-state-in-use-effect */
-
 import type { CardTypes } from '@/entities/card'
 import type { ColumnTypes } from '@/entities/column'
 import type { DragAndDropContext, DragAndDropProviderProps } from './dnd.types'
 
-import { createContext, use, useEffect, useMemo, useState } from 'react'
+import { createContext, use, useMemo, useState } from 'react'
 import {
   closestCorners,
   DndContext,
@@ -36,10 +34,10 @@ export const DragAndDropProvider = ({
   const [activeColumn, setActiveColumn] =
     useState<ColumnTypes.ColumnSchema | null>(null)
 
-  useEffect(() => {
+  if (initialColumns !== columns) {
     setColumns(initialColumns)
     setCards(initialColumns?.flatMap(c => c.cards))
-  }, [initialColumns])
+  }
 
   const cardDragHandlers = useCardDragHandlers({
     cards,

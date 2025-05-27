@@ -29,8 +29,7 @@ export const {
     }
   },
   ({ actions, reset }) => ({
-    authenticate: (data: AuthDtoTypes.AuthResponseDto) => {
-      const { user, ...tokens } = data
+    authenticate: ({ user, ...tokens }: AuthDtoTypes.AuthResponseDto) => {
       actions.setUser(user)
       actions.setTokens(tokens)
     },
