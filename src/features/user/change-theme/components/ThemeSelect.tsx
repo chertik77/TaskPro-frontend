@@ -23,7 +23,7 @@ export const ThemeSelect = () => {
 
   return (
     <Select
-      onValueChange={v => changeUserTheme({ theme: v as Theme })}
+      onValueChange={(v: Theme) => changeUserTheme({ theme: v })}
       value={theme}>
       <SelectTrigger className='flex items-center gap-1'>
         <SelectValue placeholder='Theme' />
