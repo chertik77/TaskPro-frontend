@@ -36,11 +36,7 @@ export const AddCardForm = ({
     }
   })
 
-  const { mutate: addCard, isPending } = useAddCard(
-    form.reset,
-    columnId,
-    setIsDialogOpen
-  )
+  const { mutate: addCard, isPending } = useAddCard(columnId, setIsDialogOpen)
 
   return (
     <Form {...form}>

@@ -32,6 +32,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
   return (
     <FormControl>
       <RadioGroup
+        onClick={e => e.stopPropagation()}
         className='flex max-w-[280px] flex-wrap gap-2'
         value={field.value}
         onValueChange={field.onChange}>

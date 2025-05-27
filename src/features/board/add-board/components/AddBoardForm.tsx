@@ -26,10 +26,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
     defaultValues: { title: '', icon: 'project', background: 'default' }
   })
 
-  const { mutate: addBoard, isPending } = useAddBoard(
-    form.reset,
-    setIsDialogOpen
-  )
+  const { mutate: addBoard, isPending } = useAddBoard(setIsDialogOpen)
 
   return (
     <Form {...form}>

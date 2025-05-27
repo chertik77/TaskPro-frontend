@@ -23,10 +23,7 @@ export const AddColumnForm = ({ setIsDialogOpen }: AddColumnFormProps) => {
     defaultValues: { title: '' }
   })
 
-  const { mutate: addColumn, isPending } = useAddColumn(
-    form.reset,
-    setIsDialogOpen
-  )
+  const { mutate: addColumn, isPending } = useAddColumn(setIsDialogOpen)
 
   return (
     <Form {...form}>

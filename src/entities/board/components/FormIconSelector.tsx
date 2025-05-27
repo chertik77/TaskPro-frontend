@@ -14,6 +14,7 @@ export const FormIconSelector = <T extends FieldValues>({
 }: FormIconSelectorProps<T>) => (
   <FormControl>
     <RadioGroup
+      onClick={e => e.stopPropagation()}
       className='flex items-center gap-2'
       value={field.value}
       onValueChange={field.onChange}>

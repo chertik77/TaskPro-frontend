@@ -17,8 +17,8 @@ export const PriorityFilter = () => {
       {PRIORITIES.map(priority => (
         <label
           className='text-md hocus:text-black hocus:dark:text-white flex cursor-pointer items-center
-            gap-2 text-black/50 has-[:checked]:text-black dark:text-white/50
-            has-[:checked]:dark:text-white'
+            gap-2 text-black/50 has-[[data-state=checked]]:text-black dark:text-white/50
+            dark:has-[[data-state=checked]]:text-white'
           key={priority}>
           <RadioGroupItem
             className={getPriorityColor(priority)}
