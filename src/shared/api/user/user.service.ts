@@ -1,4 +1,4 @@
-import type { EditUserDto, HelpDto, ThemeDto } from './user.types'
+import type { EditUserDto, HelpDto } from './user.types'
 
 import { parse } from 'valibot'
 
@@ -7,35 +7,21 @@ import { axiosInstance } from '@/shared/lib/axios'
 import {
   EditUserDtoSchema,
   HelpDtoSchema,
-  ThemeDtoSchema,
   UserDtoSchema
 } from './user.contracts'
 import { UserApiEndpoints } from './user.endpoints'
 
 export const userService = {
-  async changeUserTheme(data: ThemeDto) {
-    const themeDto = parse(ThemeDtoSchema, data)
-
-    const response = await axiosInstance.put(
-      UserApiEndpoints.UserTheme,
-      themeDto
-    )
-
-    const parsedData = parse(UserDtoSchema, response.data)
-
-    return parsedData
-  },
-
   async askForHelp(data: HelpDto) {
     const helpDto = parse(HelpDtoSchema, data)
 
     await axiosInstance.post(UserApiEndpoints.UserHelp, helpDto)
   },
 
-  async updateUserCredentials(data: EditUserDto) {
+  async editUser(data: EditUserDto) {
     const editUserDto = parse(EditUserDtoSchema, data)
 
-    const response = await axiosInstance.put(
+    const response = await axiosInstance.patch(
       UserApiEndpoints.User,
       editUserDto,
       { headers: { 'Content-Type': 'multipart/form-data' } }

@@ -31,7 +31,7 @@ export const cardService = {
   async editCard(data: EditCardDto) {
     const { cardId, ...editCardDto } = parse(EditCardDtoSchema, data)
 
-    await axiosInstance.put(CardApiEndpoints.CardById(cardId), editCardDto)
+    await axiosInstance.patch(CardApiEndpoints.CardById(cardId), editCardDto)
   },
 
   async updateCardOrder(data: UpdateCardOrderDto) {
@@ -49,7 +49,7 @@ export const cardService = {
   async moveCard(data: MoveCardDto) {
     const moveCardDto = parse(MoveCardDtoSchema, data)
 
-    await axiosInstance.put(
+    await axiosInstance.post(
       CardApiEndpoints.CardNewColumn(
         moveCardDto.cardId,
         moveCardDto.newColumnId

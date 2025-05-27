@@ -15,13 +15,10 @@ export const UserDtoSchema = v.object({
 export const EditUserDtoSchema = v.partial(
   v.object({
     ...SignupDtoSchema.entries,
+    theme: UserDtoSchema.entries.theme,
     avatar: v.instance(File)
   })
 )
-
-export const ThemeDtoSchema = v.object({
-  theme: UserDtoSchema.entries.theme
-})
 
 export const HelpDtoSchema = v.object({
   email: SigninDtoSchema.entries.email,

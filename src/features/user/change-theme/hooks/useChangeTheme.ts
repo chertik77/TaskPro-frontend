@@ -11,9 +11,9 @@ export const useChangeTheme = () => {
   const { user: previousUser, setUser } = useAuthStore()
 
   return useMutation({
-    mutationFn: userService.changeUserTheme,
+    mutationFn: userService.editUser,
     onMutate: async ({ theme }) => {
-      setUser(prev => ({ ...prev, theme }))
+      setUser(prev => ({ ...prev, theme: theme! }))
     },
     onError: () => {
       setUser(previousUser)

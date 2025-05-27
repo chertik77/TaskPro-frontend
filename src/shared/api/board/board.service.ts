@@ -50,7 +50,7 @@ export const boardService = {
   async editBoard(data: EditBoardDto) {
     const { boardId, ...editBoardDto } = parse(EditBoardDtoSchema, data)
 
-    const response = await axiosInstance.put(
+    const response = await axiosInstance.patch(
       BoardApiEndpoints.BoardById(boardId),
       editBoardDto
     )

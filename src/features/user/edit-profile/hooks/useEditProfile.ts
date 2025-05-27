@@ -12,7 +12,7 @@ export const useEditProfile = (
   const { setUser } = useAuthStore()
 
   return useMutation({
-    mutationFn: userService.updateUserCredentials,
+    mutationFn: userService.editUser,
     onSuccess(data) {
       setIsDialogOpen(false)
       setUser(data)

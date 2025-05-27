@@ -30,7 +30,7 @@ export const columnService = {
   async editColumn(data: EditColumnDto) {
     const { columnId, ...editColumnDto } = parse(EditColumnDtoSchema, data)
 
-    await axiosInstance.put(
+    await axiosInstance.patch(
       ColumnApiEndpoints.ColumnById(columnId),
       editColumnDto
     )
