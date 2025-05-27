@@ -21,7 +21,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
   return (
     <li
       className={cn(
-        'list-none rounded-lg',
+        'touch-manipulation list-none rounded-lg',
         isOverlay && 'styled-outline select-none',
         isDragging && 'opacity-60 select-none'
       )}

@@ -22,7 +22,7 @@ export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
     <SortableContext
       items={columnsIds || []}
       strategy={horizontalListSortingStrategy}>
-      <ul className='desktop:pl-6 tablet:pl-8 flex touch-manipulation gap-[34px] pl-5'>
+      <ul className='desktop:pl-6 tablet:pl-8 flex gap-[34px] pl-5'>
         {columns?.map(column => (
           <ColumnListItem
             column={column}

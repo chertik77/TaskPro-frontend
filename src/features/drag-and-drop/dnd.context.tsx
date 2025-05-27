@@ -26,6 +26,7 @@ export const DragAndDropProvider = ({
 }: DragAndDropProviderProps) => {
   const [columns, setColumns] = useState(initialColumns)
   const [cards, setCards] = useState(initialColumns?.flatMap(c => c.cards))
+  const [prevInitialColumns, setPrevInitialColumns] = useState(initialColumns)
 
   const [activeCard, setActiveCard] = useState<CardTypes.CardSchema | null>(
     null
@@ -34,7 +35,8 @@ export const DragAndDropProvider = ({
   const [activeColumn, setActiveColumn] =
     useState<ColumnTypes.ColumnSchema | null>(null)
 
-  if (initialColumns !== columns) {
+  if (initialColumns !== prevInitialColumns) {
+    setPrevInitialColumns(initialColumns)
     setColumns(initialColumns)
     setCards(initialColumns?.flatMap(c => c.cards))
   }
