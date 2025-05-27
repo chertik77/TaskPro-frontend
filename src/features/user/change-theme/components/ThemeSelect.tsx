@@ -1,9 +1,6 @@
 import type { Theme } from '@/shared/constants'
 
-import { useEffect } from 'react'
-
-import { DEFAULT_THEME, THEMES } from '@/shared/constants'
-import { useAuthStore } from '@/shared/store'
+import { THEMES } from '@/shared/constants'
 import {
   Icon,
   Select,
@@ -17,23 +14,12 @@ import {
 } from '@/shared/ui'
 
 import { useChangeTheme } from '../hooks/useChangeTheme'
+import { useThemeWithRootSync } from '../hooks/useThemeWithRootSync'
 
 export const ThemeSelect = () => {
-  const {
-    user: { theme }
-  } = useAuthStore()
+  const { theme } = useThemeWithRootSync()
 
   const { mutate: changeUserTheme } = useChangeTheme()
-
-  useEffect(() => {
-    const root = window.document.documentElement
-
-    root.className = theme
-
-    return () => {
-      root.className = DEFAULT_THEME
-    }
-  }, [theme])
 
   return (
     <Select
