@@ -6,7 +6,7 @@ export const boardQueries = {
   boardsKey: () => ['boards'] as const,
   boards: () =>
     queryOptions({
-      queryKey: [...boardQueries.boardsKey(), 'list'],
+      queryKey: boardQueries.boardsKey(),
       queryFn: boardService.getAllBoards
     }),
 

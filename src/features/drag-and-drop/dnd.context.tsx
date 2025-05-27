@@ -6,6 +6,7 @@ import type { DragAndDropContext, DragAndDropProviderProps } from './dnd.types'
 
 import { createContext, use, useEffect, useMemo, useState } from 'react'
 import {
+  closestCorners,
   DndContext,
   KeyboardSensor,
   MouseSensor,
@@ -70,6 +71,7 @@ export const DragAndDropProvider = ({
       <DndContext
         sensors={sensors}
         accessibility={{ announcements }}
+        collisionDetection={closestCorners}
         onDragStart={e => {
           cardDragHandlers.onDragStart(e)
           columnDragHandlers.onDragStart(e)

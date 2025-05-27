@@ -1,9 +1,9 @@
-import type { UseDraggableArguments } from '@dnd-kit/core'
+import type { UseSortableArguments } from '@dnd-kit/sortable'
 
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-type UseKanbanSortableProps = Omit<UseDraggableArguments, 'data'> & {
+type UseKanbanSortableProps = Omit<UseSortableArguments, 'data'> & {
   data: { type: 'card' | 'column' } & Record<string, unknown>
 }
 
@@ -12,7 +12,7 @@ export const useKanbanSortable = (props: UseKanbanSortableProps) => {
 
   const style = {
     transition,
-    transform: CSS.Transform.toString(transform)
+    transform: CSS.Translate.toString(transform)
   }
 
   return { ...sortable, style }

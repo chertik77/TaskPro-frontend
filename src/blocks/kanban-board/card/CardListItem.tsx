@@ -1,13 +1,9 @@
 import type { CardTypes } from '@/entities/card'
 
-import { DeleteCardTrigger } from '@/features/card/delete-card'
-import { EditCardDialog } from '@/features/card/edit-card'
-import { MoveCardSelect } from '@/features/card/move-card'
-
-import { Card } from '@/entities/card'
-
 import { useKanbanSortable } from '@/shared/hooks'
 import { cn } from '@/shared/lib/cn'
+
+import { MemoizedCard } from './MemoizedCard'
 
 type CardListItemProps = {
   card: CardTypes.CardSchema
@@ -31,31 +27,11 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
       )}
       ref={setNodeRef}
       style={style}>
-      <Card card={card}>
-        <Card.DragActivator
-          className='absolute top-3 right-3'
-          listeners={listeners}
-          attributes={attributes}
-        />
-        <Card.PriorityIndicator />
-        <Card.Title />
-        <Card.Description />
-        <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
-          <Card.Priority />
-          <Card.Deadline />
-          <div className='ml-auto flex items-center gap-3'>
-            <Card.DeadlineTodayIndicator />
-            <div className='flex items-center gap-2'>
-              <MoveCardSelect
-                cardId={card.id}
-                cardColumnId={card.columnId}
-              />
-              <EditCardDialog data={card} />
-              <DeleteCardTrigger cardId={card.id} />
-            </div>
-          </div>
-        </div>
-      </Card>
+      <MemoizedCard
+        card={card}
+        listeners={listeners}
+        attributes={attributes}
+      />
     </li>
   )
 }

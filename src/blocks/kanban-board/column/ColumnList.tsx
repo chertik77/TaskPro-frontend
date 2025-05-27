@@ -19,10 +19,10 @@ export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
   const columnsIds = useMemo(() => columns?.map(c => c.id), [columns])
 
   return (
-    <ul className='desktop:pl-6 tablet:pl-8 flex touch-manipulation gap-[34px] pl-5'>
-      <SortableContext
-        items={columnsIds || []}
-        strategy={horizontalListSortingStrategy}>
+    <SortableContext
+      items={columnsIds || []}
+      strategy={horizontalListSortingStrategy}>
+      <ul className='desktop:pl-6 tablet:pl-8 flex touch-manipulation gap-[34px] pl-5'>
         {columns?.map(column => (
           <ColumnListItem
             column={column}
@@ -33,7 +33,7 @@ export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
         <li>
           <AddColumnDialog />
         </li>
-      </SortableContext>
-    </ul>
+      </ul>
+    </SortableContext>
   )
 }
