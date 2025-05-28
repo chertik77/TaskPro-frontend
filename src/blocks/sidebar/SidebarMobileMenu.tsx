@@ -26,12 +26,12 @@ export const SidebarMobileMenu = () => {
         <DialogOverlay
           className='data-[state=open]:animate-modal-overlay-in
             data-[state=closed]:animate-modal-overlay-out bg-black-overlay fixed inset-0
-            z-50 overflow-y-scroll'>
+            z-50 grid max-h-dvh place-items-start overflow-y-scroll'>
           <DialogContent
             aria-describedby={undefined}
             className='violet:bg-brand-violet dark:bg-black-soft tablet:w-[260px] tablet:pt-6
               data-[state=open]:animate-modal-in data-[state=closed]:animate-modal-out flex
-              min-h-dvh w-[225px] flex-col bg-white pt-3.5 pb-6'>
+              w-[225px] flex-col bg-white pt-3.5 pb-6'>
             <DialogTitle className='sr-only'>Sidebar menu</DialogTitle>
             <SidebarLogo />
             <SidebarBoardCreationSection />
