@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
+import { useMetaThemeColor } from '@/features/user/change-theme'
 import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
 
 import { Header } from '@/blocks/header'
@@ -13,6 +14,8 @@ const DashboardRoute = () => {
   const { isOpen } = useSidebarStore()
 
   useSidebarToggleShortcut()
+
+  useMetaThemeColor()
 
   useEffect(() => {
     authActions.getCurrentUser()

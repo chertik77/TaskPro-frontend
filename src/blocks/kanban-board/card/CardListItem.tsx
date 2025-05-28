@@ -23,7 +23,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
       className={cn(
         'touch-manipulation list-none rounded-lg',
         isOverlay && 'styled-outline',
-        isDragging && 'disable-selection opacity-60'
+        isDragging && 'opacity-60 select-none'
       )}
       ref={setNodeRef}
       style={style}>
