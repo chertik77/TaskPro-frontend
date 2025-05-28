@@ -47,7 +47,9 @@ export const AddBoardDialog = ({ children }: AddBoardDialogProps) => {
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
       {children}
-      <DialogContent ref={formContainerRef}>
+      <DialogContent
+        ref={formContainerRef}
+        className='min-h-[70vh]'>
         <DialogTitle>New board</DialogTitle>
         <DialogDescription className='sr-only'>
           You can create a new board here by adding a title, icon and
