@@ -40,7 +40,7 @@ export const EditAvatar = ({
       <button
         type='button'
         disabled={isPending}
-        onClick={ref.current?.click}
+        onClick={() => ref.current?.click()}
         style={{ backgroundImage: avatar ? `url(${avatar})` : undefined }}
         className={cn(
           `focus-visible:styled-outline relative mx-auto mb-6 block size-[68px] rounded-xl

@@ -32,8 +32,8 @@ export const SidebarMobileMenu = () => {
           aria-describedby={undefined}
           className='violet:bg-brand-violet dark:bg-black-soft tablet:w-[260px] tablet:pt-6
             data-[state=open]:animate-modal-in data-[state=closed]:animate-modal-out fixed
-            top-0 left-0 z-50 flex max-h-dvh w-[225px] flex-col overflow-y-scroll bg-white
-            pt-3.5 pb-6'>
+            top-0 left-0 z-50 flex max-h-dvh min-h-dvh w-[225px] flex-col overflow-y-scroll
+            bg-white pt-3.5 pb-6'>
           <DialogTitle className='sr-only'>Sidebar menu</DialogTitle>
           <SidebarLogo />
           <SidebarBoardCreationSection />
