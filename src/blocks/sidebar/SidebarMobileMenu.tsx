@@ -28,7 +28,6 @@ export const SidebarMobileMenu = () => {
             data-[state=closed]:animate-modal-overlay-out bg-black-overlay fixed inset-0
             z-50 grid place-items-start overflow-y-auto'>
           <DialogContent
-            onOpenAutoFocus={e => e.preventDefault()}
             aria-describedby={undefined}
             className='violet:bg-brand-violet dark:bg-black-soft tablet:w-[260px] tablet:pt-6
               data-[state=open]:animate-modal-in data-[state=closed]:animate-modal-out flex

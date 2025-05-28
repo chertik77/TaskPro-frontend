@@ -7,21 +7,17 @@ import { toast } from 'sonner'
 import { boardQueries } from '@/entities/board'
 
 import { boardService } from '@/shared/api/board'
-import { useSidebarStore } from '@/shared/store'
 
 export const useAddBoard = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) => {
   const navigate = useNavigate()
 
-  const { setIsOpenMobile } = useSidebarStore()
-
   return useMutation({
     mutationFn: boardService.addBoard,
     meta: { invalidates: [boardQueries.boardsKey()] },
     onSuccess(data) {
       setIsDialogOpen(false)
-      setIsOpenMobile(false)
       navigate({ to: `/dashboard/$boardId`, params: { boardId: data.id } })
     },
     onError() {
