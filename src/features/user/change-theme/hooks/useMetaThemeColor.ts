@@ -18,7 +18,6 @@ export const useMetaThemeColor = () => {
       document.head.appendChild(themeColorMeta)
     }
 
-    themeColorMeta.content =
-      theme === 'dark' ? 'var(--color-black)' : 'var(--color-white-soft)'
+    themeColorMeta.content = theme === 'dark' ? '#161616' : '#fcfcfc'
   }, [theme])
 }
