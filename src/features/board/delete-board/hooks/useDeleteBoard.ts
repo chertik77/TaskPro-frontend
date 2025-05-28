@@ -44,9 +44,7 @@ export const useDeleteBoard = () => {
       )
     },
     onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: boardQueries.board(boardId).queryKey
-      })
+      queryClient.invalidateQueries({ queryKey: boardQueries.boardsKey() })
     }
   })
 }

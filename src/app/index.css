@@ -214,6 +214,13 @@
   @apply outline-brand violet:outline-brand-violet outline-2;
 }
 
+@utility disable-selection {
+  -webkit-touch-callout: 'none';
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
 @utility bg-soft-green {
   @apply bg-brand bg-linear-180 from-white from-25% to-[92.19%];
 }

@@ -27,8 +27,8 @@ export const ColumnListItem = ({
     <li
       className={cn(
         'w-[334px] touch-manipulation list-none rounded-lg',
-        isOverlay && 'styled-outline select-none',
-        isDragging && 'opacity-60 select-none'
+        isOverlay && 'styled-outline',
+        isDragging && 'disable-selection opacity-60'
       )}
       ref={setNodeRef}
       style={style}>
