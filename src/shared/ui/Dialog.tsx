@@ -25,8 +25,9 @@ const DialogContent = ({
       ref={ref}
       className={cn(
         `bg-white-soft data-[state=open]:animate-modal-in
-        data-[state=closed]:animate-modal-out tablet:w-[350px] fixed top-1/2 left-1/2
-        z-50 w-84 -translate-x-1/2 -translate-y-1/2 rounded-lg p-6 dark:bg-black`,
+        data-[state=closed]:animate-modal-out tablet:w-[350px] dark:border-brand/50
+        fixed top-1/2 left-1/2 z-50 w-84 -translate-x-1/2 -translate-y-1/2 rounded-lg
+        p-6 dark:border dark:bg-black`,
         className
       )}
       {...props}>

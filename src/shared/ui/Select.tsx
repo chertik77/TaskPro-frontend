@@ -41,7 +41,7 @@ const SelectContent = ({
       ref={ref}
       className={cn(
         `fade-zoom border-brand bg-white-soft shadow-main violet:border-white-gray
-        dark:bg-black-deep rounded-lg border p-4.5`,
+        dark:bg-black-deep dark:border-brand/50 rounded-lg border p-4.5`,
         className
       )}
       sideOffset={sideOffset}
