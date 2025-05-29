@@ -21,9 +21,8 @@ export const LogoutBtn = () => {
       }}>
       <Icon
         name='logout'
-        className='text-brand group-hover:text-brand-light group-focus:text-brand-light
-          violet:text-white group-hover:violet:text-brand-violet-soft
-          group-focus:violet:text-brand-violet-soft size-8 transition-colors'
+        className='text-brand group-hocus:text-brand-light violet:text-white
+          group-hocus:violet:text-brand-violet-soft size-8 transition-colors'
       />
       {isPending ? 'Logging out...' : 'Log out'}
     </button>

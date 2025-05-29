@@ -33,7 +33,7 @@ export const SignupForm = () => {
             <FormItem>
               <FormControl>
                 <Input
-                  autoComplete='email'
+                  autoComplete='name'
                   className='autofill:text-fill-white text-white'
                   placeholder='Enter your name'
                   {...field}
