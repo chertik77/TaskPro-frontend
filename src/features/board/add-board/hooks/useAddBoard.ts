@@ -2,7 +2,6 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { toast } from 'sonner'
 
 import { boardQueries } from '@/entities/board'
 
@@ -15,15 +14,14 @@ export const useAddBoard = (
 
   return useMutation({
     mutationFn: boardService.addBoard,
-    meta: { invalidates: [boardQueries.boardsKey()] },
+    meta: {
+      invalidates: [boardQueries.boardsKey()],
+      errorMessage:
+        'An error occurred while creating the board. Please try again shortly.'
+    },
     onSuccess(data) {
       setIsDialogOpen(false)
       navigate({ to: `/dashboard/$boardId`, params: { boardId: data.id } })
-    },
-    onError() {
-      toast.error(
-        'An error occurred while creating the board. Please try again shortly.'
-      )
     }
   })
 }

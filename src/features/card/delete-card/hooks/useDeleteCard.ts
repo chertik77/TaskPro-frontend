@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 import { boardQueries } from '@/entities/board'
 
@@ -16,6 +15,10 @@ export const useDeleteCard = () => {
   return useMutation({
     mutationKey: ['deleteCard'],
     mutationFn: cardService.deleteCard,
+    meta: {
+      errorMessage:
+        'An error occurred while deleting the card. Please try again shortly.'
+    },
     onMutate: async ({ cardId }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
@@ -39,9 +42,6 @@ export const useDeleteCard = () => {
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(boardQueryKey, context?.previousBoard)
-      toast.error(
-        'An error occurred while deleting the card. Please try again shortly.'
-      )
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: boardQueryKey })

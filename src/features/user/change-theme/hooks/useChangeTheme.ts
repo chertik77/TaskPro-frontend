@@ -1,5 +1,6 @@
+import type { Theme } from '@/shared/constants'
+
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
 import { parse } from 'valibot'
 
 import { UserContracts } from '@/entities/user'
@@ -12,12 +13,19 @@ export const useChangeTheme = () => {
 
   return useMutation({
     mutationFn: userService.editUser,
+    meta: { errorMessage: 'We couldn’t update your theme. Please try again' },
     onMutate: async ({ theme }) => {
+      const currentTheme = previousUser.theme
+
       setUser(prev => ({ ...prev, theme: theme! }))
+
+      return { currentThemeForRollback: currentTheme }
     },
-    onError: () => {
-      setUser(previousUser)
-      toast.error('We couldn’t update your theme. Please try again')
+    onError: (_, _variables, context) => {
+      setUser({
+        ...previousUser,
+        theme: context?.currentThemeForRollback as Theme
+      })
     },
     onSettled: data => {
       const parsedData = parse(UserContracts.UserSchema, data)

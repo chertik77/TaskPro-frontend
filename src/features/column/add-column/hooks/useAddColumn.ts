@@ -2,7 +2,6 @@ import type { ColumnDtoTypes } from '@/shared/api/column'
 import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 import { boardQueries } from '@/entities/board'
 
@@ -17,14 +16,13 @@ export const useAddColumn = (
   return useMutation({
     mutationFn: (data: Omit<ColumnDtoTypes.AddColumnDto, 'boardId'>) =>
       columnService.addColumn({ boardId: boardId!, ...data }),
-    meta: { invalidates: [boardQueries.boardKey()] },
+    meta: {
+      invalidates: [boardQueries.boardKey()],
+      errorMessage:
+        'An error occurred while creating the column. Please try again shortly.'
+    },
     onSuccess() {
       setIsDialogOpen(false)
-    },
-    onError() {
-      toast.error(
-        'An error occurred while creating the column. Please try again shortly.'
-      )
     }
   })
 }

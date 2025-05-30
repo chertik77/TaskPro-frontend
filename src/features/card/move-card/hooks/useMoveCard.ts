@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 import { boardQueries } from '@/entities/board'
 
@@ -18,6 +17,10 @@ export const useMoveCard = () => {
 
   return useMutation({
     mutationFn: cardService.moveCard,
+    meta: {
+      errorMessage:
+        'An error occurred while moving the task. Please try again shortly.'
+    },
     onMutate: async ({ cardId, newColumnId }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
@@ -49,9 +52,6 @@ export const useMoveCard = () => {
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(boardQueryKey, context?.previousBoard)
-      toast.error(
-        'An error occurred while moving the task. Please try again shortly.'
-      )
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: boardQueryKey })

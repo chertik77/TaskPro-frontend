@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 import { boardQueries } from '@/entities/board'
 
@@ -15,6 +14,10 @@ export const useDeleteColumn = () => {
 
   return useMutation({
     mutationFn: columnService.deleteColumn,
+    meta: {
+      errorMessage:
+        'An error occurred while deleting the column. Please try again shortly.'
+    },
     onMutate: async ({ columnId }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
@@ -35,9 +38,6 @@ export const useDeleteColumn = () => {
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(boardQueryKey, context?.previousBoard)
-      toast.error(
-        'An error occurred while deleting the column. Please try again shortly.'
-      )
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: boardQueryKey })

@@ -6,6 +6,8 @@ declare module '@tanstack/react-query' {
     defaultError: AxiosError
     mutationMeta: {
       invalidates?: QueryKey[]
+      successMessage?: string
+      errorMessage?: string | ((error?: AxiosError) => string)
     }
   }
 }

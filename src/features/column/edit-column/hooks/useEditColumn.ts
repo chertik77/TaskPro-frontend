@@ -1,7 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 import { boardQueries } from '@/entities/board'
 
@@ -12,13 +11,12 @@ export const useEditColumn = (
 ) =>
   useMutation({
     mutationFn: columnService.editColumn,
-    meta: { invalidates: [boardQueries.boardKey()] },
+    meta: {
+      invalidates: [boardQueries.boardKey()],
+      errorMessage:
+        'An error occurred while editing the column. Please try again shortly.'
+    },
     onSuccess: () => {
       setIsDialogOpen(false)
-    },
-    onError: () => {
-      toast.error(
-        'An error occurred while editing the column. Please try again shortly.'
-      )
     }
   })
