@@ -11,7 +11,7 @@ export const NeedHelpCard = ({ children }: NeedHelpCardProps) => (
     <img
       className='mb-3.5 h-[78px] w-[54px]'
       src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568218/TaskPro/need_help.png'
-      alt='Need help icon'
+      alt='Cactus'
     />
     <p className='text-md violet:text-white tablet:text-base mb-4.5'>
       If you need help with
