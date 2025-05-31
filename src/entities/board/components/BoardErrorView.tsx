@@ -15,7 +15,7 @@ export const BoardErrorView = () => {
     <div className='flex h-full flex-col items-center justify-center'>
       <img
         src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1748648905/TaskPro/sad-cactus.png'
-        className='size-[162px]'
+        className='tablet:size-[162px] size-[124px]'
         alt='Sad cactus'
       />
       <h3 className='mb-6 text-xl'>We&apos;re sorry, something went wrong.</h3>
