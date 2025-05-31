@@ -53,9 +53,8 @@ export const Board = () => {
         className={cn(
           `tablet:mb-[26px] desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-[39px] flex
           justify-between gap-5 pl-5 text-black`,
-          WHITE_TEXT_BOARD_BG_IDS.includes(
-            board.background.identifier as string
-          ) && 'text-white',
+          WHITE_TEXT_BOARD_BG_IDS.includes(board.background.identifier) &&
+            'text-white',
           !backgroundURL && 'dark:text-white'
         )}>
         <h2 className='tablet:text-xl max-w-max truncate whitespace-pre'>
