@@ -42,17 +42,12 @@ export const MoveCardSelect = memo(
             {filteredColumns?.map(column => (
               <SelectItem
                 key={column.id}
-                className='group flex items-center gap-2'
+                className='flex items-center gap-2'
                 value={column.id}>
-                <p
-                  className='group-focus-visible:text-brand violet:group-focus-visible:text-brand-violet w-20
-                    truncate'>
-                  {column.title}
-                </p>
+                <p className='w-20 truncate'>{column.title}</p>
                 <Icon
                   name='arrow-circle'
-                  className='group-focus-visible:stroke-brand violet:group-focus-visible:stroke-brand-violet
-                    size-4 stroke-black dark:stroke-white/50'
+                  className='size-4 stroke-current'
                 />
               </SelectItem>
             ))}
