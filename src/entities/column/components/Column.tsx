@@ -15,10 +15,10 @@ type ColumnContext = { column: ColumnSchema }
 
 const ColumnContext = createContext<ColumnContext | undefined>(undefined)
 
-function useColumnContext() {
+const useColumnContext = () => {
   const context = use(ColumnContext)
 
-  if (context === undefined) {
+  if (!context) {
     throw new Error(
       'useColumnContext must be used with a ColumnContext.Provider'
     )

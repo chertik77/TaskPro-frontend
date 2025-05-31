@@ -16,10 +16,10 @@ type CardContext = { card: CardSchema }
 
 const CardContext = createContext<CardContext | undefined>(undefined)
 
-function useCardContext() {
+const useCardContext = () => {
   const context = use(CardContext)
 
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useCardContext must be used with a CardContext.Provider')
   }
 
