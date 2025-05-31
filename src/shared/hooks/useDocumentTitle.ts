@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const WEBSITE_TITLE = 'TaskPro: Get Organized, Get Productive'
+const WEBSITE_TITLE = 'TaskPro: Best Task Management Tool to Boost Productivity'
 
 export const useDocumentTitle = (title: string) => {
   useEffect(() => {
