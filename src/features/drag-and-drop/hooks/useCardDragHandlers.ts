@@ -75,19 +75,19 @@ export const useCardDragHandlers = ({
     }
   }
 
-  const onDragEnd = ({ active, over }: DragEndEvent) => {
+  const onDragEnd = ({ active }: DragEndEvent) => {
     setActiveCard(null)
 
-    if (!active || active.data.current?.type !== 'card') return
+    if (!active || !cards || active.data.current?.type !== 'card') return
 
-    if (!cards || !over) return
+    const activeCard = cards.find(c => c.id === active.id)
 
-    const overCard = cards.find(c => c.id === over.id)
-
-    if (overCard) {
+    if (activeCard) {
       updateCardOrder({
-        columnId: overCard.columnId,
-        ids: cards.filter(c => c.columnId === overCard.columnId).map(c => c.id)
+        columnId: activeCard.columnId,
+        ids: cards
+          .filter(c => c.columnId === activeCard.columnId)
+          .map(c => c.id)
       })
     }
   }
