@@ -72,7 +72,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-classnames": "^0.7.8",
     "prettier-plugin-merge": "^0.7.4",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "tailwind-merge": "3.3.0",
     "tailwindcss": "^4.1.8",
     "tsc-files": "^1.1.4",
