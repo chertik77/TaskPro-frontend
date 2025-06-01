@@ -15,12 +15,12 @@ import { useEditColumn } from '../hooks/useEditColumn'
 import { useEditColumnForm } from '../hooks/useEditColumnForm'
 
 type EditColumnFormProps = {
-  data: ColumnTypes.EditColumnModalSchema
+  data: ColumnTypes.EditColumnDialogProps
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export const EditColumnForm = ({
-  data,
+  data: { id, ...data },
   setIsDialogOpen
 }: EditColumnFormProps) => {
   const { form, isFormReadyForSubmit } = useEditColumnForm(data)
@@ -32,7 +32,7 @@ export const EditColumnForm = ({
       <form
         className='space-y-6'
         onSubmit={form.handleSubmit(editedColumn =>
-          editColumn({ columnId: data.id, ...editedColumn })
+          editColumn({ columnId: id, ...editedColumn })
         )}>
         <FormField
           control={form.control}

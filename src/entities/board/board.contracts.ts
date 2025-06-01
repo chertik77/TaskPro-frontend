@@ -12,15 +12,7 @@ export const BoardSchema = v.object({
     identifier: v.string(),
     url: v.nullable(v.string())
   }),
-  columns: v.undefinedable(v.array(ColumnSchema))
+  columns: v.array(ColumnSchema)
 })
-
-export const BoardSchemaWithoutColumns = v.omit(BoardSchema, ['columns'])
 
 export const BoardsSchema = v.array(v.omit(BoardSchema, ['columns']))
-
-export const EditBoardModalSchema = v.object({
-  title: v.string(),
-  icon: v.picklist(ICONS),
-  background: v.string()
-})

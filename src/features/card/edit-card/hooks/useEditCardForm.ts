@@ -4,7 +4,9 @@ import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { EditCardSchema } from '../edit-card.contract'
 
-export const useEditCardForm = (initialCard: CardTypes.EditCardModalSchema) => {
+export const useEditCardForm = (
+  initialCard: Omit<CardTypes.EditCardDialogProps, 'id'>
+) => {
   const form = useAppForm(EditCardSchema, {
     defaultValues: initialCard
   })

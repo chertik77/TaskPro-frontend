@@ -5,7 +5,7 @@ import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import { EditColumnSchema } from '../edit-column.contract'
 
 export const useEditColumnForm = (
-  initialColumn: ColumnTypes.EditColumnModalSchema
+  initialColumn: Omit<ColumnTypes.EditColumnDialogProps, 'id'>
 ) => {
   const form = useAppForm(EditColumnSchema, {
     defaultValues: initialColumn

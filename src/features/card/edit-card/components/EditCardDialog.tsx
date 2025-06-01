@@ -13,7 +13,7 @@ import { EditCardDialogTrigger } from './EditCardDialogTrigger'
 import { EditCardForm } from './EditCardForm'
 
 type EditCardDialogProps = {
-  data: CardTypes.EditCardModalSchema
+  data: CardTypes.EditCardDialogProps
 }
 
 export const EditCardDialog = ({ data }: EditCardDialogProps) => {

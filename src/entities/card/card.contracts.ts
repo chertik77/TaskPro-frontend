@@ -18,7 +18,3 @@ export const CardSearchSchema = v.object({
   priority: v.optional(v.picklist(PRIORITIES)),
   deadline: v.optional(v.picklist(DEADLINES))
 })
-
-export const AddCardModalSchema = v.pick(CardSchema, ['columnId'])
-
-export const EditCardModalSchema = v.omit(CardSchema, ['columnId', 'order'])

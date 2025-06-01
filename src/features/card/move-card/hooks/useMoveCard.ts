@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { parse } from 'valibot'
 
-import { boardQueries } from '@/entities/board'
+import { BoardContracts, boardQueries } from '@/entities/board'
+import { ColumnContracts } from '@/entities/column'
 
 import { cardService } from '@/shared/api/card'
 import { useGetParamBoardId } from '@/shared/hooks'
@@ -11,7 +13,7 @@ import { getMovedCard } from '../utils/getMovedCard'
 export const useMoveCard = () => {
   const queryClient = useQueryClient()
 
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const boardQueryKey = boardQueries.board(boardId).queryKey
 
@@ -26,18 +28,29 @@ export const useMoveCard = () => {
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)
 
+      const parsedPreviousBoard = parse(
+        BoardContracts.BoardSchema,
+        previousBoard
+      )
+
       queryClient.setQueryData(boardQueryKey, oldBoard => {
         if (!oldBoard) return oldBoard
 
-        const updatedColumns = oldBoard.columns?.map(column => ({
-          ...column,
-          cards: column.cards.filter(card => card.id !== cardId)
-        }))
+        const parsedOldBoard = parse(BoardContracts.BoardSchema, oldBoard)
 
-        const movedCard = getMovedCard(oldBoard.columns!, cardId)
+        const updatedColumns = parsedOldBoard.columns.map(column => {
+          const parsedColumn = parse(ColumnContracts.ColumnSchema, column)
+
+          return {
+            ...column,
+            cards: parsedColumn.cards.filter(card => card.id !== cardId)
+          }
+        })
+
+        const movedCard = getMovedCard(parsedOldBoard.columns, cardId)
 
         const finalColumns = addMovedCardToColumn(
-          updatedColumns!,
+          updatedColumns,
           newColumnId,
           movedCard!
         )
@@ -48,7 +61,7 @@ export const useMoveCard = () => {
         }
       })
 
-      return { previousBoard }
+      return { previousBoard: parsedPreviousBoard }
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(boardQueryKey, context?.previousBoard)

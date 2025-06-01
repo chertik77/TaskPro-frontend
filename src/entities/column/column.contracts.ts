@@ -11,5 +11,3 @@ export const ColumnSchema = v.object({
 })
 
 export const ColumnsSchema = v.array(ColumnSchema)
-
-export const EditColumnModalSchema = v.pick(ColumnSchema, ['title', 'id'])

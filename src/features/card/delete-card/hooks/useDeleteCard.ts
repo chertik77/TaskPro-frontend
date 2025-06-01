@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { parse } from 'valibot'
 
-import { boardQueries } from '@/entities/board'
+import { BoardContracts, boardQueries } from '@/entities/board'
+import { ColumnContracts } from '@/entities/column'
 
 import { cardService } from '@/shared/api/card'
 import { useGetParamBoardId } from '@/shared/hooks'
@@ -8,7 +10,7 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useDeleteCard = () => {
   const queryClient = useQueryClient()
 
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const boardQueryKey = boardQueries.board(boardId).queryKey
 
@@ -24,21 +26,30 @@ export const useDeleteCard = () => {
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)
 
-      queryClient.setQueryData(
-        boardQueryKey,
-        oldBoard =>
-          oldBoard && {
-            ...oldBoard,
-            columns:
-              oldBoard.columns &&
-              oldBoard.columns.map(column => ({
-                ...column,
-                cards: column.cards.filter(card => card.id !== cardId)
-              }))
-          }
+      const parsedPreviousBoard = parse(
+        BoardContracts.BoardSchema,
+        previousBoard
       )
 
-      return { previousBoard }
+      queryClient.setQueryData(boardQueryKey, oldBoard => {
+        if (!oldBoard) return oldBoard
+
+        const parsedOldBoard = parse(BoardContracts.BoardSchema, oldBoard)
+
+        return {
+          ...oldBoard,
+          columns: parsedOldBoard.columns.map(column => {
+            const parsedColumn = parse(ColumnContracts.ColumnSchema, column)
+
+            return {
+              ...column,
+              cards: parsedColumn.cards.filter(card => card.id !== cardId)
+            }
+          })
+        }
+      })
+
+      return { previousBoard: parsedPreviousBoard }
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(boardQueryKey, context?.previousBoard)

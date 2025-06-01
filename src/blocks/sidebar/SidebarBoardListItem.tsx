@@ -10,7 +10,7 @@ import { cn } from '@/shared/lib/cn'
 import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {
-  board: BoardTypes.BoardSchemaWithoutColumns
+  board: Omit<BoardTypes.BoardSchema, 'columns'>
 }
 
 export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {

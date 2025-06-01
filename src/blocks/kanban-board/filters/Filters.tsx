@@ -12,11 +12,13 @@ import {
 } from '@/shared/ui'
 
 export const Filters = () => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   return (
     <Popover>
-      <PopoverTrigger className='focus-visible:styled-outline desktop:mr-6 mr-5 flex items-center gap-2'>
+      <PopoverTrigger
+        className='focus-visible:styled-outline desktop:mr-6 mr-5 flex items-center gap-2'
+        autoFocus>
         <Icon
           name='filter'
           className='size-4 stroke-black/80 dark:stroke-white/80'

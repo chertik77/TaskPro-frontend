@@ -1,5 +1,5 @@
-import type { CardDtoTypes } from '@/shared/api/card'
 import type { Dispatch, SetStateAction } from 'react'
+import type { AddCardSchema } from '../add-card.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
@@ -12,7 +12,7 @@ export const useAddCard = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) =>
   useMutation({
-    mutationFn: (data: Omit<CardDtoTypes.AddCardDto, 'columnId'>) =>
+    mutationFn: (data: AddCardSchema) =>
       cardService.addCard({ columnId, ...data }),
     meta: {
       invalidates: [boardQueries.boardKey()],

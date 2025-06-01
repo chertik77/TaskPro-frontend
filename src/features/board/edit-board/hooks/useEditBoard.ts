@@ -1,5 +1,5 @@
-import type { BoardDtoTypes } from '@/shared/api/board'
 import type { Dispatch, SetStateAction } from 'react'
+import type { EditBoardSchema } from '../edit-board.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
@@ -11,11 +11,11 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useEditBoard = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   return useMutation({
-    mutationFn: (data: Omit<BoardDtoTypes.EditBoardDto, 'boardId'>) =>
-      boardService.editBoard({ boardId: boardId!, ...data }),
+    mutationFn: (data: EditBoardSchema) =>
+      boardService.editBoard({ boardId, ...data }),
     meta: {
       invalidates: [boardQueries.boardsKey()],
       errorMessage:

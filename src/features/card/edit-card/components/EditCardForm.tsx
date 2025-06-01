@@ -19,11 +19,14 @@ import { useEditCard } from '../hooks/useEditCard'
 import { useEditCardForm } from '../hooks/useEditCardForm'
 
 type EditCardFormProps = {
-  data: CardTypes.EditCardModalSchema
+  data: CardTypes.EditCardDialogProps
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const EditCardForm = ({ data, setIsDialogOpen }: EditCardFormProps) => {
+export const EditCardForm = ({
+  data: { id, ...data },
+  setIsDialogOpen
+}: EditCardFormProps) => {
   const { form, isFormReadyForSubmit } = useEditCardForm(data)
 
   const { mutate: editCard, isPending } = useEditCard(setIsDialogOpen)
@@ -32,7 +35,7 @@ export const EditCardForm = ({ data, setIsDialogOpen }: EditCardFormProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(editedCard =>
-          editCard({ cardId: data.id, ...editedCard })
+          editCard({ cardId: id, ...editedCard })
         )}>
         <FormField
           control={form.control}

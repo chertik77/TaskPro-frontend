@@ -2,6 +2,9 @@ import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { CardDragHandlersProps } from '../dnd.types'
 
 import { arrayMove } from '@dnd-kit/sortable'
+import { parse } from 'valibot'
+
+import { CardContracts } from '@/entities/card'
 
 import { useUpdateCardOrder } from './useUpdateCardOrder'
 
@@ -30,8 +33,6 @@ export const useCardDragHandlers = ({
     if (isActiveACard && isDraggingOverACard) {
       setTimeout(() => {
         setCards(prevCards => {
-          if (!prevCards) return prevCards
-
           const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
           const overCardIndex = prevCards.findIndex(c => c.id === over.id)
 
@@ -59,8 +60,6 @@ export const useCardDragHandlers = ({
 
     if (isActiveACard && isDraggingOverAColumn) {
       setCards(prevCards => {
-        if (!prevCards) return prevCards
-
         const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
         const activeCard = prevCards[activeCardIndex]
 
@@ -78,14 +77,16 @@ export const useCardDragHandlers = ({
   const onDragEnd = ({ active }: DragEndEvent) => {
     setActiveCard(null)
 
-    if (!active || !cards || active.data.current?.type !== 'card') return
+    if (!active || active.data.current?.type !== 'card') return
 
-    const activeCard = cards.find(c => c.id === active.id)
+    const parsedCards = parse(CardContracts.CardsSchema, cards)
+
+    const activeCard = parsedCards.find(c => c.id === active.id)
 
     if (activeCard) {
       updateCardOrder({
         columnId: activeCard.columnId,
-        ids: cards
+        ids: parsedCards
           .filter(c => c.columnId === activeCard.columnId)
           .map(c => c.id)
       })

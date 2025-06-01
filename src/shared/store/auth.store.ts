@@ -1,5 +1,5 @@
 import type { AuthDtoTypes } from '../api/auth'
-import type { UserDtoTypes } from '../api/user'
+import type { Theme } from '../constants'
 
 import { createStore } from 'stan-js'
 import { storage } from 'stan-js/storage'
@@ -13,17 +13,13 @@ export const {
   actions: authActions
 } = createStore(
   {
-    user: storage<UserDtoTypes.UserDto>({
-      id: '',
+    user: storage({
       name: '',
       email: '',
       avatar: '',
-      theme: DEFAULT_THEME
+      theme: DEFAULT_THEME as Theme
     }),
-    tokens: storage<AuthDtoTypes.TokensDto>({
-      accessToken: '',
-      refreshToken: ''
-    }),
+    tokens: storage({ accessToken: '', refreshToken: '' }),
     get isAuthenticated() {
       return [this.tokens.accessToken, this.tokens.refreshToken].every(Boolean)
     }
