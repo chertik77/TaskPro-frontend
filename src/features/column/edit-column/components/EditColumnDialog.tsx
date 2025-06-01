@@ -13,7 +13,7 @@ import { EditColumnDialogTrigger } from './EditColumnDialogTrigger'
 import { EditColumnForm } from './EditColumnForm'
 
 type EditColumnDialogProps = {
-  data: ColumnTypes.EditColumnModalSchema
+  data: ColumnTypes.EditColumnDialogProps
 }
 
 export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {

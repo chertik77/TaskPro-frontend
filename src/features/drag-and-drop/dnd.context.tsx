@@ -1,8 +1,6 @@
-import type { CardTypes } from '@/entities/card'
-import type { ColumnTypes } from '@/entities/column'
 import type { DragAndDropContext, DragAndDropProviderProps } from './dnd.types'
 
-import { createContext, use, useMemo, useState } from 'react'
+import { createContext, use, useMemo } from 'react'
 import {
   DndContext,
   KeyboardSensor,
@@ -14,6 +12,7 @@ import {
 
 import { useCardDragHandlers } from './hooks/useCardDragHandlers'
 import { useColumnDragHandlers } from './hooks/useColumnDragHandlers'
+import { useDndState } from './hooks/useDndState'
 import { useGetAccessibilityAnnouncements } from './hooks/useGetAccessibilityAnnouncements'
 import { coordinateGetter } from './utils/coordinateGetter'
 
@@ -23,22 +22,16 @@ export const DragAndDropProvider = ({
   children,
   initialColumns
 }: DragAndDropProviderProps) => {
-  const [columns, setColumns] = useState(initialColumns)
-  const [cards, setCards] = useState(initialColumns?.flatMap(c => c.cards))
-  const [prevInitialColumns, setPrevInitialColumns] = useState(initialColumns)
-
-  const [activeCard, setActiveCard] = useState<CardTypes.CardSchema | null>(
-    null
-  )
-
-  const [activeColumn, setActiveColumn] =
-    useState<ColumnTypes.ColumnSchema | null>(null)
-
-  if (initialColumns !== prevInitialColumns) {
-    setPrevInitialColumns(initialColumns)
-    setColumns(initialColumns)
-    setCards(initialColumns?.flatMap(c => c.cards))
-  }
+  const {
+    columns,
+    cards,
+    activeColumn,
+    activeCard,
+    setActiveColumn,
+    setActiveCard,
+    setColumns,
+    setCards
+  } = useDndState(initialColumns)
 
   const cardDragHandlers = useCardDragHandlers({
     cards,

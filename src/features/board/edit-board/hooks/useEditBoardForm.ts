@@ -5,7 +5,7 @@ import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 import { EditBoardSchema } from '../edit-board.contract'
 
 export const useEditBoardForm = (
-  initialBoard: BoardTypes.EditBoardModalSchema
+  initialBoard: BoardTypes.EditBoardFormValues
 ) => {
   const form = useAppForm(EditBoardSchema, {
     defaultValues: initialBoard

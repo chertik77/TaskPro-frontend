@@ -18,7 +18,7 @@ import { useEditBoard } from '../hooks/useEditBoard'
 import { useEditBoardForm } from '../hooks/useEditBoardForm'
 
 type EditBoardFormProps = {
-  data: BoardTypes.EditBoardModalSchema
+  data: BoardTypes.EditBoardFormValues
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 

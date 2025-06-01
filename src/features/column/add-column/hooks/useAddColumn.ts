@@ -1,5 +1,5 @@
-import type { ColumnDtoTypes } from '@/shared/api/column'
 import type { Dispatch, SetStateAction } from 'react'
+import type { AddColumnSchema } from '../add-column.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
@@ -14,7 +14,7 @@ export const useAddColumn = (
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationFn: (data: Omit<ColumnDtoTypes.AddColumnDto, 'boardId'>) =>
+    mutationFn: (data: AddColumnSchema) =>
       columnService.addColumn({ boardId: boardId!, ...data }),
     meta: {
       invalidates: [boardQueries.boardKey()],

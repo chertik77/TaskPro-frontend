@@ -13,7 +13,7 @@ export const useGetAccessibilityAnnouncements = ({
 
   return {
     onDragStart({ active }) {
-      if (!active || !columns || !cards) return
+      if (!active) return
 
       if (active.data.current?.type === 'column') {
         const activeColumnIdx = columns.findIndex(c => c.id === active.id)
@@ -40,7 +40,7 @@ export const useGetAccessibilityAnnouncements = ({
       }
     },
     onDragOver({ active, over }) {
-      if (!active || !over || !columns || !cards) return
+      if (!active || !over) return
 
       if (
         active.data.current?.type === 'column' &&
@@ -76,7 +76,7 @@ export const useGetAccessibilityAnnouncements = ({
       }
     },
     onDragEnd({ active, over }) {
-      if (!active || !over || !columns || !cards) {
+      if (!active || !over) {
         activeColumnCardId.current = null
 
         return

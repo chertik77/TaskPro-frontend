@@ -13,7 +13,7 @@ import { EditBoardDialogTrigger } from './EditBoardDialogTrigger'
 import { EditBoardForm } from './EditBoardForm'
 
 type EditBoardDialogProps = {
-  data: BoardTypes.EditBoardModalSchema
+  data: BoardTypes.EditBoardFormValues
 }
 
 export const EditBoardDialog = ({ data }: EditBoardDialogProps) => {

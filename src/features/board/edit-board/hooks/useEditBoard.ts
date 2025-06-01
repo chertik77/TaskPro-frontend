@@ -1,5 +1,5 @@
-import type { BoardDtoTypes } from '@/shared/api/board'
 import type { Dispatch, SetStateAction } from 'react'
+import type { EditBoardSchema } from '../edit-board.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
@@ -14,7 +14,7 @@ export const useEditBoard = (
   const { boardId } = useGetParamBoardId()
 
   return useMutation({
-    mutationFn: (data: Omit<BoardDtoTypes.EditBoardDto, 'boardId'>) =>
+    mutationFn: (data: EditBoardSchema) =>
       boardService.editBoard({ boardId: boardId!, ...data }),
     meta: {
       invalidates: [boardQueries.boardsKey()],

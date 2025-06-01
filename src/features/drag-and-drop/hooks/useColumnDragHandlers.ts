@@ -21,9 +21,7 @@ export const useColumnDragHandlers = ({
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveColumn(null)
 
-    if (!active || active.data.current?.type !== 'column') return
-
-    if (!over || !columns) return
+    if (!active || !over || active.data.current?.type !== 'column') return
 
     const activeColumnIndex = columns.findIndex(c => c.id === active.id)
     const overColumnIndex = columns.findIndex(c => c.id === over.id)
