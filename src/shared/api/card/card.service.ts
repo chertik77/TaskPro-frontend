@@ -12,6 +12,7 @@ import { axiosInstance } from '@/shared/lib/axios'
 
 import {
   AddCardDtoSchema,
+  CardIdDtoSchema,
   EditCardDtoSchema,
   MoveCardDtoSchema,
   UpdateCardOrderDtoSchema
@@ -47,18 +48,15 @@ export const cardService = {
   },
 
   async moveCard(data: MoveCardDto) {
-    const moveCardDto = parse(MoveCardDtoSchema, data)
+    const { cardId, newColumnId } = parse(MoveCardDtoSchema, data)
 
     await axiosInstance.post(
-      CardApiEndpoints.CardNewColumn(
-        moveCardDto.cardId,
-        moveCardDto.newColumnId
-      )
+      CardApiEndpoints.CardNewColumn(cardId, newColumnId)
     )
   },
 
   async deleteCard(data: CardIdDto) {
-    const { cardId } = parse(EditCardDtoSchema, data)
+    const { cardId } = parse(CardIdDtoSchema, data)
 
     await axiosInstance.delete(CardApiEndpoints.CardById(cardId))
   }
