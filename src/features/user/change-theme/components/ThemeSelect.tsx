@@ -17,14 +17,14 @@ import { useChangeTheme } from '../hooks/useChangeTheme'
 import { useThemeWithRootSync } from '../hooks/useThemeWithRootSync'
 
 export const ThemeSelect = () => {
-  const { theme } = useThemeWithRootSync()
+  const { theme: currentTheme } = useThemeWithRootSync()
 
   const { mutate: changeUserTheme } = useChangeTheme()
 
   return (
     <Select
       onValueChange={(v: Theme) => changeUserTheme({ theme: v })}
-      value={theme}>
+      value={currentTheme}>
       <SelectTrigger className='flex items-center gap-1'>
         <SelectValue placeholder='Theme' />
         <SelectIcon asChild>
@@ -36,12 +36,13 @@ export const ThemeSelect = () => {
       </SelectTrigger>
       <SelectContent
         align='end'
-        className='w-[105px] pr-11'>
+        className='w-[105px]'>
         <SelectViewport className='flex flex-col gap-1'>
           {THEMES.map(theme => (
             <SelectItem
               key={theme}
-              className='hocus:underline'
+              disabled={theme === currentTheme}
+              className='data-disabled:cursor-not-allowed data-[highlighted]:underline'
               value={theme}>
               <SelectItemText>
                 {theme.charAt(0).toUpperCase() + theme.slice(1)}
