@@ -13,7 +13,7 @@ import { getMovedCard } from '../utils/getMovedCard'
 export const useMoveCard = () => {
   const queryClient = useQueryClient()
 
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const boardQueryKey = boardQueries.board(boardId).queryKey
 

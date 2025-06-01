@@ -10,7 +10,7 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useDeleteCard = () => {
   const queryClient = useQueryClient()
 
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const boardQueryKey = boardQueries.board(boardId).queryKey
 

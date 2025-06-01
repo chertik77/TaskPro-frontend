@@ -14,7 +14,7 @@ import { KanbanDragOverlay } from '../dnd/KanbanDragOverlay'
 import { Filters } from '../filters/Filters'
 
 export const Board = () => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const { data: board, isPending } = useQuery(boardQueries.board(boardId))
 

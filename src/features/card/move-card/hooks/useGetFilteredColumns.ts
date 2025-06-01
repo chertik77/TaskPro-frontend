@@ -6,7 +6,7 @@ import { boardQueries } from '@/entities/board'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 export const useGetFilteredColumns = (cardColumnId: string) => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const { data: columns } = useQuery({
     ...boardQueries.board(boardId),

@@ -12,7 +12,7 @@ import {
 } from '@/shared/ui'
 
 export const Filters = () => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   return (
     <Popover>

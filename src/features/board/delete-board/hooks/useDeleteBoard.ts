@@ -12,12 +12,12 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
 
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: () => boardService.deleteBoard({ boardId: boardId! }),
+    mutationFn: () => boardService.deleteBoard({ boardId }),
     meta: {
       errorMessage:
         'An error occurred while deleting the board. Please try again shortly.'

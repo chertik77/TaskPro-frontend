@@ -11,11 +11,11 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useAddColumn = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   return useMutation({
     mutationFn: (data: AddColumnSchema) =>
-      columnService.addColumn({ boardId: boardId!, ...data }),
+      columnService.addColumn({ boardId, ...data }),
     meta: {
       invalidates: [boardQueries.boardKey()],
       errorMessage:

@@ -9,7 +9,7 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()
 
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   const boardQueryKey = boardQueries.board(boardId).queryKey
 

@@ -11,11 +11,11 @@ import { useGetParamBoardId } from '@/shared/hooks'
 export const useEditBoard = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   return useMutation({
     mutationFn: (data: EditBoardSchema) =>
-      boardService.editBoard({ boardId: boardId!, ...data }),
+      boardService.editBoard({ boardId, ...data }),
     meta: {
       invalidates: [boardQueries.boardsKey()],
       errorMessage:

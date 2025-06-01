@@ -8,7 +8,7 @@ import { columnService } from '@/shared/api/column'
 import { useGetParamBoardId } from '@/shared/hooks'
 
 export const useUpdateColumnOrder = () => {
-  const { boardId } = useGetParamBoardId()
+  const boardId = useGetParamBoardId()
 
   return useMutation({
     mutationFn: ({ ids }: Omit<ColumnDtoTypes.UpdateColumnDto, 'boardId'>) =>
