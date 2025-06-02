@@ -1,4 +1,8 @@
+export type EditColumnFormValues = {
+  title: string
+}
+
 export type EditColumnData = {
   columnId: string
-  title: string
+  formValues: EditColumnFormValues
 }

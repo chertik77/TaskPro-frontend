@@ -1,14 +1,12 @@
-import type { EditColumnData } from '../edit-column.types'
+import type { EditColumnFormValues } from '../edit-column.types'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { EditColumnSchema } from '../edit-column.contract'
 
-export const useEditColumnForm = (
-  initialColumn: Pick<EditColumnData, 'title'>
-) => {
+export const useEditColumnForm = (formValues: EditColumnFormValues) => {
   const form = useAppForm(EditColumnSchema, {
-    defaultValues: initialColumn
+    defaultValues: formValues
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(

@@ -20,7 +20,7 @@ type EditColumnFormProps = {
 }
 
 export const EditColumnForm = ({
-  data: { columnId, ...formValues },
+  data: { columnId, formValues },
   setIsDialogOpen
 }: EditColumnFormProps) => {
   const { form, isFormReadyForSubmit } = useEditColumnForm(formValues)
