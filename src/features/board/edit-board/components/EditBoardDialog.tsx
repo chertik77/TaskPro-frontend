@@ -1,4 +1,4 @@
-import type { BoardTypes } from '@/entities/board'
+import type { EditBoardData } from '../edit-board.types'
 
 import { useState } from 'react'
 
@@ -13,7 +13,7 @@ import { EditBoardDialogTrigger } from './EditBoardDialogTrigger'
 import { EditBoardForm } from './EditBoardForm'
 
 type EditBoardDialogProps = {
-  data: BoardTypes.EditBoardFormValues
+  data: EditBoardData
 }
 
 export const EditBoardDialog = ({ data }: EditBoardDialogProps) => {

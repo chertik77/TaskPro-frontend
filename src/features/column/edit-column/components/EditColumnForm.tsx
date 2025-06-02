@@ -1,5 +1,5 @@
-import type { ColumnTypes } from '@/entities/column'
 import type { Dispatch, SetStateAction } from 'react'
+import type { EditColumnData } from '../edit-column.types'
 
 import {
   Form,
@@ -15,15 +15,15 @@ import { useEditColumn } from '../hooks/useEditColumn'
 import { useEditColumnForm } from '../hooks/useEditColumnForm'
 
 type EditColumnFormProps = {
-  data: ColumnTypes.EditColumnDialogProps
+  data: EditColumnData
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export const EditColumnForm = ({
-  data: { id, ...data },
+  data: { columnId, ...formValues },
   setIsDialogOpen
 }: EditColumnFormProps) => {
-  const { form, isFormReadyForSubmit } = useEditColumnForm(data)
+  const { form, isFormReadyForSubmit } = useEditColumnForm(formValues)
 
   const { mutate: editColumn, isPending } = useEditColumn(setIsDialogOpen)
 
@@ -32,7 +32,7 @@ export const EditColumnForm = ({
       <form
         className='space-y-6'
         onSubmit={form.handleSubmit(editedColumn =>
-          editColumn({ columnId: id, ...editedColumn })
+          editColumn({ columnId, ...editedColumn })
         )}>
         <FormField
           control={form.control}

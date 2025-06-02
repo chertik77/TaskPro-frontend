@@ -8,9 +8,7 @@ export const useGetParamBoardId = () => {
 
   const boardId = params?.boardId
 
-  if (!boardId) {
-    throw new Error('Board id is not available on this route.')
-  }
+  if (!boardId) throw new Error('Board id is not available on this route.')
 
   return boardId
 }

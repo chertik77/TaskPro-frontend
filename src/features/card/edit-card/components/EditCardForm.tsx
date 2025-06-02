@@ -1,5 +1,5 @@
-import type { CardTypes } from '@/entities/card'
 import type { Dispatch, SetStateAction } from 'react'
+import type { EditCardData } from '../edit-card.types'
 
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
 
@@ -19,15 +19,15 @@ import { useEditCard } from '../hooks/useEditCard'
 import { useEditCardForm } from '../hooks/useEditCardForm'
 
 type EditCardFormProps = {
-  data: CardTypes.EditCardDialogProps
+  data: EditCardData
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export const EditCardForm = ({
-  data: { id, ...data },
+  data: { cardId, formValues },
   setIsDialogOpen
 }: EditCardFormProps) => {
-  const { form, isFormReadyForSubmit } = useEditCardForm(data)
+  const { form, isFormReadyForSubmit } = useEditCardForm(formValues)
 
   const { mutate: editCard, isPending } = useEditCard(setIsDialogOpen)
 
@@ -35,7 +35,7 @@ export const EditCardForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(editedCard =>
-          editCard({ cardId: id, ...editedCard })
+          editCard({ cardId, ...editedCard })
         )}>
         <FormField
           control={form.control}

@@ -1,14 +1,12 @@
-import type { BoardTypes } from '@/entities/board'
+import type { EditBoardData } from '../edit-board.types'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { EditBoardSchema } from '../edit-board.contract'
 
-export const useEditBoardForm = (
-  initialBoard: BoardTypes.EditBoardFormValues
-) => {
+export const useEditBoardForm = (formValues: EditBoardData) => {
   const form = useAppForm(EditBoardSchema, {
-    defaultValues: initialBoard
+    defaultValues: formValues
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(

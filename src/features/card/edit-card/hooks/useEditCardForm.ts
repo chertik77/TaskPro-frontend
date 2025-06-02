@@ -1,14 +1,12 @@
-import type { CardTypes } from '@/entities/card'
+import type { EditCardFormValues } from '../edit-card.types'
 
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
 
 import { EditCardSchema } from '../edit-card.contract'
 
-export const useEditCardForm = (
-  initialCard: Omit<CardTypes.EditCardDialogProps, 'id'>
-) => {
+export const useEditCardForm = (formValues: EditCardFormValues) => {
   const form = useAppForm(EditCardSchema, {
-    defaultValues: initialCard
+    defaultValues: formValues
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(

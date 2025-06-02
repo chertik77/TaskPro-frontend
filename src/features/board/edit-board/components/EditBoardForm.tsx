@@ -1,5 +1,5 @@
-import type { BoardTypes } from '@/entities/board'
 import type { Dispatch, SetStateAction } from 'react'
+import type { EditBoardData } from '../edit-board.types'
 
 import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 
@@ -18,7 +18,7 @@ import { useEditBoard } from '../hooks/useEditBoard'
 import { useEditBoardForm } from '../hooks/useEditBoardForm'
 
 type EditBoardFormProps = {
-  data: BoardTypes.EditBoardFormValues
+  data: EditBoardData
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
@@ -33,7 +33,7 @@ export const EditBoardForm = ({
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(data => editBoard(data))}
+        onSubmit={form.handleSubmit(editedBoard => editBoard(editedBoard))}
         className='space-y-6'>
         <FormField
           control={form.control}

@@ -37,7 +37,7 @@ export const MemoizedCard = memo(
               cardId={card.id}
               cardColumnId={card.columnId}
             />
-            <EditCardDialog data={card} />
+            <EditCardDialog data={{ cardId: card.id, formValues: card }} />
             <DeleteCardTrigger cardId={card.id} />
           </div>
         </div>

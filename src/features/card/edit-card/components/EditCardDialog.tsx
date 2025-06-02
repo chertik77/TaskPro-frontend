@@ -1,4 +1,4 @@
-import type { CardTypes } from '@/entities/card'
+import type { EditCardData } from '../edit-card.types'
 
 import { useState } from 'react'
 
@@ -13,7 +13,7 @@ import { EditCardDialogTrigger } from './EditCardDialogTrigger'
 import { EditCardForm } from './EditCardForm'
 
 type EditCardDialogProps = {
-  data: CardTypes.EditCardDialogProps
+  data: EditCardData
 }
 
 export const EditCardDialog = ({ data }: EditCardDialogProps) => {

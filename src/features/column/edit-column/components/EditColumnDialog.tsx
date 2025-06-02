@@ -1,4 +1,4 @@
-import type { ColumnTypes } from '@/entities/column'
+import type { EditColumnData } from '../edit-column.types'
 
 import { useState } from 'react'
 
@@ -13,7 +13,7 @@ import { EditColumnDialogTrigger } from './EditColumnDialogTrigger'
 import { EditColumnForm } from './EditColumnForm'
 
 type EditColumnDialogProps = {
-  data: ColumnTypes.EditColumnDialogProps
+  data: EditColumnData
 }
 
 export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {

@@ -1,5 +1,3 @@
-import type { BoardTypes } from '@/entities/board'
-
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { parse } from 'valibot'
@@ -32,9 +30,9 @@ export const useDeleteBoard = () => {
         previousBoards
       )
 
-      queryClient.setQueryData<BoardTypes.BoardsSchema>(
+      queryClient.setQueryData(
         boardQueries.boardsKey(),
-        oldBoards => {
+        (oldBoards: unknown) => {
           if (!oldBoards) return oldBoards
 
           const parsedOldBoards = parse(BoardContracts.BoardsSchema, oldBoards)
