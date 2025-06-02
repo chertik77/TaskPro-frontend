@@ -38,7 +38,9 @@ export const MemoizedColumn = memo(
             <Column.Title />
           </div>
           <div>
-            <EditColumnDialog data={{ id: column.id, title: column.title }} />
+            <EditColumnDialog
+              data={{ columnId: column.id, title: column.title }}
+            />
             <DeleteColumnTrigger columnId={column.id} />
           </div>
         </Column.Header>
