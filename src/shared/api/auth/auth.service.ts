@@ -7,8 +7,7 @@ import type {
 
 import { parse } from 'valibot'
 
-import { axiosInstance } from '@/shared/lib/axios'
-
+import { axiosInstance } from '../instance'
 import {
   AuthResponseDtoSchema,
   GoogleSigninDtoSchema,

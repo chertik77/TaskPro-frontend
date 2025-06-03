@@ -1,8 +1,8 @@
 import axios, { AxiosError } from 'axios'
 
-import { authService } from '@/shared/api/auth'
-import { router } from '@/shared/lib/react-router'
-import { authActions, getAuthStore } from '@/shared/store'
+import { router } from '../lib/react-router'
+import { authActions, getAuthStore } from '../store'
+import { authService } from './auth'
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL
