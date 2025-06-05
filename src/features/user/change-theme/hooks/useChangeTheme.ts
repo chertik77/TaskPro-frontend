@@ -8,6 +8,8 @@ import { UserContracts } from '@/entities/user'
 import { userService } from '@/shared/api/user'
 import { useAuthStore } from '@/shared/store'
 
+import { setMetaThemeColor } from '../utils/setMetaThemeColor'
+
 export const useChangeTheme = () => {
   const { user: previousUser, setUser } = useAuthStore()
 
@@ -15,17 +17,14 @@ export const useChangeTheme = () => {
     mutationFn: userService.editUser,
     meta: { errorMessage: 'We couldn’t update your theme. Please try again' },
     onMutate: async ({ theme }) => {
-      const currentTheme = previousUser.theme
-
       setUser(prev => ({ ...prev, theme: theme! }))
 
-      return { currentThemeForRollback: currentTheme }
+      setMetaThemeColor(theme!)
+
+      return { previousTheme: previousUser.theme }
     },
     onError: (_, _variables, context) => {
-      setUser({
-        ...previousUser,
-        theme: context?.currentThemeForRollback as Theme
-      })
+      setUser({ ...previousUser, theme: context?.previousTheme as Theme })
     },
     onSettled: data => {
       const parsedData = parse(UserContracts.UserSchema, data)
