@@ -14,6 +14,7 @@ export const AuthTabs = ({ children }: AuthTabsProps) => {
 
   return (
     <Tabs.Root
+      className='tablet:w-[424px] tablet:p-10 w-84 rounded-lg bg-black p-6'
       value={pathname}
       onValueChange={v => navigate({ to: v })}>
       <Tabs.List className='mb-10 flex items-center gap-3.5 text-xl'>

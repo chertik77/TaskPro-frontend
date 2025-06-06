@@ -33,7 +33,9 @@ const DashboardRoute = () => {
 
 export const Route = createFileRoute('/(dashboard)/dashboard')({
   beforeLoad: () => {
-    if (!getAuthStore().isAuthenticated) throw redirect({ to: '/' })
+    const { isAuthenticated } = getAuthStore()
+
+    if (!isAuthenticated) throw redirect({ to: '/' })
   },
   component: DashboardRoute
 })
