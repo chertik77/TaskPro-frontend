@@ -16,14 +16,14 @@ import {
   SignupDtoSchema,
   TokensDtoSchema
 } from './auth.contracts'
-import { AuthApiEndpoints } from './auth.endpoints'
+import { authApiEndpoints } from './auth.endpoints'
 
 export const authService = {
   async signup(data: SignupDto) {
     const signupDto = parse(SignupDtoSchema, data)
 
     const response = await axiosInstance.post(
-      AuthApiEndpoints.Signup,
+      authApiEndpoints.signup,
       signupDto
     )
 
@@ -36,7 +36,7 @@ export const authService = {
     const signinDto = parse(SigninDtoSchema, data)
 
     const response = await axiosInstance.post(
-      AuthApiEndpoints.Signin,
+      authApiEndpoints.signin,
       signinDto,
       { skipAuthRefresh: true }
     )
@@ -50,7 +50,7 @@ export const authService = {
     const googleSigninDto = parse(GoogleSigninDtoSchema, data)
 
     const response = await axiosInstance.post(
-      AuthApiEndpoints.Google,
+      authApiEndpoints.google,
       googleSigninDto
     )
 
@@ -63,7 +63,7 @@ export const authService = {
     const refreshTokenDto = parse(RefreshTokenDtoSchema, data)
 
     const response = await axiosInstance.post(
-      AuthApiEndpoints.Tokens,
+      authApiEndpoints.tokens,
       refreshTokenDto
     )
 
@@ -73,6 +73,6 @@ export const authService = {
   },
 
   async logout() {
-    await axiosInstance.post(AuthApiEndpoints.Logout)
+    await axiosInstance.post(authApiEndpoints.logout)
   }
 }

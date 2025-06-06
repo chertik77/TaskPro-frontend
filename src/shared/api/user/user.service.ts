@@ -8,20 +8,20 @@ import {
   HelpDtoSchema,
   UserDtoSchema
 } from './user.contracts'
-import { UserApiEndpoints } from './user.endpoints'
+import { userApiEndpoints } from './user.endpoints'
 
 export const userService = {
   async askForHelp(data: HelpDto) {
     const helpDto = parse(HelpDtoSchema, data)
 
-    await axiosInstance.post(UserApiEndpoints.UserHelp, helpDto)
+    await axiosInstance.post(userApiEndpoints.help, helpDto)
   },
 
   async editUser(data: EditUserDto) {
     const editUserDto = parse(EditUserDtoSchema, data)
 
     const response = await axiosInstance.patch(
-      UserApiEndpoints.User,
+      userApiEndpoints.root,
       editUserDto,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     )
@@ -32,7 +32,7 @@ export const userService = {
   },
 
   async getCurrentUser() {
-    const response = await axiosInstance.get(UserApiEndpoints.UserMe)
+    const response = await axiosInstance.get(userApiEndpoints.me)
 
     const parsedData = parse(UserDtoSchema, response.data)
 

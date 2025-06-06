@@ -1,4 +1,11 @@
-export const BoardApiEndpoints = {
-  Board: '/board',
-  BoardById: (boardId: string) => `${BoardApiEndpoints.Board}/${boardId}`
+class BoardApiEndpoints {
+  private readonly baseUrl = '/board'
+
+  byId = (boardId: string) => `${this.baseUrl}/${boardId}`
+
+  get root() {
+    return this.baseUrl
+  }
 }
+
+export const boardApiEndpoints = new BoardApiEndpoints()

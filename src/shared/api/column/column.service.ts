@@ -14,14 +14,14 @@ import {
   EditColumnDtoSchema,
   UpdateColumnDtoSchema
 } from './column.contracts'
-import { ColumnApiEndpoints } from './column.endpoints'
+import { columnApiEndpoints } from './column.endpoints'
 
 export const columnService = {
   async addColumn(data: AddColumnDto) {
     const { boardId, ...addColumnDto } = parse(AddColumnDtoSchema, data)
 
     await axiosInstance.post(
-      ColumnApiEndpoints.ColumnBoardById(boardId),
+      columnApiEndpoints.boardById(boardId),
       addColumnDto
     )
   },
@@ -29,23 +29,20 @@ export const columnService = {
   async editColumn(data: EditColumnDto) {
     const { columnId, ...editColumnDto } = parse(EditColumnDtoSchema, data)
 
-    await axiosInstance.patch(
-      ColumnApiEndpoints.ColumnById(columnId),
-      editColumnDto
-    )
+    await axiosInstance.patch(columnApiEndpoints.byId(columnId), editColumnDto)
   },
 
   async deleteColumn(data: ColumnIdDto) {
     const { columnId } = parse(ColumnIdDtoSchema, data)
 
-    await axiosInstance.delete(ColumnApiEndpoints.ColumnById(columnId))
+    await axiosInstance.delete(columnApiEndpoints.byId(columnId))
   },
 
   async updateColumnOrder(data: UpdateColumnDto) {
     const { boardId, ...updateColumnDto } = parse(UpdateColumnDtoSchema, data)
 
     await axiosInstance.patch(
-      ColumnApiEndpoints.ColumnOrder(boardId),
+      columnApiEndpoints.order(boardId),
       updateColumnDto
     )
   }

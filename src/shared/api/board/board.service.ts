@@ -10,11 +10,11 @@ import {
   BoardsDtoSchema,
   EditBoardDtoSchema
 } from './board.contracts'
-import { BoardApiEndpoints } from './board.endpoints'
+import { boardApiEndpoints } from './board.endpoints'
 
 export const boardService = {
   async getAllBoards() {
-    const response = await axiosInstance.get(BoardApiEndpoints.Board)
+    const response = await axiosInstance.get(boardApiEndpoints.root)
 
     const parsedData = parse(BoardsDtoSchema, response.data)
 
@@ -24,9 +24,7 @@ export const boardService = {
   async getBoardById(data: BoardIdDto) {
     const { boardId } = parse(BoardIdDtoSchema, data)
 
-    const response = await axiosInstance.get(
-      BoardApiEndpoints.BoardById(boardId)
-    )
+    const response = await axiosInstance.get(boardApiEndpoints.byId(boardId))
 
     const parsedData = parse(BoardDtoSchema, response.data)
 
@@ -37,7 +35,7 @@ export const boardService = {
     const addBoardDto = parse(AddBoardDtoSchema, data)
 
     const response = await axiosInstance.post(
-      BoardApiEndpoints.Board,
+      boardApiEndpoints.root,
       addBoardDto
     )
 
@@ -50,7 +48,7 @@ export const boardService = {
     const { boardId, ...editBoardDto } = parse(EditBoardDtoSchema, data)
 
     const response = await axiosInstance.patch(
-      BoardApiEndpoints.BoardById(boardId),
+      boardApiEndpoints.byId(boardId),
       editBoardDto
     )
 
@@ -62,6 +60,6 @@ export const boardService = {
   async deleteBoard(data: BoardIdDto) {
     const { boardId } = parse(BoardIdDtoSchema, data)
 
-    await axiosInstance.delete(BoardApiEndpoints.BoardById(boardId))
+    await axiosInstance.delete(boardApiEndpoints.byId(boardId))
   }
 }

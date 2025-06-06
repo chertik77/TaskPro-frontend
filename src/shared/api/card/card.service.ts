@@ -16,22 +16,19 @@ import {
   MoveCardDtoSchema,
   UpdateCardOrderDtoSchema
 } from './card.contracts'
-import { CardApiEndpoints } from './card.endpoints'
+import { cardApiEndpoints } from './card.endpoints'
 
 export const cardService = {
   async addCard(data: AddCardDto) {
     const { columnId, ...addCardDto } = parse(AddCardDtoSchema, data)
 
-    await axiosInstance.post(
-      CardApiEndpoints.CardColumnById(columnId),
-      addCardDto
-    )
+    await axiosInstance.post(cardApiEndpoints.columnById(columnId), addCardDto)
   },
 
   async editCard(data: EditCardDto) {
     const { cardId, ...editCardDto } = parse(EditCardDtoSchema, data)
 
-    await axiosInstance.patch(CardApiEndpoints.CardById(cardId), editCardDto)
+    await axiosInstance.patch(cardApiEndpoints.byId(cardId), editCardDto)
   },
 
   async updateCardOrder(data: UpdateCardOrderDto) {
@@ -41,7 +38,7 @@ export const cardService = {
     )
 
     await axiosInstance.patch(
-      CardApiEndpoints.CardOrder(columnId),
+      cardApiEndpoints.order(columnId),
       updateCardOrderDto
     )
   },
@@ -49,14 +46,12 @@ export const cardService = {
   async moveCard(data: MoveCardDto) {
     const { cardId, newColumnId } = parse(MoveCardDtoSchema, data)
 
-    await axiosInstance.post(
-      CardApiEndpoints.CardNewColumn(cardId, newColumnId)
-    )
+    await axiosInstance.post(cardApiEndpoints.newColumn(cardId, newColumnId))
   },
 
   async deleteCard(data: CardIdDto) {
     const { cardId } = parse(CardIdDtoSchema, data)
 
-    await axiosInstance.delete(CardApiEndpoints.CardById(cardId))
+    await axiosInstance.delete(cardApiEndpoints.byId(cardId))
   }
 }
