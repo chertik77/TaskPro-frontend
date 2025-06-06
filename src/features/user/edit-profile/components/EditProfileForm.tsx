@@ -87,7 +87,9 @@ export const EditProfileForm = ({
         <Button
           type='submit'
           className='!mt-6'
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={
+            isPending || !isFormReadyForSubmit || !form.formState.isValid
+          }>
           {isPending ? <Loader /> : 'Send'}
         </Button>
       </form>

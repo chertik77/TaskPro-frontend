@@ -14,8 +14,7 @@ export const useEditProfileForm = () => {
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
     form.formState.defaultValues!,
-    form.watch,
-    ({ password }) => (password ? form.formState.isValid : true)
+    form.watch
   )
 
   return { form, isFormReadyForSubmit }
