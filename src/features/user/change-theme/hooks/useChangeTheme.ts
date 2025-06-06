@@ -17,11 +17,13 @@ export const useChangeTheme = () => {
     mutationFn: userService.editUser,
     meta: { errorMessage: 'We couldn’t update your theme. Please try again' },
     onMutate: async ({ theme }) => {
+      const previousTheme = previousUser.theme
+
       setUser(prev => ({ ...prev, theme: theme! }))
 
       setMetaThemeColor(theme!)
 
-      return { previousTheme: previousUser.theme }
+      return { previousTheme }
     },
     onError: (_, _variables, context) => {
       setUser({ ...previousUser, theme: context?.previousTheme as Theme })
