@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 
-import { useAppForm } from '@/shared/hooks'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,

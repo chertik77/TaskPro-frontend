@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { PRIORITIES } from '@/shared/constants'
+import { PRIORITIES } from '@/entities/card'
 
 export const EditCardSchema = v.partial(
   v.object({

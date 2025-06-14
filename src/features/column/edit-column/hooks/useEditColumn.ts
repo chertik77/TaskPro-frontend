@@ -3,8 +3,7 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { boardQueries } from '@/entities/board'
-
-import { columnService } from '@/shared/api/column'
+import { columnService } from '@/entities/column'
 
 export const useEditColumn = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>

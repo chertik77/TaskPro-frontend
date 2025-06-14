@@ -1,11 +1,12 @@
 import axios, { AxiosError } from 'axios'
 
+import { env } from '../config'
 import { router } from '../lib'
 import { authActions, getAuthStore } from '../store'
 import { authService } from './auth'
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL
+  baseURL: env.VITE_API_BASE_URL
 })
 
 axiosInstance.interceptors.request.use(config => {

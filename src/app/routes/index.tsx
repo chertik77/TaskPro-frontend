@@ -1,6 +1,5 @@
+import { WelcomePage } from '@/pages/welcome'
 import { createFileRoute, redirect } from '@tanstack/react-router'
-
-import { Welcome } from '@/blocks/welcome'
 
 import { getAuthStore } from '@/shared/store'
 
@@ -10,5 +9,5 @@ export const Route = createFileRoute('/')({
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },
-  component: Welcome
+  component: WelcomePage
 })

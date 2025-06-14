@@ -3,10 +3,8 @@ import type { AddColumnSchema } from '../add-column.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-
-import { columnService } from '@/shared/api/column'
-import { useGetParamBoardId } from '@/shared/hooks'
+import { boardQueries, useGetParamBoardId } from '@/entities/board'
+import { columnService } from '@/entities/column'
 
 export const useAddColumn = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>

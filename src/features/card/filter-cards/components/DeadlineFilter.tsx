@@ -1,4 +1,5 @@
-import { DEADLINES } from '@/shared/constants'
+import { DEADLINES } from '@/entities/card'
+
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { useCardFilters } from '../hooks/useCardFilters'

@@ -1,4 +1,4 @@
-import { useAppForm } from '@/shared/hooks'
+import { useAppForm } from '@/shared/lib'
 import {
   Button,
   Form,

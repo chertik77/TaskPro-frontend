@@ -1,6 +1,6 @@
 import type { EditCardFormValues } from '../edit-card.types'
 
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/lib'
 
 import { EditCardSchema } from '../edit-card.contract'
 

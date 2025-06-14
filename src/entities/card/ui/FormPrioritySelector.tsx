@@ -1,0 +1,33 @@
+import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
+
+import { cn } from '@/shared/lib'
+import { FormControl, FormItem, RadioGroup, RadioGroupItem } from '@/shared/ui'
+
+import { PRIORITIES } from '../config/priority.constants'
+import { getPriorityColor } from '../lib/priority-colors'
+
+type FormPrioritySelectorProps<T extends FieldValues> = {
+  field: ControllerRenderProps<T, Path<T>>
+}
+
+export const FormPrioritySelector = <T extends FieldValues>({
+  field
+}: FormPrioritySelectorProps<T>) => (
+  <FormControl>
+    <RadioGroup
+      value={field.value}
+      onValueChange={field.onChange}>
+      {PRIORITIES.map(priority => (
+        <FormItem key={priority}>
+          <FormControl>
+            <RadioGroupItem
+              value={priority}
+              indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
+              className={getPriorityColor(priority)}
+            />
+          </FormControl>
+        </FormItem>
+      ))}
+    </RadioGroup>
+  </FormControl>
+)

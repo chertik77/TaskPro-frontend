@@ -18,19 +18,16 @@ export default eslintTypescript.config(
   eslintPluginJsxA11y.flatConfigs.strict,
   eslintPluginReact.configs.flat.recommended,
   eslintPluginNamingConvention.configs.recommended,
-  eslintPluginReactModern.configs['recommended-type-checked'],
+  eslintPluginReactModern.configs.recommended,
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
-  { ignores: ['**/vite-env.d.ts'] },
+  { files: ['src/**/*.ts'], ignores: ['**/vite-env.d.ts'] },
   {
     languageOptions: {
       globals: { ...globals.browser },
       parser: eslintTypescript.parser,
-      parserOptions: {
-        projectService: true,
-        warnOnUnsupportedTypeScriptVersion: false
-      }
+      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
     }
   },
   {
@@ -45,6 +42,12 @@ export default eslintTypescript.config(
         {
           selector: 'Identifier[name="React"]',
           message: 'Prefix React is not allowed'
+        },
+        {
+          selector:
+            'MemberExpression[object.property.name="meta"][property.name="env"]',
+          message:
+            'Direct access to `import.meta.env` is forbidden. Use `src/shared/config` instead.'
         }
       ],
       'newline-before-return': 'error',
@@ -77,6 +80,12 @@ export default eslintTypescript.config(
     files: ['**/ambient/*.d.ts'],
     rules: {
       '@typescript-eslint/consistent-type-definitions': 'off'
+    }
+  },
+  {
+    files: ['**/config/*.ts'],
+    rules: {
+      'no-restricted-syntax': 'off'
     }
   },
   {

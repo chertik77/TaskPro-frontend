@@ -1,6 +1,7 @@
 import type { CardTypes } from '@/entities/card'
 
-import { useKanbanSortable } from '@/shared/hooks'
+import { useDndSortable } from '@/features/drag-and-drop'
+
 import { cn } from '@/shared/lib'
 
 import { MemoizedCard } from './MemoizedCard'
@@ -12,7 +13,7 @@ type CardListItemProps = {
 
 export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
   const { setNodeRef, listeners, attributes, style, isDragging } =
-    useKanbanSortable({
+    useDndSortable({
       id: card.id,
       data: { type: 'card', card },
       attributes: { roleDescription: `Card: ${card.title}` }

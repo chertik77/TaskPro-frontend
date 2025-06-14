@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { ICONS } from '@/shared/constants'
+import { ICONS } from '@/entities/board'
 
 export const EditBoardSchema = v.partial(
   v.object({

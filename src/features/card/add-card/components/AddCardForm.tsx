@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
 
-import { useAppForm } from '@/shared/hooks'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,

@@ -2,7 +2,8 @@ import { Link } from '@tanstack/react-router'
 
 import { DeadlineFilter, PriorityFilter } from '@/features/card/filter-cards'
 
-import { useGetParamBoardId } from '@/shared/hooks'
+import { useGetParamBoardId } from '@/entities/board'
+
 import {
   Icon,
   Popover,
