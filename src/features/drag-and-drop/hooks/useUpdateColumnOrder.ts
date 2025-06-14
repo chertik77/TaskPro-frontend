@@ -1,11 +1,9 @@
-import type { ColumnDtoTypes } from '@/shared/api/column'
+import type { ColumnDtoTypes } from '@/entities/column'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-
-import { columnService } from '@/shared/api/column'
-import { useGetParamBoardId } from '@/shared/hooks'
+import { boardQueries, useGetParamBoardId } from '@/entities/board'
+import { columnService } from '@/entities/column'
 
 export const useUpdateColumnOrder = () => {
   const boardId = useGetParamBoardId()

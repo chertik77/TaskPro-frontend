@@ -1,6 +1,6 @@
 import { Toaster } from 'sonner'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
+import { useTabletAndBelowMediaQuery } from '@/shared/lib'
 import { useAuthStore } from '@/shared/store'
 
 export const ToastProvider = () => {

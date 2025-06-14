@@ -1,4 +1,4 @@
-import type { Icon } from '@/shared/constants'
+import type { Icon } from '@/entities/board'
 
 export type EditBoardData = {
   title: string

@@ -6,11 +6,11 @@ import { DragAndDropProvider } from '@/features/drag-and-drop'
 import {
   BoardErrorView,
   boardQueries,
+  useGetParamBoardId,
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
 
-import { useDocumentTitle, useGetParamBoardId } from '@/shared/hooks'
-import { cn } from '@/shared/lib'
+import { cn, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
 import { ColumnList } from '../column/ColumnList'

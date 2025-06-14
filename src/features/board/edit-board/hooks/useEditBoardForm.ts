@@ -1,6 +1,6 @@
 import type { EditBoardData } from '../edit-board.types'
 
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/lib'
 
 import { EditBoardSchema } from '../edit-board.contract'
 

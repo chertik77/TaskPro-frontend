@@ -1,4 +1,4 @@
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/lib'
 import { useAuthStore } from '@/shared/store'
 
 import { EditUserSchema } from '../edit-profile.contract'

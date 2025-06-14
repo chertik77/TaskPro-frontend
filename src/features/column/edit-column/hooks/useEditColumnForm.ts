@@ -1,6 +1,6 @@
 import type { EditColumnFormValues } from '../edit-column.types'
 
-import { useAppForm, useIsFormReadyForSubmit } from '@/shared/hooks'
+import { useAppForm, useIsFormReadyForSubmit } from '@/shared/lib'
 
 import { EditColumnSchema } from '../edit-column.contract'
 

@@ -2,10 +2,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { parse } from 'valibot'
 
-import { BoardContracts, boardQueries } from '@/entities/board'
-
-import { boardService } from '@/shared/api/board'
-import { useGetParamBoardId } from '@/shared/hooks'
+import {
+  BoardContracts,
+  boardQueries,
+  boardService,
+  useGetParamBoardId
+} from '@/entities/board'
 
 export const useDeleteBoard = () => {
   const queryClient = useQueryClient()

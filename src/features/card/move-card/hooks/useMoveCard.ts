@@ -1,11 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { BoardContracts, boardQueries } from '@/entities/board'
+import {
+  BoardContracts,
+  boardQueries,
+  useGetParamBoardId
+} from '@/entities/board'
+import { cardService } from '@/entities/card'
 import { ColumnContracts } from '@/entities/column'
-
-import { cardService } from '@/shared/api/card'
-import { useGetParamBoardId } from '@/shared/hooks'
 
 import { addMovedCardToColumn } from '../utils/addMovedCardToColumn'
 import { getMovedCard } from '../utils/getMovedCard'

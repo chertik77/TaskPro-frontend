@@ -1,6 +1,5 @@
-import { getPriorityColor } from '@/entities/card'
+import { getPriorityColor, PRIORITIES } from '@/entities/card'
 
-import { PRIORITIES } from '@/shared/constants'
 import { cn } from '@/shared/lib'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 

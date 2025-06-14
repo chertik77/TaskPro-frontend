@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
 import { boardQueries } from '@/entities/board'
-
-import { cardService } from '@/shared/api/card'
+import { cardService } from '@/entities/card'
 
 export const useUpdateCardOrder = () =>
   useMutation({

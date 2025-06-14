@@ -1,5 +1,4 @@
-import type { CardTypes } from '@/entities/card'
-import type { Deadline, Priority } from '@/shared/constants'
+import type { CardTypes, Deadline, Priority } from '@/entities/card'
 
 import {
   addDays,

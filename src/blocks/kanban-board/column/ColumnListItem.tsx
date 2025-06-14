@@ -1,6 +1,7 @@
 import type { ColumnTypes } from '@/entities/column'
 
-import { useKanbanSortable } from '@/shared/hooks'
+import { useDndSortable } from '@/features/drag-and-drop'
+
 import { cn } from '@/shared/lib'
 
 import { MemoizedColumn } from './MemoizedColumn'
@@ -17,7 +18,7 @@ export const ColumnListItem = ({
   backgroundURL
 }: ColumnListItemProps) => {
   const { setNodeRef, listeners, attributes, style, isDragging } =
-    useKanbanSortable({
+    useDndSortable({
       id: column.id,
       data: { type: 'column', column },
       attributes: { roleDescription: `Column: ${column.title}` }

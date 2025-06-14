@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { BoardContracts, boardQueries } from '@/entities/board'
-
-import { columnService } from '@/shared/api/column'
-import { useGetParamBoardId } from '@/shared/hooks'
+import {
+  BoardContracts,
+  boardQueries,
+  useGetParamBoardId
+} from '@/entities/board'
+import { columnService } from '@/entities/column'
 
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()

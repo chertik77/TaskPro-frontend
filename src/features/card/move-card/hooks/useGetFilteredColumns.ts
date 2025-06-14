@@ -1,9 +1,7 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-
-import { useGetParamBoardId } from '@/shared/hooks'
+import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
 export const useGetFilteredColumns = (cardColumnId: string) => {
   const boardId = useGetParamBoardId()

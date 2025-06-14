@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 
-import { useAppForm } from '@/shared/hooks'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,

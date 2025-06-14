@@ -3,10 +3,11 @@ import type { EditBoardSchema } from '../edit-board.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-
-import { boardService } from '@/shared/api/board'
-import { useGetParamBoardId } from '@/shared/hooks'
+import {
+  boardQueries,
+  boardService,
+  useGetParamBoardId
+} from '@/entities/board'
 
 export const useEditBoard = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>

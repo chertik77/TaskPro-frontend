@@ -18,19 +18,16 @@ export default eslintTypescript.config(
   eslintPluginJsxA11y.flatConfigs.strict,
   eslintPluginReact.configs.flat.recommended,
   eslintPluginNamingConvention.configs.recommended,
-  eslintPluginReactModern.configs['recommended-type-checked'],
+  eslintPluginReactModern.configs.recommended,
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
-  { ignores: ['**/vite-env.d.ts'] },
+  { ignores: ['**/vite-env.d.ts'], files: ['src/**/*.ts'] },
   {
     languageOptions: {
       globals: { ...globals.browser },
       parser: eslintTypescript.parser,
-      parserOptions: {
-        projectService: true,
-        warnOnUnsupportedTypeScriptVersion: false
-      }
+      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
     }
   },
   {
