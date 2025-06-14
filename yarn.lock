@@ -431,13 +431,6 @@
     "@types/conventional-commits-parser" "^5.0.0"
     chalk "^5.3.0"
 
-"@conarti/eslint-plugin-feature-sliced@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@conarti/eslint-plugin-feature-sliced/-/eslint-plugin-feature-sliced-1.0.5.tgz#7f177b673256f066221a73363f2f1b6a5a8612bc"
-  integrity sha512-Gx90Zupi8nv6cCP3O6cYWE9GT4RIw0D9JBHWeUwXEv7qmjCd3dXSqDEmQchN7k41hhCPupZvMevH4JrSORcVjQ==
-  dependencies:
-    picomatch "^2.3.1"
-
 "@date-fns/tz@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@date-fns/tz/-/tz-1.2.0.tgz#81cb3211693830babaf3b96aff51607e143030a6"
