@@ -25,6 +25,7 @@ export const independentModulesConfig = createIndependentModules({
         '{family_1}/**/!(index.ts)',
         'src/features/**/index.ts',
         'src/blocks/**/index.ts',
+        'src/pages/**/index.ts',
         'src/entities/**/index.ts',
         'src/shared/**/index.ts'
       ],
@@ -40,6 +41,19 @@ export const independentModulesConfig = createIndependentModules({
       ],
       errorMessage:
         'A feature may only import from its own family (at least 3 common path parts), shared modules, or entities through their public api (index.ts). Imports within the feature folder from index.ts are not allowed.'
+    },
+    {
+      name: 'Pages',
+      pattern: 'src/pages/**',
+      allowImportsFrom: [
+        '{family}/**/!(index.ts)',
+        'src/blocks/**/index.ts',
+        'src/shared/**/index.ts',
+        'src/entities/**/index.ts',
+        'src/features/**/index.ts'
+      ],
+      errorMessage:
+        'A page may only import shared modules, entities, or features through their public api (index.ts). Imports within the pages folder from index.ts are not allowed.'
     },
     {
       name: 'Blocks',

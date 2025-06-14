@@ -4,7 +4,7 @@ import { GoogleSignin } from '@/features/auth/google'
 
 import { Icon } from '@/shared/ui'
 
-export const Welcome = () => (
+export const WelcomePage = () => (
   <div className='bg-soft-green flex h-dvh flex-col items-center justify-center'>
     <img
       className='tablet:size-[162px] size-[124px]'
