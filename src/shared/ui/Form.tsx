@@ -5,7 +5,7 @@ import { createContext, use, useId, useMemo } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 
-import { cn } from '../lib/cn'
+import { cn } from '../lib'
 
 const Form = FormProvider
 

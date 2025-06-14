@@ -1,7 +1,7 @@
 import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
 import { PRIORITIES } from '@/shared/constants'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { FormControl, FormItem, RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { getPriorityColor } from '../card.utils'

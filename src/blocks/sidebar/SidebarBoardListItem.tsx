@@ -6,7 +6,7 @@ import { useNavigate, useParams } from '@tanstack/react-router'
 import { DeleteBoardTrigger } from '@/features/board/delete-board'
 import { EditBoardDialog } from '@/features/board/edit-board'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {

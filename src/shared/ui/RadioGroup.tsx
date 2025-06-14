@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '../lib'
 
 const RadioGroup = ({
   ref,

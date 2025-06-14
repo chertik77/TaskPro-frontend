@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 
-import { router } from '../lib/react-router'
+import { router } from '../lib'
 import { authActions, getAuthStore } from '../store'
 import { authService } from './auth'
 

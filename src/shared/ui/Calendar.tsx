@@ -3,8 +3,8 @@ import type { ChevronProps } from 'react-day-picker'
 
 import { DayPicker } from 'react-day-picker'
 
-import { cn } from '@/shared/lib/cn'
-import { Icon } from '@/shared/ui'
+import { cn } from '../lib'
+import { Icon } from './Icon'
 
 export const Calendar = ({
   className,

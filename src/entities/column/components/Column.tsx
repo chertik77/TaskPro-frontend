@@ -8,7 +8,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Slot } from '@radix-ui/react-slot'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
 type ColumnContext = { column: ColumnSchema }

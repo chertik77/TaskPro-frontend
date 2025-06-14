@@ -4,7 +4,7 @@ import { LogoutBtn } from '@/features/auth/logout'
 import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'

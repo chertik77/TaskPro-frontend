@@ -1,7 +1,7 @@
 import type { CardTypes } from '@/entities/card'
 
 import { useKanbanSortable } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 import { MemoizedCard } from './MemoizedCard'
 

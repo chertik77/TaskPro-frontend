@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 
-import { cn } from '../lib/cn'
+import { cn } from '../lib'
 import { Icon } from './Icon'
 
 const Popover = PopoverPrimitive.Root

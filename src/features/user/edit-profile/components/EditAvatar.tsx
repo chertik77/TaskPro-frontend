@@ -5,7 +5,7 @@ import type { EditUserSchema } from '../edit-profile.contract'
 
 import { useRef } from 'react'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { useAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 

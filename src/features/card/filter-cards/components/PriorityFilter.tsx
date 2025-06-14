@@ -1,7 +1,7 @@
 import { getPriorityColor } from '@/entities/card'
 
 import { PRIORITIES } from '@/shared/constants'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { useCardFilters } from '../hooks/useCardFilters'

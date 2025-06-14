@@ -11,7 +11,7 @@ import { useDragAndDrop } from '@/features/drag-and-drop'
 
 import { Column } from '@/entities/column'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 import { CardList } from '../card/CardList'
 

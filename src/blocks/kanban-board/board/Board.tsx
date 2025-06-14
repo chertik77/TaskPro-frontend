@@ -10,7 +10,7 @@ import {
 } from '@/entities/board'
 
 import { useDocumentTitle, useGetParamBoardId } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
 import { ColumnList } from '../column/ColumnList'

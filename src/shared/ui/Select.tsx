@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import * as SelectPrimitive from '@radix-ui/react-select'
 
-import { cn } from '../lib/cn'
+import { cn } from '../lib'
 
 const Select = SelectPrimitive.Root
 

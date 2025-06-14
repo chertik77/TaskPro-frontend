@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import { useState } from 'react'
 
-import { cn } from '../lib/cn'
+import { cn } from '../lib'
 import { Icon } from './Icon'
 import { Input } from './Input'
 

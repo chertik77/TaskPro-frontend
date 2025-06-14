@@ -7,7 +7,7 @@ import { createContext, use, useMemo } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { format, isToday } from 'date-fns'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
 import { getPriorityColor } from '../card.utils'

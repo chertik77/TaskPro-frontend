@@ -1,7 +1,7 @@
 import type { ColumnTypes } from '@/entities/column'
 
 import { useKanbanSortable } from '@/shared/hooks'
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 
 import { MemoizedColumn } from './MemoizedColumn'
 

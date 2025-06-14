@@ -6,7 +6,7 @@ import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
 import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'
 
-import { cn } from '@/shared/lib/cn'
+import { cn } from '@/shared/lib'
 import { authActions, getAuthStore, useSidebarStore } from '@/shared/store'
 
 const DashboardRoute = () => {
