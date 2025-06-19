@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { UserDtoSchema } from '../user/user.contracts'
+import { UserDtoSchema } from '@/entities/user/@x/session'
 
 export const SigninDtoSchema = v.object({
   email: v.pipe(v.string(), v.trim(), v.email()),
@@ -20,10 +20,10 @@ export const RefreshTokenDtoSchema = v.object({
   refreshToken: v.string()
 })
 
-export const AuthResponseDtoSchema = v.object({
+export const SessionResponseDtoSchema = v.object({
   accessToken: v.string(),
   refreshToken: v.string(),
   user: v.lazy(() => UserDtoSchema)
 })
 
-export const TokensDtoSchema = v.omit(AuthResponseDtoSchema, ['user'])
+export const TokensDtoSchema = v.omit(SessionResponseDtoSchema, ['user'])

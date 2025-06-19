@@ -3,7 +3,7 @@ import type {
   EditUserDtoSchema,
   HelpDtoSchema,
   UserDtoSchema
-} from './user.contracts'
+} from './contracts'
 
 export type UserDto = InferOutput<typeof UserDtoSchema>
 export type EditUserDto = InferOutput<typeof EditUserDtoSchema>

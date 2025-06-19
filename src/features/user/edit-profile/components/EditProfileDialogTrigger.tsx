@@ -1,12 +1,13 @@
 import * as Avatar from '@radix-ui/react-avatar'
 
-import { useAuthStore } from '@/shared/store'
+import { useSessionStore } from '@/entities/session'
+
 import { DialogTrigger } from '@/shared/ui'
 
 export const EditProfileDialogTrigger = () => {
   const {
     user: { name, avatar }
-  } = useAuthStore()
+  } = useSessionStore()
 
   return (
     <DialogTrigger

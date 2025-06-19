@@ -3,31 +3,32 @@ import type {
   RefreshTokenDto,
   SigninDto,
   SignupDto
-} from './auth.types'
+} from './types'
 
 import { parse } from 'valibot'
 
-import { axiosInstance } from '../instance'
+import { axiosInstance } from '@/shared/api'
+
 import {
-  AuthResponseDtoSchema,
   GoogleSigninDtoSchema,
   RefreshTokenDtoSchema,
+  SessionResponseDtoSchema,
   SigninDtoSchema,
   SignupDtoSchema,
   TokensDtoSchema
-} from './auth.contracts'
-import { authApiEndpoints } from './auth.endpoints'
+} from './contracts'
+import { sessionApiEndpoints } from './endpoints'
 
-export const authService = {
+export const sessionService = {
   async signup(data: SignupDto) {
     const signupDto = parse(SignupDtoSchema, data)
 
     const response = await axiosInstance.post(
-      authApiEndpoints.signup,
+      sessionApiEndpoints.signup,
       signupDto
     )
 
-    const parsedData = parse(AuthResponseDtoSchema, response.data)
+    const parsedData = parse(SessionResponseDtoSchema, response.data)
 
     return parsedData
   },
@@ -36,12 +37,12 @@ export const authService = {
     const signinDto = parse(SigninDtoSchema, data)
 
     const response = await axiosInstance.post(
-      authApiEndpoints.signin,
+      sessionApiEndpoints.signin,
       signinDto,
       { skipAuthRefresh: true }
     )
 
-    const parsedData = parse(AuthResponseDtoSchema, response.data)
+    const parsedData = parse(SessionResponseDtoSchema, response.data)
 
     return parsedData
   },
@@ -50,11 +51,11 @@ export const authService = {
     const googleSigninDto = parse(GoogleSigninDtoSchema, data)
 
     const response = await axiosInstance.post(
-      authApiEndpoints.google,
+      sessionApiEndpoints.google,
       googleSigninDto
     )
 
-    const parsedData = parse(AuthResponseDtoSchema, response.data)
+    const parsedData = parse(SessionResponseDtoSchema, response.data)
 
     return parsedData
   },
@@ -63,7 +64,7 @@ export const authService = {
     const refreshTokenDto = parse(RefreshTokenDtoSchema, data)
 
     const response = await axiosInstance.post(
-      authApiEndpoints.tokens,
+      sessionApiEndpoints.tokens,
       refreshTokenDto
     )
 
@@ -73,6 +74,6 @@ export const authService = {
   },
 
   async logout() {
-    await axiosInstance.post(authApiEndpoints.logout)
+    await axiosInstance.post(sessionApiEndpoints.logout)
   }
 }

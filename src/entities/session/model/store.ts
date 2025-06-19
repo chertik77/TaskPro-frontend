@@ -1,16 +1,17 @@
-import type { AuthDtoTypes } from '../api/auth'
-import type { Theme } from '../constants'
+import type { Theme } from '@/shared/config'
+import type { SessionResponseDto } from '../api/types'
 
 import { createStore } from 'stan-js'
 import { storage } from 'stan-js/storage'
 
-import { userService } from '../api/user'
-import { DEFAULT_THEME } from '../constants'
+import { userService } from '@/entities/user/@x/session'
+
+import { DEFAULT_THEME } from '@/shared/config'
 
 export const {
-  useStore: useAuthStore,
-  getState: getAuthStore,
-  actions: authActions
+  useStore: useSessionStore,
+  getState: getSessionStore,
+  actions: sessionActions
 } = createStore(
   {
     user: storage({
@@ -25,7 +26,7 @@ export const {
     }
   },
   ({ actions, reset }) => ({
-    authenticate: ({ user, ...tokens }: AuthDtoTypes.AuthResponseDto) => {
+    authenticate: ({ user, ...tokens }: SessionResponseDto) => {
       actions.setUser(user)
       actions.setTokens(tokens)
     },

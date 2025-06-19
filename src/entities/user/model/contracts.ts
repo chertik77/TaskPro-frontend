@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { THEMES } from '@/shared/constants'
+import { THEMES } from '@/shared/config'
 
 export const UserSchema = v.object({
   id: v.string(),

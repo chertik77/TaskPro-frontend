@@ -1,4 +1,4 @@
-import type { UserDtoTypes } from '@/shared/api/user'
+import type { UserDtoTypes } from '@/entities/user'
 import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import type { EditUserSchema } from '../edit-profile.contract'

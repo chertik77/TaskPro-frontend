@@ -1,4 +1,4 @@
-import type { Theme } from '@/shared/constants'
+import type { Theme } from '@/shared/config'
 
 type BoardImage = {
   id: string

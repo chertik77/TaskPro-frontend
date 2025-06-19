@@ -4,16 +4,15 @@ import type { SigninSchema } from '../signin.contract'
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { authService } from '@/shared/api/auth'
-import { useAuthStore } from '@/shared/store'
+import { sessionService, useSessionStore } from '@/entities/session'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
-  const { authenticate } = useAuthStore()
+  const { authenticate } = useSessionStore()
 
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: authService.signin,
+    mutationFn: sessionService.signin,
     meta: {
       errorMessage: e =>
         e?.response?.status === 401

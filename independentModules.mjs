@@ -71,6 +71,7 @@ export const independentModulesConfig = createIndependentModules({
     createEntityRule('card'),
     createEntityRule('column'),
     createEntityRule('user'),
+    createEntityRule('session'),
     {
       name: 'Unknown entity',
       pattern: 'src/entities/**',

@@ -4,7 +4,7 @@ import type { HelpSchema } from '../need-help.contract'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { userService } from '@/shared/api/user'
+import { userService } from '@/entities/user'
 
 export const useNeedHelp = (
   reset: UseFormReset<HelpSchema>,

@@ -1,4 +1,4 @@
 import type { InferOutput } from 'valibot'
-import type { UserSchema } from './user.contracts'
+import type { UserSchema } from './contracts'
 
 export type UserSchema = InferOutput<typeof UserSchema>

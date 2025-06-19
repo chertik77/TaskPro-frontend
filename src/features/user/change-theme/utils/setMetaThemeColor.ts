@@ -1,4 +1,4 @@
-import type { Theme } from '@/shared/constants'
+import type { Theme } from '@/shared/config'
 
 export const setMetaThemeColor = (theme: Theme) => {
   let themeColorMeta = document.querySelector(

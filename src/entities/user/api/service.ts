@@ -1,14 +1,11 @@
-import type { EditUserDto, HelpDto } from './user.types'
+import type { EditUserDto, HelpDto } from './types'
 
 import { parse } from 'valibot'
 
-import { axiosInstance } from '../instance'
-import {
-  EditUserDtoSchema,
-  HelpDtoSchema,
-  UserDtoSchema
-} from './user.contracts'
-import { userApiEndpoints } from './user.endpoints'
+import { axiosInstance } from '@/shared/api'
+
+import { EditUserDtoSchema, HelpDtoSchema, UserDtoSchema } from './contracts'
+import { userApiEndpoints } from './endpoints'
 
 export const userService = {
   async askForHelp(data: HelpDto) {

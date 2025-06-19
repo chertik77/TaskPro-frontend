@@ -1,12 +1,13 @@
-import type { UserDtoTypes } from '@/shared/api/user'
+import type { UserDtoTypes } from '@/entities/user'
 import type { UseMutateFunction } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import type { EditUserSchema } from '../edit-profile.contract'
 
 import { useRef } from 'react'
 
+import { useSessionStore } from '@/entities/session'
+
 import { cn } from '@/shared/lib'
-import { useAuthStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 type EditAvatarProps = {
@@ -24,7 +25,7 @@ export const EditAvatar = ({
 }: EditAvatarProps) => {
   const {
     user: { avatar }
-  } = useAuthStore()
+  } = useSessionStore()
 
   const ref = useRef<HTMLInputElement>(null)
 

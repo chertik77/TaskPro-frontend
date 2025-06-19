@@ -1,17 +1,15 @@
-import type { Theme } from '@/shared/constants'
+import type { Theme } from '@/shared/config'
 
 import { useMutation } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { UserContracts } from '@/entities/user'
-
-import { userService } from '@/shared/api/user'
-import { useAuthStore } from '@/shared/store'
+import { useSessionStore } from '@/entities/session'
+import { UserContracts, userService } from '@/entities/user'
 
 import { setMetaThemeColor } from '../utils/setMetaThemeColor'
 
 export const useChangeTheme = () => {
-  const { user: previousUser, setUser } = useAuthStore()
+  const { user: previousUser, setUser } = useSessionStore()
 
   return useMutation({
     mutationFn: userService.editUser,

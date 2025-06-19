@@ -1,9 +1,14 @@
 import axios, { AxiosError } from 'axios'
 
+// eslint-disable-next-line project-structure/independent-modules
+import {
+  getSessionStore,
+  sessionActions,
+  sessionService
+} from '@/entities/session'
+
 import { env } from '../config'
 import { router } from '../lib'
-import { authActions, getAuthStore } from '../store'
-import { authService } from './auth'
 
 export const axiosInstance = axios.create({
   baseURL: env.VITE_API_BASE_URL
@@ -12,7 +17,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(config => {
   const {
     tokens: { accessToken }
-  } = getAuthStore()
+  } = getSessionStore()
 
   if (config?.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -36,11 +41,11 @@ axiosInstance.interceptors.response.use(
       try {
         const {
           tokens: { refreshToken }
-        } = getAuthStore()
+        } = getSessionStore()
 
-        const tokens = await authService.getTokens({ refreshToken })
+        const tokens = await sessionService.getTokens({ refreshToken })
 
-        authActions.setTokens(tokens)
+        sessionActions.setTokens(tokens)
 
         return axiosInstance(originalRequest)
       } catch (e) {
@@ -48,7 +53,7 @@ axiosInstance.interceptors.response.use(
           e instanceof AxiosError &&
           e.response?.data?.message === 'ERR_JWT_EXPIRED'
         ) {
-          authActions.logout()
+          sessionActions.logout()
 
           return router.navigate({ to: '/' })
         }

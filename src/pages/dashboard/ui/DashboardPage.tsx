@@ -3,11 +3,13 @@ import { Outlet } from '@tanstack/react-router'
 
 import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
 
+import { sessionActions } from '@/entities/session'
+
 import { Header } from '@/blocks/header'
 import { Sidebar } from '@/blocks/sidebar'
 
 import { cn } from '@/shared/lib'
-import { authActions, useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/store'
 
 export const DashboardPage = () => {
   const { isOpen } = useSidebarStore()
@@ -15,7 +17,7 @@ export const DashboardPage = () => {
   useSidebarToggleShortcut()
 
   useEffect(() => {
-    authActions.getCurrentUser()
+    sessionActions.getCurrentUser()
   }, [])
 
   return (

@@ -1,16 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { authService } from '@/shared/api/auth'
-import { useAuthStore } from '@/shared/store'
+import { sessionService, useSessionStore } from '@/entities/session'
 
 export const useLogoutUser = () => {
-  const { logout } = useAuthStore()
+  const { logout } = useSessionStore()
 
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: authService.logout,
+    mutationFn: sessionService.logout,
     meta: {
       errorMessage:
         'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'

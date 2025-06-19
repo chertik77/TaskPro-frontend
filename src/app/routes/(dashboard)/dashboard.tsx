@@ -1,11 +1,11 @@
 import { DashboardPage } from '@/pages/dashboard'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
-import { getAuthStore } from '@/shared/store'
+import { getSessionStore } from '@/entities/session'
 
 export const Route = createFileRoute('/(dashboard)/dashboard')({
   beforeLoad: () => {
-    const { isAuthenticated } = getAuthStore()
+    const { isAuthenticated } = getSessionStore()
 
     if (!isAuthenticated) throw redirect({ to: '/' })
   },

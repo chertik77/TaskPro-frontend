@@ -1,12 +1,13 @@
+import { useSessionStore } from '@/entities/session'
+
 import { useAppForm, useIsFormReadyForSubmit } from '@/shared/lib'
-import { useAuthStore } from '@/shared/store'
 
 import { EditUserSchema } from '../edit-profile.contract'
 
 export const useEditProfileForm = () => {
   const {
     user: { name, email }
-  } = useAuthStore()
+  } = useSessionStore()
 
   const form = useAppForm(EditUserSchema, {
     defaultValues: { name, email, password: '' }

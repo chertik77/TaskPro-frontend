@@ -2,13 +2,13 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { userService } from '@/shared/api/user'
-import { useAuthStore } from '@/shared/store'
+import { useSessionStore } from '@/entities/session'
+import { userService } from '@/entities/user'
 
 export const useEditProfile = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) => {
-  const { setUser } = useAuthStore()
+  const { setUser } = useSessionStore()
 
   return useMutation({
     mutationFn: userService.editUser,

@@ -1,6 +1,6 @@
-import type { Theme } from '@/shared/constants'
+import type { Theme } from '@/shared/config'
 
-import { THEMES } from '@/shared/constants'
+import { THEMES } from '@/shared/config'
 import {
   Icon,
   Select,

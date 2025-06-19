@@ -1,12 +1,12 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
-import { AuthTabs } from '@/blocks/auth-tabs'
+import { getSessionStore } from '@/entities/session'
 
-import { getAuthStore } from '@/shared/store'
+import { AuthTabs } from '@/blocks/auth-tabs'
 
 export const Route = createFileRoute('/(auth)/_auth-layout')({
   beforeLoad: () => {
-    const { isAuthenticated } = getAuthStore()
+    const { isAuthenticated } = getSessionStore()
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },

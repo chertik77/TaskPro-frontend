@@ -22,7 +22,7 @@ export default eslintTypescript.config(
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
-  { files: ['src/**/*.ts'], ignores: ['**/vite-env.d.ts'] },
+  { ignores: ['**/vite-env.d.ts'] },
   {
     languageOptions: {
       globals: { ...globals.browser },

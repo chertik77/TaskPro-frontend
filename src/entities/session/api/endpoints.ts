@@ -1,4 +1,4 @@
-class AuthApiEndpoints {
+class SessionApiEndpoints {
   private readonly baseUrl = '/auth'
 
   signup = `${this.baseUrl}/signup`
@@ -8,4 +8,4 @@ class AuthApiEndpoints {
   google = `${this.baseUrl}/google`
 }
 
-export const authApiEndpoints = new AuthApiEndpoints()
+export const sessionApiEndpoints = new SessionApiEndpoints()
