@@ -3,13 +3,15 @@ import { defineConfig } from 'steiger'
 
 export default defineConfig([
   ...fsd.configs.recommended,
+  { ignores: ['**/routeTree.gen.ts'] },
+  { rules: { 'fsd/insignificant-slice': 'off' } },
   {
-    ignores: ['**/routeTree.gen.ts']
+    files: ['./src/features/**'],
+    rules: { 'fsd/repetitive-naming': 'off' }
   },
+  //! DISABLE FOR NOW
   {
-    rules: {
-      'fsd/insignificant-slice': 'off',
-      'fsd/repetitive-naming': 'off'
-    }
+    files: ['./src/shared/api/instance.ts'],
+    rules: { 'fsd/forbidden-imports': 'off' }
   }
 ])

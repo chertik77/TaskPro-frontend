@@ -1,6 +1,5 @@
 import axios, { AxiosError } from 'axios'
 
-// eslint-disable-next-line project-structure/independent-modules
 import {
   getSessionStore,
   sessionActions,

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
-    "lint": "eslint ./src --fix -f mo && tsc --noemit",
+    "lint": "eslint ./src --fix -f mo && tsc --noemit && npx steiger ./src",
     "preview": "vite preview",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
@@ -62,7 +62,6 @@
     "eslint": "^9.28.0",
     "eslint-formatter-mo": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-project-structure": "^3.13.3",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-naming-convention": "^1.50.0",

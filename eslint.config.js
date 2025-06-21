@@ -3,14 +3,11 @@ import eslintPluginJs from '@eslint/js'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
 import eslintPluginRouter from '@tanstack/eslint-plugin-router'
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
-import { projectStructurePlugin } from 'eslint-plugin-project-structure'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 import eslintPluginNamingConvention from 'eslint-plugin-react-naming-convention'
 import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
-
-import { independentModulesConfig } from './independentModules.mjs'
 
 export default eslintTypescript.config(
   eslintPluginJs.configs.recommended,
@@ -117,15 +114,6 @@ export default eslintTypescript.config(
         { props: 'never', children: 'never' }
       ],
       'react/self-closing-comp': ['warn', { component: true, html: true }]
-    }
-  },
-  {
-    plugins: { 'project-structure': projectStructurePlugin },
-    rules: {
-      'project-structure/independent-modules': [
-        'error',
-        independentModulesConfig
-      ]
     }
   }
 )
