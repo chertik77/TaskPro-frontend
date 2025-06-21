@@ -1,1 +1,1 @@
-export { DeleteBoardTrigger } from './components/DeleteBoardTrigger'
+export { DeleteBoardTrigger } from './ui/DeleteBoardTrigger'

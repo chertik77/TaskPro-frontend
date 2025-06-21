@@ -1,1 +1,1 @@
-export { EditProfileDialog } from './components/EditProfileDialog'
+export { EditProfileDialog } from './ui/EditProfileDialog'

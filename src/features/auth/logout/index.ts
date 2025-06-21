@@ -1,1 +1,1 @@
-export { LogoutBtn } from './components/LogoutBtn'
+export { LogoutBtn } from './ui/LogoutBtn'

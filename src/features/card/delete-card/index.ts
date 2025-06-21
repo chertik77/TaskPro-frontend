@@ -1,1 +1,1 @@
-export { DeleteCardTrigger } from './components/DeleteCardTrigger'
+export { DeleteCardTrigger } from './ui/DeleteCardTrigger'

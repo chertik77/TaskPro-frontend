@@ -3,14 +3,11 @@ import eslintPluginJs from '@eslint/js'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
 import eslintPluginRouter from '@tanstack/eslint-plugin-router'
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
-import { projectStructurePlugin } from 'eslint-plugin-project-structure'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 import eslintPluginNamingConvention from 'eslint-plugin-react-naming-convention'
 import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
-
-import { independentModulesConfig } from './independentModules.mjs'
 
 export default eslintTypescript.config(
   eslintPluginJs.configs.recommended,
@@ -18,7 +15,7 @@ export default eslintTypescript.config(
   eslintPluginJsxA11y.flatConfigs.strict,
   eslintPluginReact.configs.flat.recommended,
   eslintPluginNamingConvention.configs.recommended,
-  eslintPluginReactModern.configs['recommended-type-checked'],
+  eslintPluginReactModern.configs.recommended,
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
@@ -27,10 +24,7 @@ export default eslintTypescript.config(
     languageOptions: {
       globals: { ...globals.browser },
       parser: eslintTypescript.parser,
-      parserOptions: {
-        projectService: true,
-        warnOnUnsupportedTypeScriptVersion: false
-      }
+      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
     }
   },
   {
@@ -45,6 +39,12 @@ export default eslintTypescript.config(
         {
           selector: 'Identifier[name="React"]',
           message: 'Prefix React is not allowed'
+        },
+        {
+          selector:
+            'MemberExpression[object.property.name="meta"][property.name="env"]',
+          message:
+            'Direct access to `import.meta.env` is forbidden. Use `@/shared/config` instead.'
         }
       ],
       'newline-before-return': 'error',
@@ -80,6 +80,12 @@ export default eslintTypescript.config(
     }
   },
   {
+    files: ['**/config/*.ts'],
+    rules: {
+      'no-restricted-syntax': 'off'
+    }
+  },
+  {
     rules: {
       'react/react-in-jsx-scope': 'off',
       'react/display-name': 'off',
@@ -108,15 +114,6 @@ export default eslintTypescript.config(
         { props: 'never', children: 'never' }
       ],
       'react/self-closing-comp': ['warn', { component: true, html: true }]
-    }
-  },
-  {
-    plugins: { 'project-structure': projectStructurePlugin },
-    rules: {
-      'project-structure/independent-modules': [
-        'error',
-        independentModulesConfig
-      ]
     }
   }
 )

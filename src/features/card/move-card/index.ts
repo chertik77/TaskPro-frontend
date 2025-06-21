@@ -1,1 +1,1 @@
-export { MoveCardSelect } from './components/MoveCardSelect'
+export { MoveCardSelect } from './ui/MoveCardSelect'
