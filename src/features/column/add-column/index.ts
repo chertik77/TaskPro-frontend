@@ -1,1 +1,1 @@
-export { AddColumnDialog } from './components/AddColumnDialog'
+export { AddColumnDialog } from './ui/AddColumnDialog'

@@ -1,3 +1,3 @@
-export { useFilteredCards } from './hooks/useFilteredCards'
-export { DeadlineFilter } from './components/DeadlineFilter'
-export { PriorityFilter } from './components/PriorityFilter'
+export { useFilteredCards } from './lib/useFilteredCards'
+export { DeadlineFilter } from './ui/DeadlineFilter'
+export { PriorityFilter } from './ui/PriorityFilter'

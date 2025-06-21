@@ -1,1 +1,1 @@
-export { GoogleSignin } from './components/GoogleSignin'
+export { GoogleSignin } from './ui/GoogleSignin'

@@ -1,1 +1,1 @@
-export { EditColumnDialog } from './components/EditColumnDialog'
+export { EditColumnDialog } from './ui/EditColumnDialog'

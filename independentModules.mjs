@@ -24,12 +24,12 @@ export const independentModulesConfig = createIndependentModules({
       allowImportsFrom: [
         '{family_1}/**/!(index.ts)',
         'src/features/**/index.ts',
-        'src/blocks/**/index.ts',
+        'src/widgets/**/index.ts',
         'src/pages/**/index.ts',
         'src/entities/**/index.ts',
         'src/shared/**/index.ts'
       ],
-      errorMessage: `App may only import from its own family (at least 1 common path part), features, blocks, entities, or shared modules through their public api (index.ts). Imports within the app folder from index.ts are not allowed.`
+      errorMessage: `App may only import from its own family (at least 1 common path part), features, widgets, entities, or shared modules through their public api (index.ts). Imports within the app folder from index.ts are not allowed.`
     },
     {
       name: 'Features',
@@ -47,17 +47,17 @@ export const independentModulesConfig = createIndependentModules({
       pattern: 'src/pages/**',
       allowImportsFrom: [
         '{family}/**/!(index.ts)',
-        'src/blocks/**/index.ts',
+        'src/widgets/**/index.ts',
         'src/shared/**/index.ts',
         'src/entities/**/index.ts',
         'src/features/**/index.ts'
       ],
       errorMessage:
-        'A page may only import shared modules, entities, or features through their public api (index.ts). Imports within the pages folder from index.ts are not allowed.'
+        'A page may only import shared modules, widgets, entities, or features through their public api (index.ts). Imports within the pages folder from index.ts are not allowed.'
     },
     {
-      name: 'Blocks',
-      pattern: 'src/blocks/**',
+      name: 'Widgets',
+      pattern: 'src/widgets/**',
       allowImportsFrom: [
         '{family_3}/**/!(index.ts)',
         'src/shared/**/index.ts',
@@ -65,7 +65,7 @@ export const independentModulesConfig = createIndependentModules({
         'src/features/**/index.ts'
       ],
       errorMessage:
-        'A block may only import from its own family (at least 3 common path parts), shared modules, entities, or features through their public api (index.ts). Imports within the block folder from index.ts are not allowed.'
+        'A widget may only import from its own family (at least 3 common path parts), shared modules, entities, or features through their public api (index.ts). Imports within the widget folder from index.ts are not allowed.'
     },
     createEntityRule('board'),
     createEntityRule('card'),

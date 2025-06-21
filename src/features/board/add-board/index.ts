@@ -1,1 +1,1 @@
-export { AddBoardDialog } from './components/AddBoardDialog'
+export { AddBoardDialog } from './ui/AddBoardDialog'

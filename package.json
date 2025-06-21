@@ -68,7 +68,6 @@
     "eslint-plugin-react-naming-convention": "^1.50.0",
     "globals": "^16.2.0",
     "husky": "^9.1.7",
-    "jiti": "^2.4.2",
     "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-classnames": "^0.7.8",

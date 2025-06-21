@@ -1,2 +1,2 @@
-export { DragAndDropProvider, useDragAndDrop } from './dnd.context'
-export { useDndSortable } from './hooks/useDndSortable'
+export { DragAndDropProvider, useDragAndDrop } from './model/context'
+export { useDndSortable } from './lib/useDndSortable'

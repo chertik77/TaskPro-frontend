@@ -5,8 +5,8 @@ import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
 
 import { sessionActions } from '@/entities/session'
 
-import { Header } from '@/blocks/header'
-import { Sidebar } from '@/blocks/sidebar'
+import { Header } from '@/widgets/header'
+import { Sidebar } from '@/widgets/sidebar'
 
 import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'

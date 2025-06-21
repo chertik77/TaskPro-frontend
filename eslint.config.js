@@ -47,7 +47,7 @@ export default eslintTypescript.config(
           selector:
             'MemberExpression[object.property.name="meta"][property.name="env"]',
           message:
-            'Direct access to `import.meta.env` is forbidden. Use `src/shared/config` instead.'
+            'Direct access to `import.meta.env` is forbidden. Use `@/shared/config` instead.'
         }
       ],
       'newline-before-return': 'error',
