@@ -1,7 +1,7 @@
 import { TabsContent } from '@radix-ui/react-tabs'
 import { useLocation } from '@tanstack/react-router'
 
-import { SignupForm } from '@/features/auth/signup'
+import { SignupForm } from '@/features/session/signup'
 
 export const SignupPage = () => {
   const { pathname } = useLocation()

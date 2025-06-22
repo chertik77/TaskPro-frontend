@@ -1,6 +1,6 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
-import { LogoutBtn } from '@/features/auth/logout'
+import { LogoutBtn } from '@/features/session/logout'
 import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'

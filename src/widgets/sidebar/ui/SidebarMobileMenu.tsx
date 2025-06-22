@@ -6,7 +6,7 @@ import {
   DialogTitle
 } from '@radix-ui/react-dialog'
 
-import { LogoutBtn } from '@/features/auth/logout'
+import { LogoutBtn } from '@/features/session/logout'
 import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { useSidebarStore } from '@/shared/store'

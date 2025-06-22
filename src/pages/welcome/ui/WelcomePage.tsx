@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { GoogleSignin } from '@/features/auth/google'
+import { GoogleSignin } from '@/features/session/google'
 
 import { Icon } from '@/shared/ui'
 
