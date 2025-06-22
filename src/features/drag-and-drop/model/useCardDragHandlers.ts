@@ -2,9 +2,6 @@ import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { CardDragHandlersProps } from './types'
 
 import { arrayMove } from '@dnd-kit/sortable'
-import { parse } from 'valibot'
-
-import { CardContracts } from '@/entities/card'
 
 import { useUpdateCardOrder } from '../api/useUpdateCardOrder'
 
@@ -79,14 +76,12 @@ export const useCardDragHandlers = ({
 
     if (!active || active.data.current?.type !== 'card') return
 
-    const parsedCards = parse(CardContracts.CardsSchema, cards)
-
-    const activeCard = parsedCards.find(c => c.id === active.id)
+    const activeCard = cards.find(c => c.id === active.id)
 
     if (activeCard) {
       updateCardOrder({
         columnId: activeCard.columnId,
-        ids: parsedCards
+        ids: cards
           .filter(c => c.columnId === activeCard.columnId)
           .map(c => c.id)
       })
