@@ -24,6 +24,10 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 - **Get Help Fast:** Quickly reach out for assistance by sending an email directly from the app, ensuring timely support for any queries or issues.
 
+- **Accessibility:** Navigate and interact with the app using keyboard-only
+controls and screen readers, ensuring a seamless experience for all
+users.
+
 ## Project Contributors
 
 - [Denys Babych](https://github.com/chertik77) - Team Leader
