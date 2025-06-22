@@ -1,8 +1,6 @@
 import type { CardTypes } from '@/entities/card'
 
-import { useDndSortable } from '@/features/drag-and-drop'
-
-import { cn } from '@/shared/lib'
+import { cn, useDndSortable } from '@/shared/lib'
 
 import { MemoizedCard } from './MemoizedCard'
 

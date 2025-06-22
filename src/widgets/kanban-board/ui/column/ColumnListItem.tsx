@@ -1,8 +1,6 @@
 import type { ColumnTypes } from '@/entities/column'
 
-import { useDndSortable } from '@/features/drag-and-drop'
-
-import { cn } from '@/shared/lib'
+import { cn, useDndSortable } from '@/shared/lib'
 
 import { MemoizedColumn } from './MemoizedColumn'
 
