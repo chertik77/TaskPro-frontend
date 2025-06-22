@@ -11,10 +11,10 @@ import {
 } from '@dnd-kit/core'
 
 import { coordinateGetter } from '../lib/coordinateGetter'
-import { useCardDragHandlers } from '../lib/useCardDragHandlers'
-import { useColumnDragHandlers } from '../lib/useColumnDragHandlers'
-import { useDndState } from '../lib/useDndState'
 import { useGetAccessibilityAnnouncements } from '../lib/useGetAccessibilityAnnouncements'
+import { useCardDragHandlers } from './useCardDragHandlers'
+import { useColumnDragHandlers } from './useColumnDragHandlers'
+import { useDndState } from './useDndState'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 

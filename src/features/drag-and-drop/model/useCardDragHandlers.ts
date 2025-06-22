@@ -1,5 +1,5 @@
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
-import type { CardDragHandlersProps } from '../model/types'
+import type { CardDragHandlersProps } from './types'
 
 import { arrayMove } from '@dnd-kit/sortable'
 import { parse } from 'valibot'
