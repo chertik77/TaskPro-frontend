@@ -1,5 +1,3 @@
-import type { DraggableAttributes } from '@dnd-kit/core'
-import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import type { ComponentProps, ReactNode } from 'react'
 import type { CardSchema } from '../model/types'
 
@@ -42,7 +40,7 @@ const CardProvider = ({ card, className, children }: CardProviderProps) => {
     <CardContext value={value}>
       <div
         className={cn(
-          `relative h-[154px] w-84 overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
+          `relative h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
           dark:bg-black`,
           className
         )}>
@@ -51,31 +49,6 @@ const CardProvider = ({ card, className, children }: CardProviderProps) => {
     </CardContext>
   )
 }
-
-type CardDragActivatorProps = ComponentProps<'button'> & {
-  listeners: SyntheticListenerMap | undefined
-  attributes: DraggableAttributes
-}
-
-const CardDragActivator = ({
-  className,
-  listeners,
-  attributes,
-  ...props
-}: CardDragActivatorProps) => (
-  <button
-    type='button'
-    className={cn('focus-visible:styled-outline cursor-grab', className)}
-    aria-label='Move card'
-    {...listeners}
-    {...attributes}
-    {...props}>
-    <Icon
-      name='drag'
-      className='dark:stroke-white-soft/50 size-5 stroke-black/50'
-    />
-  </button>
-)
 
 const CardPriorityIndicator = ({
   className,
@@ -194,7 +167,6 @@ const CardActionButton = ({
 }
 
 export const Card = Object.assign(CardProvider, {
-  DragActivator: CardDragActivator,
   PriorityIndicator: CardPriorityIndicator,
   Title: CardTitle,
   Description: CardDescription,
