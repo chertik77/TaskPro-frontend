@@ -1,6 +1,12 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+import type { useSessionStore } from '@/entities/session'
+
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+
+type RouterContext = {
+  session: ReturnType<typeof useSessionStore>
+}
 
 const RootRoute = () => (
   <>
@@ -10,4 +16,6 @@ const RootRoute = () => (
   </>
 )
 
-export const Route = createRootRoute({ component: RootRoute })
+export const Route = createRootRouteWithContext<RouterContext>()({
+  component: RootRoute
+})
