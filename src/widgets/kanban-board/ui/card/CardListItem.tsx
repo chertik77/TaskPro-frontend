@@ -20,12 +20,12 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
   return (
     <li
       className={cn(
-        `focus-visible:violet:[&>div]:shadow-[inset_0_0px_10px_#7b7ede] cursor-grab
-        touch-manipulation list-none rounded-lg transition-shadow
-        focus-visible:outline-none
+        `focus-visible:violet:[&>div]:shadow-[inset_0_0px_10px_#7b7ede]
+        disable-text-selection cursor-grab touch-manipulation list-none rounded-lg
+        transition-shadow focus-visible:outline-none
         focus-visible:[&>div]:shadow-[inset_0_0px_10px_#9dc888]`,
-        isOverlay && 'styled-outline select-none',
-        isDragging && 'opacity-60 select-none'
+        isOverlay && 'styled-outline',
+        isDragging && 'opacity-60'
       )}
       ref={setNodeRef}
       style={style}
