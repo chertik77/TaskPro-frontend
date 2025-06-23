@@ -4,6 +4,7 @@ import { createContext, use, useMemo } from 'react'
 import {
   DndContext,
   KeyboardSensor,
+  MeasuringStrategy,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -63,6 +64,11 @@ export const DragAndDropProvider = ({
       <DndContext
         sensors={sensors}
         accessibility={{ announcements }}
+        measuring={{
+          droppable: {
+            strategy: MeasuringStrategy.Always
+          }
+        }}
         onDragStart={e => {
           cardDragHandlers.onDragStart(e)
           columnDragHandlers.onDragStart(e)
