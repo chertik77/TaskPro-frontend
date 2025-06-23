@@ -23,42 +23,42 @@ const authRouteImport = createFileRoute('/(auth)')()
 
 const authRoute = authRouteImport.update({
   id: '/(auth)',
-  getParentRoute: () => rootRouteImport
+  getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport
+  getParentRoute: () => rootRouteImport,
 } as any)
 const dashboardDashboardRoute = dashboardDashboardRouteImport.update({
   id: '/(dashboard)/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport
+  getParentRoute: () => rootRouteImport,
 } as any)
 const authAuthLayoutRoute = authAuthLayoutRouteImport.update({
   id: '/_auth-layout',
-  getParentRoute: () => authRoute
+  getParentRoute: () => authRoute,
 } as any)
 const dashboardDashboardIndexRoute = dashboardDashboardIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => dashboardDashboardRoute
+  getParentRoute: () => dashboardDashboardRoute,
 } as any)
 const dashboardDashboardBoardIdRoute =
   dashboardDashboardBoardIdRouteImport.update({
     id: '/$boardId',
     path: '/$boardId',
-    getParentRoute: () => dashboardDashboardRoute
+    getParentRoute: () => dashboardDashboardRoute,
   } as any)
 const authAuthLayoutSignupRoute = authAuthLayoutSignupRouteImport.update({
   id: '/signup',
   path: '/signup',
-  getParentRoute: () => authAuthLayoutRoute
+  getParentRoute: () => authAuthLayoutRoute,
 } as any)
 const authAuthLayoutSigninRoute = authAuthLayoutSigninRouteImport.update({
   id: '/signin',
   path: '/signin',
-  getParentRoute: () => authAuthLayoutRoute
+  getParentRoute: () => authAuthLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -184,11 +184,11 @@ interface authAuthLayoutRouteChildren {
 
 const authAuthLayoutRouteChildren: authAuthLayoutRouteChildren = {
   authAuthLayoutSigninRoute: authAuthLayoutSigninRoute,
-  authAuthLayoutSignupRoute: authAuthLayoutSignupRoute
+  authAuthLayoutSignupRoute: authAuthLayoutSignupRoute,
 }
 
 const authAuthLayoutRouteWithChildren = authAuthLayoutRoute._addFileChildren(
-  authAuthLayoutRouteChildren
+  authAuthLayoutRouteChildren,
 )
 
 interface authRouteChildren {
@@ -196,7 +196,7 @@ interface authRouteChildren {
 }
 
 const authRouteChildren: authRouteChildren = {
-  authAuthLayoutRoute: authAuthLayoutRouteWithChildren
+  authAuthLayoutRoute: authAuthLayoutRouteWithChildren,
 }
 
 const authRouteWithChildren = authRoute._addFileChildren(authRouteChildren)
@@ -208,7 +208,7 @@ interface dashboardDashboardRouteChildren {
 
 const dashboardDashboardRouteChildren: dashboardDashboardRouteChildren = {
   dashboardDashboardBoardIdRoute: dashboardDashboardBoardIdRoute,
-  dashboardDashboardIndexRoute: dashboardDashboardIndexRoute
+  dashboardDashboardIndexRoute: dashboardDashboardIndexRoute,
 }
 
 const dashboardDashboardRouteWithChildren =
@@ -217,7 +217,7 @@ const dashboardDashboardRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authRoute: authRouteWithChildren,
-  dashboardDashboardRoute: dashboardDashboardRouteWithChildren
+  dashboardDashboardRoute: dashboardDashboardRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

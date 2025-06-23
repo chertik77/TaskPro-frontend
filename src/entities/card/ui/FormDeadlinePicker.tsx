@@ -1,7 +1,6 @@
 import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
 import { useState } from 'react'
-import { isBefore, isToday } from 'date-fns'
 
 import {
   Calendar,
@@ -46,12 +45,10 @@ export const FormDeadlinePicker = <T extends FieldValues>({
         align='start'>
         <Calendar
           mode='single'
-          startMonth={new Date()}
-          disabled={date => isBefore(date, new Date()) && !isToday(date)}
           defaultMonth={field.value}
           selected={field.value}
           onSelect={date => {
-            field.onChange(date)
+            if (date) field.onChange(date)
             setIsCalendarOpen(false)
           }}
         />
