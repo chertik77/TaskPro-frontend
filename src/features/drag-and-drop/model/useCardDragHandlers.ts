@@ -1,6 +1,12 @@
-import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
+import type {
+  DragEndEvent,
+  DragOverEvent,
+  DragStartEvent,
+  UniqueIdentifier
+} from '@dnd-kit/core'
 import type { CardDragHandlersProps } from './types'
 
+import { useRef } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 
 import { useUpdateCardOrder } from '../api/useUpdateCardOrder'
@@ -11,6 +17,8 @@ export const useCardDragHandlers = ({
   setActiveCard
 }: CardDragHandlersProps) => {
   const { mutate: updateCardOrder } = useUpdateCardOrder()
+
+  const recentlyDraggedOverId = useRef<UniqueIdentifier | null>(null)
 
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'card') return
@@ -36,6 +44,8 @@ export const useCardDragHandlers = ({
           const activeCard = prevCards[activeCardIndex]
           const overCard = prevCards[overCardIndex]
 
+          recentlyDraggedOverId.current = over.id
+
           if (
             activeCard &&
             overCard &&
@@ -60,6 +70,8 @@ export const useCardDragHandlers = ({
         const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
         const activeCard = prevCards[activeCardIndex]
 
+        recentlyDraggedOverId.current = over.id
+
         if (activeCard) {
           activeCard.columnId = over.id as string
 
@@ -78,7 +90,7 @@ export const useCardDragHandlers = ({
 
     const activeCard = cards.find(c => c.id === active.id)
 
-    if (activeCard) {
+    if (activeCard && recentlyDraggedOverId.current) {
       updateCardOrder({
         columnId: activeCard.columnId,
         ids: cards
