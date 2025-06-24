@@ -1,1 +1,1 @@
-export { DragAndDropProvider, useDragAndDrop } from './dnd.context'
+export { DragAndDropProvider, useDragAndDrop } from './model/context'

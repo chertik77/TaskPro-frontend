@@ -1,1 +1,1 @@
-export { EditCardDialog } from './components/EditCardDialog'
+export { EditCardDialog } from './ui/EditCardDialog'

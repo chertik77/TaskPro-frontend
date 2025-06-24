@@ -1,1 +1,1 @@
-export { DeleteColumnTrigger } from './components/DeleteColumnTrigger'
+export { DeleteColumnTrigger } from './ui/DeleteColumnTrigger'

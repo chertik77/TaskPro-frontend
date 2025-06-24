@@ -1,5 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
@@ -7,7 +7,8 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({
+    tanstackRouter({
+      target: 'react',
       generatedRouteTree: 'src/shared/lib/react-router/routeTree.gen.ts',
       routesDirectory: 'src/app/routes'
     }),
@@ -16,5 +17,5 @@ export default defineConfig({
     tsconfigPaths(),
     ViteMinifyPlugin()
   ],
-  server: { port: 3000 }
+  server: { port: 4000 }
 })

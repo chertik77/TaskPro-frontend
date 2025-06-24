@@ -1,1 +1,2 @@
-export { CardSchema } from '../card.contracts'
+export { CardSchema } from '../model/contracts'
+export { CardDtoSchema } from '../api/contracts'

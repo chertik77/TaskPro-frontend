@@ -1,1 +1,1 @@
-export { ThemeSelect } from './components/ThemeSelect'
+export { ThemeSelect } from './ui/ThemeSelect'

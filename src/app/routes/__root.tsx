@@ -1,13 +1,35 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
-const RootRoute = () => (
-  <>
-    <Analytics />
-    <SpeedInsights />
-    <Outlet />
-  </>
-)
+import { sessionService, useSessionStore } from '@/entities/session'
 
-export const Route = createRootRoute({ component: RootRoute })
+import { attachInternalApiMemoryStorage } from '@/shared/api'
+
+type RouterContext = {
+  session: ReturnType<typeof useSessionStore>
+}
+
+const RootRoute = () => {
+  const { tokens, setTokens, logout } = useSessionStore()
+
+  attachInternalApiMemoryStorage({
+    accessToken: tokens.accessToken,
+    refreshToken: tokens.refreshToken,
+    refreshTokens: sessionService.getTokens,
+    updateTokens: setTokens,
+    logout
+  })
+
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+      <Outlet />
+    </>
+  )
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
+  component: RootRoute
+})

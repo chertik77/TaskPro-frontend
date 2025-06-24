@@ -1,1 +1,1 @@
-export { NeedHelpDialog } from './components/NeedHelpDialog'
+export { NeedHelpDialog } from './ui/NeedHelpDialog'

@@ -43,4 +43,4 @@ users.
 
 ## Languages and Tools
 
-![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,radixui,tanstack,stanjs,axios,datefns,reactdatepicker,reacthookform,valibot,tailwind,gcp,commitlint,eslint,prettier,githubactions,yarn,vercel,vite,vscode,figma&perline=8)
+![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,radixui,tanstack,stanjs,axios,datefns,reactdatepicker,reacthookform,valibot,tailwind,gcp,commitlint,eslint,prettier,githubactions,fsd,yarn,vercel,vite,vscode,figma&perline=8)
