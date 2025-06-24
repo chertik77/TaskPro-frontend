@@ -26,17 +26,10 @@ export const PasswordInput = ({
         className='focus-visible:styled-outline absolute top-4 right-4.5 opacity-40
           peer-[.text-white]:text-white'
         onClick={() => setShowPassword(prev => !prev)}>
-        {showPassword ? (
-          <Icon
-            name='eye-off'
-            className='size-4.5'
-          />
-        ) : (
-          <Icon
-            name='eye'
-            className='size-4.5'
-          />
-        )}
+        <Icon
+          name={showPassword ? 'eye-off' : 'eye'}
+          className='size-4.5'
+        />
       </button>
     </div>
   )
