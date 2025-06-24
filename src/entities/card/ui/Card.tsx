@@ -29,11 +29,16 @@ type ClassNameProps = {
 }
 
 type CardProviderProps = CardContext &
-  ClassNameProps & {
+  ComponentProps<'div'> & {
     children: ReactNode
   }
 
-const CardProvider = ({ card, className, children }: CardProviderProps) => {
+const CardProvider = ({
+  card,
+  className,
+  children,
+  ...props
+}: CardProviderProps) => {
   const value = useMemo(() => ({ card }), [card])
 
   return (
@@ -43,7 +48,8 @@ const CardProvider = ({ card, className, children }: CardProviderProps) => {
           `relative h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
           dark:bg-black`,
           className
-        )}>
+        )}
+        {...props}>
         {children}
       </div>
     </CardContext>

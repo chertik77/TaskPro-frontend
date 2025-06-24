@@ -1,16 +1,13 @@
-import { GoogleOAuthProvider } from '@react-oauth/google'
-
-import { env } from '@/shared/config'
-
+import { GoogleProvider } from './GoogleProvider'
 import { QueryClientProvider } from './QueryClientProvider'
 import { RouterProvider } from './RouteProvider'
 import { ToastProvider } from './ToastProvider'
 
 export const Providers = () => (
-  <GoogleOAuthProvider clientId={env.VITE_GOOGLE_CLIENT_ID}>
+  <GoogleProvider>
     <QueryClientProvider>
       <RouterProvider />
       <ToastProvider />
     </QueryClientProvider>
-  </GoogleOAuthProvider>
+  </GoogleProvider>
 )

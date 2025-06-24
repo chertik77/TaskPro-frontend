@@ -8,10 +8,5 @@ export default defineConfig([
   {
     files: ['./src/features/**'],
     rules: { 'fsd/repetitive-naming': 'off' }
-  },
-  //! DISABLE FOR NOW
-  {
-    files: ['./src/shared/api/instance.ts'],
-    rules: { 'fsd/forbidden-imports': 'off' }
   }
 ])

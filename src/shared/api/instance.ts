@@ -1,22 +1,21 @@
 import axios, { AxiosError } from 'axios'
 
-import {
-  getSessionStore,
-  sessionActions,
-  sessionService
-} from '@/entities/session'
-
 import { env } from '../config'
 import { router } from '../lib'
+import {
+  getApiAccessToken,
+  getApiRefreshToken,
+  getRefreshedTokens,
+  logUserOut,
+  setTokens
+} from './apiMemoryStorage'
 
 export const axiosInstance = axios.create({
   baseURL: env.VITE_API_BASE_URL
 })
 
 axiosInstance.interceptors.request.use(config => {
-  const {
-    tokens: { accessToken }
-  } = getSessionStore()
+  const accessToken = getApiAccessToken()
 
   if (config?.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -38,13 +37,11 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
 
       try {
-        const {
-          tokens: { refreshToken }
-        } = getSessionStore()
+        const refreshToken = getApiRefreshToken()
 
-        const tokens = await sessionService.getTokens({ refreshToken })
+        const tokens = await getRefreshedTokens({ refreshToken })
 
-        sessionActions.setTokens(tokens)
+        setTokens(tokens)
 
         return axiosInstance(originalRequest)
       } catch (e) {
@@ -52,7 +49,7 @@ axiosInstance.interceptors.response.use(
           e instanceof AxiosError &&
           e.response?.data?.message === 'ERR_JWT_EXPIRED'
         ) {
-          sessionActions.logout()
+          logUserOut()
 
           return router.navigate({ to: '/' })
         }
