@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useTabletAndBelowMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
-const SIDEBAR_KEYBOARD_SHORTCUT = 'o'
+const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 
 export const useSidebarToggleShortcut = () => {
   const { setIsOpen } = useSidebarStore()

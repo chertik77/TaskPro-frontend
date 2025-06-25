@@ -20,13 +20,13 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 - **Edit Your Profile:** Update your profile details, including changing your avatar.
 
-- **Toggle Sidebar:** Use shortcuts (<kbd>⌘ Command</kbd> + <kbd>O</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>O</kbd> on Windows/Linux) to show or hide the sidebar, giving you more space to focus.
+- **Toggle Sidebar:** Use shortcuts (<kbd>⌘ Command</kbd> + <kbd>B</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>B</kbd> on Windows/Linux) to show or hide the sidebar, giving you more space to focus.
 
 - **Get Help Fast:** Quickly reach out for assistance by sending an email directly from the app, ensuring timely support for any queries or issues.
 
 - **Accessibility:** Navigate and interact with the app using keyboard-only
-controls and screen readers, ensuring a seamless experience for all
-users.
+  controls and screen readers, ensuring a seamless experience for all
+  users.
 
 ## Project Contributors
 
