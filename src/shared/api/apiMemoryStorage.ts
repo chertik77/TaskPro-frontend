@@ -23,16 +23,10 @@ export const getApiAccessToken = () => {
   return accessToken
 }
 
-export const getApiRefreshToken = () => {
-  const { refreshToken } = __internalMemoryStorage()
+export const getRefreshedTokens = () => {
+  const { refreshTokens, refreshToken } = __internalMemoryStorage()
 
-  return refreshToken
-}
-
-export const getRefreshedTokens = (data: Pick<Tokens, 'refreshToken'>) => {
-  const { refreshTokens } = __internalMemoryStorage()
-
-  return refreshTokens(data)
+  return refreshTokens({ refreshToken })
 }
 
 export const setTokens = (data: Tokens) => {

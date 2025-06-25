@@ -4,7 +4,6 @@ import { env } from '../config'
 import { router } from '../lib'
 import {
   getApiAccessToken,
-  getApiRefreshToken,
   getRefreshedTokens,
   logUserOut,
   setTokens
@@ -37,9 +36,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
 
       try {
-        const refreshToken = getApiRefreshToken()
-
-        const tokens = await getRefreshedTokens({ refreshToken })
+        const tokens = await getRefreshedTokens()
 
         setTokens(tokens)
 
