@@ -1,6 +1,8 @@
 import type { ColumnTypes } from '@/entities/column'
-import type { DraggableAttributes } from '@dnd-kit/core'
-import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
+import type {
+  DraggableAttributes,
+  DraggableSyntheticListeners
+} from '@dnd-kit/core'
 
 import { memo } from 'react'
 
@@ -17,23 +19,24 @@ import { CardList } from '../card/CardList'
 
 type MemoizedColumnProps = {
   column: ColumnTypes.ColumnSchema
-  attributes: DraggableAttributes
-  listeners: SyntheticListenerMap | undefined
   backgroundURL?: string | null
+  draggableProps: {
+    attributes: DraggableAttributes
+    listeners: DraggableSyntheticListeners
+  }
 }
 
 export const MemoizedColumn = memo(
-  ({ column, backgroundURL, attributes, listeners }: MemoizedColumnProps) => {
+  ({ column, backgroundURL, draggableProps }: MemoizedColumnProps) => {
     const { cards } = useDragAndDrop()
 
     return (
       <Column column={column}>
-        <Column.Header>
+        <Column.Header className='mb-3.5 flex items-center justify-between gap-4'>
           <div className='flex max-w-[190px] items-center gap-3'>
             <Column.DragActivator
               className='shrink-0'
-              listeners={listeners}
-              attributes={attributes}
+              draggableProps={draggableProps}
             />
             <Column.Title />
           </div>

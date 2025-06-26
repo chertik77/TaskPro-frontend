@@ -1,5 +1,7 @@
-import type { DraggableAttributes } from '@dnd-kit/core'
-import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
+import type {
+  DraggableAttributes,
+  DraggableSyntheticListeners
+} from '@dnd-kit/core'
 import type { ComponentProps, ReactNode } from 'react'
 import type { ColumnSchema } from '../model/types'
 
@@ -10,7 +12,9 @@ import { Slot } from '@radix-ui/react-slot'
 import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
-type ColumnContext = { column: ColumnSchema }
+type ColumnContext = {
+  column: ColumnSchema
+}
 
 const ColumnContext = createContext<ColumnContext | undefined>(undefined)
 
@@ -36,15 +40,14 @@ const ColumnProvider = ({ column, children }: ColumnProviderProps) => {
   return <ColumnContext value={value}>{children}</ColumnContext>
 }
 
-type ColumnHeaderProps = ComponentProps<'div'> & {
-  children: ReactNode
-}
-
-const ColumnHeader = ({ className, children, ...props }: ColumnHeaderProps) => (
+const ColumnHeader = ({
+  className,
+  children,
+  ...props
+}: ComponentProps<'div'>) => (
   <div
     className={cn(
-      `mb-3.5 flex h-14 items-center justify-between gap-4 rounded-lg bg-white px-5
-      py-4.5 dark:bg-black`,
+      'h-14 rounded-lg bg-white px-5 py-4.5 dark:bg-black',
       className
     )}
     {...props}>
@@ -53,22 +56,23 @@ const ColumnHeader = ({ className, children, ...props }: ColumnHeaderProps) => (
 )
 
 type ColumnDragActivatorProps = ComponentProps<'button'> & {
-  attributes: DraggableAttributes
-  listeners: SyntheticListenerMap | undefined
+  draggableProps: {
+    attributes: DraggableAttributes
+    listeners: DraggableSyntheticListeners
+  }
 }
 
 const ColumnDragActivator = ({
   className,
-  attributes,
-  listeners,
+  draggableProps,
   ...props
 }: ColumnDragActivatorProps) => (
   <button
     type='button'
     className={cn('focus-visible:styled-outline cursor-grab', className)}
     aria-label='Move column'
-    {...attributes}
-    {...listeners}
+    {...draggableProps.attributes}
+    {...draggableProps.listeners}
     {...props}>
     <Icon
       name='drag'
@@ -160,8 +164,8 @@ const ColumnActionButton = ({
       type='button'
       className={cn(
         `focus-visible:styled-outline hocus:[&_svg]:stroke-black
-        violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft
-        [&_svg]:dark:stroke-white-soft/50 [&_svg]:size-4 [&_svg]:stroke-black/50`,
+        dark:hocus:[&_svg]:stroke-white-soft dark:[&_svg]:stroke-white-soft/50
+        [&_svg]:size-4 [&_svg]:stroke-black/50`,
         className
       )}
       ref={ref}

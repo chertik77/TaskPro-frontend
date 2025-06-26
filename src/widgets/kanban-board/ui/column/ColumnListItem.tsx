@@ -34,8 +34,7 @@ export const ColumnListItem = ({
       <MemoizedColumn
         column={column}
         backgroundURL={backgroundURL}
-        attributes={attributes}
-        listeners={listeners}
+        draggableProps={{ attributes, listeners }}
       />
     </li>
   )

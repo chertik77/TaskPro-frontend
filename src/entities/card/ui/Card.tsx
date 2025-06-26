@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from 'react'
+import type { ComponentProps } from 'react'
 import type { CardSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
@@ -10,7 +10,9 @@ import { Icon } from '@/shared/ui'
 
 import { getPriorityColor } from '../lib/priority-colors'
 
-type CardContext = { card: CardSchema }
+type CardContext = {
+  card: CardSchema
+}
 
 const CardContext = createContext<CardContext | undefined>(undefined)
 
@@ -24,14 +26,7 @@ const useCardContext = () => {
   return context
 }
 
-type ClassNameProps = {
-  className?: string
-}
-
-type CardProviderProps = CardContext &
-  ComponentProps<'div'> & {
-    children: ReactNode
-  }
+type CardProviderProps = CardContext & ComponentProps<'div'>
 
 const CardProvider = ({
   card,
@@ -102,7 +97,7 @@ const CardDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   )
 }
 
-const CardPriority = ({ className }: ClassNameProps) => {
+const CardPriority = ({ className }: { className?: string }) => {
   const { card } = useCardContext()
 
   return (
@@ -118,7 +113,7 @@ const CardPriority = ({ className }: ClassNameProps) => {
   )
 }
 
-const CardDeadline = ({ className }: ClassNameProps) => {
+const CardDeadline = ({ className }: { className?: string }) => {
   const { card } = useCardContext()
 
   return (
@@ -129,7 +124,7 @@ const CardDeadline = ({ className }: ClassNameProps) => {
   )
 }
 
-const CardDeadlineTodayIndicator = ({ className }: ClassNameProps) => {
+const CardDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   const { card } = useCardContext()
 
   return (
@@ -162,8 +157,8 @@ const CardActionButton = ({
       type='button'
       className={cn(
         `focus-visible:styled-outline hocus:[&_svg]:stroke-black
-        violet:hocus:[&_svg]:stroke-black dark:hocus:[&_svg]:stroke-white-soft
-        [&_svg]:dark:stroke-white-soft/50 [&_svg]:size-4 [&_svg]:stroke-black/50`,
+        dark:hocus:[&_svg]:stroke-white-soft dark:[&_svg]:dark:stroke-white-soft/50
+        [&_svg]:size-4 [&_svg]:stroke-black/50`,
         className
       )}
       ref={ref}
