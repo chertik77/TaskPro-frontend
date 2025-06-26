@@ -20,14 +20,17 @@ import { CardList } from '../card/CardList'
 type MemoizedColumnProps = {
   column: ColumnTypes.ColumnSchema
   backgroundURL?: string | null
-  draggableProps: {
-    attributes: DraggableAttributes
-    listeners: DraggableSyntheticListeners
-  }
+  draggableAttributes: DraggableAttributes
+  draggableListeners: DraggableSyntheticListeners
 }
 
 export const MemoizedColumn = memo(
-  ({ column, backgroundURL, draggableProps }: MemoizedColumnProps) => {
+  ({
+    column,
+    backgroundURL,
+    draggableAttributes,
+    draggableListeners
+  }: MemoizedColumnProps) => {
     const { cards } = useDragAndDrop()
 
     return (
@@ -36,7 +39,8 @@ export const MemoizedColumn = memo(
           <div className='flex max-w-[190px] items-center gap-3'>
             <Column.DragActivator
               className='shrink-0'
-              draggableProps={draggableProps}
+              {...draggableAttributes}
+              {...draggableListeners}
             />
             <Column.Title />
           </div>

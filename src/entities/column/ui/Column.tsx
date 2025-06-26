@@ -1,7 +1,3 @@
-import type {
-  DraggableAttributes,
-  DraggableSyntheticListeners
-} from '@dnd-kit/core'
 import type { ComponentProps, ReactNode } from 'react'
 import type { ColumnSchema } from '../model/types'
 
@@ -55,24 +51,14 @@ const ColumnHeader = ({
   </div>
 )
 
-type ColumnDragActivatorProps = ComponentProps<'button'> & {
-  draggableProps: {
-    attributes: DraggableAttributes
-    listeners: DraggableSyntheticListeners
-  }
-}
-
 const ColumnDragActivator = ({
   className,
-  draggableProps,
   ...props
-}: ColumnDragActivatorProps) => (
+}: ComponentProps<'button'>) => (
   <button
     type='button'
     className={cn('focus-visible:styled-outline cursor-grab', className)}
     aria-label='Move column'
-    {...draggableProps.attributes}
-    {...draggableProps.listeners}
     {...props}>
     <Icon
       name='drag'
