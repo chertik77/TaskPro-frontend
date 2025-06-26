@@ -3,11 +3,11 @@ import type { UseSortableArguments } from '@dnd-kit/sortable'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-type UseKanbanSortableProps = Omit<UseSortableArguments, 'data'> & {
+type UseDndSortableProps = Omit<UseSortableArguments, 'data'> & {
   data: { type: 'card' | 'column' } & Record<string, unknown>
 }
 
-export const useDndSortable = (props: UseKanbanSortableProps) => {
+export const useDndSortable = (props: UseDndSortableProps) => {
   const { transition, transform, ...sortable } = useSortable(props)
 
   const style = {
