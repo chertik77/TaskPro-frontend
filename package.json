@@ -9,8 +9,9 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
-    "lint": "eslint ./src --fix -f mo && tsc --noemit && yarn steiger ./src",
     "preview": "vite preview",
+    "lint": "eslint ./src --fix -f mo && yarn typecheck && yarn steiger:check",
+    "steiger:check": "steiger ./src",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
     "prepare": "husky",
