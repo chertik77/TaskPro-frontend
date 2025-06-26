@@ -1,4 +1,4 @@
-import type { CardTypes, Deadline, Priority } from '@/entities/card'
+import type { CardTypes } from '@/entities/card'
 
 import {
   addDays,
@@ -9,8 +9,8 @@ import {
 } from 'date-fns'
 
 type CardFilters = {
-  priority?: Priority
-  deadline?: Deadline
+  priority?: CardTypes.CardPriority
+  deadline?: CardTypes.CardDeadline
 }
 
 const today = startOfToday()

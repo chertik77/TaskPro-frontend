@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { PRIORITIES } from '../config/priority.constants'
+import { CARD_PRIORITIES } from '../config/priority.constants'
 
 export const CardDtoSchema = v.object({
   id: v.string(),
@@ -8,7 +8,7 @@ export const CardDtoSchema = v.object({
   description: v.string(),
   order: v.number(),
   columnId: v.string(),
-  priority: v.picklist(PRIORITIES),
+  priority: v.picklist(CARD_PRIORITIES),
   deadline: v.pipe(
     v.string(),
     v.transform(d => new Date(d))
@@ -23,7 +23,7 @@ export const AddCardDtoSchema = v.object({
   columnId: v.string(),
   title: v.pipe(v.string(), v.trim(), v.minLength(3)),
   description: v.pipe(v.string(), v.trim(), v.minLength(3)),
-  priority: v.picklist(PRIORITIES),
+  priority: v.picklist(CARD_PRIORITIES),
   deadline: v.date()
 })
 

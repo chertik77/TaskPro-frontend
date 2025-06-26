@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { ICONS } from '@/entities/board'
+import { BOARD_ICONS } from '@/entities/board'
 
 export const EditBoardSchema = v.partial(
   v.object({
@@ -9,7 +9,7 @@ export const EditBoardSchema = v.partial(
       v.trim(),
       v.minLength(3, 'Please enter at least 3 characters.')
     ),
-    icon: v.picklist(ICONS),
+    icon: v.picklist(BOARD_ICONS),
     background: v.string()
   })
 )

@@ -1,7 +1,7 @@
-import type { Icon } from '@/entities/board'
+import type { BoardTypes } from '@/entities/board'
 
 export type EditBoardData = {
   title: string
-  icon: Icon
+  icon: BoardTypes.BoardIcon
   background: string
 }

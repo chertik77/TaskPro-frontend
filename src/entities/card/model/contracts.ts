@@ -1,7 +1,7 @@
 import * as v from 'valibot'
 
-import { DEADLINES } from '../config/deadline.constants'
-import { PRIORITIES } from '../config/priority.constants'
+import { CARD_DEADLINES } from '../config/deadline.constants'
+import { CARD_PRIORITIES } from '../config/priority.constants'
 
 export const CardSchema = v.object({
   id: v.string(),
@@ -9,13 +9,13 @@ export const CardSchema = v.object({
   order: v.number(),
   columnId: v.string(),
   description: v.string(),
-  priority: v.picklist(PRIORITIES),
+  priority: v.picklist(CARD_PRIORITIES),
   deadline: v.date()
 })
 
 export const CardsSchema = v.array(CardSchema)
 
 export const CardSearchSchema = v.object({
-  priority: v.optional(v.picklist(PRIORITIES)),
-  deadline: v.optional(v.picklist(DEADLINES))
+  priority: v.optional(v.picklist(CARD_PRIORITIES)),
+  deadline: v.optional(v.picklist(CARD_DEADLINES))
 })

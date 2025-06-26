@@ -6,7 +6,7 @@ import { useSessionStore } from '@/entities/session/@x/board'
 
 import { FormControl, FormItem } from '@/shared/ui'
 
-import { boardBgImages } from '../config/board-bg-images'
+import { BOARD_BG_IMAGES } from '../config/bg-images'
 
 type FormBgImageSelectorProps<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>
@@ -25,7 +25,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
         className='flex max-w-[280px] flex-wrap gap-2'
         value={field.value}
         onValueChange={field.onChange}>
-        {boardBgImages.map(({ id, icon }) => (
+        {BOARD_BG_IMAGES.map(({ id, icon }) => (
           <FormItem key={id}>
             <FormControl>
               <RadioGroupItem

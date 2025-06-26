@@ -1,4 +1,4 @@
-import { DEADLINES } from '@/entities/card'
+import { CARD_DEADLINES } from '@/entities/card'
 
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
@@ -12,7 +12,7 @@ export const DeadlineFilter = () => {
       className='flex-col'
       value={deadlineParam ?? ''}
       onValueChange={v => handleParamsChange('deadline', v)}>
-      {DEADLINES.map(deadline => (
+      {CARD_DEADLINES.map(deadline => (
         <label
           className='text-md hocus:text-black hocus:dark:text-white flex cursor-pointer items-center
             gap-2 text-black/50 has-[[data-state=checked]]:text-black dark:text-white/50

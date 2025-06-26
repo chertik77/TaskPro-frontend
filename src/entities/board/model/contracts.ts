@@ -1,12 +1,12 @@
 import * as v from 'valibot'
 
 import { ColumnSchema } from '../../column/@x/board'
-import { ICONS } from '../config/icon.constants'
+import { BOARD_ICONS } from '../config/icon.constants'
 
 export const BoardSchema = v.object({
   id: v.string(),
   title: v.string(),
-  icon: v.picklist(ICONS),
+  icon: v.picklist(BOARD_ICONS),
   background: v.object({
     identifier: v.string(),
     url: v.nullable(v.string())

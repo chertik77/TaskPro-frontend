@@ -1,4 +1,4 @@
-export const ICONS = [
+export const BOARD_ICONS = [
   'project',
   'star',
   'loading',
@@ -8,4 +8,3 @@ export const ICONS = [
   'colors',
   'hexagon'
 ] as const
-export type Icon = (typeof ICONS)[number]

@@ -5,7 +5,7 @@ type BoardImage = {
   icon: string | Record<Theme, string>
 }
 
-export const boardBgImages: BoardImage[] = [
+export const BOARD_BG_IMAGES: BoardImage[] = [
   {
     id: 'default',
     icon: {

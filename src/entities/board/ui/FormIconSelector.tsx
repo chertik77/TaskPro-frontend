@@ -4,7 +4,7 @@ import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 
 import { FormControl, FormItem, Icon } from '@/shared/ui'
 
-import { ICONS } from '../config/icon.constants'
+import { BOARD_ICONS } from '../config/icon.constants'
 
 type FormIconSelectorProps<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>
@@ -18,7 +18,7 @@ export const FormIconSelector = <T extends FieldValues>({
       className='flex items-center gap-2'
       value={field.value}
       onValueChange={field.onChange}>
-      {ICONS.map(icon => (
+      {BOARD_ICONS.map(icon => (
         <FormItem key={icon}>
           <FormControl>
             <RadioGroupItem
