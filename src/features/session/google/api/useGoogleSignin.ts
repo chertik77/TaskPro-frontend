@@ -1,32 +1,22 @@
-import { useState } from 'react'
-import { useGoogleLogin } from '@react-oauth/google'
+import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { toast } from 'sonner'
 
 import { sessionService, useSessionStore } from '@/entities/session'
 
-export const useGoogleSignin = () => {
-  const [loading, setIsLoading] = useState(false)
-
+export const useSigninUserWithGoogle = () => {
   const { authenticate } = useSessionStore()
 
   const navigate = useNavigate()
 
-  const signinWithGoogle = useGoogleLogin({
-    flow: 'auth-code',
-    onSuccess: async ({ code }) => {
-      setIsLoading(true)
-      const r = await sessionService.signinWithGoogle({ code })
-      authenticate(r)
-      navigate({ to: '/dashboard' })
+  return useMutation({
+    mutationFn: sessionService.signinWithGoogle,
+    meta: {
+      errorMessage:
+        'An error occurred during sign-in with Google. Please try again shortly.'
     },
-    onError: () => {
-      setIsLoading(false)
-      toast.error(
-        'Authentication failed: Unable to sign in with Google. Please try again.'
-      )
+    onSuccess(data) {
+      navigate({ to: '/dashboard' })
+      authenticate(data)
     }
   })
-
-  return { signinWithGoogle, loading }
 }
