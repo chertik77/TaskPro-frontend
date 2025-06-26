@@ -5,7 +5,6 @@ import eslintPluginRouter from '@tanstack/eslint-plugin-router'
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
-import eslintPluginNamingConvention from 'eslint-plugin-react-naming-convention'
 import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
@@ -14,7 +13,6 @@ export default eslintTypescript.config(
   eslintTypescript.configs.recommended,
   eslintPluginJsxA11y.flatConfigs.strict,
   eslintPluginReact.configs.flat.recommended,
-  eslintPluginNamingConvention.configs.recommended,
   eslintPluginReactModern.configs.recommended,
   eslintPluginReactHooks.configs['recommended-latest'],
   ...eslintPluginRouter.configs['flat/recommended'],
