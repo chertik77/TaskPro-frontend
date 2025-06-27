@@ -11,18 +11,18 @@ export const KanbanDragOverlay = () => {
 
   return createPortal(
     <DragOverlay>
-      {activeColumn ? (
+      {activeColumn && (
         <ColumnListItem
           column={activeColumn}
           isOverlay
         />
-      ) : null}
-      {activeCard ? (
+      )}
+      {activeCard && (
         <CardListItem
           card={activeCard}
           isOverlay
         />
-      ) : null}
+      )}
     </DragOverlay>,
     document.body
   )
