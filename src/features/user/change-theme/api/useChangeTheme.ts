@@ -27,9 +27,9 @@ export const useChangeTheme = () => {
       setUser({ ...previousUser, theme: context?.previousTheme as Theme })
     },
     onSettled: data => {
-      const parsedData = parse(UserContracts.UserSchema, data)
+      const parsedUser = parse(UserContracts.UserSchema, data)
 
-      setUser(parsedData)
+      setUser(parsedUser)
     }
   })
 }

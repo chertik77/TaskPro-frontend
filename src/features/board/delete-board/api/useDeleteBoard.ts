@@ -32,16 +32,13 @@ export const useDeleteBoard = () => {
         previousBoards
       )
 
-      queryClient.setQueryData(
-        boardQueries.boardsKey(),
-        (oldBoards: unknown) => {
-          if (!oldBoards) return oldBoards
+      queryClient.setQueryData(boardQueries.boardsKey(), oldBoards => {
+        if (!oldBoards) return oldBoards
 
-          const parsedOldBoards = parse(BoardContracts.BoardsSchema, oldBoards)
+        const parsedOldBoards = parse(BoardContracts.BoardsSchema, oldBoards)
 
-          return parsedOldBoards.filter(b => b.id !== boardId)
-        }
-      )
+        return parsedOldBoards.filter(b => b.id !== boardId)
+      })
 
       return { previousBoards: parsedPreviousBoards }
     },

@@ -7,7 +7,6 @@ import {
   useGetParamBoardId
 } from '@/entities/board'
 import { cardService } from '@/entities/card'
-import { ColumnContracts } from '@/entities/column'
 
 import { addMovedCardToColumn } from '../lib/addMovedCardToColumn'
 import { getMovedCard } from '../lib/getMovedCard'
@@ -40,14 +39,10 @@ export const useMoveCard = () => {
 
         const parsedOldBoard = parse(BoardContracts.BoardSchema, oldBoard)
 
-        const updatedColumns = parsedOldBoard.columns.map(column => {
-          const parsedColumn = parse(ColumnContracts.ColumnSchema, column)
-
-          return {
-            ...column,
-            cards: parsedColumn.cards.filter(card => card.id !== cardId)
-          }
-        })
+        const updatedColumns = parsedOldBoard.columns.map(column => ({
+          ...column,
+          cards: column.cards.filter(card => card.id !== cardId)
+        }))
 
         const movedCard = getMovedCard(parsedOldBoard.columns, cardId)
 

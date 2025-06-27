@@ -7,7 +7,6 @@ import {
   useGetParamBoardId
 } from '@/entities/board'
 import { cardService } from '@/entities/card'
-import { ColumnContracts } from '@/entities/column'
 
 export const useDeleteCard = () => {
   const queryClient = useQueryClient()
@@ -40,14 +39,10 @@ export const useDeleteCard = () => {
 
         return {
           ...oldBoard,
-          columns: parsedOldBoard.columns.map(column => {
-            const parsedColumn = parse(ColumnContracts.ColumnSchema, column)
-
-            return {
-              ...column,
-              cards: parsedColumn.cards.filter(card => card.id !== cardId)
-            }
-          })
+          columns: parsedOldBoard.columns.map(column => ({
+            ...column,
+            cards: column.cards.filter(card => card.id !== cardId)
+          }))
         }
       })
 
