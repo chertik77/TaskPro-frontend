@@ -51,7 +51,7 @@ export const Board = () => {
       }}>
       <div
         className={cn(
-          `tablet:mb-[26px] desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-[39px] flex
+          `tablet:mb-[26px] desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-10 flex
           justify-between gap-5 pl-5 text-black`,
           WHITE_TEXT_BOARD_BG_IDS.includes(board.background.identifier) &&
             'text-white',

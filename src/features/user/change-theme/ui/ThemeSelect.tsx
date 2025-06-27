@@ -30,7 +30,7 @@ export const ThemeSelect = () => {
         <SelectIcon asChild>
           <Icon
             name='chevron-down'
-            className='size-5 stroke-black dark:stroke-white'
+            className='size-5'
           />
         </SelectIcon>
       </SelectTrigger>

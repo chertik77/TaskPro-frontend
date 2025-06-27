@@ -28,11 +28,12 @@ export const MoveCardSelect = memo(
         value={cardColumnId}
         onValueChange={v => moveCard({ cardId: cardId, newColumnId: v })}
         disabled={columns && columns.length <= 1}>
-        <SelectTrigger className='group disabled:hidden'>
+        <SelectTrigger
+          className='hocus:text-black dark:hocus:text-white text-black/50 disabled:hidden
+            dark:text-white/50'>
           <Icon
             name='arrow-circle'
-            className='group-hocus:stroke-black dark:group-hocus:stroke-white size-4 stroke-black/50
-              dark:stroke-white/50'
+            className='size-4'
           />
         </SelectTrigger>
         <SelectContent
@@ -47,7 +48,7 @@ export const MoveCardSelect = memo(
                 <p className='w-20 truncate'>{column.title}</p>
                 <Icon
                   name='arrow-circle'
-                  className='size-4 stroke-current'
+                  className='size-4'
                 />
               </SelectItem>
             ))}

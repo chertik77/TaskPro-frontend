@@ -43,7 +43,7 @@ const ColumnHeader = ({
 }: ComponentProps<'div'>) => (
   <div
     className={cn(
-      'h-14 rounded-lg bg-white px-5 py-4.5 dark:bg-black',
+      'min-h-14 rounded-lg bg-white px-5 py-4.5 dark:bg-black',
       className
     )}
     {...props}>
@@ -149,9 +149,8 @@ const ColumnActionButton = ({
     <Comp
       type='button'
       className={cn(
-        `focus-visible:styled-outline hocus:[&_svg]:stroke-black
-        dark:hocus:[&_svg]:stroke-white-soft dark:[&_svg]:stroke-white-soft/50
-        [&_svg]:size-4 [&_svg]:stroke-black/50`,
+        `focus-visible:styled-outline hocus:text-black dark:hocus:text-white-soft
+        dark:text-white-soft/50 text-black/50 [&_svg]:size-4`,
         className
       )}
       ref={ref}

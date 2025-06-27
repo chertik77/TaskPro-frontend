@@ -14,7 +14,7 @@ export const DeadlineFilter = () => {
       onValueChange={v => handleParamsChange('deadline', v)}>
       {CARD_DEADLINES.map(deadline => (
         <label
-          className='text-md hocus:text-black hocus:dark:text-white flex cursor-pointer items-center
+          className='text-md hocus:text-black dark:hocus:text-white flex cursor-pointer items-center
             gap-2 text-black/50 has-[[data-state=checked]]:text-black dark:text-white/50
             dark:has-[[data-state=checked]]:text-white'
           key={deadline}>

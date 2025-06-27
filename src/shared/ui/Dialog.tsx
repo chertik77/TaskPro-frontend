@@ -37,7 +37,7 @@ const DialogContent = ({
         aria-label='Close'>
         <Icon
           name='x'
-          className='size-4.5 stroke-black dark:stroke-white'
+          className='size-4.5'
         />
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

@@ -37,7 +37,7 @@ const PopoverClose = ({
     {...props}>
     <Icon
       name='close'
-      className='size-4.5 stroke-black dark:stroke-white'
+      className='size-4.5'
     />
   </PopoverPrimitive.Close>
 )

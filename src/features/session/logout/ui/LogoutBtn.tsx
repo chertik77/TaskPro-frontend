@@ -12,7 +12,7 @@ export const LogoutBtn = () => {
     <button
       type='button'
       className='focus-visible:styled-outline group violet:text-white flex items-center gap-3.5
-        bg-transparent text-lg font-medium'
+        text-lg font-medium'
       disabled={isPending}
       aria-label='Log out'
       onClick={() => {

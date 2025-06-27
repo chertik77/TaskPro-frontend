@@ -35,7 +35,7 @@ export const FormDeadlinePicker = <T extends FieldValues>({
             {formatTodayDate(field.value)}
             <Icon
               name='chevron-down'
-              className='size-4.5 stroke-current'
+              className='size-4.5'
             />
           </button>
         </FormControl>

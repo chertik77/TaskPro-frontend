@@ -4,9 +4,7 @@ import { DialogTrigger, Icon } from '@/shared/ui'
 
 export const SidebarBoardCreationSection = () => (
   <div className='tablet:px-6 mb-10 px-3.5'>
-    <p
-      className='text-md violet:text-white/50 mb-2 overflow-hidden text-black/50
-        dark:text-white/50'>
+    <p className='text-md violet:text-white/50 mb-2 text-black/50 dark:text-white/50'>
       My boards
     </p>
     <span
@@ -17,9 +15,12 @@ export const SidebarBoardCreationSection = () => (
         <DialogTrigger
           className='focus-visible:styled-outline bg-brand violet:bg-brand-violet-soft
             violet:text-white hocus:bg-brand-light violet:hocus:bg-brand-violet-muted flex
-            h-9 w-10 items-center justify-center rounded-lg text-black transition-all
+            h-9 w-10 items-center justify-center rounded-lg text-black transition-colors
             duration-300'>
-          <Icon name='plus' />
+          <Icon
+            name='plus'
+            className='stroke-none'
+          />
         </DialogTrigger>
       </AddBoardDialog>
     </span>

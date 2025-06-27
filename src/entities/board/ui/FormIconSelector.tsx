@@ -23,12 +23,12 @@ export const FormIconSelector = <T extends FieldValues>({
           <FormControl>
             <RadioGroupItem
               value={icon}
-              className='focus-visible:styled-outline group hocus:text-black dark:hocus:text-white
-                text-black/50 dark:text-white/50'>
+              className='focus-visible:styled-outline hocus:text-black dark:hocus:text-white
+                text-black/50 data-[state=checked]:text-black dark:text-white/50
+                dark:data-[state=checked]:text-white'>
               <Icon
                 name={icon}
-                className='size-4.5 stroke-current group-aria-checked:text-black
-                  group-aria-checked:opacity-100 dark:group-aria-checked:text-white'
+                className='size-4.5'
               />
             </RadioGroupItem>
           </FormControl>

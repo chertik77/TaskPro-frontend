@@ -3,11 +3,12 @@ import { DialogTrigger, Icon } from '@/shared/ui'
 export const EditBoardDialogTrigger = () => (
   <DialogTrigger
     aria-label='Edit board'
-    className='focus-visible:styled-outline hocus:*:stroke-black
-      violet:hocus:*:stroke-white-soft dark:hocus:*:stroke-white-soft'>
+    className='focus-visible:styled-outline hocus:text-black violet:hocus:text-white-soft
+      dark:hocus:text-white-soft dark:text-white-soft/50 violet:text-white-soft/50
+      text-black/50'>
     <Icon
       name='pencil'
-      className='violet:stroke-white/50 dark:stroke-white-soft/50 size-4 stroke-black/50'
+      className='size-4'
     />
   </DialogTrigger>
 )

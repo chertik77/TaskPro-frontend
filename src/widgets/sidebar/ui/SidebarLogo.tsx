@@ -15,7 +15,7 @@ export const SidebarLogo = () => {
         onClick={() => setIsOpenMobile(false)}>
         <Icon
           name='logo'
-          className='fill-black-muted violet:fill-white-gray size-8'
+          className='fill-black-muted violet:fill-white-gray size-8 stroke-none'
         />
         <h1 className='violet:text-white text-lg font-semibold text-black dark:text-white'>
           Task Pro

@@ -30,7 +30,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
             <FormControl>
               <RadioGroupItem
                 value={id}
-                className='focus-visible:styled-outline group outline-offset-4'>
+                className='focus-visible:styled-outline group outline-offset-3'>
                 <img
                   className='transition-transform group-aria-checked:scale-125'
                   width={28}

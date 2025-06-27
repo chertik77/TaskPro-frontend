@@ -12,7 +12,7 @@ export const ToggleMobileMenuTrigger = () => {
       className='desktop:hidden'>
       <Icon
         name='menu'
-        className='size-6 stroke-black dark:stroke-white'
+        className='size-6'
       />
     </button>
   )

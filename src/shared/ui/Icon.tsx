@@ -1,10 +1,9 @@
-type IconProps = {
-  name: string
-  className?: string
-}
+import type { ComponentProps } from 'react'
 
-export const Icon = ({ name, className }: IconProps) => (
-  <svg className={className}>
+import { cn } from '../lib'
+
+export const Icon = ({ name, className }: ComponentProps<'svg'>) => (
+  <svg className={cn('stroke-current', className)}>
     <use href={`/icons.svg#${name}`} />
   </svg>
 )
