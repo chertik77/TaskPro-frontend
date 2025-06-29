@@ -6,8 +6,6 @@ import { parse } from 'valibot'
 import { useSessionStore } from '@/entities/session'
 import { UserContracts, userService } from '@/entities/user'
 
-import { setMetaThemeColor } from '../lib/setMetaThemeColor'
-
 export const useChangeTheme = () => {
   const { user: previousUser, setUser } = useSessionStore()
 
@@ -18,8 +16,6 @@ export const useChangeTheme = () => {
       const previousTheme = previousUser.theme
 
       setUser(prev => ({ ...prev, theme: theme! }))
-
-      setMetaThemeColor(theme!)
 
       return { previousTheme }
     },
