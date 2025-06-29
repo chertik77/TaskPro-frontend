@@ -1,7 +1,4 @@
-import type { UserDtoTypes } from '@/entities/user'
-import type { UseMutateFunction } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
-import type { EditUserSchema } from '../model/contract'
+import type { EditUserMutateFunction } from '../model/types'
 
 import { useRef } from 'react'
 
@@ -11,11 +8,7 @@ import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
 type EditAvatarProps = {
-  changeUserAvatar: UseMutateFunction<
-    EditUserSchema,
-    AxiosError,
-    UserDtoTypes.EditUserDto
-  >
+  changeUserAvatar: EditUserMutateFunction
   isPending: boolean
 }
 
@@ -53,7 +46,7 @@ export const EditAvatar = ({
             items-center justify-center rounded-lg text-black'>
           <Icon
             name='plus'
-            className='size-5'
+            className='size-5 stroke-none'
           />
         </div>
       </button>

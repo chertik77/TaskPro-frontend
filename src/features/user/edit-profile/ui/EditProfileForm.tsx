@@ -1,7 +1,4 @@
-import type { UserDtoTypes } from '@/entities/user'
-import type { UseMutateFunction } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
-import type { EditUserSchema } from '../model/contract'
+import type { EditUserMutateFunction } from '../model/types'
 
 import {
   Button,
@@ -18,11 +15,7 @@ import {
 import { useEditProfileForm } from '../lib/useEditProfileForm'
 
 type EditProfileFormProps = {
-  editProfile: UseMutateFunction<
-    EditUserSchema,
-    AxiosError,
-    UserDtoTypes.EditUserDto
-  >
+  editProfile: EditUserMutateFunction
   isPending: boolean
 }
 
