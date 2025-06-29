@@ -2,7 +2,7 @@
 
 Welcome to the Task Pro App, the ultimate tool for managing your tasks efficiently. Developed as the final project of the Fullstack Development Bootcamp, Task Pro combines powerful features and an intuitive interface to streamline your task management, similar to popular tools like Trello.
 
-![TaskPro Dashboard Preview](https://github.com/user-attachments/assets/d6207d28-0e24-4751-842a-7592d67cb828)
+![TaskPro Dashboard Preview](https://github.com/user-attachments/assets/aabe9f86-950d-486c-bbc3-9d77111e52e8)
 
 _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
