@@ -1,7 +1,6 @@
 export const WHITE_TEXT_BOARD_BG_IDS = [
   'flowers',
   'mountains-night',
-  'sakura',
   'night-sky',
   'tropics',
   'sea-rocks',
