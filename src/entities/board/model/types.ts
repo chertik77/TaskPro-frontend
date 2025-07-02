@@ -1,5 +1,5 @@
 import type { InferOutput } from 'valibot'
-import type { BOARD_ICONS } from '../config/icon.constants'
+import type { BOARD_ICONS } from '../config/icon'
 import type { BoardSchema, BoardsSchema } from './contracts'
 
 export type BoardSchema = InferOutput<typeof BoardSchema>

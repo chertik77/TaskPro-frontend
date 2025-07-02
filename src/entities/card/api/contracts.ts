@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { CARD_PRIORITIES } from '../config/priority.constants'
+import { CARD_PRIORITIES } from '../config/priority'
 
 export const CardDtoSchema = v.object({
   id: v.string(),

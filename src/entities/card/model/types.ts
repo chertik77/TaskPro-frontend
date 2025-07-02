@@ -1,6 +1,6 @@
 import type { InferOutput } from 'valibot'
-import type { CARD_DEADLINES } from '../config/deadline.constants'
-import type { CARD_PRIORITIES } from '../config/priority.constants'
+import type { CARD_DEADLINES } from '../config/deadline'
+import type { CARD_PRIORITIES } from '../config/priority'
 import type { CardSchema, CardSearchSchema, CardsSchema } from './contracts'
 
 export type CardSchema = InferOutput<typeof CardSchema>

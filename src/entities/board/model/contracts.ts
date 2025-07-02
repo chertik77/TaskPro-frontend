@@ -2,7 +2,7 @@ import * as v from 'valibot'
 
 import { ColumnSchema } from '@/entities/column/@x/board'
 
-import { BOARD_ICONS } from '../config/icon.constants'
+import { BOARD_ICONS } from '../config/icon'
 
 export const BoardSchema = v.object({
   id: v.string(),

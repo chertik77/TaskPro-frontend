@@ -4,7 +4,7 @@ import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 
 import { FormControl, FormItem, Icon } from '@/shared/ui'
 
-import { BOARD_ICONS } from '../config/icon.constants'
+import { BOARD_ICONS } from '../config/icon'
 
 type FormIconSelectorProps<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>
