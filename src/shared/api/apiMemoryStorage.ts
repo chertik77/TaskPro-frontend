@@ -3,9 +3,7 @@ type Tokens = {
   refreshToken: string
 }
 
-type ApiMemoryStorage = {
-  accessToken: string
-  refreshToken: string
+type ApiMemoryStorage = Tokens & {
   getTokens: (data: Pick<Tokens, 'refreshToken'>) => Promise<Tokens>
   setTokens: (data: Tokens) => void
   logout: () => void

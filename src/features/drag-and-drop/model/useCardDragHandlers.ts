@@ -35,7 +35,7 @@ export const useCardDragHandlers = ({
 
     if (!isActiveACard) return
 
-    if (isActiveACard && isDraggingOverACard) {
+    if (isDraggingOverACard) {
       setTimeout(() => {
         setCards(prevCards => {
           const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
@@ -65,7 +65,7 @@ export const useCardDragHandlers = ({
       }, 0)
     }
 
-    if (isActiveACard && isDraggingOverAColumn) {
+    if (isDraggingOverAColumn) {
       setCards(prevCards => {
         const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
         const activeCard = prevCards[activeCardIndex]
@@ -86,11 +86,17 @@ export const useCardDragHandlers = ({
   const onDragEnd = ({ active }: DragEndEvent) => {
     setActiveCard(null)
 
-    if (!active || active.data.current?.type !== 'card') return
+    if (
+      !active ||
+      active.data.current?.type !== 'card' ||
+      !recentlyDraggedOverId.current
+    ) {
+      return
+    }
 
     const activeCard = cards.find(c => c.id === active.id)
 
-    if (activeCard && recentlyDraggedOverId.current) {
+    if (activeCard) {
       updateCardOrder({
         columnId: activeCard.columnId,
         ids: cards
