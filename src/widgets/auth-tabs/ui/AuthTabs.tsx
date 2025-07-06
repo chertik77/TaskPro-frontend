@@ -1,14 +1,10 @@
-import type { ReactNode } from '@tanstack/react-router'
+import type { ReactNode } from 'react'
 
 import { useLocation, useNavigate } from '@tanstack/react-router'
 
 import { Tabs, TabsList, TabsTrigger } from '@/shared/ui'
 
-type AuthTabsProps = {
-  children: ReactNode
-}
-
-export const AuthTabs = ({ children }: AuthTabsProps) => {
+export const AuthTabs = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate()
 
   const { pathname } = useLocation()

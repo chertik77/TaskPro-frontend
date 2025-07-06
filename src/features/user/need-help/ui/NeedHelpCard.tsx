@@ -6,8 +6,8 @@ type NeedHelpCardProps = {
 
 export const NeedHelpCard = ({ children }: NeedHelpCardProps) => (
   <div
-    className='bg-white-muted violet:bg-gray dark:bg-black-muted tablet:p-5 mb-6 rounded-lg
-      p-3.5'>
+    className='bg-white-muted violet:bg-gray dark:bg-black-muted tablet:p-5 mb-6
+      rounded-lg p-3.5'>
     <img
       className='mb-3.5 h-[78px] w-[54px]'
       src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568218/TaskPro/need_help.png'

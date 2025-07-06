@@ -20,8 +20,8 @@ export const BoardErrorView = () => {
       />
       <h3 className='mb-6 text-xl'>We&apos;re sorry, something went wrong.</h3>
       <p
-        className='text-md tablet:w-[486px] tablet:text-base mb-9 w-84 text-center text-black/70
-          dark:text-white/50'>
+        className='text-md tablet:w-[486px] tablet:text-base mb-9 w-84
+          text-center text-black/70 dark:text-white/50'>
         This might be due to a temporary glitch, a network issue, or a problem
         on our end. Please try again or refresh the page, and if the problem
         persists, contact our support team — we’re here to help.

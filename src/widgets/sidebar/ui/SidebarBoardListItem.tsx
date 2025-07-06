@@ -26,12 +26,12 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
     <RovingFocusGroupItem
       key={board.id}
       className={cn(
-        `focus-visible:styled-outline violet:text-white/50 tablet:pl-6 flex min-h-[61px]
-        w-full cursor-pointer items-center justify-between pl-3.5 text-black/50
-        dark:text-white/50`,
+        `focus-visible:styled-outline violet:text-white/50 tablet:pl-6 flex
+        min-h-[61px] w-full cursor-pointer items-center justify-between pl-3.5
+        text-black/50 dark:text-white/50`,
         boardId === board.id &&
-          `bg-white-muted violet:bg-white/50 violet:text-white dark:bg-black-muted
-          text-black dark:text-white`
+          `bg-white-muted violet:bg-white/50 violet:text-white
+          dark:bg-black-muted text-black dark:text-white`
       )}
       onKeyDown={e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -44,7 +44,9 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
           name={board.icon}
           className='size-4.5'
         />
-        <p className='tablet:w-[122px] w-[105px] truncate text-left whitespace-pre'>
+        <p
+          className='tablet:w-[122px] w-[105px] truncate text-left
+            whitespace-pre'>
           {board?.title}
         </p>
       </div>

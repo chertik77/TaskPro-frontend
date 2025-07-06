@@ -37,13 +37,14 @@ export const EditAvatar = ({
         onClick={() => ref.current?.click()}
         style={{ backgroundImage: avatar ? `url(${avatar})` : undefined }}
         className={cn(
-          `focus-visible:styled-outline relative mx-auto mb-6 block size-[68px] rounded-xl
-          bg-cover bg-center`,
+          `focus-visible:styled-outline relative mx-auto mb-6 block size-[68px]
+          rounded-xl bg-cover bg-center`,
           isPending && 'cursor-not-allowed'
         )}>
         <div
-          className='bg-brand violet:bg-white-gray absolute -bottom-3 left-[22px] flex size-6
-            items-center justify-center rounded-lg text-black'>
+          className='bg-brand violet:bg-white-gray absolute -bottom-3
+            left-[22px] flex size-6 items-center justify-center rounded-lg
+            text-black'>
           <Icon
             name='plus'
             className='size-5 stroke-none'

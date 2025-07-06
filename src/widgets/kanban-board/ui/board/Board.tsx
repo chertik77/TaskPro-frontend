@@ -44,8 +44,8 @@ export const Board = () => {
 
   return (
     <ScrollArea.Root
-      className='tablet:pt-[26px] desktop:pt-2.5 flex flex-col overflow-hidden bg-cover bg-center
-        pt-3.5'
+      className='tablet:pt-[26px] desktop:pt-2.5 flex flex-col overflow-hidden
+        bg-cover bg-center pt-3.5'
       style={{
         backgroundImage: backgroundURL ? `url(${backgroundURL})` : undefined
       }}>

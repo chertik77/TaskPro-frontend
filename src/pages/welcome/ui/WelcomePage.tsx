@@ -18,7 +18,9 @@ export const WelcomePage = () => (
       />
       <h1 className='tablet:text-3xl text-2xl text-black'>Task Pro</h1>
     </div>
-    <p className='tablet:w-[473px] mt-6 mb-8 w-84 text-center text-base text-black'>
+    <p
+      className='tablet:w-[473px] mt-6 mb-8 w-84 text-center text-base
+        text-black'>
       Supercharge your productivity and take control of your tasks with Task Pro
       - Don&apos;t wait, start achieving your goals now!
     </p>

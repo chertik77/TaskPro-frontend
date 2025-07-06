@@ -17,7 +17,9 @@ export const MemoizedCard = memo(({ card }: MemoizedCardProps) => (
     <Card.PriorityIndicator />
     <Card.Title />
     <Card.Description />
-    <div className='flex items-end border-t border-black/10 pt-3.5 dark:border-white/10'>
+    <div
+      className='flex items-end border-t border-black/10 pt-3.5
+        dark:border-white/10'>
       <Card.Priority />
       <Card.Deadline />
       <div className='ml-auto flex items-center gap-3'>

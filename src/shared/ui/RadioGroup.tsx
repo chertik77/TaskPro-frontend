@@ -33,8 +33,8 @@ const RadioGroupItem = ({
     {...props}>
     <RadioGroupPrimitive.Indicator
       className={cn(
-        `flex justify-center rounded-full after:size-3 after:rounded-full after:border-2
-        after:border-white dark:after:border-black`,
+        `flex justify-center rounded-full after:size-3 after:rounded-full
+        after:border-2 after:border-white dark:after:border-black`,
         indicatorClassname
       )}
     />

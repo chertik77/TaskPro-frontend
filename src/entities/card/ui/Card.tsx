@@ -40,8 +40,8 @@ const CardProvider = ({
     <CardContext value={value}>
       <div
         className={cn(
-          `relative min-h-[154px] overflow-hidden rounded-lg bg-white py-3.5 pr-5 pl-6
-          dark:bg-black`,
+          `relative min-h-[154px] overflow-hidden rounded-lg bg-white py-3.5
+          pr-5 pl-6 dark:bg-black`,
           className
         )}
         {...props}>
@@ -156,8 +156,9 @@ const CardActionButton = ({
     <Comp
       type='button'
       className={cn(
-        `focus-visible:styled-outline hocus:text-black dark:hocus:text-white-soft
-        dark:text-white-soft/50 text-black/50 [&_svg]:size-4`,
+        `focus-visible:styled-outline hocus:text-black
+        dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
+        [&_svg]:size-4`,
         className
       )}
       ref={ref}

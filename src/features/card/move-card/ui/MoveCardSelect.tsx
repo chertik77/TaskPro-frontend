@@ -29,8 +29,8 @@ export const MoveCardSelect = memo(
         onValueChange={v => moveCard({ cardId: cardId, newColumnId: v })}
         disabled={columns && columns.length <= 1}>
         <SelectTrigger
-          className='hocus:text-black dark:hocus:text-white text-black/50 disabled:hidden
-            dark:text-white/50'>
+          className='hocus:text-black dark:hocus:text-white text-black/50
+            disabled:hidden dark:text-white/50'>
           <Icon
             name='arrow-circle'
             className='size-4'

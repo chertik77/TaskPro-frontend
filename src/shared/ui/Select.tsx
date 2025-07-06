@@ -40,8 +40,9 @@ const SelectContent = ({
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        `fade-zoom border-brand bg-white-soft shadow-main violet:border-white-gray
-        dark:bg-black-deep dark:border-brand/50 rounded-lg border p-4.5`,
+        `fade-zoom border-brand bg-white-soft shadow-main
+        violet:border-white-gray dark:bg-black-deep dark:border-brand/50
+        rounded-lg border p-4.5`,
         className
       )}
       sideOffset={sideOffset}
@@ -61,7 +62,8 @@ const SelectItem = ({
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      `data-[state=checked]:text-brand violet:data-[state=checked]:text-brand-violet
+      `data-[state=checked]:text-brand
+      violet:data-[state=checked]:text-brand-violet
       data-[highlighted]:text-brand violet:data-[highlighted]:text-brand-violet
       hocus:text-brand violet:hocus:text-brand-violet cursor-pointer text-base
       outline-none dark:text-white/30`,

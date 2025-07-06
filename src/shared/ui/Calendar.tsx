@@ -17,8 +17,8 @@ export const Calendar = ({
     fixedWeeks
     autoFocus
     className={cn(
-      `border-brand violet:border-brand-violet dark:bg-black-muted relative rounded-lg
-      border bg-white p-4.5`,
+      `border-brand violet:border-brand-violet dark:bg-black-muted relative
+      rounded-lg border bg-white p-4.5`,
       className
     )}
     classNames={{

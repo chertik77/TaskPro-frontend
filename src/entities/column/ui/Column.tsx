@@ -149,8 +149,9 @@ const ColumnActionButton = ({
     <Comp
       type='button'
       className={cn(
-        `focus-visible:styled-outline hocus:text-black dark:hocus:text-white-soft
-        dark:text-white-soft/50 text-black/50 [&_svg]:size-4`,
+        `focus-visible:styled-outline hocus:text-black
+        dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
+        [&_svg]:size-4`,
         className
       )}
       ref={ref}

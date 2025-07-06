@@ -7,8 +7,8 @@ import {
 
 export const Header = () => (
   <header
-    className='bg-white-soft flex min-h-[60px] items-center justify-between px-5 py-3.5
-      dark:bg-black'>
+    className='bg-white-soft flex min-h-[60px] items-center justify-between px-5
+      py-3.5 dark:bg-black'>
     <ToggleSidebarTrigger />
     <ToggleMobileMenuTrigger />
     <div className='flex items-center gap-3.5'>

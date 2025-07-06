@@ -35,7 +35,8 @@ export const MemoizedColumn = memo(
 
     return (
       <Column column={column}>
-        <Column.Header className='mb-3.5 flex items-center justify-between gap-4'>
+        <Column.Header
+          className='mb-3.5 flex items-center justify-between gap-4'>
           <div className='flex max-w-[190px] items-center gap-3'>
             <Column.DragActivator
               className='shrink-0'

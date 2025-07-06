@@ -18,16 +18,16 @@ const DialogContent = ({
   <DialogPrimitive.Portal>
     <DialogPrimitive.Overlay
       className='data-[state=open]:animate-modal-overlay-in
-        data-[state=closed]:animate-modal-overlay-out bg-black-overlay fixed inset-0
-        z-50 backdrop-blur-md backdrop-saturate-150'
+        data-[state=closed]:animate-modal-overlay-out bg-black-overlay fixed
+        inset-0 z-50 backdrop-blur-md backdrop-saturate-150'
     />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
         `bg-white-soft data-[state=open]:animate-modal-in
-        data-[state=closed]:animate-modal-out tablet:w-[350px] dark:border-brand/50
-        fixed top-1/2 left-1/2 z-50 w-84 -translate-x-1/2 -translate-y-1/2 rounded-lg
-        p-6 dark:border dark:bg-black`,
+        data-[state=closed]:animate-modal-out tablet:w-[350px]
+        dark:border-brand/50 fixed top-1/2 left-1/2 z-50 w-84 -translate-x-1/2
+        -translate-y-1/2 rounded-lg p-6 dark:border dark:bg-black`,
         className
       )}
       {...props}>

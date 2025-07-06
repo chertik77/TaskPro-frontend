@@ -42,7 +42,8 @@ export const ThemeSelect = () => {
             <SelectItem
               key={theme}
               disabled={theme === currentTheme}
-              className='data-disabled:cursor-not-allowed data-[highlighted]:underline'
+              className='data-disabled:cursor-not-allowed
+                data-[highlighted]:underline'
               value={theme}>
               <SelectItemText>
                 {theme.charAt(0).toUpperCase() + theme.slice(1)}

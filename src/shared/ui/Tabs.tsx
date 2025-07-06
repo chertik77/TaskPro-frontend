@@ -30,7 +30,8 @@ const TabsTrigger = ({
 }: ComponentProps<typeof TabsPrimitive.Trigger>) => (
   <TabsPrimitive.Trigger
     className={cn(
-      'focus-visible:styled-outline text-white/30 data-[state=active]:text-white',
+      `focus-visible:styled-outline text-white/30
+      data-[state=active]:text-white`,
       className
     )}
     {...props}
