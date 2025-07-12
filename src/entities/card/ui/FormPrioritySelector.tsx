@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib'
 import { FormControl, FormItem, RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { CARD_PRIORITIES } from '../config/priority'
-import { getPriorityColor } from '../lib/priority-colors'
+import { getCardPriorityColor } from '../lib/priority-colors'
 
 type FormPrioritySelectorProps<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>
@@ -22,8 +22,8 @@ export const FormPrioritySelector = <T extends FieldValues>({
           <FormControl>
             <RadioGroupItem
               value={priority}
-              indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
-              className={getPriorityColor(priority)}
+              indicatorClassname={cn(`after:${getCardPriorityColor(priority)}`)}
+              className={getCardPriorityColor(priority)}
             />
           </FormControl>
         </FormItem>

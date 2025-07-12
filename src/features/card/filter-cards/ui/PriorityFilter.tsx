@@ -1,4 +1,4 @@
-import { CARD_PRIORITIES, getPriorityColor } from '@/entities/card'
+import { CARD_PRIORITIES, getCardPriorityColor } from '@/entities/card'
 
 import { cn } from '@/shared/lib'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
@@ -21,8 +21,8 @@ export const PriorityFilter = () => {
             dark:has-[[data-state=checked]]:text-white'
           key={priority}>
           <RadioGroupItem
-            className={getPriorityColor(priority)}
-            indicatorClassname={cn(`after:${getPriorityColor(priority)}`)}
+            className={getCardPriorityColor(priority)}
+            indicatorClassname={cn(`after:${getCardPriorityColor(priority)}`)}
             value={priority}
           />
           {priority}

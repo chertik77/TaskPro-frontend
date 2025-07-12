@@ -11,7 +11,7 @@ import {
   PopoverTrigger
 } from '@/shared/ui'
 
-import { formatTodayDate } from '../lib/format-today-date'
+import { formatDateWithTodayCheck } from '../lib/format-today-date'
 
 type FormDeadlinePickerProps<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>
@@ -32,7 +32,7 @@ export const FormDeadlinePicker = <T extends FieldValues>({
             type='button'
             className='focus-visible:styled-outline text-brand
               violet:text-brand-violet mb-10 flex items-center gap-1'>
-            {formatTodayDate(field.value)}
+            {formatDateWithTodayCheck(field.value)}
             <Icon
               name='chevron-down'
               className='size-4.5'

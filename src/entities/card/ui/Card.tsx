@@ -8,7 +8,7 @@ import { format, isToday } from 'date-fns'
 import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
-import { getPriorityColor } from '../lib/priority-colors'
+import { getCardPriorityColor } from '../lib/priority-colors'
 
 type CardContext = {
   card: CardSchema
@@ -61,7 +61,7 @@ const CardPriorityIndicator = ({
     <span
       className={cn(
         'absolute top-0 left-0 h-full w-1 rounded-l',
-        getPriorityColor(card.priority),
+        getCardPriorityColor(card.priority),
         className
       )}
       {...props}
@@ -105,7 +105,10 @@ const CardPriority = ({ className }: { className?: string }) => {
       <p className='mb-1 text-xs text-black/50 dark:text-white/50'>Priority</p>
       <div className='flex items-center gap-1'>
         <div
-          className={cn('size-3 rounded-full', getPriorityColor(card.priority))}
+          className={cn(
+            'size-3 rounded-full',
+            getCardPriorityColor(card.priority)
+          )}
         />
         <p className='text-sm'>{card.priority}</p>
       </div>
