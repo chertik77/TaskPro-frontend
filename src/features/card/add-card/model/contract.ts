@@ -13,8 +13,8 @@ export const AddCardSchema = v.object({
     v.trim(),
     v.minLength(3, 'Please enter at least 3 characters.')
   ),
-  priority: v.picklist(CARD_PRIORITIES),
-  deadline: v.date()
+  priority: v.fallback(v.picklist(CARD_PRIORITIES), 'Without'),
+  deadline: v.fallback(v.date(), () => new Date())
 })
 
 export type AddCardSchema = v.InferOutput<typeof AddCardSchema>

@@ -1,11 +1,4 @@
-import type { Theme } from '@/shared/config'
-
-type BoardImage = {
-  id: string
-  icon: string | Record<Theme, string>
-}
-
-export const BOARD_BG_IMAGES: BoardImage[] = [
+export const BOARD_BG_IMAGES = [
   {
     id: 'default',
     icon: {
@@ -76,4 +69,6 @@ export const BOARD_BG_IMAGES: BoardImage[] = [
     id: 'northern-lights',
     icon: 'https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102068/TaskPro/board_bg_images/bg_icons/northern_lights.png'
   }
-]
+] as const
+
+export const BOARD_BG_IMAGES_IDS = BOARD_BG_IMAGES.map(i => i.id)
