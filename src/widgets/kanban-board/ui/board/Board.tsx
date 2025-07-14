@@ -23,7 +23,8 @@ export const Board = () => {
   const {
     data: board,
     isPending,
-    isError
+    isError,
+    error
   } = useQuery({
     ...boardQueries.board(boardId),
     retry: 1
@@ -38,7 +39,7 @@ export const Board = () => {
       </div>
     )
 
-  if (isError) return <BoardErrorView />
+  if (isError) return <BoardErrorView error={error} />
 
   const backgroundURL = board.background.url
 
