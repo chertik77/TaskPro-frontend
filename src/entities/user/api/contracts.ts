@@ -16,7 +16,10 @@ export const EditUserDtoSchema = v.partial(
     email: v.pipe(v.string(), v.trim(), v.email()),
     password: v.pipe(v.string(), v.trim(), v.minLength(8), v.maxLength(64)),
     theme: v.picklist(THEMES),
-    avatar: v.instance(File)
+    avatar: v.pipe(
+      v.instance(File),
+      v.mimeType(['image/jpg', 'image/jpeg', 'image/png', 'image/webp'])
+    )
   })
 )
 

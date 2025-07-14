@@ -27,7 +27,7 @@ export const EditAvatar = ({
       <input
         type='file'
         ref={ref}
-        accept='image/jpeg, image/png'
+        accept='image/jpg, image/jpeg, image/png, image/webp'
         className='hidden'
         onChange={e => changeUserAvatar({ avatar: e.target.files?.[0] })}
       />
