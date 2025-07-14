@@ -54,7 +54,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
               <FormLabel>Icons</FormLabel>
-              <FormIconSelector field={field} />
+              <FormIconSelector {...field} />
               <FormMessage />
             </FormItem>
           )}
@@ -65,7 +65,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
               <FormLabel>Background</FormLabel>
-              <FormBgImageSelector field={field} />
+              <FormBgImageSelector {...field} />
               <FormMessage />
             </FormItem>
           )}

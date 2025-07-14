@@ -75,7 +75,7 @@ export const EditCardForm = ({
               <FormLabel className='text-md text-black/50 dark:text-white/50'>
                 Priority
               </FormLabel>
-              <FormPrioritySelector field={field} />
+              <FormPrioritySelector {...field} />
               <FormMessage />
             </FormItem>
           )}
@@ -88,7 +88,7 @@ export const EditCardForm = ({
               <FormLabel className='text-md text-black/50 dark:text-white/50'>
                 Deadline
               </FormLabel>
-              <FormDeadlinePicker field={field} />
+              <FormDeadlinePicker {...field} />
               <FormMessage />
             </FormItem>
           )}

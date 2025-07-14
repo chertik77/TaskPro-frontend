@@ -1,4 +1,4 @@
-import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
+import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 
 import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 
@@ -8,13 +8,10 @@ import { FormControl, FormItem } from '@/shared/ui'
 
 import { BOARD_BG_IMAGES } from '../config/bg-images'
 
-type FormBgImageSelectorProps<T extends FieldValues> = {
-  field: ControllerRenderProps<T, Path<T>>
-}
-
 export const FormBgImageSelector = <T extends FieldValues>({
-  field
-}: FormBgImageSelectorProps<T>) => {
+  value,
+  onChange
+}: ControllerRenderProps<T>) => {
   const {
     user: { theme }
   } = useSessionStore()
@@ -23,8 +20,8 @@ export const FormBgImageSelector = <T extends FieldValues>({
     <FormControl>
       <RadioGroup
         className='flex max-w-[280px] flex-wrap gap-2'
-        value={field.value}
-        onValueChange={field.onChange}>
+        value={value}
+        onValueChange={onChange}>
         {BOARD_BG_IMAGES.map(({ id, icon }) => (
           <FormItem key={id}>
             <FormControl>

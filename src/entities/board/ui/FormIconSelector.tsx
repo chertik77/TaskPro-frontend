@@ -1,4 +1,4 @@
-import type { ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
+import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 
 import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 
@@ -6,18 +6,15 @@ import { FormControl, FormItem, Icon } from '@/shared/ui'
 
 import { BOARD_ICONS } from '../config/icon'
 
-type FormIconSelectorProps<T extends FieldValues> = {
-  field: ControllerRenderProps<T, Path<T>>
-}
-
 export const FormIconSelector = <T extends FieldValues>({
-  field
-}: FormIconSelectorProps<T>) => (
+  value,
+  onChange
+}: ControllerRenderProps<T>) => (
   <FormControl>
     <RadioGroup
       className='flex items-center gap-2'
-      value={field.value}
-      onValueChange={field.onChange}>
+      value={value}
+      onValueChange={onChange}>
       {BOARD_ICONS.map(icon => (
         <FormItem key={icon}>
           <FormControl>
