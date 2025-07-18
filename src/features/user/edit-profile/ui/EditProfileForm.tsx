@@ -1,4 +1,4 @@
-import type { EditUserMutateFunction } from '../model/types'
+import type { Dispatch, SetStateAction } from 'react'
 
 import {
   Button,
@@ -12,18 +12,17 @@ import {
   PasswordInput
 } from '@/shared/ui'
 
+import { useEditProfile } from '../api/useEditProfile'
 import { useEditProfileForm } from '../lib/useEditProfileForm'
 
 type EditProfileFormProps = {
-  editProfile: EditUserMutateFunction
-  isPending: boolean
+  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const EditProfileForm = ({
-  editProfile,
-  isPending
-}: EditProfileFormProps) => {
+export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
   const { form, isFormReadyForSubmit } = useEditProfileForm()
+
+  const { mutate: editProfile, isPending } = useEditProfile(setIsDialogOpen)
 
   return (
     <Form {...form}>

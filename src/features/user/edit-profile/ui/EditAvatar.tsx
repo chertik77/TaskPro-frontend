@@ -1,26 +1,19 @@
-import type { EditUserMutateFunction } from '../model/types'
-
 import { useRef } from 'react'
 
 import { useSessionStore } from '@/entities/session'
 
-import { cn } from '@/shared/lib'
-import { Icon } from '@/shared/ui'
+import { Icon, Loader } from '@/shared/ui'
 
-type EditAvatarProps = {
-  changeUserAvatar: EditUserMutateFunction
-  isPending: boolean
-}
+import { useEditProfile } from '../api/useEditProfile'
 
-export const EditAvatar = ({
-  changeUserAvatar,
-  isPending
-}: EditAvatarProps) => {
+export const EditAvatar = () => {
   const {
     user: { avatar }
   } = useSessionStore()
 
   const ref = useRef<HTMLInputElement>(null)
+
+  const { mutate: changeAvatar, isPending } = useEditProfile()
 
   return (
     <>
@@ -29,28 +22,37 @@ export const EditAvatar = ({
         ref={ref}
         accept='image/jpg, image/jpeg, image/png, image/webp'
         className='hidden'
-        onChange={e => changeUserAvatar({ avatar: e.target.files?.[0] })}
+        onChange={e => changeAvatar({ avatar: e.target.files?.[0] })}
       />
-      <button
-        type='button'
-        disabled={isPending}
-        onClick={() => ref.current?.click()}
-        style={{ backgroundImage: avatar ? `url(${avatar})` : undefined }}
-        className={cn(
-          `focus-visible:styled-outline relative mx-auto mb-6 block size-[68px]
-          rounded-xl bg-cover bg-center`,
-          isPending && 'cursor-not-allowed'
-        )}>
+      {isPending ? (
         <div
-          className='bg-brand violet:bg-white-gray absolute -bottom-3
-            left-[22px] flex size-6 items-center justify-center rounded-lg
-            text-black'>
-          <Icon
-            name='plus'
-            className='size-5 stroke-none'
-          />
+          className='bg-white-muted dark:bg-black-soft violet:bg-white-gray
+            relative mx-auto mb-6 flex size-[68px] items-center justify-center
+            rounded-xl'>
+          <Loader />
         </div>
-      </button>
+      ) : (
+        <button
+          type='button'
+          onClick={() => ref.current?.click()}
+          className='focus-visible:styled-outline relative mx-auto mb-6 block
+            size-[68px]'>
+          <img
+            src={avatar}
+            alt='Avatar'
+            className='rounded-xl'
+          />
+          <div
+            className='bg-brand violet:bg-white-gray absolute -bottom-3
+              left-[22px] flex size-6 items-center justify-center rounded-lg
+              text-black'>
+            <Icon
+              name='plus'
+              className='size-5 stroke-none'
+            />
+          </div>
+        </button>
+      )}
     </>
   )
 }

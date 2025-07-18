@@ -6,7 +6,7 @@ import { useSessionStore } from '@/entities/session'
 import { userService } from '@/entities/user'
 
 export const useEditProfile = (
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  setIsDialogOpen?: Dispatch<SetStateAction<boolean>>
 ) => {
   const { setUser } = useSessionStore()
 
@@ -20,7 +20,7 @@ export const useEditProfile = (
           : 'Failed to update profile. Please try again. If the problem persists, contact support.'
     },
     onSuccess(data) {
-      setIsDialogOpen(false)
+      setIsDialogOpen?.(false)
       setUser(data)
     }
   })
