@@ -3,17 +3,17 @@ import { queryOptions } from '@tanstack/react-query'
 import { boardService } from './service'
 
 export const boardQueries = {
-  boardsKey: () => ['boards'] as const,
-  boards: () =>
+  all: () => ['boards'],
+  lists: () => [...boardQueries.all(), 'list'],
+  list: () =>
     queryOptions({
-      queryKey: boardQueries.boardsKey(),
+      queryKey: boardQueries.lists(),
       queryFn: boardService.getAllBoards
     }),
-
-  boardKey: () => [...boardQueries.boardsKey(), 'board'] as const,
-  board: (id: string) =>
+  details: () => [...boardQueries.all(), 'detail'],
+  detail: (id: string) =>
     queryOptions({
-      queryKey: [...boardQueries.boardKey(), id],
+      queryKey: [...boardQueries.details(), id],
       queryFn: () => boardService.getBoardById({ boardId: id }),
       enabled: !!id
     })

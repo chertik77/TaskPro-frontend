@@ -13,7 +13,7 @@ export const useDeleteCard = () => {
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = boardQueries.board(boardId).queryKey
+  const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
     mutationKey: ['deleteCard'],

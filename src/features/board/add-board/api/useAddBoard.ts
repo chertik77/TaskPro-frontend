@@ -13,7 +13,7 @@ export const useAddBoard = (
   return useMutation({
     mutationFn: boardService.addBoard,
     meta: {
-      invalidates: [boardQueries.boardsKey()],
+      invalidates: [boardQueries.lists()],
       errorMessage:
         'An error occurred while creating the board. Please try again shortly.'
     },

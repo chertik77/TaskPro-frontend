@@ -15,7 +15,7 @@ export const useAddColumn = (
     mutationFn: (data: AddColumnSchema) =>
       columnService.addColumn({ boardId, ...data }),
     meta: {
-      invalidates: [boardQueries.boardKey()],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'An error occurred while creating the column. Please try again shortly.'
     },

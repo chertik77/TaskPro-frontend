@@ -23,16 +23,16 @@ export const useDeleteBoard = () => {
         'An error occurred while deleting the board. Please try again shortly.'
     },
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: boardQueries.boardsKey() })
+      await queryClient.cancelQueries({ queryKey: boardQueries.lists() })
 
-      const previousBoards = queryClient.getQueryData(boardQueries.boardsKey())
+      const previousBoards = queryClient.getQueryData(boardQueries.lists())
 
       const parsedPreviousBoards = parse(
         BoardContracts.BoardsSchema,
         previousBoards
       )
 
-      queryClient.setQueryData(boardQueries.boardsKey(), oldBoards => {
+      queryClient.setQueryData(boardQueries.lists(), oldBoards => {
         if (!oldBoards) return oldBoards
 
         const parsedOldBoards = parse(BoardContracts.BoardsSchema, oldBoards)
@@ -46,13 +46,10 @@ export const useDeleteBoard = () => {
       navigate({ to: '/dashboard', replace: true })
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(
-        boardQueries.boardsKey(),
-        context?.previousBoards
-      )
+      queryClient.setQueryData(boardQueries.lists(), context?.previousBoards)
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: boardQueries.boardsKey() })
+      queryClient.invalidateQueries({ queryKey: boardQueries.lists() })
     }
   })
 }

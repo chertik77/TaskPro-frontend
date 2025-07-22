@@ -18,7 +18,7 @@ export const useEditBoard = (
     mutationFn: (data: EditBoardSchema) =>
       boardService.editBoard({ boardId, ...data }),
     meta: {
-      invalidates: [boardQueries.boardsKey()],
+      invalidates: [boardQueries.lists()],
       errorMessage:
         'An error occurred while editing the board. Please try again shortly.'
     },

@@ -15,7 +15,7 @@ export const BoardErrorView = ({ error }: { error: AxiosError }) => {
   const isBoardNotFound = error.response?.status === 404
 
   const refetchBoard = () => {
-    queryClient.refetchQueries({ queryKey: boardQueries.boardKey() })
+    queryClient.refetchQueries({ queryKey: boardQueries.details() })
   }
 
   const handleGoToDashboard = () => {

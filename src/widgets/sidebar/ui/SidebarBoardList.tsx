@@ -8,7 +8,7 @@ import { Loader } from '@/shared/ui'
 import { SidebarBoardListItem } from './SidebarBoardListItem'
 
 export const SidebarBoardList = () => {
-  const { data: boards, isPending } = useQuery(boardQueries.boards())
+  const { data: boards, isPending } = useQuery(boardQueries.list())
 
   return isPending ? (
     <div

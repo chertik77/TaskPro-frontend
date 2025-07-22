@@ -11,7 +11,7 @@ export const useEditColumn = (
   useMutation({
     mutationFn: columnService.editColumn,
     meta: {
-      invalidates: [boardQueries.boardKey()],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'An error occurred while editing the column. Please try again shortly.'
     },

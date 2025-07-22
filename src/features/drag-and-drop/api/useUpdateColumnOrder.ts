@@ -12,7 +12,7 @@ export const useUpdateColumnOrder = () => {
     mutationFn: ({ ids }: Omit<ColumnDtoTypes.UpdateColumnDto, 'boardId'>) =>
       columnService.updateColumnOrder({ boardId, ids }),
     meta: {
-      invalidates: [boardQueries.boardKey()],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'Unexpected error during columns reordering. We apologize for the inconvenience. Please try again later.'
     }

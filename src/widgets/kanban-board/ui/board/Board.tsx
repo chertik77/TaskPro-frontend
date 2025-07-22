@@ -26,7 +26,7 @@ export const Board = () => {
     isError,
     error
   } = useQuery({
-    ...boardQueries.board(boardId),
+    ...boardQueries.detail(boardId),
     retry: 1
   })
 

@@ -14,7 +14,7 @@ export const useAddCard = (
     mutationFn: (data: AddCardSchema) =>
       cardService.addCard({ columnId, ...data }),
     meta: {
-      invalidates: [boardQueries.boardKey()],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'An error occurred while creating the task. Please try again shortly.'
     },

@@ -7,7 +7,7 @@ export const useUpdateCardOrder = () =>
   useMutation({
     mutationFn: cardService.updateCardOrder,
     meta: {
-      invalidates: [boardQueries.boardKey()],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'Unexpected error during cards reordering. We apologize for the inconvenience. Please try again later.'
     }

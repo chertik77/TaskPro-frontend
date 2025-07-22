@@ -16,7 +16,7 @@ export const useMoveCard = () => {
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = boardQueries.board(boardId).queryKey
+  const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
     mutationFn: cardService.moveCard,

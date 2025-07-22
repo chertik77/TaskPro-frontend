@@ -13,7 +13,7 @@ export const useDeleteColumn = () => {
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = boardQueries.board(boardId).queryKey
+  const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
     mutationFn: columnService.deleteColumn,

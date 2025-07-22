@@ -11,7 +11,7 @@ export const useEditCard = (
   useMutation({
     mutationFn: cardService.editCard,
     meta: {
-      invalidates: [boardQueries.boardKey()],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'An error occurred while editing the task. Please try again shortly.'
     },
