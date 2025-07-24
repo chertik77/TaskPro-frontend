@@ -16,7 +16,7 @@ const RootRoute = () => {
   attachInternalApiMemoryStorage({
     accessToken: tokens.accessToken,
     refreshToken: tokens.refreshToken,
-    getTokens: sessionService.getTokens,
+    refreshTokens: sessionService.refreshTokens,
     setTokens,
     logout
   })

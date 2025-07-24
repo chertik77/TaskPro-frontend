@@ -10,20 +10,22 @@
 
 import { Route as rootRouteImport } from './../../../app/routes/__root'
 import { Route as DashboardLayoutRouteImport } from './../../../app/routes/dashboard/layout'
-import { Route as authLayoutRouteImport } from './../../../app/routes/(auth)/layout'
+import { Route as AuthLayoutRouteImport } from './../../../app/routes/auth/layout'
 import { Route as IndexRouteImport } from './../../../app/routes/index'
 import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashboard/index'
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
-import { Route as authSignupRouteImport } from './../../../app/routes/(auth)/signup'
-import { Route as authSigninRouteImport } from './../../../app/routes/(auth)/signin'
+import { Route as AuthSignupRouteImport } from './../../../app/routes/auth/signup'
+import { Route as AuthSigninRouteImport } from './../../../app/routes/auth/signin'
+import { Route as AuthGoogleCallbackRouteImport } from './../../../app/routes/auth/google.callback'
 
 const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authLayoutRoute = authLayoutRouteImport.update({
-  id: '/(auth)',
+const AuthLayoutRoute = AuthLayoutRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -41,67 +43,87 @@ const DashboardBoardIdRoute = DashboardBoardIdRouteImport.update({
   path: '/$boardId',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
-const authSignupRoute = authSignupRouteImport.update({
+const AuthSignupRoute = AuthSignupRouteImport.update({
   id: '/signup',
   path: '/signup',
-  getParentRoute: () => authLayoutRoute,
+  getParentRoute: () => AuthLayoutRoute,
 } as any)
-const authSigninRoute = authSigninRouteImport.update({
+const AuthSigninRoute = AuthSigninRouteImport.update({
   id: '/signin',
   path: '/signin',
-  getParentRoute: () => authLayoutRoute,
+  getParentRoute: () => AuthLayoutRoute,
+} as any)
+const AuthGoogleCallbackRoute = AuthGoogleCallbackRouteImport.update({
+  id: '/google/callback',
+  path: '/google/callback',
+  getParentRoute: () => AuthLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof authLayoutRouteWithChildren
+  '/': typeof IndexRoute
+  '/auth': typeof AuthLayoutRouteWithChildren
   '/dashboard': typeof DashboardLayoutRouteWithChildren
-  '/signin': typeof authSigninRoute
-  '/signup': typeof authSignupRoute
+  '/auth/signin': typeof AuthSigninRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/auth/google/callback': typeof AuthGoogleCallbackRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof authLayoutRouteWithChildren
-  '/signin': typeof authSigninRoute
-  '/signup': typeof authSignupRoute
+  '/': typeof IndexRoute
+  '/auth': typeof AuthLayoutRouteWithChildren
+  '/auth/signin': typeof AuthSigninRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/auth/google/callback': typeof AuthGoogleCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/(auth)': typeof authLayoutRouteWithChildren
+  '/auth': typeof AuthLayoutRouteWithChildren
   '/dashboard': typeof DashboardLayoutRouteWithChildren
-  '/(auth)/signin': typeof authSigninRoute
-  '/(auth)/signup': typeof authSignupRoute
+  '/auth/signin': typeof AuthSigninRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/auth/google/callback': typeof AuthGoogleCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/dashboard'
-    | '/signin'
-    | '/signup'
+    | '/auth/signin'
+    | '/auth/signup'
     | '/dashboard/$boardId'
     | '/dashboard/'
+    | '/auth/google/callback'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/signin' | '/signup' | '/dashboard/$boardId' | '/dashboard'
+  to:
+    | '/'
+    | '/auth'
+    | '/auth/signin'
+    | '/auth/signup'
+    | '/dashboard/$boardId'
+    | '/dashboard'
+    | '/auth/google/callback'
   id:
     | '__root__'
     | '/'
-    | '/(auth)'
+    | '/auth'
     | '/dashboard'
-    | '/(auth)/signin'
-    | '/(auth)/signup'
+    | '/auth/signin'
+    | '/auth/signup'
     | '/dashboard/$boardId'
     | '/dashboard/'
+    | '/auth/google/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  authLayoutRoute: typeof authLayoutRouteWithChildren
+  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
   DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
 }
 
@@ -114,11 +136,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth)': {
-      id: '/(auth)'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof authLayoutRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -142,35 +164,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBoardIdRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
-    '/(auth)/signup': {
-      id: '/(auth)/signup'
+    '/auth/signup': {
+      id: '/auth/signup'
       path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof authSignupRouteImport
-      parentRoute: typeof authLayoutRoute
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof AuthLayoutRoute
     }
-    '/(auth)/signin': {
-      id: '/(auth)/signin'
+    '/auth/signin': {
+      id: '/auth/signin'
       path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof authSigninRouteImport
-      parentRoute: typeof authLayoutRoute
+      fullPath: '/auth/signin'
+      preLoaderRoute: typeof AuthSigninRouteImport
+      parentRoute: typeof AuthLayoutRoute
+    }
+    '/auth/google/callback': {
+      id: '/auth/google/callback'
+      path: '/google/callback'
+      fullPath: '/auth/google/callback'
+      preLoaderRoute: typeof AuthGoogleCallbackRouteImport
+      parentRoute: typeof AuthLayoutRoute
     }
   }
 }
 
-interface authLayoutRouteChildren {
-  authSigninRoute: typeof authSigninRoute
-  authSignupRoute: typeof authSignupRoute
+interface AuthLayoutRouteChildren {
+  AuthSigninRoute: typeof AuthSigninRoute
+  AuthSignupRoute: typeof AuthSignupRoute
+  AuthGoogleCallbackRoute: typeof AuthGoogleCallbackRoute
 }
 
-const authLayoutRouteChildren: authLayoutRouteChildren = {
-  authSigninRoute: authSigninRoute,
-  authSignupRoute: authSignupRoute,
+const AuthLayoutRouteChildren: AuthLayoutRouteChildren = {
+  AuthSigninRoute: AuthSigninRoute,
+  AuthSignupRoute: AuthSignupRoute,
+  AuthGoogleCallbackRoute: AuthGoogleCallbackRoute,
 }
 
-const authLayoutRouteWithChildren = authLayoutRoute._addFileChildren(
-  authLayoutRouteChildren,
+const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
+  AuthLayoutRouteChildren,
 )
 
 interface DashboardLayoutRouteChildren {
@@ -189,7 +220,7 @@ const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  authLayoutRoute: authLayoutRouteWithChildren,
+  AuthLayoutRoute: AuthLayoutRouteWithChildren,
   DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport

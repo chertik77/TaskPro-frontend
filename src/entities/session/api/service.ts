@@ -50,9 +50,9 @@ export const sessionService = {
   async signinWithGoogle(data: GoogleSigninDto) {
     const googleSigninDto = parse(GoogleSigninDtoSchema, data)
 
-    const response = await axiosInstance.post(
-      sessionApiEndpoints.google,
-      googleSigninDto
+    const response = await axiosInstance.get(
+      sessionApiEndpoints.googleCallback,
+      { params: googleSigninDto }
     )
 
     const parsedData = parse(SessionResponseDtoSchema, response.data)
@@ -60,11 +60,11 @@ export const sessionService = {
     return parsedData
   },
 
-  async getTokens(data: RefreshTokenDto) {
+  async refreshTokens(data: RefreshTokenDto) {
     const refreshTokenDto = parse(RefreshTokenDtoSchema, data)
 
     const response = await axiosInstance.post(
-      sessionApiEndpoints.tokens,
+      sessionApiEndpoints.refresh,
       refreshTokenDto
     )
 

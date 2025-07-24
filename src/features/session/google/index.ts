@@ -1,1 +1,2 @@
-export { GoogleSignin } from './ui/GoogleSignin'
+export { ContinueWithGoogleButton } from './ui/ContinueWithGoogleButton'
+export { useGoogleSignin } from './api/useGoogleSignin'

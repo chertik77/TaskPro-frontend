@@ -3,9 +3,10 @@ class SessionApiEndpoints {
 
   signup = `${this.baseUrl}/signup`
   signin = `${this.baseUrl}/signin`
-  tokens = `${this.baseUrl}/tokens`
+  refresh = `${this.baseUrl}/refresh`
   logout = `${this.baseUrl}/logout`
-  google = `${this.baseUrl}/google`
+  googleRedirect = `${this.baseUrl}/google/redirect`
+  googleCallback = `${this.baseUrl}/google/callback`
 }
 
 export const sessionApiEndpoints = new SessionApiEndpoints()

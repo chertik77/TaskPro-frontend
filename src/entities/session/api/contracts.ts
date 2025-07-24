@@ -13,11 +13,11 @@ export const SignupDtoSchema = v.object({
 })
 
 export const GoogleSigninDtoSchema = v.object({
-  code: v.string()
+  code: v.pipe(v.string(), v.minLength(1))
 })
 
 export const RefreshTokenDtoSchema = v.object({
-  refreshToken: v.string()
+  refreshToken: v.pipe(v.string(), v.minLength(1))
 })
 
 export const SessionResponseDtoSchema = v.object({

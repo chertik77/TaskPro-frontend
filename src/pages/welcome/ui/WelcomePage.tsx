@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { GoogleSignin } from '@/features/session/google'
+import { ContinueWithGoogleButton } from '@/features/session/google'
 
 import { Icon } from '@/shared/ui'
 
@@ -24,14 +24,14 @@ export const WelcomePage = () => (
       Supercharge your productivity and take control of your tasks with Task Pro
       - Don&apos;t wait, start achieving your goals now!
     </p>
-    <GoogleSignin />
+    <ContinueWithGoogleButton />
     <Link
-      to='/signup'
+      to='/auth/signup'
       className='mt-3.5 w-84 rounded-lg bg-black py-3.5 text-center text-white'>
       Registration
     </Link>
     <Link
-      to='/signin'
+      to='/auth/signin'
       className='focus-visible:styled-outline mt-3.5 text-black'>
       Log In
     </Link>
