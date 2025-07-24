@@ -9,7 +9,8 @@ export default defineConfig({
   plugins: [
     tanstackRouter({
       target: 'react',
-      generatedRouteTree: 'src/shared/lib/react-router/routeTree.gen.ts',
+      generatedRouteTree: 'src/shared/lib/router/routeTree.gen.ts',
+      routeToken: 'layout',
       routesDirectory: 'src/app/routes'
     }),
     react(),

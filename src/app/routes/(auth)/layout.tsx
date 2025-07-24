@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 import { AuthTabs } from '@/widgets/auth-tabs'
 
-export const Route = createFileRoute('/(auth)/_auth-layout')({
+export const Route = createFileRoute('/(auth)')({
   beforeLoad: ({ context: { session } }) => {
     if (session.isAuthenticated) throw redirect({ to: '/dashboard' })
   },

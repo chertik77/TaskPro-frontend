@@ -2,7 +2,7 @@ import { useParams } from '@tanstack/react-router'
 
 export const useGetParamBoardId = () => {
   const params = useParams({
-    from: '/(dashboard)/dashboard/$boardId',
+    from: '/dashboard/$boardId',
     shouldThrow: false
   })
 

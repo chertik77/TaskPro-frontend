@@ -4,7 +4,7 @@ type ParamKey = 'priority' | 'deadline'
 
 export const useCardFilters = () => {
   const { priority: priorityParam, deadline: deadlineParam } = useSearch({
-    from: '/(dashboard)/dashboard/$boardId'
+    from: '/dashboard/$boardId'
   })
 
   const navigate = useNavigate({ from: '/dashboard/$boardId' })
