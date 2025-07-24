@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate, useSearch } from '@tanstack/react-router'
-import { toast } from 'sonner'
 
 import { sessionService, useSessionStore } from '@/entities/session'
 
@@ -13,15 +12,16 @@ export const useGoogleSignin = () => {
 
   return useMutation({
     mutationFn: () => sessionService.signinWithGoogle({ code }),
+    meta: {
+      errorMessage:
+        'An error occurred during sign-in with Google. Please try again shortly.'
+    },
     onSuccess(data) {
       navigate({ to: '/dashboard' })
       authenticate(data)
     },
     onError() {
       navigate({ to: '/' })
-      toast.error(
-        'An error occurred during sign-in with Google. Please try again shortly.'
-      )
     }
   })
 }
