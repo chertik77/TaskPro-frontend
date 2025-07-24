@@ -5,7 +5,7 @@ class SessionApiEndpoints {
   signin = `${this.baseUrl}/signin`
   refresh = `${this.baseUrl}/refresh`
   logout = `${this.baseUrl}/logout`
-  googleRedirect = `${this.baseUrl}/google/redirect`
+  googleInitiate = `${this.baseUrl}/google/initiate`
   googleCallback = `${this.baseUrl}/google/callback`
 }
 
