@@ -40,7 +40,7 @@ export const EditAvatar = () => {
           <img
             src={avatar}
             alt='Avatar'
-            className='rounded-xl'
+            className='size-[inherit] rounded-xl object-cover'
           />
           <div
             className='bg-brand violet:bg-white-gray absolute -bottom-3
