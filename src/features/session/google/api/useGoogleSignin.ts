@@ -4,14 +4,14 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 import { sessionService, useSessionStore } from '@/entities/session'
 
 export const useGoogleSignin = () => {
-  const { code } = useSearch({ from: '/auth/google/callback' })
+  const { code, state } = useSearch({ from: '/auth/google/callback' })
 
   const { authenticate } = useSessionStore()
 
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: () => sessionService.signinWithGoogle({ code }),
+    mutationFn: () => sessionService.signinWithGoogle({ code, state }),
     meta: {
       errorMessage:
         'An error occurred during sign-in with Google. Please try again shortly.'

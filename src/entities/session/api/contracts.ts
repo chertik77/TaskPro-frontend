@@ -17,7 +17,8 @@ export const InitiateGoogleResponseDtoSchema = v.object({
 })
 
 export const GoogleSigninDtoSchema = v.object({
-  code: v.pipe(v.string(), v.minLength(1))
+  code: v.pipe(v.string(), v.minLength(1)),
+  state: v.pipe(v.string(), v.minLength(1))
 })
 
 export const RefreshTokenDtoSchema = v.object({
