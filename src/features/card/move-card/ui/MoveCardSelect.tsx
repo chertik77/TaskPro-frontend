@@ -26,7 +26,7 @@ export const MoveCardSelect = memo(
     return (
       <Select
         value={cardColumnId}
-        onValueChange={v => moveCard({ cardId: cardId, newColumnId: v })}
+        onValueChange={v => moveCard({ cardId: cardId, columnId: v })}
         disabled={columns && columns.length <= 1}>
         <SelectTrigger
           className='hocus:text-black dark:hocus:text-white text-black/50

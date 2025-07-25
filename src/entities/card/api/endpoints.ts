@@ -3,8 +3,6 @@ class CardApiEndpoints {
 
   byId = (cardId: string) => `${this.baseUrl}/${cardId}`
   columnById = (columnId: string) => `${this.baseUrl}/${columnId}`
-  newColumn = (cardId: string, newColumnId: string) =>
-    `${this.baseUrl}/${cardId}/${newColumnId}`
   order = (columnId: string) => `${this.columnById(columnId)}/order`
 
   get root() {

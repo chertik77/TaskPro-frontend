@@ -19,12 +19,12 @@ export const useMoveCard = () => {
   const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
-    mutationFn: cardService.moveCard,
+    mutationFn: cardService.editCard,
     meta: {
       errorMessage:
         'An error occurred while moving the task. Please try again shortly.'
     },
-    onMutate: async ({ cardId, newColumnId }) => {
+    onMutate: async ({ cardId, columnId }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)
@@ -48,7 +48,7 @@ export const useMoveCard = () => {
 
         const finalColumns = addMovedCardToColumn(
           updatedColumns,
-          newColumnId,
+          columnId!,
           movedCard!
         )
 
