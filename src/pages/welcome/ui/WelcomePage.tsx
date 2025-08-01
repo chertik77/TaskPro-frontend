@@ -27,11 +27,13 @@ export const WelcomePage = () => (
     <ContinueWithGoogleButton />
     <Link
       to='/auth/signup'
+      preload={false}
       className='mt-3.5 w-84 rounded-lg bg-black py-3.5 text-center text-white'>
       Registration
     </Link>
     <Link
       to='/auth/signin'
+      preload={false}
       className='focus-visible:styled-outline mt-3.5 text-black'>
       Log In
     </Link>

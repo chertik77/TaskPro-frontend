@@ -2,7 +2,7 @@ import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 
 import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 
-import { useSessionStore } from '@/entities/session/@x/board'
+import { useMe } from '@/entities/user/@x/board'
 
 import { FormControl, FormItem } from '@/shared/ui'
 
@@ -12,9 +12,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
   value,
   onChange
 }: ControllerRenderProps<T>) => {
-  const {
-    user: { theme }
-  } = useSessionStore()
+  const { theme } = useMe()
 
   return (
     <FormControl>

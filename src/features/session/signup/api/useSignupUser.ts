@@ -1,13 +1,14 @@
 import type { UseFormReset } from 'react-hook-form'
 import type { SignupSchema } from '../model/contract'
 
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionService, useSessionStore } from '@/entities/session'
+import { sessionService } from '@/entities/session'
+import { userQueries } from '@/entities/user'
 
 export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
-  const { authenticate } = useSessionStore()
+  const queryClient = useQueryClient()
 
   const navigate = useNavigate()
 
@@ -19,10 +20,10 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
           ? 'An account with this email address already exists. Please sign in or use a different email.'
           : 'An error occurred during sign-up. Our technical team has been notified. Please try again shortly.'
     },
-    onSuccess(data) {
+    onSuccess({ user }) {
       reset()
+      queryClient.setQueryData(userQueries.current(), user)
       navigate({ to: '/dashboard' })
-      authenticate(data)
     }
   })
 }
