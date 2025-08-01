@@ -1,6 +1,6 @@
 import type { InferOutput } from 'valibot'
 import type {
-  GoogleIntiateResponseDtoSchema,
+  GoogleInitiateResponseDtoSchema,
   SessionResponseDtoSchema,
   SigninDtoSchema,
   SignupDtoSchema
@@ -9,6 +9,6 @@ import type {
 export type SessionResponseDto = InferOutput<typeof SessionResponseDtoSchema>
 export type SigninDto = InferOutput<typeof SigninDtoSchema>
 export type SignupDto = InferOutput<typeof SignupDtoSchema>
-export type GoogleIntiateResponseDto = InferOutput<
-  typeof GoogleIntiateResponseDtoSchema
+export type GoogleInitiateResponseDto = InferOutput<
+  typeof GoogleInitiateResponseDtoSchema
 >

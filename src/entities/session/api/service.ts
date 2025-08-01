@@ -5,7 +5,7 @@ import { parse } from 'valibot'
 import { axiosInstance } from '@/shared/api'
 
 import {
-  GoogleIntiateResponseDtoSchema,
+  GoogleInitiateResponseDtoSchema,
   SessionResponseDtoSchema,
   SigninDtoSchema,
   SignupDtoSchema
@@ -45,7 +45,7 @@ export const sessionService = {
       sessionApiEndpoints.googleInitiate
     )
 
-    const parsedData = parse(GoogleIntiateResponseDtoSchema, response.data)
+    const parsedData = parse(GoogleInitiateResponseDtoSchema, response.data)
 
     return parsedData
   },
