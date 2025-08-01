@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 
-import { useSessionStore } from '@/entities/session'
+import { useMe } from '@/entities/user'
 
 export const useMetaThemeColor = () => {
-  const {
-    user: { theme }
-  } = useSessionStore()
+  const { theme } = useMe()
 
   useEffect(() => {
     let themeColorMeta = document.querySelector(

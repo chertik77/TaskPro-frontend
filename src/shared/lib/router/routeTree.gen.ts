@@ -16,7 +16,6 @@ import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashbo
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
 import { Route as AuthSignupRouteImport } from './../../../app/routes/auth/signup'
 import { Route as AuthSigninRouteImport } from './../../../app/routes/auth/signin'
-import { Route as AuthGoogleCallbackRouteImport } from './../../../app/routes/auth/google.callback'
 
 const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
   id: '/dashboard',
@@ -53,11 +52,6 @@ const AuthSigninRoute = AuthSigninRouteImport.update({
   path: '/signin',
   getParentRoute: () => AuthLayoutRoute,
 } as any)
-const AuthGoogleCallbackRoute = AuthGoogleCallbackRouteImport.update({
-  id: '/google/callback',
-  path: '/google/callback',
-  getParentRoute: () => AuthLayoutRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +61,6 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/auth/google/callback': typeof AuthGoogleCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,7 +69,6 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/auth/google/callback': typeof AuthGoogleCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,7 +79,6 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/auth/google/callback': typeof AuthGoogleCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,7 +90,6 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/$boardId'
     | '/dashboard/'
-    | '/auth/google/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -108,7 +98,6 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/$boardId'
     | '/dashboard'
-    | '/auth/google/callback'
   id:
     | '__root__'
     | '/'
@@ -118,7 +107,6 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/$boardId'
     | '/dashboard/'
-    | '/auth/google/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -178,26 +166,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSigninRouteImport
       parentRoute: typeof AuthLayoutRoute
     }
-    '/auth/google/callback': {
-      id: '/auth/google/callback'
-      path: '/google/callback'
-      fullPath: '/auth/google/callback'
-      preLoaderRoute: typeof AuthGoogleCallbackRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
   }
 }
 
 interface AuthLayoutRouteChildren {
   AuthSigninRoute: typeof AuthSigninRoute
   AuthSignupRoute: typeof AuthSignupRoute
-  AuthGoogleCallbackRoute: typeof AuthGoogleCallbackRoute
 }
 
 const AuthLayoutRouteChildren: AuthLayoutRouteChildren = {
   AuthSigninRoute: AuthSigninRoute,
   AuthSignupRoute: AuthSignupRoute,
-  AuthGoogleCallbackRoute: AuthGoogleCallbackRoute,
 }
 
 const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(

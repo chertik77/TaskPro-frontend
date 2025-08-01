@@ -1,10 +1,7 @@
-import { useEffect } from 'react'
 import { Outlet } from '@tanstack/react-router'
 
 import { useMetaThemeColor } from '@/features/user/change-theme'
 import { useSidebarToggleShortcut } from '@/features/user/toggle-sidebar'
-
-import { sessionActions } from '@/entities/session'
 
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
@@ -18,10 +15,6 @@ export const DashboardPage = () => {
   useSidebarToggleShortcut()
 
   useMetaThemeColor()
-
-  useEffect(() => {
-    sessionActions.getCurrentUser()
-  }, [])
 
   return (
     <div

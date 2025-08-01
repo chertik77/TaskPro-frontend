@@ -28,8 +28,10 @@ export const userService = {
     return parsedData
   },
 
-  async getCurrentUser() {
-    const response = await axiosInstance.get(userApiEndpoints.me)
+  async getMe() {
+    const response = await axiosInstance.get(userApiEndpoints.me, {
+      skipAuthRefresh: true
+    })
 
     const parsedData = parse(UserDtoSchema, response.data)
 
