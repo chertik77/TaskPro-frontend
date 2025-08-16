@@ -1,20 +1,23 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
-import { LogoutBtn } from '@/features/session/logout'
 import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
+import { useSidebarToggleShortcut } from '../lib/useSidebarToggleShortcut'
 import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'
 import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
+import { SidebarLogoutBtn } from './SidebarLogoutBtn'
 import { SidebarMobileMenu } from './SidebarMobileMenu'
 
 export const Sidebar = () => {
   const { isOpen } = useSidebarStore()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
+
+  useSidebarToggleShortcut()
 
   return isTabletAndBelow ? (
     <SidebarMobileMenu />
@@ -32,7 +35,7 @@ export const Sidebar = () => {
           <SidebarBoardList />
           <div className='mt-auto px-6 pb-6'>
             <NeedHelpDialog />
-            <LogoutBtn />
+            <SidebarLogoutBtn />
           </div>
         </aside>
       </ScrollArea.Viewport>

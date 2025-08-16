@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router'
 
-import { ContinueWithGoogleButton } from '@/features/session/google'
-
 import { Icon } from '@/shared/ui'
+
+import { ContinueWithGoogleButton } from './ContinueWithGoogleButton'
 
 export const WelcomePage = () => (
   <div className='bg-soft-green flex h-dvh flex-col items-center justify-center'>

@@ -6,7 +6,6 @@ import {
   DialogTitle
 } from '@radix-ui/react-dialog'
 
-import { LogoutBtn } from '@/features/session/logout'
 import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { useSidebarStore } from '@/shared/store'
@@ -14,6 +13,7 @@ import { useSidebarStore } from '@/shared/store'
 import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'
 import { SidebarBoardList } from './SidebarBoardList'
 import { SidebarLogo } from './SidebarLogo'
+import { SidebarLogoutBtn } from './SidebarLogoutBtn'
 
 export const SidebarMobileMenu = () => {
   const { isOpenMobile, setIsOpenMobile } = useSidebarStore()
@@ -41,7 +41,7 @@ export const SidebarMobileMenu = () => {
           <SidebarBoardList />
           <div className='tablet:px-6 mt-auto px-3.5'>
             <NeedHelpDialog />
-            <LogoutBtn />
+            <SidebarLogoutBtn />
           </div>
         </DialogContent>
       </DialogPortal>

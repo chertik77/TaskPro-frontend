@@ -14,7 +14,7 @@ import {
 import { useSignupUser } from '../api/useSignupUser'
 import { SignupSchema } from '../model/contract'
 
-export const SignupForm = () => {
+export const SignupPage = () => {
   const form = useAppForm(SignupSchema, {
     defaultValues: { name: '', email: '', password: '' }
   })
@@ -33,6 +33,7 @@ export const SignupForm = () => {
             <FormItem>
               <FormControl>
                 <Input
+                  autoFocus
                   autoComplete='name'
                   className='autofill:text-fill-white text-white'
                   placeholder='Enter your name'

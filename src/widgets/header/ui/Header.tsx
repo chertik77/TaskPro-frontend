@@ -1,9 +1,8 @@
 import { ThemeSelect } from '@/features/user/change-theme'
 import { EditProfileDialog } from '@/features/user/edit-profile'
-import {
-  ToggleMobileMenuTrigger,
-  ToggleSidebarTrigger
-} from '@/features/user/toggle-sidebar'
+
+import { ToggleMobileMenuTrigger } from './ToggleMobileMenuTrigger'
+import { ToggleSidebarTrigger } from './ToggleSidebarTrigger'
 
 export const Header = () => (
   <header
