@@ -1,11 +1,9 @@
-import { useSessionStore } from '@/entities/session'
+import { useMe } from '@/entities/user'
 
 import { Avatar, AvatarFallback, AvatarImage, DialogTrigger } from '@/shared/ui'
 
 export const EditProfileDialogTrigger = () => {
-  const {
-    user: { name, avatar }
-  } = useSessionStore()
+  const { name, avatar } = useMe()
 
   return (
     <DialogTrigger

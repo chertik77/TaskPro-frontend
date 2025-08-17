@@ -1,15 +1,13 @@
 import { useRef } from 'react'
 
-import { useSessionStore } from '@/entities/session'
+import { useMe } from '@/entities/user'
 
 import { Icon, Loader } from '@/shared/ui'
 
 import { useEditProfile } from '../api/useEditProfile'
 
 export const EditAvatar = () => {
-  const {
-    user: { avatar }
-  } = useSessionStore()
+  const { avatar } = useMe()
 
   const ref = useRef<HTMLInputElement>(null)
 

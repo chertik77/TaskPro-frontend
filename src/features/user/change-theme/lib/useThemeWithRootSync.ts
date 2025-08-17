@@ -1,13 +1,11 @@
 import { useEffect } from 'react'
 
-import { useSessionStore } from '@/entities/session'
+import { useMe } from '@/entities/user'
 
 import { DEFAULT_THEME } from '@/shared/config'
 
 export const useThemeWithRootSync = () => {
-  const {
-    user: { theme }
-  } = useSessionStore()
+  const { theme } = useMe()
 
   useEffect(() => {
     const root = window.document.documentElement
