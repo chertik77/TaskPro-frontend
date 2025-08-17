@@ -1,11 +1,5 @@
-type Tokens = {
-  accessToken: string
-  refreshToken: string
-}
-
-type ApiMemoryStorage = Tokens & {
-  refreshTokens: (data: Pick<Tokens, 'refreshToken'>) => Promise<Tokens>
-  setTokens: (data: Tokens) => void
+type ApiMemoryStorage = {
+  refreshTokens: () => void
   logout: () => void
 }
 
@@ -15,22 +9,10 @@ export const attachInternalApiMemoryStorage = (data: ApiMemoryStorage) => {
   __internalMemoryStorage = () => data
 }
 
-export const getApiAccessToken = () => {
-  const { accessToken } = __internalMemoryStorage()
+export const refreshTokens = () => {
+  const { refreshTokens } = __internalMemoryStorage()
 
-  return accessToken
-}
-
-export const getRefreshedTokens = () => {
-  const { refreshTokens, refreshToken } = __internalMemoryStorage()
-
-  return refreshTokens({ refreshToken })
-}
-
-export const setTokens = (data: Tokens) => {
-  const { setTokens } = __internalMemoryStorage()
-
-  return setTokens(data)
+  return refreshTokens()
 }
 
 export const logUserOut = () => {

@@ -1,16 +1,19 @@
-import { RouterProvider as TanStackRouterProvider } from '@tanstack/react-router'
+import { useQueryClient } from '@tanstack/react-query'
+import { RouterProvider as TanstackRouterProvider } from '@tanstack/react-router'
 
-import { useSessionStore } from '@/entities/session'
+import { sessionService } from '@/entities/session'
+import { userQueries } from '@/entities/user'
 
+import { attachInternalApiMemoryStorage } from '@/shared/api'
 import { router } from '@/shared/lib'
 
 export const RouterProvider = () => {
-  const session = useSessionStore()
+  const queryClient = useQueryClient()
 
-  return (
-    <TanStackRouterProvider
-      router={router}
-      context={{ session }}
-    />
-  )
+  attachInternalApiMemoryStorage({
+    refreshTokens: sessionService.refreshTokens,
+    logout: () => queryClient.resetQueries({ queryKey: userQueries.current() })
+  })
+
+  return <TanstackRouterProvider router={router} />
 }

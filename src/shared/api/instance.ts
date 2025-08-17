@@ -2,25 +2,11 @@ import axios, { AxiosError } from 'axios'
 
 import { env } from '../config'
 import { router } from '../lib'
-import {
-  getApiAccessToken,
-  getRefreshedTokens,
-  logUserOut,
-  setTokens
-} from './apiMemoryStorage'
+import { logUserOut, refreshTokens } from './apiMemoryStorage'
 
 export const axiosInstance = axios.create({
-  baseURL: env.VITE_API_BASE_URL
-})
-
-axiosInstance.interceptors.request.use(config => {
-  const accessToken = getApiAccessToken()
-
-  if (config?.headers && accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
-  }
-
-  return config
+  baseURL: env.VITE_API_BASE_URL,
+  withCredentials: true
 })
 
 axiosInstance.interceptors.response.use(
@@ -36,9 +22,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
 
       try {
-        const tokens = await getRefreshedTokens()
-
-        setTokens(tokens)
+        refreshTokens()
 
         return axiosInstance(originalRequest)
       } catch (e) {

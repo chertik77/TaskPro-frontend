@@ -1,10 +1,11 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionService, useSessionStore } from '@/entities/session'
+import { sessionService } from '@/entities/session'
+import { userQueries } from '@/entities/user'
 
 export const useLogoutUser = () => {
-  const { logout } = useSessionStore()
+  const queryClient = useQueryClient()
 
   const navigate = useNavigate()
 
@@ -16,7 +17,7 @@ export const useLogoutUser = () => {
     },
     onSuccess() {
       navigate({ to: '/' })
-      logout()
+      queryClient.resetQueries({ queryKey: userQueries.current() })
     }
   })
 }

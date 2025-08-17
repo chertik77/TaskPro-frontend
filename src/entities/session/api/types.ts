@@ -1,20 +1,14 @@
 import type { InferOutput } from 'valibot'
 import type {
-  GoogleSigninDtoSchema,
   InitiateGoogleResponseDtoSchema,
-  RefreshTokenDtoSchema,
   SessionResponseDtoSchema,
   SigninDtoSchema,
-  SignupDtoSchema,
-  TokensDtoSchema
+  SignupDtoSchema
 } from './contracts'
 
 export type SessionResponseDto = InferOutput<typeof SessionResponseDtoSchema>
-export type TokensDto = InferOutput<typeof TokensDtoSchema>
 export type SigninDto = InferOutput<typeof SigninDtoSchema>
 export type SignupDto = InferOutput<typeof SignupDtoSchema>
-export type GoogleSigninDto = InferOutput<typeof GoogleSigninDtoSchema>
-export type RefreshTokenDto = InferOutput<typeof RefreshTokenDtoSchema>
 export type InitiateGoogleResponseDto = InferOutput<
   typeof InitiateGoogleResponseDtoSchema
 >
