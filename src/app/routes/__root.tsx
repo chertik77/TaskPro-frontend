@@ -1,35 +1,38 @@
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
+import type { QueryClient } from '@tanstack/react-query'
+
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import {
+  createRootRouteWithContext,
+  Outlet,
+  redirect
+} from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
-import { sessionService, useSessionStore } from '@/entities/session'
-
-import { attachInternalApiMemoryStorage } from '@/shared/api'
+import { userQueries } from '@/entities/user'
 
 type RouterContext = {
-  session: ReturnType<typeof useSessionStore>
+  queryClient: QueryClient
 }
 
-const RootRoute = () => {
-  const { tokens, setTokens, logout } = useSessionStore()
-
-  attachInternalApiMemoryStorage({
-    accessToken: tokens.accessToken,
-    refreshToken: tokens.refreshToken,
-    refreshTokens: sessionService.refreshTokens,
-    setTokens,
-    logout
-  })
-
-  return (
-    <>
-      <Analytics />
-      <SpeedInsights />
-      <Outlet />
-    </>
-  )
-}
+const RootRoute = () => (
+  <>
+    <Analytics />
+    <SpeedInsights />
+    <ReactQueryDevtools />
+    <Outlet />
+  </>
+)
 
 export const Route = createRootRouteWithContext<RouterContext>()({
+  beforeLoad: async ({ context: { queryClient } }) => {
+    try {
+      const user = await queryClient.fetchQuery(userQueries.me())
+
+      if (user) throw redirect({ to: '/dashboard' })
+    } catch {
+      return
+    }
+  },
   component: RootRoute
 })
