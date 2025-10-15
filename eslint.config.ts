@@ -5,16 +5,17 @@ import eslintPluginRouter from '@tanstack/eslint-plugin-router'
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import { defineConfig } from 'eslint/config'
 import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
-export default eslintTypescript.config(
+export default defineConfig(
   eslintPluginJs.configs.recommended,
   eslintTypescript.configs.recommended,
   eslintPluginJsxA11y.flatConfigs.strict,
   eslintPluginReact.configs.flat.recommended,
   eslintPluginReactModern.configs.recommended,
-  eslintPluginReactHooks.configs['recommended-latest'],
+  eslintPluginReactHooks.configs.flat.recommended,
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
   { ignores: ['**/vite-env.d.ts'] },

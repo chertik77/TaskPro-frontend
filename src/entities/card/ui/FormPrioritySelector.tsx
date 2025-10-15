@@ -13,15 +13,26 @@ export const FormPrioritySelector = <T extends FieldValues>({
   <FormControl>
     <RadioGroup
       value={value}
+      className='flex-col'
       onValueChange={onChange}>
-      {CARD_PRIORITIES.map(priority => (
+      {CARD_PRIORITIES.toReversed().map(priority => (
         <FormItem key={priority}>
           <FormControl>
-            <RadioGroupItem
-              value={priority}
-              indicatorClassname={cn(`after:${getCardPriorityColor(priority)}`)}
-              className={getCardPriorityColor(priority)}
-            />
+            <label
+              className='text-md hocus:text-black dark:hocus:text-white flex
+                cursor-pointer items-center gap-2 text-black/50
+                has-[[data-state=checked]]:text-black dark:text-white/50
+                dark:has-[[data-state=checked]]:text-white'
+              key={priority}>
+              <RadioGroupItem
+                value={priority}
+                indicatorClassname={cn(
+                  `after:${getCardPriorityColor(priority)}`
+                )}
+                className={getCardPriorityColor(priority)}
+              />
+              {priority}
+            </label>
           </FormControl>
         </FormItem>
       ))}
