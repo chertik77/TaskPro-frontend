@@ -2,7 +2,7 @@ import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 
 import { RadioGroup, RadioGroupItem } from '@radix-ui/react-radio-group'
 
-import { useMe } from '@/entities/user'
+import { useMe } from '@/entities/user/@x/board'
 
 import { FormControl, FormItem } from '@/shared/ui'
 

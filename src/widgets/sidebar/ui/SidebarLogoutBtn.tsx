@@ -4,7 +4,7 @@ import { Icon } from '@/shared/ui'
 import { useLogoutUser } from '../api/useLogoutUser'
 
 export const SidebarLogoutBtn = () => {
-  const { mutate: logoutUser, isPending } = useLogoutUser()
+  const { logoutUser, isPending } = useLogoutUser()
 
   const { setIsOpenMobile } = useSidebarStore()
 

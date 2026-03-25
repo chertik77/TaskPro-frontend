@@ -9,15 +9,19 @@ export const useLogoutUser = () => {
 
   const navigate = useNavigate()
 
-  return useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: sessionService.logout,
     meta: {
       errorMessage:
         'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
-    },
-    onSuccess() {
-      navigate({ to: '/' })
-      queryClient.resetQueries({ queryKey: userQueries.current() })
     }
   })
+
+  const logoutUser = () => {
+    navigate({ to: '/' })
+    queryClient.resetQueries({ queryKey: userQueries.current() })
+    mutate()
+  }
+
+  return { logoutUser, isPending }
 }

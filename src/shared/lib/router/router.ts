@@ -7,5 +7,6 @@ export const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   defaultPendingMinMs: 0,
+  defaultPendingMs: 0,
   context: { queryClient }
 })
