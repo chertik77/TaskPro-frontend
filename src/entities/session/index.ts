@@ -1,6 +1,3 @@
-export * as SessionTypes from './model/types'
 export * as SessionDtoTypes from './api/types'
-export * as SessionContracts from './model/contracts'
 export * as SessionDtoContracts from './api/contracts'
 export { sessionService } from './api/service'
-export { useSessionStore, getSessionStore, sessionActions } from './model/store'

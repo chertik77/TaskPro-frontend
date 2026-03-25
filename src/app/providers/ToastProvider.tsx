@@ -1,13 +1,11 @@
 import { Toaster } from 'sonner'
 
-import { useSessionStore } from '@/entities/session'
+import { useMe } from '@/entities/user'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/lib'
 
 export const ToastProvider = () => {
-  const {
-    user: { theme }
-  } = useSessionStore()
+  const user = useMe()
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -17,7 +15,7 @@ export const ToastProvider = () => {
       richColors
       closeButton
       duration={5000}
-      theme={theme === 'dark' ? 'dark' : 'light'}
+      theme={user?.theme === 'dark' ? 'dark' : 'light'}
       className='text-balance'
     />
   )

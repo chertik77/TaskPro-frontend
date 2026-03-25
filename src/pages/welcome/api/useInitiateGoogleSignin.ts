@@ -4,7 +4,7 @@ import { sessionService } from '@/entities/session'
 
 export const useInitiateGoogleSignin = () =>
   useMutation({
-    mutationFn: sessionService.initiateGoogleSignin,
+    mutationFn: sessionService.signinWithGoogle,
     onSuccess({ redirectUrl }) {
       window.location.href = redirectUrl
     }

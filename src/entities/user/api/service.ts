@@ -28,8 +28,13 @@ export const userService = {
     return parsedData
   },
 
-  async getCurrentUser() {
-    const response = await axiosInstance.get(userApiEndpoints.me)
+  async getMe() {
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    const response = await axiosInstance.get(userApiEndpoints.me, {
+      validateStatus: status => status < 500
+    })
+
+    if (response.status === 401) return null
 
     const parsedData = parse(UserDtoSchema, response.data)
 

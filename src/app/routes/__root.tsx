@@ -1,24 +1,25 @@
+import type { QueryClient } from '@tanstack/react-query'
+
+import { useQueryClient } from '@tanstack/react-query'
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
-import { sessionService, useSessionStore } from '@/entities/session'
+import { sessionService } from '@/entities/session'
+import { userQueries } from '@/entities/user'
 
 import { attachInternalApiMemoryStorage } from '@/shared/api'
 
 type RouterContext = {
-  session: ReturnType<typeof useSessionStore>
+  queryClient: QueryClient
 }
 
 const RootRoute = () => {
-  const { tokens, setTokens, logout } = useSessionStore()
+  const queryClient = useQueryClient()
 
   attachInternalApiMemoryStorage({
-    accessToken: tokens.accessToken,
-    refreshToken: tokens.refreshToken,
     refreshTokens: sessionService.refreshTokens,
-    setTokens,
-    logout
+    logout: () => queryClient.resetQueries({ queryKey: userQueries.current() })
   })
 
   return (
@@ -31,5 +32,8 @@ const RootRoute = () => {
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
-  component: RootRoute
+  component: RootRoute,
+  loader: async ({ context }) => {
+    await context.queryClient.fetchQuery(userQueries.me())
+  }
 })

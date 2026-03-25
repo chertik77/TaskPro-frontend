@@ -1,15 +1,13 @@
 import { useRef } from 'react'
 
-import { useSessionStore } from '@/entities/session'
+import { useMe } from '@/entities/user'
 
 import { Icon, Loader } from '@/shared/ui'
 
 import { useEditProfile } from '../api/useEditProfile'
 
 export const EditAvatar = () => {
-  const {
-    user: { avatar }
-  } = useSessionStore()
+  const user = useMe()
 
   const ref = useRef<HTMLInputElement>(null)
 
@@ -38,7 +36,7 @@ export const EditAvatar = () => {
           className='focus-visible:styled-outline relative mx-auto mb-6 block
             size-[68px]'>
           <img
-            src={avatar}
+            src={user?.avatar}
             alt='Avatar'
             className='size-[inherit] rounded-xl object-cover'
           />

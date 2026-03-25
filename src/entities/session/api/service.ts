@@ -1,22 +1,14 @@
-import type {
-  GoogleSigninDto,
-  RefreshTokenDto,
-  SigninDto,
-  SignupDto
-} from './types'
+import type { SigninDto, SignupDto } from './types'
 
 import { parse } from 'valibot'
 
 import { axiosInstance } from '@/shared/api'
 
 import {
-  GoogleSigninDtoSchema,
   InitiateGoogleResponseDtoSchema,
-  RefreshTokenDtoSchema,
   SessionResponseDtoSchema,
   SigninDtoSchema,
-  SignupDtoSchema,
-  TokensDtoSchema
+  SignupDtoSchema
 } from './contracts'
 import { sessionApiEndpoints } from './endpoints'
 
@@ -48,38 +40,18 @@ export const sessionService = {
     return parsedData
   },
 
-  async initiateGoogleSignin() {
-    const response = await axiosInstance.get(sessionApiEndpoints.googleInitiate)
+  async signinWithGoogle() {
+    const response = await axiosInstance.post(
+      sessionApiEndpoints.googleInitiate
+    )
 
     const parsedData = parse(InitiateGoogleResponseDtoSchema, response.data)
 
     return parsedData
   },
 
-  async signinWithGoogle(data: GoogleSigninDto) {
-    const googleSigninDto = parse(GoogleSigninDtoSchema, data)
-
-    const response = await axiosInstance.post(
-      sessionApiEndpoints.googleCallback,
-      googleSigninDto
-    )
-
-    const parsedData = parse(SessionResponseDtoSchema, response.data)
-
-    return parsedData
-  },
-
-  async refreshTokens(data: RefreshTokenDto) {
-    const refreshTokenDto = parse(RefreshTokenDtoSchema, data)
-
-    const response = await axiosInstance.post(
-      sessionApiEndpoints.refresh,
-      refreshTokenDto
-    )
-
-    const parsedData = parse(TokensDtoSchema, response.data)
-
-    return parsedData
+  async refreshTokens() {
+    await axiosInstance.post(sessionApiEndpoints.refresh)
   },
 
   async logout() {

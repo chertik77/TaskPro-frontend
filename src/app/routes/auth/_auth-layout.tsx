@@ -1,10 +1,14 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
+import { userQueries } from '@/entities/user'
+
 import { AuthNavigation } from '@/widgets/auth-navigation'
 
 export const Route = createFileRoute('/auth/_auth-layout')({
-  beforeLoad: ({ context: { session } }) => {
-    if (session.isAuthenticated) throw redirect({ to: '/dashboard' })
+  beforeLoad: async ({ context: { queryClient } }) => {
+    const isAuthenticated = await queryClient.ensureQueryData(userQueries.me())
+
+    if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },
   component: () => (
     <div className='bg-soft-green flex h-dvh items-center justify-center'>

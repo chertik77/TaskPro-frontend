@@ -1,9 +1,13 @@
 import { WelcomePage } from '@/pages/welcome'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
+import { userQueries } from '@/entities/user'
+
 export const Route = createFileRoute('/')({
-  beforeLoad: ({ context: { session } }) => {
-    if (session.isAuthenticated) throw redirect({ to: '/dashboard' })
+  beforeLoad: async ({ context: { queryClient } }) => {
+    const isAuthenticated = await queryClient.ensureQueryData(userQueries.me())
+
+    if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },
   component: WelcomePage
 })
