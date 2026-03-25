@@ -33,7 +33,7 @@ const RootRoute = () => {
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootRoute,
-  loader: async ({ context }) => {
-    await context.queryClient.fetchQuery(userQueries.me())
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(userQueries.me())
   }
 })

@@ -9,7 +9,7 @@ export const useLogoutUser = () => {
 
   const navigate = useNavigate()
 
-  const { mutate, isPending } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: sessionService.logout,
     meta: {
       errorMessage:
@@ -17,10 +17,11 @@ export const useLogoutUser = () => {
     }
   })
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
+    await queryClient.cancelQueries({ queryKey: userQueries.current() })
+    queryClient.setQueryData(userQueries.current(), null)
+    await mutateAsync()
     navigate({ to: '/' })
-    queryClient.resetQueries({ queryKey: userQueries.current() })
-    mutate()
   }
 
   return { logoutUser, isPending }
