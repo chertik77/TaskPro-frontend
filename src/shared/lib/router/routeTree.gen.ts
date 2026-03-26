@@ -15,7 +15,7 @@ import { Route as DashboardLayoutRouteImport } from './../../../app/routes/dashb
 import { Route as IndexRouteImport } from './../../../app/routes/index'
 import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashboard/index'
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
-import { Route as AuthPasskeyRouteImport } from './../../../app/routes/auth/passkey'
+import { Route as AuthCallbackRouteImport } from './../../../app/routes/auth/callback'
 import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
 import { Route as AuthAuthLayoutSigninRouteImport } from './../../../app/routes/auth/_auth-layout.signin'
@@ -47,9 +47,9 @@ const DashboardBoardIdRoute = DashboardBoardIdRouteImport.update({
   path: '/$boardId',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
-const AuthPasskeyRoute = AuthPasskeyRouteImport.update({
-  id: '/passkey',
-  path: '/passkey',
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/callback',
+  path: '/callback',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthAuthLayoutRoute = AuthAuthLayoutRouteImport.update({
@@ -71,7 +71,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/auth': typeof AuthAuthLayoutRouteWithChildren
-  '/auth/passkey': typeof AuthPasskeyRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/signin': typeof AuthAuthLayoutSigninRoute
@@ -80,7 +80,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthAuthLayoutRouteWithChildren
-  '/auth/passkey': typeof AuthPasskeyRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/auth/signin': typeof AuthAuthLayoutSigninRoute
@@ -92,7 +92,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/auth/_auth-layout': typeof AuthAuthLayoutRouteWithChildren
-  '/auth/passkey': typeof AuthPasskeyRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/_auth-layout/signin': typeof AuthAuthLayoutSigninRoute
@@ -104,7 +104,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/auth'
-    | '/auth/passkey'
+    | '/auth/callback'
     | '/dashboard/$boardId'
     | '/dashboard/'
     | '/auth/signin'
@@ -113,7 +113,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
-    | '/auth/passkey'
+    | '/auth/callback'
     | '/dashboard/$boardId'
     | '/dashboard'
     | '/auth/signin'
@@ -124,7 +124,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/auth'
     | '/auth/_auth-layout'
-    | '/auth/passkey'
+    | '/auth/callback'
     | '/dashboard/$boardId'
     | '/dashboard/'
     | '/auth/_auth-layout/signin'
@@ -174,11 +174,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBoardIdRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
-    '/auth/passkey': {
-      id: '/auth/passkey'
-      path: '/passkey'
-      fullPath: '/auth/passkey'
-      preLoaderRoute: typeof AuthPasskeyRouteImport
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof AuthRoute
     }
     '/auth/_auth-layout': {
@@ -235,12 +235,12 @@ const AuthAuthLayoutRouteWithChildren = AuthAuthLayoutRoute._addFileChildren(
 
 interface AuthRouteChildren {
   AuthAuthLayoutRoute: typeof AuthAuthLayoutRouteWithChildren
-  AuthPasskeyRoute: typeof AuthPasskeyRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthAuthLayoutRoute: AuthAuthLayoutRouteWithChildren,
-  AuthPasskeyRoute: AuthPasskeyRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
