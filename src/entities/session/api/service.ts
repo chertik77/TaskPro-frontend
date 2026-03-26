@@ -5,7 +5,6 @@ import { parse } from 'valibot'
 import { axiosInstance } from '@/shared/api'
 
 import {
-  InitiateGoogleResponseDtoSchema,
   SessionResponseDtoSchema,
   SigninDtoSchema,
   SignupDtoSchema
@@ -36,16 +35,6 @@ export const sessionService = {
     )
 
     const parsedData = parse(SessionResponseDtoSchema, response.data)
-
-    return parsedData
-  },
-
-  async signinWithGoogle() {
-    const response = await axiosInstance.post(
-      sessionApiEndpoints.googleInitiate
-    )
-
-    const parsedData = parse(InitiateGoogleResponseDtoSchema, response.data)
 
     return parsedData
   },

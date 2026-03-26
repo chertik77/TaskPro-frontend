@@ -1,30 +1,25 @@
-import { Icon, Loader } from '@/shared/ui'
+import { sessionApiEndpoints } from '@/entities/session'
 
-import { useInitiateGoogleSignin } from '../api/useInitiateGoogleSignin'
+import { env } from '@/shared/config'
+import { Icon } from '@/shared/ui'
 
 export const ContinueWithGoogleButton = () => {
-  const { mutate, isPending } = useInitiateGoogleSignin()
+  const handleClick = () => {
+    const url = env.VITE_API_BASE_URL + sessionApiEndpoints.googleInitiate
+    window.location.href = url
+  }
 
   return (
     <button
       type='button'
       className='flex w-84 items-center justify-center gap-2 rounded-lg bg-black
         py-2.5 text-center text-white'
-      onClick={() => mutate()}>
-      {isPending ? (
-        <>
-          <Loader />
-          Signing you in...
-        </>
-      ) : (
-        <>
-          <Icon
-            name='google'
-            className='size-7'
-          />
-          Continue with Google
-        </>
-      )}
+      onClick={handleClick}>
+      <Icon
+        name='google'
+        className='size-7'
+      />
+      Continue with Google
     </button>
   )
 }

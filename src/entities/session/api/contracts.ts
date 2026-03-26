@@ -12,10 +12,6 @@ export const SignupDtoSchema = v.object({
   ...SigninDtoSchema.entries
 })
 
-export const InitiateGoogleResponseDtoSchema = v.object({
-  redirectUrl: v.pipe(v.string(), v.url())
-})
-
 export const SessionResponseDtoSchema = v.object({
   user: v.lazy(() => UserDtoSchema)
 })
