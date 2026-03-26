@@ -3,9 +3,14 @@ import { sessionApiEndpoints } from '@/entities/session'
 import { env } from '@/shared/config'
 import { Icon } from '@/shared/ui'
 
-export const ContinueWithGoogleButton = () => {
+type SocialButtonProps = {
+  provider: 'google' | 'facebook'
+  apiEndpoint: keyof typeof sessionApiEndpoints
+}
+
+export const SocialButton = ({ provider, apiEndpoint }: SocialButtonProps) => {
   const handleClick = () => {
-    const url = env.VITE_API_BASE_URL + sessionApiEndpoints.googleInitiate
+    const url = env.VITE_API_BASE_URL + sessionApiEndpoints[apiEndpoint]
     window.location.href = url
   }
 
@@ -16,10 +21,10 @@ export const ContinueWithGoogleButton = () => {
         py-2.5 text-center text-white'
       onClick={handleClick}>
       <Icon
-        name='google'
-        className='size-7'
+        name={provider}
+        className='size-7 stroke-none'
       />
-      Continue with Google
+      Continue with {provider.charAt(0).toUpperCase() + provider.slice(1)}
     </button>
   )
 }

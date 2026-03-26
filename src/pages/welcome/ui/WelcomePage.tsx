@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 
 import { Icon } from '@/shared/ui'
 
-import { ContinueWithGoogleButton } from './ContinueWithGoogleButton'
+import { SocialButton } from './SocialButton'
 
 export const WelcomePage = () => (
   <div className='bg-soft-green flex h-dvh flex-col items-center justify-center'>
@@ -24,16 +24,25 @@ export const WelcomePage = () => (
       Supercharge your productivity and take control of your tasks with Task Pro
       - Don&apos;t wait, start achieving your goals now!
     </p>
-    <ContinueWithGoogleButton />
-    <Link
-      to='/auth/signup'
-      className='mt-3.5 w-84 rounded-lg bg-black py-3.5 text-center text-white'>
-      Registration
-    </Link>
-    <Link
-      to='/auth/signin'
-      className='focus-visible:styled-outline mt-3.5 text-black'>
-      Log In
-    </Link>
+    <div className='space-y-3.5'>
+      <SocialButton
+        provider='google'
+        apiEndpoint='googleInitiate'
+      />
+      <SocialButton
+        provider='facebook'
+        apiEndpoint='facebookInitiate'
+      />
+      <Link
+        to='/auth/signup'
+        className='block w-84 rounded-lg bg-black py-3.5 text-center text-white'>
+        Registration
+      </Link>
+      <Link
+        to='/auth/signin'
+        className='focus-visible:styled-outline block text-center text-black'>
+        Log In
+      </Link>
+    </div>
   </div>
 )
