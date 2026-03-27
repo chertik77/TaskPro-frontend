@@ -29,7 +29,6 @@ export const userService = {
   },
 
   async getMe() {
-    await new Promise(resolve => setTimeout(resolve, 2000))
     const response = await axiosInstance.get(userApiEndpoints.me, {
       validateStatus: status => status < 500
     })
