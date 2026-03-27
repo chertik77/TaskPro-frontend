@@ -8,7 +8,7 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 
 ## Features
 
-- **Authentication:** Register or log in to the app easily, including the option to sign in with Google.
+- **Authentication:** Register or log in to the app easily, including the option to sign in with Google and Facebook.
 
 - **Custom Boards:** Create personalized boards with unique icons and background images to organize your workspace.
 
