@@ -7,6 +7,7 @@ export { Loader } from './Loader'
 export { Avatar, AvatarImage, AvatarFallback } from './Avatar'
 export { PlusButtonWithLoader } from './PlusButtonWithLoader'
 export { RadioGroup, RadioGroupItem } from './RadioGroup'
+export { GlobalError } from './GlobalError'
 export { Calendar } from './Calendar'
 export {
   Popover,

@@ -1,7 +1,7 @@
 import { RouterProvider as TanStackRouterProvider } from '@tanstack/react-router'
 
 import { router } from '@/shared/lib'
-import { Loader } from '@/shared/ui'
+import { GlobalError, Loader } from '@/shared/ui'
 
 export const RouterProvider = () => (
   <TanStackRouterProvider
@@ -11,5 +11,6 @@ export const RouterProvider = () => (
         <Loader className='size-12' />
       </div>
     )}
+    defaultErrorComponent={() => <GlobalError />}
   />
 )
