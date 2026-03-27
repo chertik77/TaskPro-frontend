@@ -15,3 +15,9 @@ export const SignupDtoSchema = v.object({
 export const SessionResponseDtoSchema = v.object({
   user: v.lazy(() => UserDtoSchema)
 })
+
+type OAuthError = 'access_denied' | (string & {})
+
+export const OauthErrorSearchSchema = v.object({
+  error: v.optional(v.string() as unknown as v.GenericSchema<OAuthError>)
+})

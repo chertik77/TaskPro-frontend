@@ -15,7 +15,6 @@ import { Route as DashboardLayoutRouteImport } from './../../../app/routes/dashb
 import { Route as IndexRouteImport } from './../../../app/routes/index'
 import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashboard/index'
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
-import { Route as AuthCallbackRouteImport } from './../../../app/routes/auth/callback'
 import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
 import { Route as AuthAuthLayoutSigninRouteImport } from './../../../app/routes/auth/_auth-layout.signin'
@@ -47,11 +46,6 @@ const DashboardBoardIdRoute = DashboardBoardIdRouteImport.update({
   path: '/$boardId',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
-const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/callback',
-  path: '/callback',
-  getParentRoute: () => AuthRoute,
-} as any)
 const AuthAuthLayoutRoute = AuthAuthLayoutRouteImport.update({
   id: '/_auth-layout',
   getParentRoute: () => AuthRoute,
@@ -71,7 +65,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/auth': typeof AuthAuthLayoutRouteWithChildren
-  '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/signin': typeof AuthAuthLayoutSigninRoute
@@ -80,7 +73,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthAuthLayoutRouteWithChildren
-  '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/auth/signin': typeof AuthAuthLayoutSigninRoute
@@ -92,7 +84,6 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/auth/_auth-layout': typeof AuthAuthLayoutRouteWithChildren
-  '/auth/callback': typeof AuthCallbackRoute
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/_auth-layout/signin': typeof AuthAuthLayoutSigninRoute
@@ -104,7 +95,6 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/auth'
-    | '/auth/callback'
     | '/dashboard/$boardId'
     | '/dashboard/'
     | '/auth/signin'
@@ -113,7 +103,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
-    | '/auth/callback'
     | '/dashboard/$boardId'
     | '/dashboard'
     | '/auth/signin'
@@ -124,7 +113,6 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/auth'
     | '/auth/_auth-layout'
-    | '/auth/callback'
     | '/dashboard/$boardId'
     | '/dashboard/'
     | '/auth/_auth-layout/signin'
@@ -173,13 +161,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/$boardId'
       preLoaderRoute: typeof DashboardBoardIdRouteImport
       parentRoute: typeof DashboardLayoutRoute
-    }
-    '/auth/callback': {
-      id: '/auth/callback'
-      path: '/callback'
-      fullPath: '/auth/callback'
-      preLoaderRoute: typeof AuthCallbackRouteImport
-      parentRoute: typeof AuthRoute
     }
     '/auth/_auth-layout': {
       id: '/auth/_auth-layout'
@@ -235,12 +216,10 @@ const AuthAuthLayoutRouteWithChildren = AuthAuthLayoutRoute._addFileChildren(
 
 interface AuthRouteChildren {
   AuthAuthLayoutRoute: typeof AuthAuthLayoutRouteWithChildren
-  AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthAuthLayoutRoute: AuthAuthLayoutRouteWithChildren,
-  AuthCallbackRoute: AuthCallbackRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
