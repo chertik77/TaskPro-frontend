@@ -36,11 +36,13 @@ export const useEditProfile = (
 
       return { previousUser: parsedPreviousUser }
     },
+    onSuccess: () => {
+      setIsDialogOpen?.(false)
+    },
     onError: (_, __, context) => {
       queryClient.setQueryData(userQueries.current(), context?.previousUser)
     },
     onSettled: () => {
-      setIsDialogOpen?.(false)
       queryClient.invalidateQueries({ queryKey: userQueries.current() })
     }
   })
