@@ -1,9 +1,13 @@
 import { useNavigate, useSearch } from '@tanstack/react-router'
 
-type ParamKey = 'priority' | 'deadline'
+type ParamKey = 'priority' | 'deadline' | 'search'
 
 export const useCardFilters = () => {
-  const { priority: priorityParam, deadline: deadlineParam } = useSearch({
+  const {
+    priority: priorityParam,
+    deadline: deadlineParam,
+    search: searchParam
+  } = useSearch({
     from: '/dashboard/$boardId'
   })
 
@@ -13,5 +17,5 @@ export const useCardFilters = () => {
     navigate({ search: prev => ({ ...prev, [key]: v }) })
   }
 
-  return { priorityParam, deadlineParam, handleParamsChange }
+  return { priorityParam, deadlineParam, searchParam, handleParamsChange }
 }

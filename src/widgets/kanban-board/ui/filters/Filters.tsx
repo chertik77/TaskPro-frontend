@@ -1,6 +1,10 @@
 import { Link } from '@tanstack/react-router'
 
-import { DeadlineFilter, PriorityFilter } from '@/features/card/filter-cards'
+import {
+  DeadlineFilter,
+  PriorityFilter,
+  SearchFilter
+} from '@/features/card/filter-cards'
 
 import { useGetParamBoardId } from '@/entities/board'
 
@@ -30,17 +34,20 @@ export const Filters = () => {
         className='bg-white-soft dark:bg-black-deep dark:border-brand/50
           w-[300px] p-6 dark:border'
         collisionPadding={10}>
-        <h2
-          className='border-b border-black/10 pb-3.5 text-xl
-            dark:border-white/10'>
-          Filters
-        </h2>
+        <h2 className='mb-4.5 text-xl'>Filters</h2>
+        <SearchFilter />
+        <div className='border-b border-black/10 pb-4.5 dark:border-white/10' />
         <PopoverClose className='absolute top-3.5 right-3.5' />
-        <div className='my-3.5 flex justify-between'>
+        <div className='mt-4.5 mb-3.5 flex justify-between'>
           <h3>Priority</h3>
           <Link
             to='/dashboard/$boardId'
             params={{ boardId: boardId! }}
+            search={prev => ({
+              ...prev,
+              priority: undefined,
+              deadline: undefined
+            })}
             className='focus-visible:styled-outline text-md
               hocus:text-brand-light hocus:no-underline hocus:opacity-100
               violet:hocus:text-brand-violet underline opacity-50'>
@@ -48,7 +55,7 @@ export const Filters = () => {
           </Link>
         </div>
         <PriorityFilter />
-        <h3 className='my-3.5'>Deadline</h3>
+        <h3 className='mt-4.5 mb-3.5'>Deadline</h3>
         <DeadlineFilter />
       </PopoverContent>
     </Popover>

@@ -17,5 +17,6 @@ export const CardsSchema = v.array(CardSchema)
 
 export const CardSearchSchema = v.object({
   priority: v.optional(v.picklist(CARD_PRIORITIES)),
-  deadline: v.optional(v.picklist(CARD_DEADLINES))
+  deadline: v.optional(v.picklist(CARD_DEADLINES)),
+  search: v.optional(v.pipe(v.string(), v.trim()), '')
 })
