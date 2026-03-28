@@ -4,7 +4,7 @@ import { env } from '@/shared/config'
 import { Icon } from '@/shared/ui'
 
 type SocialButtonProps = {
-  provider: 'google' | 'facebook'
+  provider: 'google' | 'microsoft'
   apiEndpoint: keyof typeof sessionApiEndpoints
 }
 

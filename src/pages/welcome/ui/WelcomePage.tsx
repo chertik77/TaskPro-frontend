@@ -30,8 +30,8 @@ export const WelcomePage = () => (
         apiEndpoint='googleInitiate'
       />
       <SocialButton
-        provider='facebook'
-        apiEndpoint='facebookInitiate'
+        provider='microsoft'
+        apiEndpoint='microsoftInitiate'
       />
       <Link
         to='/auth/signup'

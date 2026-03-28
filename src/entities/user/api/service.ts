@@ -30,6 +30,7 @@ export const userService = {
 
   async getMe() {
     const response = await axiosInstance.get(userApiEndpoints.me, {
+      headers: { 'Cache-Control': 'no-store' },
       validateStatus: status => status < 500
     })
 
