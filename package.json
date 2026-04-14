@@ -2,7 +2,7 @@
   "name": "task-pro-frontend",
   "private": true,
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "version": "0.0.0",
   "type": "module",
