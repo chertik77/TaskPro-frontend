@@ -45,14 +45,14 @@ export const Board = () => {
 
   return (
     <ScrollArea.Root
-      className='tablet:pt-[26px] desktop:pt-2.5 flex flex-col overflow-hidden
+      className='tablet:pt-6.5 desktop:pt-2.5 flex flex-col overflow-hidden
         bg-cover bg-center pt-3.5'
       style={{
         backgroundImage: backgroundURL ? `url(${backgroundURL})` : undefined
       }}>
       <div
         className={cn(
-          `tablet:mb-[26px] desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-10 flex
+          `tablet:mb-6.5 desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-10 flex
           justify-between gap-5 pl-5 text-black`,
           WHITE_TEXT_BOARD_BG_IDS.includes(board.background.identifier) &&
             'text-white',
@@ -74,7 +74,7 @@ export const Board = () => {
         orientation='horizontal'>
         <ScrollArea.Thumb
           className={cn(
-            '!h-3 rounded-[26px] bg-white/60',
+            'h-3! rounded-[26px] bg-white/60',
             !backgroundURL &&
               'bg-gray-light violet:bg-black/20 dark:bg-white/10'
           )}

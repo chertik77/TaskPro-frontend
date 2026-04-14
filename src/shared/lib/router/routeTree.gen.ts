@@ -8,8 +8,6 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './../../../app/routes/__root'
 import { Route as DashboardLayoutRouteImport } from './../../../app/routes/dashboard/layout'
 import { Route as IndexRouteImport } from './../../../app/routes/index'
@@ -19,13 +17,6 @@ import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
 import { Route as AuthAuthLayoutSigninRouteImport } from './../../../app/routes/auth/_auth-layout.signin'
 
-const AuthRouteImport = createFileRoute('/auth')()
-
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -47,8 +38,9 @@ const DashboardBoardIdRoute = DashboardBoardIdRouteImport.update({
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 const AuthAuthLayoutRoute = AuthAuthLayoutRouteImport.update({
-  id: '/_auth-layout',
-  getParentRoute: () => AuthRoute,
+  id: '/auth/_auth-layout',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthAuthLayoutSignupRoute = AuthAuthLayoutSignupRouteImport.update({
   id: '/signup',
@@ -82,7 +74,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
   '/auth/_auth-layout': typeof AuthAuthLayoutRouteWithChildren
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -111,7 +102,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/auth'
     | '/auth/_auth-layout'
     | '/dashboard/$boardId'
     | '/dashboard/'
@@ -122,18 +112,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
-  AuthRoute: typeof AuthRouteWithChildren
+  AuthAuthLayoutRoute: typeof AuthAuthLayoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -167,7 +150,7 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthAuthLayoutRouteImport
-      parentRoute: typeof AuthRoute
+      parentRoute: typeof rootRouteImport
     }
     '/auth/_auth-layout/signup': {
       id: '/auth/_auth-layout/signup'
@@ -214,20 +197,10 @@ const AuthAuthLayoutRouteWithChildren = AuthAuthLayoutRoute._addFileChildren(
   AuthAuthLayoutRouteChildren,
 )
 
-interface AuthRouteChildren {
-  AuthAuthLayoutRoute: typeof AuthAuthLayoutRouteWithChildren
-}
-
-const AuthRouteChildren: AuthRouteChildren = {
-  AuthAuthLayoutRoute: AuthAuthLayoutRouteWithChildren,
-}
-
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
-  AuthRoute: AuthRouteWithChildren,
+  AuthAuthLayoutRoute: AuthAuthLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

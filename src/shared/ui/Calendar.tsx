@@ -42,7 +42,7 @@ export const Calendar = ({
       ...classNames
     }}
     components={{
-      // eslint-disable-next-line @eslint-react/no-nested-component-definitions
+      // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
       Chevron: ({ orientation }: ChevronProps) => (
         <Icon
           name='arrow'

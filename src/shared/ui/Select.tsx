@@ -63,10 +63,10 @@ const SelectItem = ({
     ref={ref}
     className={cn(
       `data-[state=checked]:text-brand
-      violet:data-[state=checked]:text-brand-violet
-      data-[highlighted]:text-brand violet:data-[highlighted]:text-brand-violet
-      hocus:text-brand violet:hocus:text-brand-violet cursor-pointer text-base
-      outline-none dark:text-white/30`,
+      violet:data-[state=checked]:text-brand-violet data-highlighted:text-brand
+      violet:data-highlighted:text-brand-violet hocus:text-brand
+      violet:hocus:text-brand-violet cursor-pointer text-base outline-none
+      dark:text-white/30`,
       className
     )}
     {...props}>

@@ -5,7 +5,7 @@ import { DialogTrigger } from '@/shared/ui'
 export const EmptyBoard = () => (
   <div className='flex items-center justify-center'>
     <div
-      className='text-md dark:text-white-gray tablet:w-[486px] tablet:text-base
+      className='text-md dark:text-white-gray tablet:w-121.5 tablet:text-base
         w-84 text-center text-black/70'>
       Before starting your project, it is essential{' '}
       <AddBoardDialog>

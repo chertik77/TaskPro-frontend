@@ -17,7 +17,7 @@ export const FormBgImageSelector = <T extends FieldValues>({
   return (
     <FormControl>
       <RadioGroup
-        className='flex max-w-[280px] flex-wrap gap-2'
+        className='flex max-w-70 flex-wrap gap-2'
         value={value}
         onValueChange={onChange}>
         {BOARD_BG_IMAGES.map(({ id, icon }) => (

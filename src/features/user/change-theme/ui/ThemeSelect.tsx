@@ -36,14 +36,14 @@ export const ThemeSelect = () => {
       </SelectTrigger>
       <SelectContent
         align='end'
-        className='w-[105px]'>
+        className='w-26.25'>
         <SelectViewport className='flex flex-col gap-1'>
           {THEMES.map(theme => (
             <SelectItem
               key={theme}
               disabled={theme === currentTheme}
               className='data-disabled:cursor-not-allowed
-                data-[highlighted]:underline'
+                data-highlighted:underline'
               value={theme}>
               <SelectItemText>
                 {theme.charAt(0).toUpperCase() + theme.slice(1)}

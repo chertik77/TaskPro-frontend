@@ -25,7 +25,7 @@ export const ColumnListItem = ({
   return (
     <li
       className={cn(
-        'w-[334px] touch-manipulation list-none rounded-lg',
+        'w-83.5 touch-manipulation list-none rounded-lg',
         isOverlay && 'styled-outline',
         isDragging && 'opacity-60 select-none'
       )}

@@ -12,7 +12,7 @@ export const SidebarBoardList = () => {
 
   return isPending ? (
     <div
-      className='violet:text-white tablet:pl-6 mb-10 flex min-h-[61px]
+      className='violet:text-white tablet:pl-6 mb-10 flex min-h-15.25
         items-center gap-2 pl-3.5'>
       <Loader className='size-5' />
       Loading your boards...

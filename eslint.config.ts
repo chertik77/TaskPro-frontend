@@ -1,7 +1,6 @@
 import eslintPluginReactModern from '@eslint-react/eslint-plugin'
 import eslintPluginJs from '@eslint/js'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
-import eslintPluginRouter from '@tanstack/eslint-plugin-router'
 import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
@@ -16,7 +15,7 @@ export default defineConfig(
   eslintPluginReact.configs.flat.recommended,
   eslintPluginReactModern.configs.recommended,
   eslintPluginReactHooks.configs.flat.recommended,
-  ...eslintPluginRouter.configs['flat/recommended'],
+  // ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
   { ignores: ['**/vite-env.d.ts'] },
   {

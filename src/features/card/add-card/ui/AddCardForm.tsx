@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 
+import { useMemo } from 'react'
+
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
 
 import { useAppForm } from '@/shared/lib'
@@ -27,12 +29,14 @@ export const AddCardForm = ({
   columnId,
   setIsDialogOpen
 }: AddCardFormProps) => {
+  const deadline = useMemo(() => new Date(), [])
+
   const form = useAppForm(AddCardSchema, {
     defaultValues: {
       title: '',
       description: '',
       priority: 'Without',
-      deadline: new Date()
+      deadline
     }
   })
 

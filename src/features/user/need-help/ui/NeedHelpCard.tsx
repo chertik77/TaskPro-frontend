@@ -9,7 +9,7 @@ export const NeedHelpCard = ({ children }: NeedHelpCardProps) => (
     className='bg-white-muted violet:bg-gray dark:bg-black-muted tablet:p-5 mb-6
       rounded-lg p-3.5'>
     <img
-      className='mb-3.5 h-[78px] w-[54px]'
+      className='mb-3.5 h-19.5 w-13.5'
       src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568218/TaskPro/need_help.png'
       alt='Cactus'
     />

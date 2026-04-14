@@ -78,7 +78,7 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
         />
         <Button
           type='submit'
-          className='!mt-6'
+          className='mt-6!'
           disabled={
             isPending || !isFormReadyForSubmit || !form.formState.isValid
           }>

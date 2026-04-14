@@ -80,7 +80,7 @@ export const SignupPage = () => {
         />
         <Button
           type='submit'
-          className='!mt-6'
+          className='mt-6!'
           disabled={isPending}>
           {isPending ? <Loader /> : 'Register Now'}
         </Button>

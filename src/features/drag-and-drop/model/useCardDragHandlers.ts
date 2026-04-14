@@ -18,7 +18,7 @@ export const useCardDragHandlers = ({
 }: CardDragHandlersProps) => {
   const { mutate: updateCardOrder } = useUpdateCardOrder()
 
-  const recentlyDraggedOverId = useRef<UniqueIdentifier | null>(null)
+  const recentlyDraggedOverIdRef = useRef<UniqueIdentifier | null>(null)
 
   const onDragStart = ({ active }: DragStartEvent) => {
     if (!active || active.data.current?.type !== 'card') return
@@ -44,7 +44,7 @@ export const useCardDragHandlers = ({
           const activeCard = prevCards[activeCardIndex]
           const overCard = prevCards[overCardIndex]
 
-          recentlyDraggedOverId.current = over.id
+          recentlyDraggedOverIdRef.current = over.id
 
           if (
             activeCard &&
@@ -70,7 +70,7 @@ export const useCardDragHandlers = ({
         const activeCardIndex = prevCards.findIndex(c => c.id === active.id)
         const activeCard = prevCards[activeCardIndex]
 
-        recentlyDraggedOverId.current = over.id
+        recentlyDraggedOverIdRef.current = over.id
 
         if (activeCard) {
           activeCard.columnId = over.id as string
@@ -89,7 +89,7 @@ export const useCardDragHandlers = ({
     if (
       !active ||
       active.data.current?.type !== 'card' ||
-      !recentlyDraggedOverId.current
+      !recentlyDraggedOverIdRef.current
     ) {
       return
     }

@@ -12,7 +12,7 @@ export const SidebarBoardCreationSection = () => (
     <span
       className='violet:border-white/10 flex items-center justify-between
         border-y border-black/10 py-3.5 dark:border-white/10'>
-      <p className='violet:text-white w-[76px]'>Create a new board</p>
+      <p className='violet:text-white w-19'>Create a new board</p>
       <AddBoardDialog>
         <DialogTrigger
           className='focus-visible:styled-outline bg-brand

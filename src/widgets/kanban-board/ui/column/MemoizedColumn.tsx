@@ -37,7 +37,7 @@ export const MemoizedColumn = memo(
       <Column column={column}>
         <Column.Header
           className='mb-3.5 flex items-center justify-between gap-4'>
-          <div className='flex max-w-[190px] items-center gap-3'>
+          <div className='flex max-w-47.5 items-center gap-3'>
             <Column.DragActivator
               className='shrink-0'
               {...draggableAttributes}
@@ -60,7 +60,7 @@ export const MemoizedColumn = memo(
             <Column.ScrollAreaThumb
               className={cn(
                 !backgroundURL &&
-                  'bg-gray-light violet:bg-black/20 !w-2 dark:bg-white/10'
+                  'bg-gray-light violet:bg-black/20 w-2! dark:bg-white/10'
               )}
             />
           </Column.ScrollAreaScrollbar>

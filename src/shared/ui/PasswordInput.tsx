@@ -17,7 +17,7 @@ export const PasswordInput = ({
     <div className='relative'>
       <Input
         type={showPassword ? 'text' : 'password'}
-        className={cn('hide-password-toggle peer pr-[35px]', className)}
+        className={cn('hide-password-toggle peer pr-8.75', className)}
         {...props}
         ref={ref}
       />

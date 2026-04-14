@@ -7,7 +7,7 @@ export const SidebarLogo = () => {
   const { setIsOpenMobile } = useSidebarStore()
 
   return (
-    <div className='tablet:mb-[60px] tablet:pl-6 desktop:pt-6 mb-[70px] pl-3.5'>
+    <div className='tablet:mb-15 tablet:pl-6 desktop:pt-6 mb-17.5 pl-3.5'>
       <Link
         className='focus-visible:styled-outline violet:text-brand-violet
           inline-flex items-center gap-2 text-white'

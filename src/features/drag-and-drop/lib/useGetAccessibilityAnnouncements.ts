@@ -9,7 +9,7 @@ export const useGetAccessibilityAnnouncements = ({
   columns,
   cards
 }: Pick<DragAndDropContext, 'columns' | 'cards'>): Announcements => {
-  const activeColumnCardId = useRef<string | null>(null)
+  const activeColumnCardIdRef = useRef<string | null>(null)
 
   return {
     onDragStart({ active }) {
@@ -23,11 +23,11 @@ export const useGetAccessibilityAnnouncements = ({
           activeColumnIdx + 1
         } of ${columns.length}`
       } else if (active.data.current?.type === 'card') {
-        activeColumnCardId.current = active.data.current.card.columnId
+        activeColumnCardIdRef.current = active.data.current.card.columnId
 
         const { columnCards, cardPosition, column } = getDraggingCardData(
           active.id,
-          activeColumnCardId.current,
+          activeColumnCardIdRef.current,
           columns,
           cards
         )
@@ -62,7 +62,7 @@ export const useGetAccessibilityAnnouncements = ({
           cards
         )
 
-        if (over.data.current.card.columnId !== activeColumnCardId.current) {
+        if (over.data.current.card.columnId !== activeColumnCardIdRef.current) {
           return `Card ${
             active.data.current.card.title
           } was moved over column ${column?.title} in position ${
@@ -77,7 +77,7 @@ export const useGetAccessibilityAnnouncements = ({
     },
     onDragEnd({ active, over }) {
       if (!active || !over) {
-        activeColumnCardId.current = null
+        activeColumnCardIdRef.current = null
 
         return
       }
@@ -104,7 +104,7 @@ export const useGetAccessibilityAnnouncements = ({
           cards
         )
 
-        if (over.data.current.card.columnId !== activeColumnCardId.current) {
+        if (over.data.current.card.columnId !== activeColumnCardIdRef.current) {
           return `Card was dropped into column ${column?.title} in position ${
             cardPosition + 1
           } of ${columnCards.length}`
@@ -115,10 +115,10 @@ export const useGetAccessibilityAnnouncements = ({
         } in column ${column?.title}`
       }
 
-      activeColumnCardId.current = null
+      activeColumnCardIdRef.current = null
     },
     onDragCancel({ active }) {
-      activeColumnCardId.current = null
+      activeColumnCardIdRef.current = null
 
       if (!active) return
 

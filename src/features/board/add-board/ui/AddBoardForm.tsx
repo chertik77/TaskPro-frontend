@@ -72,7 +72,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
         />
         <PlusButtonWithLoader
           type='submit'
-          className='!mt-10'
+          className='mt-10!'
           shouldShowLoader={isPending}
           disabled={isPending}>
           Create

@@ -40,8 +40,8 @@ const CardProvider = ({
     <CardContext value={value}>
       <div
         className={cn(
-          `relative min-h-[154px] overflow-hidden rounded-lg bg-white py-3.5
-          pr-5 pl-6 dark:bg-black`,
+          `relative min-h-38.5 overflow-hidden rounded-lg bg-white py-3.5 pr-5
+          pl-6 dark:bg-black`,
           className
         )}
         {...props}>
@@ -87,7 +87,7 @@ const CardDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   return (
     <p
       className={cn(
-        `text-md mb-3.5 line-clamp-2 max-w-[275px] break-all text-black/70
+        `text-md mb-3.5 line-clamp-2 max-w-68.75 break-all text-black/70
         dark:text-white/50`,
         className
       )}
