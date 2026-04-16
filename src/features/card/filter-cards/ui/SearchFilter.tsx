@@ -20,7 +20,7 @@ export const SearchFilter = () => {
     <div className='relative'>
       <Input
         ref={inputRef}
-        placeholder='Search tasks...'
+        placeholder='Search cards...'
         className='pr-12'
         value={localSearch}
         onChange={e => {
