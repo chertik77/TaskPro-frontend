@@ -101,7 +101,7 @@
   --breakpoint-desktop: 1440px;
 
   --shadow-*: initial;
-  --shadow-main: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+  --shadow-base: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
   --animate-modal-in: modal-in 300ms ease 0s 1 normal none running;
   --animate-modal-out: modal-out 300ms ease 0s 1 normal none running;

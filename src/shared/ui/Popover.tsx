@@ -20,7 +20,7 @@ const PopoverContent = ({
       align={align}
       sideOffset={sideOffset}
       className={cn(
-        'fade-zoom shadow-main z-1000 rounded-lg outline-none',
+        'fade-zoom shadow-base z-1000 rounded-lg outline-none',
         className
       )}
       {...props}
