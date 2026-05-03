@@ -100,9 +100,6 @@
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1440px;
 
-  --spacing-4.5: 18px;
-  --spacing-84: 335px;
-
   --shadow-*: initial;
   --shadow-main: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
