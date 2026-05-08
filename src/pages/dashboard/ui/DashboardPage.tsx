@@ -14,14 +14,16 @@ export const DashboardPage = () => {
   useMetaThemeColor()
 
   return (
-    <div
-      className={cn(
-        'grid h-dvh grid-rows-[60px_1fr]',
-        isOpen && 'desktop:grid-cols-[260px_1fr]'
-      )}>
-      <Sidebar />
-      <Header />
-      <Outlet />
+    <div className='fixed top-0 right-0 block h-12 w-screen'>
+      <div
+        className={cn(
+          'grid h-screen grid-rows-[60px_1fr]',
+          isOpen && 'desktop:grid-cols-[260px_1fr]'
+        )}>
+        <Sidebar />
+        <Header />
+        <Outlet />
+      </div>
     </div>
   )
 }

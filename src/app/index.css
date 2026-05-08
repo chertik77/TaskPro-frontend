@@ -214,7 +214,7 @@
 }
 
 @utility bg-soft-green {
-  @apply bg-brand bg-linear-180 from-white from-25% to-[92.19%];
+  @apply to-brand bg-linear-180 from-white;
 }
 
 @utility disable-text-selection {
