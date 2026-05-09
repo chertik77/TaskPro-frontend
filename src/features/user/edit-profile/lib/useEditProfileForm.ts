@@ -7,12 +7,14 @@ import { EditUserSchema } from '../model/contract'
 export const useEditProfileForm = () => {
   const user = useMe()
 
+  const formValues = { name: user?.name, email: user?.email, password: '' }
+
   const form = useAppForm(EditUserSchema, {
-    defaultValues: { name: user?.name, email: user?.email, password: '' }
+    defaultValues: formValues
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    form.formState.defaultValues!,
+    formValues,
     form.watch
   )
 

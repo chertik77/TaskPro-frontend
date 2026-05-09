@@ -10,7 +10,7 @@ export const useEditBoardForm = (formValues: EditBoardData) => {
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    form.formState.defaultValues!,
+    formValues,
     form.watch
   )
 

@@ -10,7 +10,7 @@ export const useEditCardForm = (formValues: EditCardFormValues) => {
   })
 
   const { isFormReadyForSubmit } = useIsFormReadyForSubmit(
-    form.formState.defaultValues!,
+    formValues,
     form.watch
   )
 
