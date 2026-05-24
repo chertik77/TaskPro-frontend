@@ -1,7 +1,7 @@
+import type { ChevronProps } from '@daypicker/react'
 import type { ComponentProps } from 'react'
-import type { ChevronProps } from 'react-day-picker'
 
-import { DayPicker } from 'react-day-picker'
+import { DayPicker } from '@daypicker/react'
 
 import { cn } from '../lib'
 import { Icon } from './Icon'
@@ -42,7 +42,7 @@ export const Calendar = ({
       ...classNames
     }}
     components={{
-      // eslint-disable-next-line @eslint-react/no-nested-component-definitions, @eslint-react/component-hook-factories
+      // eslint-disable-next-line @eslint-react/no-nested-component-definitions
       Chevron: ({ orientation }: ChevronProps) => (
         <Icon
           name='arrow'
