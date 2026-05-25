@@ -4,17 +4,14 @@
     "config:recommended",
     ":semanticCommits",
     ":semanticCommitTypeAll(chore)",
-    ":timezone(Europe/London)",
-    "group:allNonMajor"
+    ":timezone(Europe/London)"
   ],
   "labels": ["dependencies"],
-  "schedule": ["before 6am every monday"],
+  "schedule": ["before 6am on monday"],
   "rangeStrategy": "bump",
-  "prConcurrentLimit": 1,
+  "prConcurrentLimit": 5,
   "prHourlyLimit": 0,
   "minimumReleaseAge": "3 days",
-  "separateMajorMinor": false,
-  "dependencyDashboard": false,
   "commitMessagePrefix": "chore(deps):",
   "rebaseWhen": "behind-base-branch",
   "lockFileMaintenance": {
@@ -24,21 +21,20 @@
   "vulnerabilityAlerts": { "enabled": true },
   "packageRules": [
     {
-      "description": "Group all non-major updates",
-      "matchUpdateTypes": ["minor", "patch", "pin"],
+      "description": "Group all minor and patch updates",
+      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
-      "automerge": true,
-      "automergeType": "pr"
+      "groupSlug": "all-minor-patch"
     },
     {
-      "description": "Separate major updates",
+      "description": "Keep major updates separate",
       "matchUpdateTypes": ["major"],
-      "groupName": "major dependencies",
-      "automerge": false
+      "dependencyDashboardApproval": true
     },
     {
       "description": "Automerge GitHub Actions",
       "matchManagers": ["github-actions"],
+      "dependencyDashboardApproval": false,
       "automerge": true
     }
   ]
