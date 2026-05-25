@@ -19,17 +19,17 @@ jobs:
           node-version: 24
 
       - name: Install Dependencies 📦
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: install
 
       - name: Run Linter 🔧
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: lint
 
       - name: Verify Code Formatting 📝
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: format:check
 
