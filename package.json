@@ -82,6 +82,6 @@
     "typescript": "6.0.3",
     "typescript-eslint": "^8.59.4",
     "vite": "^8.0.14",
-    "vite-plugin-minify": "^2.1.0"
+    "vite-plugin-minify": "^3.0.0"
   }
 }
