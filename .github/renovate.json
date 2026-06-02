@@ -19,6 +19,7 @@
     "schedule": ["before 6am on the first day of the month"]
   },
   "vulnerabilityAlerts": { "enabled": true },
+  "ignoreDeps": ["@ianvs/prettier-plugin-sort-imports"],
   "packageRules": [
     {
       "description": "Group all minor and patch updates",
