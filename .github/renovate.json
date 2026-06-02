@@ -37,6 +37,11 @@
       "matchManagers": ["github-actions"],
       "dependencyDashboardApproval": false,
       "automerge": true
+    },
+    {
+      "description": "Ignore node updates",
+      "matchDepNames": ["node"],
+      "enabled": false
     }
   ]
 }
