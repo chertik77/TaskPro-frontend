@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.16.0
 
       - name: Install Dependencies 📦
         uses: borales/actions-yarn@v5
@@ -34,4 +34,4 @@ jobs:
           cmd: format:check
 
       - name: Enforce Conventional Commits 🔒
-        uses: webiny/action-conventional-commits@v1.1.0
+        uses: webiny/action-conventional-commits@v1.4.2
