@@ -34,4 +34,4 @@ jobs:
           cmd: format:check
 
       - name: Enforce Conventional Commits 🔒
-        uses: webiny/action-conventional-commits@v1.1.0
+        uses: webiny/action-conventional-commits@v1.4.2
