@@ -1,4 +1,5 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
+import { createAuthRefresh } from 'axios-auth-refresh'
 
 import { env } from '../config'
 import { router } from '../lib'
@@ -9,36 +10,15 @@ export const axiosInstance = axios.create({
   withCredentials: true
 })
 
-axiosInstance.interceptors.response.use(
-  r => r,
-  async error => {
-    const originalRequest = error.config
+createAuthRefresh(axiosInstance, async () => {
+  try {
+    await refreshTokens()
 
-    if (
-      error?.response?.status === 401 &&
-      !originalRequest._retry &&
-      !error.config.skipAuthRefresh
-    ) {
-      originalRequest._retry = true
+    return Promise.resolve()
+  } catch (e) {
+    logUserOut()
+    router.navigate({ to: '/' })
 
-      try {
-        refreshTokens()
-
-        return axiosInstance(originalRequest)
-      } catch (e) {
-        if (
-          e instanceof AxiosError &&
-          e.response?.data?.message === 'ERR_JWT_EXPIRED'
-        ) {
-          logUserOut()
-
-          return router.navigate({ to: '/' })
-        }
-
-        throw e
-      }
-    }
-
-    throw error
+    return Promise.reject(e)
   }
-)
+})

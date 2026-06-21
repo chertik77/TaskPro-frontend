@@ -36,6 +36,7 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.17.0",
+    "axios-auth-refresh": "^5.0.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
     "fuse.js": "^7.4.2",

@@ -1,5 +1,5 @@
 type ApiMemoryStorage = {
-  refreshTokens: () => void
+  refreshTokens: () => Promise<void>
   logout: () => void
 }
 
@@ -9,10 +9,10 @@ export const attachInternalApiMemoryStorage = (data: ApiMemoryStorage) => {
   __internalMemoryStorage = () => data
 }
 
-export const refreshTokens = () => {
+export const refreshTokens = async () => {
   const { refreshTokens } = __internalMemoryStorage()
 
-  return refreshTokens()
+  return await refreshTokens()
 }
 
 export const logUserOut = () => {

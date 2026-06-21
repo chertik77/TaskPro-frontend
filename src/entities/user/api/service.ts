@@ -29,15 +29,14 @@ export const userService = {
   },
 
   async getMe() {
-    const response = await axiosInstance.get(userApiEndpoints.me, {
-      headers: { 'Cache-Control': 'no-store' },
-      validateStatus: status => status < 500
-    })
+    try {
+      const response = await axiosInstance.get(userApiEndpoints.me, {
+        headers: { 'Cache-Control': 'no-store' }
+      })
 
-    if (response.status === 401) return null
-
-    const parsedData = parse(UserDtoSchema, response.data)
-
-    return parsedData
+      return parse(UserDtoSchema, response.data)
+    } catch {
+      return null
+    }
   }
 }
