@@ -1,4 +1,5 @@
 import type { CardTypes } from '@/entities/card'
+import type { KeyboardEvent } from 'react'
 
 import { cn, useDndSortable } from '@/shared/lib'
 
@@ -17,6 +18,15 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
       attributes: { roleDescription: `Card: ${card.title}` }
     })
 
+  const handleOnKeyDownCapture = (e: KeyboardEvent<HTMLLIElement>) => {
+    const target = e.target as HTMLLIElement
+
+    // Prevents dnd kit to trigger keyboard navigation on card modal inputs
+    if (target.closest('input, textarea, select, button')) {
+      e.stopPropagation()
+    }
+  }
+
   return (
     <li
       className={cn(
@@ -27,6 +37,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
         isOverlay && 'styled-outline',
         isDragging && 'opacity-60'
       )}
+      onKeyDownCapture={handleOnKeyDownCapture}
       ref={setNodeRef}
       style={style}
       {...listeners}
