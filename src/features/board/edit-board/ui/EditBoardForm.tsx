@@ -3,6 +3,7 @@ import type { EditBoardData } from '../model/types'
 
 import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -15,7 +16,7 @@ import {
 } from '@/shared/ui'
 
 import { useEditBoard } from '../api/useEditBoard'
-import { useEditBoardForm } from '../lib/useEditBoardForm'
+import { EditBoardSchema } from '../model/contract'
 
 type EditBoardFormProps = {
   data: EditBoardData
@@ -23,10 +24,15 @@ type EditBoardFormProps = {
 }
 
 export const EditBoardForm = ({
-  data,
+  data: formValues,
   setIsDialogOpen
 }: EditBoardFormProps) => {
-  const { form, isFormReadyForSubmit } = useEditBoardForm(data)
+  const form = useAppForm(EditBoardSchema, {
+    defaultValues: {
+      ...formValues,
+      background: formValues.background ?? 'default'
+    }
+  })
 
   const { mutate: editBoard, isPending } = useEditBoard(setIsDialogOpen)
 
@@ -76,7 +82,7 @@ export const EditBoardForm = ({
           type='submit'
           className='mt-10!'
           shouldShowLoader={isPending}
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || !form.formState.isDirty}>
           Edit
         </PlusButtonWithLoader>
       </form>

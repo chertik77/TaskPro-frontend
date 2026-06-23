@@ -20,7 +20,7 @@ type EditProfileFormProps = {
 }
 
 export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
-  const { form, isFormReadyForSubmit } = useEditProfileForm()
+  const { form } = useEditProfileForm()
 
   const { mutate: editProfile, isPending } = useEditProfile(setIsDialogOpen)
 
@@ -80,7 +80,7 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
           type='submit'
           className='mt-6!'
           disabled={
-            isPending || !isFormReadyForSubmit || !form.formState.isValid
+            isPending || !form.formState.isDirty || !form.formState.isValid
           }>
           {isPending ? <Loader /> : 'Send'}
         </Button>

@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { EditColumnData } from '../model/types'
 
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -12,7 +13,7 @@ import {
 } from '@/shared/ui'
 
 import { useEditColumn } from '../api/useEditColumn'
-import { useEditColumnForm } from '../lib/useEditColumnForm'
+import { EditColumnSchema } from '../model/contract'
 
 type EditColumnFormProps = {
   data: EditColumnData
@@ -23,7 +24,9 @@ export const EditColumnForm = ({
   data: { columnId, formValues },
   setIsDialogOpen
 }: EditColumnFormProps) => {
-  const { form, isFormReadyForSubmit } = useEditColumnForm(formValues)
+  const form = useAppForm(EditColumnSchema, {
+    defaultValues: formValues
+  })
 
   const { mutate: editColumn, isPending } = useEditColumn(setIsDialogOpen)
 
@@ -52,7 +55,7 @@ export const EditColumnForm = ({
         <PlusButtonWithLoader
           type='submit'
           shouldShowLoader={isPending}
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || !form.formState.isDirty}>
           Edit
         </PlusButtonWithLoader>
       </form>

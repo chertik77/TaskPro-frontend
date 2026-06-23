@@ -3,6 +3,7 @@ import type { EditCardData } from '../model/types'
 
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
 
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -16,7 +17,7 @@ import {
 } from '@/shared/ui'
 
 import { useEditCard } from '../api/useEditCard'
-import { useEditCardForm } from '../lib/useEditCardForm'
+import { EditCardSchema } from '../model/contract'
 
 type EditCardFormProps = {
   data: EditCardData
@@ -27,7 +28,9 @@ export const EditCardForm = ({
   data: { cardId, formValues },
   setIsDialogOpen
 }: EditCardFormProps) => {
-  const { form, isFormReadyForSubmit } = useEditCardForm(formValues)
+  const form = useAppForm(EditCardSchema, {
+    defaultValues: formValues
+  })
 
   const { mutate: editCard, isPending } = useEditCard(setIsDialogOpen)
 
@@ -96,7 +99,7 @@ export const EditCardForm = ({
         <PlusButtonWithLoader
           type='submit'
           shouldShowLoader={isPending}
-          disabled={isPending || !isFormReadyForSubmit}>
+          disabled={isPending || !form.formState.isDirty}>
           Edit
         </PlusButtonWithLoader>
       </form>

@@ -1,4 +1,3 @@
-export { useIsFormReadyForSubmit } from './form/useIsFormReadyForSubmit'
 export { useTabletAndBelowMediaQuery } from './media/useTabletAndBelowMediaQuery'
 export { useDocumentTitle } from './document-title/useDocumentTitle'
 export { useDndSortable } from './dnd/useDndSortable'
