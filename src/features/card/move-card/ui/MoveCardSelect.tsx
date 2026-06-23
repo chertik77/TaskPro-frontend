@@ -1,7 +1,9 @@
 import { memo } from 'react'
 
+import { cn } from '@/shared/lib'
 import {
   Icon,
+  Loader,
   Select,
   SelectContent,
   SelectItem,
@@ -21,20 +23,27 @@ export const MoveCardSelect = memo(
   ({ cardId, cardColumnId }: MoveCardSelectProps) => {
     const { columns, filteredColumns } = useGetFilteredColumns(cardColumnId)
 
-    const { mutate: moveCard } = useMoveCard()
+    const { mutate: moveCard, isPending } = useMoveCard()
 
     return (
       <Select
         value={cardColumnId}
         onValueChange={v => moveCard({ cardId: cardId, columnId: v })}
-        disabled={columns && columns.length <= 1}>
+        disabled={isPending}>
         <SelectTrigger
-          className='hocus:text-black dark:hocus:text-white text-black/50
-            disabled:hidden dark:text-white/50'>
-          <Icon
-            name='arrow-circle'
-            className='size-4'
-          />
+          className={cn(
+            `hocus:text-black dark:hocus:text-white text-black/50
+            dark:text-white/50`,
+            columns && columns.length <= 1 && 'hidden'
+          )}>
+          {isPending ? (
+            <Loader className='flex size-4 border-2' />
+          ) : (
+            <Icon
+              name='arrow-circle'
+              className='size-4'
+            />
+          )}
         </SelectTrigger>
         <SelectContent
           sideOffset={10}
