@@ -1,6 +1,8 @@
 import type { CardTypes } from '@/entities/card'
 import type { KeyboardEvent } from 'react'
 
+import { useState } from 'react'
+
 import { cn, useDndSortable } from '@/shared/lib'
 
 import { MemoizedCard } from './MemoizedCard'
@@ -11,20 +13,18 @@ type CardListItemProps = {
 }
 
 export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
+  const [isInteracting, setIsInteracting] = useState(false)
+
   const { setNodeRef, listeners, attributes, style, isDragging } =
     useDndSortable({
       id: card.id,
       data: { type: 'card', card },
-      attributes: { roleDescription: `Card: ${card.title}` }
+      attributes: { roleDescription: `Card: ${card.title}` },
+      disabled: isInteracting
     })
 
-  const handleOnKeyDownCapture = (e: KeyboardEvent<HTMLLIElement>) => {
-    const target = e.target as HTMLLIElement
-
-    // Prevents dnd kit to trigger keyboard navigation on card modal inputs
-    if (target.closest('input, textarea, select, button')) {
-      e.stopPropagation()
-    }
+  const handleKeyDownCapture = (e: KeyboardEvent) => {
+    if (!(e.target instanceof HTMLLIElement)) setIsInteracting(true)
   }
 
   return (
@@ -37,7 +37,7 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
         isOverlay && 'styled-outline',
         isDragging && 'opacity-60'
       )}
-      onKeyDownCapture={handleOnKeyDownCapture}
+      onKeyDownCapture={handleKeyDownCapture}
       ref={setNodeRef}
       style={style}
       {...listeners}
