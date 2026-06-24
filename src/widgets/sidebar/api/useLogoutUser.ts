@@ -18,10 +18,9 @@ export const useLogoutUser = () => {
   })
 
   const logoutUser = async () => {
-    await queryClient.cancelQueries({ queryKey: userQueries.current() })
+    navigate({ to: '/' })
     queryClient.setQueryData(userQueries.current(), null)
     await mutateAsync()
-    navigate({ to: '/' })
   }
 
   return { logoutUser, isPending }
