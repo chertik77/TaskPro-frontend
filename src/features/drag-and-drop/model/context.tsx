@@ -12,9 +12,9 @@ import {
 
 import { coordinateGetter } from '../lib/coordinateGetter'
 import { useGetAccessibilityAnnouncements } from '../lib/useGetAccessibilityAnnouncements'
-import { useCardDragHandlers } from './useCardDragHandlers'
 import { useColumnDragHandlers } from './useColumnDragHandlers'
 import { useDndState } from './useDndState'
+import { useTaskDragHandlers } from './useTaskDragHandlers'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
@@ -24,19 +24,19 @@ export const DragAndDropProvider = ({
 }: DragAndDropProviderProps) => {
   const {
     columns,
-    cards,
+    tasks,
     activeColumn,
-    activeCard,
+    activeTask,
     setActiveColumn,
-    setActiveCard,
+    setActiveTask,
     setColumns,
-    setCards
+    setTasks
   } = useDndState(initialColumns)
 
-  const cardDragHandlers = useCardDragHandlers({
-    cards,
-    setActiveCard,
-    setCards
+  const taskDragHandlers = useTaskDragHandlers({
+    tasks,
+    setActiveTask,
+    setTasks
   })
 
   const columnDragHandlers = useColumnDragHandlers({
@@ -53,11 +53,11 @@ export const DragAndDropProvider = ({
     useSensor(KeyboardSensor, { coordinateGetter })
   )
 
-  const announcements = useGetAccessibilityAnnouncements({ columns, cards })
+  const announcements = useGetAccessibilityAnnouncements({ columns, tasks })
 
   const value = useMemo(
-    () => ({ columns, cards, activeCard, activeColumn }),
-    [columns, cards, activeCard, activeColumn]
+    () => ({ columns, tasks, activeTask, activeColumn }),
+    [columns, tasks, activeTask, activeColumn]
   )
 
   return (
@@ -66,12 +66,12 @@ export const DragAndDropProvider = ({
         sensors={sensors}
         accessibility={{ announcements }}
         onDragStart={e => {
-          cardDragHandlers.onDragStart(e)
+          taskDragHandlers.onDragStart(e)
           columnDragHandlers.onDragStart(e)
         }}
-        onDragOver={cardDragHandlers.onDragOver}
+        onDragOver={taskDragHandlers.onDragOver}
         onDragEnd={e => {
-          cardDragHandlers.onDragEnd(e)
+          taskDragHandlers.onDragEnd(e)
           columnDragHandlers.onDragEnd(e)
         }}>
         {children}

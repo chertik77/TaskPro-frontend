@@ -1,5 +1,5 @@
-import type { CardTypes } from '@/entities/card'
 import type { ColumnTypes } from '@/entities/column'
+import type { TaskTypes } from '@/entities/task'
 
 import { useMemo, useState } from 'react'
 import { parse } from 'valibot'
@@ -15,10 +15,10 @@ export const useDndState = (
   )
 
   const [columns, setColumns] = useState(parsedColumns)
-  const [cards, setCards] = useState(parsedColumns.flatMap(c => c.cards))
+  const [tasks, setTasks] = useState(parsedColumns.flatMap(c => c.tasks))
   const [prevInitialColumns, setPrevInitialColumns] = useState(initialColumns)
 
-  const [activeCard, setActiveCard] = useState<CardTypes.CardSchema | null>(
+  const [activeTask, setActiveTask] = useState<TaskTypes.TaskSchema | null>(
     null
   )
 
@@ -31,17 +31,17 @@ export const useDndState = (
     const parsedColumns = parse(ColumnContracts.ColumnsSchema, initialColumns)
 
     setColumns(parsedColumns)
-    setCards(parsedColumns.flatMap(c => c.cards))
+    setTasks(parsedColumns.flatMap(c => c.tasks))
   }
 
   return {
     columns,
-    cards,
+    tasks,
     activeColumn,
-    activeCard,
+    activeTask,
     setColumns,
-    setCards,
+    setTasks,
     setActiveColumn,
-    setActiveCard
+    setActiveTask
   }
 }

@@ -1,13 +1,13 @@
 import * as v from 'valibot'
 
-import { CardDtoSchema } from '@/entities/card/@x/column'
+import { TaskDtoSchema } from '@/entities/task/@x/column'
 
 export const ColumnDtoSchema = v.object({
   id: v.string(),
   title: v.string(),
   order: v.number(),
   boardId: v.string(),
-  cards: v.array(CardDtoSchema)
+  tasks: v.array(TaskDtoSchema)
 })
 
 export const ColumnIdDtoSchema = v.object({

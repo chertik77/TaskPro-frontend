@@ -6,16 +6,16 @@ import type {
 
 import { memo } from 'react'
 
-import { AddCardDialog } from '@/features/card/add-card'
 import { DeleteColumnTrigger } from '@/features/column/delete-column'
 import { EditColumnDialog } from '@/features/column/edit-column'
 import { useDragAndDrop } from '@/features/drag-and-drop'
+import { AddTaskDialog } from '@/features/task/add-task'
 
 import { Column } from '@/entities/column'
 
 import { cn } from '@/shared/lib'
 
-import { CardList } from '../card/CardList'
+import { TaskList } from '../task/TaskList'
 
 type MemoizedColumnProps = {
   column: ColumnTypes.ColumnSchema
@@ -31,7 +31,7 @@ export const MemoizedColumn = memo(
     draggableAttributes,
     draggableListeners
   }: MemoizedColumnProps) => {
-    const { cards } = useDragAndDrop()
+    const { tasks } = useDragAndDrop()
 
     return (
       <Column column={column}>
@@ -54,7 +54,7 @@ export const MemoizedColumn = memo(
         </Column.Header>
         <Column.ScrollArea>
           <Column.ScrollAreaViewport>
-            <CardList cards={cards?.filter(c => c.columnId === column.id)} />
+            <TaskList tasks={tasks?.filter(c => c.columnId === column.id)} />
           </Column.ScrollAreaViewport>
           <Column.ScrollAreaScrollbar>
             <Column.ScrollAreaThumb
@@ -65,7 +65,7 @@ export const MemoizedColumn = memo(
             />
           </Column.ScrollAreaScrollbar>
         </Column.ScrollArea>
-        <AddCardDialog columnId={column.id} />
+        <AddTaskDialog columnId={column.id} />
       </Column>
     )
   }

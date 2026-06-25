@@ -4,7 +4,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 type UseDndSortableProps = Omit<UseSortableArguments, 'data'> & {
-  data: { type: 'card' | 'column' } & Record<string, unknown>
+  data: { type: 'task' | 'column' } & Record<string, unknown>
 }
 
 export const useDndSortable = (props: UseDndSortableProps) => {

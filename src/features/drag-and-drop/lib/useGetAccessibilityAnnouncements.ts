@@ -3,13 +3,13 @@ import type { DragAndDropContext } from '../model/types'
 
 import { useRef } from 'react'
 
-import { getDraggingCardData } from '../lib/getDraggingCardData'
+import { getDraggingTaskData } from '../lib/getDraggingTaskData'
 
 export const useGetAccessibilityAnnouncements = ({
   columns,
-  cards
-}: Pick<DragAndDropContext, 'columns' | 'cards'>): Announcements => {
-  const activeColumnCardIdRef = useRef<string | null>(null)
+  tasks
+}: Pick<DragAndDropContext, 'columns' | 'tasks'>): Announcements => {
+  const activeColumnTaskIdRef = useRef<string | null>(null)
 
   return {
     onDragStart({ active }) {
@@ -22,20 +22,20 @@ export const useGetAccessibilityAnnouncements = ({
         return `Picked up column ${activeColumn.title} at position: ${
           activeColumnIdx + 1
         } of ${columns.length}`
-      } else if (active.data.current?.type === 'card') {
-        activeColumnCardIdRef.current = active.data.current.card.columnId
+      } else if (active.data.current?.type === 'task') {
+        activeColumnTaskIdRef.current = active.data.current.task.columnId
 
-        const { columnCards, cardPosition, column } = getDraggingCardData(
+        const { columnTasks, taskPosition, column } = getDraggingTaskData(
           active.id,
-          activeColumnCardIdRef.current,
+          activeColumnTaskIdRef.current,
           columns,
-          cards
+          tasks
         )
 
-        return `Picked up card ${
-          active.data.current.card.title
-        } at position: ${cardPosition + 1} of ${
-          columnCards.length
+        return `Picked up task ${
+          active.data.current.task.title
+        } at position: ${taskPosition + 1} of ${
+          columnTasks.length
         } in column ${column?.title}`
       }
     },
@@ -52,32 +52,32 @@ export const useGetAccessibilityAnnouncements = ({
           over.data.current.column.title
         } at position ${overColumnIdx + 1} of ${columns.length}`
       } else if (
-        active.data.current?.type === 'card' &&
-        over.data.current?.type === 'card'
+        active.data.current?.type === 'task' &&
+        over.data.current?.type === 'task'
       ) {
-        const { columnCards, cardPosition, column } = getDraggingCardData(
+        const { columnTasks, taskPosition, column } = getDraggingTaskData(
           over.id,
-          over.data.current.card.columnId,
+          over.data.current.task.columnId,
           columns,
-          cards
+          tasks
         )
 
-        if (over.data.current.card.columnId !== activeColumnCardIdRef.current) {
-          return `Card ${
-            active.data.current.card.title
+        if (over.data.current.task.columnId !== activeColumnTaskIdRef.current) {
+          return `Task ${
+            active.data.current.task.title
           } was moved over column ${column?.title} in position ${
-            cardPosition + 1
-          } of ${columnCards.length}`
+            taskPosition + 1
+          } of ${columnTasks.length}`
         }
 
-        return `Card was moved over position ${cardPosition + 1} of ${
-          columnCards.length
+        return `Task was moved over position ${taskPosition + 1} of ${
+          columnTasks.length
         } in column ${column?.title}`
       }
     },
     onDragEnd({ active, over }) {
       if (!active || !over) {
-        activeColumnCardIdRef.current = null
+        activeColumnTaskIdRef.current = null
 
         return
       }
@@ -94,31 +94,31 @@ export const useGetAccessibilityAnnouncements = ({
           columns.length
         }`
       } else if (
-        active.data.current?.type === 'card' &&
-        over.data.current?.type === 'card'
+        active.data.current?.type === 'task' &&
+        over.data.current?.type === 'task'
       ) {
-        const { columnCards, cardPosition, column } = getDraggingCardData(
+        const { columnTasks, taskPosition, column } = getDraggingTaskData(
           over.id,
-          over.data.current.card.columnId,
+          over.data.current.task.columnId,
           columns,
-          cards
+          tasks
         )
 
-        if (over.data.current.card.columnId !== activeColumnCardIdRef.current) {
-          return `Card was dropped into column ${column?.title} in position ${
-            cardPosition + 1
-          } of ${columnCards.length}`
+        if (over.data.current.task.columnId !== activeColumnTaskIdRef.current) {
+          return `Task was dropped into column ${column?.title} in position ${
+            taskPosition + 1
+          } of ${columnTasks.length}`
         }
 
-        return `Card was dropped into position ${cardPosition + 1} of ${
-          columnCards.length
+        return `Task was dropped into position ${taskPosition + 1} of ${
+          columnTasks.length
         } in column ${column?.title}`
       }
 
-      activeColumnCardIdRef.current = null
+      activeColumnTaskIdRef.current = null
     },
     onDragCancel({ active }) {
-      activeColumnCardIdRef.current = null
+      activeColumnTaskIdRef.current = null
 
       if (!active) return
 
