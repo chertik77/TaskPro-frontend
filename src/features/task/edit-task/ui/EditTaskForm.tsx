@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { EditTaskData } from '../model/types'
 
-import { isBefore } from 'date-fns'
+import { startOfDay } from 'date-fns'
 
 import {
   formatDeadlineDate,
@@ -94,7 +94,7 @@ export const EditTaskForm = ({
           control={form.control}
           name='deadline'
           render={({ field, fieldState }) => {
-            const isOverdue = isBefore(field.value!, new Date())
+            const isOverdue = startOfDay(field.value!) < startOfDay(new Date())
 
             return (
               <FormItem className='mb-6 space-y-1'>

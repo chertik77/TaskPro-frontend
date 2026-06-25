@@ -1,4 +1,4 @@
-import { isBefore } from 'date-fns'
+import { startOfDay } from 'date-fns'
 import * as v from 'valibot'
 
 import { TASK_PRIORITIES } from '@/entities/task'
@@ -17,7 +17,10 @@ export const AddTaskSchema = v.object({
   priority: v.fallback(v.picklist(TASK_PRIORITIES), 'Without'),
   deadline: v.pipe(
     v.date(),
-    v.check(d => !isBefore(d, new Date()), 'Deadline must be in the future.')
+    v.check(
+      d => startOfDay(d) >= startOfDay(new Date()),
+      'Deadline must be today or in the future.'
+    )
   )
 })
 
