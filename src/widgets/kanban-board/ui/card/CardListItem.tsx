@@ -23,8 +23,13 @@ export const CardListItem = ({ card, isOverlay }: CardListItemProps) => {
       disabled: isInteracting
     })
 
+  // Prevents dnd kit to trigger keyboard navigation during child interaction
   const handleKeyDownCapture = (e: KeyboardEvent) => {
-    if (!(e.target instanceof HTMLLIElement)) setIsInteracting(true)
+    const nativeEvent = e.nativeEvent as KeyboardEvent['nativeEvent'] & {
+      dndKit?: unknown
+    }
+
+    if (!nativeEvent?.dndKit) setIsInteracting(true)
   }
 
   return (
