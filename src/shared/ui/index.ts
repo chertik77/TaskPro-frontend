@@ -37,6 +37,7 @@ export {
   FormField,
   FormItem,
   FormControl,
+  FormDescription,
   FormLabel,
   FormMessage
 } from './Form'

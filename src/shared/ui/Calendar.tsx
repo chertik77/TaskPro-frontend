@@ -25,8 +25,10 @@ export const Calendar = ({
       month_caption:
         'border-b border-black/20 dark:border-white/20 pb-3.5 mb-3.5',
       caption_label: 'text-lg font-medium flex items-center justify-center',
-      button_previous: 'absolute left-4.5 top-6 focus-visible:styled-outline',
-      button_next: 'absolute right-4.5 top-6 focus-visible:styled-outline',
+      button_previous:
+        'absolute left-4.5 top-6 focus-visible:styled-outline aria-disabled:opacity-50 aria-disabled:cursor-not-allowed',
+      button_next:
+        'absolute right-4.5 top-6 focus-visible:styled-outline aria-disabled:opacity-50 aria-disabled:cursor-not-allowed',
       weekdays: 'flex',
       weekday: 'w-8 text-black/50 dark:text-white/50',
       weeks: 'block mt-1',
@@ -39,6 +41,7 @@ export const Calendar = ({
       selected:
         'bg-brand text-black-muted violet:bg-brand-violet violet:text-white opacity-100',
       outside: 'opacity-20 aria-selected:opacity-100 hocus:opacity-100',
+      disabled: 'opacity-20 pointer-events-none',
       ...classNames
     }}
     components={{

@@ -3,11 +3,12 @@ import type { CardSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
 import { Slot } from '@radix-ui/react-slot'
-import { format, isToday } from 'date-fns'
+import { isToday } from 'date-fns'
 
 import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
+import { formatDeadlineDate } from '../lib/format-deadline-date'
 import { getCardPriorityColor } from '../lib/priority-colors'
 
 type CardContext = {
@@ -122,7 +123,7 @@ const CardDeadline = ({ className }: { className?: string }) => {
   return (
     <div className={cn(className)}>
       <p className='mb-1 text-xs text-black/50 dark:text-white/50'>Deadline</p>
-      <p className='text-sm'>{format(card.deadline, 'dd/MM/yyyy')}</p>
+      <p className='text-sm'>{formatDeadlineDate(card.deadline)}</p>
     </div>
   )
 }

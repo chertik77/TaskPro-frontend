@@ -1,13 +1,19 @@
 import type { Dispatch, SetStateAction } from 'react'
 
 import { useMemo } from 'react'
+import { addDays } from 'date-fns'
 
-import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
+import {
+  formatDeadlineDate,
+  FormDeadlinePicker,
+  FormPrioritySelector
+} from '@/entities/card'
 
 import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,7 +35,7 @@ export const AddCardForm = ({
   columnId,
   setIsDialogOpen
 }: AddCardFormProps) => {
-  const deadline = useMemo(() => new Date(), [])
+  const deadline = useMemo(() => addDays(new Date(), 1), [])
 
   const form = useAppForm(AddCardSchema, {
     defaultValues: {
@@ -91,16 +97,22 @@ export const AddCardForm = ({
         <FormField
           control={form.control}
           name='deadline'
-          render={({ field }) => (
+          render={({ field, fieldState }) => (
             <FormItem className='mb-6 space-y-1'>
               <FormLabel className='text-md text-black/50 dark:text-white/50'>
                 Deadline
               </FormLabel>
               <FormDeadlinePicker
+                mode='create'
                 {...field}
-                value={field.value.toISOString()}
               />
-              <FormMessage />
+              {fieldState.error ? (
+                <FormMessage />
+              ) : (
+                <FormDescription className='mt-2'>
+                  {`This card is due on ${formatDeadlineDate(field.value, 'd MMM yyyy')}.`}
+                </FormDescription>
+              )}
             </FormItem>
           )}
         />

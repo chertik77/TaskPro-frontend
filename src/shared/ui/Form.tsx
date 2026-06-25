@@ -52,6 +52,7 @@ const useFormField = () => {
     id,
     name: fieldContext.name,
     formItemId: `${id}-form-item`,
+    formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
     ...fieldState
   }
@@ -92,14 +93,30 @@ const FormLabel = ({ className, ref, ...props }: ComponentProps<'label'>) => {
   )
 }
 
+const FormDescription = ({ className, ...props }: ComponentProps<'p'>) => {
+  const { formDescriptionId } = useFormField()
+
+  return (
+    <p
+      id={formDescriptionId}
+      className={cn('text-md pl-1 text-black/70 dark:text-white/70', className)}
+      {...props}
+    />
+  )
+}
+
 const FormControl = ({ ref, ...props }: ComponentProps<typeof Slot>) => {
-  const { error, formItemId, formMessageId } = useFormField()
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={formMessageId}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
       aria-invalid={!!error}
       {...props}
     />
@@ -121,7 +138,7 @@ const FormMessage = ({
       <p
         ref={ref}
         id={formMessageId}
-        className={cn('text-red', className)}
+        className={cn('text-red pl-1', className)}
         {...props}>
         {body}
       </p>
@@ -129,4 +146,12 @@ const FormMessage = ({
   )
 }
 
-export { Form, FormItem, FormLabel, FormControl, FormMessage, FormField }
+export {
+  Form,
+  FormItem,
+  FormLabel,
+  FormDescription,
+  FormControl,
+  FormMessage,
+  FormField
+}

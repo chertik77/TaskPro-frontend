@@ -1,12 +1,19 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { EditCardData } from '../model/types'
 
-import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/card'
+import { isBefore } from 'date-fns'
+
+import {
+  formatDeadlineDate,
+  FormDeadlinePicker,
+  FormPrioritySelector
+} from '@/entities/card'
 
 import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -86,15 +93,28 @@ export const EditCardForm = ({
         <FormField
           control={form.control}
           name='deadline'
-          render={({ field }) => (
-            <FormItem className='mb-6 space-y-1'>
-              <FormLabel className='text-md text-black/50 dark:text-white/50'>
-                Deadline
-              </FormLabel>
-              <FormDeadlinePicker {...field} />
-              <FormMessage />
-            </FormItem>
-          )}
+          render={({ field, fieldState }) => {
+            const isOverdue = isBefore(field.value!, new Date())
+
+            return (
+              <FormItem className='mb-6 space-y-1'>
+                <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                  Deadline
+                </FormLabel>
+                <FormDeadlinePicker
+                  mode='edit'
+                  {...field}
+                />
+                <FormMessage />
+                {!fieldState.error && isOverdue && (
+                  <FormDescription className='mt-2'>
+                    This card is <span className='text-red'>overdue</span> since{' '}
+                    {formatDeadlineDate(field.value!, 'd MMM yyyy')}.
+                  </FormDescription>
+                )}
+              </FormItem>
+            )
+          }}
         />
         <PlusButtonWithLoader
           type='submit'
