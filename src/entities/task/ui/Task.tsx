@@ -90,8 +90,8 @@ const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   return (
     <p
       className={cn(
-        `text-md mb-3.5 line-clamp-2 max-w-68.75 break-all text-black/70
-        dark:text-white/50`,
+        `text-md mb-3.5 line-clamp-2 max-w-68.75 text-balance break-all
+        text-black/70 dark:text-white/50`,
         className
       )}
       {...props}>
