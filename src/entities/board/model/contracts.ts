@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { ColumnsSchema } from '@/entities/column/@x/board'
+import { ColumnSchema } from '@/entities/column/@x/board'
 
 import { BOARD_BG_IMAGES_IDS } from '../config/bg-images'
 import { BOARD_ICONS } from '../config/icon'
@@ -13,7 +13,7 @@ export const BoardSchema = v.object({
     identifier: v.picklist(BOARD_BG_IMAGES_IDS),
     url: v.nullable(v.string())
   }),
-  columns: ColumnsSchema
+  columns: v.array(ColumnSchema)
 })
 
 export const BoardsSchema = v.array(v.omit(BoardSchema, ['columns']))

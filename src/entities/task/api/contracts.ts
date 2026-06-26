@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { LabelsSchema } from '@/entities/label/@x/task'
+import { LabelSchema } from '@/entities/label/@x/task'
 
 import { TASK_PRIORITIES } from '../config/priority'
 
@@ -11,7 +11,7 @@ export const TaskDtoSchema = v.object({
   order: v.number(),
   columnId: v.string(),
   priority: v.picklist(TASK_PRIORITIES),
-  labels: v.optional(LabelsSchema),
+  labels: v.optional(v.array(LabelSchema)),
   deadline: v.pipe(
     v.string(),
     v.transform(d => new Date(d))
