@@ -128,7 +128,12 @@ const ColumnScrollAreaScrollbar = ({
   ...props
 }: ScrollArea.Scrollbar.Props) => (
   <ScrollArea.Scrollbar
-    className={cn('w-2 bg-transparent', className)}
+    className={cn(
+      `pointer-events-none w-2 bg-transparent opacity-0 transition-opacity
+      duration-200 data-scrolling:pointer-events-auto data-scrolling:opacity-100
+      data-scrolling:duration-initial`,
+      className
+    )}
     {...props}>
     {children}
   </ScrollArea.Scrollbar>
