@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { LabelsSchema } from '@/entities/label/model/contracts'
+import { LabelsSchema } from '@/entities/label/@x/task'
 
 import { TASK_PRIORITIES } from '../config/priority'
 

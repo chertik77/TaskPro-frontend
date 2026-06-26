@@ -1,9 +1,9 @@
 import { mergeProps } from '@base-ui/react/merge-props'
 import { useRender } from '@base-ui/react/use-render'
 
-import { cn } from '../lib'
+import { cn } from '../../../shared/lib'
 
-export const Badge = ({
+export const Label = ({
   className,
   render,
   ...props

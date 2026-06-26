@@ -1,76 +1,66 @@
 import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
+import type { LabelSchema } from '../model/types'
 
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { axiosInstance } from '@/shared/api'
 import { cn } from '@/shared/lib'
-import {
-  Combobox,
-  ComboboxChip,
-  ComboboxChips,
-  ComboboxChipsInput,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxItem,
-  ComboboxList,
-  ComboboxValue,
-  FormControl,
-  useComboboxAnchorRef
-} from '@/shared/ui'
+import { createTypeSafeCombobox, useComboboxAnchorRef } from '@/shared/ui'
 
-//  const colorMap = {
-//             blue: 'bg-blue-500',
-//             violet: 'bg-violet-500',
-//             emerald: 'bg-emerald-500',
-//             rose: 'bg-rose-500',
-//             amber: 'bg-amber-500',
-//             cyan: 'bg-cyan-500',
-//             orange: 'bg-orange-500',
-//             indigo: 'bg-indigo-500',
-//             gray: 'bg-gray-500'
-//           } as const
+import { labelQueries } from '../api/queries'
+import { BADGE_COLOR_MAP } from '../config/badge-color-map'
+
+const Combobox = createTypeSafeCombobox<LabelSchema, LabelSchema>()
 
 export const FormLabelsCombobox = <T extends FieldValues>({
+  ref,
+  onBlur,
   value,
   onChange
 }: ControllerRenderProps<T>) => {
+  const [inputValue, setInputValue] = useState('')
+
   const anchor = useComboboxAnchorRef()
 
-  const labels = useQuery({
-    queryKey: ['labels'],
-    queryFn: () => axiosInstance.get('/label').then(res => res.data)
-  })
+  const labels = useQuery(labelQueries.list())
 
   return (
-    <Combobox
+    <Combobox.Root
       multiple
-      value={value}
       items={labels.data}
+      value={value}
       onValueChange={onChange}
-      onInputValueChange={console.log}
+      inputValue={inputValue}
+      onInputValueChange={setInputValue}
       autoHighlight>
-      <ComboboxChips
+      <Combobox.Chips
         ref={anchor}
         className='w-full max-w-xs'>
-        <ComboboxValue>
+        <Combobox.Value>
           {values => (
             <>
-              {values.map((v: string) => (
-                <ComboboxChip key={v}>ok</ComboboxChip>
-              ))}
-              <FormControl
-                render={<ComboboxChipsInput />}
+              {values.length > 0 &&
+                values.map(v => (
+                  <Combobox.Chip
+                    key={v.id}
+                    className={BADGE_COLOR_MAP[v.color]}>
+                    {v.name}
+                  </Combobox.Chip>
+                ))}
+              <Combobox.ChipsInput
+                ref={ref}
+                onBlur={onBlur}
                 className={cn(values.length > 0 && 'px-0')}
                 placeholder={values.length > 0 ? '' : 'Add labels'}
               />
             </>
           )}
-        </ComboboxValue>
-      </ComboboxChips>
-      <ComboboxContent
+        </Combobox.Value>
+      </Combobox.Chips>
+      <Combobox.Content
         anchor={anchor}
         side='bottom'>
-        <ComboboxEmpty>
+        <Combobox.Empty>
           <button
             // onClick={createLabel}
             className='hover:bg-muted flex w-full items-center gap-2 p-2
@@ -78,20 +68,20 @@ export const FormLabelsCombobox = <T extends FieldValues>({
             {/* <Plus size={14} /> */}
             Create {value}
           </button>
-        </ComboboxEmpty>
-        <ComboboxList>
+        </Combobox.Empty>
+        <Combobox.List>
           {item => (
-            <ComboboxItem
+            <Combobox.Item
               key={item.id}
-              value={item.id}>
+              value={item}>
               <span
                 className={cn('size-2 rounded-full', `bg-${item.color}-500`)}
               />
               {item.name}
-            </ComboboxItem>
+            </Combobox.Item>
           )}
-        </ComboboxList>
-      </ComboboxContent>
-    </Combobox>
+        </Combobox.List>
+      </Combobox.Content>
+    </Combobox.Root>
   )
 }

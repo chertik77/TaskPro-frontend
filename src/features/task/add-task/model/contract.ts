@@ -1,6 +1,7 @@
 import { startOfDay } from 'date-fns'
 import * as v from 'valibot'
 
+import { LabelContracts } from '@/entities/label'
 import { TASK_PRIORITIES } from '@/entities/task'
 
 export const AddTaskSchema = v.object({
@@ -15,7 +16,7 @@ export const AddTaskSchema = v.object({
     v.minLength(3, 'Please enter at least 3 characters.')
   ),
   priority: v.fallback(v.picklist(TASK_PRIORITIES), 'Without'),
-  labels: v.optional(v.array(v.string())),
+  labels: v.optional(LabelContracts.LabelsSchema),
   deadline: v.pipe(
     v.date(),
     v.check(

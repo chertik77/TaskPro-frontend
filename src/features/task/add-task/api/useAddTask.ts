@@ -12,7 +12,11 @@ export const useAddTask = (
 ) =>
   useMutation({
     mutationFn: (data: AddTaskSchema) =>
-      taskService.addTask({ columnId, ...data }),
+      taskService.addTask({
+        columnId,
+        ...data,
+        labels: data.labels?.map(l => l.id)
+      }),
     meta: {
       invalidates: [boardQueries.details()],
       errorMessage:

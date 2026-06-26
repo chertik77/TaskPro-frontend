@@ -43,7 +43,8 @@ export const AddTaskForm = ({
       title: '',
       description: '',
       priority: 'Without',
-      deadline
+      deadline,
+      labels: []
     }
   })
 

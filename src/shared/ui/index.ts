@@ -2,7 +2,6 @@ export { Button } from './Button'
 export { Input } from './Input'
 export { TextArea } from './TextArea'
 export { Icon } from './Icon'
-export { Badge } from './Badge'
 export { PasswordInput } from './PasswordInput'
 export { Loader } from './Loader'
 export { Avatar, AvatarImage, AvatarFallback } from './Avatar'
@@ -10,6 +9,7 @@ export { PlusButtonWithLoader } from './PlusButtonWithLoader'
 export { RadioGroup, RadioGroupItem } from './RadioGroup'
 export { GlobalError } from './GlobalError'
 export { Calendar } from './Calendar'
+export { createTypeSafeCombobox, useComboboxAnchorRef } from './Combobox'
 export {
   Popover,
   PopoverTrigger,
@@ -41,15 +41,3 @@ export {
   FormLabel,
   FormMessage
 } from './Form'
-export {
-  Combobox,
-  ComboboxChip,
-  ComboboxChips,
-  ComboboxChipsInput,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxValue,
-  ComboboxList,
-  ComboboxItem,
-  useComboboxAnchorRef
-} from './Combobox'

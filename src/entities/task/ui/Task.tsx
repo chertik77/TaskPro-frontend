@@ -5,10 +5,10 @@ import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 
-import { BADGE_COLOR_MAP } from '@/entities/label'
+import { BADGE_COLOR_MAP, Label } from '@/entities/label/@x/task'
 
 import { cn } from '@/shared/lib'
-import { Badge, Icon } from '@/shared/ui'
+import { Icon } from '@/shared/ui'
 
 import { formatDeadlineDate } from '../lib/format-deadline-date'
 import { getTaskPriorityColor } from '../lib/priority-colors'
@@ -112,11 +112,11 @@ const TaskLabels = () => {
   return (
     <div className={cn('mb-2 flex items-center gap-1.5')}>
       {labels.slice(0, labelsPerRow).map(label => (
-        <Badge
+        <Label
           key={label.id}
           className={BADGE_COLOR_MAP[label.color]}>
           {label.name}
-        </Badge>
+        </Label>
       ))}
       {labels.length > 1 && (
         <span

@@ -1,4 +1,4 @@
-import type { ComponentPropsWithRef } from 'react'
+import type { ComponentPropsWithRef, ComponentType, ReactNode } from 'react'
 
 import { useRef } from 'react'
 import { Combobox as ComboboxPrimitive } from '@base-ui/react/combobox'
@@ -143,10 +143,10 @@ const ComboboxChip = ({
 }) => (
   <ComboboxPrimitive.Chip
     className={cn(
-      `text-md dark:bg-gray/20 bg-white-muted flex h-[calc(--spacing(6.25))]
-      w-fit items-center justify-center gap-1 rounded-sm px-1.5 py-2
-      whitespace-nowrap has-disabled:pointer-events-none
-      has-disabled:cursor-not-allowed has-disabled:opacity-50`,
+      `text-md dark:bg-gray/20 bg-white-muted flex h-[calc(--spacing(6))] w-fit
+      items-center justify-center gap-1 rounded-sm px-1.5 py-2 whitespace-nowrap
+      has-disabled:pointer-events-none has-disabled:cursor-not-allowed
+      has-disabled:opacity-50`,
       className
     )}
     {...props}>
@@ -177,15 +177,32 @@ const ComboboxChipsInput = ({
 
 const useComboboxAnchorRef = () => useRef<HTMLDivElement | null>(null)
 
-export {
-  Combobox,
-  ComboboxContent,
-  ComboboxList,
-  ComboboxItem,
-  ComboboxEmpty,
-  ComboboxChips,
-  ComboboxChip,
-  ComboboxChipsInput,
-  ComboboxValue,
-  useComboboxAnchorRef
-}
+const createTypeSafeCombobox = <TItem, TValue>() => ({
+  Root: Combobox as ComponentType<
+    Omit<
+      ComboboxPrimitive.Root.Props<TValue, boolean>,
+      'items' | 'onValueChange'
+    > & {
+      onValueChange?: (value: TValue[]) => void
+      items?: TItem[]
+    }
+  >,
+  Value: ComboboxValue as ComponentType<{
+    children?: (value: TValue[]) => ReactNode
+  }>,
+  List: ComboboxList as ComponentType<
+    Omit<ComboboxPrimitive.List.Props, 'children'> & {
+      children?: ReactNode | ((item: TItem, index: number) => ReactNode)
+    }
+  >,
+  Item: ComboboxItem as ComponentType<
+    Omit<ComboboxPrimitive.Item.Props, 'value'> & { value?: TValue }
+  >,
+  Content: ComboboxContent,
+  Empty: ComboboxEmpty,
+  Chips: ComboboxChips,
+  Chip: ComboboxChip,
+  ChipsInput: ComboboxChipsInput
+})
+
+export { createTypeSafeCombobox, useComboboxAnchorRef }
