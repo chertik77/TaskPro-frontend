@@ -20,7 +20,7 @@ export const SidebarMobileMenu = () => {
         <Dialog.Backdrop
           className='data-open:animate-modal-overlay-in
             data-closed:animate-modal-overlay-out bg-black-overlay fixed inset-0
-            z-50 supports-[-webkit-touch-callout:none]:absolute'
+            z-50'
         />
         <Dialog.Popup
           aria-describedby={undefined}

@@ -18,8 +18,7 @@ const DialogContent = ({
     <DialogPrimitive.Backdrop
       className='data-open:animate-modal-overlay-in
         data-closed:animate-modal-overlay-out bg-black-overlay fixed inset-0
-        z-50 backdrop-blur-md backdrop-saturate-150
-        supports-[-webkit-touch-callout:none]:absolute'
+        z-50 backdrop-blur-md backdrop-saturate-150'
     />
     <DialogPrimitive.Popup
       className={cn(
