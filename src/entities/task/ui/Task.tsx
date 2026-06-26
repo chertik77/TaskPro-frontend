@@ -98,6 +98,22 @@ const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   )
 }
 
+// const TaskLabels = () => (
+//   <div className={cn('mb-2 line-clamp-1 flex flex-wrap items-center gap-1.5')}>
+//     {labelColors.map(label => (
+//       <span
+//         key={label.id}
+//         className={cn(
+//           `rounded-md px-2 py-0.5 text-[11px] font-medium
+//           first-letter:capitalize`,
+//           label.className
+//         )}>
+//         {label.id}{' '}
+//       </span>
+//     ))}{' '}
+//   </div>
+// )
+
 const TaskPriority = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 

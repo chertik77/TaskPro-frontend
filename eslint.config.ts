@@ -92,7 +92,7 @@ export default defineConfig(
       'react/boolean-prop-naming': [
         'error',
         {
-          rule: '^(is|as|has|should|can|enable)[A-Z]([A-Za-z0-9]?)+',
+          rule: '^(is|as|has|should|can|show|enable)[A-Z]([A-Za-z0-9]?)+',
           validateNested: true
         }
       ],

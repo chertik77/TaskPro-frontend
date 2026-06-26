@@ -8,6 +8,7 @@ import {
   FormDeadlinePicker,
   FormPrioritySelector
 } from '@/entities/task'
+import { FormLabelsCombobox } from '@/entities/task/ui/FormLabelsCombobox'
 
 import { useAppForm } from '@/shared/lib'
 import {
@@ -83,6 +84,19 @@ export const AddTaskForm = ({
                 Priority
               </FormLabel>
               <FormPrioritySelector {...field} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='priority'
+          render={({ field }) => (
+            <FormItem className='mb-3.5 space-y-1'>
+              <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                Labels
+              </FormLabel>
+              <FormLabelsCombobox {...field} />
               <FormMessage />
             </FormItem>
           )}

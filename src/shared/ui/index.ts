@@ -40,3 +40,15 @@ export {
   FormLabel,
   FormMessage
 } from './Form'
+export {
+  Combobox,
+  ComboboxChip,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxValue,
+  ComboboxList,
+  ComboboxItem,
+  useComboboxAnchorRef
+} from './Combobox'
