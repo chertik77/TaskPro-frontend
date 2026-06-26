@@ -5,7 +5,7 @@ import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 
-import { BADGE_COLOR_MAP, Label } from '@/entities/label/@x/task'
+import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
 
 import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
@@ -114,7 +114,7 @@ const TaskLabels = () => {
       {labels.slice(0, labelsPerRow).map(label => (
         <Label
           key={label.id}
-          className={BADGE_COLOR_MAP[label.color]}>
+          className={LABEL_COLOR_MAP[label.color]}>
           {label.name}
         </Label>
       ))}

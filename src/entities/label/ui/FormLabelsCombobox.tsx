@@ -8,7 +8,7 @@ import { cn } from '@/shared/lib'
 import { createTypeSafeCombobox, useComboboxAnchorRef } from '@/shared/ui'
 
 import { labelQueries } from '../api/queries'
-import { BADGE_COLOR_MAP } from '../config/badge-color-map'
+import { COLOR_MAP, LABEL_COLOR_MAP } from '../config/badge-color-map'
 
 const Combobox = createTypeSafeCombobox<LabelSchema, string>()
 
@@ -55,7 +55,7 @@ export const FormLabelsCombobox = <T extends FieldValues>({
                 {selectedLabels?.map(v => (
                   <Combobox.Chip
                     key={v?.id}
-                    className={BADGE_COLOR_MAP[v?.color ?? 'gray']}>
+                    className={LABEL_COLOR_MAP[v?.color ?? 'gray']}>
                     {v?.name ?? 'Unknown'}
                   </Combobox.Chip>
                 ))}
@@ -88,7 +88,7 @@ export const FormLabelsCombobox = <T extends FieldValues>({
               key={item.id}
               value={item.id}>
               <span
-                className={cn('size-2 rounded-full', `bg-${item.color}-500`)}
+                className={cn('size-2 rounded-full', COLOR_MAP[item.color])}
               />
               {item.name}
             </Combobox.Item>
