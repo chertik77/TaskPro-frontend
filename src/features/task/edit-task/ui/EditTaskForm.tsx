@@ -3,6 +3,7 @@ import type { EditTaskData } from '../model/types'
 
 import { startOfDay } from 'date-fns'
 
+import { FormLabelsCombobox } from '@/entities/label'
 import {
   formatDeadlineDate,
   FormDeadlinePicker,
@@ -43,10 +44,7 @@ export const EditTaskForm = ({
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(editedTask =>
-          editTask({ taskId, ...editedTask })
-        )}>
+      <form onSubmit={form.handleSubmit(data => editTask({ taskId, data }))}>
         <FormField
           control={form.control}
           name='title'
@@ -82,6 +80,19 @@ export const EditTaskForm = ({
                 Priority
               </FormLabel>
               <FormPrioritySelector {...field} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='labels'
+          render={({ field }) => (
+            <FormItem className='mb-3.5 space-y-1'>
+              <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                Labels
+              </FormLabel>
+              <FormLabelsCombobox {...field} />
               <FormMessage />
             </FormItem>
           )}

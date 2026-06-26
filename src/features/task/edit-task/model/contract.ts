@@ -1,5 +1,6 @@
 import * as v from 'valibot'
 
+import { LabelContracts } from '@/entities/label'
 import { TASK_PRIORITIES } from '@/entities/task'
 
 export const EditTaskSchema = v.partial(
@@ -15,6 +16,7 @@ export const EditTaskSchema = v.partial(
       v.minLength(3, 'Please enter at least 3 characters.')
     ),
     priority: v.picklist(TASK_PRIORITIES),
+    labels: LabelContracts.LabelsSchema,
     deadline: v.date()
   })
 )
