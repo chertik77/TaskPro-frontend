@@ -110,7 +110,7 @@ const TaskLabels = () => {
   const labelsPerRow = 3
 
   return (
-    <div className={cn('mb-2 flex items-center gap-1.5')}>
+    <div className={cn('mb-2 flex flex-wrap items-center gap-1.5')}>
       {labels.slice(0, labelsPerRow).map(label => (
         <Label
           key={label.id}
@@ -120,9 +120,9 @@ const TaskLabels = () => {
       ))}
       {labels.length > 1 && (
         <span
-          className='bg-muted text-muted-foreground rounded-md px-2 py-0.5
-            text-[11px] font-medium'>
-          +{labels.length - 1}
+          className='bg-white-muted dark:bg-black-muted rounded-md px-2 py-0.5
+            text-[11px]'>
+          +{labels.length - labelsPerRow}
         </span>
       )}
     </div>
