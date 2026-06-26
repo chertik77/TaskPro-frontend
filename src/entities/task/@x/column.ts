@@ -1,2 +1,2 @@
-export { TaskSchema } from '../model/contracts'
+export { TasksSchema } from '../model/contracts'
 export { TaskDtoSchema } from '../api/contracts'

@@ -61,7 +61,7 @@ const ComboboxList = ({
 }: ComboboxPrimitive.List.Props) => (
   <ComboboxPrimitive.List
     className={cn(
-      `max-h-[min(calc(--spacing(40)-(--spacing(9))),calc(var(--available-height)-(--spacing(9))))]
+      `max-h-[min(calc(--spacing(50)-(--spacing(9))),calc(var(--available-height)-(--spacing(9))))]
       scroll-py-1 scrollbar-none overflow-y-auto overscroll-contain p-2
       data-empty:p-0`,
       className

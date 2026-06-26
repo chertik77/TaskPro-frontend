@@ -5,8 +5,10 @@ import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 
+import { BADGE_COLOR_MAP } from '@/entities/label'
+
 import { cn } from '@/shared/lib'
-import { Icon } from '@/shared/ui'
+import { Badge, Icon } from '@/shared/ui'
 
 import { formatDeadlineDate } from '../lib/format-deadline-date'
 import { getTaskPriorityColor } from '../lib/priority-colors'
@@ -98,21 +100,34 @@ const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   )
 }
 
-// const TaskLabels = () => (
-//   <div className={cn('mb-2 line-clamp-1 flex flex-wrap items-center gap-1.5')}>
-//     {labelColors.map(label => (
-//       <span
-//         key={label.id}
-//         className={cn(
-//           `rounded-md px-2 py-0.5 text-[11px] font-medium
-//           first-letter:capitalize`,
-//           label.className
-//         )}>
-//         {label.id}{' '}
-//       </span>
-//     ))}{' '}
-//   </div>
-// )
+const TaskLabels = () => {
+  const {
+    task: { labels }
+  } = useTaskContext()
+
+  if (!labels?.length) return null
+
+  const labelsPerRow = 3
+
+  return (
+    <div className={cn('mb-2 flex items-center gap-1.5')}>
+      {labels.slice(0, labelsPerRow).map(label => (
+        <Badge
+          key={label.id}
+          className={BADGE_COLOR_MAP[label.color]}>
+          {label.name}
+        </Badge>
+      ))}
+      {labels.length > 1 && (
+        <span
+          className='bg-muted text-muted-foreground rounded-md px-2 py-0.5
+            text-[11px] font-medium'>
+          +{labels.length - 1}
+        </span>
+      )}
+    </div>
+  )
+}
 
 const TaskPriority = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
@@ -186,6 +201,7 @@ export const Task = Object.assign(TaskProvider, {
   PriorityIndicator: TaskPriorityIndicator,
   Title: TaskTitle,
   Description: TaskDescription,
+  Labels: TaskLabels,
   Priority: TaskPriority,
   Deadline: TaskDeadline,
   DeadlineTodayIndicator: TaskDeadlineTodayIndicator,

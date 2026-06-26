@@ -16,6 +16,7 @@ export const MemoizedTask = memo(({ task }: MemoizedTaskProps) => (
   <Task task={task}>
     <Task.PriorityIndicator />
     <Task.Title />
+    <Task.Labels />
     <Task.Description />
     <div
       className='flex items-end border-t border-black/10 pt-3.5

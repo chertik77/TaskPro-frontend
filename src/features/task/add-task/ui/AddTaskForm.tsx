@@ -3,12 +3,12 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useMemo } from 'react'
 import { addDays } from 'date-fns'
 
+import { FormLabelsCombobox } from '@/entities/label'
 import {
   formatDeadlineDate,
   FormDeadlinePicker,
   FormPrioritySelector
 } from '@/entities/task'
-import { FormLabelsCombobox } from '@/entities/task/ui/FormLabelsCombobox'
 
 import { useAppForm } from '@/shared/lib'
 import {
@@ -90,7 +90,7 @@ export const AddTaskForm = ({
         />
         <FormField
           control={form.control}
-          name='priority'
+          name='labels'
           render={({ field }) => (
             <FormItem className='mb-3.5 space-y-1'>
               <FormLabel className='text-md text-black/50 dark:text-white/50'>
