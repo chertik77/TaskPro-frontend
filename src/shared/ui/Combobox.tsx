@@ -181,9 +181,10 @@ const createTypeSafeCombobox = <TItem, TValue>() => ({
   Root: Combobox as ComponentType<
     Omit<
       ComboboxPrimitive.Root.Props<TValue, boolean>,
-      'items' | 'onValueChange'
+      'items' | 'onValueChange' | 'filter'
     > & {
       onValueChange?: (value: TValue[]) => void
+      filter?: (item: TItem, input: string) => boolean
       items?: TItem[]
     }
   >,

@@ -6,7 +6,5 @@ export const LABEL_COLORS = [
   'amber',
   'gray',
   'cyan',
-  'orange',
-  'indigo',
-  'lime'
+  'indigo'
 ] as const

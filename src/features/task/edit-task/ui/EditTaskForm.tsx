@@ -37,14 +37,20 @@ export const EditTaskForm = ({
   setIsDialogOpen
 }: EditTaskFormProps) => {
   const form = useAppForm(EditTaskSchema, {
-    defaultValues: formValues
+    defaultValues: {
+      ...formValues,
+      labels: formValues.labels?.map(l => l.id) ?? []
+    }
   })
 
   const { mutate: editTask, isPending } = useEditTask(setIsDialogOpen)
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(data => editTask({ taskId, data }))}>
+      <form
+        onSubmit={form.handleSubmit(editedTask =>
+          editTask({ taskId, ...editedTask })
+        )}>
         <FormField
           control={form.control}
           name='title'

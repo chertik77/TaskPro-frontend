@@ -1,5 +1,4 @@
 import type { Dispatch, SetStateAction } from 'react'
-import type { EditTaskSchema } from '../model/contract'
 
 import { useMutation } from '@tanstack/react-query'
 
@@ -10,12 +9,7 @@ export const useEditTask = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
 ) =>
   useMutation({
-    mutationFn: ({ taskId, data }: { taskId: string; data: EditTaskSchema }) =>
-      taskService.editTask({
-        taskId,
-        ...data,
-        labels: data.labels?.map(l => l.id)
-      }),
+    mutationFn: taskService.editTask,
     meta: {
       invalidates: [boardQueries.details()],
       errorMessage:

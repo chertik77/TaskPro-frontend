@@ -8,8 +8,8 @@ export { Avatar, AvatarImage, AvatarFallback } from './Avatar'
 export { PlusButtonWithLoader } from './PlusButtonWithLoader'
 export { RadioGroup, RadioGroupItem } from './RadioGroup'
 export { GlobalError } from './GlobalError'
-export { Calendar } from './Calendar'
 export { createTypeSafeCombobox, useComboboxAnchorRef } from './Combobox'
+export { Calendar } from './Calendar'
 export {
   Popover,
   PopoverTrigger,
