@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
 
-import * as SelectPrimitive from '@radix-ui/react-select'
+import { Select as SelectPrimitive } from '@base-ui/react/select'
 
 import { cn } from '../lib'
 
@@ -8,20 +8,16 @@ const Select = SelectPrimitive.Root
 
 const SelectValue = SelectPrimitive.Value
 
-const SelectViewport = SelectPrimitive.Viewport
-
 const SelectItemText = SelectPrimitive.ItemText
 
 const SelectIcon = SelectPrimitive.Icon
 
 const SelectTrigger = ({
   className,
-  ref,
   children,
   ...props
 }: ComponentProps<typeof SelectPrimitive.Trigger>) => (
   <SelectPrimitive.Trigger
-    ref={ref}
     className={cn('focus-visible:styled-outline', className)}
     {...props}>
     {children}
@@ -31,42 +27,49 @@ const SelectTrigger = ({
 const SelectContent = ({
   className,
   children,
-  ref,
+  side = 'bottom',
+  align = 'center',
   sideOffset = 5,
-  position = 'popper',
+  alignOffset = 0,
+  alignItemWithTrigger = true,
   ...props
-}: ComponentProps<typeof SelectPrimitive.Content>) => (
+}: SelectPrimitive.Popup.Props &
+  Pick<
+    SelectPrimitive.Positioner.Props,
+    'align' | 'alignOffset' | 'side' | 'sideOffset' | 'alignItemWithTrigger'
+  >) => (
   <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
-      ref={ref}
-      className={cn(
-        `fade-zoom border-brand bg-white-soft shadow-base
-        violet:border-white-gray dark:bg-black-deep dark:border-brand/50
-        rounded-lg border p-4.5`,
-        className
-      )}
+    <SelectPrimitive.Positioner
+      side={side}
       sideOffset={sideOffset}
-      position={position}
-      {...props}>
-      {children}
-    </SelectPrimitive.Content>
+      align={align}
+      alignOffset={alignOffset}
+      alignItemWithTrigger={alignItemWithTrigger}
+      className='isolate z-1000'>
+      <SelectPrimitive.Popup
+        className={cn(
+          `fade-zoom border-brand bg-white-soft shadow-base
+          violet:border-white-gray dark:bg-black-deep dark:border-brand/50
+          rounded-lg border p-4.5`,
+          className
+        )}
+        {...props}>
+        {children}
+      </SelectPrimitive.Popup>
+    </SelectPrimitive.Positioner>
   </SelectPrimitive.Portal>
 )
 
 const SelectItem = ({
   className,
-  ref,
   children,
   ...props
 }: ComponentProps<typeof SelectPrimitive.Item>) => (
   <SelectPrimitive.Item
-    ref={ref}
     className={cn(
-      `data-[state=checked]:text-brand
-      violet:data-[state=checked]:text-brand-violet data-highlighted:text-brand
-      violet:data-highlighted:text-brand-violet hocus:text-brand
-      violet:hocus:text-brand-violet cursor-pointer text-base outline-none
-      dark:text-white/30`,
+      `data-selected:text-brand violet:data-selected:text-brand-violet
+      hocus:text-brand violet:hocus:text-brand-violet cursor-pointer text-base
+      outline-none data-disabled:pointer-events-none dark:text-white/30`,
       className
     )}
     {...props}>
@@ -80,7 +83,6 @@ export {
   SelectValue,
   SelectTrigger,
   SelectContent,
-  SelectViewport,
   SelectItem,
   SelectItemText
 }

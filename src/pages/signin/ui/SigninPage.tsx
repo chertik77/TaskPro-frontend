@@ -27,36 +27,32 @@ export const SigninPage = () => {
         onSubmit={form.handleSubmit(data => signin(data))}
         className='space-y-3.5'>
         <FormField
-          control={form.control}
           name='email'
-          render={({ field }) => (
+          control={form.control}
+          render={() => (
             <FormItem>
-              <FormControl>
-                <Input
-                  autoFocus
-                  autoComplete='email'
-                  className='autofill:text-fill-white text-white'
-                  placeholder='Enter your email'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<Input />}
+                autoFocus
+                autoComplete='email'
+                className='autofill:text-fill-white text-white'
+                placeholder='Enter your email'
+              />
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
-          control={form.control}
           name='password'
-          render={({ field }) => (
+          control={form.control}
+          render={() => (
             <FormItem>
-              <FormControl>
-                <PasswordInput
-                  autoComplete='current-password'
-                  className='autofill:text-fill-white text-white'
-                  placeholder='Confirm a password'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<PasswordInput />}
+                autoComplete='current-password'
+                className='autofill:text-fill-white text-white'
+                placeholder='Confirm a password'
+              />
               <FormMessage />
             </FormItem>
           )}

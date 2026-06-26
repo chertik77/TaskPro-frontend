@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 import type { TaskSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
-import { Slot } from '@radix-ui/react-slot'
+import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 
 import { cn } from '@/shared/lib'
@@ -144,31 +144,26 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   )
 }
 
-type TaskActionButtonProps = ComponentProps<'button'> & {
-  asChild?: boolean
-}
-
 const TaskActionButton = ({
   className,
-  asChild,
-  ref,
+  render,
   ...props
-}: TaskActionButtonProps) => {
-  const Comp = asChild ? Slot : 'button'
-
-  return (
-    <Comp
-      type='button'
-      className={cn(
-        `focus-visible:styled-outline hocus:text-black
+}: useRender.ComponentProps<'button'>) => {
+  const defaultProps: useRender.ElementProps<'button'> = {
+    type: 'button',
+    className: cn(
+      `focus-visible:styled-outline hocus:text-black
         dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
         [&_svg]:size-4`,
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  )
+      className
+    )
+  }
+
+  return useRender({
+    defaultTagName: 'button',
+    render,
+    props: mergeProps<'button'>(defaultProps, props)
+  })
 }
 
 export const Task = Object.assign(TaskProvider, {

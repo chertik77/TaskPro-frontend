@@ -54,14 +54,12 @@ export const AddTaskForm = ({
         <FormField
           control={form.control}
           name='title'
-          render={({ field }) => (
+          render={() => (
             <FormItem className='mb-3.5'>
-              <FormControl>
-                <Input
-                  placeholder='Title'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<Input />}
+                placeholder='Title'
+              />
               <FormMessage />
             </FormItem>
           )}
@@ -69,14 +67,9 @@ export const AddTaskForm = ({
         <FormField
           control={form.control}
           name='description'
-          render={({ field }) => (
+          render={() => (
             <FormItem className='mb-6'>
-              <FormControl>
-                <TextArea
-                  placeholder='Description'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl render={<TextArea placeholder='Description' />} />
               <FormMessage />
             </FormItem>
           )}

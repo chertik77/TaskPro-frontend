@@ -54,7 +54,9 @@ export const MemoizedColumn = memo(
         </Column.Header>
         <Column.ScrollArea>
           <Column.ScrollAreaViewport>
-            <TaskList tasks={tasks?.filter(c => c.columnId === column.id)} />
+            <Column.ScrollAreaContent className='w-full'>
+              <TaskList tasks={tasks?.filter(c => c.columnId === column.id)} />
+            </Column.ScrollAreaContent>
           </Column.ScrollAreaViewport>
           <Column.ScrollAreaScrollbar>
             <Column.ScrollAreaThumb

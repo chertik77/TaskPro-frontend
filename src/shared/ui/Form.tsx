@@ -1,9 +1,13 @@
-import type { ComponentProps } from 'react'
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 
-import { createContext, use, useId, useMemo } from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { Controller, FormProvider, useFormContext } from 'react-hook-form'
+import { createContext, use, useMemo } from 'react'
+import { Field } from '@base-ui/react/field'
+import {
+  Controller,
+  FormProvider,
+  useController,
+  useFormContext
+} from 'react-hook-form'
 
 import { cn } from '../lib'
 
@@ -38,8 +42,6 @@ const FormField = <
 const useFormField = () => {
   const fieldContext = use(FormFieldContext)
 
-  const { id } = use(FormItemContext)
-
   const { getFieldState, formState } = useFormContext()
 
   const fieldState = getFieldState(fieldContext.name, formState)
@@ -48,101 +50,70 @@ const useFormField = () => {
     throw new Error('useFormField should be used within <FormField>')
   }
 
-  return {
-    id,
-    name: fieldContext.name,
-    formItemId: `${id}-form-item`,
-    formDescriptionId: `${id}-form-item-description`,
-    formMessageId: `${id}-form-item-message`,
-    ...fieldState
-  }
+  return { name: fieldContext.name, ...fieldState }
 }
 
-type FormItemContextValue = { id: string }
+const FormItem = ({ className, ...props }: Field.Root.Props) => {
+  const { name, invalid, isDirty, isTouched } = useFormField()
 
-const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  return (
+    <Field.Root
+      className={cn('space-y-2', className)}
+      name={name}
+      invalid={invalid}
+      touched={isTouched}
+      dirty={isDirty}
+      {...props}
+    />
+  )
+}
+
+const FormLabel = ({ className, ...props }: Field.Label.Props) => {
+  const { error } = useFormField()
+
+  return (
+    <Field.Label
+      className={cn('block', error && 'text-red', className)}
+      {...props}
+    />
+  )
+}
+
+const FormDescription = ({ className, ...props }: Field.Description.Props) => (
+  <Field.Description
+    className={cn('text-md pl-1 text-black/70 dark:text-white/70', className)}
+    {...props}
+  />
 )
 
-const FormItem = ({ className, ref, ...props }: ComponentProps<'div'>) => {
-  const id = useId()
+const FormControl = ({ ...props }: Field.Control.Props) => {
+  const fieldContext = use(FormFieldContext)
 
-  const value = useMemo(() => ({ id }), [id])
-
-  return (
-    <FormItemContext value={value}>
-      <div
-        ref={ref}
-        className={cn('space-y-2', className)}
-        {...props}
-      />
-    </FormItemContext>
-  )
-}
-
-const FormLabel = ({ className, ref, ...props }: ComponentProps<'label'>) => {
-  const { error, formItemId } = useFormField()
+  const {
+    field: { value, ref, onBlur, onChange }
+  } = useController({ name: fieldContext.name })
 
   return (
-    <label
+    <Field.Control
+      value={value}
       ref={ref}
-      className={cn('block', error && 'text-red', className)}
-      htmlFor={formItemId}
+      onBlur={onBlur}
+      onValueChange={onChange}
       {...props}
     />
   )
 }
 
-const FormDescription = ({ className, ...props }: ComponentProps<'p'>) => {
-  const { formDescriptionId } = useFormField()
+const FormMessage = ({ className, ...props }: Field.Error.Props) => {
+  const { error } = useFormField()
 
   return (
-    <p
-      id={formDescriptionId}
-      className={cn('text-md pl-1 text-black/70 dark:text-white/70', className)}
-      {...props}
-    />
-  )
-}
-
-const FormControl = ({ ref, ...props }: ComponentProps<typeof Slot>) => {
-  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
-
-  return (
-    <Slot
-      ref={ref}
-      id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
-      aria-invalid={!!error}
-      {...props}
-    />
-  )
-}
-
-const FormMessage = ({
-  className,
-  ref,
-  children,
-  ...props
-}: ComponentProps<'p'>) => {
-  const { error, formMessageId } = useFormField()
-
-  const body = error ? String(error?.message ?? '') : children
-
-  return (
-    body && (
-      <p
-        ref={ref}
-        id={formMessageId}
-        className={cn('text-red pl-1', className)}
-        {...props}>
-        {body}
-      </p>
-    )
+    <Field.Error
+      match={!!error}
+      className={cn('text-red pl-1', className)}
+      {...props}>
+      {error?.message}
+    </Field.Error>
   )
 }
 

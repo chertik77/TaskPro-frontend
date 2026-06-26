@@ -1,4 +1,4 @@
-import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { ScrollArea } from '@base-ui/react/scroll-area'
 
 import { NeedHelpDialog } from '@/features/user/need-help'
 
@@ -23,21 +23,22 @@ export const Sidebar = () => {
     <SidebarMobileMenu />
   ) : (
     <ScrollArea.Root
-      type='scroll'
       className={cn(
         'violet:bg-brand-violet dark:bg-black-soft row-span-2 hidden bg-white',
         isOpen && 'desktop:block'
       )}>
       <ScrollArea.Viewport className='h-dvh'>
-        <aside className='flex h-dvh flex-col'>
-          <SidebarLogo />
-          <SidebarBoardCreationSection />
-          <SidebarBoardList />
-          <div className='mt-auto px-6 pb-6'>
-            <NeedHelpDialog />
-            <SidebarLogoutBtn />
-          </div>
-        </aside>
+        <ScrollArea.Content>
+          <aside className='flex h-dvh flex-col'>
+            <SidebarLogo />
+            <SidebarBoardCreationSection />
+            <SidebarBoardList />
+            <div className='mt-auto px-6 pb-6'>
+              <NeedHelpDialog />
+              <SidebarLogoutBtn />
+            </div>
+          </aside>
+        </ScrollArea.Content>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar className='w-1 bg-transparent'>
         <ScrollArea.Thumb className='rounded-[26px] bg-white/60' />

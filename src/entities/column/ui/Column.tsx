@@ -2,8 +2,8 @@ import type { ComponentProps, ReactNode } from 'react'
 import type { ColumnSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { Slot } from '@radix-ui/react-slot'
+import { mergeProps, useRender } from '@base-ui/react'
+import { ScrollArea } from '@base-ui/react/scroll-area'
 
 import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
@@ -83,12 +83,11 @@ const ColumnScrollArea = ({
   children,
   className,
   ...props
-}: ScrollArea.ScrollAreaProps) => {
+}: ScrollArea.Root.Props) => {
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
   return (
     <ScrollArea.Root
-      type='scroll'
       className={cn('-mr-4 pr-4', className, {
         'h-[calc(100dvh-275px)]': !isTabletAndBelow,
         'h-[calc(100dvh-300px)]': isTabletAndBelow
@@ -103,7 +102,7 @@ const ColumnScrollAreaViewport = ({
   children,
   className,
   ...props
-}: ScrollArea.ScrollAreaViewportProps) => (
+}: ScrollArea.Viewport.Props) => (
   <ScrollArea.Viewport
     className={cn('h-full', className)}
     {...props}>
@@ -111,11 +110,23 @@ const ColumnScrollAreaViewport = ({
   </ScrollArea.Viewport>
 )
 
+const ColumnScrollAreaContent = ({
+  children,
+  className,
+  ...props
+}: ScrollArea.Content.Props) => (
+  <ScrollArea.Content
+    className={cn(className)}
+    {...props}>
+    {children}
+  </ScrollArea.Content>
+)
+
 const ColumnScrollAreaScrollbar = ({
   className,
   children,
   ...props
-}: ScrollArea.ScrollAreaScrollbarProps) => (
+}: ScrollArea.Scrollbar.Props) => (
   <ScrollArea.Scrollbar
     className={cn('w-2 bg-transparent', className)}
     {...props}>
@@ -126,38 +137,33 @@ const ColumnScrollAreaScrollbar = ({
 const ColumnScrollAreaThumb = ({
   className,
   ...props
-}: ScrollArea.ScrollAreaThumbProps) => (
+}: ScrollArea.Thumb.Props) => (
   <ScrollArea.Thumb
     className={cn('rounded-[26px] bg-white/60', className)}
     {...props}
   />
 )
 
-type ColumnActionButtonProps = ComponentProps<'button'> & {
-  asChild?: boolean
-}
-
 const ColumnActionButton = ({
   className,
-  asChild,
-  ref,
+  render,
   ...props
-}: ColumnActionButtonProps) => {
-  const Comp = asChild ? Slot : 'button'
-
-  return (
-    <Comp
-      type='button'
-      className={cn(
-        `focus-visible:styled-outline hocus:text-black
+}: useRender.ComponentProps<'button'>) => {
+  const defaultProps: useRender.ElementProps<'button'> = {
+    type: 'button',
+    className: cn(
+      `focus-visible:styled-outline hocus:text-black
         dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
         [&_svg]:size-4`,
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  )
+      className
+    )
+  }
+
+  return useRender({
+    defaultTagName: 'button',
+    render,
+    props: mergeProps<'button'>(defaultProps, props)
+  })
 }
 
 export const Column = Object.assign(ColumnProvider, {
@@ -166,6 +172,7 @@ export const Column = Object.assign(ColumnProvider, {
   Title: ColumnTitle,
   ScrollArea: ColumnScrollArea,
   ScrollAreaViewport: ColumnScrollAreaViewport,
+  ScrollAreaContent: ColumnScrollAreaContent,
   ScrollAreaScrollbar: ColumnScrollAreaScrollbar,
   ScrollAreaThumb: ColumnScrollAreaThumb,
   ActionButton: ColumnActionButton

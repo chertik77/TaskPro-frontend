@@ -21,7 +21,6 @@ export {
   SelectValue,
   SelectTrigger,
   SelectContent,
-  SelectViewport,
   SelectItem,
   SelectItemText
 } from './Select'

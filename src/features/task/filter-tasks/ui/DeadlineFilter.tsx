@@ -21,7 +21,7 @@ export const DeadlineFilter = () => {
           key={deadline}>
           <RadioGroupItem
             className='bg-black/30 dark:bg-white/30'
-            indicatorClassname='after:bg-black/30 dark:after:bg-white/30'
+            indicatorClassname='bg-black/30 dark:bg-white/30'
             value={deadline}
           />
           {deadline}

@@ -1,4 +1,4 @@
-import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { ScrollArea } from '@base-ui/react/scroll-area'
 import { useQuery } from '@tanstack/react-query'
 
 import { DragAndDropProvider } from '@/features/drag-and-drop'
@@ -63,11 +63,13 @@ export const Board = () => {
         </h2>
         <Filters />
       </div>
-      <ScrollArea.Viewport className='w-full flex-1 pb-4'>
-        <DragAndDropProvider initialColumns={board.columns}>
-          <ColumnList backgroundURL={backgroundURL} />
-          <KanbanDragOverlay />
-        </DragAndDropProvider>
+      <ScrollArea.Viewport>
+        <ScrollArea.Content className='w-full flex-1 pb-4'>
+          <DragAndDropProvider initialColumns={board.columns}>
+            <ColumnList backgroundURL={backgroundURL} />
+            <KanbanDragOverlay />
+          </DragAndDropProvider>
+        </ScrollArea.Content>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
         className='tablet:mx-8 desktop:mx-6 mx-5 mb-2 h-3 bg-transparent'

@@ -1,6 +1,5 @@
 import { getTaskPriorityColor, TASK_PRIORITIES } from '@/entities/task'
 
-import { cn } from '@/shared/lib'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
 import { useTaskFilters } from '../lib/useTaskFilters'
@@ -22,7 +21,7 @@ export const PriorityFilter = () => {
           key={priority}>
           <RadioGroupItem
             className={getTaskPriorityColor(priority)}
-            indicatorClassname={cn(`after:${getTaskPriorityColor(priority)}`)}
+            indicatorClassname={getTaskPriorityColor(priority)}
             value={priority}
           />
           {priority}

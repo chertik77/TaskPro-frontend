@@ -32,15 +32,13 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
         <FormField
           control={form.control}
           name='name'
-          render={({ field }) => (
+          render={() => (
             <FormItem>
-              <FormControl>
-                <Input
-                  autoFocus
-                  placeholder='Enter your name'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<Input />}
+                autoFocus
+                placeholder='Enter your name'
+              />
               <FormMessage />
             </FormItem>
           )}
@@ -48,14 +46,12 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
         <FormField
           control={form.control}
           name='email'
-          render={({ field }) => (
+          render={() => (
             <FormItem>
-              <FormControl>
-                <Input
-                  placeholder='Enter your email'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<Input />}
+                placeholder='Enter your email'
+              />
               <FormMessage />
             </FormItem>
           )}
@@ -63,15 +59,13 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
         <FormField
           control={form.control}
           name='password'
-          render={({ field }) => (
+          render={() => (
             <FormItem>
-              <FormControl>
-                <PasswordInput
-                  autoComplete='new-password'
-                  placeholder='Create a password'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<PasswordInput />}
+                autoComplete='new-password'
+                placeholder='Create a password'
+              />
               <FormMessage />
             </FormItem>
           )}

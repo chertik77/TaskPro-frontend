@@ -38,14 +38,12 @@ export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
         <FormField
           control={form.control}
           name='email'
-          render={({ field }) => (
+          render={() => (
             <FormItem>
-              <FormControl>
-                <Input
-                  placeholder='Email address'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<Input />}
+                placeholder='Email address'
+              />
               <FormMessage />
             </FormItem>
           )}
@@ -53,14 +51,12 @@ export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
         <FormField
           control={form.control}
           name='comment'
-          render={({ field }) => (
+          render={() => (
             <FormItem>
-              <FormControl>
-                <TextArea
-                  placeholder='Comment'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<TextArea />}
+                placeholder='Comment'
+              />
               <FormMessage />
             </FormItem>
           )}

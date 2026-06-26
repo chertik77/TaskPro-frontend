@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
 
-import * as PopoverPrimitive from '@radix-ui/react-popover'
+import { Popover as PopoverPrimitive } from '@base-ui/react/popover'
 
 import { cn } from '../lib'
 import { Icon } from './Icon'
@@ -12,19 +12,28 @@ const PopoverTrigger = PopoverPrimitive.Trigger
 const PopoverContent = ({
   className,
   align = 'center',
+  alignOffset = 0,
+  side = 'bottom',
+  collisionPadding,
   sideOffset = 5,
   ...props
-}: ComponentProps<typeof PopoverPrimitive.Content>) => (
+}: PopoverPrimitive.Popup.Props & PopoverPrimitive.Positioner.Props) => (
   <PopoverPrimitive.Portal>
-    <PopoverPrimitive.Content
+    <PopoverPrimitive.Positioner
       align={align}
+      alignOffset={alignOffset}
+      collisionPadding={collisionPadding}
+      side={side}
       sideOffset={sideOffset}
-      className={cn(
-        'fade-zoom shadow-base z-1000 rounded-lg outline-none',
-        className
-      )}
-      {...props}
-    />
+      className='isolate z-1000'>
+      <PopoverPrimitive.Popup
+        className={cn(
+          'fade-zoom shadow-base z-1000 rounded-lg outline-none',
+          className
+        )}
+        {...props}
+      />
+    </PopoverPrimitive.Positioner>
   </PopoverPrimitive.Portal>
 )
 

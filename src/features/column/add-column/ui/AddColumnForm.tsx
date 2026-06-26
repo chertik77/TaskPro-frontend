@@ -33,14 +33,12 @@ export const AddColumnForm = ({ setIsDialogOpen }: AddColumnFormProps) => {
         <FormField
           control={form.control}
           name='title'
-          render={({ field }) => (
+          render={() => (
             <FormItem>
-              <FormControl>
-                <Input
-                  placeholder='Title'
-                  {...field}
-                />
-              </FormControl>
+              <FormControl
+                render={<Input />}
+                placeholder='Title'
+              />
               <FormMessage />
             </FormItem>
           )}

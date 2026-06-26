@@ -8,7 +8,6 @@ import { Input } from './Input'
 
 export const PasswordInput = ({
   className,
-  ref,
   ...props
 }: ComponentProps<'input'>) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -19,7 +18,6 @@ export const PasswordInput = ({
         type={showPassword ? 'text' : 'password'}
         className={cn('hide-password-toggle peer pr-8.75', className)}
         {...props}
-        ref={ref}
       />
       <button
         type='button'

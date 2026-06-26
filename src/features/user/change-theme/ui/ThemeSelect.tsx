@@ -9,8 +9,7 @@ import {
   SelectItem,
   SelectItemText,
   SelectTrigger,
-  SelectValue,
-  SelectViewport
+  SelectValue
 } from '@/shared/ui'
 
 import { useChangeTheme } from '../api/useChangeTheme'
@@ -23,34 +22,37 @@ export const ThemeSelect = () => {
 
   return (
     <Select
-      onValueChange={(v: Theme) => changeUserTheme({ theme: v })}
+      onValueChange={v => changeUserTheme({ theme: v as Theme })}
       value={currentTheme}>
       <SelectTrigger className='flex items-center gap-1'>
-        <SelectValue placeholder='Theme' />
-        <SelectIcon asChild>
-          <Icon
-            name='chevron-down'
-            className='size-5'
-          />
-        </SelectIcon>
+        <SelectValue
+          placeholder='Theme'
+          className='first-letter:capitalize'
+        />
+        <SelectIcon
+          render={
+            <Icon
+              name='chevron-down'
+              className='size-5'
+            />
+          }
+        />
       </SelectTrigger>
       <SelectContent
         align='end'
-        className='w-26.25'>
-        <SelectViewport className='flex flex-col gap-1'>
-          {THEMES.map(theme => (
-            <SelectItem
-              key={theme}
-              disabled={theme === currentTheme}
-              className='data-disabled:cursor-not-allowed
-                data-highlighted:underline'
-              value={theme}>
-              <SelectItemText>
-                {theme.charAt(0).toUpperCase() + theme.slice(1)}
-              </SelectItemText>
-            </SelectItem>
-          ))}
-        </SelectViewport>
+        className='flex w-26.25 flex-col gap-1'>
+        {THEMES.map(theme => (
+          <SelectItem
+            key={theme}
+            disabled={theme === currentTheme}
+            className='data-disabled:cursor-not-allowed
+              data-highlighted:underline'
+            value={theme}>
+            <SelectItemText className='first-letter:capitalize'>
+              {theme}
+            </SelectItemText>
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   )

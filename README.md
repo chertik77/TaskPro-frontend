@@ -9,34 +9,34 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 ## Features
 
 - **Authentication:**
-Users can register or log in with support for Google and Microsoft sign-in for a faster and more convenient experience.
+  Users can register or log in with support for Google and Microsoft sign-in for a faster and more convenient experience.
 
 - **Custom Boards:**
-Users can create and personalize boards with unique icons and background images to organize their workspace effectively.
+  Users can create and personalize boards with unique icons and background images to organize their workspace effectively.
 
 - **Task Management:**
-Users can add, edit, and prioritize tasks with ease. Filtering options help focus on high-priority work and improve productivity.
+  Users can add, edit, and prioritize tasks with ease. Filtering options help focus on high-priority work and improve productivity.
 
 - **Fuzzy Search:**
-Implemented fuzzy search to help users quickly find tasks, even if the search input is not an exact match.
+  Implemented fuzzy search to help users quickly find tasks, even if the search input is not an exact match.
 
 - **Drag and Drop:**
-Tasks and columns can be moved easily using drag-and-drop, making workflow management smooth and intuitive.
+  Tasks and columns can be moved easily using drag-and-drop, making workflow management smooth and intuitive.
 
 - **Theme Switching:**
-Users can switch between light, dark, and violet themes to match their preferences.
+  Users can switch between light, dark, and violet themes to match their preferences.
 
 - **Profile Management:**
-Users can update their profile information, including changing their avatar.
+  Users can update their profile information, including changing their avatar.
 
 - **Sidebar Toggle:**
-Added keyboard shortcuts (<kbd>⌘ Command</kbd> + <kbd>B</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>B</kbd> on Windows/Linux) to quickly show or hide the sidebar for better focus.
+  Added keyboard shortcuts (<kbd>⌘ Command</kbd> + <kbd>B</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>B</kbd> on Windows/Linux) to quickly show or hide the sidebar for better focus.
 
 - **Get Help Fast:**
-Users can send help requests directly from the app via email, making it easy to get support when needed.
+  Users can send help requests directly from the app via email, making it easy to get support when needed.
 
 - **Accessibility:**
-The application supports keyboard navigation and screen readers, ensuring it is usable for a wide range of users.
+  The application supports keyboard navigation and screen readers, ensuring it is usable for a wide range of users.
 
 ## Project Contributors
 
@@ -53,4 +53,4 @@ The application supports keyboard navigation and screen readers, ensuring it is 
 
 ## Languages and Tools
 
-![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,radixui,tanstack,stanjs,axios,datefns,reactdatepicker,reacthookform,valibot,tailwind,tailwindmerge,fusejs,commitlint,eslint,prettier,githubactions,fsd,yarn,vercel,vite,vscode,figma&perline=8)
+![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,baseui,tanstack,stanjs,axios,datefns,reactdatepicker,reacthookform,valibot,tailwind,tailwindmerge,fusejs,commitlint,eslint,prettier,githubactions,fsd,yarn,vercel,vite,vscode,figma&perline=8)

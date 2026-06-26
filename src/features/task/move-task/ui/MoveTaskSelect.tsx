@@ -7,8 +7,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,
-  SelectViewport
+  SelectTrigger
 } from '@/shared/ui'
 
 import { useGetFilteredColumns } from '../api/useGetFilteredColumns'
@@ -28,7 +27,7 @@ export const MoveTaskSelect = memo(
     return (
       <Select
         value={taskColumnId}
-        onValueChange={v => moveTask({ taskId: taskId, columnId: v })}
+        onValueChange={v => moveTask({ taskId: taskId, columnId: v! })}
         disabled={isPending}>
         <SelectTrigger
           className={cn(
@@ -46,22 +45,21 @@ export const MoveTaskSelect = memo(
           )}
         </SelectTrigger>
         <SelectContent
-          sideOffset={10}
-          className='w-min'>
-          <SelectViewport className='flex flex-col gap-2'>
-            {filteredColumns?.map(column => (
-              <SelectItem
-                key={column.id}
-                className='flex items-center gap-2'
-                value={column.id}>
-                <p className='w-20 truncate'>{column.title}</p>
-                <Icon
-                  name='arrow-circle'
-                  className='size-4'
-                />
-              </SelectItem>
-            ))}
-          </SelectViewport>
+          align='start'
+          alignItemWithTrigger={false}
+          className='flex w-min flex-col gap-2'>
+          {filteredColumns?.map(column => (
+            <SelectItem
+              key={column.id}
+              className='flex items-center gap-2'
+              value={column.id}>
+              <p className='w-20 truncate'>{column.title}</p>
+              <Icon
+                name='arrow-circle'
+                className='size-4'
+              />
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     )

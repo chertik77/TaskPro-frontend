@@ -7,7 +7,6 @@ import { startOfDay } from 'date-fns'
 
 import {
   Calendar,
-  FormControl,
   Icon,
   Input,
   Popover,
@@ -53,21 +52,19 @@ export const FormDeadlinePicker = <T extends FieldValues>({
 
   return (
     <div className='relative'>
-      <FormControl>
-        <Input
-          {...props}
-          value={inputValue}
-          placeholder='Tomorrow or next week'
-          className='pr-12'
-          onChange={handleChange}
-          onKeyDown={e => {
-            if (e.key === 'ArrowDown') {
-              e.preventDefault()
-              setIsCalendarOpen(true)
-            }
-          }}
-        />
-      </FormControl>
+      <Input
+        {...props}
+        value={inputValue}
+        placeholder='Tomorrow or next week'
+        className='pr-12'
+        onChange={handleChange}
+        onKeyDown={e => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault()
+            setIsCalendarOpen(true)
+          }
+        }}
+      />
       <Popover
         open={isCalendarOpen}
         onOpenChange={setIsCalendarOpen}>
