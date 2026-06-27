@@ -4,7 +4,7 @@ import {
   SortableContext
 } from '@dnd-kit/sortable'
 
-import { AddColumnDialog } from '@/features/column/add-column'
+import { AddColumnDialog } from '@/features/column/add'
 import { useDragAndDrop } from '@/features/drag-and-drop'
 
 import { ColumnListItem } from './ColumnListItem'

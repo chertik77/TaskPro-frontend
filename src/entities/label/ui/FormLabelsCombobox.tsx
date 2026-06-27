@@ -8,7 +8,7 @@ import { cn } from '@/shared/lib'
 import { createTypeSafeCombobox, useComboboxAnchorRef } from '@/shared/ui'
 
 import { labelQueries } from '../api/queries'
-import { COLOR_MAP, LABEL_COLOR_MAP } from '../config/badge-color-map'
+import { COLOR_MAP, LABEL_COLOR_MAP } from '../config/color-map'
 
 const Combobox = createTypeSafeCombobox<LabelSchema, string>()
 

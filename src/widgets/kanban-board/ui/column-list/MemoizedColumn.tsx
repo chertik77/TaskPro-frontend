@@ -6,16 +6,16 @@ import type {
 
 import { memo } from 'react'
 
-import { DeleteColumnTrigger } from '@/features/column/delete-column'
-import { EditColumnDialog } from '@/features/column/edit-column'
+import { DeleteColumnTrigger } from '@/features/column/delete'
+import { EditColumnDialog } from '@/features/column/edit'
 import { useDragAndDrop } from '@/features/drag-and-drop'
-import { AddTaskDialog } from '@/features/task/add-task'
+import { AddTaskDialog } from '@/features/task/add'
 
 import { Column } from '@/entities/column'
 
 import { cn } from '@/shared/lib'
 
-import { TaskList } from '../task/TaskList'
+import { TaskList } from '../task-list/TaskList'
 
 type MemoizedColumnProps = {
   column: ColumnTypes.ColumnSchema

@@ -3,8 +3,8 @@ import type { BoardTypes } from '@/entities/board'
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
 
-import { DeleteBoardTrigger } from '@/features/board/delete-board'
-import { EditBoardDialog } from '@/features/board/edit-board'
+import { DeleteBoardTrigger } from '@/features/board/delete'
+import { EditBoardDialog } from '@/features/board/edit'
 
 import { cn } from '@/shared/lib'
 import { Icon } from '@/shared/ui'

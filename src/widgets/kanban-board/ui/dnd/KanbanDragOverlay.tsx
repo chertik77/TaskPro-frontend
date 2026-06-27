@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom'
 
 import { useDragAndDrop } from '@/features/drag-and-drop'
 
-import { ColumnListItem } from '../column/ColumnListItem'
-import { TaskListItem } from '../task/TaskListItem'
+import { ColumnListItem } from '../column-list/ColumnListItem'
+import { TaskListItem } from '../task-list/TaskListItem'
 
 export const KanbanDragOverlay = () => {
   const { activeTask, activeColumn } = useDragAndDrop()

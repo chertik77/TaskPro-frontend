@@ -1,4 +1,6 @@
-export const LABEL_COLOR_MAP = {
+import type { LABEL_COLORS } from './colors'
+
+export const LABEL_COLOR_MAP: Record<(typeof LABEL_COLORS)[number], string> = {
   blue: 'bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300',
   violet:
     'bg-violet-100 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300',
@@ -12,7 +14,7 @@ export const LABEL_COLOR_MAP = {
   gray: 'bg-gray-100 text-gray-700 dark:bg-gray-500/15 dark:text-gray-300'
 } as const
 
-export const COLOR_MAP = {
+export const COLOR_MAP: Record<(typeof LABEL_COLORS)[number], string> = {
   blue: 'bg-blue-500',
   violet: 'bg-violet-500',
   emerald: 'bg-emerald-500',

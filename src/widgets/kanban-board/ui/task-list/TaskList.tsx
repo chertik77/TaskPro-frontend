@@ -3,7 +3,7 @@ import type { TaskTypes } from '@/entities/task'
 import { useMemo } from 'react'
 import { SortableContext } from '@dnd-kit/sortable'
 
-import { useFilteredTasks } from '@/features/task/filter-tasks'
+import { useFilteredTasks } from '@/features/task/filter'
 
 import { TaskListItem } from './TaskListItem'
 

@@ -2,9 +2,9 @@ import type { TaskTypes } from '@/entities/task'
 
 import { memo } from 'react'
 
-import { DeleteTaskTrigger } from '@/features/task/delete-task'
-import { EditTaskDialog } from '@/features/task/edit-task'
-import { MoveTaskSelect } from '@/features/task/move-task'
+import { DeleteTaskTrigger } from '@/features/task/delete'
+import { EditTaskDialog } from '@/features/task/edit'
+import { MoveTaskSelect } from '@/features/task/move'
 
 import { Task } from '@/entities/task'
 

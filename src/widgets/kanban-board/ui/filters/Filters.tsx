@@ -4,7 +4,7 @@ import {
   DeadlineFilter,
   PriorityFilter,
   SearchFilter
-} from '@/features/task/filter-tasks'
+} from '@/features/task/filter'
 
 import { useGetParamBoardId } from '@/entities/board'
 
