@@ -6,6 +6,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   Loader,
@@ -34,10 +35,10 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
           name='name'
           render={() => (
             <FormItem>
+              <FormLabel>Name</FormLabel>
               <FormControl
                 render={<Input />}
                 autoFocus
-                placeholder='Enter your name'
               />
               <FormMessage />
             </FormItem>
@@ -48,10 +49,8 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
           name='email'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<Input />}
-                placeholder='Enter your email'
-              />
+              <FormLabel>Email</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}
@@ -61,10 +60,10 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
           name='password'
           render={() => (
             <FormItem>
+              <FormLabel>New Password</FormLabel>
               <FormControl
                 render={<PasswordInput />}
                 autoComplete='new-password'
-                placeholder='Create a password'
               />
               <FormMessage />
             </FormItem>

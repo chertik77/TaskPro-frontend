@@ -5,6 +5,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   Loader,
@@ -31,12 +32,12 @@ export const SigninPage = () => {
           control={form.control}
           render={() => (
             <FormItem>
+              <FormLabel className='text-white/50'>Email</FormLabel>
               <FormControl
                 render={<Input />}
                 autoFocus
                 autoComplete='email'
                 className='autofill:text-fill-white text-white'
-                placeholder='Enter your email'
               />
               <FormMessage />
             </FormItem>
@@ -47,11 +48,11 @@ export const SigninPage = () => {
           control={form.control}
           render={() => (
             <FormItem>
+              <FormLabel className='text-white/50'>Password</FormLabel>
               <FormControl
                 render={<PasswordInput />}
                 autoComplete='current-password'
                 className='autofill:text-fill-white text-white'
-                placeholder='Confirm a password'
               />
               <FormMessage />
             </FormItem>

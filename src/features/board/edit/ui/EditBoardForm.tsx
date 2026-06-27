@@ -46,10 +46,8 @@ export const EditBoardForm = ({
           name='title'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<Input />}
-                placeholder='Title'
-              />
+              <FormLabel>Title</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}
@@ -58,7 +56,7 @@ export const EditBoardForm = ({
           control={form.control}
           name='icon'
           render={({ field }) => (
-            <FormItem className='space-y-3.5'>
+            <FormItem>
               <FormLabel>Icons</FormLabel>
               <FormIconSelector {...field} />
               <FormMessage />
@@ -69,7 +67,7 @@ export const EditBoardForm = ({
           control={form.control}
           name='background'
           render={({ field }) => (
-            <FormItem className='space-y-3.5'>
+            <FormItem className='space-y-3'>
               <FormLabel>Background</FormLabel>
               <FormBgImageSelector {...field} />
               <FormMessage />

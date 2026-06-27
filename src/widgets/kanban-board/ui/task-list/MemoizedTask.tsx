@@ -2,6 +2,7 @@ import type { TaskTypes } from '@/entities/task'
 
 import { memo } from 'react'
 
+import { AddLabelDialog } from '@/features/label/add'
 import { DeleteTaskTrigger } from '@/features/task/delete'
 import { EditTaskDialog } from '@/features/task/edit'
 import { MoveTaskSelect } from '@/features/task/move'
@@ -13,27 +14,30 @@ type MemoizedTaskProps = {
 }
 
 export const MemoizedTask = memo(({ task }: MemoizedTaskProps) => (
-  <Task task={task}>
-    <Task.PriorityIndicator />
-    <Task.Title />
-    <Task.Labels />
-    <Task.Description />
-    <div
-      className='flex items-end border-t border-black/10 pt-3.5
-        dark:border-white/10'>
-      <Task.Priority />
-      <Task.Deadline />
-      <div className='ml-auto flex items-center gap-3'>
-        <Task.DeadlineTodayIndicator />
-        <div className='flex items-center gap-2'>
-          <MoveTaskSelect
-            taskId={task.id}
-            taskColumnId={task.columnId}
-          />
-          <EditTaskDialog data={{ taskId: task.id, formValues: task }} />
-          <DeleteTaskTrigger taskId={task.id} />
+  <>
+    <Task task={task}>
+      <Task.PriorityIndicator />
+      <Task.Title />
+      <Task.Labels />
+      <Task.Description />
+      <div
+        className='flex items-end border-t border-black/10 pt-3.5
+          dark:border-white/10'>
+        <Task.Priority />
+        <Task.Deadline />
+        <div className='ml-auto flex items-center gap-3'>
+          <Task.DeadlineTodayIndicator />
+          <div className='flex items-center gap-2'>
+            <MoveTaskSelect
+              taskId={task.id}
+              taskColumnId={task.columnId}
+            />
+            <EditTaskDialog data={{ taskId: task.id, formValues: task }} />
+            <DeleteTaskTrigger taskId={task.id} />
+          </div>
         </div>
       </div>
-    </div>
-  </Task>
+    </Task>
+    <AddLabelDialog />
+  </>
 ))

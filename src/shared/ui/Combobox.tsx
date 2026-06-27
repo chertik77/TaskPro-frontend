@@ -25,14 +25,14 @@ const ComboboxContent = ({
     ComboboxPrimitive.Positioner.Props,
     'side' | 'align' | 'sideOffset' | 'alignOffset' | 'anchor'
   >) => (
-  <ComboboxPrimitive.Portal>
+  <ComboboxPrimitive.Portal className='group'>
     <ComboboxPrimitive.Positioner
       side={side}
       sideOffset={sideOffset}
       align={align}
       alignOffset={alignOffset}
       anchor={anchor}
-      className='isolate z-1000'>
+      className='isolate group-data-base-ui-inert:-z-10'>
       <ComboboxPrimitive.Popup
         className={cn(
           `dark:bg-black-deep data-[side=bottom]:slide-in-from-top-2
@@ -44,7 +44,7 @@ const ComboboxContent = ({
           data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out
           data-closed:fade-out-0 data-closed:zoom-out-95 border-brand/30
           violet:border-brand-violet/30 group bg-white-soft shadow-base relative
-          max-h-(--available-height) w-(--anchor-width)
+          z-50 max-h-(--available-height) w-(--anchor-width)
           max-w-(--available-width) origin-(--transform-origin) overflow-hidden
           rounded-lg dark:border`,
           className

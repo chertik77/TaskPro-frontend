@@ -1,76 +1,51 @@
-import type { Dispatch, SetStateAction } from 'react'
-
-import { useMemo } from 'react'
-import { addDays } from 'date-fns'
-
-import { FormLabelsCombobox } from '@/entities/label'
-import {
-  formatDeadlineDate,
-  FormDeadlinePicker,
-  FormPrioritySelector
-} from '@/entities/task'
-
 import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
   Input,
-  PlusButtonWithLoader,
-  TextArea
+  PlusButtonWithLoader
 } from '@/shared/ui'
 
-import { useAddTask } from '../api/useAddTask'
-import { AddTaskSchema } from '../model/contract'
+import { useAddLabel } from '../api/useAddLabel'
+import { AddLabelSchema } from '../model/contract'
 
-type AddTaskFormProps = {
-  columnId: string
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+type AddLabelFormProps = {
+  name?: string
 }
 
-export const AddTaskForm = ({
-  columnId,
-  setIsDialogOpen
-}: AddTaskFormProps) => {
-  const deadline = useMemo(() => addDays(new Date(), 1), [])
-
-  const form = useAppForm(AddTaskSchema, {
-    defaultValues: {
-      title: '',
-      description: '',
-      priority: 'Without',
-      deadline,
-      labels: []
-    }
+export const AddLabelForm = ({ name }: AddLabelFormProps) => {
+  const form = useAppForm(AddLabelSchema, {
+    defaultValues: { name: name ?? '', color: 'blue' }
   })
 
-  const { mutate: addTask, isPending } = useAddTask(columnId, setIsDialogOpen)
+  const { mutate: addLabel, isPending } = useAddLabel()
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(data => addTask(data))}>
+      <form onSubmit={form.handleSubmit(data => addLabel(data))}>
         <FormField
           control={form.control}
-          name='title'
+          name='name'
           render={() => (
             <FormItem className='mb-3.5'>
-              <FormLabel>Title</FormLabel>
+              <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                Name
+              </FormLabel>
               <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name='description'
           render={() => (
             <FormItem className='mb-6'>
-              <FormLabel>Description</FormLabel>
-              <FormControl render={<TextArea />} />
+              <FormControl render={<TextArea placeholder='Description' />} />
               <FormMessage />
             </FormItem>
           )}
@@ -79,8 +54,10 @@ export const AddTaskForm = ({
           control={form.control}
           name='priority'
           render={({ field }) => (
-            <FormItem className='mb-3.5'>
-              <FormLabel>Priority</FormLabel>
+            <FormItem className='mb-3.5 space-y-1'>
+              <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                Priority
+              </FormLabel>
               <FormPrioritySelector {...field} />
               <FormMessage />
             </FormItem>
@@ -90,8 +67,10 @@ export const AddTaskForm = ({
           control={form.control}
           name='labels'
           render={({ field }) => (
-            <FormItem className='mb-3.5'>
-              <FormLabel>Labels</FormLabel>
+            <FormItem className='mb-3.5 space-y-1'>
+              <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                Labels
+              </FormLabel>
               <FormLabelsCombobox {...field} />
               <FormMessage />
             </FormItem>
@@ -101,8 +80,10 @@ export const AddTaskForm = ({
           control={form.control}
           name='deadline'
           render={({ field, fieldState }) => (
-            <FormItem className='mb-6'>
-              <FormLabel>Deadline</FormLabel>
+            <FormItem className='mb-6 space-y-1'>
+              <FormLabel className='text-md text-black/50 dark:text-white/50'>
+                Deadline
+              </FormLabel>
               <FormDeadlinePicker
                 mode='create'
                 {...field}
@@ -116,7 +97,7 @@ export const AddTaskForm = ({
               )}
             </FormItem>
           )}
-        />
+        /> */}
         <PlusButtonWithLoader
           type='submit'
           shouldShowLoader={isPending}

@@ -56,10 +56,8 @@ export const EditTaskForm = ({
           name='title'
           render={() => (
             <FormItem className='mb-3.5'>
-              <FormControl
-                render={<Input />}
-                placeholder='Title'
-              />
+              <FormLabel>Title</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}
@@ -69,10 +67,8 @@ export const EditTaskForm = ({
           name='description'
           render={() => (
             <FormItem className='mb-6'>
-              <FormControl
-                render={<TextArea />}
-                placeholder='Description'
-              />
+              <FormLabel>Description</FormLabel>
+              <FormControl render={<TextArea />} />
               <FormMessage />
             </FormItem>
           )}
@@ -81,10 +77,8 @@ export const EditTaskForm = ({
           control={form.control}
           name='priority'
           render={({ field }) => (
-            <FormItem className='mb-3.5 space-y-1'>
-              <FormLabel className='text-md text-black/50 dark:text-white/50'>
-                Priority
-              </FormLabel>
+            <FormItem className='mb-3.5'>
+              <FormLabel>Priority</FormLabel>
               <FormPrioritySelector {...field} />
               <FormMessage />
             </FormItem>
@@ -94,10 +88,8 @@ export const EditTaskForm = ({
           control={form.control}
           name='labels'
           render={({ field }) => (
-            <FormItem className='mb-3.5 space-y-1'>
-              <FormLabel className='text-md text-black/50 dark:text-white/50'>
-                Labels
-              </FormLabel>
+            <FormItem className='mb-3.5'>
+              <FormLabel>Labels</FormLabel>
               <FormLabelsCombobox {...field} />
               <FormMessage />
             </FormItem>
@@ -110,10 +102,8 @@ export const EditTaskForm = ({
             const isOverdue = startOfDay(field.value!) < startOfDay(new Date())
 
             return (
-              <FormItem className='mb-6 space-y-1'>
-                <FormLabel className='text-md text-black/50 dark:text-white/50'>
-                  Deadline
-                </FormLabel>
+              <FormItem className='mb-6'>
+                <FormLabel>Deadline</FormLabel>
                 <FormDeadlinePicker
                   mode='edit'
                   {...field}

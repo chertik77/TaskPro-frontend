@@ -73,7 +73,11 @@ const FormLabel = ({ className, ...props }: Field.Label.Props) => {
 
   return (
     <Field.Label
-      className={cn('block', error && 'text-red', className)}
+      className={cn(
+        'block text-base text-black/50 dark:text-white/50',
+        error && 'text-red',
+        className
+      )}
       {...props}
     />
   )

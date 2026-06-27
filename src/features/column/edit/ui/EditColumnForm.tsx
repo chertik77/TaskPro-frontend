@@ -7,6 +7,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   PlusButtonWithLoader
@@ -42,10 +43,8 @@ export const EditColumnForm = ({
           name='title'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<Input />}
-                placeholder='Title'
-              />
+              <FormLabel>Title</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}

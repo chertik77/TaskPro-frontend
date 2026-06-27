@@ -38,10 +38,8 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
           name='title'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<Input />}
-                placeholder='Title'
-              />
+              <FormLabel>Title</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}
@@ -50,7 +48,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
           control={form.control}
           name='icon'
           render={({ field }) => (
-            <FormItem className='space-y-3.5'>
+            <FormItem>
               <FormLabel>Icons</FormLabel>
               <FormIconSelector {...field} />
               <FormMessage />
@@ -61,7 +59,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
           control={form.control}
           name='background'
           render={({ field }) => (
-            <FormItem className='space-y-3.5'>
+            <FormItem className='space-y-3'>
               <FormLabel>Background</FormLabel>
               <FormBgImageSelector {...field} />
               <FormMessage />

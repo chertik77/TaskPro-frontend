@@ -1,8 +1,10 @@
+import type { AddLabelDto } from './types'
+
 import { parse } from 'valibot'
 
 import { axiosInstance } from '@/shared/api'
 
-import { LabelsDtoSchema } from './contracts'
+import { AddLabelDtoSchema, LabelsDtoSchema } from './contracts'
 import { labelApiEndpoints } from './endpoints'
 
 export const labelService = {
@@ -12,5 +14,11 @@ export const labelService = {
     const parsedData = parse(LabelsDtoSchema, response.data)
 
     return parsedData
+  },
+
+  async addLabel(data: AddLabelDto) {
+    const addLabelDto = parse(AddLabelDtoSchema, data)
+
+    await axiosInstance.post(labelApiEndpoints.add, addLabelDto)
   }
 }

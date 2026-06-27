@@ -6,6 +6,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   PlusButtonWithLoader
@@ -35,10 +36,8 @@ export const AddColumnForm = ({ setIsDialogOpen }: AddColumnFormProps) => {
           name='title'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<Input />}
-                placeholder='Title'
-              />
+              <FormLabel>Title</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}

@@ -1,14 +1,12 @@
 import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 import type { LabelSchema } from '../model/types'
 
-import { useMemo, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-
 import { cn } from '@/shared/lib'
 import { createTypeSafeCombobox, useComboboxAnchorRef } from '@/shared/ui'
 
-import { labelQueries } from '../api/queries'
-import { COLOR_MAP, LABEL_COLOR_MAP } from '../config/color-map'
+import { COLOR_MAP } from '../config/color-map'
+import { useLabelCombobox } from '../lib/useLabelCombobox'
+import { LabelChips } from './LabelChips'
 
 const Combobox = createTypeSafeCombobox<LabelSchema, string>()
 
@@ -18,26 +16,27 @@ export const FormLabelsCombobox = <T extends FieldValues>({
   value,
   onChange
 }: ControllerRenderProps<T>) => {
-  const [inputValue, setInputValue] = useState('')
-
   const anchor = useComboboxAnchorRef()
 
-  const labels = useQuery(labelQueries.list())
-
-  const labelMap = useMemo(
-    () => new Map(labels.data?.map(l => [l.id, l])),
-    [labels.data]
-  )
+  const {
+    labels,
+    filteredItems,
+    inputValue,
+    setInputValue,
+    handleValueChange,
+    labelMap
+  } = useLabelCombobox()
 
   return (
     <Combobox.Root
       multiple
-      items={labels.data ?? []}
+      items={labels}
       value={value}
       filter={(item, input) =>
         item.name.toLowerCase().startsWith(input.toLowerCase())
       }
-      onValueChange={onChange}
+      filteredItems={filteredItems}
+      onValueChange={v => handleValueChange(v, onChange)}
       inputValue={inputValue}
       onInputValueChange={setInputValue}
       autoHighlight>
@@ -45,43 +44,25 @@ export const FormLabelsCombobox = <T extends FieldValues>({
         ref={anchor}
         className='w-full max-w-xs'>
         <Combobox.Value>
-          {values => {
-            const selectedLabels = values
-              .map(id => labelMap.get(id))
-              .filter(Boolean)
-
-            return (
-              <>
-                {selectedLabels?.map(v => (
-                  <Combobox.Chip
-                    key={v?.id}
-                    className={LABEL_COLOR_MAP[v?.color ?? 'gray']}>
-                    {v?.name ?? 'Unknown'}
-                  </Combobox.Chip>
-                ))}
-                <Combobox.ChipsInput
-                  ref={ref}
-                  onBlur={onBlur}
-                  className={cn(values.length > 0 && 'px-0')}
-                  placeholder={values.length > 0 ? '' : 'Add labels'}
-                />
-              </>
-            )
-          }}
+          {values => (
+            <>
+              <LabelChips
+                labelMap={labelMap}
+                values={values}
+              />
+              <Combobox.ChipsInput
+                ref={ref}
+                onBlur={onBlur}
+                className={cn(values.length > 0 && 'px-0')}
+                placeholder={values.length > 0 ? '' : 'Add labels'}
+              />
+            </>
+          )}
         </Combobox.Value>
       </Combobox.Chips>
       <Combobox.Content
         anchor={anchor}
         side='bottom'>
-        <Combobox.Empty>
-          <button
-            // onClick={createLabel}
-            className='hover:bg-muted flex w-full items-center gap-2 p-2
-              text-sm'>
-            {/* <Plus size={14} /> */}
-            Create {value}
-          </button>
-        </Combobox.Empty>
         <Combobox.List>
           {item => (
             <Combobox.Item

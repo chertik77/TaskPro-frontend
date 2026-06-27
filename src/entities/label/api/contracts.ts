@@ -9,3 +9,5 @@ export const LabelDtoSchema = v.object({
 })
 
 export const LabelsDtoSchema = v.array(LabelDtoSchema)
+
+export const AddLabelDtoSchema = v.pick(LabelDtoSchema, ['name', 'color'])
