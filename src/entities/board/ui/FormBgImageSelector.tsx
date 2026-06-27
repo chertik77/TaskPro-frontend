@@ -26,7 +26,8 @@ export const FormBgImageSelector = <T extends FieldValues>({
             value={id}
             className='focus-visible:styled-outline group outline-offset-3'>
             <img
-              className='transition-transform group-aria-checked:scale-125'
+              className='rounded-lg transition-transform
+                group-aria-checked:scale-125'
               width={28}
               height={28}
               src={

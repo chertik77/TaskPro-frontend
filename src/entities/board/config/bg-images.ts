@@ -19,7 +19,7 @@ export const BOARD_BG_IMAGES = [
   },
   {
     id: 'sakura',
-    icon: 'https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102071/TaskPro/board_bg_images/bg_icons/sakura.png'
+    icon: 'https://res.cloudinary.com/dmbnnewoy/image/upload/v1782520908/TaskPro/board_bg_images/bg_icons/sakura-sm_tvzar6.avif'
   },
   {
     id: 'night-sky',
