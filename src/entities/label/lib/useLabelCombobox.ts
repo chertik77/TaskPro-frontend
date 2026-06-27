@@ -16,12 +16,12 @@ const buildCreateOption = (name: string): LabelSchema => ({
   color: 'gray'
 })
 
-export const useLabelCombobox = () => {
+export const useLabelCombobox = (labelsValues: string[] | undefined) => {
   const [inputValue, setInputValue] = useState('')
 
   const { setModal } = useLabelModalStore()
 
-  const { data: labels = [] } = useQuery(labelQueries.list())
+  const { data: labels = [], isPending, error } = useQuery(labelQueries.list())
 
   const labelMap = useMemo(() => new Map(labels.map(l => [l.id, l])), [labels])
 
@@ -40,7 +40,16 @@ export const useLabelCombobox = () => {
     onChange: (v: string[]) => void
   ) => {
     if (value.some(isCreateOption)) {
-      return setModal({ isOpen: true, props: { name: inputValue } })
+      return setModal({
+        isOpen: true,
+        props: {
+          name: inputValue,
+          onCreated: (newLabel: LabelSchema) => {
+            const current = labelsValues ?? []
+            onChange([...current, newLabel.id])
+          }
+        }
+      })
     }
 
     onChange(value)
@@ -48,6 +57,8 @@ export const useLabelCombobox = () => {
 
   return {
     labels,
+    isLoading: isPending,
+    error,
     labelMap,
     filteredItems,
     inputValue,

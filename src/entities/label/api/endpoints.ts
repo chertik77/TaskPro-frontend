@@ -1,7 +1,7 @@
 class LabelApiEndpoints {
   private readonly baseUrl = '/label'
 
-  add = `${this.baseUrl}/add`
+  add = `${this.baseUrl}`
 
   get root() {
     return this.baseUrl

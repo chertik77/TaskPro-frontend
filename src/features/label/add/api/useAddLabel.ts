@@ -6,7 +6,7 @@ import {
   useLabelModalStore
 } from '@/entities/label'
 
-export const useAddLabel = () => {
+export const useAddLabel = (onCreatedLabel: (...event: unknown[]) => void) => {
   const { setModal } = useLabelModalStore()
 
   return useMutation({
@@ -16,8 +16,9 @@ export const useAddLabel = () => {
       errorMessage:
         'An error occurred while adding the label. Please try again shortly.'
     },
-    onSuccess() {
+    async onSuccess(data) {
       setModal({ isOpen: false })
+      onCreatedLabel(data)
     }
   })
 }

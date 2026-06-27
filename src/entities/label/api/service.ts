@@ -4,7 +4,7 @@ import { parse } from 'valibot'
 
 import { axiosInstance } from '@/shared/api'
 
-import { AddLabelDtoSchema, LabelsDtoSchema } from './contracts'
+import { AddLabelDtoSchema, LabelDtoSchema, LabelsDtoSchema } from './contracts'
 import { labelApiEndpoints } from './endpoints'
 
 export const labelService = {
@@ -19,6 +19,13 @@ export const labelService = {
   async addLabel(data: AddLabelDto) {
     const addLabelDto = parse(AddLabelDtoSchema, data)
 
-    await axiosInstance.post(labelApiEndpoints.add, addLabelDto)
+    const response = await axiosInstance.post(
+      labelApiEndpoints.add,
+      addLabelDto
+    )
+
+    const parsedData = parse(LabelDtoSchema, response.data)
+
+    return parsedData
   }
 }

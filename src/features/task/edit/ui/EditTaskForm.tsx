@@ -75,22 +75,22 @@ export const EditTaskForm = ({
         />
         <FormField
           control={form.control}
-          name='priority'
-          render={({ field }) => (
+          name='labels'
+          render={() => (
             <FormItem className='mb-3.5'>
-              <FormLabel>Priority</FormLabel>
-              <FormPrioritySelector {...field} />
+              <FormLabel>Labels</FormLabel>
+              <FormLabelsCombobox labelsValues={form.getValues('labels')} />
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name='labels'
-          render={({ field }) => (
+          name='priority'
+          render={() => (
             <FormItem className='mb-3.5'>
-              <FormLabel>Labels</FormLabel>
-              <FormLabelsCombobox {...field} />
+              <FormLabel>Priority</FormLabel>
+              <FormPrioritySelector />
               <FormMessage />
             </FormItem>
           )}
@@ -104,10 +104,7 @@ export const EditTaskForm = ({
             return (
               <FormItem className='mb-6'>
                 <FormLabel>Deadline</FormLabel>
-                <FormDeadlinePicker
-                  mode='edit'
-                  {...field}
-                />
+                <FormDeadlinePicker mode='edit' />
                 <FormMessage />
                 {!fieldState.error && isOverdue && (
                   <FormDescription className='mt-2'>

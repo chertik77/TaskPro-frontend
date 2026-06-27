@@ -1,5 +1,4 @@
 import type { ChangeEvent } from 'react'
-import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 
 import { useState } from 'react'
 import { parseDate } from 'chrono-node'
@@ -11,23 +10,22 @@ import {
   Input,
   Popover,
   PopoverContent,
-  PopoverTrigger
+  PopoverTrigger,
+  useFormField
 } from '@/shared/ui'
 
 import { formatDeadlineDate } from '../lib/format-deadline-date'
 
-type FormDeadlinePickerProps<T extends FieldValues> =
-  ControllerRenderProps<T> & {
-    mode?: 'create' | 'edit'
-  }
+type FormDeadlinePickerProps = {
+  mode?: 'create' | 'edit'
+}
 
-export const FormDeadlinePicker = <T extends FieldValues>({
-  mode,
-  value,
-  onChange,
-  ...props
-}: FormDeadlinePickerProps<T>) => {
+export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+
+  const {
+    field: { value, onChange, ...field }
+  } = useFormField()
 
   const [inputValue, setInputValue] = useState(
     () => formatDeadlineDate(value) ?? ''
@@ -53,7 +51,7 @@ export const FormDeadlinePicker = <T extends FieldValues>({
   return (
     <div className='relative'>
       <Input
-        {...props}
+        {...field}
         value={inputValue}
         placeholder='Tomorrow or next week'
         className='pr-12'

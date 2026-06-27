@@ -18,18 +18,25 @@ const ComboboxContent = ({
   sideOffset = 6,
   align = 'start',
   alignOffset = 0,
+  collisionAvoidance,
   anchor,
   ...props
 }: ComboboxPrimitive.Popup.Props &
   Pick<
     ComboboxPrimitive.Positioner.Props,
-    'side' | 'align' | 'sideOffset' | 'alignOffset' | 'anchor'
+    | 'side'
+    | 'align'
+    | 'sideOffset'
+    | 'alignOffset'
+    | 'anchor'
+    | 'collisionAvoidance'
   >) => (
   <ComboboxPrimitive.Portal className='group'>
     <ComboboxPrimitive.Positioner
       side={side}
       sideOffset={sideOffset}
       align={align}
+      collisionAvoidance={collisionAvoidance}
       alignOffset={alignOffset}
       anchor={anchor}
       className='isolate group-data-base-ui-inert:-z-10'>

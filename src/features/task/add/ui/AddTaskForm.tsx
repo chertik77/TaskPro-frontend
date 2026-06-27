@@ -77,22 +77,22 @@ export const AddTaskForm = ({
         />
         <FormField
           control={form.control}
-          name='priority'
-          render={({ field }) => (
+          name='labels'
+          render={() => (
             <FormItem className='mb-3.5'>
-              <FormLabel>Priority</FormLabel>
-              <FormPrioritySelector {...field} />
+              <FormLabel>Labels</FormLabel>
+              <FormLabelsCombobox labelsValues={form.getValues('labels')} />
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name='labels'
-          render={({ field }) => (
+          name='priority'
+          render={() => (
             <FormItem className='mb-3.5'>
-              <FormLabel>Labels</FormLabel>
-              <FormLabelsCombobox {...field} />
+              <FormLabel>Priority</FormLabel>
+              <FormPrioritySelector />
               <FormMessage />
             </FormItem>
           )}
@@ -103,10 +103,7 @@ export const AddTaskForm = ({
           render={({ field, fieldState }) => (
             <FormItem className='mb-6'>
               <FormLabel>Deadline</FormLabel>
-              <FormDeadlinePicker
-                mode='create'
-                {...field}
-              />
+              <FormDeadlinePicker mode='create' />
               {fieldState.error ? (
                 <FormMessage />
               ) : (

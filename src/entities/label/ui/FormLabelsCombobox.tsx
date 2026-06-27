@@ -1,8 +1,12 @@
-import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 import type { LabelSchema } from '../model/types'
 
 import { cn } from '@/shared/lib'
-import { createTypeSafeCombobox, useComboboxAnchorRef } from '@/shared/ui'
+import {
+  createTypeSafeCombobox,
+  Loader,
+  useComboboxAnchorRef,
+  useFormField
+} from '@/shared/ui'
 
 import { COLOR_MAP } from '../config/color-map'
 import { useLabelCombobox } from '../lib/useLabelCombobox'
@@ -10,22 +14,29 @@ import { LabelChips } from './LabelChips'
 
 const Combobox = createTypeSafeCombobox<LabelSchema, string>()
 
-export const FormLabelsCombobox = <T extends FieldValues>({
-  ref,
-  onBlur,
-  value,
-  onChange
-}: ControllerRenderProps<T>) => {
+type FormLabelsComboboxProps = {
+  labelsValues: string[] | undefined
+}
+
+export const FormLabelsCombobox = ({
+  labelsValues
+}: FormLabelsComboboxProps) => {
   const anchor = useComboboxAnchorRef()
 
   const {
+    field: { ref, value, onBlur, onChange }
+  } = useFormField()
+
+  const {
     labels,
+    isLoading,
+    error,
     filteredItems,
     inputValue,
     setInputValue,
     handleValueChange,
     labelMap
-  } = useLabelCombobox()
+  } = useLabelCombobox(labelsValues)
 
   return (
     <Combobox.Root
@@ -61,8 +72,20 @@ export const FormLabelsCombobox = <T extends FieldValues>({
         </Combobox.Value>
       </Combobox.Chips>
       <Combobox.Content
+        collisionAvoidance={{ side: 'none' }}
         anchor={anchor}
         side='bottom'>
+        <Combobox.Empty className='p-2'>
+          <button className='text-md flex items-center gap-1 p-2'>
+            {isLoading && (
+              <>
+                <Loader className='size-3 border' />
+                Loading your labels...
+              </>
+            )}
+            {error && 'Something went wrong. Please try again later.'}
+          </button>
+        </Combobox.Empty>
         <Combobox.List>
           {item => (
             <Combobox.Item
