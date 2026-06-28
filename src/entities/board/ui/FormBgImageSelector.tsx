@@ -1,18 +1,17 @@
-import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
-
 import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
 
 import { useMe } from '@/entities/user/@x/board'
 
-import { FormItem } from '@/shared/ui'
+import { FormItem, useFormField } from '@/shared/ui'
 
 import { BOARD_BG_IMAGES } from '../config/bg-images'
 
-export const FormBgImageSelector = <T extends FieldValues>({
-  value,
-  onChange
-}: ControllerRenderProps<T>) => {
+export const FormBgImageSelector = () => {
+  const {
+    field: { value, onChange }
+  } = useFormField()
+
   const user = useMe()
 
   return (
@@ -24,10 +23,11 @@ export const FormBgImageSelector = <T extends FieldValues>({
         <FormItem key={id}>
           <Radio.Root
             value={id}
-            className='focus-visible:styled-outline group outline-offset-3'>
+            className='focus-visible:styled-outline group cursor-pointer
+              outline-offset-3'>
             <img
               className='rounded-lg transition-transform
-                group-aria-checked:scale-125'
+                group-data-checked:scale-125'
               width={28}
               height={28}
               src={

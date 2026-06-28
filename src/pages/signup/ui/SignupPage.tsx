@@ -5,6 +5,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   Loader,
@@ -31,12 +32,12 @@ export const SignupPage = () => {
           name='name'
           render={() => (
             <FormItem>
+              <FormLabel className='text-white/50'>Name</FormLabel>
               <FormControl
                 render={<Input />}
                 autoFocus
                 autoComplete='name'
                 className='autofill:text-fill-white text-white'
-                placeholder='Enter your name'
               />
               <FormMessage />
             </FormItem>
@@ -47,11 +48,11 @@ export const SignupPage = () => {
           name='email'
           render={() => (
             <FormItem>
+              <FormLabel className='text-white/50'>Email</FormLabel>
               <FormControl
                 render={<Input />}
                 autoComplete='email'
                 className='autofill:text-fill-white text-white'
-                placeholder='Enter your email'
               />
               <FormMessage />
             </FormItem>
@@ -62,11 +63,11 @@ export const SignupPage = () => {
           name='password'
           render={() => (
             <FormItem>
+              <FormLabel className='text-white/50'>Password</FormLabel>
               <FormControl
                 render={<PasswordInput />}
                 autoComplete='new-password'
                 className='autofill:text-fill-white text-white'
-                placeholder='Create a password'
               />
               <FormMessage />
             </FormItem>

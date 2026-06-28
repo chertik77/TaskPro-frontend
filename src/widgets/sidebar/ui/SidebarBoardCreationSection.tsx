@@ -1,4 +1,4 @@
-import { AddBoardDialog } from '@/features/board/add-board'
+import { AddBoardDialog } from '@/features/board/add'
 
 import { DialogTrigger, Icon } from '@/shared/ui'
 

@@ -7,6 +7,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   Loader,
@@ -40,10 +41,8 @@ export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
           name='email'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<Input />}
-                placeholder='Email address'
-              />
+              <FormLabel>Email</FormLabel>
+              <FormControl render={<Input />} />
               <FormMessage />
             </FormItem>
           )}
@@ -53,10 +52,8 @@ export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
           name='comment'
           render={() => (
             <FormItem>
-              <FormControl
-                render={<TextArea />}
-                placeholder='Comment'
-              />
+              <FormLabel>Comment</FormLabel>
+              <FormControl render={<TextArea />} />
               <FormMessage />
             </FormItem>
           )}

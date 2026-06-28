@@ -2,12 +2,7 @@ import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 
 import { createContext, use, useMemo } from 'react'
 import { Field } from '@base-ui/react/field'
-import {
-  Controller,
-  FormProvider,
-  useController,
-  useFormContext
-} from 'react-hook-form'
+import { Controller, FormProvider, useController } from 'react-hook-form'
 
 import { cn } from '../lib'
 
@@ -42,19 +37,22 @@ const FormField = <
 const useFormField = () => {
   const fieldContext = use(FormFieldContext)
 
-  const { getFieldState, formState } = useFormContext()
-
-  const fieldState = getFieldState(fieldContext.name, formState)
+  const { field, fieldState, formState } = useController({
+    name: fieldContext.name
+  })
 
   if (!fieldContext) {
     throw new Error('useFormField should be used within <FormField>')
   }
 
-  return { name: fieldContext.name, ...fieldState }
+  return { name: fieldContext.name, field, fieldState, formState }
 }
 
 const FormItem = ({ className, ...props }: Field.Root.Props) => {
-  const { name, invalid, isDirty, isTouched } = useFormField()
+  const {
+    name,
+    fieldState: { invalid, isDirty, isTouched }
+  } = useFormField()
 
   return (
     <Field.Root
@@ -69,11 +67,17 @@ const FormItem = ({ className, ...props }: Field.Root.Props) => {
 }
 
 const FormLabel = ({ className, ...props }: Field.Label.Props) => {
-  const { error } = useFormField()
+  const {
+    fieldState: { error }
+  } = useFormField()
 
   return (
     <Field.Label
-      className={cn('block', error && 'text-red', className)}
+      className={cn(
+        'block text-base text-black/50 dark:text-white/50',
+        error && 'text-red',
+        className
+      )}
       {...props}
     />
   )
@@ -105,7 +109,9 @@ const FormControl = ({ ...props }: Field.Control.Props) => {
 }
 
 const FormMessage = ({ className, ...props }: Field.Error.Props) => {
-  const { error } = useFormField()
+  const {
+    fieldState: { error }
+  } = useFormField()
 
   return (
     <Field.Error
@@ -124,5 +130,6 @@ export {
   FormDescription,
   FormControl,
   FormMessage,
-  FormField
+  FormField,
+  useFormField
 }

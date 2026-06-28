@@ -35,7 +35,6 @@
   --font-*: initial;
   --font-poppins: 'Poppins', sans-serif;
 
-  --color-*: initial;
   --color-black: #161616;
   --color-black-soft: #121212;
   --color-black-muted: #1f1f1f;
@@ -196,6 +195,14 @@
   -webkit-text-fill-color: --value(--color-*);
 }
 
+@utility animate-nested-dialogs {
+  translate: -50% calc(-50% + 1.25rem * var(--nested-dialogs));
+  scale: calc(1 - 0.1 * var(--nested-dialogs));
+  transition:
+    translate 300ms ease,
+    scale 300ms ease;
+}
+
 @utility hide-password-toggle {
   &::-ms-reveal,
   &::-ms-clear {
@@ -221,8 +228,4 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-body {
-  position: relative;
 }
