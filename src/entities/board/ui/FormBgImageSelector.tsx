@@ -27,6 +27,7 @@ export const FormBgImageSelector = () => {
               outline-offset-3'>
             <img
               className='transition-transform group-data-checked:scale-125'
+              className='rounded-lg transition-transform'
               width={28}
               height={28}
               src={
