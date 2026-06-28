@@ -40,7 +40,10 @@ export const Sidebar = () => {
           </aside>
         </ScrollArea.Content>
       </ScrollArea.Viewport>
-      <ScrollArea.Scrollbar className='w-1 bg-transparent'>
+      <ScrollArea.Scrollbar
+        className='pointer-events-none w-1 bg-transparent opacity-0
+          transition-opacity duration-200 data-scrolling:pointer-events-auto
+          data-scrolling:opacity-100 data-scrolling:duration-initial'>
         <ScrollArea.Thumb className='rounded-[26px] bg-white/60' />
       </ScrollArea.Scrollbar>
     </ScrollArea.Root>

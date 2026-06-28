@@ -31,6 +31,7 @@ export const Filters = () => {
         <h2>Filters</h2>
       </PopoverTrigger>
       <PopoverContent
+        collisionAvoidance={{ side: 'none' }}
         className='bg-white-soft dark:bg-black-deep dark:border-brand/50 w-75
           p-6 dark:border'
         collisionPadding={10}>
