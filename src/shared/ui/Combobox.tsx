@@ -14,32 +14,15 @@ const ComboboxValue = ({ ...props }: ComboboxPrimitive.Value.Props) => (
 
 const ComboboxContent = ({
   className,
-  side = 'bottom',
-  sideOffset = 6,
-  align = 'start',
-  alignOffset = 0,
-  collisionAvoidance,
-  anchor,
+  positionerProps,
   ...props
-}: ComboboxPrimitive.Popup.Props &
-  Pick<
-    ComboboxPrimitive.Positioner.Props,
-    | 'side'
-    | 'align'
-    | 'sideOffset'
-    | 'alignOffset'
-    | 'anchor'
-    | 'collisionAvoidance'
-  >) => (
+}: ComboboxPrimitive.Popup.Props & {
+  positionerProps?: ComboboxPrimitive.Positioner.Props
+}) => (
   <ComboboxPrimitive.Portal className='group'>
     <ComboboxPrimitive.Positioner
-      side={side}
-      sideOffset={sideOffset}
-      align={align}
-      collisionAvoidance={collisionAvoidance}
-      alignOffset={alignOffset}
-      anchor={anchor}
-      className='isolate group-data-base-ui-inert:-z-10'>
+      {...positionerProps}
+      className='isolate z-50 group-data-base-ui-inert:-z-10'>
       <ComboboxPrimitive.Popup
         className={cn(
           `dark:bg-black-deep data-[side=bottom]:slide-in-from-top-2

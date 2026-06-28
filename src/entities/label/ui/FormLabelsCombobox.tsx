@@ -10,7 +10,7 @@ import {
 
 import { COLOR_MAP } from '../config/color-map'
 import { useLabelCombobox } from '../lib/useLabelCombobox'
-import { LabelChips } from './LabelChips'
+import { LabelChip } from './LabelChip'
 
 const Combobox = createTypeSafeCombobox<LabelSchema, string>()
 
@@ -29,9 +29,9 @@ export const FormLabelsCombobox = ({
 
   const {
     labels,
+    filteredItems,
     isLoading,
     error,
-    filteredItems,
     inputValue,
     setInputValue,
     handleValueChange,
@@ -43,9 +43,6 @@ export const FormLabelsCombobox = ({
       multiple
       items={labels}
       value={value}
-      filter={(item, input) =>
-        item.name.toLowerCase().startsWith(input.toLowerCase())
-      }
       filteredItems={filteredItems}
       onValueChange={v => handleValueChange(v, onChange)}
       inputValue={inputValue}
@@ -57,7 +54,7 @@ export const FormLabelsCombobox = ({
         <Combobox.Value>
           {values => (
             <>
-              <LabelChips
+              <LabelChip
                 labelMap={labelMap}
                 values={values}
               />
@@ -72,11 +69,15 @@ export const FormLabelsCombobox = ({
         </Combobox.Value>
       </Combobox.Chips>
       <Combobox.Content
-        collisionAvoidance={{ side: 'none' }}
-        anchor={anchor}
-        side='bottom'>
+        className='data-closed:duration-0'
+        positionerProps={{
+          anchor,
+          side: 'bottom',
+          collisionAvoidance: { side: 'shift' }
+        }}>
         <Combobox.Empty className='p-2'>
-          <button className='text-md flex items-center gap-1 p-2'>
+          <button className='text-md flex items-center gap-1 p-3'>
+            No labels found.
             {isLoading && (
               <>
                 <Loader className='size-3 border' />

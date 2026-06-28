@@ -30,16 +30,17 @@ export const useLabelCombobox = (labelsValues: string[] | undefined) => {
       l.name.toLowerCase().startsWith(inputValue.toLowerCase())
     )
 
-    const canCreate = inputValue && !labels.some(l => l.name === inputValue)
+    const canCreate =
+      inputValue.trim().length > 1 && !labels.some(l => l.name === inputValue)
 
     return canCreate ? [...filtered, buildCreateOption(inputValue)] : filtered
   }, [labels, inputValue])
 
   const handleValueChange = (
-    value: string[],
+    values: string[],
     onChange: (v: string[]) => void
   ) => {
-    if (value.some(isCreateOption)) {
+    if (values.some(isCreateOption)) {
       return setModal({
         isOpen: true,
         props: {
@@ -52,7 +53,7 @@ export const useLabelCombobox = (labelsValues: string[] | undefined) => {
       })
     }
 
-    onChange(value)
+    onChange(values)
   }
 
   return {

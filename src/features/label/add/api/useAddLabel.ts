@@ -16,7 +16,7 @@ export const useAddLabel = (onCreatedLabel: (...event: unknown[]) => void) => {
       errorMessage:
         'An error occurred while adding the label. Please try again shortly.'
     },
-    async onSuccess(data) {
+    onSuccess(data) {
       setModal({ isOpen: false })
       onCreatedLabel(data)
     }

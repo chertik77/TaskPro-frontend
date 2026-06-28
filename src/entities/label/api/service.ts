@@ -20,7 +20,7 @@ export const labelService = {
     const addLabelDto = parse(AddLabelDtoSchema, data)
 
     const response = await axiosInstance.post(
-      labelApiEndpoints.add,
+      labelApiEndpoints.root,
       addLabelDto
     )
 

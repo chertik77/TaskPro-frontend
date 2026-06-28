@@ -1,8 +1,7 @@
 import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
 
-import { LABEL_COLORS } from '@/entities/label'
-import { COLOR_MAP } from '@/entities/label/config/color-map'
+import { COLOR_MAP, LABEL_COLORS } from '@/entities/label'
 
 import { cn } from '@/shared/lib'
 import { FormItem, useFormField } from '@/shared/ui'

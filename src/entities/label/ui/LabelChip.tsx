@@ -6,12 +6,12 @@ import { LABEL_COLOR_MAP } from '../config/color-map'
 
 const Combobox = createTypeSafeCombobox<LabelSchema, string>()
 
-type LabelChipsProps = {
+type LabelChipProps = {
   labelMap: Map<string, LabelSchema>
   values: string[]
 }
 
-export const LabelChips = ({ labelMap, values }: LabelChipsProps) => (
+export const LabelChip = ({ labelMap, values }: LabelChipProps) => (
   <>
     {values
       .map(id => labelMap.get(id))

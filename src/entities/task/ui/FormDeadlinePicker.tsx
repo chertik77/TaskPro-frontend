@@ -67,8 +67,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
         open={isCalendarOpen}
         onOpenChange={setIsCalendarOpen}>
         <PopoverTrigger
-          className='focus-visible:styled-outline absolute top-3.75 right-1.5
-            px-3'>
+          className='focus-visible:styled-outline absolute top-3.75 right-4.5'>
           <Icon
             name='calendar'
             className='size-4 stroke-white'
