@@ -7,6 +7,7 @@ import { DeleteBoardTrigger } from '@/features/board/delete'
 import { EditBoardDialog } from '@/features/board/edit'
 
 import { cn } from '@/shared/lib'
+import { useSidebarStore } from '@/shared/store'
 import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {
@@ -15,6 +16,8 @@ type SidebarBoardListItemProps = {
 
 export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
   const { boardId } = useParams({ strict: false })
+
+  const { setIsOpenMobile } = useSidebarStore()
 
   const navigate = useNavigate()
 
@@ -38,7 +41,10 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
           handleBoardSelect(board.id)
         }
       }}
-      onClick={() => handleBoardSelect(board.id)}>
+      onClick={() => {
+        handleBoardSelect(board.id)
+        setIsOpenMobile(false)
+      }}>
       <div className='tablet:gap-2 flex items-center gap-1'>
         <Icon
           name={board.icon}
