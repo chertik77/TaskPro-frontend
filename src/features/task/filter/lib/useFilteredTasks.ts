@@ -47,6 +47,8 @@ export const useFilteredTasks = (tasks: TaskTypes.TasksSchema) => {
     filteredTasks = filteredTasks.filter(task => {
       const taskDeadline = task.deadline
 
+      if (!taskDeadline) return false
+
       if (deadline === 'Overdue') return isBefore(taskDeadline, today)
 
       if (deadline === 'Upcoming') {

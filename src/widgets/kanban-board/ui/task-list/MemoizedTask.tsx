@@ -9,19 +9,23 @@ import { MoveTaskSelect } from '@/features/task/move'
 
 import { Task } from '@/entities/task'
 
+import { cn } from '@/shared/lib'
+
 type MemoizedTaskProps = {
   task: TaskTypes.TaskSchema
 }
 
 export const MemoizedTask = memo(({ task }: MemoizedTaskProps) => (
   <>
-    <Task task={task}>
+    <Task
+      task={task}
+      className='flex flex-col'>
       <Task.PriorityIndicator />
       <Task.Title />
-      <Task.Labels />
+      <Task.Labels className={cn(!task.description && 'mb-3.5')} />
       <Task.Description />
       <div
-        className='flex items-end border-t border-black/10 pt-3.5
+        className='mt-auto flex items-end border-t border-black/10 pt-3.5
           dark:border-white/10'>
         <Task.Priority />
         <Task.Deadline />

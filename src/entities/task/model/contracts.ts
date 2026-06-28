@@ -10,10 +10,10 @@ export const TaskSchema = v.object({
   title: v.string(),
   order: v.number(),
   columnId: v.string(),
-  description: v.string(),
+  description: v.nullable(v.string()),
   priority: v.picklist(TASK_PRIORITIES),
   labels: v.optional(v.array(LabelSchema)),
-  deadline: v.date()
+  deadline: v.nullable(v.date())
 })
 
 export const TasksSchema = v.array(TaskSchema)

@@ -88,19 +88,21 @@ const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   const { task } = useTaskContext()
 
   return (
-    <p
-      className={cn(
-        `text-md mb-3.5 line-clamp-2 max-w-68.75 text-balance text-black/70
-        dark:text-white/50`,
-        className
-      )}
-      {...props}>
-      {task.description}
-    </p>
+    task.description && (
+      <p
+        className={cn(
+          `text-md mb-3.5 line-clamp-2 max-w-68.75 text-balance text-ellipsis
+          text-black/70 dark:text-white/50`,
+          className
+        )}
+        {...props}>
+        {task.description}
+      </p>
+    )
   )
 }
 
-const TaskLabels = () => {
+const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
   const {
     task: { labels }
   } = useTaskContext()
@@ -110,7 +112,9 @@ const TaskLabels = () => {
   const labelsPerRow = 3
 
   return (
-    <div className={cn('mb-2 flex flex-wrap items-center gap-1.5')}>
+    <div
+      className={cn('mb-2 flex flex-wrap items-center gap-1.5', className)}
+      {...props}>
       {labels.slice(0, labelsPerRow).map(label => (
         <Label
           key={label.id}
@@ -152,10 +156,14 @@ const TaskDeadline = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
   return (
-    <div className={cn(className)}>
-      <p className='mb-1 text-xs text-black/50 dark:text-white/50'>Deadline</p>
-      <p className='text-sm'>{formatDeadlineDate(task.deadline)}</p>
-    </div>
+    task.deadline && (
+      <div className={cn(className)}>
+        <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
+          Deadline
+        </p>
+        <p className='text-sm'>{formatDeadlineDate(task.deadline)}</p>
+      </div>
+    )
   )
 }
 
@@ -163,6 +171,7 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
   return (
+    task.deadline &&
     isToday(task.deadline) && (
       <Icon
         name='bell'

@@ -1,20 +1,13 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { EditTaskData } from '../model/types'
 
-import { startOfDay } from 'date-fns'
-
 import { FormLabelsCombobox } from '@/entities/label'
-import {
-  formatDeadlineDate,
-  FormDeadlinePicker,
-  FormPrioritySelector
-} from '@/entities/task'
+import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
 
 import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -39,6 +32,8 @@ export const EditTaskForm = ({
   const form = useAppForm(EditTaskSchema, {
     defaultValues: {
       ...formValues,
+      deadline: formValues.deadline ?? undefined,
+      description: formValues.description ?? '',
       labels: formValues.labels?.map(l => l.id) ?? []
     }
   })
@@ -65,6 +60,7 @@ export const EditTaskForm = ({
         <FormField
           control={form.control}
           name='description'
+          defaultValue=''
           render={() => (
             <FormItem className='mb-6'>
               <FormLabel>Description</FormLabel>
@@ -98,23 +94,13 @@ export const EditTaskForm = ({
         <FormField
           control={form.control}
           name='deadline'
-          render={({ field, fieldState }) => {
-            const isOverdue = startOfDay(field.value!) < startOfDay(new Date())
-
-            return (
-              <FormItem className='mb-6'>
-                <FormLabel>Deadline</FormLabel>
-                <FormDeadlinePicker mode='edit' />
-                <FormMessage />
-                {!fieldState.error && isOverdue && (
-                  <FormDescription className='mt-2'>
-                    This task is <span className='text-red'>overdue</span> since{' '}
-                    {formatDeadlineDate(field.value!, 'd MMM yyyy')}.
-                  </FormDescription>
-                )}
-              </FormItem>
-            )
-          }}
+          render={() => (
+            <FormItem className='mb-6'>
+              <FormLabel>Deadline</FormLabel>
+              <FormDeadlinePicker mode='edit' />
+              <FormMessage />
+            </FormItem>
+          )}
         />
         <PlusButtonWithLoader
           type='submit'

@@ -9,18 +9,26 @@ export const AddTaskSchema = v.object({
     v.trim(),
     v.minLength(3, 'Please enter at least 3 characters.')
   ),
-  description: v.pipe(
-    v.string(),
-    v.trim(),
-    v.minLength(3, 'Please enter at least 3 characters.')
-  ),
+  description: v.union([
+    v.pipe(
+      v.literal(''),
+      v.transform(() => undefined)
+    ),
+    v.pipe(
+      v.string(),
+      v.trim(),
+      v.minLength(3, 'Please enter at least 3 characters.')
+    )
+  ]),
   priority: v.fallback(v.picklist(TASK_PRIORITIES), 'Without'),
   labels: v.optional(v.array(v.string())),
-  deadline: v.pipe(
-    v.date(),
-    v.check(
-      d => startOfDay(d) >= startOfDay(new Date()),
-      'Deadline must be today or in the future.'
+  deadline: v.optional(
+    v.pipe(
+      v.date(),
+      v.check(
+        d => startOfDay(d) >= startOfDay(new Date()),
+        'Deadline must be today or in the future.'
+      )
     )
   )
 })

@@ -1,20 +1,12 @@
 import type { Dispatch, SetStateAction } from 'react'
 
-import { useMemo } from 'react'
-import { addDays } from 'date-fns'
-
 import { FormLabelsCombobox } from '@/entities/label'
-import {
-  formatDeadlineDate,
-  FormDeadlinePicker,
-  FormPrioritySelector
-} from '@/entities/task'
+import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
 
 import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -36,14 +28,12 @@ export const AddTaskForm = ({
   columnId,
   setIsDialogOpen
 }: AddTaskFormProps) => {
-  const deadline = useMemo(() => addDays(new Date(), 1), [])
-
   const form = useAppForm(AddTaskSchema, {
     defaultValues: {
       title: '',
       description: '',
       priority: 'Without',
-      deadline,
+      deadline: undefined,
       labels: []
     }
   })
@@ -77,17 +67,6 @@ export const AddTaskForm = ({
         />
         <FormField
           control={form.control}
-          name='labels'
-          render={() => (
-            <FormItem className='mb-3.5'>
-              <FormLabel>Labels</FormLabel>
-              <FormLabelsCombobox labelsValues={form.getValues('labels')} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name='priority'
           render={() => (
             <FormItem className='mb-3.5'>
@@ -99,18 +78,23 @@ export const AddTaskForm = ({
         />
         <FormField
           control={form.control}
+          name='labels'
+          render={() => (
+            <FormItem className='mb-3.5'>
+              <FormLabel>Labels</FormLabel>
+              <FormLabelsCombobox labelsValues={form.getValues('labels')} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name='deadline'
-          render={({ field, fieldState }) => (
+          render={() => (
             <FormItem className='mb-6'>
               <FormLabel>Deadline</FormLabel>
               <FormDeadlinePicker mode='create' />
-              {fieldState.error ? (
-                <FormMessage />
-              ) : (
-                <FormDescription className='mt-2'>
-                  {`This task is due on ${formatDeadlineDate(field.value, 'd MMM yyyy')}.`}
-                </FormDescription>
-              )}
+              <FormMessage />
             </FormItem>
           )}
         />
