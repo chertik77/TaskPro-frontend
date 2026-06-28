@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, RefObject, SetStateAction } from 'react'
 
 import {
   Button,
@@ -18,9 +18,13 @@ import { useEditProfileForm } from '../lib/useEditProfileForm'
 
 type EditProfileFormProps = {
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  initialFocusRef: RefObject<HTMLInputElement | null>
 }
 
-export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
+export const EditProfileForm = ({
+  setIsDialogOpen,
+  initialFocusRef
+}: EditProfileFormProps) => {
   const { form } = useEditProfileForm()
 
   const { mutate: editProfile, isPending } = useEditProfile(setIsDialogOpen)
@@ -38,7 +42,7 @@ export const EditProfileForm = ({ setIsDialogOpen }: EditProfileFormProps) => {
               <FormLabel>Name</FormLabel>
               <FormControl
                 render={<Input />}
-                autoFocus
+                ref={initialFocusRef}
               />
               <FormMessage />
             </FormItem>
