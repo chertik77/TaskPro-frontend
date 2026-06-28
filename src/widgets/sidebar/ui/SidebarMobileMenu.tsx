@@ -23,6 +23,7 @@ export const SidebarMobileMenu = () => {
             z-50'
         />
         <Dialog.Popup
+          initialFocus={false}
           aria-describedby={undefined}
           className='violet:bg-brand-violet dark:bg-black-soft tablet:w-65
             tablet:pt-6 data-open:animate-modal-in data-closed:animate-modal-out
