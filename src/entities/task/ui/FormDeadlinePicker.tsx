@@ -86,9 +86,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
               className='size-4 stroke-white'
             />
           </PopoverTrigger>
-          <PopoverContent
-            align='end'
-            side='top'>
+          <PopoverContent positionerProps={{ side: 'top', align: 'end' }}>
             <Calendar
               mode='single'
               defaultMonth={value}

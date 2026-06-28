@@ -11,21 +11,16 @@ const PopoverTrigger = PopoverPrimitive.Trigger
 
 const PopoverContent = ({
   className,
-  align = 'center',
-  alignOffset = 0,
-  side = 'bottom',
-  collisionPadding,
-  sideOffset = 5,
+  positionerProps: { sideOffset = 5, ...positionerProps } = {},
   ...props
-}: PopoverPrimitive.Popup.Props & PopoverPrimitive.Positioner.Props) => (
+}: PopoverPrimitive.Popup.Props & {
+  positionerProps?: PopoverPrimitive.Positioner.Props
+}) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Positioner
-      align={align}
-      alignOffset={alignOffset}
-      collisionPadding={collisionPadding}
-      side={side}
       sideOffset={sideOffset}
-      className='isolate z-1000'>
+      className='isolate z-1000'
+      {...positionerProps}>
       <PopoverPrimitive.Popup
         className={cn(
           'fade-zoom shadow-base z-1000 rounded-lg outline-none',
