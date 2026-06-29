@@ -1,4 +1,4 @@
-import { useAppForm } from '@/shared/lib'
+import { useAppForm, useShouldAutoFocus } from '@/shared/lib'
 import {
   Button,
   Form,
@@ -22,6 +22,8 @@ export const SigninPage = () => {
 
   const { mutate: signin, isPending } = useSigninUser(form.reset)
 
+  const shouldAutoFocus = useShouldAutoFocus()
+
   return (
     <Form {...form}>
       <form
@@ -35,7 +37,7 @@ export const SigninPage = () => {
               <FormLabel className='text-white/50'>Email</FormLabel>
               <FormControl
                 render={<Input />}
-                autoFocus
+                autoFocus={shouldAutoFocus}
                 autoComplete='email'
                 className='autofill:text-fill-white text-white'
               />
