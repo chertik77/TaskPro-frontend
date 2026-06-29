@@ -23,6 +23,8 @@ type FormDeadlinePickerProps = {
   mode?: 'create' | 'edit'
 }
 
+const date = new Date()
+
 export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
 
@@ -86,15 +88,13 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
               className='size-4 stroke-white'
             />
           </PopoverTrigger>
-          <PopoverContent positionerProps={{ side: 'top', align: 'end' }}>
+          <PopoverContent positionerProps={{ side: 'top' }}>
             <Calendar
               mode='single'
               defaultMonth={value}
-              startMonth={value}
+              startMonth={value ?? date}
               disabled={
-                mode === 'create'
-                  ? date => date < startOfDay(new Date())
-                  : undefined
+                mode === 'create' ? date => date < startOfDay(date) : undefined
               }
               selected={value}
               onSelect={handleSelect}
