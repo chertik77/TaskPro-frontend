@@ -20,15 +20,17 @@ export const SidebarMobileMenu = () => {
         <Dialog.Backdrop
           className='data-open:animate-modal-overlay-in
             data-closed:animate-modal-overlay-out bg-black-overlay fixed inset-0
-            z-50'
+            isolate backdrop-blur-md backdrop-saturate-150'
         />
         <Dialog.Popup
           initialFocus={false}
-          aria-describedby={undefined}
           className='dark:bg-black-soft tablet:w-65 tablet:pt-6
-            data-open:animate-modal-in data-closed:animate-modal-out fixed top-0
-            left-0 z-50 flex max-h-dvh min-h-dvh w-56.25 flex-col
-            overflow-y-scroll bg-white pt-3.5 pb-6'>
+            data-open:animate-modal-in data-closed:animate-modal-out
+            after:bg-black-overlay fixed top-0 left-0 flex max-h-dvh min-h-dvh
+            w-56.25 flex-col overflow-y-scroll bg-white pt-3.5 pb-6
+            after:pointer-events-none after:absolute after:inset-0
+            after:opacity-0 after:backdrop-blur-md after:backdrop-saturate-150
+            after:transition-opacity data-nested-dialog-open:after:opacity-100'>
           <Dialog.Title className='sr-only'>Sidebar menu</Dialog.Title>
           <SidebarLogo />
           <SidebarBoardCreationSection />
