@@ -6,6 +6,6 @@ export const UserSchema = v.object({
   id: v.string(),
   name: v.string(),
   email: v.string(),
-  avatar: v.string(),
+  avatar: v.nullable(v.string()),
   theme: v.picklist(THEMES)
 })

@@ -9,17 +9,15 @@ export const SidebarLogo = () => {
   return (
     <div className='tablet:mb-15 tablet:pl-6 desktop:pt-6 mb-17.5 pl-3.5'>
       <Link
-        className='focus-visible:styled-outline violet:text-brand-violet
-          inline-flex items-center gap-2 text-white'
+        className='focus-visible:styled-outline inline-flex items-center gap-2
+          text-white'
         to='/dashboard'
         onClick={() => setIsOpenMobile(false)}>
         <Icon
           name='logo'
-          className='fill-black-muted violet:fill-white-gray size-8 stroke-none'
+          className='fill-black-muted size-8 stroke-none'
         />
-        <h1
-          className='violet:text-white text-lg font-semibold text-black
-            dark:text-white'>
+        <h1 className='text-lg font-semibold text-black dark:text-white'>
           Task Pro
         </h1>
       </Link>

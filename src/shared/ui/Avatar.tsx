@@ -23,8 +23,8 @@ const AvatarFallback = ({
 }: AvatarPrimitive.Fallback.Props) => (
   <AvatarPrimitive.Fallback
     className={cn(
-      `bg-white-muted violet:bg-white-gray dark:bg-black-soft flex size-full
-      items-center justify-center rounded-[inherit]`,
+      `bg-white-muted dark:bg-black-soft flex size-full items-center
+      justify-center rounded-[inherit]`,
       className
     )}
     {...props}

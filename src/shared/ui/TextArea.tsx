@@ -8,9 +8,8 @@ export const TextArea = ({
 }: ComponentProps<'textarea'>) => (
   <textarea
     className={cn(
-      `border-brand/40 focus-visible:border-brand violet:border-brand-violet/40
-      violet:focus-visible:border-brand-violet block h-38.5 w-full resize-none
-      rounded-lg border bg-transparent px-4.5 py-3.5 outline-none
+      `border-brand/40 focus-visible:border-brand block h-38.5 w-full
+      resize-none rounded-lg border bg-transparent px-4.5 py-3.5 outline-none
       placeholder:opacity-40
       supports-[-webkit-overflow-scrolling:touch]:text-lg`,
       className

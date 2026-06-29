@@ -15,6 +15,8 @@ export const sessionService = {
   async signup(data: SignupDto) {
     const signupDto = parse(SignupDtoSchema, data)
 
+    console.log(signupDto)
+
     const response = await axiosInstance.post(
       sessionApiEndpoints.signup,
       signupDto

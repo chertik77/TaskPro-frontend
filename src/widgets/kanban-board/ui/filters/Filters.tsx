@@ -53,7 +53,7 @@ export const Filters = () => {
             })}
             className='focus-visible:styled-outline text-md
               hocus:text-brand-light hocus:no-underline hocus:opacity-100
-              violet:hocus:text-brand-violet underline opacity-50'>
+              underline opacity-50'>
             Show all
           </Link>
         </div>

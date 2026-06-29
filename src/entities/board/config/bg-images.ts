@@ -4,9 +4,7 @@ export const BOARD_BG_IMAGES = [
     icon: {
       light:
         'https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/default_light.png',
-      dark: 'https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/default_dark.png',
-      violet:
-        'https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/default_violet.png'
+      dark: 'https://res.cloudinary.com/dmbnnewoy/image/upload/v1707102063/TaskPro/board_bg_images/bg_icons/default_dark.png'
     }
   },
   {

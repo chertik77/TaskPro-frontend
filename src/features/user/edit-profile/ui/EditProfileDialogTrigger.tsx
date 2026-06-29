@@ -1,11 +1,14 @@
-import { useMe } from '@/entities/user'
+import { defaultAvatarUrl, useMe } from '@/entities/user'
 
+import { resolveTheme } from '@/shared/config'
 import { Avatar, AvatarFallback, AvatarImage, DialogTrigger } from '@/shared/ui'
 
 export const EditProfileDialogTrigger = () => {
   const user = useMe()
 
   const name = user?.name ?? 'Guest'
+
+  console.log(user)
 
   return (
     <DialogTrigger
@@ -15,7 +18,7 @@ export const EditProfileDialogTrigger = () => {
       <p>{name}</p>
       <Avatar>
         <AvatarImage
-          src={user?.avatar}
+          src={user?.avatar || defaultAvatarUrl[resolveTheme(user?.theme)]}
           alt={name}
         />
         <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>

@@ -175,10 +175,7 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
     isToday(task.deadline) && (
       <Icon
         name='bell'
-        className={cn(
-          'stroke-brand violet:stroke-brand-violet size-4.5 animate-bounce pr-1',
-          className
-        )}
+        className={cn('stroke-brand size-4.5 animate-bounce pr-1', className)}
       />
     )
   )

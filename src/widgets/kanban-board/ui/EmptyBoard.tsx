@@ -11,8 +11,7 @@ export const EmptyBoard = () => (
       <AddBoardDialog>
         <DialogTrigger
           className='focus-visible:styled-outline text-brand
-            violet:text-brand-violet hocus:text-brand-light
-            violet:hocus:text-brand-violet-muted transition-colors'>
+            hocus:text-brand-light transition-colors'>
           to create a board
         </DialogTrigger>{' '}
       </AddBoardDialog>

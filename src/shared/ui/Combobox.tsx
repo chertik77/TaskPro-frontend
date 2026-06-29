@@ -32,11 +32,10 @@ const ComboboxContent = ({
           data-[side=right]:slide-in-from-left-2
           data-[side=top]:slide-in-from-bottom-2 data-open:animate-in
           data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out
-          data-closed:fade-out-0 data-closed:zoom-out-95 border-brand/30
-          violet:border-brand-violet/30 group bg-white-soft shadow-base relative
-          z-50 max-h-(--available-height) w-(--anchor-width)
-          max-w-(--available-width) origin-(--transform-origin) overflow-hidden
-          rounded-lg dark:border`,
+          data-closed:fade-out-0 data-closed:zoom-out-95 border-brand/30 group
+          bg-white-soft shadow-base relative z-50 max-h-(--available-height)
+          w-(--anchor-width) max-w-(--available-width)
+          origin-(--transform-origin) overflow-hidden rounded-lg dark:border`,
           className
         )}
         {...props}
@@ -68,10 +67,10 @@ const ComboboxItem = ({
   <ComboboxPrimitive.Item
     className={cn(
       `dark:data-highlighted:bg-black-muted text-md
-      violet:data-highlighred:text-brand-violet data-highlighted:bg-white-muted
-      relative flex w-full items-center gap-2 rounded-md py-1 pr-8 pl-1.5
-      outline-hidden select-none data-disabled:pointer-events-none
-      data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0
+      data-highlighted:bg-white-muted relative flex w-full items-center gap-2
+      rounded-md py-1 pr-8 pl-1.5 outline-hidden select-none
+      data-disabled:pointer-events-none data-disabled:opacity-50
+      [&_svg]:pointer-events-none [&_svg]:shrink-0
       [&_svg:not([class*='size-'])]:size-4`,
       className
     )}
@@ -113,8 +112,7 @@ const ComboboxChips = ({
   ComboboxPrimitive.Chips.Props) => (
   <ComboboxPrimitive.Chips
     className={cn(
-      `border-brand/40 focus-within:border-brand violet:border-brand-violet/40
-      violet:focus-within:border-brand-violet flex min-h-12 w-full flex-wrap
+      `border-brand/40 focus-within:border-brand flex min-h-12 w-full flex-wrap
       items-center gap-1 rounded-lg border px-2.5 py-1
       supports-[-webkit-overflow-scrolling:touch]:text-lg`,
       className

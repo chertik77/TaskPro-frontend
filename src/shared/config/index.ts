@@ -1,2 +1,2 @@
-export { THEMES, DEFAULT_THEME, type Theme } from './theme'
+export { THEMES, DEFAULT_THEME, resolveTheme, type Theme } from './theme'
 export { env } from './env'

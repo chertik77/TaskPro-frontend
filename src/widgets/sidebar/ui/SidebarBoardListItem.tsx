@@ -29,12 +29,11 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
     <RovingFocusGroupItem
       key={board.id}
       className={cn(
-        `focus-visible:styled-outline violet:text-white/50 tablet:pl-6 flex
-        min-h-15.25 w-full cursor-pointer items-center justify-between pl-3.5
-        text-black/50 dark:text-white/50`,
+        `focus-visible:styled-outline tablet:pl-6 flex min-h-15.25 w-full
+        cursor-pointer items-center justify-between pl-3.5 text-black/50
+        dark:text-white/50`,
         boardId === board.id &&
-          `bg-white-muted violet:bg-white/50 violet:text-white
-          dark:bg-black-muted text-black dark:text-white`
+          'bg-white-muted dark:bg-black-muted text-black dark:text-white'
       )}
       onKeyDown={e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -66,7 +65,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
             />
             <DeleteBoardTrigger />
           </div>
-          <div className='bg-brand violet:bg-white h-15.25 w-1 rounded-l-lg' />
+          <div className='bg-brand h-15.25 w-1 rounded-l-lg' />
         </div>
       )}
     </RovingFocusGroupItem>

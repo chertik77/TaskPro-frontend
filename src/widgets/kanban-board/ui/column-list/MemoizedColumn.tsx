@@ -61,8 +61,7 @@ export const MemoizedColumn = memo(
           <Column.ScrollAreaScrollbar>
             <Column.ScrollAreaThumb
               className={cn(
-                !backgroundURL &&
-                  'bg-gray-light violet:bg-black/20 w-2! dark:bg-white/10'
+                !backgroundURL && 'bg-gray-light w-2! dark:bg-white/10'
               )}
             />
           </Column.ScrollAreaScrollbar>

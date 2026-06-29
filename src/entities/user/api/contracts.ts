@@ -7,7 +7,7 @@ export const UserDtoSchema = v.object({
   name: v.string(),
   email: v.string(),
   theme: v.picklist(THEMES),
-  avatar: v.string()
+  avatar: v.nullable(v.string())
 })
 
 export const EditUserDtoSchema = v.partial(

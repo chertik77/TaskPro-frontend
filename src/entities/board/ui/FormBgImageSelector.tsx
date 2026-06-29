@@ -3,6 +3,7 @@ import { RadioGroup } from '@base-ui/react/radio-group'
 
 import { useMe } from '@/entities/user/@x/board'
 
+import { resolveTheme } from '@/shared/config'
 import { FormItem, useFormField } from '@/shared/ui'
 
 import { BOARD_BG_IMAGES } from '../config/bg-images'
@@ -31,7 +32,9 @@ export const FormBgImageSelector = () => {
               width={28}
               height={28}
               src={
-                typeof icon === 'object' ? icon[user?.theme ?? 'light'] : icon
+                typeof icon === 'object'
+                  ? icon[resolveTheme(user?.theme)]
+                  : icon
               }
               alt={id}
             />

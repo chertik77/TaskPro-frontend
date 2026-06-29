@@ -77,8 +77,7 @@ export const Board = () => {
         <ScrollArea.Thumb
           className={cn(
             'h-3! rounded-[26px] bg-white/60',
-            !backgroundURL &&
-              'bg-gray-light violet:bg-black/20 dark:bg-white/10'
+            !backgroundURL && 'bg-gray-light dark:bg-white/10'
           )}
         />
       </ScrollArea.Scrollbar>

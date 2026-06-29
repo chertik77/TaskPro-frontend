@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 
-import { useMe } from '@/entities/user'
+import { defaultAvatarUrl, useMe } from '@/entities/user'
 
+import { resolveTheme } from '@/shared/config'
 import { Icon, Loader } from '@/shared/ui'
 
 import { useEditProfile } from '../api/useEditProfile'
@@ -24,9 +25,8 @@ export const EditAvatar = () => {
       />
       {isPending ? (
         <div
-          className='bg-white-muted dark:bg-black-soft violet:bg-white-gray
-            relative mx-auto mb-6 flex size-17 items-center justify-center
-            rounded-xl'>
+          className='bg-white-muted dark:bg-black-soft relative mx-auto mb-6
+            flex size-17 items-center justify-center rounded-xl'>
           <Loader />
         </div>
       ) : (
@@ -36,13 +36,13 @@ export const EditAvatar = () => {
           className='focus-visible:styled-outline relative mx-auto mb-6 block
             size-17'>
           <img
-            src={user?.avatar}
+            src={user?.avatar || defaultAvatarUrl[resolveTheme(user?.theme)]}
             alt='Avatar'
             className='size-[inherit] rounded-xl object-cover'
           />
           <div
-            className='bg-brand violet:bg-white-gray absolute -bottom-3 left-5.5
-              flex size-6 items-center justify-center rounded-lg text-black'>
+            className='bg-brand absolute -bottom-3 left-5.5 flex size-6
+              items-center justify-center rounded-lg text-black'>
             <Icon
               name='plus'
               className='size-5 stroke-none'

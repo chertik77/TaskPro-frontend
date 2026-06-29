@@ -24,7 +24,7 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
   Tasks and columns can be moved easily using drag-and-drop, making workflow management smooth and intuitive.
 
 - **Theme Switching:**
-  Users can switch between light, dark, and violet themes to match their preferences.
+  Users can switch between light, dark and system themes to match their preferences.
 
 - **Profile Management:**
   Users can update their profile information, including changing their avatar.
