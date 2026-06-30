@@ -38,6 +38,7 @@ export const EditAvatar = () => {
           <img
             src={user?.image || defaultAvatarUrl[resolveTheme(user?.theme)]}
             alt='Avatar'
+            referrerPolicy='no-referrer'
             className='size-[inherit] rounded-xl object-cover'
           />
           <div
