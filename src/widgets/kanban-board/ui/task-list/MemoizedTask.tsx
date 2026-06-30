@@ -3,7 +3,7 @@ import type { TaskTypes } from '@/entities/task'
 import { memo } from 'react'
 
 import { AddLabelDialog } from '@/features/label/add'
-import { DeleteTaskTrigger } from '@/features/task/delete'
+import { DeleteColumnAlertDialog } from '@/features/task/delete'
 import { EditTaskDialog } from '@/features/task/edit'
 import { MoveTaskSelect } from '@/features/task/move'
 
@@ -53,7 +53,7 @@ export const MemoizedTask = memo(({ task }: MemoizedTaskProps) => {
                 taskColumnId={task.columnId}
               />
               <EditTaskDialog data={{ taskId: task.id, formValues: task }} />
-              <DeleteTaskTrigger taskId={task.id} />
+              <DeleteColumnAlertDialog taskId={task.id} />
             </div>
           </div>
         </div>

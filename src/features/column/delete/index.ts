@@ -1,1 +1,1 @@
-export { DeleteColumnTrigger } from './ui/DeleteColumnTrigger'
+export { DeleteColumnAlertDialog } from './ui/DeleteColumnAlertDialog'

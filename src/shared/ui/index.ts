@@ -34,6 +34,16 @@ export {
   DialogDescription
 } from './Dialog'
 export {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel
+} from './AlertDialog'
+export {
   Form,
   FormField,
   FormItem,

@@ -1,1 +1,1 @@
-export { DeleteBoardTrigger } from './ui/DeleteBoardTrigger'
+export { DeleteBoardAlertDialog } from './ui/DeleteBoardAlertDialog'

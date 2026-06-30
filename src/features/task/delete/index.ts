@@ -1,1 +1,1 @@
-export { DeleteTaskTrigger } from './ui/DeleteTaskTrigger'
+export { DeleteColumnAlertDialog } from './ui/DeleteTaskAlertDialog'

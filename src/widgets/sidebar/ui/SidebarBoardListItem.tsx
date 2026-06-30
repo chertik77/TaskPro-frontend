@@ -3,7 +3,7 @@ import type { BoardTypes } from '@/entities/board'
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
 
-import { DeleteBoardTrigger } from '@/features/board/delete'
+import { DeleteBoardAlertDialog } from '@/features/board/delete'
 import { EditBoardDialog } from '@/features/board/edit'
 
 import { cn } from '@/shared/lib'
@@ -55,7 +55,10 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
       </div>
       {boardId === board.id && (
         <div className='flex gap-5'>
-          <div className='flex items-center gap-2'>
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+          <div
+            className='flex items-center gap-2'
+            onClick={e => e.stopPropagation()}>
             <EditBoardDialog
               data={{
                 title: board.title,
@@ -63,7 +66,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
                 background: board.background.identifier
               }}
             />
-            <DeleteBoardTrigger />
+            <DeleteBoardAlertDialog />
           </div>
           <div className='bg-brand h-15.25 w-1 rounded-l-lg' />
         </div>

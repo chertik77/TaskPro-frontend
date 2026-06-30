@@ -6,7 +6,7 @@ import type {
 
 import { memo } from 'react'
 
-import { DeleteColumnTrigger } from '@/features/column/delete'
+import { DeleteColumnAlertDialog } from '@/features/column/delete'
 import { EditColumnDialog } from '@/features/column/edit'
 import { useDragAndDrop } from '@/features/drag-and-drop'
 import { AddTaskDialog } from '@/features/task/add'
@@ -49,7 +49,7 @@ export const MemoizedColumn = memo(
             <EditColumnDialog
               data={{ columnId: column.id, formValues: column }}
             />
-            <DeleteColumnTrigger columnId={column.id} />
+            <DeleteColumnAlertDialog columnId={column.id} />
           </div>
         </Column.Header>
         <Column.ScrollArea>
