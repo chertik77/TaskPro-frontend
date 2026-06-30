@@ -1,6 +1,7 @@
 import type { Theme } from '@/shared/config'
 
 import { THEMES } from '@/shared/config'
+import { capitalize } from '@/shared/lib'
 import {
   Icon,
   Select,
@@ -25,10 +26,9 @@ export const ThemeSelect = () => {
       onValueChange={v => changeUserTheme({ theme: v as Theme })}
       value={currentTheme}>
       <SelectTrigger className='flex items-center gap-1'>
-        <SelectValue
-          placeholder='Theme'
-          className='first-letter:capitalize'
-        />
+        <SelectValue placeholder='Theme'>
+          {value => capitalize(value)}
+        </SelectValue>
         <SelectIcon
           render={
             <Icon
@@ -48,9 +48,7 @@ export const ThemeSelect = () => {
             className='data-disabled:cursor-not-allowed
               data-highlighted:underline'
             value={theme}>
-            <SelectItemText className='first-letter:capitalize'>
-              {theme}
-            </SelectItemText>
+            <SelectItemText>{capitalize(theme)}</SelectItemText>
           </SelectItem>
         ))}
       </SelectContent>

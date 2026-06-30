@@ -1,3 +1,4 @@
+import { capitalize } from '@/shared/lib'
 import { FormItem, RadioGroup, RadioGroupItem, useFormField } from '@/shared/ui'
 
 import { TASK_PRIORITIES } from '../config/priority'
@@ -24,7 +25,7 @@ export const FormPrioritySelector = () => {
               indicatorClassname={getTaskPriorityColor(priority)}
               className={getTaskPriorityColor(priority)}
             />
-            {priority[0].toUpperCase() + priority.slice(1)}
+            {capitalize(priority)}
           </label>
         </FormItem>
       ))}

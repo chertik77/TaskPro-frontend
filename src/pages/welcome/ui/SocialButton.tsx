@@ -1,6 +1,7 @@
 import { sessionApiEndpoints } from '@/entities/session'
 
 import { env } from '@/shared/config'
+import { capitalize } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 
 type SocialButtonProps = {
@@ -24,7 +25,7 @@ export const SocialButton = ({ provider, apiEndpoint }: SocialButtonProps) => {
         name={provider}
         className='size-7 stroke-none'
       />
-      Continue with {provider.charAt(0).toUpperCase() + provider.slice(1)}
+      Continue with {capitalize(provider)}
     </button>
   )
 }

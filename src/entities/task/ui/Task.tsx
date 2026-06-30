@@ -7,7 +7,7 @@ import { isToday } from 'date-fns'
 
 import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
 
-import { cn } from '@/shared/lib'
+import { capitalize, cn } from '@/shared/lib'
 import { Checkbox, Icon } from '@/shared/ui'
 
 import { formatDeadlineDate } from '../lib/format-deadline-date'
@@ -163,7 +163,7 @@ const TaskPriority = ({ className }: { className?: string }) => {
             getTaskPriorityColor(task.priority)
           )}
         />
-        <p className='text-sm first-letter:capitalize'>{task.priority}</p>
+        <p className='text-sm'>{capitalize(task.priority)}</p>
       </div>
     </div>
   )
