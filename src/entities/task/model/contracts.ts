@@ -9,6 +9,7 @@ export const TaskSchema = v.object({
   id: v.string(),
   title: v.string(),
   order: v.number(),
+  completed: v.boolean(),
   columnId: v.string(),
   description: v.nullable(v.string()),
   priority: v.picklist(TASK_PRIORITIES),

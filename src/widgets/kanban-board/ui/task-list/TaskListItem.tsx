@@ -3,8 +3,9 @@ import type { KeyboardEvent } from 'react'
 
 import { useState } from 'react'
 
-import { cn, useDndSortable } from '@/shared/lib'
+import { cn } from '@/shared/lib'
 
+import { useDndSortable } from '../../lib/useDndSortable'
 import { MemoizedTask } from './MemoizedTask'
 
 type TaskListItemProps = {

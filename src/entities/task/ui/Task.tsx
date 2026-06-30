@@ -8,7 +8,7 @@ import { isToday } from 'date-fns'
 import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
 
 import { cn } from '@/shared/lib'
-import { Icon } from '@/shared/ui'
+import { Checkbox, Icon } from '@/shared/ui'
 
 import { formatDeadlineDate } from '../lib/format-deadline-date'
 import { getTaskPriorityColor } from '../lib/priority-colors'
@@ -102,6 +102,23 @@ const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   )
 }
 
+const TaskCompletedToggle = ({
+  className,
+  onCheckedChange,
+  ...props
+}: ComponentProps<typeof Checkbox>) => {
+  const { task } = useTaskContext()
+
+  return (
+    <Checkbox
+      checked={task.completed}
+      onCheckedChange={onCheckedChange}
+      className={cn('size-5', className)}
+      {...props}
+    />
+  )
+}
+
 const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
   const {
     task: { labels }
@@ -146,7 +163,7 @@ const TaskPriority = ({ className }: { className?: string }) => {
             getTaskPriorityColor(task.priority)
           )}
         />
-        <p className='text-sm'>{task.priority}</p>
+        <p className='text-sm first-letter:capitalize'>{task.priority}</p>
       </div>
     </div>
   )
@@ -206,6 +223,7 @@ const TaskActionButton = ({
 export const Task = Object.assign(TaskProvider, {
   PriorityIndicator: TaskPriorityIndicator,
   Title: TaskTitle,
+  CompletedToggle: TaskCompletedToggle,
   Description: TaskDescription,
   Labels: TaskLabels,
   Priority: TaskPriority,

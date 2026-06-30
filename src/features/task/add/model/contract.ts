@@ -20,7 +20,7 @@ export const AddTaskSchema = v.object({
       v.minLength(3, 'Please enter at least 3 characters.')
     )
   ]),
-  priority: v.fallback(v.picklist(TASK_PRIORITIES), 'Without'),
+  priority: v.fallback(v.picklist(TASK_PRIORITIES), 'without'),
   labels: v.optional(v.array(v.string())),
   deadline: v.optional(
     v.pipe(

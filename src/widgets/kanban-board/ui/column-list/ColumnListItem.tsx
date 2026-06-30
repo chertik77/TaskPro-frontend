@@ -1,7 +1,8 @@
 import type { ColumnTypes } from '@/entities/column'
 
-import { cn, useDndSortable } from '@/shared/lib'
+import { cn } from '@/shared/lib'
 
+import { useDndSortable } from '../../lib/useDndSortable'
 import { MemoizedColumn } from './MemoizedColumn'
 
 type ColumnListItemProps = {

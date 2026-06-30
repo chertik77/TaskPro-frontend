@@ -1,1 +1,1 @@
-export const TASK_PRIORITIES = ['High', 'Medium', 'Low', 'Without'] as const
+export const TASK_PRIORITIES = ['high', 'medium', 'low', 'without'] as const

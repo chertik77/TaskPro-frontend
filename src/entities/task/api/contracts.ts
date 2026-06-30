@@ -9,6 +9,7 @@ export const TaskDtoSchema = v.object({
   title: v.string(),
   description: v.nullable(v.string()),
   order: v.number(),
+  completed: v.boolean(),
   columnId: v.string(),
   priority: v.picklist(TASK_PRIORITIES),
   labels: v.optional(v.array(LabelSchema)),
@@ -37,6 +38,7 @@ export const EditTaskDtoSchema = v.intersect([
   v.partial(
     v.object({
       ...AddTaskDtoSchema.entries,
+      completed: v.boolean(),
       description: v.nullable(v.pipe(v.string(), v.trim(), v.minLength(3))),
       deadline: v.nullable(v.date())
     })

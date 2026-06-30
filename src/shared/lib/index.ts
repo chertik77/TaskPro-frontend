@@ -1,7 +1,6 @@
 export { useTabletAndBelowMediaQuery } from './media/useTabletAndBelowMediaQuery'
 export { useDocumentTitle } from './document-title/useDocumentTitle'
 export { useShouldAutoFocus } from './auto-focus/useShouldAutoFocus'
-export { useDndSortable } from './dnd/useDndSortable'
 export { useAppForm } from './form/useAppForm'
 export { queryClient } from './query/query-client'
 export { router } from './router/router'

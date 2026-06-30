@@ -1,10 +1,10 @@
 export const LABEL_COLORS = [
   'blue',
-  'violet',
-  'emerald',
-  'rose',
-  'amber',
+  'purple',
+  'red',
   'gray',
   'cyan',
+  'yellow',
+  'green',
   'indigo'
 ] as const

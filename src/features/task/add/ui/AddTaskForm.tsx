@@ -32,7 +32,7 @@ export const AddTaskForm = ({
     defaultValues: {
       title: '',
       description: '',
-      priority: 'Without',
+      priority: 'without',
       deadline: undefined,
       labels: []
     }

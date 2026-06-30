@@ -18,14 +18,13 @@ export const FormPrioritySelector = () => {
           <label
             className='text-md hocus:text-black dark:hocus:text-white flex
               cursor-pointer items-center gap-1 text-black/50
-              has-[data-state=checked]:text-black dark:text-white/50
-              dark:has-[data-state=checked]:text-white'>
+              dark:text-white/50'>
             <RadioGroupItem
               value={priority}
               indicatorClassname={getTaskPriorityColor(priority)}
               className={getTaskPriorityColor(priority)}
             />
-            {priority}
+            {priority[0].toUpperCase() + priority.slice(1)}
           </label>
         </FormItem>
       ))}
