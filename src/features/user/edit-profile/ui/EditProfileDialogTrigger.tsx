@@ -18,7 +18,7 @@ export const EditProfileDialogTrigger = () => {
       <p>{name}</p>
       <Avatar>
         <AvatarImage
-          src={user?.avatar || defaultAvatarUrl[resolveTheme(user?.theme)]}
+          src={user?.image || defaultAvatarUrl[resolveTheme(user?.theme)]}
           alt={name}
         />
         <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>

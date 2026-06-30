@@ -2,27 +2,22 @@ import type { SigninDto, SignupDto } from './types'
 
 import { parse } from 'valibot'
 
-import { axiosInstance } from '@/shared/api'
+import { authClient } from '@/shared/api/auth-client'
+import { env } from '@/shared/config'
 
 import {
   SessionResponseDtoSchema,
   SigninDtoSchema,
   SignupDtoSchema
 } from './contracts'
-import { sessionApiEndpoints } from './endpoints'
 
 export const sessionService = {
   async signup(data: SignupDto) {
     const signupDto = parse(SignupDtoSchema, data)
 
-    console.log(signupDto)
+    const response = await authClient.signUp.email(signupDto)
 
-    const response = await axiosInstance.post(
-      sessionApiEndpoints.signup,
-      signupDto
-    )
-
-    const parsedData = parse(SessionResponseDtoSchema, response.data)
+    const parsedData = parse(SessionResponseDtoSchema, response)
 
     return parsedData
   },
@@ -30,22 +25,22 @@ export const sessionService = {
   async signin(data: SigninDto) {
     const signinDto = parse(SigninDtoSchema, data)
 
-    const response = await axiosInstance.post(
-      sessionApiEndpoints.signin,
-      signinDto,
-      { skipAuthRefresh: true }
-    )
+    const response = await authClient.signIn.email(signinDto)
 
-    const parsedData = parse(SessionResponseDtoSchema, response.data)
+    const parsedData = parse(SessionResponseDtoSchema, response)
 
     return parsedData
   },
 
-  async refreshTokens() {
-    await axiosInstance.post(sessionApiEndpoints.refresh)
+  async continueWithSocial(provider: 'google' | 'microsoft') {
+    await authClient.signIn.social({
+      provider,
+      callbackURL: env.VITE_BASE_URL,
+      errorCallbackURL: env.VITE_BASE_URL + '?error=oauth_error'
+    })
   },
 
   async logout() {
-    await axiosInstance.post(sessionApiEndpoints.logout)
+    await authClient.signOut()
   }
 }
