@@ -1,5 +1,7 @@
 import { Link } from '@tanstack/react-router'
 
+import { sessionService } from '@/entities/session'
+
 import { Icon } from '@/shared/ui'
 
 import { SocialButton } from './SocialButton'
@@ -30,11 +32,11 @@ export const WelcomePage = () => (
       <div className='space-y-3.5'>
         <SocialButton
           provider='google'
-          apiEndpoint='googleInitiate'
+          onClick={() => sessionService.continueWithSocial('google')}
         />
         <SocialButton
           provider='microsoft'
-          apiEndpoint='microsoftInitiate'
+          onClick={() => sessionService.continueWithSocial('microsoft')}
         />
         <Link
           to='/auth/signup'

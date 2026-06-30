@@ -21,7 +21,7 @@ export const EditAvatar = () => {
         ref={ref}
         accept='image/jpg, image/jpeg, image/png, image/webp'
         className='hidden'
-        onChange={e => changeAvatar({ avatar: e.target.files?.[0] })}
+        onChange={e => changeAvatar({ image: e.target.files?.[0] })}
       />
       {isPending ? (
         <div
@@ -36,7 +36,7 @@ export const EditAvatar = () => {
           className='focus-visible:styled-outline relative mx-auto mb-6 block
             size-17'>
           <img
-            src={user?.avatar || defaultAvatarUrl[resolveTheme(user?.theme)]}
+            src={user?.image || defaultAvatarUrl[resolveTheme(user?.theme)]}
             alt='Avatar'
             className='size-[inherit] rounded-xl object-cover'
           />

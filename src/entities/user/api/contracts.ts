@@ -7,7 +7,7 @@ export const UserDtoSchema = v.object({
   name: v.string(),
   email: v.string(),
   theme: v.picklist(THEMES),
-  avatar: v.nullable(v.string())
+  image: v.nullable(v.string())
 })
 
 export const EditUserDtoSchema = v.partial(
@@ -16,7 +16,7 @@ export const EditUserDtoSchema = v.partial(
     email: v.pipe(v.string(), v.trim(), v.email()),
     password: v.pipe(v.string(), v.trim(), v.minLength(8), v.maxLength(64)),
     theme: v.picklist(THEMES),
-    avatar: v.pipe(
+    image: v.pipe(
       v.instance(File),
       v.mimeType(['image/jpg', 'image/jpeg', 'image/png', 'image/webp'])
     )
