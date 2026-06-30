@@ -11,10 +11,10 @@ export const Checkbox = ({
     className={cn(
       `peer data-checked:border-brand data-checked:bg-brand
       focus-visible:styled-outline relative flex size-4 shrink-0 items-center
-      justify-center rounded-sm border border-black/15 bg-white
+      justify-center rounded-sm border border-black/20 bg-white
       transition-colors outline-none after:absolute after:-inset-x-3
       after:-inset-y-2 active:scale-95 disabled:cursor-not-allowed
-      disabled:opacity-50 data-checked:text-black dark:border-white/10
+      disabled:opacity-50 data-checked:text-black dark:border-white/20
       dark:bg-black`,
       className
     )}
