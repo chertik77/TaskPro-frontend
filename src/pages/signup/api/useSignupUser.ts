@@ -13,7 +13,7 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: sessionService.signin,
+    mutationFn: sessionService.signup,
     meta: {
       errorMessage: e =>
         e?.status === 422

@@ -45,6 +45,8 @@ const TaskProvider = ({
         className={cn(
           `relative min-h-38.5 overflow-hidden rounded-lg bg-white py-3.5 pr-5
           pl-6 dark:bg-black`,
+          task.completed &&
+            'opacity-90 brightness-95 saturate-100 dark:brightness-125',
           className
         )}
         {...props}>
@@ -77,7 +79,11 @@ const TaskTitle = ({ className, ...props }: ComponentProps<'p'>) => {
 
   return (
     <p
-      className={cn('mr-12 mb-2 truncate text-base font-semibold', className)}
+      className={cn(
+        'mb-2 max-w-60 truncate text-base font-semibold',
+        task.completed && 'text-black/40 line-through dark:text-white/40',
+        className
+      )}
       {...props}>
       {task.title}
     </p>
@@ -93,6 +99,7 @@ const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
         className={cn(
           `text-md mb-3.5 line-clamp-2 max-w-68.75 text-balance text-ellipsis
           text-black/70 dark:text-white/50`,
+          task.completed && 'text-black/40 dark:text-white/40',
           className
         )}
         {...props}>
@@ -154,7 +161,12 @@ const TaskPriority = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
   return (
-    <div className={cn('mr-3.5', className)}>
+    <div
+      className={cn(
+        'mr-3.5',
+        task.completed && 'text-black/40 dark:text-white/40',
+        className
+      )}>
       <p className='mb-1 text-xs text-black/50 dark:text-white/50'>Priority</p>
       <div className='flex items-center gap-1'>
         <div
@@ -174,7 +186,11 @@ const TaskDeadline = ({ className }: { className?: string }) => {
 
   return (
     task.deadline && (
-      <div className={cn(className)}>
+      <div
+        className={cn(
+          task.completed && 'text-black/40 dark:text-white/40',
+          className
+        )}>
         <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
           Deadline
         </p>

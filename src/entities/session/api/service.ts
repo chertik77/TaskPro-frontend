@@ -15,7 +15,10 @@ export const sessionService = {
   async signup(data: SignupDto) {
     const signupDto = parse(SignupDtoSchema, data)
 
-    const response = await authClient.signUp.email(signupDto)
+    const response = await authClient.signUp.email({
+      ...signupDto,
+      theme: 'light'
+    })
 
     const parsedData = parse(SessionResponseDtoSchema, response)
 
