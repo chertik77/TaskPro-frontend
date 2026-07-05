@@ -16,13 +16,13 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
     mutationFn: sessionService.signup,
     meta: {
       errorMessage: e =>
-        e?.response?.status === 409
+        e?.status === 422
           ? 'An account with this email address already exists. Please sign in or use a different email.'
           : 'An error occurred during sign-up. Our technical team has been notified. Please try again shortly.'
     },
-    onSuccess({ user }) {
+    onSuccess(data) {
       reset()
-      queryClient.setQueryData(userQueries.current(), user)
+      queryClient.setQueryData(userQueries.current(), data?.user)
       navigate({ to: '/dashboard' })
     }
   })

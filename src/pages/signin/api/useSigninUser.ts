@@ -16,7 +16,7 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
     mutationFn: sessionService.signin,
     meta: {
       errorMessage: e =>
-        e?.response?.status === 401
+        e?.status === 401
           ? 'The email or password you entered is incorrect. Please try again.'
           : 'An error occurred during sign-in. Our technical team has been notified. Please try again shortly.'
     },
