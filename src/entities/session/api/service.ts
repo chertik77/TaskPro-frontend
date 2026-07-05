@@ -2,7 +2,7 @@ import type { SigninDto, SignupDto } from './types'
 
 import { parse } from 'valibot'
 
-import { authClient } from '@/shared/api/auth-client'
+import { authClient } from '@/shared/api'
 import { env } from '@/shared/config'
 
 import {
