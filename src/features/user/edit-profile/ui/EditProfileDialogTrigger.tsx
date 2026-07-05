@@ -8,10 +8,10 @@ export const EditProfileDialogTrigger = () => {
 
   const name = user?.name ?? 'Guest'
 
-  console.log(user)
-
   return (
     <DialogTrigger
+      //! TEMPORARY DISABLE BUTTON
+      disabled
       type='button'
       aria-label='Edit profile'
       className='focus-visible:styled-outline flex items-center gap-2'>
