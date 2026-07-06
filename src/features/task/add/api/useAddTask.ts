@@ -21,9 +21,6 @@ export const useAddTask = (
       errorMessage:
         'An error occurred while creating the task. Please try again shortly.'
     },
-    onError: e => {
-      console.log(e)
-    },
     onSuccess() {
       setIsDialogOpen(false)
     }
