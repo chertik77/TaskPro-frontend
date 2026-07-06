@@ -1,13 +1,15 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { boardQueries, useGetParamBoardId } from '@/entities/board'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { getBoardByIdOptions } from '@/shared/api'
 
 export const useGetFilteredColumns = (taskColumnId: string) => {
   const boardId = useGetParamBoardId()
 
   const { data: columns } = useQuery({
-    ...boardQueries.detail(boardId),
+    ...getBoardByIdOptions({ path: { boardId } }),
     select: board => board.columns,
     refetchOnMount: false
   })

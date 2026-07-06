@@ -1,18 +1,19 @@
-import type { ColumnDtoTypes } from '@/entities/column'
+import type { UpdateColumnsOrderData } from '@/shared/api'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries, useGetParamBoardId } from '@/entities/board'
-import { columnService } from '@/entities/column'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { getBoardByIdQueryKey, updateColumnsOrder } from '@/shared/api'
 
 export const useUpdateColumnOrder = () => {
   const boardId = useGetParamBoardId()
 
   return useMutation({
-    mutationFn: ({ ids }: Omit<ColumnDtoTypes.UpdateColumnDto, 'boardId'>) =>
-      columnService.updateColumnOrder({ boardId, ids }),
+    mutationFn: ({ ids }: UpdateColumnsOrderData['body']) =>
+      updateColumnsOrder({ path: { boardId }, body: { ids } }),
     meta: {
-      invalidates: [boardQueries.details()],
+      invalidates: [getBoardByIdQueryKey({ path: { boardId } })],
       errorMessage:
         'Unexpected error during columns reordering. We apologize for the inconvenience. Please try again later.'
     }

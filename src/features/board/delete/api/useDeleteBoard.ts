@@ -2,12 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { parse } from 'valibot'
 
-import {
-  BoardContracts,
-  boardQueries,
-  boardService,
-  useGetParamBoardId
-} from '@/entities/board'
+import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+
+import { deleteBoard, getAllBoardsQueryKey } from '@/shared/api'
 
 export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
@@ -16,23 +13,25 @@ export const useDeleteBoard = () => {
 
   const navigate = useNavigate()
 
+  const allBoardsQueryKey = getAllBoardsQueryKey()
+
   return useMutation({
-    mutationFn: () => boardService.deleteBoard({ boardId }),
+    mutationFn: () => deleteBoard({ path: { boardId } }),
     meta: {
       errorMessage:
         'An error occurred while deleting the board. Please try again shortly.'
     },
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: boardQueries.lists() })
+      await queryClient.cancelQueries({ queryKey: allBoardsQueryKey })
 
-      const previousBoards = queryClient.getQueryData(boardQueries.lists())
+      const previousBoards = queryClient.getQueryData(allBoardsQueryKey)
 
       const parsedPreviousBoards = parse(
         BoardContracts.BoardsSchema,
         previousBoards
       )
 
-      queryClient.setQueryData(boardQueries.lists(), oldBoards => {
+      queryClient.setQueryData(allBoardsQueryKey, oldBoards => {
         if (!oldBoards) return oldBoards
 
         const parsedOldBoards = parse(BoardContracts.BoardsSchema, oldBoards)
@@ -40,16 +39,15 @@ export const useDeleteBoard = () => {
         return parsedOldBoards.filter(b => b.id !== boardId)
       })
 
+      navigate({ to: '/dashboard', replace: true })
+
       return { previousBoards: parsedPreviousBoards }
     },
-    onSuccess: () => {
-      navigate({ to: '/dashboard', replace: true })
-    },
     onError: (_, __, context) => {
-      queryClient.setQueryData(boardQueries.lists(), context?.previousBoards)
+      queryClient.setQueryData(allBoardsQueryKey, context?.previousBoards)
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: boardQueries.lists() })
+      queryClient.invalidateQueries({ queryKey: allBoardsQueryKey })
     }
   })
 }

@@ -1,14 +1,20 @@
 import { WelcomePage } from '@/pages/welcome'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { toast } from 'sonner'
+import * as v from 'valibot'
 
-import { SessionDtoContracts } from '@/entities/session'
-import { userQueries } from '@/entities/user'
+import { sessionQueries } from '@/entities/user'
+
+export const OauthErrorSearchSchema = v.object({
+  error: v.optional(v.pipe(v.literal('access_denied')))
+})
 
 export const Route = createFileRoute('/')({
-  validateSearch: SessionDtoContracts.OauthErrorSearchSchema,
+  validateSearch: OauthErrorSearchSchema,
   beforeLoad: async ({ context: { queryClient }, search: { error } }) => {
-    const isAuthenticated = await queryClient.ensureQueryData(userQueries.me())
+    const isAuthenticated = await queryClient.ensureQueryData(
+      sessionQueries.current()
+    )
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
 

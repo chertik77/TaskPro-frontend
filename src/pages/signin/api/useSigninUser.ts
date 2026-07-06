@@ -4,8 +4,9 @@ import type { SigninSchema } from '../model/contract'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionService } from '@/entities/session'
-import { userQueries } from '@/entities/user'
+import { sessionQueries } from '@/entities/user'
+
+import { authClient } from '@/shared/api'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   const queryClient = useQueryClient()
@@ -13,16 +14,16 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: sessionService.signin,
+    mutationFn: (data: SigninSchema) => authClient.signIn.email(data),
     meta: {
       errorMessage: e =>
         e?.status === 401
           ? 'The email or password you entered is incorrect. Please try again.'
           : 'An error occurred during sign-in. Our technical team has been notified. Please try again shortly.'
     },
-    onSuccess({ user }) {
+    onSuccess(session) {
       reset()
-      queryClient.setQueryData(userQueries.current(), user)
+      queryClient.setQueryData(sessionQueries.all(), session)
       navigate({ to: '/dashboard' })
     }
   })

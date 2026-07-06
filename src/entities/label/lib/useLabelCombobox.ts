@@ -3,7 +3,8 @@ import type { LabelSchema } from '../model/types'
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { labelQueries } from '../api/queries'
+import { getAllLabelsOptions } from '@/shared/api'
+
 import { useLabelModalStore } from '../model/modal.store'
 
 const CREATE_SENTINEL = '__create'
@@ -21,7 +22,11 @@ export const useLabelCombobox = (labelsValues: string[] | undefined) => {
 
   const { setModal } = useLabelModalStore()
 
-  const { data: labels = [], isPending, error } = useQuery(labelQueries.list())
+  const {
+    data: labels = [],
+    isPending,
+    error
+  } = useQuery(getAllLabelsOptions())
 
   const labelMap = useMemo(() => new Map(labels.map(l => [l.id, l])), [labels])
 

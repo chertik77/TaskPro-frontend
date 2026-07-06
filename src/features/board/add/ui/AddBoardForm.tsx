@@ -31,7 +31,7 @@ export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(data => addBoard(data))}
+        onSubmit={form.handleSubmit(data => addBoard({ body: data }))}
         className='space-y-6'>
         <FormField
           control={form.control}

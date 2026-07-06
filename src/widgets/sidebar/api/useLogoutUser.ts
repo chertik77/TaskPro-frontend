@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionService } from '@/entities/session'
-import { userQueries } from '@/entities/user'
+import { sessionQueries } from '@/entities/user'
+
+import { authClient } from '@/shared/api'
 
 export const useLogoutUser = () => {
   const queryClient = useQueryClient()
@@ -10,7 +11,7 @@ export const useLogoutUser = () => {
   const navigate = useNavigate()
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: sessionService.logout,
+    mutationFn: () => authClient.signOut(),
     meta: {
       errorMessage:
         'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
@@ -19,7 +20,7 @@ export const useLogoutUser = () => {
 
   const logoutUser = async () => {
     navigate({ to: '/' })
-    queryClient.setQueryData(userQueries.current(), null)
+    queryClient.setQueryData(sessionQueries.all(), null)
     await mutateAsync()
   }
 

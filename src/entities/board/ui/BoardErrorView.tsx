@@ -3,19 +3,24 @@ import type { AxiosError } from 'axios'
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
+import { getBoardByIdQueryKey } from '@/shared/api'
 import { Button } from '@/shared/ui'
 
-import { boardQueries } from '../api/queries'
+import { useGetParamBoardId } from '../lib/useGetParamBoardId'
 
 export const BoardErrorView = ({ error }: { error: AxiosError }) => {
   const navigate = useNavigate()
 
   const queryClient = useQueryClient()
 
+  const boardId = useGetParamBoardId()
+
   const isBoardNotFound = error.response?.status === 404
 
   const refetchBoard = () => {
-    queryClient.refetchQueries({ queryKey: boardQueries.details() })
+    queryClient.refetchQueries({
+      queryKey: getBoardByIdQueryKey({ path: { boardId } })
+    })
   }
 
   const handleGoToDashboard = () => {

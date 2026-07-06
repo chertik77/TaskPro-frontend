@@ -3,8 +3,9 @@ import type { AddColumnSchema } from '../model/contract'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries, useGetParamBoardId } from '@/entities/board'
-import { columnService } from '@/entities/column'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { createColumn, getBoardByIdQueryKey } from '@/shared/api'
 
 export const useAddColumn = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
@@ -13,9 +14,9 @@ export const useAddColumn = (
 
   return useMutation({
     mutationFn: (data: AddColumnSchema) =>
-      columnService.addColumn({ boardId, ...data }),
+      createColumn({ path: { boardId }, body: data }),
     meta: {
-      invalidates: [boardQueries.details()],
+      invalidates: [getBoardByIdQueryKey({ path: { boardId } })],
       errorMessage:
         'An error occurred while creating the column. Please try again shortly.'
     },

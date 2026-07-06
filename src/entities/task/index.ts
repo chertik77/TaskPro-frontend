@@ -1,8 +1,5 @@
-export * as TaskDtoTypes from './api/types'
 export * as TaskTypes from './model/types'
-export * as TaskDtoContracts from './api/contracts'
 export * as TaskContracts from './model/contracts'
-export { taskService } from './api/service'
 export { TASK_PRIORITIES } from './config/priority'
 export { TASK_DEADLINES } from './config/deadline'
 export { getTaskPriorityColor } from './lib/priority-colors'

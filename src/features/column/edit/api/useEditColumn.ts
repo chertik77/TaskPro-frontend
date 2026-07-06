@@ -2,16 +2,19 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-import { columnService } from '@/entities/column'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { getBoardByIdQueryKey, updateColumnMutation } from '@/shared/api'
 
 export const useEditColumn = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
-) =>
-  useMutation({
-    mutationFn: columnService.editColumn,
+) => {
+  const boardId = useGetParamBoardId()
+
+  return useMutation({
+    ...updateColumnMutation(),
     meta: {
-      invalidates: [boardQueries.details()],
+      invalidates: [getBoardByIdQueryKey({ path: { boardId } })],
       errorMessage:
         'An error occurred while editing the column. Please try again shortly.'
     },
@@ -19,3 +22,4 @@ export const useEditColumn = (
       setIsDialogOpen(false)
     }
   })
+}

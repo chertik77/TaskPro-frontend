@@ -2,16 +2,19 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-import { taskService } from '@/entities/task'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { getBoardByIdQueryKey, updateTaskMutation } from '@/shared/api'
 
 export const useEditTask = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
-) =>
-  useMutation({
-    mutationFn: taskService.editTask,
+) => {
+  const boardId = useGetParamBoardId()
+
+  return useMutation({
+    ...updateTaskMutation(),
     meta: {
-      invalidates: [boardQueries.details()],
+      invalidates: [getBoardByIdQueryKey({ path: { boardId } })],
       errorMessage:
         'An error occurred while editing the task. Please try again shortly.'
     },
@@ -19,3 +22,4 @@ export const useEditTask = (
       setIsDialogOpen(false)
     }
   })
+}

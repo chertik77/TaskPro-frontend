@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { userQueries } from '../api/queries'
+import { sessionQueries } from '../api/queries'
 
 export const useMe = () => {
-  const { data: user } = useQuery(userQueries.me())
+  const { data: user } = useQuery({
+    ...sessionQueries.current(),
+    select: session => session?.user ?? null
+  })
 
   return user
 }

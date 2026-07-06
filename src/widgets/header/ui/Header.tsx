@@ -1,8 +1,8 @@
 import { ThemeSelect } from '@/features/user/change-theme'
-import { EditProfileDialog } from '@/features/user/edit-profile'
 
 import { ToggleMobileMenuTrigger } from './ToggleMobileMenuTrigger'
 import { ToggleSidebarTrigger } from './ToggleSidebarTrigger'
+import { UserInfo } from './UserInfo'
 
 export const Header = () => (
   <header
@@ -12,7 +12,7 @@ export const Header = () => (
     <ToggleMobileMenuTrigger />
     <div className='flex items-center gap-3.5'>
       <ThemeSelect />
-      <EditProfileDialog />
+      <UserInfo />
     </div>
   </header>
 )

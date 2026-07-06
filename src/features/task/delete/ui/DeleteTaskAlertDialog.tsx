@@ -32,7 +32,7 @@ export const DeleteColumnAlertDialog = ({ taskId }: { taskId: string }) => {
         </AlertDialogDescription>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => deleteTask({ taskId })}>
+          <AlertDialogAction onClick={() => deleteTask({ path: { taskId } })}>
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>

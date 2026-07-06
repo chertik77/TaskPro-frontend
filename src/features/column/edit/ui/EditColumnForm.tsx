@@ -36,7 +36,7 @@ export const EditColumnForm = ({
       <form
         className='space-y-6'
         onSubmit={form.handleSubmit(editedColumn =>
-          editColumn({ columnId, ...editedColumn })
+          editColumn({ path: { columnId }, body: editedColumn })
         )}>
         <FormField
           control={form.control}

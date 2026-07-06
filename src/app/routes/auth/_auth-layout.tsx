@@ -4,11 +4,13 @@ import {
 } from '@radix-ui/react-roving-focus'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
 
-import { userQueries } from '@/entities/user'
+import { sessionQueries } from '@/entities/user'
 
 export const Route = createFileRoute('/auth/_auth-layout')({
   beforeLoad: async ({ context: { queryClient } }) => {
-    const isAuthenticated = await queryClient.ensureQueryData(userQueries.me())
+    const isAuthenticated = await queryClient.ensureQueryData(
+      sessionQueries.current()
+    )
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },

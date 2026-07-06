@@ -3,22 +3,29 @@ import type { AddTaskSchema } from '../model/contract'
 
 import { useMutation } from '@tanstack/react-query'
 
-import { boardQueries } from '@/entities/board'
-import { taskService } from '@/entities/task'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { createTask, getBoardByIdQueryKey } from '@/shared/api'
 
 export const useAddTask = (
   columnId: string,
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
-) =>
-  useMutation({
+) => {
+  const boardId = useGetParamBoardId()
+
+  return useMutation({
     mutationFn: (data: AddTaskSchema) =>
-      taskService.addTask({ columnId, ...data }),
+      createTask({ path: { columnId }, body: data }),
     meta: {
-      invalidates: [boardQueries.details()],
+      invalidates: [getBoardByIdQueryKey({ path: { boardId } })],
       errorMessage:
         'An error occurred while creating the task. Please try again shortly.'
+    },
+    onError: e => {
+      console.log(e)
     },
     onSuccess() {
       setIsDialogOpen(false)
     }
   })
+}

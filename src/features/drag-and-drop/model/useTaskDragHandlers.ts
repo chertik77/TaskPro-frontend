@@ -98,10 +98,12 @@ export const useTaskDragHandlers = ({
 
     if (activeTask) {
       updateTaskOrder({
-        columnId: activeTask.columnId,
-        ids: tasks
-          .filter(c => c.columnId === activeTask.columnId)
-          .map(c => c.id)
+        path: { columnId: activeTask.columnId },
+        body: {
+          ids: tasks
+            .filter(c => c.columnId === activeTask.columnId)
+            .map(c => c.id)
+        }
       })
     }
   }

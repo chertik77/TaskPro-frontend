@@ -34,7 +34,7 @@ export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(data => sendHelpRequest(data))}
+        onSubmit={form.handleSubmit(data => sendHelpRequest({ body: data }))}
         className='space-y-3.5'>
         <FormField
           control={form.control}

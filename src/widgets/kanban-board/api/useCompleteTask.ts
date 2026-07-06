@@ -1,28 +1,25 @@
-import type { TaskDtoTypes } from '@/entities/task'
+import type { UpdateTaskData } from '@/shared/api'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import {
-  BoardContracts,
-  boardQueries,
-  useGetParamBoardId
-} from '@/entities/board'
-import { taskService } from '@/entities/task'
+import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+
+import { getBoardByIdQueryKey, updateTask } from '@/shared/api'
+
+type CompleteTaskMutation = UpdateTaskData['path'] &
+  Pick<UpdateTaskData['body'], 'completed'>
 
 export const useCompleteTask = () => {
   const queryClient = useQueryClient()
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = boardQueries.detail(boardId).queryKey
+  const boardQueryKey = getBoardByIdQueryKey({ path: { boardId } })
 
   return useMutation({
-    mutationFn: ({
-      taskId,
-      completed
-    }: Required<Pick<TaskDtoTypes.EditTaskDto, 'completed' | 'taskId'>>) =>
-      taskService.editTask({ taskId, completed }),
+    mutationFn: ({ taskId, completed }: CompleteTaskMutation) =>
+      updateTask({ path: { taskId }, body: { completed } }),
     meta: {
       errorMessage:
         'An error occurred while completing the task. Please try again shortly.'

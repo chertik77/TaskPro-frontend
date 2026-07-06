@@ -1,28 +1,24 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import {
-  BoardContracts,
-  boardQueries,
-  useGetParamBoardId
-} from '@/entities/board'
-import { taskService } from '@/entities/task'
+import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+
+import { deleteTaskMutation, getBoardByIdQueryKey } from '@/shared/api'
 
 export const useDeleteTask = () => {
   const queryClient = useQueryClient()
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = boardQueries.detail(boardId).queryKey
+  const boardQueryKey = getBoardByIdQueryKey({ path: { boardId } })
 
   return useMutation({
-    mutationKey: ['deleteTask'],
-    mutationFn: taskService.deleteTask,
+    ...deleteTaskMutation(),
     meta: {
       errorMessage:
         'An error occurred while deleting the task. Please try again shortly.'
     },
-    onMutate: async ({ taskId }) => {
+    onMutate: async ({ path: { taskId } }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)

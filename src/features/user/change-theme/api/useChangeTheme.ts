@@ -1,9 +1,8 @@
 import type { Theme } from '@/shared/config'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { parse } from 'valibot'
 
-import { UserContracts, userQueries } from '@/entities/user'
+import { sessionQueries } from '@/entities/user'
 
 import { authClient } from '@/shared/api'
 
@@ -15,27 +14,26 @@ export const useChangeTheme = () => {
       authClient.updateUser({ theme }),
     meta: { errorMessage: 'We couldn’t update your theme. Please try again' },
     onMutate: async ({ theme }) => {
-      await queryClient.cancelQueries({ queryKey: userQueries.current() })
+      await queryClient.cancelQueries({ queryKey: sessionQueries.all() })
 
-      const previousUser = queryClient.getQueryData(userQueries.current())
+      const previousSession = queryClient.getQueryData(sessionQueries.all())
 
-      const parsedPreviousUser = parse(UserContracts.UserSchema, previousUser)
+      queryClient.setQueryData(
+        sessionQueries.current().queryKey,
+        oldSession => {
+          if (!oldSession?.user) return oldSession
 
-      queryClient.setQueryData(userQueries.current(), oldUser => {
-        if (!oldUser) return oldUser
+          return { ...oldSession, user: { ...oldSession.user, theme } }
+        }
+      )
 
-        const parsedOldUser = parse(UserContracts.UserSchema, oldUser)
-
-        return { ...parsedOldUser, theme }
-      })
-
-      return { previousUser: parsedPreviousUser }
+      return { previousSession }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(userQueries.current(), context?.previousUser)
+      queryClient.setQueryData(sessionQueries.all(), context?.previousSession)
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: userQueries.current() })
+      queryClient.invalidateQueries({ queryKey: sessionQueries.all() })
     }
   })
 }

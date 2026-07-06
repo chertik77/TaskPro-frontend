@@ -28,7 +28,7 @@ export const AddLabelForm = ({ name, onCreatedLabel }: AddLabelFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(data => addLabel(data))}>
+      <form onSubmit={form.handleSubmit(data => addLabel({ body: data }))}>
         <FormField
           control={form.control}
           name='name'

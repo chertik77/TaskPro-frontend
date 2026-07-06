@@ -44,7 +44,7 @@ export const EditTaskForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(editedTask =>
-          editTask({ taskId, ...editedTask })
+          editTask({ path: { taskId }, body: editedTask })
         )}>
         <FormField
           control={form.control}

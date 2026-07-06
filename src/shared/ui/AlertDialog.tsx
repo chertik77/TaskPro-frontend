@@ -49,7 +49,7 @@ const AlertDialogDescription = ({
   ...props
 }: ComponentProps<typeof AlertDialogPrimitive.Description>) => (
   <AlertDialogPrimitive.Description
-    className={cn('text-md text-white/50', className)}
+    className={cn('text-md text-black/50 dark:text-white/50', className)}
     {...props}
   />
 )

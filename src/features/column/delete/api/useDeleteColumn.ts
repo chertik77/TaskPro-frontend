@@ -1,27 +1,24 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import {
-  BoardContracts,
-  boardQueries,
-  useGetParamBoardId
-} from '@/entities/board'
-import { columnService } from '@/entities/column'
+import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+
+import { deleteColumnMutation, getBoardByIdQueryKey } from '@/shared/api'
 
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = boardQueries.detail(boardId).queryKey
+  const boardQueryKey = getBoardByIdQueryKey({ path: { boardId } })
 
   return useMutation({
-    mutationFn: columnService.deleteColumn,
+    ...deleteColumnMutation(),
     meta: {
       errorMessage:
         'An error occurred while deleting the column. Please try again shortly.'
     },
-    onMutate: async ({ columnId }) => {
+    onMutate: async ({ path: { columnId } }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)

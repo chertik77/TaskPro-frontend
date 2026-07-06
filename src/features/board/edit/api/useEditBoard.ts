@@ -3,11 +3,9 @@ import type { EditBoardSchema } from '../model/contract'
 
 import { useMutation } from '@tanstack/react-query'
 
-import {
-  boardQueries,
-  boardService,
-  useGetParamBoardId
-} from '@/entities/board'
+import { useGetParamBoardId } from '@/entities/board'
+
+import { getAllBoardsQueryKey, updateBoard } from '@/shared/api'
 
 export const useEditBoard = (
   setIsDialogOpen: Dispatch<SetStateAction<boolean>>
@@ -16,9 +14,9 @@ export const useEditBoard = (
 
   return useMutation({
     mutationFn: (data: EditBoardSchema) =>
-      boardService.editBoard({ boardId, ...data }),
+      updateBoard({ path: { boardId }, body: data }),
     meta: {
-      invalidates: [boardQueries.all()],
+      invalidates: [getAllBoardsQueryKey()],
       errorMessage:
         'An error occurred while editing the board. Please try again shortly.'
     },

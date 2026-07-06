@@ -5,11 +5,11 @@ import { DragAndDropProvider } from '@/features/drag-and-drop'
 
 import {
   BoardErrorView,
-  boardQueries,
   useGetParamBoardId,
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
 
+import { getBoardByIdOptions } from '@/shared/api'
 import { cn, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
@@ -26,7 +26,7 @@ export const Board = () => {
     isError,
     error
   } = useQuery({
-    ...boardQueries.detail(boardId),
+    ...getBoardByIdOptions({ path: { boardId } }),
     retry: 1
   })
 
