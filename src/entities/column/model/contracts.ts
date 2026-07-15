@@ -7,7 +7,7 @@ export const ColumnSchema = v.object({
   title: v.string(),
   order: v.number(),
   boardId: v.string(),
-  tasks: v.array(TaskSchema)
+  tasks: v.optional(v.array(TaskSchema))
 })
 
 export const ColumnsSchema = v.array(ColumnSchema)

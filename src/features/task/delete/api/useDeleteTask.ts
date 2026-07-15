@@ -37,7 +37,7 @@ export const useDeleteTask = () => {
           ...oldBoard,
           columns: parsedOldBoard.columns.map(column => ({
             ...column,
-            tasks: column.tasks.filter(task => task.id !== taskId)
+            tasks: column.tasks?.filter(task => task.id !== taskId)
           }))
         }
       })

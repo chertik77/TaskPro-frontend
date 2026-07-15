@@ -43,7 +43,7 @@ export const useCompleteTask = () => {
           ...oldBoard,
           columns: parsedOldBoard.columns.map(column => ({
             ...column,
-            tasks: column.tasks.map(task => {
+            tasks: column.tasks?.map(task => {
               if (task.id === taskId) return { ...task, completed }
 
               return task

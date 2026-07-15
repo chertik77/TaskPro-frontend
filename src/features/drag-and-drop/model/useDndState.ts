@@ -5,17 +5,24 @@ import { useMemo, useState } from 'react'
 import { parse } from 'valibot'
 
 import { ColumnContracts } from '@/entities/column'
+import { TaskContracts } from '@/entities/task'
 
 export const useDndState = (
   initialColumns: ColumnTypes.ColumnsSchema | undefined
 ) => {
-  const parsedColumns = useMemo(
-    () => parse(ColumnContracts.ColumnsSchema, initialColumns),
+  const [parsedColumns, parsedTasks] = useMemo(
+    () => [
+      parse(ColumnContracts.ColumnsSchema, initialColumns),
+      parse(
+        TaskContracts.TasksSchema,
+        initialColumns?.flatMap(c => c.tasks)
+      )
+    ],
     [initialColumns]
   )
 
   const [columns, setColumns] = useState(parsedColumns)
-  const [tasks, setTasks] = useState(parsedColumns.flatMap(c => c.tasks))
+  const [tasks, setTasks] = useState(parsedTasks)
   const [prevInitialColumns, setPrevInitialColumns] = useState(initialColumns)
 
   const [activeTask, setActiveTask] = useState<TaskTypes.TaskSchema | null>(
@@ -29,9 +36,13 @@ export const useDndState = (
     setPrevInitialColumns(initialColumns)
 
     const parsedColumns = parse(ColumnContracts.ColumnsSchema, initialColumns)
+    const parsedTasks = parse(
+      TaskContracts.TasksSchema,
+      parsedColumns.flatMap(c => c.tasks)
+    )
 
     setColumns(parsedColumns)
-    setTasks(parsedColumns.flatMap(c => c.tasks))
+    setTasks(parsedTasks)
   }
 
   return {

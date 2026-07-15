@@ -20,6 +20,9 @@ export const useEditColumn = (
     },
     onSuccess: () => {
       setIsDialogOpen(false)
+    },
+    onError(error, variables, onMutateResult, context) {
+      console.log(error, variables, onMutateResult, context)
     }
   })
 }
