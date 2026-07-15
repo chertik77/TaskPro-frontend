@@ -94,14 +94,14 @@ export const useTaskDragHandlers = ({
       return
     }
 
-    const activeTask = tasks?.find(c => c.id === active.id)
+    const activeTask = tasks.find(c => c.id === active.id)
 
     if (activeTask) {
       updateTaskOrder({
         path: { columnId: activeTask.columnId },
         body: {
           ids: tasks
-            ?.filter(c => c.columnId === activeTask.columnId)
+            .filter(c => c.columnId === activeTask.columnId)
             .map(c => c.id)
         }
       })

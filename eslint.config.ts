@@ -18,7 +18,7 @@ export default defineConfig(
   eslintPluginReactHooks.configs.flat.recommended,
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
-  { ignores: ['**/vite-env.d.ts'] },
+  { ignores: ['**/vite-env.d.ts', '**/generated'] },
   {
     languageOptions: {
       globals: { ...globals.browser },

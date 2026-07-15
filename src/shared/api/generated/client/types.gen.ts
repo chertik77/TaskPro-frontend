@@ -111,7 +111,7 @@ type MethodFn = <TData = unknown, TError = unknown, ThrowOnError extends boolean
 
 type SseFn = <
   TData = unknown,
-   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _TError = unknown,
   ThrowOnError extends boolean = false,
 >(

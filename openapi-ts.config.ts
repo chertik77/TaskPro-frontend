@@ -6,14 +6,7 @@ loadEnvFile(process.cwd() + '/.env.local')
 
 export default defineConfig({
   input: `${process.env.VITE_API_BASE_URL}/openapi.json`,
-  output: {
-    header: ctx => [
-      '/* eslint-disable */',
-      '/* @ts-nocheck */',
-      ...ctx.defaultValue
-    ],
-    path: 'src/shared/api/generated'
-  },
+  output: 'src/shared/api/generated',
   plugins: [
     '@tanstack/react-query',
     {
