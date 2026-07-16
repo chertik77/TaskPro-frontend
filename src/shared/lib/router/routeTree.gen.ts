@@ -14,6 +14,8 @@ import { Route as IndexRouteImport } from './../../../app/routes/index'
 import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashboard/index'
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
 import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
+import { Route as DashboardSettingsLayoutRouteImport } from './../../../app/routes/dashboard/settings/layout'
+import { Route as DashboardSettingsAppearanceRouteImport } from './../../../app/routes/dashboard/settings/appearance'
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
 import { Route as AuthAuthLayoutSigninRouteImport } from './../../../app/routes/auth/_auth-layout.signin'
 
@@ -42,6 +44,17 @@ const AuthAuthLayoutRoute = AuthAuthLayoutRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSettingsLayoutRoute = DashboardSettingsLayoutRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardLayoutRoute,
+} as any)
+const DashboardSettingsAppearanceRoute =
+  DashboardSettingsAppearanceRouteImport.update({
+    id: '/appearance',
+    path: '/appearance',
+    getParentRoute: () => DashboardSettingsLayoutRoute,
+  } as any)
 const AuthAuthLayoutSignupRoute = AuthAuthLayoutSignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -56,57 +69,69 @@ const AuthAuthLayoutSigninRoute = AuthAuthLayoutSigninRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
+  '/dashboard/settings': typeof DashboardSettingsLayoutRouteWithChildren
   '/auth': typeof AuthAuthLayoutRouteWithChildren
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/signin': typeof AuthAuthLayoutSigninRoute
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
+  '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard/settings': typeof DashboardSettingsLayoutRouteWithChildren
   '/auth': typeof AuthAuthLayoutRouteWithChildren
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/auth/signin': typeof AuthAuthLayoutSigninRoute
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
+  '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
+  '/dashboard/settings': typeof DashboardSettingsLayoutRouteWithChildren
   '/auth/_auth-layout': typeof AuthAuthLayoutRouteWithChildren
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/_auth-layout/signin': typeof AuthAuthLayoutSigninRoute
   '/auth/_auth-layout/signup': typeof AuthAuthLayoutSignupRoute
+  '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/dashboard/settings'
     | '/auth'
     | '/dashboard/$boardId'
     | '/dashboard/'
     | '/auth/signin'
     | '/auth/signup'
+    | '/dashboard/settings/appearance'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard/settings'
     | '/auth'
     | '/dashboard/$boardId'
     | '/dashboard'
     | '/auth/signin'
     | '/auth/signup'
+    | '/dashboard/settings/appearance'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/dashboard/settings'
     | '/auth/_auth-layout'
     | '/dashboard/$boardId'
     | '/dashboard/'
     | '/auth/_auth-layout/signin'
     | '/auth/_auth-layout/signup'
+    | '/dashboard/settings/appearance'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -152,6 +177,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthAuthLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsLayoutRouteImport
+      parentRoute: typeof DashboardLayoutRoute
+    }
+    '/dashboard/settings/appearance': {
+      id: '/dashboard/settings/appearance'
+      path: '/appearance'
+      fullPath: '/dashboard/settings/appearance'
+      preLoaderRoute: typeof DashboardSettingsAppearanceRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
     '/auth/_auth-layout/signup': {
       id: '/auth/_auth-layout/signup'
       path: '/signup'
@@ -169,12 +208,28 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardSettingsLayoutRouteChildren {
+  DashboardSettingsAppearanceRoute: typeof DashboardSettingsAppearanceRoute
+}
+
+const DashboardSettingsLayoutRouteChildren: DashboardSettingsLayoutRouteChildren =
+  {
+    DashboardSettingsAppearanceRoute: DashboardSettingsAppearanceRoute,
+  }
+
+const DashboardSettingsLayoutRouteWithChildren =
+  DashboardSettingsLayoutRoute._addFileChildren(
+    DashboardSettingsLayoutRouteChildren,
+  )
+
 interface DashboardLayoutRouteChildren {
+  DashboardSettingsLayoutRoute: typeof DashboardSettingsLayoutRouteWithChildren
   DashboardBoardIdRoute: typeof DashboardBoardIdRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
+  DashboardSettingsLayoutRoute: DashboardSettingsLayoutRouteWithChildren,
   DashboardBoardIdRoute: DashboardBoardIdRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
