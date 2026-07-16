@@ -1,6 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react'
 
-import { useAppForm } from '@/shared/lib'
+import * as m from 'motion/react-m'
+
+import { formVariants, useAppForm } from '@/shared/lib'
 import {
   Button,
   Form,
@@ -33,38 +35,47 @@ export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
 
   return (
     <Form {...form}>
-      <form
+      <m.form
+        variants={formVariants.container}
+        initial='hidden'
+        animate='show'
         onSubmit={form.handleSubmit(data => sendHelpRequest({ body: data }))}
         className='space-y-3.5'>
-        <FormField
-          control={form.control}
-          name='email'
-          render={() => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl render={<Input />} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='comment'
-          render={() => (
-            <FormItem>
-              <FormLabel>Comment</FormLabel>
-              <FormControl render={<TextArea />} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          type='submit'
-          className='mt-6!'
-          disabled={isPending}>
-          {isPending ? <Loader /> : 'Send'}
-        </Button>
-      </form>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='email'
+            render={() => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl render={<Input />} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='comment'
+            render={() => (
+              <FormItem>
+                <FormLabel>Comment</FormLabel>
+                <FormControl render={<TextArea />} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <Button
+            type='submit'
+            className='mt-6!'
+            disabled={isPending}>
+            {isPending ? <Loader /> : 'Send'}
+          </Button>
+        </m.div>
+      </m.form>
     </Form>
   )
 }

@@ -1,9 +1,11 @@
 import type { Dispatch, SetStateAction } from 'react'
 
+import * as m from 'motion/react-m'
+
 import { FormLabelsCombobox } from '@/entities/label'
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
 
-import { useAppForm } from '@/shared/lib'
+import { formVariants, useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -42,69 +44,85 @@ export const AddTaskForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(data => addTask(data))}>
-        <FormField
-          control={form.control}
-          name='title'
-          render={() => (
-            <FormItem className='mb-3.5'>
-              <FormLabel>Title</FormLabel>
-              <FormControl render={<Input />} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='description'
-          render={() => (
-            <FormItem className='mb-6'>
-              <FormLabel>Description</FormLabel>
-              <FormControl render={<TextArea />} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='priority'
-          render={() => (
-            <FormItem className='mb-3.5'>
-              <FormLabel>Priority</FormLabel>
-              <FormPrioritySelector />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='labels'
-          render={() => (
-            <FormItem className='mb-3.5'>
-              <FormLabel>Labels</FormLabel>
-              <FormLabelsCombobox labelsValues={form.getValues('labels')} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='deadline'
-          render={() => (
-            <FormItem className='mb-6'>
-              <FormLabel>Deadline</FormLabel>
-              <FormDeadlinePicker mode='create' />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <PlusButtonWithLoader
-          type='submit'
-          shouldShowLoader={isPending}
-          disabled={isPending}>
-          Add
-        </PlusButtonWithLoader>
-      </form>
+      <m.form
+        variants={formVariants.container}
+        initial='hidden'
+        animate='show'
+        onSubmit={form.handleSubmit(data => addTask(data))}>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='title'
+            render={() => (
+              <FormItem className='mb-3.5'>
+                <FormLabel>Title</FormLabel>
+                <FormControl render={<Input />} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='description'
+            render={() => (
+              <FormItem className='mb-6'>
+                <FormLabel>Description</FormLabel>
+                <FormControl render={<TextArea />} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='priority'
+            render={() => (
+              <FormItem className='mb-3.5'>
+                <FormLabel>Priority</FormLabel>
+                <FormPrioritySelector />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='labels'
+            render={() => (
+              <FormItem className='mb-3.5'>
+                <FormLabel>Labels</FormLabel>
+                <FormLabelsCombobox labelsValues={form.getValues('labels')} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='deadline'
+            render={() => (
+              <FormItem className='mb-6'>
+                <FormLabel>Deadline</FormLabel>
+                <FormDeadlinePicker mode='create' />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <PlusButtonWithLoader
+            type='submit'
+            shouldShowLoader={isPending}
+            disabled={isPending}>
+            Add
+          </PlusButtonWithLoader>
+        </m.div>
+      </m.form>
     </Form>
   )
 }

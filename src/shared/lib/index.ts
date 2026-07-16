@@ -1,6 +1,7 @@
 export { useTabletAndBelowMediaQuery } from './media/useTabletAndBelowMediaQuery'
 export { useDocumentTitle } from './document-title/useDocumentTitle'
 export { useShouldAutoFocus } from './auto-focus/useShouldAutoFocus'
+export { formVariants } from './motion/form-variants'
 export { capitalize } from './capitalize/capitalize'
 export { useAppForm } from './form/useAppForm'
 export { queryClient } from './query/query-client'

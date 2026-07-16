@@ -1,7 +1,9 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { EditColumnData } from '../model/types'
 
-import { useAppForm } from '@/shared/lib'
+import * as m from 'motion/react-m'
+
+import { formVariants, useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -33,29 +35,36 @@ export const EditColumnForm = ({
 
   return (
     <Form {...form}>
-      <form
+      <m.form
+        variants={formVariants.container}
+        initial='hidden'
+        animate='show'
         className='space-y-6'
         onSubmit={form.handleSubmit(editedColumn =>
           editColumn({ path: { columnId }, body: editedColumn })
         )}>
-        <FormField
-          control={form.control}
-          name='title'
-          render={() => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl render={<Input />} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <PlusButtonWithLoader
-          type='submit'
-          shouldShowLoader={isPending}
-          disabled={isPending || !form.formState.isDirty}>
-          Edit
-        </PlusButtonWithLoader>
-      </form>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='title'
+            render={() => (
+              <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl render={<Input />} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <PlusButtonWithLoader
+            type='submit'
+            shouldShowLoader={isPending}
+            disabled={isPending || !form.formState.isDirty}>
+            Edit
+          </PlusButtonWithLoader>
+        </m.div>
+      </m.form>
     </Form>
   )
 }

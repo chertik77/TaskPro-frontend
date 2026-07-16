@@ -1,8 +1,9 @@
 import { ScrollArea } from '@base-ui/react/scroll-area'
+import { motion } from 'motion/react'
 
 import { NeedHelpDialog } from '@/features/user/need-help'
 
-import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { useTabletAndBelowMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 import { useSidebarToggleShortcut } from '../lib/useSidebarToggleShortcut'
@@ -22,30 +23,32 @@ export const Sidebar = () => {
   return isTabletAndBelow ? (
     <SidebarMobileMenu />
   ) : (
-    <ScrollArea.Root
-      className={cn(
-        'dark:bg-black-soft row-span-2 hidden bg-white',
-        isOpen && 'desktop:block'
-      )}>
-      <ScrollArea.Viewport className='h-dvh'>
-        <ScrollArea.Content>
-          <aside className='flex h-dvh flex-col'>
-            <SidebarLogo />
-            <SidebarBoardCreationSection />
-            <SidebarBoardList />
-            <div className='mt-auto px-6 pb-6'>
-              <NeedHelpDialog />
-              <SidebarLogoutBtn />
-            </div>
-          </aside>
-        </ScrollArea.Content>
-      </ScrollArea.Viewport>
-      <ScrollArea.Scrollbar
-        className='pointer-events-none w-1 bg-transparent opacity-0
-          transition-opacity duration-200 data-scrolling:pointer-events-auto
-          data-scrolling:opacity-100 data-scrolling:duration-initial'>
-        <ScrollArea.Thumb className='rounded-[26px] bg-white/60' />
-      </ScrollArea.Scrollbar>
-    </ScrollArea.Root>
+    <motion.div
+      className='row-span-2 overflow-hidden'
+      animate={{ opacity: isOpen ? 1 : 0 }}
+      transition={{ duration: 0.15 }}
+      style={{ pointerEvents: isOpen ? 'auto' : 'none' }}>
+      <ScrollArea.Root className='dark:bg-black-soft w-65 bg-white'>
+        <ScrollArea.Viewport className='h-dvh'>
+          <ScrollArea.Content>
+            <aside className='flex h-dvh flex-col'>
+              <SidebarLogo />
+              <SidebarBoardCreationSection />
+              <SidebarBoardList />
+              <div className='mt-auto px-6 pb-6'>
+                <NeedHelpDialog />
+                <SidebarLogoutBtn />
+              </div>
+            </aside>
+          </ScrollArea.Content>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar
+          className='pointer-events-none w-1 bg-transparent opacity-0
+            transition-opacity duration-200 data-scrolling:pointer-events-auto
+            data-scrolling:opacity-100 data-scrolling:duration-initial'>
+          <ScrollArea.Thumb className='rounded-[26px] bg-white/60' />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
+    </motion.div>
   )
 }

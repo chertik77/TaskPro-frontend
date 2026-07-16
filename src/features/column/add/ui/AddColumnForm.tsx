@@ -1,6 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react'
 
-import { useAppForm } from '@/shared/lib'
+import * as m from 'motion/react-m'
+
+import { formVariants, useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -28,27 +30,34 @@ export const AddColumnForm = ({ setIsDialogOpen }: AddColumnFormProps) => {
 
   return (
     <Form {...form}>
-      <form
+      <m.form
+        variants={formVariants.container}
+        initial='hidden'
+        animate='show'
         onSubmit={form.handleSubmit(data => addColumn(data))}
         className='space-y-6'>
-        <FormField
-          control={form.control}
-          name='title'
-          render={() => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl render={<Input />} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <PlusButtonWithLoader
-          type='submit'
-          shouldShowLoader={isPending}
-          disabled={isPending}>
-          Add
-        </PlusButtonWithLoader>
-      </form>
+        <m.div variants={formVariants.field}>
+          <FormField
+            control={form.control}
+            name='title'
+            render={() => (
+              <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl render={<Input />} />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </m.div>
+        <m.div variants={formVariants.field}>
+          <PlusButtonWithLoader
+            type='submit'
+            shouldShowLoader={isPending}
+            disabled={isPending}>
+            Add
+          </PlusButtonWithLoader>
+        </m.div>
+      </m.form>
     </Form>
   )
 }
