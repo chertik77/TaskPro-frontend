@@ -1,6 +1,8 @@
+import { PlusIcon } from 'lucide-react'
+
 import { AddBoardDialog } from '@/features/board/add'
 
-import { DialogTrigger, Icon } from '@/shared/ui'
+import { DialogTrigger } from '@/shared/ui'
 
 export const SidebarBoardCreationSection = () => (
   <div className='tablet:px-6 mb-10 px-3.5'>
@@ -14,10 +16,7 @@ export const SidebarBoardCreationSection = () => (
           className='focus-visible:styled-outline bg-brand hocus:bg-brand-light
             flex h-9 w-10 items-center justify-center rounded-lg text-black
             transition-colors duration-300'>
-          <Icon
-            name='plus'
-            className='stroke-none'
-          />
+          <PlusIcon className='size-5' />
         </DialogTrigger>
       </AddBoardDialog>
     </span>

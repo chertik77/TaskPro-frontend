@@ -1,8 +1,9 @@
 import type { ComponentProps } from 'react'
 
+import { PlusIcon } from 'lucide-react'
+
 import { cn } from '../lib'
 import { Button } from './Button'
-import { Icon } from './Icon'
 import { Loader } from './Loader'
 
 type PlusButtonWithLoaderProps = ComponentProps<'button'> & {
@@ -22,10 +23,11 @@ export const PlusButtonWithLoader = ({
       <Loader />
     ) : (
       <>
-        <Icon
-          name='plus-square'
-          className='size-7 stroke-transparent'
-        />
+        <span
+          className='grid size-7 place-items-center rounded-md bg-black
+            text-white'>
+          <PlusIcon className='size-4' />
+        </span>
         {children}
       </>
     )}

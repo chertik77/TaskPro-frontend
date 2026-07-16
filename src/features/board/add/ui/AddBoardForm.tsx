@@ -25,7 +25,7 @@ type AddBoardFormProps = {
 
 export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
   const form = useAppForm(AddBoardSchema, {
-    defaultValues: { title: '', icon: 'project', background: 'default' }
+    defaultValues: { title: '', icon: 'sparkles', background: 'default' }
   })
 
   const { mutate: addBoard, isPending } = useAddBoard(setIsDialogOpen)

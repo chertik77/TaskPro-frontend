@@ -1,3 +1,5 @@
+import { TrashIcon } from 'lucide-react'
+
 import { Task } from '@/entities/task'
 
 import {
@@ -8,8 +10,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-  AlertDialogTrigger,
-  Icon
+  AlertDialogTrigger
 } from '@/shared/ui'
 
 import { useDeleteTask } from '../api/useDeleteTask'
@@ -22,7 +23,7 @@ export const DeleteColumnAlertDialog = ({ taskId }: { taskId: string }) => {
       <AlertDialogTrigger
         render={<Task.ActionButton />}
         aria-label='Delete task'>
-        <Icon name='trash' />
+        <TrashIcon />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>Delete task?</AlertDialogTitle>

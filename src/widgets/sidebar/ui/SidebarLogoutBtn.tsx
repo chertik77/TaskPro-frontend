@@ -1,5 +1,6 @@
+import { LogOutIcon } from 'lucide-react'
+
 import { useSidebarStore } from '@/shared/store'
-import { Icon } from '@/shared/ui'
 
 import { useLogoutUser } from '../api/useLogoutUser'
 
@@ -11,7 +12,7 @@ export const SidebarLogoutBtn = () => {
   return (
     <button
       type='button'
-      className='focus-visible:styled-outline group flex items-center gap-3.5
+      className='focus-visible:styled-outline group flex items-center gap-2
         text-lg font-medium'
       disabled={isPending}
       aria-label='Log out'
@@ -19,9 +20,8 @@ export const SidebarLogoutBtn = () => {
         setIsOpenMobile(false)
         logoutUser()
       }}>
-      <Icon
-        name='logout'
-        className='text-brand group-hocus:text-brand-light size-8
+      <LogOutIcon
+        className='text-brand group-hocus:text-brand-light size-6
           transition-colors'
       />
       {isPending ? 'Logging out...' : 'Log out'}

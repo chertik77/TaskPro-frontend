@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 
 import { useSidebarStore } from '@/shared/store'
-import { Icon } from '@/shared/ui'
+import { SocialIcon } from '@/shared/ui'
 
 export const SidebarLogo = () => {
   const { setIsOpenMobile } = useSidebarStore()
@@ -13,8 +13,8 @@ export const SidebarLogo = () => {
           text-white'
         to='/dashboard'
         onClick={() => setIsOpenMobile(false)}>
-        <Icon
-          name='logo'
+        <SocialIcon
+          name='taskpro-logo'
           className='fill-black-muted size-8 stroke-none'
         />
         <h1 className='text-lg font-semibold text-black dark:text-white'>

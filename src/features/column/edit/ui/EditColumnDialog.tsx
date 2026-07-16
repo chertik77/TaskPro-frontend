@@ -1,15 +1,18 @@
 import type { EditColumnData } from '../model/types'
 
 import { useState } from 'react'
+import { PencilIcon } from 'lucide-react'
+
+import { Column } from '@/entities/column'
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle
+  DialogTitle,
+  DialogTrigger
 } from '@/shared/ui'
 
-import { EditColumnDialogTrigger } from './EditColumnDialogTrigger'
 import { EditColumnForm } from './EditColumnForm'
 
 type EditColumnDialogProps = {
@@ -23,7 +26,15 @@ export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
-      <EditColumnDialogTrigger />
+      <DialogTrigger
+        render={
+          <Column.ActionButton
+            className='mr-2'
+            aria-label='Edit column'>
+            <PencilIcon />
+          </Column.ActionButton>
+        }
+      />
       <DialogContent>
         <DialogTitle>Edit column</DialogTitle>
         <DialogDescription className='sr-only'>

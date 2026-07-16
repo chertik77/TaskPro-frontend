@@ -1,10 +1,12 @@
 export const BOARD_ICONS = [
-  'project',
-  'star',
-  'loading',
-  'puzzle',
-  'container',
-  'lightning',
-  'colors',
-  'hexagon'
+  'sparkles',
+  'layout',
+  'kanban',
+  'layers',
+  'compass',
+  'target',
+  'sunrise',
+  'orbit',
+  'palette',
+  'leaf'
 ] as const

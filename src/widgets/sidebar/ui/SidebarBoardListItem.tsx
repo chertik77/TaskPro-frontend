@@ -2,13 +2,13 @@ import type { BoardTypes } from '@/entities/board'
 
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
+import { DynamicIcon } from 'lucide-react/dynamic'
 
 import { DeleteBoardAlertDialog } from '@/features/board/delete'
 import { EditBoardDialog } from '@/features/board/edit'
 
 import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
-import { Icon } from '@/shared/ui'
 
 type SidebarBoardListItemProps = {
   board: Omit<BoardTypes.BoardSchema, 'columns'>
@@ -45,7 +45,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
         setIsOpenMobile(false)
       }}>
       <div className='tablet:gap-2 flex items-center gap-1'>
-        <Icon
+        <DynamicIcon
           name={board.icon}
           className='size-4.5'
         />

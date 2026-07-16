@@ -1,9 +1,9 @@
 import type { ComponentProps } from 'react'
 
 import { Popover as PopoverPrimitive } from '@base-ui/react/popover'
+import { XIcon } from 'lucide-react'
 
 import { cn } from '../lib'
-import { Icon } from './Icon'
 
 const Popover = PopoverPrimitive.Root
 
@@ -39,10 +39,7 @@ const PopoverClose = ({
   <PopoverPrimitive.Close
     className={cn('focus-visible:styled-outline', className)}
     {...props}>
-    <Icon
-      name='close'
-      className='size-4.5'
-    />
+    <XIcon className='size-4.5' />
   </PopoverPrimitive.Close>
 )
 

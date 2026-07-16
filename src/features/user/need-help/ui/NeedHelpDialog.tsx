@@ -1,13 +1,15 @@
 import { useState } from 'react'
+import { CircleQuestionMarkIcon } from 'lucide-react'
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle
+  DialogTitle,
+  DialogTrigger
 } from '@/shared/ui'
 
-import { NeedHelpDialogTrigger } from './NeedHelpDialogTrigger'
+import { NeedHelpCard } from './NeedHelpCard'
 import { NeedHelpForm } from './NeedHelpForm'
 
 export const NeedHelpDialog = () => {
@@ -17,7 +19,16 @@ export const NeedHelpDialog = () => {
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
-      <NeedHelpDialogTrigger />
+      <NeedHelpCard>
+        <DialogTrigger
+          aria-label='Open need help modal'
+          className='focus-visible:styled-outline text-md hocus:text-brand-light
+            dark:text-white-soft flex items-center gap-2 font-medium
+            transition-colors'>
+          <CircleQuestionMarkIcon className='size-4' />
+          Need help?
+        </DialogTrigger>
+      </NeedHelpCard>
       <DialogContent className='max-tablet:w-84'>
         <DialogTitle>Need help</DialogTitle>
         <DialogDescription className='sr-only'>

@@ -8,7 +8,7 @@ export const AddBoardSchema = v.object({
     v.trim(),
     v.minLength(3, 'Please enter at least 3 characters.')
   ),
-  icon: v.fallback(v.picklist(BOARD_ICONS), 'project'),
+  icon: v.fallback(v.picklist(BOARD_ICONS), 'sparkles'),
   background: v.fallback(v.picklist(BOARD_BG_IMAGES_IDS), 'default')
 })
 

@@ -1,15 +1,18 @@
 import type { EditTaskData } from '../model/types'
 
 import { useState } from 'react'
+import { PencilIcon } from 'lucide-react'
+
+import { Task } from '@/entities/task'
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle
+  DialogTitle,
+  DialogTrigger
 } from '@/shared/ui'
 
-import { EditTaskDialogTrigger } from './EditTaskDialogTrigger'
 import { EditTaskForm } from './EditTaskForm'
 
 type EditTaskDialogProps = {
@@ -23,7 +26,13 @@ export const EditTaskDialog = ({ data }: EditTaskDialogProps) => {
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
-      <EditTaskDialogTrigger />
+      <DialogTrigger
+        render={
+          <Task.ActionButton aria-label='Edit task'>
+            <PencilIcon />
+          </Task.ActionButton>
+        }
+      />
       <DialogContent>
         <DialogTitle>Edit task</DialogTitle>
         <DialogDescription className='sr-only'>

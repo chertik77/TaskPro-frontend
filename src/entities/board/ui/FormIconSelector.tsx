@@ -1,7 +1,8 @@
 import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
+import { DynamicIcon } from 'lucide-react/dynamic'
 
-import { FormItem, Icon, useFormField } from '@/shared/ui'
+import { FormItem, useFormField } from '@/shared/ui'
 
 import { BOARD_ICONS } from '../config/icon'
 
@@ -23,7 +24,7 @@ export const FormIconSelector = () => {
               dark:hocus:text-white cursor-pointer text-black/50
               data-checked:text-black dark:text-white/50
               dark:data-checked:text-white'>
-            <Icon
+            <DynamicIcon
               name={icon}
               className='size-4.5'
             />

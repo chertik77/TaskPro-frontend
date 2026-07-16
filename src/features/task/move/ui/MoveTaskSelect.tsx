@@ -1,8 +1,8 @@
 import { memo } from 'react'
+import { CircleArrowRightIcon } from 'lucide-react'
 
 import { cn } from '@/shared/lib'
 import {
-  Icon,
   Loader,
   Select,
   SelectContent,
@@ -38,10 +38,7 @@ export const MoveTaskSelect = memo(
           {isPending ? (
             <Loader className='flex size-4 border-2' />
           ) : (
-            <Icon
-              name='arrow-circle'
-              className='size-4'
-            />
+            <CircleArrowRightIcon className='size-4' />
           )}
         </SelectTrigger>
         <SelectContent
@@ -54,10 +51,7 @@ export const MoveTaskSelect = memo(
               className='flex items-center gap-2'
               value={column.id}>
               <p className='w-20 truncate'>{column.title}</p>
-              <Icon
-                name='arrow-circle'
-                className='size-4'
-              />
+              <CircleArrowRightIcon className='size-4' />
             </SelectItem>
           ))}
         </SelectContent>

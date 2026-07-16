@@ -4,9 +4,9 @@ import type { ColumnSchema } from '../model/types'
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
+import { GripVerticalIcon } from 'lucide-react'
 
 import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
-import { Icon } from '@/shared/ui'
 
 type ColumnContext = {
   column: ColumnSchema
@@ -60,10 +60,7 @@ const ColumnDragActivator = ({
     className={cn('focus-visible:styled-outline cursor-grab', className)}
     aria-label='Move column'
     {...props}>
-    <Icon
-      name='drag'
-      className='dark:stroke-white-soft/50 size-5 stroke-black/50'
-    />
+    <GripVerticalIcon className='size-5' />
   </button>
 )
 

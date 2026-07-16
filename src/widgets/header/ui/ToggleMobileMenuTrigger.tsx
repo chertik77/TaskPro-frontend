@@ -1,5 +1,6 @@
+import { MenuIcon } from 'lucide-react'
+
 import { useSidebarStore } from '@/shared/store'
-import { Icon } from '@/shared/ui'
 
 export const ToggleMobileMenuTrigger = () => {
   const { setIsOpenMobile } = useSidebarStore()
@@ -10,10 +11,7 @@ export const ToggleMobileMenuTrigger = () => {
       type='button'
       aria-label='Toggle mobile menu'
       className='desktop:hidden'>
-      <Icon
-        name='menu'
-        className='size-6'
-      />
+      <MenuIcon className='size-6' />
     </button>
   )
 }

@@ -2,9 +2,9 @@ import type { ComponentPropsWithRef, ComponentType, ReactNode } from 'react'
 
 import { useRef } from 'react'
 import { Combobox as ComboboxPrimitive } from '@base-ui/react/combobox'
+import { CheckIcon, XIcon } from 'lucide-react'
 
 import { cn } from '../lib'
-import { Icon } from './Icon'
 
 const Combobox = ComboboxPrimitive.Root
 
@@ -81,10 +81,7 @@ const ComboboxItem = ({
         <span
           className='pointer-events-none absolute right-2 flex size-4
             items-center justify-center'>
-          <Icon
-            name='check'
-            className='stroke-black dark:stroke-white'
-          />
+          <CheckIcon />
         </span>
       }
     />
@@ -141,10 +138,7 @@ const ComboboxChip = ({
     {children}
     {showRemove && (
       <ComboboxPrimitive.ChipRemove className='opacity-50 hover:opacity-100'>
-        <Icon
-          name='close'
-          className='size-3'
-        />
+        <XIcon className='size-3' />
       </ComboboxPrimitive.ChipRemove>
     )}
   </ComboboxPrimitive.Chip>

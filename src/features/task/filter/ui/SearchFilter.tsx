@@ -1,7 +1,8 @@
 import { Activity, useRef, useState } from 'react'
+import { XIcon } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { Icon, Input } from '@/shared/ui'
+import { Input } from '@/shared/ui'
 
 import { useTaskFilters } from '../lib/useTaskFilters'
 
@@ -39,10 +40,7 @@ export const SearchFilter = () => {
             debouncedParamsChange.cancel()
             inputRef.current?.focus()
           }}>
-          <Icon
-            name='close'
-            className='size-4.5'
-          />
+          <XIcon className='size-4.5' />
         </button>
       </Activity>
     </div>

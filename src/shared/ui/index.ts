@@ -1,7 +1,7 @@
 export { Button } from './Button'
 export { Input } from './Input'
 export { TextArea } from './TextArea'
-export { Icon } from './Icon'
+export { SocialIcon } from './SocialIcon'
 export { PasswordInput } from './PasswordInput'
 export { Loader } from './Loader'
 export { Checkbox } from './Checkbox'

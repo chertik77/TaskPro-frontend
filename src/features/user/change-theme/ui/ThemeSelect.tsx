@@ -1,9 +1,10 @@
 import type { Theme } from '@/shared/config'
 
+import { ChevronDownIcon } from 'lucide-react'
+
 import { THEMES } from '@/shared/config'
 import { capitalize } from '@/shared/lib'
 import {
-  Icon,
   Select,
   SelectContent,
   SelectIcon,
@@ -29,14 +30,7 @@ export const ThemeSelect = () => {
         <SelectValue placeholder='Theme'>
           {value => capitalize(value)}
         </SelectValue>
-        <SelectIcon
-          render={
-            <Icon
-              name='chevron-down'
-              className='size-5'
-            />
-          }
-        />
+        <SelectIcon render={<ChevronDownIcon className='size-4' />} />
       </SelectTrigger>
       <SelectContent
         align='end'

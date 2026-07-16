@@ -4,10 +4,11 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle
+  DialogTitle,
+  DialogTrigger,
+  PlusButtonWithLoader
 } from '@/shared/ui'
 
-import { AddTaskDialogTrigger } from './AddTaskDialogTrigger'
 import { AddTaskForm } from './AddTaskForm'
 
 type AddTaskDialogProps = {
@@ -21,7 +22,15 @@ export const AddTaskDialog = ({ columnId }: AddTaskDialogProps) => {
     <Dialog
       open={isDialogOpen}
       onOpenChange={setIsDialogOpen}>
-      <AddTaskDialogTrigger />
+      <DialogTrigger
+        render={
+          <PlusButtonWithLoader
+            aria-label='Add task'
+            className='mt-3.5'>
+            Add task
+          </PlusButtonWithLoader>
+        }
+      />
       <DialogContent>
         <DialogTitle>Add task</DialogTitle>
         <DialogDescription className='sr-only'>

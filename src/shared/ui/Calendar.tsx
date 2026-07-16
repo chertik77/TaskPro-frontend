@@ -2,9 +2,9 @@ import type { ChevronProps } from '@daypicker/react'
 import type { ComponentProps } from 'react'
 
 import { DayPicker } from '@daypicker/react'
+import { ChevronRightIcon } from 'lucide-react'
 
 import { cn } from '../lib'
-import { Icon } from './Icon'
 
 export const Calendar = ({
   className,
@@ -45,10 +45,9 @@ export const Calendar = ({
     components={{
       // eslint-disable-next-line @eslint-react/no-nested-component-definitions
       Chevron: ({ orientation }: ChevronProps) => (
-        <Icon
-          name='arrow'
+        <ChevronRightIcon
           className={cn(
-            'size-3 stroke-black/80 dark:stroke-white',
+            'size-4 stroke-black/80 dark:stroke-white',
             orientation === 'left' && 'rotate-180'
           )}
         />

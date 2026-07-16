@@ -4,11 +4,12 @@ import type { TaskSchema } from '../model/types'
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
+import { BellRingIcon } from 'lucide-react'
 
 import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
 
 import { capitalize, cn } from '@/shared/lib'
-import { Checkbox, Icon } from '@/shared/ui'
+import { Checkbox } from '@/shared/ui'
 
 import { formatDeadlineDate } from '../lib/format-deadline-date'
 import { getTaskPriorityColor } from '../lib/priority-colors'
@@ -206,8 +207,7 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   return (
     task.deadline &&
     isToday(task.deadline) && (
-      <Icon
-        name='bell'
+      <BellRingIcon
         className={cn('stroke-brand size-4.5 animate-bounce pr-1', className)}
       />
     )

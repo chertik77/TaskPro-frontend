@@ -1,3 +1,5 @@
+import { TrashIcon } from 'lucide-react'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -6,8 +8,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-  AlertDialogTrigger,
-  Icon
+  AlertDialogTrigger
 } from '@/shared/ui'
 
 import { useDeleteBoard } from '../api/useDeleteBoard'
@@ -21,10 +22,7 @@ export const DeleteBoardAlertDialog = () => {
         aria-label='Delete board'
         className='focus-visible:styled-outline hocus:text-black
           dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50'>
-        <Icon
-          name='trash'
-          className='size-4'
-        />
+        <TrashIcon className='size-4' />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>Delete board?</AlertDialogTitle>

@@ -1,6 +1,7 @@
 import type { Variants } from 'motion/react'
 
 import { Link } from '@tanstack/react-router'
+import { FunnelIcon } from 'lucide-react'
 import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
 
@@ -13,7 +14,6 @@ import {
 import { useGetParamBoardId } from '@/entities/board'
 
 import {
-  Icon,
   Popover,
   PopoverClose,
   PopoverContent,
@@ -43,10 +43,7 @@ export const Filters = () => {
         className='focus-visible:styled-outline desktop:mr-6 mr-5 flex
           items-center gap-2'>
         <div className='flex items-center gap-2'>
-          <Icon
-            name='filter'
-            className='size-4 stroke-black/80 dark:stroke-white/80'
-          />
+          <FunnelIcon className='size-4' />
           <h2>Filters</h2>
         </div>
       </PopoverTrigger>

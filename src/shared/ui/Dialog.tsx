@@ -1,9 +1,9 @@
 import type { ComponentProps } from 'react'
 
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
+import { XIcon } from 'lucide-react'
 
 import { cn } from '../lib'
-import { Icon } from './Icon'
 
 const Dialog = DialogPrimitive.Root
 
@@ -37,10 +37,7 @@ const DialogContent = ({
       <DialogPrimitive.Close
         className='focus-visible:styled-outline absolute top-3.5 right-3.5'
         aria-label='Close'>
-        <Icon
-          name='x'
-          className='size-4.5'
-        />
+        <XIcon className='size-4.5' />
       </DialogPrimitive.Close>
     </DialogPrimitive.Popup>
   </DialogPrimitive.Portal>

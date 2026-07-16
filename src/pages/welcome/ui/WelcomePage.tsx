@@ -6,7 +6,7 @@ import * as m from 'motion/react-m'
 
 import { authClient } from '@/shared/api'
 import { env } from '@/shared/config'
-import { Icon } from '@/shared/ui'
+import { SocialIcon } from '@/shared/ui'
 
 import { SocialButton } from './SocialButton'
 
@@ -56,8 +56,8 @@ export const WelcomePage = () => {
         <m.div
           variants={item}
           className='mt-6 flex items-center gap-3.5 text-white'>
-          <Icon
-            name='logo'
+          <SocialIcon
+            name='taskpro-logo'
             className='tablet:size-12 size-10'
           />
           <h1 className='tablet:text-3xl text-2xl text-black'>Task Pro</h1>

@@ -1,3 +1,5 @@
+import { TrashIcon } from 'lucide-react'
+
 import { Column } from '@/entities/column'
 
 import {
@@ -8,8 +10,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-  AlertDialogTrigger,
-  Icon
+  AlertDialogTrigger
 } from '@/shared/ui'
 
 import { useDeleteColumn } from '../api/useDeleteColumn'
@@ -22,7 +23,7 @@ export const DeleteColumnAlertDialog = ({ columnId }: { columnId: string }) => {
       <AlertDialogTrigger
         render={<Column.ActionButton />}
         aria-label='Delete column'>
-        <Icon name='trash' />
+        <TrashIcon />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTitle>Delete column?</AlertDialogTitle>

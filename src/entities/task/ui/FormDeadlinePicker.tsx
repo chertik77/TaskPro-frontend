@@ -3,13 +3,13 @@ import type { ChangeEvent } from 'react'
 import { useState } from 'react'
 import { parseDate } from 'chrono-node'
 import { startOfDay } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
 
 import { cn } from '@/shared/lib'
 import {
   Calendar,
   FormDescription,
-  Icon,
   Input,
   Popover,
   PopoverContent,
@@ -84,10 +84,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
           onOpenChange={setIsCalendarOpen}>
           <PopoverTrigger
             className='focus-visible:styled-outline absolute top-3.75 right-4.5'>
-            <Icon
-              name='calendar'
-              className='size-4 stroke-black dark:stroke-white'
-            />
+            <CalendarIcon className='size-4' />
           </PopoverTrigger>
           <PopoverContent positionerProps={{ side: 'top' }}>
             <Calendar

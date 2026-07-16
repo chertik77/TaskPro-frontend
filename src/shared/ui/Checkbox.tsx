@@ -1,7 +1,7 @@
 import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox'
+import { CheckIcon } from 'lucide-react'
 
 import { cn } from '../lib'
-import { Icon } from './Icon'
 
 export const Checkbox = ({
   className,
@@ -22,7 +22,7 @@ export const Checkbox = ({
     <CheckboxPrimitive.Indicator
       className='grid place-content-center text-current transition-none
         [&>svg]:size-3.5'>
-      <Icon name='check' />
+      <CheckIcon />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 )
