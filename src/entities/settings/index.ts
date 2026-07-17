@@ -1,2 +1,5 @@
+export * as SettingsTypes from './model/types'
+export * as SettingsContracts from './model/contracts'
 export { Settings } from './ui/Settings'
+export { SettingsSync } from './ui/SettingsSync'
 export { useSettings } from './model/useSettings'

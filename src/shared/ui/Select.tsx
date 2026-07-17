@@ -66,8 +66,9 @@ const SelectItem = ({
 }: ComponentProps<typeof SelectPrimitive.Item>) => (
   <SelectPrimitive.Item
     className={cn(
-      `data-selected:text-brand hocus:text-brand cursor-pointer text-base
-      outline-none data-disabled:pointer-events-none dark:text-white/30`,
+      `data-selected:text-brand hocus:text-brand pointer-cursors:cursor-pointer
+      text-base outline-none data-disabled:pointer-events-none
+      dark:text-white/30`,
       className
     )}
     {...props}>

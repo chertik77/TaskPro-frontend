@@ -17,14 +17,11 @@ import {
 
 import { useGeneralSettings } from '../api/useGeneralSettings'
 import { useUpdateGeneralSettings } from '../api/useUpdateGeneralSettings'
-import { useThemeWithRootSync } from '../lib/useThemeWithRootSync'
 
 export const GeneralSettings = () => {
   const { data, isPending } = useGeneralSettings()
 
   const { mutate: update } = useUpdateGeneralSettings()
-
-  const { theme: currentTheme } = useThemeWithRootSync()
 
   return (
     <Settings
@@ -39,12 +36,12 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <Select
-            value={currentTheme}
+            value={data?.theme}
             onValueChange={v => update({ body: { theme: v! } })}>
             <SelectTrigger
               className='border-brand flex items-center gap-2 rounded-lg border
                 px-4 py-2.5'>
-              <SelectValue />
+              <SelectValue>{value => capitalize(value)}</SelectValue>
               <SelectIcon render={<ChevronDownIcon className='size-4' />} />
             </SelectTrigger>
             <SelectContent

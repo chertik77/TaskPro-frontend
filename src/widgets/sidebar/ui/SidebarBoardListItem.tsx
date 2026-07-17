@@ -29,9 +29,9 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
     <RovingFocusGroupItem
       key={board.id}
       className={cn(
-        `focus-visible:styled-outline tablet:pl-6 flex min-h-15.25 w-full
-        cursor-pointer items-center justify-between pl-3.5 text-black/50
-        dark:text-white/50`,
+        `focus-visible:styled-outline tablet:pl-6 pointer-cursors:cursor-pointer
+        flex min-h-15.25 w-full items-center justify-between pl-3.5
+        text-black/50 dark:text-white/50`,
         boardId === board.id &&
           'bg-white-muted dark:bg-black-muted text-black dark:text-white'
       )}

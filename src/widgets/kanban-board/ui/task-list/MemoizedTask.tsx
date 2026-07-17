@@ -29,7 +29,6 @@ export const MemoizedTask = memo(({ task }: MemoizedTaskProps) => {
         <div className='mb-1 flex gap-2'>
           <Task.CompletedToggle
             disabled={isPending}
-            className='cursor-pointer'
             onCheckedChange={v =>
               completeTask({ taskId: task.id, completed: v })
             }

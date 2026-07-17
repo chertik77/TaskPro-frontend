@@ -19,9 +19,9 @@ export const FormPrioritySelector = () => {
         .map(priority => (
           <FormItem key={priority}>
             <label
-              className='text-md hocus:text-black dark:hocus:text-white flex
-                cursor-pointer items-center gap-1 text-black/50
-                transition-colors dark:text-white/50'>
+              className='text-md hocus:text-black dark:hocus:text-white
+                pointer-cursors:cursor-pointer flex items-center gap-1
+                text-black/50 transition-colors dark:text-white/50'>
               <RadioGroupItem
                 value={priority}
                 indicatorClassname={getTaskPriorityColor(priority)}

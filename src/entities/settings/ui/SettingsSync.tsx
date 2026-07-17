@@ -1,21 +1,25 @@
 import { useEffect } from 'react'
 
-import { useSettings } from '@/entities/settings'
-
 import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
 
-export const useThemeWithRootSync = () => {
+import { useSettings } from '../model/useSettings'
+
+export const SettingsSync = () => {
   const settings = useSettings()
-  const theme = settings?.general?.theme ?? DEFAULT_THEME
+
+  const cursor = settings?.general?.usePointerCursors
+  const theme = settings?.general?.theme
 
   useEffect(() => {
-    const root = window.document.documentElement
+    const root = document.documentElement
+
+    root.dataset.pointerCursors = String(cursor ?? false)
 
     if (theme === 'system') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
       const applySystemTheme = () => {
-        root.className = resolveTheme(theme)
+        root.dataset.theme = resolveTheme(theme)
       }
 
       applySystemTheme()
@@ -23,16 +27,12 @@ export const useThemeWithRootSync = () => {
 
       return () => {
         mediaQuery.removeEventListener('change', applySystemTheme)
-        root.className = DEFAULT_THEME
+        root.dataset.theme = DEFAULT_THEME
       }
     }
 
-    root.className = resolveTheme(theme)
+    root.dataset.theme = String(theme ?? 'light')
+  }, [cursor, settings, theme])
 
-    return () => {
-      root.className = DEFAULT_THEME
-    }
-  }, [theme])
-
-  return { theme }
+  return null
 }

@@ -146,13 +146,14 @@
 }
 
 @layer base {
-  button:not(:disabled),
-  [role='button']:not(:disabled) {
+  html[data-pointer-cursors='true'] button:not(:disabled),
+  html[data-pointer-cursors='true'] [role='button']:not(:disabled) {
     cursor: pointer;
   }
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(html[data-theme='dark'] *));
+@custom-variant pointer-cursors (&:where(html[data-pointer-cursors="true"] *));
 
 @custom-variant hocus {
   @media (hover: hover) {

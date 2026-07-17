@@ -1,7 +1,7 @@
 import { Outlet } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
-import { useMetaThemeColor } from '@/features/user/change-theme'
+import { useMetaThemeColor } from '@/entities/user'
 
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
