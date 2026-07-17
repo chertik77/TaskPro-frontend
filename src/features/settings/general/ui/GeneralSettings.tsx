@@ -113,6 +113,41 @@ export const GeneralSettings = () => {
       </Settings.Item>
       <Settings.Item>
         <Settings.Content>
+          <Settings.Title>First day of the week</Settings.Title>
+          <Settings.Description>
+            Choose which day your calendars and date pickers start on.
+          </Settings.Description>
+        </Settings.Content>
+        <Settings.Control>
+          <Select
+            value={data?.firstDayOfWeek}
+            onValueChange={v => update({ body: { firstDayOfWeek: v! } })}>
+            <SelectTrigger
+              className='border-accent flex items-center gap-2 rounded-lg border
+                px-4 py-2.5'>
+              <SelectValue className='flex items-center gap-2'>
+                <SelectValue>{value => capitalize(value)}</SelectValue>
+              </SelectValue>
+              <SelectIcon render={<ChevronDownIcon className='size-4' />} />
+            </SelectTrigger>
+            <SelectContent
+              className='flex min-w-[calc(var(--anchor-width)+2px)] flex-col
+                gap-2'>
+              {['monday', 'sunday'].map(t => (
+                <SelectItem
+                  key={t}
+                  className='flex items-center gap-2
+                    data-disabled:cursor-not-allowed data-highlighted:underline'
+                  value={t}>
+                  <SelectItemText>{capitalize(t)}</SelectItemText>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </Settings.Control>
+      </Settings.Item>
+      <Settings.Item>
+        <Settings.Content>
           <Settings.Title>Pointer cursors</Settings.Title>
           <Settings.Description>
             Show pointer cursors when hovering interactive elements.

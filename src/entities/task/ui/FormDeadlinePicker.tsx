@@ -6,6 +6,8 @@ import { startOfDay } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
 
+import { useSettings } from '@/entities/setting'
+
 import { cn } from '@/shared/lib'
 import {
   Calendar,
@@ -27,6 +29,7 @@ const date = new Date()
 
 export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+  const settings = useSettings()
 
   const {
     fieldState: { error },
@@ -88,6 +91,9 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
           </PopoverTrigger>
           <PopoverContent positionerProps={{ side: 'top' }}>
             <Calendar
+              weekStartsOn={
+                settings?.general?.firstDayOfWeek === 'monday' ? 1 : 0
+              }
               mode='single'
               defaultMonth={value}
               startMonth={mode === 'create' ? (value ?? date) : undefined}
