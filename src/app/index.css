@@ -151,6 +151,15 @@
   html[data-pointer-cursors='true'] [role='button']:not(:disabled) {
     cursor: pointer;
   }
+
+  html[data-animations='false'] *,
+  html[data-animations='false'] *::before,
+  html[data-animations='false'] *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @custom-variant dark (&:where(html[data-theme='dark'] *));

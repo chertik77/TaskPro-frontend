@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { MotionGlobalConfig } from 'motion/react'
 
 import { COLOR_MAP } from '@/entities/label'
 
@@ -12,6 +13,7 @@ export const SettingsSync = () => {
 
   const cursor = settings?.general?.usePointerCursors
   const theme = settings?.general?.theme
+  const animations = settings?.general?.enableAnimations
   const accentColor = COLOR_MAP[settings?.general?.accentColor ?? 'blue'].value
 
   useEffect(() => {
@@ -19,8 +21,10 @@ export const SettingsSync = () => {
 
     const root = document.documentElement
 
+    // Pointer cursors
     root.dataset.pointerCursors = String(cursor ?? false)
 
+    // Theme
     if (theme === 'system') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
@@ -39,8 +43,13 @@ export const SettingsSync = () => {
 
     root.dataset.theme = String(theme ?? 'light')
 
+    // Animations
+    if (!animations) MotionGlobalConfig.skipAnimations = true
+    root.dataset.animations = String(animations ?? true)
+
+    // Accent color
     document.documentElement.style.setProperty('--accent-color', accentColor)
-  }, [accentColor, cursor, settings, theme])
+  }, [accentColor, animations, cursor, settings, theme])
 
   return null
 }

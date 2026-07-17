@@ -125,6 +125,20 @@ export const GeneralSettings = () => {
           />
         </Settings.Control>
       </Settings.Item>
+      <Settings.Item>
+        <Settings.Content>
+          <Settings.Title>Enable animations</Settings.Title>
+          <Settings.Description>
+            Enable animations and transitions throughout the app.
+          </Settings.Description>
+        </Settings.Content>
+        <Settings.Control>
+          <Switch
+            checked={data?.enableAnimations}
+            onCheckedChange={v => update({ body: { enableAnimations: v } })}
+          />
+        </Settings.Control>
+      </Settings.Item>
     </Settings>
   )
 }
