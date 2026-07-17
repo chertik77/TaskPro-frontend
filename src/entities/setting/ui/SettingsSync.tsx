@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { MotionGlobalConfig } from 'motion/react'
 
-import { COLOR_MAP } from '@/entities/label'
+import { COLOR_MAP } from '@/entities/label/@x/setting'
 
 import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
 

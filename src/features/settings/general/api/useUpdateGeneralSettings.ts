@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { SettingsContracts } from '@/entities/settings'
+import { SettingsContracts } from '@/entities/setting'
 
 import {
   getAllSettingsOptions,

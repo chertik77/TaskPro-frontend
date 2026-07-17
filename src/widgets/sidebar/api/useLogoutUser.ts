@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { resetSettings } from '@/entities/settings'
+import { resetSettings } from '@/entities/setting'
 import { sessionQueries } from '@/entities/user'
 
 import { authClient } from '@/shared/api'

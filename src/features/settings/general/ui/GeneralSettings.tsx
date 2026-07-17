@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from 'lucide-react'
 
 import { COLOR_MAP } from '@/entities/label'
-import { Settings } from '@/entities/settings'
+import { Settings } from '@/entities/setting'
 
 import { LabelColor } from '@/shared/api'
 import { THEMES } from '@/shared/config'

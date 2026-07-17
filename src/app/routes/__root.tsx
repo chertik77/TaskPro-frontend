@@ -4,7 +4,7 @@ import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
-import { SettingsSync } from '@/entities/settings'
+import { SettingsSync } from '@/entities/setting'
 
 type RouterContext = {
   queryClient: QueryClient

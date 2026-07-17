@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useSettings } from '@/entities/settings'
+import { useSettings } from '@/entities/setting/@x/user'
 
 export const useMetaThemeColor = () => {
   const settings = useSettings()
