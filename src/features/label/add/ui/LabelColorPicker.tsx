@@ -24,7 +24,7 @@ export const LabelColorPicker = () => {
             className={cn(
               `focus-visible:styled-outline block size-6 rounded-xl
               transition-transform data-checked:scale-125`,
-              COLOR_MAP[color]
+              COLOR_MAP[color].className
             )}
           />
         </FormItem>

@@ -8,7 +8,7 @@ export const SettingsPage = () => {
   return (
     <div className='flex items-center gap-6'>
       <div
-        className='border-brand bg-white-soft dark:border-brand/50 h-full w-65
+        className='border-accent bg-white-soft dark:border-accent/50 h-full w-65
           border border-b-0 border-l-0 px-6 py-20 dark:bg-black'>
         <h2 className='mb-8 text-xl'>Settings</h2>
         <ul className='space-y-2'>

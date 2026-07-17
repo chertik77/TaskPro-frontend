@@ -9,8 +9,9 @@ type SocialButtonProps = {
 export const SocialButton = ({ provider, onClick }: SocialButtonProps) => (
   <button
     type='button'
-    className='flex w-84 items-center justify-center gap-2 rounded-lg bg-black
-      py-2.5 text-center text-white'
+    className='focus-visible:outline-green-light flex w-84 items-center
+      justify-center gap-2 rounded-lg bg-black py-2.5 text-center text-white
+      focus-visible:outline-4'
     onClick={onClick}>
     <SocialIcon
       name={provider}

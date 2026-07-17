@@ -93,7 +93,10 @@ export const FormLabelsCombobox = ({
               key={item.id}
               value={item.id}>
               <span
-                className={cn('size-2 rounded-full', COLOR_MAP[item.color])}
+                className={cn(
+                  'size-2 rounded-full',
+                  COLOR_MAP[item.color].className
+                )}
               />
               {item.name}
             </Combobox.Item>

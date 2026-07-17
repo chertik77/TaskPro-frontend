@@ -23,7 +23,7 @@ const DialogContent = ({
     <DialogPrimitive.Popup
       className={cn(
         `bg-white-soft data-open:animate-modal-in data-closed:animate-modal-out
-        tablet:w-87.5 dark:border-brand/50 after:bg-black-overlay
+        tablet:w-87.5 dark:border-accent/50 after:bg-black-overlay
         animate-nested-dialogs fixed top-1/2 left-1/2 z-50 w-84 -translate-x-1/2
         -translate-y-1/2 rounded-lg p-6 after:pointer-events-none after:absolute
         after:inset-0 after:opacity-0 after:backdrop-blur-md

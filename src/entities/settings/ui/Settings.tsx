@@ -18,7 +18,7 @@ type ChildrenProps = {
 
 const Section = ({ title, children, isLoading }: SectionProps) => (
   <div
-    className='bg-white-soft border-brand dark:border-brand/50 flex h-full
+    className='bg-white-soft border-accent dark:border-accent/50 flex h-full
       flex-col rounded-lg border p-6 dark:bg-black'>
     {isLoading ? (
       <div className='flex h-full items-center justify-center gap-2'>

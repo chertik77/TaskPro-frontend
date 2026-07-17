@@ -17,7 +17,7 @@ export const Calendar = ({
     fixedWeeks
     autoFocus
     className={cn(
-      `border-brand dark:bg-black-muted relative rounded-lg border bg-white
+      `border-accent dark:bg-black-muted relative rounded-lg border bg-white
       p-4.5`,
       className
     )}
@@ -36,8 +36,8 @@ export const Calendar = ({
       day: 'text-base rounded-full group',
       day_button:
         'size-8 focus-visible:styled-outline rounded-full dark:not-group-aria-selected:hocus:bg-gray/80 not-group-aria-selected:hocus:bg-gray-light',
-      today: 'text-brand aria-selected:text-black-muted',
-      selected: 'bg-brand text-black-muted opacity-100',
+      today: 'text-accent aria-selected:text-black-muted',
+      selected: 'bg-accent text-black-muted opacity-100',
       outside: 'opacity-20 aria-selected:opacity-100 hocus:opacity-100',
       disabled: 'opacity-20 pointer-events-none',
       ...classNames

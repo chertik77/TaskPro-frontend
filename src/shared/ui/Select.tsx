@@ -48,8 +48,8 @@ const SelectContent = ({
       className='isolate z-1000'>
       <SelectPrimitive.Popup
         className={cn(
-          `fade-zoom border-brand bg-white-soft shadow-base dark:bg-black-deep
-          dark:border-brand/50 rounded-lg border p-4.5`,
+          `fade-zoom border-accent bg-white-soft shadow-base dark:bg-black-deep
+          dark:border-accent/50 rounded-lg border p-4.5`,
           className
         )}
         {...props}>
@@ -66,9 +66,9 @@ const SelectItem = ({
 }: ComponentProps<typeof SelectPrimitive.Item>) => (
   <SelectPrimitive.Item
     className={cn(
-      `data-selected:text-brand hocus:text-brand pointer-cursors:cursor-pointer
-      text-base outline-none data-disabled:pointer-events-none
-      dark:text-white/30`,
+      `data-selected:text-accent hocus:text-accent
+      pointer-cursors:cursor-pointer text-base outline-none
+      data-disabled:pointer-events-none dark:text-white/30`,
       className
     )}
     {...props}>

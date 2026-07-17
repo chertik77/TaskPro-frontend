@@ -23,7 +23,7 @@ const AlertDialogContent = ({
     <AlertDialogPrimitive.Popup
       className={cn(
         `bg-white-soft data-open:animate-modal-in data-closed:animate-modal-out
-        tablet:w-87.5 dark:border-brand/50 after:bg-black-overlay fixed top-1/2
+        tablet:w-87.5 dark:border-accent/50 after:bg-black-overlay fixed top-1/2
         left-1/2 z-50 w-84 -translate-x-1/2 -translate-y-1/2 rounded-lg p-6
         dark:border dark:bg-black`,
         className

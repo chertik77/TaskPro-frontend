@@ -208,7 +208,7 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
     task.deadline &&
     isToday(task.deadline) && (
       <BellRingIcon
-        className={cn('stroke-brand size-4.5 animate-bounce pr-1', className)}
+        className={cn('stroke-accent size-4.5 animate-bounce pr-1', className)}
       />
     )
   )

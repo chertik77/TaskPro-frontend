@@ -13,7 +13,7 @@ export const SidebarBoardCreationSection = () => (
       <p className='w-19'>Create a new board</p>
       <AddBoardDialog>
         <DialogTrigger
-          className='focus-visible:styled-outline bg-brand hocus:bg-brand-light
+          className='focus-visible:styled-outline bg-accent hocus:bg-accent/50
             flex h-9 w-10 items-center justify-center rounded-lg text-black
             transition-colors duration-300'>
           <PlusIcon className='size-5' />

@@ -85,15 +85,15 @@ export const WelcomePage = () => {
             whileTap={{ scale: 0.985 }}
             transition={{ duration: 0.15 }}
             to='/auth/signup'
-            className='block w-84 rounded-lg bg-black py-3.5 text-center
-              text-white'>
+            className='focus-visible:outline-green-light block w-84 rounded-lg
+              bg-black py-3.5 text-center text-white focus-visible:outline-2'>
             Registration
           </MotionLink>
           <MotionLink
             whileHover={{ opacity: 0.7 }}
             to='/auth/signin'
-            className='focus-visible:styled-outline block text-center
-              text-black'>
+            className='focus-visible:outline-green-light block text-center
+              text-black focus-visible:outline-2'>
             Log In
           </MotionLink>
         </m.div>

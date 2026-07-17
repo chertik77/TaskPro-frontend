@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 
+import { COLOR_MAP } from '@/entities/label'
+
 import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
 
+import { resetSettings } from '../lib/resetSettings'
 import { useSettings } from '../model/useSettings'
 
 export const SettingsSync = () => {
@@ -9,8 +12,11 @@ export const SettingsSync = () => {
 
   const cursor = settings?.general?.usePointerCursors
   const theme = settings?.general?.theme
+  const accentColor = COLOR_MAP[settings?.general?.accentColor ?? 'blue'].value
 
   useEffect(() => {
+    if (!settings) return resetSettings()
+
     const root = document.documentElement
 
     root.dataset.pointerCursors = String(cursor ?? false)
@@ -32,7 +38,9 @@ export const SettingsSync = () => {
     }
 
     root.dataset.theme = String(theme ?? 'light')
-  }, [cursor, settings, theme])
+
+    document.documentElement.style.setProperty('--accent-color', accentColor)
+  }, [accentColor, cursor, settings, theme])
 
   return null
 }

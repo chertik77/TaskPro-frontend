@@ -45,11 +45,12 @@
   --color-white: #ffffff;
   --color-white-soft: #fcfcfc;
   --color-white-muted: #f6f6f7;
-  --color-brand: #bedbb0;
-  --color-brand-light: #9dc888;
-  --color-blue: #8fa1d0;
+  --color-accent: var(--accent-color);
+  --color-priority-low: #9bb7d4;
+  --color-priority-medium: #e5a8b7;
   --color-red: #dc2626;
-  --color-pink: #e09cb5;
+  --color-green: #bedbb0;
+  --color-green-light: #9dc888;
 
   --text-*: initial;
   --text-xs: 8px;
@@ -210,11 +211,11 @@
 }
 
 @utility styled-outline {
-  @apply outline-brand outline-2;
+  @apply outline-accent outline-2;
 }
 
 @utility bg-soft-green {
-  @apply to-brand bg-linear-180 from-white;
+  @apply to-green bg-linear-180 from-white;
 }
 
 @utility disable-text-selection {

@@ -68,7 +68,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
             />
             <DeleteBoardAlertDialog />
           </div>
-          <div className='bg-brand h-15.25 w-1 rounded-l-lg' />
+          <div className='bg-accent h-15.25 w-1 rounded-l-lg' />
         </div>
       )}
     </RovingFocusGroupItem>

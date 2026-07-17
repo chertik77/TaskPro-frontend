@@ -1,5 +1,5 @@
 export * as UserTypes from './model/types'
-export * as UserContracts from './model/contracts'
+export * as UserContracts from './model/contract'
 export { defaultAvatarUrl } from './config/default-avatar-url'
 export { useMetaThemeColor } from './lib/useMetaThemeColor'
 export { sessionQueries } from './api/queries'
