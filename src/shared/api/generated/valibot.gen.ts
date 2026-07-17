@@ -46,7 +46,7 @@ export const vTaskPriority = v.picklist([
     'high'
 ]);
 
-export const vLabelColor = v.picklist([
+export const vAccentColor = v.picklist([
     'blue',
     'purple',
     'red',
@@ -60,7 +60,7 @@ export const vLabelColor = v.picklist([
 export const vLabel = v.object({
     id: v.string(),
     name: v.string(),
-    color: vLabelColor,
+    color: vAccentColor,
     userId: v.string(),
     taskId: v.nullish(v.string()),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
@@ -386,7 +386,7 @@ export const vGetAllLabelsResponse = v.array(vLabel);
 
 export const vCreateLabelBody = v.object({
     name: v.pipe(v.string(), v.minLength(2)),
-    color: vLabelColor
+    color: vAccentColor
 });
 
 export const vCreateLabelResponse = vLabel;
@@ -402,7 +402,7 @@ export const vDeleteLabelResponse = v.void();
 
 export const vUpdateLabelBody = v.object({
     name: v.optional(v.pipe(v.string(), v.minLength(2))),
-    color: v.optional(vLabelColor)
+    color: v.optional(vAccentColor)
 });
 
 export const vUpdateLabelPath = v.object({

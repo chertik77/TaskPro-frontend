@@ -27,6 +27,7 @@ export {
   updateTasksOrder
 } from './sdk.gen'
 export {
+  AccentColor,
   type AccessibilitySettings,
   type Board,
   type BoardBackground,
@@ -102,7 +103,6 @@ export {
   type HelpResponse,
   type HelpResponses,
   type Label,
-  LabelColor,
   type LabelSettings,
   type Task,
   TaskPriority,

@@ -1,24 +1,12 @@
-import { ChevronDownIcon } from 'lucide-react'
-
-import { COLOR_MAP } from '@/entities/label'
 import { Settings } from '@/entities/setting'
 
-import { LabelColor } from '@/shared/api'
 import { THEMES } from '@/shared/config'
-import { capitalize } from '@/shared/lib'
-import {
-  Select,
-  SelectContent,
-  SelectIcon,
-  SelectItem,
-  SelectItemText,
-  SelectTrigger,
-  SelectValue,
-  Switch
-} from '@/shared/ui'
+import { Switch } from '@/shared/ui'
 
 import { useGeneralSettings } from '../api/useGeneralSettings'
 import { useUpdateGeneralSettings } from '../api/useUpdateGeneralSettings'
+import { AccentColorSelect } from './AccentColorSelect'
+import { SelectControl } from './SelectControl'
 
 export const GeneralSettings = () => {
   const { data, isPending } = useGeneralSettings()
@@ -37,31 +25,11 @@ export const GeneralSettings = () => {
           </Settings.Description>
         </Settings.Content>
         <Settings.Control>
-          <Select
+          <SelectControl
             value={data?.theme}
-
-            onValueChange={v => update({ body: { theme: v! } })}>
-            <SelectTrigger
-              className='border-accent flex items-center gap-2 rounded-lg border
-                px-4 py-2.5'>
-              <SelectValue>{value => capitalize(value)}</SelectValue>
-              <SelectIcon render={<ChevronDownIcon className='size-4' />} />
-            </SelectTrigger>
-            <SelectContent
-              className='flex min-w-[calc(var(--anchor-width)+2px)] flex-col
-                gap-1'>
-              {THEMES.map(t => (
-                <SelectItem
-                  key={t}
-                  disabled={t === data?.theme}
-                  className='data-disabled:cursor-not-allowed
-                    data-highlighted:underline'
-                  value={t}>
-                  <SelectItemText>{capitalize(t)}</SelectItemText>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            onChange={v => update({ body: { theme: v! } })}
+            options={THEMES}
+          />
         </Settings.Control>
       </Settings.Item>
       <Settings.Item>
@@ -72,43 +40,10 @@ export const GeneralSettings = () => {
           </Settings.Description>
         </Settings.Content>
         <Settings.Control>
-          <Select
+          <AccentColorSelect
             value={data?.accentColor}
-            onValueChange={v => update({ body: { accentColor: v! } })}>
-            <SelectTrigger
-              className='border-accent flex items-center gap-2 rounded-lg border
-                px-4 py-2.5'>
-              <SelectValue className='flex items-center gap-2'>
-                {(v: LabelColor) => (
-                  <>
-                    <span
-                      className='block size-3 rounded-full'
-                      style={{ backgroundColor: COLOR_MAP[v].value }}
-                    />
-                    {capitalize(v)}
-                  </>
-                )}
-              </SelectValue>
-              <SelectIcon render={<ChevronDownIcon className='size-4' />} />
-            </SelectTrigger>
-            <SelectContent
-              className='flex min-w-[calc(var(--anchor-width)+2px)] flex-col
-                gap-2'>
-              {Object.values(LabelColor).map(t => (
-                <SelectItem
-                  key={t}
-                  className='flex items-center gap-2
-                    data-disabled:cursor-not-allowed data-highlighted:underline'
-                  value={t}>
-                  <span
-                    className='block size-3 rounded-full'
-                    style={{ backgroundColor: COLOR_MAP[t].value }}
-                  />
-                  <SelectItemText>{capitalize(t)}</SelectItemText>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            onChange={v => update({ body: { accentColor: v! } })}
+          />
         </Settings.Control>
       </Settings.Item>
       <Settings.Item>
@@ -119,31 +54,11 @@ export const GeneralSettings = () => {
           </Settings.Description>
         </Settings.Content>
         <Settings.Control>
-          <Select
+          <SelectControl
             value={data?.firstDayOfWeek}
-            onValueChange={v => update({ body: { firstDayOfWeek: v! } })}>
-            <SelectTrigger
-              className='border-accent flex items-center gap-2 rounded-lg border
-                px-4 py-2.5'>
-              <SelectValue className='flex items-center gap-2'>
-                <SelectValue>{value => capitalize(value)}</SelectValue>
-              </SelectValue>
-              <SelectIcon render={<ChevronDownIcon className='size-4' />} />
-            </SelectTrigger>
-            <SelectContent
-              className='flex min-w-[calc(var(--anchor-width)+2px)] flex-col
-                gap-2'>
-              {['monday', 'sunday'].map(t => (
-                <SelectItem
-                  key={t}
-                  className='flex items-center gap-2
-                    data-disabled:cursor-not-allowed data-highlighted:underline'
-                  value={t}>
-                  <SelectItemText>{capitalize(t)}</SelectItemText>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            onChange={v => update({ body: { firstDayOfWeek: v! } })}
+            options={['monday', 'sunday']}
+          />
         </Settings.Control>
       </Settings.Item>
       <Settings.Item>

@@ -1,5 +1,5 @@
 export { FormLabelsCombobox } from './ui/FormLabelsCombobox'
-export { COLOR_MAP, LABEL_COLOR_MAP } from './config/color-map'
+export { LABEL_BASE_COLOR_MAP, LABEL_COLOR_MAP } from './config/color-map'
 export { useLabelCombobox } from './lib/useLabelCombobox'
 export { useLabelModalStore } from './model/modal.store'
 export { Label } from './ui/Label'

@@ -1,14 +1,9 @@
 import { memo } from 'react'
+import { Select as SelectPrimitive } from '@base-ui/react/select'
 import { CircleArrowRightIcon } from 'lucide-react'
 
 import { cn } from '@/shared/lib'
-import {
-  Loader,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger
-} from '@/shared/ui'
+import { Loader, Select, SelectContent, SelectItem } from '@/shared/ui'
 
 import { useGetFilteredColumns } from '../api/useGetFilteredColumns'
 import { useMoveTask } from '../api/useMoveTask'
@@ -29,7 +24,7 @@ export const MoveTaskSelect = memo(
         value={taskColumnId}
         onValueChange={v => moveTask({ taskId: taskId, columnId: v! })}
         disabled={isPending}>
-        <SelectTrigger
+        <SelectPrimitive.Trigger
           className={cn(
             `hocus:text-black dark:hocus:text-white text-black/50
             dark:text-white/50`,
@@ -40,11 +35,10 @@ export const MoveTaskSelect = memo(
           ) : (
             <CircleArrowRightIcon className='size-4' />
           )}
-        </SelectTrigger>
+        </SelectPrimitive.Trigger>
         <SelectContent
-          align='start'
-          alignItemWithTrigger={false}
-          className='flex w-min flex-col gap-2'>
+          positionerProps={{ align: 'start' }}
+          className='w-min'>
           {filteredColumns?.map(column => (
             <SelectItem
               key={column.id}

@@ -69,7 +69,7 @@ const Description = ({ children, className }: ChildrenProps) => (
 )
 
 const Control = ({ children, className }: ChildrenProps) => (
-  <div className={cn(className)}>{children}</div>
+  <div className={cn('shrink-0', className)}>{children}</div>
 )
 
 export const Settings = Object.assign(Section, {

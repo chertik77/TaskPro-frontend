@@ -93,14 +93,14 @@ export type TaskPriority = typeof TaskPriority[keyof typeof TaskPriority];
 export type Label = {
     id: string;
     name: string;
-    color: LabelColor;
+    color: AccentColor;
     userId: string;
     taskId?: string | null;
     createdAt: string;
     updatedAt: string;
 };
 
-export const LabelColor = {
+export const AccentColor = {
     BLUE: 'blue',
     PURPLE: 'purple',
     RED: 'red',
@@ -111,7 +111,7 @@ export const LabelColor = {
     GREEN: 'green'
 } as const;
 
-export type LabelColor = typeof LabelColor[keyof typeof LabelColor];
+export type AccentColor = typeof AccentColor[keyof typeof AccentColor];
 
 export type GeneralSettings = {
     id: string;
@@ -659,7 +659,7 @@ export type GetAllLabelsResponse = GetAllLabelsResponses[keyof GetAllLabelsRespo
 export type CreateLabelData = {
     body: {
         name: string;
-        color: LabelColor;
+        color: AccentColor;
     };
     path?: never;
     query?: never;
@@ -707,7 +707,7 @@ export type DeleteLabelResponse = DeleteLabelResponses[keyof DeleteLabelResponse
 export type UpdateLabelData = {
     body: {
         name?: string;
-        color?: LabelColor;
+        color?: AccentColor;
     };
     path: {
         labelId: string;

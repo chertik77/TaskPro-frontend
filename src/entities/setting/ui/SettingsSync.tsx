@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { MotionGlobalConfig } from 'motion/react'
 
-import { COLOR_MAP } from '@/entities/label/@x/setting'
+import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
 import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
 
@@ -14,7 +14,7 @@ export const SettingsSync = () => {
   const cursor = settings?.general?.usePointerCursors
   const theme = settings?.general?.theme
   const animations = settings?.general?.enableAnimations
-  const accentColor = COLOR_MAP[settings?.general?.accentColor ?? 'blue'].value
+  const accentColor = ACCENT_COLOR_MAP[settings?.general?.accentColor ?? 'blue']
 
   useEffect(() => {
     if (!settings) return resetSettings()

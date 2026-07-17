@@ -8,7 +8,7 @@ import {
   useFormField
 } from '@/shared/ui'
 
-import { COLOR_MAP } from '../config/color-map'
+import { LABEL_BASE_COLOR_MAP } from '../config/color-map'
 import { useLabelCombobox } from '../lib/useLabelCombobox'
 import { LabelChip } from './LabelChip'
 
@@ -95,7 +95,7 @@ export const FormLabelsCombobox = ({
               <span
                 className={cn(
                   'size-2 rounded-full',
-                  COLOR_MAP[item.color].className
+                  LABEL_BASE_COLOR_MAP[item.color]
                 )}
               />
               {item.name}
