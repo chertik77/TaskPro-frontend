@@ -3,10 +3,12 @@ import type { ReactNode } from 'react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
 
 import { cn } from '@/shared/lib'
+import { Loader } from '@/shared/ui'
 
 type SectionProps = {
   title: string
   children: ReactNode
+  isLoading?: boolean
 }
 
 type ChildrenProps = {
@@ -14,26 +16,35 @@ type ChildrenProps = {
   className?: string
 }
 
-const Section = ({ title, children }: SectionProps) => (
+const Section = ({ title, children, isLoading }: SectionProps) => (
   <div
     className='bg-white-soft border-brand dark:border-brand/50 flex h-full
       flex-col rounded-lg border p-6 dark:bg-black'>
-    <h2 className='mb-7 shrink-0 text-xl'>{title}</h2>
-    <ScrollArea.Root className='min-h-0 flex-1'>
-      <ScrollArea.Viewport className='h-full'>
-        <ScrollArea.Content className='pr-2'>
-          <div className='space-y-3.5'>{children}</div>
-        </ScrollArea.Content>
-      </ScrollArea.Viewport>
-      <ScrollArea.Scrollbar
-        className='pointer-events-none w-2 bg-transparent opacity-0
-          transition-opacity duration-200 data-scrolling:pointer-events-auto
-          data-scrolling:opacity-100 data-scrolling:duration-initial'>
-        <ScrollArea.Thumb
-          className='rounded-[26px] bg-black/30 dark:bg-white/60'
-        />
-      </ScrollArea.Scrollbar>
-    </ScrollArea.Root>
+    {isLoading ? (
+      <div className='flex h-full items-center justify-center gap-2'>
+        <Loader />
+        Loading...
+      </div>
+    ) : (
+      <>
+        <h2 className='mb-7 shrink-0 text-xl'>{title}</h2>
+        <ScrollArea.Root className='min-h-0 flex-1'>
+          <ScrollArea.Viewport className='h-full'>
+            <ScrollArea.Content className='pr-2'>
+              <div className='space-y-3.5'>{children}</div>
+            </ScrollArea.Content>
+          </ScrollArea.Viewport>
+          <ScrollArea.Scrollbar
+            className='pointer-events-none w-2 bg-transparent opacity-0
+              transition-opacity duration-200 data-scrolling:pointer-events-auto
+              data-scrolling:opacity-100 data-scrolling:duration-initial'>
+            <ScrollArea.Thumb
+              className='rounded-[26px] bg-black/30 dark:bg-white/60'
+            />
+          </ScrollArea.Scrollbar>
+        </ScrollArea.Root>
+      </>
+    )}
   </div>
 )
 
@@ -61,7 +72,7 @@ const Control = ({ children, className }: ChildrenProps) => (
   <div className={cn(className)}>{children}</div>
 )
 
-export const SettingsWrapper = Object.assign(Section, {
+export const Settings = Object.assign(Section, {
   Item,
   Content,
   Title,

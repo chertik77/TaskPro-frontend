@@ -3,7 +3,7 @@
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import { createBoardResponseTransformer, createColumnResponseTransformer, createLabelResponseTransformer, createTaskResponseTransformer, getAllBoardsResponseTransformer, getAllLabelsResponseTransformer, getBoardByIdResponseTransformer, updateBoardResponseTransformer, updateColumnResponseTransformer, updateColumnsOrderResponseTransformer, updateLabelResponseTransformer, updateTaskResponseTransformer, updateTasksOrderResponseTransformer } from './transformers.gen';
-import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses } from './types.gen';
+import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateAccessibilitySettingsData, UpdateAccessibilitySettingsErrors, UpdateAccessibilitySettingsResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -26,6 +26,72 @@ export const help = <ThrowOnError extends boolean = false>(options: Options<Help
     responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/user/help',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Get all user settings
+ */
+export const getAllSettings = <ThrowOnError extends boolean = false>(options?: Options<GetAllSettingsData, ThrowOnError>): RequestResult<GetAllSettingsResponses, GetAllSettingsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllSettingsResponses, GetAllSettingsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/settings',
+    ...options
+});
+
+/**
+ * Update general settings
+ */
+export const updateGeneralSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateGeneralSettingsData, ThrowOnError>): RequestResult<UpdateGeneralSettingsResponses, UpdateGeneralSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateGeneralSettingsResponses, UpdateGeneralSettingsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/settings/general',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update task settings
+ */
+export const updateTaskSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateTaskSettingsData, ThrowOnError>): RequestResult<UpdateTaskSettingsResponses, UpdateTaskSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTaskSettingsResponses, UpdateTaskSettingsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/settings/task',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update label settings
+ */
+export const updateLabelSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateLabelSettingsData, ThrowOnError>): RequestResult<UpdateLabelSettingsResponses, UpdateLabelSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateLabelSettingsResponses, UpdateLabelSettingsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/settings/label',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update accessibility settings
+ */
+export const updateAccessibilitySettings = <ThrowOnError extends boolean = false>(options: Options<UpdateAccessibilitySettingsData, ThrowOnError>): RequestResult<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/settings/accessibility',
     ...options,
     headers: {
         'Content-Type': 'application/json',

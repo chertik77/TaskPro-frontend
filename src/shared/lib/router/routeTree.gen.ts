@@ -15,6 +15,7 @@ import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashbo
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
 import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
 import { Route as DashboardSettingsLayoutRouteImport } from './../../../app/routes/dashboard/settings/layout'
+import { Route as DashboardSettingsGeneralRouteImport } from './../../../app/routes/dashboard/settings/general'
 import { Route as DashboardSettingsAppearanceRouteImport } from './../../../app/routes/dashboard/settings/appearance'
 import { Route as DashboardSettingsAccessibilityRouteImport } from './../../../app/routes/dashboard/settings/accessibility'
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
@@ -50,6 +51,12 @@ const DashboardSettingsLayoutRoute = DashboardSettingsLayoutRouteImport.update({
   path: '/settings',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
+const DashboardSettingsGeneralRoute =
+  DashboardSettingsGeneralRouteImport.update({
+    id: '/general',
+    path: '/general',
+    getParentRoute: () => DashboardSettingsLayoutRoute,
+  } as any)
 const DashboardSettingsAppearanceRoute =
   DashboardSettingsAppearanceRouteImport.update({
     id: '/appearance',
@@ -84,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
+  '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -95,6 +103,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
+  '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -108,6 +117,7 @@ export interface FileRoutesById {
   '/auth/_auth-layout/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
+  '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/appearance'
+    | '/dashboard/settings/general'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/appearance'
+    | '/dashboard/settings/general'
   id:
     | '__root__'
     | '/'
@@ -145,6 +157,7 @@ export interface FileRouteTypes {
     | '/auth/_auth-layout/signup'
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/appearance'
+    | '/dashboard/settings/general'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,6 +210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsLayoutRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
+    '/dashboard/settings/general': {
+      id: '/dashboard/settings/general'
+      path: '/general'
+      fullPath: '/dashboard/settings/general'
+      preLoaderRoute: typeof DashboardSettingsGeneralRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
     '/dashboard/settings/appearance': {
       id: '/dashboard/settings/appearance'
       path: '/appearance'
@@ -231,12 +251,14 @@ declare module '@tanstack/react-router' {
 interface DashboardSettingsLayoutRouteChildren {
   DashboardSettingsAccessibilityRoute: typeof DashboardSettingsAccessibilityRoute
   DashboardSettingsAppearanceRoute: typeof DashboardSettingsAppearanceRoute
+  DashboardSettingsGeneralRoute: typeof DashboardSettingsGeneralRoute
 }
 
 const DashboardSettingsLayoutRouteChildren: DashboardSettingsLayoutRouteChildren =
   {
     DashboardSettingsAccessibilityRoute: DashboardSettingsAccessibilityRoute,
     DashboardSettingsAppearanceRoute: DashboardSettingsAppearanceRoute,
+    DashboardSettingsGeneralRoute: DashboardSettingsGeneralRoute,
   }
 
 const DashboardSettingsLayoutRouteWithChildren =

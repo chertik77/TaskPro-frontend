@@ -113,6 +113,49 @@ export const LabelColor = {
 
 export type LabelColor = typeof LabelColor[keyof typeof LabelColor];
 
+export type GeneralSettings = {
+    id: string;
+    theme: 'light' | 'dark' | 'system';
+    accentColor: 'blue' | 'purple' | 'red' | 'gray' | 'cyan' | 'yellow' | 'indigo' | 'green';
+    firstDayOfWeek: 'monday' | 'sunday';
+    dateFormat?: 'dd_mm_yyyy' | 'mm_dd_yyyy' | 'yyyy_mm_dd';
+    boardBackgroundBlur: 'off' | 'low' | 'medium';
+    usePointerCursors: boolean;
+    enableAnimations: boolean;
+    confirmBeforeDelete: boolean;
+    userId: string;
+};
+
+export type TaskSettings = {
+    id: string;
+    sortTasksBy: 'manual' | 'priority' | 'deadline' | 'created' | 'alphabetical';
+    defaultPriority: TaskPriority;
+    defaultDeadlineDays: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
+    cardDensity: 'compact' | 'comfortable';
+    showCompletedTasks: boolean;
+    newTaskPosition: 'top' | 'bottom';
+    naturalLanguageDates: boolean;
+    userId: string;
+};
+
+export type LabelSettings = {
+    id: string;
+    showLabelsOnCard: boolean;
+    labelDisplay: 'full' | 'compact';
+    maxLabelsShown: 'one' | 'two' | 'three' | 'all';
+    userId: string;
+};
+
+export type AccessibilitySettings = {
+    id: string;
+    fontSize: 'small' | 'medium' | 'large';
+    reducedMotion: boolean;
+    highContrast: boolean;
+    focusIndicators: boolean;
+    keyboardNavigationHints: boolean;
+    userId: string;
+};
+
 export type ErrorResponse = {
     statusCode?: number;
     message?: string | {
@@ -144,6 +187,122 @@ export type HelpResponses = {
 };
 
 export type HelpResponse = HelpResponses[keyof HelpResponses];
+
+export type GetAllSettingsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/user/settings';
+};
+
+export type GetAllSettingsErrors = {
+    401: ErrorResponse;
+};
+
+export type GetAllSettingsError = GetAllSettingsErrors[keyof GetAllSettingsErrors];
+
+export type GetAllSettingsResponses = {
+    200: {
+        general?: GeneralSettings;
+        task?: TaskSettings;
+        label?: LabelSettings;
+        accessibility?: AccessibilitySettings;
+    };
+};
+
+export type GetAllSettingsResponse = GetAllSettingsResponses[keyof GetAllSettingsResponses];
+
+export type UpdateGeneralSettingsData = {
+    body: {
+        firstDayOfWeek: string;
+        boardBackgroundBlur: string;
+        usePointerCursors: boolean;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/general';
+};
+
+export type UpdateGeneralSettingsErrors = {
+    401: ErrorResponse;
+};
+
+export type UpdateGeneralSettingsError = UpdateGeneralSettingsErrors[keyof UpdateGeneralSettingsErrors];
+
+export type UpdateGeneralSettingsResponses = {
+    200: GeneralSettings;
+};
+
+export type UpdateGeneralSettingsResponse = UpdateGeneralSettingsResponses[keyof UpdateGeneralSettingsResponses];
+
+export type UpdateTaskSettingsData = {
+    body: {
+        cardDensity: string;
+        sortTasksBy: string;
+        showCompletedTasks: boolean;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/task';
+};
+
+export type UpdateTaskSettingsErrors = {
+    401: ErrorResponse;
+};
+
+export type UpdateTaskSettingsError = UpdateTaskSettingsErrors[keyof UpdateTaskSettingsErrors];
+
+export type UpdateTaskSettingsResponses = {
+    200: TaskSettings;
+};
+
+export type UpdateTaskSettingsResponse = UpdateTaskSettingsResponses[keyof UpdateTaskSettingsResponses];
+
+export type UpdateLabelSettingsData = {
+    body: {
+        showLabelsOnCard: boolean;
+        labelDisplay: string;
+        maxLabelsShown: string;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/label';
+};
+
+export type UpdateLabelSettingsErrors = {
+    401: ErrorResponse;
+};
+
+export type UpdateLabelSettingsError = UpdateLabelSettingsErrors[keyof UpdateLabelSettingsErrors];
+
+export type UpdateLabelSettingsResponses = {
+    200: LabelSettings;
+};
+
+export type UpdateLabelSettingsResponse = UpdateLabelSettingsResponses[keyof UpdateLabelSettingsResponses];
+
+export type UpdateAccessibilitySettingsData = {
+    body: {
+        fontSize: string;
+        reducedMotion: boolean;
+        highContrast: boolean;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/accessibility';
+};
+
+export type UpdateAccessibilitySettingsErrors = {
+    401: ErrorResponse;
+};
+
+export type UpdateAccessibilitySettingsError = UpdateAccessibilitySettingsErrors[keyof UpdateAccessibilitySettingsErrors];
+
+export type UpdateAccessibilitySettingsResponses = {
+    200: AccessibilitySettings;
+};
+
+export type UpdateAccessibilitySettingsResponse = UpdateAccessibilitySettingsResponses[keyof UpdateAccessibilitySettingsResponses];
 
 export type GetAllBoardsData = {
     body?: never;
