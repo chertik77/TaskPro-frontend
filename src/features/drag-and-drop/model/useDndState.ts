@@ -1,20 +1,16 @@
-import type { ColumnTypes } from '@/entities/column'
-import type { TaskTypes } from '@/entities/task'
+import type { Column, Task } from '@/shared/api'
 
 import { useMemo, useState } from 'react'
-import { parse } from 'valibot'
+import { array, parse } from 'valibot'
 
-import { ColumnContracts } from '@/entities/column'
-import { TaskContracts } from '@/entities/task'
+import { vColumn, vTask } from '@/shared/api'
 
-export const useDndState = (
-  initialColumns: ColumnTypes.ColumnsSchema | undefined
-) => {
+export const useDndState = (initialColumns: Column[] | undefined) => {
   const [parsedColumns, parsedTasks] = useMemo(
     () => [
-      parse(ColumnContracts.ColumnsSchema, initialColumns),
+      parse(array(vColumn), initialColumns),
       parse(
-        TaskContracts.TasksSchema,
+        array(vTask),
         initialColumns?.flatMap(c => c.tasks)
       )
     ],
@@ -25,19 +21,16 @@ export const useDndState = (
   const [tasks, setTasks] = useState(parsedTasks)
   const [prevInitialColumns, setPrevInitialColumns] = useState(initialColumns)
 
-  const [activeTask, setActiveTask] = useState<TaskTypes.TaskSchema | null>(
-    null
-  )
+  const [activeTask, setActiveTask] = useState<Task | null>(null)
 
-  const [activeColumn, setActiveColumn] =
-    useState<ColumnTypes.ColumnSchema | null>(null)
+  const [activeColumn, setActiveColumn] = useState<Column | null>(null)
 
   if (initialColumns !== prevInitialColumns) {
     setPrevInitialColumns(initialColumns)
 
-    const parsedColumns = parse(ColumnContracts.ColumnsSchema, initialColumns)
+    const parsedColumns = parse(array(vColumn), initialColumns)
     const parsedTasks = parse(
-      TaskContracts.TasksSchema,
+      array(vTask),
       parsedColumns.flatMap(c => c.tasks)
     )
 

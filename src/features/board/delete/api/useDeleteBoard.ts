@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { parse } from 'valibot'
+import { array, parse } from 'valibot'
 
-import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+import { useGetParamBoardId } from '@/entities/board'
 
-import { deleteBoard, getAllBoardsQueryKey } from '@/shared/api'
+import { deleteBoard, getAllBoardsQueryKey, vBoard } from '@/shared/api'
 
 export const useDeleteBoard = () => {
   const queryClient = useQueryClient()
@@ -26,15 +26,12 @@ export const useDeleteBoard = () => {
 
       const previousBoards = queryClient.getQueryData(allBoardsQueryKey)
 
-      const parsedPreviousBoards = parse(
-        BoardContracts.BoardsSchema,
-        previousBoards
-      )
+      const parsedPreviousBoards = parse(array(vBoard), previousBoards)
 
       queryClient.setQueryData(allBoardsQueryKey, oldBoards => {
         if (!oldBoards) return oldBoards
 
-        const parsedOldBoards = parse(BoardContracts.BoardsSchema, oldBoards)
+        const parsedOldBoards = parse(array(vBoard), oldBoards)
 
         return parsedOldBoards.filter(b => b.id !== boardId)
       })

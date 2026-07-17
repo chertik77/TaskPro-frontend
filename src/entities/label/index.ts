@@ -1,8 +1,5 @@
-export * as LabelTypes from './model/types'
-export * as LabelContracts from './model/contracts'
 export { FormLabelsCombobox } from './ui/FormLabelsCombobox'
 export { COLOR_MAP, LABEL_COLOR_MAP } from './config/color-map'
-export { LABEL_COLORS } from './config/colors'
 export { useLabelCombobox } from './lib/useLabelCombobox'
 export { useLabelModalStore } from './model/modal.store'
 export { Label } from './ui/Label'

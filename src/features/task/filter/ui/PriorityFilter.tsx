@@ -1,5 +1,6 @@
-import { getTaskPriorityColor, TASK_PRIORITIES } from '@/entities/task'
+import { getTaskPriorityColor } from '@/entities/task'
 
+import { TaskPriority } from '@/shared/api'
 import { capitalize } from '@/shared/lib'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui'
 
@@ -13,7 +14,7 @@ export const PriorityFilter = () => {
       className='flex-col'
       value={priority ?? ''}
       onValueChange={v => handleParamsChange('priority', v)}>
-      {TASK_PRIORITIES.map(priority => (
+      {Object.values(TaskPriority).map(priority => (
         <label
           className='text-md hocus:text-black dark:hocus:text-white flex
             cursor-pointer items-center gap-2 text-black/50

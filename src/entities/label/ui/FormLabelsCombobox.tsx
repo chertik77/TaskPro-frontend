@@ -1,4 +1,4 @@
-import type { LabelSchema } from '../model/types'
+import type { Label } from '@/shared/api'
 
 import { cn } from '@/shared/lib'
 import {
@@ -12,7 +12,7 @@ import { COLOR_MAP } from '../config/color-map'
 import { useLabelCombobox } from '../lib/useLabelCombobox'
 import { LabelChip } from './LabelChip'
 
-const Combobox = createTypeSafeCombobox<LabelSchema, string>()
+const Combobox = createTypeSafeCombobox<Label, string>()
 
 type FormLabelsComboboxProps = {
   labelsValues: string[] | undefined

@@ -1,4 +1,4 @@
-import type { TaskTypes } from '@/entities/task'
+import type { Task as TTask } from '@/shared/api'
 
 import { memo } from 'react'
 
@@ -14,7 +14,7 @@ import { cn } from '@/shared/lib'
 import { useCompleteTask } from '../../api/useCompleteTask'
 
 type MemoizedTaskProps = {
-  task: TaskTypes.TaskSchema
+  task: TTask
 }
 
 export const MemoizedTask = memo(({ task }: MemoizedTaskProps) => {

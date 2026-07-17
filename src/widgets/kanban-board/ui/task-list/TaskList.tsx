@@ -1,4 +1,4 @@
-import type { TaskTypes } from '@/entities/task'
+import type { Task } from '@/shared/api'
 
 import { useMemo } from 'react'
 import { SortableContext } from '@dnd-kit/sortable'
@@ -8,7 +8,7 @@ import { useFilteredTasks } from '@/features/task/filter'
 import { TaskListItem } from './TaskListItem'
 
 type TaskListProps = {
-  tasks: TaskTypes.TasksSchema | undefined
+  tasks: Task[] | undefined
 }
 
 export const TaskList = ({ tasks }: TaskListProps) => {

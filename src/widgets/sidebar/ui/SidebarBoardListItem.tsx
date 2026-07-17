@@ -1,4 +1,4 @@
-import type { BoardTypes } from '@/entities/board'
+import type { Board } from '@/shared/api'
 
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
@@ -11,7 +11,7 @@ import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 type SidebarBoardListItemProps = {
-  board: Omit<BoardTypes.BoardSchema, 'columns'>
+  board: Omit<Board, 'columns'>
 }
 
 export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {

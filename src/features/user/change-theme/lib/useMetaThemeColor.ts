@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
-import { useMe } from '@/entities/user'
+import { useSettings } from '@/entities/settings'
 
 export const useMetaThemeColor = () => {
-  const user = useMe()
+  const settings = useSettings()
 
   useEffect(() => {
     let themeColorMeta = document.querySelector(
@@ -16,6 +16,7 @@ export const useMetaThemeColor = () => {
       document.head.appendChild(themeColorMeta)
     }
 
-    themeColorMeta.content = user?.theme === 'dark' ? '#161616' : '#fcfcfc'
-  }, [user?.theme])
+    themeColorMeta.content =
+      settings?.general?.theme === 'dark' ? '#161616' : '#fcfcfc'
+  }, [settings?.general?.theme])
 }

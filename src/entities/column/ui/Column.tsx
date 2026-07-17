@@ -1,5 +1,5 @@
+import type { Column as TColumn } from '@/shared/api'
 import type { ComponentProps, ReactNode } from 'react'
-import type { ColumnSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
@@ -9,7 +9,7 @@ import { GripVerticalIcon } from 'lucide-react'
 import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
 
 type ColumnContext = {
-  column: ColumnSchema
+  column: TColumn
 }
 
 const ColumnContext = createContext<ColumnContext | undefined>(undefined)

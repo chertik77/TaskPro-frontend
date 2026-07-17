@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 
-import { useMe } from '@/entities/user'
+import { useSettings } from '@/entities/settings'
 
 import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
 
 export const useThemeWithRootSync = () => {
-  const user = useMe()
-  const theme = user?.theme ?? DEFAULT_THEME
+  const settings = useSettings()
+  const theme = settings?.general?.theme ?? DEFAULT_THEME
 
   useEffect(() => {
     const root = window.document.documentElement

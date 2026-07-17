@@ -1,4 +1,4 @@
-import type { TaskTypes } from '@/entities/task'
+import type { Task } from '@/shared/api'
 import type { IFuseOptions } from 'fuse.js'
 
 import { useMemo } from 'react'
@@ -16,7 +16,7 @@ import { useTaskFilters } from './useTaskFilters'
 const today = startOfToday()
 const nextWeek = addDays(today, 7)
 
-const fuseOptions: IFuseOptions<TaskTypes.TaskSchema> = {
+const fuseOptions: IFuseOptions<Task> = {
   keys: [
     { name: 'title', weight: 0.7 },
     { name: 'description', weight: 0.3 }
@@ -26,7 +26,7 @@ const fuseOptions: IFuseOptions<TaskTypes.TaskSchema> = {
   minMatchCharLength: 2
 }
 
-export const useFilteredTasks = (tasks: TaskTypes.TasksSchema) => {
+export const useFilteredTasks = (tasks: Task[]) => {
   const { priority, deadline, search } = useTaskFilters()
 
   const fuse = useMemo(() => new Fuse(tasks, fuseOptions), [tasks])

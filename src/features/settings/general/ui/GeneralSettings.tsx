@@ -11,16 +11,20 @@ import {
   SelectItem,
   SelectItemText,
   SelectTrigger,
-  SelectValue
+  SelectValue,
+  Switch
 } from '@/shared/ui'
 
 import { useGeneralSettings } from '../api/useGeneralSettings'
 import { useUpdateGeneralSettings } from '../api/useUpdateGeneralSettings'
+import { useThemeWithRootSync } from '../lib/useThemeWithRootSync'
 
 export const GeneralSettings = () => {
   const { data, isPending } = useGeneralSettings()
 
   const { mutate: update } = useUpdateGeneralSettings()
+
+  const { theme: currentTheme } = useThemeWithRootSync()
 
   return (
     <Settings
@@ -35,8 +39,8 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <Select
-            value={data?.theme}
-            onValueChange={v => update({ body: { theme: v } })}>
+            value={currentTheme}
+            onValueChange={v => update({ body: { theme: v! } })}>
             <SelectTrigger
               className='border-brand flex items-center gap-2 rounded-lg border
                 px-4 py-2.5'>
@@ -57,6 +61,20 @@ export const GeneralSettings = () => {
               ))}
             </SelectContent>
           </Select>
+        </Settings.Control>
+      </Settings.Item>
+      <Settings.Item>
+        <Settings.Content>
+          <Settings.Title>Pointer cursors</Settings.Title>
+          <Settings.Description>
+            Show pointer cursors when hovering interactive elements.
+          </Settings.Description>
+        </Settings.Content>
+        <Settings.Control>
+          <Switch
+            checked={data?.usePointerCursors}
+            onCheckedChange={v => update({ body: { usePointerCursors: v } })}
+          />
         </Settings.Control>
       </Settings.Item>
     </Settings>

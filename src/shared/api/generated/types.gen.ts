@@ -11,8 +11,8 @@ export type Board = {
     background: BoardBackground;
     userId: string;
     columns?: Array<Column>;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type BoardBackground = {
@@ -62,8 +62,8 @@ export type Column = {
     order: number;
     boardId: string;
     tasks?: Array<Task>;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type Task = {
@@ -71,14 +71,14 @@ export type Task = {
     title: string;
     description: string | null;
     priority: TaskPriority;
-    deadline: Date | null;
+    deadline: string | null;
     order: number;
     completed: boolean;
-    completedAt: Date | null;
+    completedAt: string | null;
     columnId: string;
     labels?: Array<Label>;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export const TaskPriority = {
@@ -96,8 +96,8 @@ export type Label = {
     color: LabelColor;
     userId: string;
     taskId?: string | null;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export const LabelColor = {
@@ -214,9 +214,14 @@ export type GetAllSettingsResponse = GetAllSettingsResponses[keyof GetAllSetting
 
 export type UpdateGeneralSettingsData = {
     body: {
-        firstDayOfWeek: string;
-        boardBackgroundBlur: string;
-        usePointerCursors: boolean;
+        theme?: 'light' | 'dark' | 'system';
+        accentColor?: 'blue' | 'purple' | 'red' | 'gray' | 'cyan' | 'yellow' | 'indigo' | 'green';
+        firstDayOfWeek?: 'monday' | 'sunday';
+        dateFormat?: 'dd_mm_yyyy' | 'mm_dd_yyyy' | 'yyyy_mm_dd';
+        boardBackgroundBlur?: 'off' | 'low' | 'medium';
+        usePointerCursors?: boolean;
+        enableAnimations?: boolean;
+        confirmBeforeDelete?: boolean;
     };
     path?: never;
     query?: never;
@@ -236,11 +241,7 @@ export type UpdateGeneralSettingsResponses = {
 export type UpdateGeneralSettingsResponse = UpdateGeneralSettingsResponses[keyof UpdateGeneralSettingsResponses];
 
 export type UpdateTaskSettingsData = {
-    body: {
-        cardDensity: string;
-        sortTasksBy: string;
-        showCompletedTasks: boolean;
-    };
+    body: TaskSettings;
     path?: never;
     query?: never;
     url: '/user/settings/task';
@@ -259,11 +260,7 @@ export type UpdateTaskSettingsResponses = {
 export type UpdateTaskSettingsResponse = UpdateTaskSettingsResponses[keyof UpdateTaskSettingsResponses];
 
 export type UpdateLabelSettingsData = {
-    body: {
-        showLabelsOnCard: boolean;
-        labelDisplay: string;
-        maxLabelsShown: string;
-    };
+    body: LabelSettings;
     path?: never;
     query?: never;
     url: '/user/settings/label';
@@ -282,11 +279,7 @@ export type UpdateLabelSettingsResponses = {
 export type UpdateLabelSettingsResponse = UpdateLabelSettingsResponses[keyof UpdateLabelSettingsResponses];
 
 export type UpdateAccessibilitySettingsData = {
-    body: {
-        fontSize: string;
-        reducedMotion: boolean;
-        highContrast: boolean;
-    };
+    body: AccessibilitySettings;
     path?: never;
     query?: never;
     url: '/user/settings/accessibility';
@@ -529,7 +522,7 @@ export type CreateTaskData = {
     body: {
         title: string;
         description?: string;
-        deadline?: Date;
+        deadline?: string;
         priority: TaskPriority;
         /**
          * Array of Label ids to attach to the task
@@ -611,7 +604,7 @@ export type UpdateTaskData = {
     body: {
         title?: string;
         description?: string | null;
-        deadline?: Date | null;
+        deadline?: string | null;
         priority?: TaskPriority;
         completed?: boolean;
         /**

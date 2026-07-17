@@ -1,9 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+import { useGetParamBoardId } from '@/entities/board'
 
-import { deleteColumnMutation, getBoardByIdQueryKey } from '@/shared/api'
+import {
+  deleteColumnMutation,
+  getBoardByIdQueryKey,
+  vBoard
+} from '@/shared/api'
 
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()
@@ -23,19 +27,16 @@ export const useDeleteColumn = () => {
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)
 
-      const parsedPreviousBoard = parse(
-        BoardContracts.BoardSchema,
-        previousBoard
-      )
+      const parsedPreviousBoard = parse(vBoard, previousBoard)
 
       queryClient.setQueryData(boardQueryKey, oldBoard => {
         if (!oldBoard) return oldBoard
 
-        const parsedOldBoard = parse(BoardContracts.BoardSchema, oldBoard)
+        const parsedOldBoard = parse(vBoard, oldBoard)
 
         return {
           ...parsedOldBoard,
-          columns: parsedOldBoard.columns.filter(
+          columns: parsedOldBoard.columns?.filter(
             column => column.id !== columnId
           )
         }

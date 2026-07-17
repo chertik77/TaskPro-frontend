@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-import { TASK_PRIORITIES } from '@/entities/task'
+import { vTaskPriority } from '@/shared/api'
 
 export const EditTaskSchema = v.object({
   title: v.optional(
@@ -21,11 +21,12 @@ export const EditTaskSchema = v.object({
       v.minLength(3, 'Please enter at least 3 characters.')
     )
   ]),
-  priority: v.optional(v.picklist(TASK_PRIORITIES)),
+  priority: v.optional(vTaskPriority),
   labels: v.optional(v.array(v.string())),
   deadline: v.pipe(
     v.nullish(v.date()),
-    v.transform(v => v ?? null)
+    v.transform(v => v ?? null),
+    v.transform(v => v?.toISOString())
   )
 })
 

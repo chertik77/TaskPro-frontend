@@ -1,4 +1,4 @@
-import type { LabelSchema } from '../model/types'
+import type { Label } from '@/shared/api'
 
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -11,7 +11,9 @@ const CREATE_SENTINEL = '__create'
 
 const isCreateOption = (id: string) => id === CREATE_SENTINEL
 
-const buildCreateOption = (name: string): LabelSchema => ({
+const buildCreateOption = (
+  name: string
+): Pick<Label, 'id' | 'name' | 'color'> => ({
   id: CREATE_SENTINEL,
   name: `Create "${name}"`,
   color: 'gray'
@@ -50,7 +52,7 @@ export const useLabelCombobox = (labelsValues: string[] | undefined) => {
         isOpen: true,
         props: {
           name: inputValue,
-          onCreated: (newLabel: LabelSchema) => {
+          onCreated: (newLabel: Label) => {
             const current = labelsValues ?? []
             onChange([...current, newLabel.id])
           }

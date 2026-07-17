@@ -34,7 +34,7 @@ export const EditTaskForm = ({
   const form = useAppForm(EditTaskSchema, {
     defaultValues: {
       ...formValues,
-      deadline: formValues.deadline ?? undefined,
+      deadline: formValues.deadline ? new Date(formValues.deadline) : undefined,
       description: formValues.description ?? '',
       labels: formValues.labels?.map(l => l.id) ?? []
     }

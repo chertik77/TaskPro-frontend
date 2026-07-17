@@ -14,8 +14,8 @@ import {
   SelectValue
 } from '@/shared/ui'
 
+import { useThemeWithRootSync } from '../../../settings/general/lib/useThemeWithRootSync'
 import { useChangeTheme } from '../api/useChangeTheme'
-import { useThemeWithRootSync } from '../lib/useThemeWithRootSync'
 
 export const ThemeSelect = () => {
   const { theme: currentTheme } = useThemeWithRootSync()

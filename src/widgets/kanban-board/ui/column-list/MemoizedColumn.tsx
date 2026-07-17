@@ -1,4 +1,4 @@
-import type { ColumnTypes } from '@/entities/column'
+import type { Column as TColumn } from '@/shared/api'
 import type {
   DraggableAttributes,
   DraggableSyntheticListeners
@@ -18,7 +18,7 @@ import { cn } from '@/shared/lib'
 import { TaskList } from '../task-list/TaskList'
 
 type MemoizedColumnProps = {
-  column: ColumnTypes.ColumnSchema
+  column: TColumn
   backgroundURL?: string | null
   draggableAttributes: DraggableAttributes
   draggableListeners: DraggableSyntheticListeners

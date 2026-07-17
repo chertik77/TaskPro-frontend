@@ -1,4 +1,4 @@
-import type { TaskPriority } from '../model/types'
+import type { TaskPriority } from '@/shared/api'
 
 const taskPriorityColors: Record<TaskPriority, string> = {
   low: 'bg-blue',

@@ -1,26 +1,11 @@
 import * as v from 'valibot'
 
-import { LabelSchema } from '@/entities/label/@x/task'
+import { vTaskPriority } from '@/shared/api'
 
 import { TASK_DEADLINES } from '../config/deadline'
-import { TASK_PRIORITIES } from '../config/priority'
-
-export const TaskSchema = v.object({
-  id: v.string(),
-  title: v.string(),
-  order: v.number(),
-  completed: v.boolean(),
-  columnId: v.string(),
-  description: v.nullable(v.string()),
-  priority: v.picklist(TASK_PRIORITIES),
-  labels: v.optional(v.array(LabelSchema)),
-  deadline: v.nullable(v.date())
-})
-
-export const TasksSchema = v.array(TaskSchema)
 
 export const TaskSearchSchema = v.object({
-  priority: v.optional(v.picklist(TASK_PRIORITIES)),
+  priority: v.optional(vTaskPriority),
   deadline: v.optional(v.picklist(TASK_DEADLINES)),
   search: v.optional(v.pipe(v.string(), v.trim()), '')
 })

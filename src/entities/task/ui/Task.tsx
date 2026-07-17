@@ -1,5 +1,5 @@
+import type { Task as TTask } from '@/shared/api'
 import type { ComponentProps } from 'react'
-import type { TaskSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
@@ -15,7 +15,7 @@ import { formatDeadlineDate } from '../lib/format-deadline-date'
 import { getTaskPriorityColor } from '../lib/priority-colors'
 
 type TaskContext = {
-  task: TaskSchema
+  task: TTask
 }
 
 const TaskContext = createContext<TaskContext | undefined>(undefined)
@@ -195,7 +195,7 @@ const TaskDeadline = ({ className }: { className?: string }) => {
         <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
           Deadline
         </p>
-        <p className='text-sm'>{formatDeadlineDate(task.deadline)}</p>
+        <p className='text-sm'>{formatDeadlineDate(new Date(task.deadline))}</p>
       </div>
     )
   )
