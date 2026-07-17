@@ -21,7 +21,7 @@ export const DashboardPage = () => {
   return (
     <div className='fixed top-0 right-0 block h-12 w-screen'>
       <motion.div
-        className='grid h-screen grid-rows-[60px_1fr]'
+        className='grid h-screen grid-rows-[60px_minmax(0,1fr)]'
         animate={{ gridTemplateColumns: columns }}>
         <Sidebar />
         <Header />
