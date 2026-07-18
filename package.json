@@ -28,6 +28,7 @@
     "@radix-ui/react-roving-focus": "^1.1.15",
     "@tanstack/react-query": "^5.101.2",
     "@tanstack/react-router": "1.170.17",
+    "@thesvg/react": "^3.2.8",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.18.1",

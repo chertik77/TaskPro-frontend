@@ -48,6 +48,10 @@ const Section = ({ title, children, isLoading }: SectionProps) => (
   </div>
 )
 
+const SubTitle = ({ children, className }: ChildrenProps) => (
+  <h3 className={cn('mb-4 text-base', className)}>{children}</h3>
+)
+
 const Item = ({ children, className }: ChildrenProps) => (
   <div className={cn('flex items-start justify-between gap-5 p-2', className)}>
     {children}
@@ -73,6 +77,7 @@ const Control = ({ children, className }: ChildrenProps) => (
 )
 
 export const Settings = Object.assign(Section, {
+  SubTitle,
   Item,
   Content,
   Title,

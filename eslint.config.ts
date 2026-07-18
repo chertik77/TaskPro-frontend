@@ -53,6 +53,7 @@ export default defineConfig(
   {
     rules: {
       'jsx-a11y/no-autofocus': 'off',
+      '@eslint-react/no-array-index-key': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/consistent-indexed-object-style': 'error',

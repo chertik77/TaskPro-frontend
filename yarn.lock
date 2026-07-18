@@ -1407,6 +1407,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/virtual-file-routes/-/virtual-file-routes-1.162.0.tgz#d2dfa1c98aab0236d2cef25b3938b59a247a8acd"
   integrity sha512-uhOeFyxLcU41HzvrxsGpiWdcMbScY1EDgbZ5K7DVRMYInbLYWAC0EA/kx9wXAoSM8q82bUG2hRl8+EAjE6XAbA==
 
+"@thesvg/react@^3.2.8":
+  version "3.2.8"
+  resolved "https://registry.yarnpkg.com/@thesvg/react/-/react-3.2.8.tgz#2b1e2a284484d3f05a49ea925c995c8c4f59fcd2"
+  integrity sha512-8tjizRKOka38EgCFyjbrFs8dHpxcOhy++9SjepSI4e/4rcNi2nGpIrZ43BuhvddwY6e6uWzqh834V+TD0Lhw+Q==
+
 "@tybys/wasm-util@^0.10.2", "@tybys/wasm-util@^0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@tybys/wasm-util/-/wasm-util-0.10.3.tgz#015cba9e9dd47ce14d03d2a8c5d547bfb169665d"

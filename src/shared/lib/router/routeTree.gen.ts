@@ -17,6 +17,7 @@ import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_
 import { Route as DashboardSettingsLayoutRouteImport } from './../../../app/routes/dashboard/settings/layout'
 import { Route as DashboardSettingsIndexRouteImport } from './../../../app/routes/dashboard/settings/index'
 import { Route as DashboardSettingsTaskRouteImport } from './../../../app/routes/dashboard/settings/task'
+import { Route as DashboardSettingsSecurityRouteImport } from './../../../app/routes/dashboard/settings/security'
 import { Route as DashboardSettingsGeneralRouteImport } from './../../../app/routes/dashboard/settings/general'
 import { Route as DashboardSettingsAccessibilityRouteImport } from './../../../app/routes/dashboard/settings/accessibility'
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
@@ -62,6 +63,12 @@ const DashboardSettingsTaskRoute = DashboardSettingsTaskRouteImport.update({
   path: '/task',
   getParentRoute: () => DashboardSettingsLayoutRoute,
 } as any)
+const DashboardSettingsSecurityRoute =
+  DashboardSettingsSecurityRouteImport.update({
+    id: '/security',
+    path: '/security',
+    getParentRoute: () => DashboardSettingsLayoutRoute,
+  } as any)
 const DashboardSettingsGeneralRoute =
   DashboardSettingsGeneralRouteImport.update({
     id: '/general',
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
+  '/dashboard/settings/security': typeof DashboardSettingsSecurityRoute
   '/dashboard/settings/task': typeof DashboardSettingsTaskRoute
   '/dashboard/settings/': typeof DashboardSettingsIndexRoute
 }
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
+  '/dashboard/settings/security': typeof DashboardSettingsSecurityRoute
   '/dashboard/settings/task': typeof DashboardSettingsTaskRoute
   '/dashboard/settings': typeof DashboardSettingsIndexRoute
 }
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/auth/_auth-layout/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
+  '/dashboard/settings/security': typeof DashboardSettingsSecurityRoute
   '/dashboard/settings/task': typeof DashboardSettingsTaskRoute
   '/dashboard/settings/': typeof DashboardSettingsIndexRoute
 }
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/general'
+    | '/dashboard/settings/security'
     | '/dashboard/settings/task'
     | '/dashboard/settings/'
   fileRoutesByTo: FileRoutesByTo
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/general'
+    | '/dashboard/settings/security'
     | '/dashboard/settings/task'
     | '/dashboard/settings'
   id:
@@ -165,6 +177,7 @@ export interface FileRouteTypes {
     | '/auth/_auth-layout/signup'
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/general'
+    | '/dashboard/settings/security'
     | '/dashboard/settings/task'
     | '/dashboard/settings/'
   fileRoutesById: FileRoutesById
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsTaskRouteImport
       parentRoute: typeof DashboardSettingsLayoutRoute
     }
+    '/dashboard/settings/security': {
+      id: '/dashboard/settings/security'
+      path: '/security'
+      fullPath: '/dashboard/settings/security'
+      preLoaderRoute: typeof DashboardSettingsSecurityRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
     '/dashboard/settings/general': {
       id: '/dashboard/settings/general'
       path: '/general'
@@ -267,6 +287,7 @@ declare module '@tanstack/react-router' {
 interface DashboardSettingsLayoutRouteChildren {
   DashboardSettingsAccessibilityRoute: typeof DashboardSettingsAccessibilityRoute
   DashboardSettingsGeneralRoute: typeof DashboardSettingsGeneralRoute
+  DashboardSettingsSecurityRoute: typeof DashboardSettingsSecurityRoute
   DashboardSettingsTaskRoute: typeof DashboardSettingsTaskRoute
   DashboardSettingsIndexRoute: typeof DashboardSettingsIndexRoute
 }
@@ -275,6 +296,7 @@ const DashboardSettingsLayoutRouteChildren: DashboardSettingsLayoutRouteChildren
   {
     DashboardSettingsAccessibilityRoute: DashboardSettingsAccessibilityRoute,
     DashboardSettingsGeneralRoute: DashboardSettingsGeneralRoute,
+    DashboardSettingsSecurityRoute: DashboardSettingsSecurityRoute,
     DashboardSettingsTaskRoute: DashboardSettingsTaskRoute,
     DashboardSettingsIndexRoute: DashboardSettingsIndexRoute,
   }
