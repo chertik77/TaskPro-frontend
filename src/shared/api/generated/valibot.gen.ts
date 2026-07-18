@@ -243,7 +243,27 @@ export const vUpdateGeneralSettingsBody = v.object({
 
 export const vUpdateGeneralSettingsResponse = vGeneralSettings;
 
-export const vUpdateTaskSettingsBody = vTaskSettings;
+export const vUpdateTaskSettingsBody = v.object({
+    sortTasksBy: v.optional(v.picklist([
+        'manual',
+        'priority',
+        'deadline',
+        'created',
+        'alphabetical'
+    ])),
+    defaultPriority: v.optional(vTaskPriority),
+    defaultDeadlineDays: v.optional(v.picklist([
+        'none',
+        'today',
+        'tomorrow',
+        'three_days',
+        'one_week'
+    ])),
+    cardDensity: v.optional(v.picklist(['compact', 'comfortable'])),
+    showCompletedTasks: v.optional(v.boolean()),
+    newTaskPosition: v.optional(v.picklist(['top', 'bottom'])),
+    naturalLanguageDates: v.optional(v.boolean())
+});
 
 export const vUpdateTaskSettingsResponse = vTaskSettings;
 

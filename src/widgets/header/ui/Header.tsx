@@ -9,7 +9,7 @@ export const Header = () => (
       py-3.5 dark:bg-black'>
     <ToggleSidebarTrigger />
     <ToggleMobileMenuTrigger />
-    <div className='flex items-center gap-3.5'>
+    <div className='flex items-center gap-4'>
       <SettingsButton />
       <UserInfo />
     </div>

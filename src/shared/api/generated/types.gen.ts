@@ -241,7 +241,15 @@ export type UpdateGeneralSettingsResponses = {
 export type UpdateGeneralSettingsResponse = UpdateGeneralSettingsResponses[keyof UpdateGeneralSettingsResponses];
 
 export type UpdateTaskSettingsData = {
-    body: TaskSettings;
+    body: {
+        sortTasksBy?: 'manual' | 'priority' | 'deadline' | 'created' | 'alphabetical';
+        defaultPriority?: TaskPriority;
+        defaultDeadlineDays?: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
+        cardDensity?: 'compact' | 'comfortable';
+        showCompletedTasks?: boolean;
+        newTaskPosition?: 'top' | 'bottom';
+        naturalLanguageDates?: boolean;
+    };
     path?: never;
     query?: never;
     url: '/user/settings/task';

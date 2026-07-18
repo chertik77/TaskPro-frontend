@@ -49,7 +49,7 @@ const Section = ({ title, children, isLoading }: SectionProps) => (
 )
 
 const Item = ({ children, className }: ChildrenProps) => (
-  <div className={cn('flex items-start justify-between gap-4 p-2', className)}>
+  <div className={cn('flex items-start justify-between gap-5 p-2', className)}>
     {children}
   </div>
 )

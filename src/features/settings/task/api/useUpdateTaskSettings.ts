@@ -5,16 +5,16 @@ import { SettingsContracts } from '@/entities/setting'
 
 import {
   getAllSettingsQueryKey,
-  updateGeneralSettingsMutation
+  updateTaskSettingsMutation
 } from '@/shared/api'
 
-export const useUpdateGeneralSettings = () => {
+export const useUpdateTaskSettings = () => {
   const queryClient = useQueryClient()
 
   const allSettinsQueryKey = getAllSettingsQueryKey()
 
   return useMutation({
-    ...updateGeneralSettingsMutation(),
+    ...updateTaskSettingsMutation(),
     meta: {
       errorMessage: 'We couldn’t update your settings. Please try again'
     },
@@ -38,7 +38,7 @@ export const useUpdateGeneralSettings = () => {
 
         return {
           ...parsedOldSettings,
-          general: { ...parsedOldSettings.general, ...body }
+          task: { ...parsedOldSettings.task, ...body }
         }
       })
 
