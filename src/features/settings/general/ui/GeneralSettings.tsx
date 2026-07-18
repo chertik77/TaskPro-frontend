@@ -119,6 +119,20 @@ export const GeneralSettings = () => {
           />
         </Settings.Control>
       </Settings.Item>
+      <Settings.Item>
+        <Settings.Content>
+          <Settings.Title>Confirm before delete</Settings.Title>
+          <Settings.Description>
+            Ask for confirmation before permanently deleting items.
+          </Settings.Description>
+        </Settings.Content>
+        <Settings.Control>
+          <Switch
+            checked={generalSettings?.confirmBeforeDelete}
+            onCheckedChange={v => update({ body: { confirmBeforeDelete: v } })}
+          />
+        </Settings.Control>
+      </Settings.Item>
     </Settings>
   )
 }
