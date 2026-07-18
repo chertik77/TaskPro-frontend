@@ -11,12 +11,16 @@ import { AccentColorSelect } from './AccentColorSelect'
 import { SelectControl } from './SelectControl'
 
 export const GeneralSettings = () => {
-  const generalSettings = useSettings(select => select.general)
+  const { data: generalSettings, isPending } = useSettings(
+    select => select.general
+  )
 
   const { mutate: update } = useUpdateGeneralSettings()
 
   return (
-    <Settings title='General'>
+    <Settings
+      title='General'
+      isLoading={isPending}>
       <Settings.Item>
         <Settings.Content>
           <Settings.Title>Theme</Settings.Title>

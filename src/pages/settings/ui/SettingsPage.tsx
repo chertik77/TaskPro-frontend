@@ -1,9 +1,13 @@
-import { Outlet, useNavigate } from '@tanstack/react-router'
+import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
+
+import { cn } from '@/shared/lib'
 
 import { MENU_DATA } from '../config/menu-data'
 
 export const SettingsPage = () => {
   const navigate = useNavigate()
+
+  const { pathname } = useLocation()
 
   return (
     <div className='flex items-center gap-6'>
@@ -16,9 +20,12 @@ export const SettingsPage = () => {
             <li key={name}>
               <button
                 onClick={() => navigate({ to: `/dashboard/settings${href}` })}
-                className='hocus:text-black dark:hocus:text-white
+                className={cn(
+                  `hocus:text-black dark:hocus:text-white
                   focus-visible:styled-outline flex w-full items-center gap-2
-                  py-2 text-black/50 transition-colors dark:text-white/50'>
+                  py-2 text-black/50 transition-colors dark:text-white/50`,
+                  pathname.endsWith(href) && 'text-black dark:text-white'
+                )}>
                 <Icon className='size-5 transition-colors' />
                 {name}
               </button>

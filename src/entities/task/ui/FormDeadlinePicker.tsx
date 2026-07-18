@@ -29,7 +29,9 @@ const date = new Date()
 
 export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
-  const firstDayOfWeek = useSettings(select => select.general?.firstDayOfWeek)
+  const { data: firstDayOfWeek } = useSettings(
+    select => select.general?.firstDayOfWeek
+  )
 
   const {
     fieldState: { error },

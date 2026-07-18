@@ -15,6 +15,7 @@ import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashbo
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
 import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
 import { Route as DashboardSettingsLayoutRouteImport } from './../../../app/routes/dashboard/settings/layout'
+import { Route as DashboardSettingsIndexRouteImport } from './../../../app/routes/dashboard/settings/index'
 import { Route as DashboardSettingsGeneralRouteImport } from './../../../app/routes/dashboard/settings/general'
 import { Route as DashboardSettingsAppearanceRouteImport } from './../../../app/routes/dashboard/settings/appearance'
 import { Route as DashboardSettingsAccessibilityRouteImport } from './../../../app/routes/dashboard/settings/accessibility'
@@ -50,6 +51,11 @@ const DashboardSettingsLayoutRoute = DashboardSettingsLayoutRouteImport.update({
   id: '/settings',
   path: '/settings',
   getParentRoute: () => DashboardLayoutRoute,
+} as any)
+const DashboardSettingsIndexRoute = DashboardSettingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardSettingsLayoutRoute,
 } as any)
 const DashboardSettingsGeneralRoute =
   DashboardSettingsGeneralRouteImport.update({
@@ -92,10 +98,10 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
+  '/dashboard/settings/': typeof DashboardSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard/settings': typeof DashboardSettingsLayoutRouteWithChildren
   '/auth': typeof AuthAuthLayoutRouteWithChildren
   '/dashboard/$boardId': typeof DashboardBoardIdRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -104,6 +110,7 @@ export interface FileRoutesByTo {
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
+  '/dashboard/settings': typeof DashboardSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -118,6 +125,7 @@ export interface FileRoutesById {
   '/dashboard/settings/accessibility': typeof DashboardSettingsAccessibilityRoute
   '/dashboard/settings/appearance': typeof DashboardSettingsAppearanceRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
+  '/dashboard/settings/': typeof DashboardSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -133,10 +141,10 @@ export interface FileRouteTypes {
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/appearance'
     | '/dashboard/settings/general'
+    | '/dashboard/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard/settings'
     | '/auth'
     | '/dashboard/$boardId'
     | '/dashboard'
@@ -145,6 +153,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/appearance'
     | '/dashboard/settings/general'
+    | '/dashboard/settings'
   id:
     | '__root__'
     | '/'
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/accessibility'
     | '/dashboard/settings/appearance'
     | '/dashboard/settings/general'
+    | '/dashboard/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +220,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsLayoutRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
+    '/dashboard/settings/': {
+      id: '/dashboard/settings/'
+      path: '/'
+      fullPath: '/dashboard/settings/'
+      preLoaderRoute: typeof DashboardSettingsIndexRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
     '/dashboard/settings/general': {
       id: '/dashboard/settings/general'
       path: '/general'
@@ -252,6 +269,7 @@ interface DashboardSettingsLayoutRouteChildren {
   DashboardSettingsAccessibilityRoute: typeof DashboardSettingsAccessibilityRoute
   DashboardSettingsAppearanceRoute: typeof DashboardSettingsAppearanceRoute
   DashboardSettingsGeneralRoute: typeof DashboardSettingsGeneralRoute
+  DashboardSettingsIndexRoute: typeof DashboardSettingsIndexRoute
 }
 
 const DashboardSettingsLayoutRouteChildren: DashboardSettingsLayoutRouteChildren =
@@ -259,6 +277,7 @@ const DashboardSettingsLayoutRouteChildren: DashboardSettingsLayoutRouteChildren
     DashboardSettingsAccessibilityRoute: DashboardSettingsAccessibilityRoute,
     DashboardSettingsAppearanceRoute: DashboardSettingsAppearanceRoute,
     DashboardSettingsGeneralRoute: DashboardSettingsGeneralRoute,
+    DashboardSettingsIndexRoute: DashboardSettingsIndexRoute,
   }
 
 const DashboardSettingsLayoutRouteWithChildren =

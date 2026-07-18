@@ -9,10 +9,10 @@ type SettingsSelect<TData> = (data: GetAllSettingsResponse) => TData
 export const useSettings = <TData = GetAllSettingsResponse>(
   select?: SettingsSelect<TData>
 ) => {
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     ...getAllSettingsOptions(),
     select
   })
 
-  return data
+  return { data, isPending }
 }

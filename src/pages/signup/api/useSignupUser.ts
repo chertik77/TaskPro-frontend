@@ -14,8 +14,7 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: (data: SignupSchema) =>
-      authClient.signUp.email({ ...data, theme: 'light' }),
+    mutationFn: (data: SignupSchema) => authClient.signUp.email(data),
     meta: {
       errorMessage: e =>
         e?.status === 422

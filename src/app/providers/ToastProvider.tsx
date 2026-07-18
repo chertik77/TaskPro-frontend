@@ -1,11 +1,11 @@
 import { Toaster } from 'sonner'
 
-import { useMe } from '@/entities/user'
+import { useSettings } from '@/entities/setting'
 
 import { useTabletAndBelowMediaQuery } from '@/shared/lib'
 
 export const ToastProvider = () => {
-  const user = useMe()
+  const { data: theme } = useSettings(state => state.general?.theme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 
@@ -15,7 +15,7 @@ export const ToastProvider = () => {
       richColors
       closeButton
       duration={5000}
-      theme={user?.theme === 'dark' ? 'dark' : 'light'}
+      theme={theme === 'dark' ? 'dark' : 'light'}
       className='text-balance'
     />
   )

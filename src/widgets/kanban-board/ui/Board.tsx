@@ -31,7 +31,7 @@ export const Board = () => {
     retry: 1
   })
 
-  const backgroundBlur = useSettings(
+  const { data: backgroundBlur } = useSettings(
     select => select.general?.boardBackgroundBlur
   )
 

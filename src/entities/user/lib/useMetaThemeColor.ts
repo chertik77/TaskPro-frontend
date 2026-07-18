@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useSettings } from '@/entities/setting/@x/user'
 
 export const useMetaThemeColor = () => {
-  const theme = useSettings(select => select.general?.theme)
+  const { data: theme } = useSettings(select => select.general?.theme)
 
   useEffect(() => {
     let themeColorMeta = document.querySelector(

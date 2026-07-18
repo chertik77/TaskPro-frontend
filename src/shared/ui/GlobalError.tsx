@@ -9,10 +9,10 @@ export const GlobalError = () => (
           className='tablet:size-40.5 size-31'
           alt='Sad cactus'
         />
-        <h3 className='mb-6 text-xl'>Something went wrong.</h3>
+        <h3 className='mb-6 text-xl text-black'>Something went wrong.</h3>
         <p
           className='text-md tablet:w-121.5 tablet:text-base mb-9 w-84
-            text-center text-black/70 dark:text-white/50'>
+            text-center text-black/70'>
           We are sorry, but something went wrong on our side. Try refreshing the
           page or contact our support team for further assistance.
         </p>
