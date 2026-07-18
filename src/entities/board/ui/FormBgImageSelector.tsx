@@ -1,7 +1,7 @@
 import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
 
-import { useSettings } from '@/entities/setting'
+import { useSettings } from '@/entities/setting/@x/board'
 
 import { resolveTheme } from '@/shared/config'
 import { FormItem, useFormField } from '@/shared/ui'

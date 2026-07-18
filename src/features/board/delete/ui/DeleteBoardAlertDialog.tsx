@@ -1,6 +1,6 @@
 import { TrashIcon } from 'lucide-react'
 
-import { ConfirmDeleteTrigger } from '@/entities/setting/ui/ConfirmDeleteTrigger'
+import { ConfirmDeleteTrigger } from '@/entities/setting'
 
 import {
   AlertDialog,

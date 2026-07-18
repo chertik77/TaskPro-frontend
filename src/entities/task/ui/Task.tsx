@@ -7,7 +7,7 @@ import { isToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
 import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
-import { useSettings } from '@/entities/setting'
+import { useSettings } from '@/entities/setting/@x/task'
 
 import { capitalize, cn } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'

@@ -6,7 +6,7 @@ import { startOfDay } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { useSettings } from '@/entities/setting'
+import { useSettings } from '@/entities/setting/@x/task'
 
 import { cn } from '@/shared/lib'
 import {
