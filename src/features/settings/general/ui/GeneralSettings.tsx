@@ -1,22 +1,22 @@
-import { Settings } from '@/entities/setting'
+import { Settings, useSettings } from '@/entities/setting'
 
-import { THEMES } from '@/shared/config'
 import { Switch } from '@/shared/ui'
 
-import { useGeneralSettings } from '../api/useGeneralSettings'
 import { useUpdateGeneralSettings } from '../api/useUpdateGeneralSettings'
+import { BOARD_BACKGROUND_BLUR_OPTIONS } from '../config/board-background-blur-options'
+import { DATE_FORMAT_OPTIONS } from '../config/date-format-options'
+import { FIRST_DAY_WEEK_OPTIONS } from '../config/first-day-week-options'
+import { THEME_OPTIONS } from '../config/theme-options'
 import { AccentColorSelect } from './AccentColorSelect'
 import { SelectControl } from './SelectControl'
 
 export const GeneralSettings = () => {
-  const { data, isPending } = useGeneralSettings()
+  const generalSettings = useSettings(select => select.general)
 
   const { mutate: update } = useUpdateGeneralSettings()
 
   return (
-    <Settings
-      title='General'
-      isLoading={isPending}>
+    <Settings title='General'>
       <Settings.Item>
         <Settings.Content>
           <Settings.Title>Theme</Settings.Title>
@@ -26,9 +26,9 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <SelectControl
-            value={data?.theme}
+            value={generalSettings?.theme}
             onChange={v => update({ body: { theme: v! } })}
-            options={THEMES}
+            options={THEME_OPTIONS}
           />
         </Settings.Control>
       </Settings.Item>
@@ -41,7 +41,7 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <AccentColorSelect
-            value={data?.accentColor}
+            value={generalSettings?.accentColor}
             onChange={v => update({ body: { accentColor: v! } })}
           />
         </Settings.Control>
@@ -55,9 +55,39 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <SelectControl
-            value={data?.firstDayOfWeek}
+            value={generalSettings?.firstDayOfWeek}
             onChange={v => update({ body: { firstDayOfWeek: v! } })}
-            options={['monday', 'sunday']}
+            options={FIRST_DAY_WEEK_OPTIONS}
+          />
+        </Settings.Control>
+      </Settings.Item>
+      <Settings.Item>
+        <Settings.Content>
+          <Settings.Title>Date format</Settings.Title>
+          <Settings.Description>
+            Select how dates are displayed across the app.
+          </Settings.Description>
+        </Settings.Content>
+        <Settings.Control>
+          <SelectControl
+            value={generalSettings?.dateFormat}
+            onChange={v => update({ body: { dateFormat: v! } })}
+            options={DATE_FORMAT_OPTIONS}
+          />
+        </Settings.Control>
+      </Settings.Item>
+      <Settings.Item>
+        <Settings.Content>
+          <Settings.Title>Board background blur</Settings.Title>
+          <Settings.Description>
+            Adjust the blur applied to board backgrounds.
+          </Settings.Description>
+        </Settings.Content>
+        <Settings.Control>
+          <SelectControl
+            value={generalSettings?.boardBackgroundBlur}
+            onChange={v => update({ body: { boardBackgroundBlur: v! } })}
+            options={BOARD_BACKGROUND_BLUR_OPTIONS}
           />
         </Settings.Control>
       </Settings.Item>
@@ -70,7 +100,7 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <Switch
-            checked={data?.usePointerCursors}
+            checked={generalSettings?.usePointerCursors}
             onCheckedChange={v => update({ body: { usePointerCursors: v } })}
           />
         </Settings.Control>
@@ -84,7 +114,7 @@ export const GeneralSettings = () => {
         </Settings.Content>
         <Settings.Control>
           <Switch
-            checked={data?.enableAnimations}
+            checked={generalSettings?.enableAnimations}
             onCheckedChange={v => update({ body: { enableAnimations: v } })}
           />
         </Settings.Control>

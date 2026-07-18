@@ -8,6 +8,7 @@ import {
   useGetParamBoardId,
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
+import { useSettings } from '@/entities/setting'
 
 import { getBoardByIdOptions } from '@/shared/api'
 import { cn, useDocumentTitle } from '@/shared/lib'
@@ -30,6 +31,10 @@ export const Board = () => {
     retry: 1
   })
 
+  const backgroundBlur = useSettings(
+    select => select.general?.boardBackgroundBlur
+  )
+
   useDocumentTitle(board?.title as string)
 
   if (isPending)
@@ -46,10 +51,18 @@ export const Board = () => {
   return (
     <ScrollArea.Root
       className='tablet:pt-6.5 desktop:pt-2.5 flex flex-col overflow-hidden
-        bg-cover bg-center pt-3.5'
-      style={{
-        backgroundImage: backgroundURL ? `url(${backgroundURL})` : undefined
-      }}>
+        pt-3.5'>
+      <div
+        className={cn('absolute inset-0 -z-10 scale-110 bg-cover bg-center', [
+          {
+            'blur-sm': backgroundBlur === 'low',
+            'blur-md': backgroundBlur === 'medium'
+          }
+        ])}
+        style={{
+          backgroundImage: backgroundURL ? `url(${backgroundURL})` : undefined
+        }}
+      />
       <div
         className={cn(
           `tablet:mb-6.5 desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-10 flex

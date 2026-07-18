@@ -1,4 +1,3 @@
-import { capitalize } from '@/shared/lib'
 import {
   Select,
   SelectContent,
@@ -8,30 +7,35 @@ import {
   SelectValue
 } from '@/shared/ui'
 
-type ThemeSelectProps<T> = {
+type SelectOption<T extends string> = {
+  value: T
+  label: string
+}
+
+type SelectControlProps<T extends string> = {
   value: T | undefined
-  onChange: (v: T | null) => void
-  options: readonly T[]
+  onChange: (value: T | null) => void
+  options: readonly SelectOption<T>[]
 }
 
 export const SelectControl = <T extends string>({
   value,
   onChange,
   options
-}: ThemeSelectProps<T>) => (
+}: SelectControlProps<T>) => (
   <Select
     value={value}
+    items={options}
     onValueChange={onChange}>
     <SelectTrigger>
-      <SelectValue>{value => capitalize(value)}</SelectValue>
+      <SelectValue />
     </SelectTrigger>
     <SelectContent>
-      {options.map(item => (
+      {options.map(option => (
         <SelectItem
-          key={item}
-          disabled={item === value}
-          value={item}>
-          <SelectItemText>{capitalize(item)}</SelectItemText>
+          key={option.value}
+          value={option.value}>
+          <SelectItemText>{option.label}</SelectItemText>
         </SelectItem>
       ))}
     </SelectContent>

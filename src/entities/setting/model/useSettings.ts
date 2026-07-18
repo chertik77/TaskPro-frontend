@@ -1,9 +1,18 @@
+import type { GetAllSettingsResponse } from '@/shared/api'
+
 import { useQuery } from '@tanstack/react-query'
 
 import { getAllSettingsOptions } from '@/shared/api'
 
-export const useSettings = () => {
-  const { data: settings } = useQuery(getAllSettingsOptions())
+type SettingsSelect<TData> = (data: GetAllSettingsResponse) => TData
 
-  return settings
+export const useSettings = <TData = GetAllSettingsResponse>(
+  select?: SettingsSelect<TData>
+) => {
+  const { data } = useQuery({
+    ...getAllSettingsOptions(),
+    select
+  })
+
+  return data
 }

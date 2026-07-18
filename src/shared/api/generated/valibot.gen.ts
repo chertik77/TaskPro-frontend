@@ -336,7 +336,7 @@ export const vUpdateColumnResponse = vColumn;
 export const vCreateTaskBody = v.object({
     title: v.pipe(v.string(), v.minLength(3)),
     description: v.optional(v.pipe(v.string(), v.minLength(3))),
-    deadline: v.optional(v.pipe(v.string(), v.isoDate())),
+    deadline: v.optional(v.pipe(v.string(), v.isoTimestamp())),
     priority: vTaskPriority,
     labels: v.optional(v.array(v.string()))
 });
@@ -369,7 +369,7 @@ export const vDeleteTaskResponse = v.void();
 export const vUpdateTaskBody = v.object({
     title: v.optional(v.pipe(v.string(), v.minLength(3))),
     description: v.nullish(v.pipe(v.string(), v.minLength(3))),
-    deadline: v.nullish(v.pipe(v.string(), v.isoDate())),
+    deadline: v.nullish(v.pipe(v.string(), v.isoTimestamp())),
     priority: v.optional(vTaskPriority),
     completed: v.optional(v.boolean()),
     columnId: v.optional(v.string()),

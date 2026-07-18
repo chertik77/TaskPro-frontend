@@ -9,15 +9,15 @@ import { resetSettings } from '../lib/resetSettings'
 import { useSettings } from '../model/useSettings'
 
 export const SettingsSync = () => {
-  const settings = useSettings()
+  const generalSettings = useSettings(settings => settings.general)
 
-  const cursor = settings?.general?.usePointerCursors
-  const theme = settings?.general?.theme
-  const animations = settings?.general?.enableAnimations
-  const accentColor = ACCENT_COLOR_MAP[settings?.general?.accentColor ?? 'blue']
+  const cursor = generalSettings?.usePointerCursors
+  const theme = generalSettings?.theme
+  const animations = generalSettings?.enableAnimations
+  const accentColor = ACCENT_COLOR_MAP[generalSettings?.accentColor ?? 'blue']
 
   useEffect(() => {
-    if (!settings) return resetSettings()
+    if (!generalSettings) return resetSettings()
 
     const root = document.documentElement
 
@@ -49,7 +49,7 @@ export const SettingsSync = () => {
 
     // Accent color
     document.documentElement.style.setProperty('--accent-color', accentColor)
-  }, [accentColor, animations, cursor, settings, theme])
+  }, [accentColor, animations, cursor, generalSettings, theme])
 
   return null
 }

@@ -7,11 +7,12 @@ import { isToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
 import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
+import { useSettings } from '@/entities/setting'
 
 import { capitalize, cn } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'
 
-import { formatDeadlineDate } from '../lib/format-deadline-date'
+import { DATE_FORMAT_MAP, formatDeadline } from '../lib/format-deadline'
 import { getTaskPriorityColor } from '../lib/priority-colors'
 
 type TaskContext = {
@@ -185,6 +186,8 @@ const TaskPriority = ({ className }: { className?: string }) => {
 const TaskDeadline = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
+  const dateFormat = useSettings(state => state.general?.dateFormat)
+
   return (
     task.deadline && (
       <div
@@ -195,7 +198,12 @@ const TaskDeadline = ({ className }: { className?: string }) => {
         <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
           Deadline
         </p>
-        <p className='text-sm'>{formatDeadlineDate(new Date(task.deadline))}</p>
+        <p className='text-sm'>
+          {formatDeadline(
+            task.deadline,
+            DATE_FORMAT_MAP[dateFormat ?? 'dd_mm_yyyy']
+          )}
+        </p>
       </div>
     )
   )
