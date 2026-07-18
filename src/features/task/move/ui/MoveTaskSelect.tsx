@@ -26,14 +26,16 @@ export const MoveTaskSelect = memo(
         disabled={isPending}>
         <SelectPrimitive.Trigger
           className={cn(
-            `hocus:text-black dark:hocus:text-white text-black/50
-            dark:text-white/50`,
+            'group text-black dark:text-white',
             columns && columns.length <= 1 && 'hidden'
           )}>
           {isPending ? (
             <Loader className='flex size-4 border-2' />
           ) : (
-            <CircleArrowRightIcon className='size-4' />
+            <CircleArrowRightIcon
+              className='group-hocus:opacity-100 size-4 opacity-50
+                transition-opacity'
+            />
           )}
         </SelectPrimitive.Trigger>
         <SelectContent

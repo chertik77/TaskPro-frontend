@@ -15,7 +15,7 @@ export const SidebarBoardCreationSection = () => (
         <DialogTrigger
           className='focus-visible:styled-outline bg-accent hocus:bg-accent/50
             flex h-9 w-10 items-center justify-center rounded-lg text-black
-            transition-colors duration-300'>
+            transition-colors'>
           <PlusIcon className='size-5' />
         </DialogTrigger>
       </AddBoardDialog>

@@ -47,7 +47,8 @@ export const Calendar = ({
       Chevron: ({ orientation }: ChevronProps) => (
         <ChevronRightIcon
           className={cn(
-            'size-4 stroke-black/80 dark:stroke-white',
+            `size-4 stroke-black opacity-80 transition-opacity dark:stroke-white
+            dark:opacity-100`,
             orientation === 'left' && 'rotate-180'
           )}
         />

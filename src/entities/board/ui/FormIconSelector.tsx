@@ -19,13 +19,13 @@ export const FormIconSelector = () => {
         <FormItem key={icon}>
           <Radio.Root
             value={icon}
-            className='focus-visible:styled-outline hocus:text-black
-              dark:hocus:text-white pointer-cursors:cursor-pointer text-black/50
-              data-checked:text-black dark:text-white/50
-              dark:data-checked:text-white'>
+            className='focus-visible:styled-outline
+              pointer-cursors:cursor-pointer group'>
             <DynamicIcon
               name={icon}
-              className='size-4.5'
+              className='group-hocus:opacity-100 size-4.5 stroke-black
+                opacity-50 transition-all group-data-checked:opacity-100
+                dark:stroke-white'
             />
           </Radio.Root>
         </FormItem>

@@ -32,6 +32,8 @@
 }
 
 @theme inline {
+  --default-transition-duration: 0.3s;
+
   --font-*: initial;
   --font-poppins: 'Poppins', sans-serif;
 

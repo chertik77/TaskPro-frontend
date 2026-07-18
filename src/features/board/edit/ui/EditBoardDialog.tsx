@@ -26,9 +26,12 @@ export const EditBoardDialog = ({ data }: EditBoardDialogProps) => {
       onOpenChange={setIsDialogOpen}>
       <DialogTrigger
         aria-label='Edit board'
-        className='focus-visible:styled-outline hocus:text-black
-          dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50'>
-        <PencilIcon className='size-4' />
+        className='focus-visible:styled-outline dark:text-white-soft group
+          text-black'>
+        <PencilIcon
+          className='group-hocus:opacity-100 size-4 opacity-50
+            transition-opacity'
+        />
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>Edit board</DialogTitle>
