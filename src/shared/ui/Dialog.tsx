@@ -58,7 +58,7 @@ const DialogDescription = ({
   ...props
 }: ComponentProps<typeof DialogPrimitive.Description>) => (
   <DialogPrimitive.Description
-    className={cn('text-sm', className)}
+    className={cn('text-base text-black/50 dark:text-white/50', className)}
     {...props}
   />
 )

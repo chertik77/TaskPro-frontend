@@ -13,7 +13,7 @@ type SessionsListProps = {
   sessions: UserTypes.InferedSession[] | undefined
 }
 export const SessionsList = ({ sessions }: SessionsListProps) =>
-  sessions?.map(({ id, browser, os, isCurrent, updatedAt, ipAddress }) => {
+  sessions?.map(({ id, browser, os, isCurrent, updatedAt }) => {
     const meta = [
       isCurrent && (
         <div
@@ -23,8 +23,6 @@ export const SessionsList = ({ sessions }: SessionsListProps) =>
           Current session
         </div>
       ),
-
-      ipAddress && <span key='ip'>{ipAddress}</span>,
 
       !isCurrent && updatedAt && (
         <span key='last-active'>

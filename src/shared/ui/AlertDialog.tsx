@@ -49,7 +49,7 @@ const AlertDialogDescription = ({
   ...props
 }: ComponentProps<typeof AlertDialogPrimitive.Description>) => (
   <AlertDialogPrimitive.Description
-    className={cn('text-md text-black/50 dark:text-white/50', className)}
+    className={cn('text-base text-black/50 dark:text-white/50', className)}
     {...props}
   />
 )
@@ -69,7 +69,7 @@ const AlertDialogCancel = ({
     render={
       <Button
         className={cn(
-          `enabled:hocus:bg-white-muted border-gray-light
+          `enabled:hocus:bg-black/10 border-gray-light
           dark:enabled:hocus:bg-black-muted h-10 w-auto flex-1 border
           bg-transparent text-black dark:border-white/20 dark:text-white`,
           className

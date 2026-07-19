@@ -17,7 +17,7 @@ export const sessionQueries = {
   passkey: () =>
     queryOptions({
       queryKey: sessionQueries.passkeys(),
-      queryFn: async () => await authClient.listPasskeys()
+      queryFn: async () => await authClient.passkey.listUserPasskeys()
     }),
   current: () =>
     queryOptions({

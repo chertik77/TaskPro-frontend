@@ -1,10 +1,11 @@
 import { Settings } from '@/entities/setting'
 
-import { useGetSessions } from '../api/useGetSecuritySettings'
+import { useGetSecuritySettings } from '../api/useGetSecuritySettings'
+import { PasskeysSection } from './passkeys/PasskeysSection'
 import { SessionsList } from './session-list/SessionList'
 
 export const SecuritySettings = () => {
-  const { data: sessions, isPending } = useGetSessions()
+  const { sessions, passkeys, isPending } = useGetSecuritySettings()
 
   return (
     <Settings
@@ -13,11 +14,7 @@ export const SecuritySettings = () => {
       <Settings.SubTitle>Sessions</Settings.SubTitle>
       <SessionsList sessions={sessions} />
       <Settings.SubTitle className='mt-10'>Passkeys</Settings.SubTitle>
-      <Settings.Item
-        className='dark:bg-black-muted bg-white-muted flex items-center gap-3
-          rounded-lg py-3 pr-8 pl-4'>
-        <div>hkhbbhjhbj</div>
-      </Settings.Item>
+      <PasskeysSection passkeys={passkeys} />
     </Settings>
   )
 }
