@@ -1,16 +1,21 @@
 import { WelcomePage } from '@/pages/welcome'
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import {
+  createFileRoute,
+  redirect,
+  stripSearchParams
+} from '@tanstack/react-router'
 import { toast } from 'sonner'
 import * as v from 'valibot'
 
 import { sessionQueries } from '@/entities/user'
 
 export const OauthErrorSearchSchema = v.object({
-  error: v.optional(v.pipe(v.literal('access_denied')))
+  error: v.optional(v.pipe(v.string()))
 })
 
 export const Route = createFileRoute('/')({
   validateSearch: OauthErrorSearchSchema,
+  search: { middlewares: [stripSearchParams({ error: '' })] },
   beforeLoad: async ({ context: { queryClient }, search: { error } }) => {
     const isAuthenticated = await queryClient.ensureQueryData(
       sessionQueries.current()

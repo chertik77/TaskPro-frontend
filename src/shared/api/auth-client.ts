@@ -48,7 +48,9 @@ const errorCodes = {
   USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL:
     'An account with this email address already exists. Please sign in or use a different email.',
   INVALID_EMAIL_OR_PASSWORD:
-    'The email or password you entered is incorrect. Please try again.'
+    'The email or password you entered is incorrect. Please try again.',
+  FAILED_TO_UNLINK_LAST_ACCOUNT:
+    'You cannot unlink your last account. Please add another account first.'
 } satisfies ErrorTypes
 
 export const getAuthErrorMessage = (code: string) => {

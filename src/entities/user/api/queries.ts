@@ -21,6 +21,13 @@ export const sessionQueries = {
       staleTime: 1000 * 30,
       queryFn: async () => await authClient.passkey.listUserPasskeys()
     }),
+  accounts: () => [...sessionQueries.all(), 'accounts'] as const,
+  account: () =>
+    queryOptions({
+      queryKey: sessionQueries.accounts(),
+      staleTime: 1000 * 30,
+      queryFn: async () => await authClient.listAccounts()
+    }),
   current: () =>
     queryOptions({
       queryKey: sessionQueries.all(),

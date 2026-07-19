@@ -1,4 +1,4 @@
-import { useSettings } from '@/entities/setting'
+import { useSettings } from '@/entities/setting/@x/board'
 
 import { cn } from '@/shared/lib'
 
