@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { sessionQueries } from '@/entities/user'
 
-import { authClient } from '@/shared/api'
+import { authClient, getAuthErrorMessage } from '@/shared/api'
 
 import { usePasskeyDialogStore } from '../model/passkey-dialog.store'
 
@@ -18,8 +18,10 @@ export const useAddPasskey = () => {
         'An error occurred while adding the passkey. Please try again shortly.'
     },
     onSuccess({ error }) {
-      if (error?.message === 'Previously registered') {
-        toast.error('Unable to register passkey.', {
+      if (error && 'code' in error) {
+        const errorMessage = getAuthErrorMessage(error.code)
+
+        toast.error(errorMessage, {
           description: 'The authenticator is already registered.'
         })
       }

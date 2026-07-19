@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { resetSettings } from '@/entities/setting'
 import { sessionQueries } from '@/entities/user'
 
 import { authClient } from '@/shared/api'
@@ -21,7 +20,6 @@ export const useLogoutUser = () => {
 
   const logoutUser = async () => {
     navigate({ to: '/' })
-    resetSettings()
     queryClient.setQueryData(sessionQueries.all(), null)
     await mutateAsync()
   }

@@ -32,21 +32,26 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => (
     {!!passkeys?.length && (
       <Separator className='my-1 block h-px w-full bg-black/20 dark:bg-white/20' />
     )}
-    {passkeys?.map(passkey => (
-      <Fragment key={passkey.id}>
-        <div className='flex w-full items-center'>
-          <KeyRoundIcon className='mr-2 size-5 opacity-50' />
-          <p>{passkey.name}</p>
-          <div className='ml-auto space-x-3'>
-            <EditPasskeyNameDialog
-              passkeyId={passkey.id}
-              name={passkey.name!}
-            />
-            <DeletePasskeyAlertDialog passkeyId={passkey.id} />
+    {passkeys &&
+      passkeys?.length > 0 &&
+      passkeys.map(passkey => (
+        <Fragment key={passkey.id}>
+          <div className='flex w-full items-center'>
+            <KeyRoundIcon className='mr-2 size-5 opacity-50' />
+            <p>{passkey.name}</p>
+            <div className='ml-auto space-x-3'>
+              <EditPasskeyNameDialog
+                passkeyId={passkey.id}
+                name={passkey.name!}
+              />
+              <DeletePasskeyAlertDialog passkeyId={passkey.id} />
+            </div>
           </div>
-        </div>
-        <AddPasskeyNameDialog passkeyId={passkey.id} />
-      </Fragment>
-    ))}
+          <AddPasskeyNameDialog
+            passkeyId={passkey.id}
+            passkeyAaguid={passkey.aaguid}
+          />
+        </Fragment>
+      ))}
   </Settings.Item>
 )

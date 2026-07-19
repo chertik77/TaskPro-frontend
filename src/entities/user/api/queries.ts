@@ -10,6 +10,7 @@ export const sessionQueries = {
   list: () =>
     queryOptions({
       queryKey: sessionQueries.lists(),
+      staleTime: 1000 * 30,
       queryFn: async () =>
         (await authClient.listSessions()) as unknown as InferedSession[]
     }),
@@ -17,6 +18,7 @@ export const sessionQueries = {
   passkey: () =>
     queryOptions({
       queryKey: sessionQueries.passkeys(),
+      staleTime: 1000 * 30,
       queryFn: async () => await authClient.passkey.listUserPasskeys()
     }),
   current: () =>
@@ -24,6 +26,7 @@ export const sessionQueries = {
       queryKey: sessionQueries.all(),
       queryFn: async () => await authClient.getSession(),
       staleTime: 1000 * 60 * 10, // 10 minutes
-      retry: false
+      retry: false,
+      refetchOnWindowFocus: true
     })
 }

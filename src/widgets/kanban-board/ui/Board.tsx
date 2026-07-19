@@ -1,3 +1,5 @@
+import type { AxiosError } from 'axios'
+
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import { useQuery } from '@tanstack/react-query'
 
@@ -5,12 +7,12 @@ import { DragAndDropProvider } from '@/features/drag-and-drop'
 
 import {
   BoardErrorView,
+  boardQueries,
   useGetParamBoardId,
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
 import { useSettings } from '@/entities/setting'
 
-import { getBoardByIdOptions } from '@/shared/api'
 import { cn, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
@@ -26,13 +28,10 @@ export const Board = () => {
     isPending,
     isError,
     error
-  } = useQuery({
-    ...getBoardByIdOptions({ path: { boardId } }),
-    retry: 1
-  })
+  } = useQuery(boardQueries.detail(boardId))
 
   const { data: backgroundBlur } = useSettings(
-    select => select.general?.boardBackgroundBlur
+    select => select.general.boardBackgroundBlur
   )
 
   useDocumentTitle(board?.title as string)
@@ -44,9 +43,9 @@ export const Board = () => {
       </div>
     )
 
-  if (isError) return <BoardErrorView error={error} />
+  if (isError) return <BoardErrorView error={error as AxiosError} />
 
-  const backgroundURL = board.background.url
+  const backgroundURL = board?.background.url
 
   return (
     <ScrollArea.Root
@@ -67,18 +66,19 @@ export const Board = () => {
         className={cn(
           `tablet:mb-6.5 desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-10 flex
           justify-between gap-5 pl-5 text-black`,
-          WHITE_TEXT_BOARD_BG_IDS.includes(board.background.identifier) &&
-            'text-white',
+          WHITE_TEXT_BOARD_BG_IDS.includes(
+            board?.background.identifier as string
+          ) && 'text-white',
           !backgroundURL && 'dark:text-white'
         )}>
         <h2 className='tablet:text-xl max-w-max truncate whitespace-pre'>
-          {board.title}
+          {board?.title}
         </h2>
         <Filters />
       </div>
       <ScrollArea.Viewport>
         <ScrollArea.Content className='w-full flex-1 pb-4'>
-          <DragAndDropProvider initialColumns={board.columns}>
+          <DragAndDropProvider initialColumns={board?.columns}>
             <ColumnList backgroundURL={backgroundURL} />
             <KanbanDragOverlay />
           </DragAndDropProvider>

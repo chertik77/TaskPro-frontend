@@ -28,6 +28,10 @@ export const queryClient = new QueryClient({
     }
   }),
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false }
+    queries: {
+      retry: 1,
+      gcTime: 30 * 60_000, // 30 minutes,
+      refetchOnWindowFocus: false
+    }
   }
 })

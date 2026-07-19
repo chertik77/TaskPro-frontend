@@ -13,7 +13,7 @@ export const FormBgImageSelector = () => {
     field: { value, onChange }
   } = useFormField()
 
-  const { data: theme } = useSettings(state => state.general?.theme)
+  const { data: theme } = useSettings(state => state.general.theme)
 
   return (
     <RadioGroup

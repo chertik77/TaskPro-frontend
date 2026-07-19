@@ -6,7 +6,7 @@ import { useNavigate } from '@tanstack/react-router'
 
 import { sessionQueries } from '@/entities/user'
 
-import { authClient } from '@/shared/api'
+import { authClient, getAuthErrorMessage } from '@/shared/api'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   const queryClient = useQueryClient()
@@ -16,10 +16,14 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   return useMutation({
     mutationFn: (data: SigninSchema) => authClient.signIn.email(data),
     meta: {
-      errorMessage: e =>
-        e?.status === 401
-          ? 'The email or password you entered is incorrect. Please try again.'
-          : 'An error occurred during sign-in. Our technical team has been notified. Please try again shortly.'
+      errorMessage: e => {
+        if (e && 'error' in e) {
+          return (
+            getAuthErrorMessage(e.error.code) ??
+            'An error occurred during sign-in. Our technical team has been notified. Please try again shortly.'
+          )
+        }
+      }
     },
     onSuccess(session) {
       reset()

@@ -186,7 +186,7 @@ const TaskPriority = ({ className }: { className?: string }) => {
 const TaskDeadline = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
-  const { data: dateFormat } = useSettings(state => state.general?.dateFormat)
+  const { data: dateFormat } = useSettings(state => state.general.dateFormat)
 
   return (
     task.deadline && (

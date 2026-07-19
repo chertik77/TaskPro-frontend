@@ -4662,11 +4662,6 @@ rc9@^3.0.1:
     defu "^6.1.6"
     destr "^2.0.5"
 
-react-basic-contenteditable@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-basic-contenteditable/-/react-basic-contenteditable-1.2.1.tgz#ef4e8209fbeab242230936c68e72556940292ace"
-  integrity sha512-X5kWT/tjbu9fnr0Jsbc3H9wS/ZL6pytniYiMxruYhU6uiiSBcuJJGyyhUFEKUCp7KHprTI91dH/53mVcZDhhvQ==
-
 react-day-picker@10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-10.0.1.tgz#8498e3f0ace2e9d03c209a5458c451a377c2d85c"

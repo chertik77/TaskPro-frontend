@@ -120,71 +120,71 @@ export const vGeneralSettings = v.object({
         'indigo',
         'green'
     ]), 'blue'),
-    firstDayOfWeek: v.optional(v.picklist(['monday', 'sunday']), 'monday'),
+    firstDayOfWeek: v.picklist(['monday', 'sunday']),
     dateFormat: v.optional(v.picklist([
         'dd_mm_yyyy',
         'mm_dd_yyyy',
         'yyyy_mm_dd'
-    ]), 'dd_mm_yyyy'),
-    boardBackgroundBlur: v.optional(v.picklist([
+    ])),
+    boardBackgroundBlur: v.picklist([
         'off',
         'low',
         'medium'
-    ]), 'off'),
-    usePointerCursors: v.optional(v.boolean(), true),
-    enableAnimations: v.optional(v.boolean(), true),
-    confirmBeforeDelete: v.optional(v.boolean(), true),
+    ]),
+    usePointerCursors: v.boolean(),
+    enableAnimations: v.boolean(),
+    confirmBeforeDelete: v.boolean(),
     userId: v.string()
 });
 
 export const vTaskSettings = v.object({
     id: v.string(),
-    sortTasksBy: v.optional(v.picklist([
+    sortTasksBy: v.picklist([
         'manual',
         'priority',
         'deadline',
         'created',
         'alphabetical'
-    ]), 'manual'),
-    defaultPriority: v.optional(vTaskPriority, 'without'),
-    defaultDeadlineDays: v.optional(v.picklist([
+    ]),
+    defaultPriority: vTaskPriority,
+    defaultDeadlineDays: v.picklist([
         'none',
         'today',
         'tomorrow',
         'three_days',
         'one_week'
-    ]), 'none'),
-    cardDensity: v.optional(v.picklist(['compact', 'comfortable']), 'compact'),
-    showCompletedTasks: v.optional(v.boolean(), true),
-    newTaskPosition: v.optional(v.picklist(['top', 'bottom']), 'bottom'),
-    naturalLanguageDates: v.optional(v.boolean(), true),
+    ]),
+    cardDensity: v.picklist(['compact', 'comfortable']),
+    showCompletedTasks: v.boolean(),
+    newTaskPosition: v.picklist(['top', 'bottom']),
+    naturalLanguageDates: v.boolean(),
     userId: v.string()
 });
 
 export const vLabelSettings = v.object({
     id: v.string(),
-    showLabelsOnCard: v.optional(v.boolean(), true),
-    labelDisplay: v.optional(v.picklist(['full', 'compact']), 'full'),
-    maxLabelsShown: v.optional(v.picklist([
+    showLabelsOnCard: v.boolean(),
+    labelDisplay: v.picklist(['full', 'compact']),
+    maxLabelsShown: v.picklist([
         'one',
         'two',
         'three',
         'all'
-    ]), 'three'),
+    ]),
     userId: v.string()
 });
 
 export const vAccessibilitySettings = v.object({
     id: v.string(),
-    fontSize: v.optional(v.picklist([
+    fontSize: v.picklist([
         'small',
         'medium',
         'large'
-    ]), 'medium'),
-    reducedMotion: v.optional(v.boolean(), false),
-    highContrast: v.optional(v.boolean(), false),
-    focusIndicators: v.optional(v.boolean(), true),
-    keyboardNavigationHints: v.optional(v.boolean(), false),
+    ]),
+    reducedMotion: v.boolean(),
+    highContrast: v.boolean(),
+    focusIndicators: v.boolean(),
+    keyboardNavigationHints: v.boolean(),
     userId: v.string()
 });
 
@@ -203,10 +203,10 @@ export const vHelpResponse = v.object({
 });
 
 export const vGetAllSettingsResponse = v.object({
-    general: v.optional(vGeneralSettings),
-    task: v.optional(vTaskSettings),
-    label: v.optional(vLabelSettings),
-    accessibility: v.optional(vAccessibilitySettings)
+    general: vGeneralSettings,
+    task: vTaskSettings,
+    label: vLabelSettings,
+    accessibility: vAccessibilitySettings
 });
 
 export const vUpdateGeneralSettingsBody = v.object({

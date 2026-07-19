@@ -12,6 +12,7 @@ export default defineConfig({
     '@tanstack/react-query',
     {
       name: '@hey-api/client-axios',
+      throwOnError: true,
       runtimeConfigPath: 'src/shared/lib/openapi/hey-api.ts'
     },
     { enums: 'javascript', name: '@hey-api/typescript' },

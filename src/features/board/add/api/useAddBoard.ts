@@ -3,7 +3,9 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { createBoardMutation, getAllBoardsQueryKey } from '@/shared/api'
+import { boardQueries } from '@/entities/board'
+
+import { createBoardMutation } from '@/shared/api'
 import { useSidebarStore } from '@/shared/store'
 
 export const useAddBoard = (
@@ -16,7 +18,7 @@ export const useAddBoard = (
   return useMutation({
     ...createBoardMutation(),
     meta: {
-      invalidates: [getAllBoardsQueryKey()],
+      invalidates: [boardQueries.lists()],
       errorMessage:
         'An error occurred while creating the board. Please try again shortly.'
     },

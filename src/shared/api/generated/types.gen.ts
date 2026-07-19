@@ -203,10 +203,10 @@ export type GetAllSettingsError = GetAllSettingsErrors[keyof GetAllSettingsError
 
 export type GetAllSettingsResponses = {
     200: {
-        general?: GeneralSettings;
-        task?: TaskSettings;
-        label?: LabelSettings;
-        accessibility?: AccessibilitySettings;
+        general: GeneralSettings;
+        task: TaskSettings;
+        label: LabelSettings;
+        accessibility: AccessibilitySettings;
     };
 };
 

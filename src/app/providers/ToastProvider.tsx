@@ -5,7 +5,7 @@ import { useSettings } from '@/entities/setting'
 import { useTabletAndBelowMediaQuery } from '@/shared/lib'
 
 export const ToastProvider = () => {
-  const { data: theme } = useSettings(state => state.general?.theme)
+  const { data: theme } = useSettings(state => state.general.theme)
 
   const isTabletAndBelow = useTabletAndBelowMediaQuery()
 

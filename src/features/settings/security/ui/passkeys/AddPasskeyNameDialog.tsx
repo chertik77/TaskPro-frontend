@@ -1,3 +1,4 @@
+import { getAuthenticatorName } from '@better-auth/passkey'
 import * as m from 'motion/react-m'
 
 import { formVariants, useAppForm } from '@/shared/lib'
@@ -19,11 +20,19 @@ import { useUpdatePasskey } from '../../api/useUpdatePasskey'
 import { AddPasskeyNameSchema } from '../../model/contract'
 import { usePasskeyDialogStore } from '../../model/passkey-dialog.store'
 
-export const AddPasskeyNameDialog = ({ passkeyId }: { passkeyId: string }) => {
+type AddPasskeyNameDialogProps = {
+  passkeyId: string
+  passkeyAaguid: string | null | undefined
+}
+
+export const AddPasskeyNameDialog = ({
+  passkeyId,
+  passkeyAaguid
+}: AddPasskeyNameDialogProps) => {
   const { isOpen, setIsOpen } = usePasskeyDialogStore()
 
   const form = useAppForm(AddPasskeyNameSchema, {
-    defaultValues: { name: 'Passkey' }
+    defaultValues: { name: getAuthenticatorName(passkeyAaguid) ?? 'Passkey' }
   })
 
   const { mutate: updatePasskey, isPending } = useUpdatePasskey(() =>

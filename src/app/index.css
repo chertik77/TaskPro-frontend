@@ -31,6 +31,10 @@
   font-display: swap;
 }
 
+:root {
+  --accent-color: var(--color-green);
+}
+
 @theme inline {
   --default-transition-duration: 0.3s;
 
@@ -149,8 +153,10 @@
 }
 
 @layer base {
-  html[data-pointer-cursors='true'] button:not(:disabled),
-  html[data-pointer-cursors='true'] [role='button']:not(:disabled) {
+  html:is(:not([data-pointer-cursors]), [data-pointer-cursors='true'])
+    button:not(:disabled),
+  html:is(:not([data-pointer-cursors]), [data-pointer-cursors='true'])
+    [role='button']:not(:disabled) {
     cursor: pointer;
   }
 
@@ -165,7 +171,14 @@
 }
 
 @custom-variant dark (&:where(html[data-theme='dark'] *));
-@custom-variant pointer-cursors (&:where(html[data-pointer-cursors="true"] *));
+@custom-variant pointer-cursors (
+  &:where(
+    html:is(
+      :not([data-pointer-cursors]),
+      [data-pointer-cursors="true"]
+    ) *
+  )
+);
 
 @custom-variant hocus {
   @media (hover: hover) {

@@ -39,3 +39,20 @@ function revokeSessionByIdPlugin() {
     })
   } satisfies BetterAuthClientPlugin
 }
+
+type ErrorTypes = Partial<Record<keyof typeof authClient.$ERROR_CODES, string>>
+
+const errorCodes = {
+  PREVIOUSLY_REGISTERED: 'Unable to register passkey.',
+  PASSKEY_NOT_FOUND: 'This passkey is not registered for your account.',
+  USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL:
+    'An account with this email address already exists. Please sign in or use a different email.',
+  INVALID_EMAIL_OR_PASSWORD:
+    'The email or password you entered is incorrect. Please try again.'
+} satisfies ErrorTypes
+
+export const getAuthErrorMessage = (code: string) => {
+  if (code in errorCodes) return errorCodes[code as keyof typeof errorCodes]
+
+  return ''
+}

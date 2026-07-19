@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { SettingsContracts } from '@/entities/setting'
+import { settingQueries, SettingsContracts } from '@/entities/setting'
 
 import {
   getAllSettingsQueryKey,
@@ -11,7 +11,7 @@ import {
 export const useUpdateTaskSettings = () => {
   const queryClient = useQueryClient()
 
-  const allSettinsQueryKey = getAllSettingsQueryKey()
+  const allSettinsQueryKey = settingQueries.lists()
 
   return useMutation({
     ...updateTaskSettingsMutation(),

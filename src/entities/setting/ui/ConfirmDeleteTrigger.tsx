@@ -19,7 +19,7 @@ export const ConfirmDeleteTrigger = ({
   children
 }: ConfirmDeleteTriggerProps) => {
   const confirmBeforeDelete = useSettings(
-    state => state.general?.confirmBeforeDelete
+    state => state.general.confirmBeforeDelete
   )
 
   if (!confirmBeforeDelete) {

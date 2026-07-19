@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui'
 export const UserInfo = () => {
   const user = useMe()
 
-  const { data: theme } = useSettings(state => state.general?.theme)
+  const { data: theme } = useSettings(state => state.general.theme)
 
   const name = user?.name ?? 'Guest'
 

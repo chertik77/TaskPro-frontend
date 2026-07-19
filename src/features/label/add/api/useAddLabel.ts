@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { useLabelModalStore } from '@/entities/label'
+import { labelQueries, useLabelModalStore } from '@/entities/label'
 
-import { createLabelMutation, getAllLabelsQueryKey } from '@/shared/api'
+import { createLabelMutation } from '@/shared/api'
 
 export const useAddLabel = (onCreatedLabel: (...event: unknown[]) => void) => {
   const { setModal } = useLabelModalStore()
@@ -10,7 +10,7 @@ export const useAddLabel = (onCreatedLabel: (...event: unknown[]) => void) => {
   return useMutation({
     ...createLabelMutation(),
     meta: {
-      invalidates: [getAllLabelsQueryKey()],
+      invalidates: [labelQueries.lists()],
       errorMessage:
         'An error occurred while adding the label. Please try again shortly.'
     },

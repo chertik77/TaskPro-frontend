@@ -24,7 +24,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 /**
  * Send email need help
  */
-export const help = <ThrowOnError extends boolean = false>(options: Options<HelpData, ThrowOnError>): RequestResult<HelpResponses, HelpErrors, ThrowOnError> => (options.client ?? client).post<HelpResponses, HelpErrors, ThrowOnError>({
+export const help = <ThrowOnError extends boolean = true>(options: Options<HelpData, ThrowOnError>): RequestResult<HelpResponses, HelpErrors, ThrowOnError> => (options.client ?? client).post<HelpResponses, HelpErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vHelpBody,
         path: v.optional(v.never()),
@@ -44,7 +44,7 @@ export const help = <ThrowOnError extends boolean = false>(options: Options<Help
 /**
  * Get all user settings
  */
-export const getAllSettings = <ThrowOnError extends boolean = false>(options?: Options<GetAllSettingsData, ThrowOnError>): RequestResult<GetAllSettingsResponses, GetAllSettingsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllSettingsResponses, GetAllSettingsErrors, ThrowOnError>({
+export const getAllSettings = <ThrowOnError extends boolean = true>(options?: Options<GetAllSettingsData, ThrowOnError>): RequestResult<GetAllSettingsResponses, GetAllSettingsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllSettingsResponses, GetAllSettingsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: v.optional(v.never()),
@@ -60,7 +60,7 @@ export const getAllSettings = <ThrowOnError extends boolean = false>(options?: O
 /**
  * Update general settings
  */
-export const updateGeneralSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateGeneralSettingsData, ThrowOnError>): RequestResult<UpdateGeneralSettingsResponses, UpdateGeneralSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateGeneralSettingsResponses, UpdateGeneralSettingsErrors, ThrowOnError>({
+export const updateGeneralSettings = <ThrowOnError extends boolean = true>(options: Options<UpdateGeneralSettingsData, ThrowOnError>): RequestResult<UpdateGeneralSettingsResponses, UpdateGeneralSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateGeneralSettingsResponses, UpdateGeneralSettingsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateGeneralSettingsBody,
         path: v.optional(v.never()),
@@ -80,7 +80,7 @@ export const updateGeneralSettings = <ThrowOnError extends boolean = false>(opti
 /**
  * Update task settings
  */
-export const updateTaskSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateTaskSettingsData, ThrowOnError>): RequestResult<UpdateTaskSettingsResponses, UpdateTaskSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTaskSettingsResponses, UpdateTaskSettingsErrors, ThrowOnError>({
+export const updateTaskSettings = <ThrowOnError extends boolean = true>(options: Options<UpdateTaskSettingsData, ThrowOnError>): RequestResult<UpdateTaskSettingsResponses, UpdateTaskSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTaskSettingsResponses, UpdateTaskSettingsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateTaskSettingsBody,
         path: v.optional(v.never()),
@@ -100,7 +100,7 @@ export const updateTaskSettings = <ThrowOnError extends boolean = false>(options
 /**
  * Update label settings
  */
-export const updateLabelSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateLabelSettingsData, ThrowOnError>): RequestResult<UpdateLabelSettingsResponses, UpdateLabelSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateLabelSettingsResponses, UpdateLabelSettingsErrors, ThrowOnError>({
+export const updateLabelSettings = <ThrowOnError extends boolean = true>(options: Options<UpdateLabelSettingsData, ThrowOnError>): RequestResult<UpdateLabelSettingsResponses, UpdateLabelSettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateLabelSettingsResponses, UpdateLabelSettingsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateLabelSettingsBody,
         path: v.optional(v.never()),
@@ -120,7 +120,7 @@ export const updateLabelSettings = <ThrowOnError extends boolean = false>(option
 /**
  * Update accessibility settings
  */
-export const updateAccessibilitySettings = <ThrowOnError extends boolean = false>(options: Options<UpdateAccessibilitySettingsData, ThrowOnError>): RequestResult<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError>({
+export const updateAccessibilitySettings = <ThrowOnError extends boolean = true>(options: Options<UpdateAccessibilitySettingsData, ThrowOnError>): RequestResult<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateAccessibilitySettingsBody,
         path: v.optional(v.never()),
@@ -140,7 +140,7 @@ export const updateAccessibilitySettings = <ThrowOnError extends boolean = false
 /**
  * Get all boards
  */
-export const getAllBoards = <ThrowOnError extends boolean = false>(options?: Options<GetAllBoardsData, ThrowOnError>): RequestResult<GetAllBoardsResponses, GetAllBoardsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllBoardsResponses, GetAllBoardsErrors, ThrowOnError>({
+export const getAllBoards = <ThrowOnError extends boolean = true>(options?: Options<GetAllBoardsData, ThrowOnError>): RequestResult<GetAllBoardsResponses, GetAllBoardsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllBoardsResponses, GetAllBoardsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: v.optional(v.never()),
@@ -156,7 +156,7 @@ export const getAllBoards = <ThrowOnError extends boolean = false>(options?: Opt
 /**
  * Create new board
  */
-export const createBoard = <ThrowOnError extends boolean = false>(options: Options<CreateBoardData, ThrowOnError>): RequestResult<CreateBoardResponses, CreateBoardErrors, ThrowOnError> => (options.client ?? client).post<CreateBoardResponses, CreateBoardErrors, ThrowOnError>({
+export const createBoard = <ThrowOnError extends boolean = true>(options: Options<CreateBoardData, ThrowOnError>): RequestResult<CreateBoardResponses, CreateBoardErrors, ThrowOnError> => (options.client ?? client).post<CreateBoardResponses, CreateBoardErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vCreateBoardBody,
         path: v.optional(v.never()),
@@ -176,7 +176,7 @@ export const createBoard = <ThrowOnError extends boolean = false>(options: Optio
 /**
  * Delete board by id
  */
-export const deleteBoard = <ThrowOnError extends boolean = false>(options: Options<DeleteBoardData, ThrowOnError>): RequestResult<DeleteBoardResponses, DeleteBoardErrors, ThrowOnError> => (options.client ?? client).delete<DeleteBoardResponses, DeleteBoardErrors, ThrowOnError>({
+export const deleteBoard = <ThrowOnError extends boolean = true>(options: Options<DeleteBoardData, ThrowOnError>): RequestResult<DeleteBoardResponses, DeleteBoardErrors, ThrowOnError> => (options.client ?? client).delete<DeleteBoardResponses, DeleteBoardErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: vDeleteBoardPath,
@@ -191,7 +191,7 @@ export const deleteBoard = <ThrowOnError extends boolean = false>(options: Optio
 /**
  * Get board by id
  */
-export const getBoardById = <ThrowOnError extends boolean = false>(options: Options<GetBoardByIdData, ThrowOnError>): RequestResult<GetBoardByIdResponses, GetBoardByIdErrors, ThrowOnError> => (options.client ?? client).get<GetBoardByIdResponses, GetBoardByIdErrors, ThrowOnError>({
+export const getBoardById = <ThrowOnError extends boolean = true>(options: Options<GetBoardByIdData, ThrowOnError>): RequestResult<GetBoardByIdResponses, GetBoardByIdErrors, ThrowOnError> => (options.client ?? client).get<GetBoardByIdResponses, GetBoardByIdErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: vGetBoardByIdPath,
@@ -207,7 +207,7 @@ export const getBoardById = <ThrowOnError extends boolean = false>(options: Opti
 /**
  * Update board by id
  */
-export const updateBoard = <ThrowOnError extends boolean = false>(options: Options<UpdateBoardData, ThrowOnError>): RequestResult<UpdateBoardResponses, UpdateBoardErrors, ThrowOnError> => (options.client ?? client).patch<UpdateBoardResponses, UpdateBoardErrors, ThrowOnError>({
+export const updateBoard = <ThrowOnError extends boolean = true>(options: Options<UpdateBoardData, ThrowOnError>): RequestResult<UpdateBoardResponses, UpdateBoardErrors, ThrowOnError> => (options.client ?? client).patch<UpdateBoardResponses, UpdateBoardErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateBoardBody,
         path: vUpdateBoardPath,
@@ -227,7 +227,7 @@ export const updateBoard = <ThrowOnError extends boolean = false>(options: Optio
 /**
  * Create new column
  */
-export const createColumn = <ThrowOnError extends boolean = false>(options: Options<CreateColumnData, ThrowOnError>): RequestResult<CreateColumnResponses, CreateColumnErrors, ThrowOnError> => (options.client ?? client).post<CreateColumnResponses, CreateColumnErrors, ThrowOnError>({
+export const createColumn = <ThrowOnError extends boolean = true>(options: Options<CreateColumnData, ThrowOnError>): RequestResult<CreateColumnResponses, CreateColumnErrors, ThrowOnError> => (options.client ?? client).post<CreateColumnResponses, CreateColumnErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vCreateColumnBody,
         path: vCreateColumnPath,
@@ -247,7 +247,7 @@ export const createColumn = <ThrowOnError extends boolean = false>(options: Opti
 /**
  * Update columns order
  */
-export const updateColumnsOrder = <ThrowOnError extends boolean = false>(options: Options<UpdateColumnsOrderData, ThrowOnError>): RequestResult<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError>({
+export const updateColumnsOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateColumnsOrderData, ThrowOnError>): RequestResult<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateColumnsOrderBody,
         path: vUpdateColumnsOrderPath,
@@ -267,7 +267,7 @@ export const updateColumnsOrder = <ThrowOnError extends boolean = false>(options
 /**
  * Delete column by id
  */
-export const deleteColumn = <ThrowOnError extends boolean = false>(options: Options<DeleteColumnData, ThrowOnError>): RequestResult<DeleteColumnResponses, DeleteColumnErrors, ThrowOnError> => (options.client ?? client).delete<DeleteColumnResponses, DeleteColumnErrors, ThrowOnError>({
+export const deleteColumn = <ThrowOnError extends boolean = true>(options: Options<DeleteColumnData, ThrowOnError>): RequestResult<DeleteColumnResponses, DeleteColumnErrors, ThrowOnError> => (options.client ?? client).delete<DeleteColumnResponses, DeleteColumnErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: vDeleteColumnPath,
@@ -282,7 +282,7 @@ export const deleteColumn = <ThrowOnError extends boolean = false>(options: Opti
 /**
  * Update column by id
  */
-export const updateColumn = <ThrowOnError extends boolean = false>(options: Options<UpdateColumnData, ThrowOnError>): RequestResult<UpdateColumnResponses, UpdateColumnErrors, ThrowOnError> => (options.client ?? client).patch<UpdateColumnResponses, UpdateColumnErrors, ThrowOnError>({
+export const updateColumn = <ThrowOnError extends boolean = true>(options: Options<UpdateColumnData, ThrowOnError>): RequestResult<UpdateColumnResponses, UpdateColumnErrors, ThrowOnError> => (options.client ?? client).patch<UpdateColumnResponses, UpdateColumnErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateColumnBody,
         path: vUpdateColumnPath,
@@ -302,7 +302,7 @@ export const updateColumn = <ThrowOnError extends boolean = false>(options: Opti
 /**
  * Create new task
  */
-export const createTask = <ThrowOnError extends boolean = false>(options: Options<CreateTaskData, ThrowOnError>): RequestResult<CreateTaskResponses, CreateTaskErrors, ThrowOnError> => (options.client ?? client).post<CreateTaskResponses, CreateTaskErrors, ThrowOnError>({
+export const createTask = <ThrowOnError extends boolean = true>(options: Options<CreateTaskData, ThrowOnError>): RequestResult<CreateTaskResponses, CreateTaskErrors, ThrowOnError> => (options.client ?? client).post<CreateTaskResponses, CreateTaskErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vCreateTaskBody,
         path: vCreateTaskPath,
@@ -322,7 +322,7 @@ export const createTask = <ThrowOnError extends boolean = false>(options: Option
 /**
  * Update tasks order
  */
-export const updateTasksOrder = <ThrowOnError extends boolean = false>(options: Options<UpdateTasksOrderData, ThrowOnError>): RequestResult<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError>({
+export const updateTasksOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateTasksOrderData, ThrowOnError>): RequestResult<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateTasksOrderBody,
         path: vUpdateTasksOrderPath,
@@ -342,7 +342,7 @@ export const updateTasksOrder = <ThrowOnError extends boolean = false>(options: 
 /**
  * Delete task by id
  */
-export const deleteTask = <ThrowOnError extends boolean = false>(options: Options<DeleteTaskData, ThrowOnError>): RequestResult<DeleteTaskResponses, DeleteTaskErrors, ThrowOnError> => (options.client ?? client).delete<DeleteTaskResponses, DeleteTaskErrors, ThrowOnError>({
+export const deleteTask = <ThrowOnError extends boolean = true>(options: Options<DeleteTaskData, ThrowOnError>): RequestResult<DeleteTaskResponses, DeleteTaskErrors, ThrowOnError> => (options.client ?? client).delete<DeleteTaskResponses, DeleteTaskErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: vDeleteTaskPath,
@@ -357,7 +357,7 @@ export const deleteTask = <ThrowOnError extends boolean = false>(options: Option
 /**
  * Update task by id
  */
-export const updateTask = <ThrowOnError extends boolean = false>(options: Options<UpdateTaskData, ThrowOnError>): RequestResult<UpdateTaskResponses, UpdateTaskErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTaskResponses, UpdateTaskErrors, ThrowOnError>({
+export const updateTask = <ThrowOnError extends boolean = true>(options: Options<UpdateTaskData, ThrowOnError>): RequestResult<UpdateTaskResponses, UpdateTaskErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTaskResponses, UpdateTaskErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateTaskBody,
         path: vUpdateTaskPath,
@@ -377,7 +377,7 @@ export const updateTask = <ThrowOnError extends boolean = false>(options: Option
 /**
  * Get all labels
  */
-export const getAllLabels = <ThrowOnError extends boolean = false>(options?: Options<GetAllLabelsData, ThrowOnError>): RequestResult<GetAllLabelsResponses, GetAllLabelsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllLabelsResponses, GetAllLabelsErrors, ThrowOnError>({
+export const getAllLabels = <ThrowOnError extends boolean = true>(options?: Options<GetAllLabelsData, ThrowOnError>): RequestResult<GetAllLabelsResponses, GetAllLabelsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllLabelsResponses, GetAllLabelsErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: v.optional(v.never()),
@@ -393,7 +393,7 @@ export const getAllLabels = <ThrowOnError extends boolean = false>(options?: Opt
 /**
  * Create new label
  */
-export const createLabel = <ThrowOnError extends boolean = false>(options: Options<CreateLabelData, ThrowOnError>): RequestResult<CreateLabelResponses, CreateLabelErrors, ThrowOnError> => (options.client ?? client).post<CreateLabelResponses, CreateLabelErrors, ThrowOnError>({
+export const createLabel = <ThrowOnError extends boolean = true>(options: Options<CreateLabelData, ThrowOnError>): RequestResult<CreateLabelResponses, CreateLabelErrors, ThrowOnError> => (options.client ?? client).post<CreateLabelResponses, CreateLabelErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vCreateLabelBody,
         path: v.optional(v.never()),
@@ -413,7 +413,7 @@ export const createLabel = <ThrowOnError extends boolean = false>(options: Optio
 /**
  * Delete label by id
  */
-export const deleteLabel = <ThrowOnError extends boolean = false>(options: Options<DeleteLabelData, ThrowOnError>): RequestResult<DeleteLabelResponses, DeleteLabelErrors, ThrowOnError> => (options.client ?? client).delete<DeleteLabelResponses, DeleteLabelErrors, ThrowOnError>({
+export const deleteLabel = <ThrowOnError extends boolean = true>(options: Options<DeleteLabelData, ThrowOnError>): RequestResult<DeleteLabelResponses, DeleteLabelErrors, ThrowOnError> => (options.client ?? client).delete<DeleteLabelResponses, DeleteLabelErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: v.optional(v.never()),
         path: vDeleteLabelPath,
@@ -428,7 +428,7 @@ export const deleteLabel = <ThrowOnError extends boolean = false>(options: Optio
 /**
  * Update label by id
  */
-export const updateLabel = <ThrowOnError extends boolean = false>(options: Options<UpdateLabelData, ThrowOnError>): RequestResult<UpdateLabelResponses, UpdateLabelErrors, ThrowOnError> => (options.client ?? client).patch<UpdateLabelResponses, UpdateLabelErrors, ThrowOnError>({
+export const updateLabel = <ThrowOnError extends boolean = true>(options: Options<UpdateLabelData, ThrowOnError>): RequestResult<UpdateLabelResponses, UpdateLabelErrors, ThrowOnError> => (options.client ?? client).patch<UpdateLabelResponses, UpdateLabelErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
         body: vUpdateLabelBody,
         path: vUpdateLabelPath,

@@ -5,7 +5,6 @@ import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
 import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
 
-import { resetSettings } from '../lib/resetSettings'
 import { useSettings } from '../model/useSettings'
 
 export const SettingsSync = () => {
@@ -17,8 +16,6 @@ export const SettingsSync = () => {
   const accentColor = ACCENT_COLOR_MAP[settings?.accentColor ?? 'blue']
 
   useEffect(() => {
-    if (!settings) return resetSettings()
-
     const root = document.documentElement
 
     // Pointer cursors

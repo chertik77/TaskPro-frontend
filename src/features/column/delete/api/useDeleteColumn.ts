@@ -1,20 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { useGetParamBoardId } from '@/entities/board'
+import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
-import {
-  deleteColumnMutation,
-  getBoardByIdQueryKey,
-  vBoard
-} from '@/shared/api'
+import { deleteColumnMutation, vBoard } from '@/shared/api'
 
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = getBoardByIdQueryKey({ path: { boardId } })
+  const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
     ...deleteColumnMutation(),

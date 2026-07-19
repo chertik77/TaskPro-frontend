@@ -3,9 +3,9 @@ import type { UpdateTaskData } from '@/shared/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { useGetParamBoardId } from '@/entities/board'
+import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
-import { getBoardByIdQueryKey, updateTask, vBoard } from '@/shared/api'
+import { updateTask, vBoard } from '@/shared/api'
 
 type CompleteTaskMutation = UpdateTaskData['path'] &
   Pick<UpdateTaskData['body'], 'completed'>
@@ -15,7 +15,7 @@ export const useCompleteTask = () => {
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = getBoardByIdQueryKey({ path: { boardId } })
+  const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
     mutationFn: ({ taskId, completed }: CompleteTaskMutation) =>
@@ -41,7 +41,7 @@ export const useCompleteTask = () => {
           columns: parsedOldBoard.columns?.map(column => ({
             ...column,
             tasks: column.tasks?.map(task => {
-              if (task.id === taskId) return { ...task, completed }
+              if (task.id === taskId) return { ...task, completed: completed! }
 
               return task
             })
