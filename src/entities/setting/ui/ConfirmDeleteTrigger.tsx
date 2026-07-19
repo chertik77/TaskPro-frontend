@@ -1,4 +1,3 @@
-// shared/ui/ConfirmDeleteTrigger.tsx
 import type { ReactNode } from 'react'
 
 import { cn } from '@/shared/lib'

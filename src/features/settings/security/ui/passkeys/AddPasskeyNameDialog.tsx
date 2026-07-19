@@ -17,7 +17,7 @@ import {
 } from '@/shared/ui'
 
 import { useUpdatePasskey } from '../../api/useUpdatePasskey'
-import { AddPasskeyNameSchema } from '../../model/contract'
+import { PasskeyNameSchema } from '../../model/contract'
 import { usePasskeyDialogStore } from '../../model/passkey-dialog.store'
 
 type AddPasskeyNameDialogProps = {
@@ -31,7 +31,7 @@ export const AddPasskeyNameDialog = ({
 }: AddPasskeyNameDialogProps) => {
   const { isOpen, setIsOpen } = usePasskeyDialogStore()
 
-  const form = useAppForm(AddPasskeyNameSchema, {
+  const form = useAppForm(PasskeyNameSchema, {
     defaultValues: { name: getAuthenticatorName(passkeyAaguid) ?? 'Passkey' }
   })
 

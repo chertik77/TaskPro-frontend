@@ -19,7 +19,7 @@ import {
 } from '@/shared/ui'
 
 import { useUpdatePasskey } from '../../api/useUpdatePasskey'
-import { AddPasskeyNameSchema } from '../../model/contract'
+import { PasskeyNameSchema } from '../../model/contract'
 
 type EditPasskeyNameDialogProps = {
   passkeyId: string
@@ -32,7 +32,7 @@ export const EditPasskeyNameDialog = ({
 }: EditPasskeyNameDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const form = useAppForm(AddPasskeyNameSchema, {
+  const form = useAppForm(PasskeyNameSchema, {
     defaultValues: { name }
   })
 

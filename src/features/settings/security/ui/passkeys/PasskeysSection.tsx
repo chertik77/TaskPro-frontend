@@ -33,7 +33,7 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => (
       <Separator className='my-1 block h-px w-full bg-black/20 dark:bg-white/20' />
     )}
     {passkeys &&
-      passkeys?.length > 0 &&
+      passkeys.length > 0 &&
       passkeys.map(passkey => (
         <Fragment key={passkey.id}>
           <div className='flex w-full items-center'>

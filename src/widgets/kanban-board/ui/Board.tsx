@@ -6,12 +6,12 @@ import { useQuery } from '@tanstack/react-query'
 import { DragAndDropProvider } from '@/features/drag-and-drop'
 
 import {
+  BoardBackgroundImage,
   BoardErrorView,
   boardQueries,
   useGetParamBoardId,
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
-import { useSettings } from '@/entities/setting'
 
 import { cn, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
@@ -30,10 +30,6 @@ export const Board = () => {
     error
   } = useQuery(boardQueries.detail(boardId))
 
-  const { data: backgroundBlur } = useSettings(
-    select => select.general.boardBackgroundBlur
-  )
-
   useDocumentTitle(board?.title as string)
 
   if (isPending)
@@ -51,17 +47,7 @@ export const Board = () => {
     <ScrollArea.Root
       className='tablet:pt-6.5 desktop:pt-2.5 flex flex-col overflow-hidden
         pt-3.5'>
-      <div
-        className={cn('absolute inset-0 -z-10 scale-110 bg-cover bg-center', [
-          {
-            'blur-sm': backgroundBlur === 'low',
-            'blur-md': backgroundBlur === 'medium'
-          }
-        ])}
-        style={{
-          backgroundImage: backgroundURL ? `url(${backgroundURL})` : undefined
-        }}
-      />
+      <BoardBackgroundImage url={backgroundURL} />
       <div
         className={cn(
           `tablet:mb-6.5 desktop:mb-2.5 tablet:pl-8 desktop:pl-6 mb-10 flex

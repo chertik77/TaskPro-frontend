@@ -12,7 +12,8 @@ import { useSettings } from '@/entities/setting/@x/task'
 import { capitalize, cn } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'
 
-import { DATE_FORMAT_MAP, formatDeadline } from '../lib/format-deadline'
+import { DATE_FORMAT_MAP } from '../config/date-format-map'
+import { formatDeadline } from '../lib/format-deadline'
 import { getTaskPriorityColor } from '../lib/priority-colors'
 
 type TaskContext = {

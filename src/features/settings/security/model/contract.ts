@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-export const AddPasskeyNameSchema = v.object({
+export const PasskeyNameSchema = v.object({
   name: v.pipe(
     v.string(),
     v.trim(),
@@ -8,4 +8,4 @@ export const AddPasskeyNameSchema = v.object({
   )
 })
 
-export type AddPasskeyNameSchema = v.InferOutput<typeof AddPasskeyNameSchema>
+export type PasskeyNameSchema = v.InferOutput<typeof PasskeyNameSchema>

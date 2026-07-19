@@ -3,10 +3,7 @@ import { parse } from 'valibot'
 
 import { settingQueries, SettingsContracts } from '@/entities/setting'
 
-import {
-  getAllSettingsQueryKey,
-  updateTaskSettingsMutation
-} from '@/shared/api'
+import { updateTaskSettingsMutation } from '@/shared/api'
 
 export const useUpdateTaskSettings = () => {
   const queryClient = useQueryClient()
@@ -45,13 +42,10 @@ export const useUpdateTaskSettings = () => {
       return { previousSettings: parsedPreviousSettings }
     },
     onError: (_, __, context) => {
-      queryClient.setQueryData(
-        getAllSettingsQueryKey(),
-        context?.previousSettings
-      )
+      queryClient.setQueryData(allSettinsQueryKey, context?.previousSettings)
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: getAllSettingsQueryKey() })
+      queryClient.invalidateQueries({ queryKey: allSettinsQueryKey })
     }
   })
 }

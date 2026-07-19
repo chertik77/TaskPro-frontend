@@ -1,6 +1,7 @@
 export { useGetParamBoardId } from './lib/useGetParamBoardId'
 export { WHITE_TEXT_BOARD_BG_IDS } from './config/white-text-board-bg-ids'
 export { FormBgImageSelector } from './ui/FormBgImageSelector'
+export { BoardBackgroundImage } from './ui/BoardBackgroundImage'
 export { BoardErrorView } from './ui/BoardErrorView'
 export { FormIconSelector } from './ui/FormIconSelector'
 export { boardQueries } from './api/queries'
