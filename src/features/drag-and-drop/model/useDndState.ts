@@ -1,24 +1,14 @@
 import type { Column, Task } from '@/shared/api'
 
-import { useMemo, useState } from 'react'
-import { array, parse } from 'valibot'
-
-import { vColumn, vTask } from '@/shared/api'
+import { useState } from 'react'
 
 export const useDndState = (initialColumns: Column[] | undefined) => {
-  const [parsedColumns, parsedTasks] = useMemo(
-    () => [
-      parse(array(vColumn), initialColumns),
-      parse(
-        array(vTask),
-        initialColumns?.flatMap(c => c.tasks)
-      )
-    ],
-    [initialColumns]
+  const [columns, setColumns] = useState<Column[]>(initialColumns ?? [])
+
+  const [tasks, setTasks] = useState<Task[]>(
+    initialColumns?.flatMap(c => c.tasks ?? []) ?? []
   )
 
-  const [columns, setColumns] = useState(parsedColumns)
-  const [tasks, setTasks] = useState(parsedTasks)
   const [prevInitialColumns, setPrevInitialColumns] = useState(initialColumns)
 
   const [activeTask, setActiveTask] = useState<Task | null>(null)
@@ -28,14 +18,8 @@ export const useDndState = (initialColumns: Column[] | undefined) => {
   if (initialColumns !== prevInitialColumns) {
     setPrevInitialColumns(initialColumns)
 
-    const parsedColumns = parse(array(vColumn), initialColumns)
-    const parsedTasks = parse(
-      array(vTask),
-      parsedColumns.flatMap(c => c.tasks)
-    )
-
-    setColumns(parsedColumns)
-    setTasks(parsedTasks)
+    setColumns(initialColumns ?? [])
+    setTasks(initialColumns?.flatMap(c => c.tasks ?? []) ?? [])
   }
 
   return {

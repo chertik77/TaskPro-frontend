@@ -8,7 +8,7 @@ import { memo } from 'react'
 
 import { DeleteColumnAlertDialog } from '@/features/column/delete'
 import { EditColumnDialog } from '@/features/column/edit'
-import { useDragAndDrop } from '@/features/drag-and-drop'
+import { useDragAndDropSelector } from '@/features/drag-and-drop'
 import { AddTaskDialog } from '@/features/task/add'
 
 import { Column } from '@/entities/column'
@@ -31,7 +31,9 @@ export const MemoizedColumn = memo(
     draggableAttributes,
     draggableListeners
   }: MemoizedColumnProps) => {
-    const { tasks } = useDragAndDrop()
+    const tasks = useDragAndDropSelector(ctx =>
+      ctx.tasks?.filter(c => c.columnId === column.id)
+    )
 
     return (
       <Column column={column}>
@@ -55,7 +57,7 @@ export const MemoizedColumn = memo(
         <Column.ScrollArea>
           <Column.ScrollAreaViewport>
             <Column.ScrollAreaContent className='w-full'>
-              <TaskList tasks={tasks?.filter(c => c.columnId === column.id)} />
+              <TaskList tasks={tasks} />
             </Column.ScrollAreaContent>
           </Column.ScrollAreaViewport>
           <Column.ScrollAreaScrollbar>
