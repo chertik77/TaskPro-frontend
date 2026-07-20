@@ -1,5 +1,5 @@
-export * as SettingsTypes from './model/types'
-export * as SettingsContracts from './model/contract'
+export * as SettingTypes from './model/types'
+export * as SettingContracts from './model/contract'
 export { Settings } from './ui/Settings'
 export { SettingsSync } from './ui/SettingsSync'
 export { settingQueries } from './api/queries'

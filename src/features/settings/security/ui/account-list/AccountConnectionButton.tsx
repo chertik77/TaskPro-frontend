@@ -1,4 +1,5 @@
 import { useAccountConnection } from '../../api/useAccountConnection'
+import { SecurityActionButton } from '../SecurityActionButton'
 
 type AccountConnectionButtonProps = {
   isConnected: boolean
@@ -12,11 +13,9 @@ export const AccountConnectionButton = ({
   const { mutate, isPending } = useAccountConnection()
 
   return (
-    <button
+    <SecurityActionButton
       onClick={() => mutate({ providerId, isConnected })}
-      disabled={isPending}
-      className='focus-visible:styled-outline enabled:hocus:text-accent ml-auto
-        disabled:cursor-not-allowed disabled:opacity-50'>
+      disabled={isPending}>
       {isPending
         ? isConnected
           ? 'Disconnecting...'
@@ -24,6 +23,6 @@ export const AccountConnectionButton = ({
         : isConnected
           ? 'Disconnect'
           : 'Connect'}
-    </button>
+    </SecurityActionButton>
   )
 }

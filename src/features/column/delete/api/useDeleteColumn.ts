@@ -16,7 +16,7 @@ export const useDeleteColumn = () => {
     ...deleteColumnMutation(),
     meta: {
       errorMessage:
-        'An error occurred while deleting the column. Please try again shortly.'
+        'An error occurred while deleting the column. Please try again.'
     },
     onMutate: async ({ path: { columnId } }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })

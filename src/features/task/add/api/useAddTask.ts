@@ -17,7 +17,7 @@ export const useAddTask = (
     meta: {
       invalidates: [boardQueries.details()],
       errorMessage:
-        'An error occurred while creating the task. Please try again shortly.'
+        'An error occurred while creating the task. Please try again.'
     },
     onSuccess() {
       setIsDialogOpen(false)

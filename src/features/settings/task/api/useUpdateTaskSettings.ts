@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { settingQueries, SettingsContracts } from '@/entities/setting'
+import { SettingContracts, settingQueries } from '@/entities/setting'
 
 import { updateTaskSettingsMutation } from '@/shared/api'
 
@@ -21,7 +21,7 @@ export const useUpdateTaskSettings = () => {
       const previousSettings = queryClient.getQueryData(allSettinsQueryKey)
 
       const parsedPreviousSettings = parse(
-        SettingsContracts.SettingsSchema,
+        SettingContracts.SettingsSchema,
         previousSettings
       )
 
@@ -29,7 +29,7 @@ export const useUpdateTaskSettings = () => {
         if (!oldSettings) return oldSettings
 
         const parsedOldSettings = parse(
-          SettingsContracts.SettingsSchema,
+          SettingContracts.SettingsSchema,
           oldSettings
         )
 

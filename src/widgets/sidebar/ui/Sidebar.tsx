@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 
 import { NeedHelpDialog } from '@/features/user/need-help'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { useMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 import { useSidebarToggleShortcut } from '../lib/useSidebarToggleShortcut'
@@ -16,7 +16,7 @@ import { SidebarMobileMenu } from './SidebarMobileMenu'
 export const Sidebar = () => {
   const { isOpen } = useSidebarStore()
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
+  const isTabletAndBelow = useMediaQuery('(max-width: 1439px)')
 
   useSidebarToggleShortcut()
 

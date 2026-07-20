@@ -45,7 +45,13 @@ export const SettingsSync = () => {
     root.dataset.animations = String(animations ?? true)
 
     // Accent color
-    document.documentElement.style.setProperty('--accent-color', accentColor)
+    root.style.setProperty('--accent-color', accentColor)
+
+    return () => {
+      root.style.removeProperty('--accent-color')
+      for (const item of Object.keys(root.dataset)) delete root.dataset[item]
+      MotionGlobalConfig.skipAnimations = false
+    }
   }, [accentColor, animations, cursor, settings, theme])
 
   return null

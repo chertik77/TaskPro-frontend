@@ -18,7 +18,7 @@ export const useAddColumn = (
     meta: {
       invalidates: [boardQueries.details()],
       errorMessage:
-        'An error occurred while creating the column. Please try again shortly.'
+        'An error occurred while creating the column. Please try again.'
     },
     onSuccess() {
       setIsDialogOpen(false)

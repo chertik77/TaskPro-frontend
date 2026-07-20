@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useTabletAndBelowMediaQuery = (
-  mediaQuery: string = '(max-width: 1025px)'
-) => {
+export const useMediaQuery = (mediaQuery: string) => {
   const getMatches = (query: string) => window.matchMedia(query).matches
 
   const [matches, setMatches] = useState(() => getMatches(mediaQuery))

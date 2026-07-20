@@ -93,6 +93,7 @@ export type TaskPriority = typeof TaskPriority[keyof typeof TaskPriority];
 export type Label = {
     id: string;
     name: string;
+    description?: string | null;
     color: AccentColor;
     userId: string;
     taskId?: string | null;
@@ -140,7 +141,7 @@ export type TaskSettings = {
 
 export type LabelSettings = {
     id: string;
-    showLabelsOnCard: boolean;
+    showLabelsOnTask: boolean;
     labelDisplay: 'full' | 'compact';
     maxLabelsShown: 'one' | 'two' | 'three' | 'all';
     userId: string;
@@ -268,7 +269,11 @@ export type UpdateTaskSettingsResponses = {
 export type UpdateTaskSettingsResponse = UpdateTaskSettingsResponses[keyof UpdateTaskSettingsResponses];
 
 export type UpdateLabelSettingsData = {
-    body: LabelSettings;
+    body: {
+        showLabelsOnTask?: boolean;
+        labelDisplay?: 'full' | 'compact';
+        maxLabelsShown?: 'one' | 'two' | 'three' | 'all';
+    };
     path?: never;
     query?: never;
     url: '/user/settings/label';
@@ -667,6 +672,7 @@ export type GetAllLabelsResponse = GetAllLabelsResponses[keyof GetAllLabelsRespo
 export type CreateLabelData = {
     body: {
         name: string;
+        description?: string;
         color: AccentColor;
     };
     path?: never;
@@ -715,6 +721,7 @@ export type DeleteLabelResponse = DeleteLabelResponses[keyof DeleteLabelResponse
 export type UpdateLabelData = {
     body: {
         name?: string;
+        description?: string | null;
         color?: AccentColor;
     };
     path: {

@@ -1,6 +1,7 @@
 import { Loader } from '@/shared/ui'
 
 import { useRevokeSession } from '../../api/useRevokeSession'
+import { SecurityActionButton } from '../SecurityActionButton'
 
 type RevokeSessionButtonProps = {
   sessionId: string
@@ -16,11 +17,9 @@ export const RevokeSessionButton = ({
   const isRevoking = isPending && variables?.id === sessionId
 
   return (
-    <button
+    <SecurityActionButton
       disabled={isRevoking}
-      onClick={() => revokeSession({ id: sessionId })}
-      className='focus-visible:styled-outline enabled:hocus:text-accent ml-auto
-        disabled:cursor-not-allowed disabled:opacity-50'>
+      onClick={() => revokeSession({ id: sessionId })}>
       {isRevoking ? (
         <div className='flex items-center gap-1'>
           <Loader className='size-4' />
@@ -31,6 +30,6 @@ export const RevokeSessionButton = ({
       ) : (
         'Revoke'
       )}
-    </button>
+    </SecurityActionButton>
   )
 }

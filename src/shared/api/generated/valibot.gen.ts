@@ -60,6 +60,7 @@ export const vAccentColor = v.picklist([
 export const vLabel = v.object({
     id: v.string(),
     name: v.string(),
+    description: v.nullish(v.string()),
     color: vAccentColor,
     userId: v.string(),
     taskId: v.nullish(v.string()),
@@ -163,7 +164,7 @@ export const vTaskSettings = v.object({
 
 export const vLabelSettings = v.object({
     id: v.string(),
-    showLabelsOnCard: v.boolean(),
+    showLabelsOnTask: v.boolean(),
     labelDisplay: v.picklist(['full', 'compact']),
     maxLabelsShown: v.picklist([
         'one',
@@ -267,7 +268,16 @@ export const vUpdateTaskSettingsBody = v.object({
 
 export const vUpdateTaskSettingsResponse = vTaskSettings;
 
-export const vUpdateLabelSettingsBody = vLabelSettings;
+export const vUpdateLabelSettingsBody = v.object({
+    showLabelsOnTask: v.optional(v.boolean()),
+    labelDisplay: v.optional(v.picklist(['full', 'compact'])),
+    maxLabelsShown: v.optional(v.picklist([
+        'one',
+        'two',
+        'three',
+        'all'
+    ]))
+});
 
 export const vUpdateLabelSettingsResponse = vLabelSettings;
 
@@ -406,6 +416,7 @@ export const vGetAllLabelsResponse = v.array(vLabel);
 
 export const vCreateLabelBody = v.object({
     name: v.pipe(v.string(), v.minLength(2)),
+    description: v.optional(v.pipe(v.string(), v.minLength(3))),
     color: vAccentColor
 });
 
@@ -422,6 +433,7 @@ export const vDeleteLabelResponse = v.void();
 
 export const vUpdateLabelBody = v.object({
     name: v.optional(v.pipe(v.string(), v.minLength(2))),
+    description: v.nullish(v.pipe(v.string(), v.minLength(3))),
     color: v.optional(vAccentColor)
 });
 

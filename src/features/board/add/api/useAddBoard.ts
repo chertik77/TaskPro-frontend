@@ -20,7 +20,7 @@ export const useAddBoard = (
     meta: {
       invalidates: [boardQueries.lists()],
       errorMessage:
-        'An error occurred while creating the board. Please try again shortly.'
+        'An error occurred while creating the board. Please try again.'
     },
     onSuccess(data) {
       setIsDialogOpen(false)

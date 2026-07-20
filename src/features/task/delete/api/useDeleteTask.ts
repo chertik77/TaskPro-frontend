@@ -16,7 +16,7 @@ export const useDeleteTask = () => {
     ...deleteTaskMutation(),
     meta: {
       errorMessage:
-        'An error occurred while deleting the task. Please try again shortly.'
+        'An error occurred while deleting the task. Please try again.'
     },
     onMutate: async ({ path: { taskId } }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })

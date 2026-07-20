@@ -55,3 +55,11 @@ export {
   FormMessage,
   useFormField
 } from './Form'
+export {
+  Table,
+  TableHeader,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableCell
+} from './Table'

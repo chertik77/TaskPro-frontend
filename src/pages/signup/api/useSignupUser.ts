@@ -20,7 +20,7 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
         if (e && 'error' in e) {
           return (
             getAuthErrorMessage(e.error.code) ??
-            'An error occurred during sign-up. Our technical team has been notified. Please try again shortly.'
+            'An error occurred during sign-up. Our technical team has been notified. Please try again.'
           )
         }
       }

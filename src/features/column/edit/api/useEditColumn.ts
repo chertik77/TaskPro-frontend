@@ -14,7 +14,7 @@ export const useEditColumn = (
     meta: {
       invalidates: [boardQueries.details()],
       errorMessage:
-        'An error occurred while editing the column. Please try again shortly.'
+        'An error occurred while editing the column. Please try again.'
     },
     onSuccess: () => {
       setIsDialogOpen(false)

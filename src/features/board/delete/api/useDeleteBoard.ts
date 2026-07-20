@@ -19,7 +19,7 @@ export const useDeleteBoard = () => {
     mutationFn: () => deleteBoard({ path: { boardId } }),
     meta: {
       errorMessage:
-        'An error occurred while deleting the board. Please try again shortly.'
+        'An error occurred while deleting the board. Please try again.'
     },
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: allBoardsQueryKey })

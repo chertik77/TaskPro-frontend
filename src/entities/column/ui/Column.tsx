@@ -6,7 +6,7 @@ import { mergeProps, useRender } from '@base-ui/react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import { GripVerticalIcon } from 'lucide-react'
 
-import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { cn, useMediaQuery } from '@/shared/lib'
 
 type ColumnContext = {
   column: TColumn
@@ -81,7 +81,7 @@ const ColumnScrollArea = ({
   className,
   ...props
 }: ScrollArea.Root.Props) => {
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
+  const isTabletAndBelow = useMediaQuery('(max-width: 1025px)')
 
   return (
     <ScrollArea.Root

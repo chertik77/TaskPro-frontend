@@ -58,7 +58,7 @@ export const SettingsPage = () => {
           ))}
         </ul>
       </div>
-      <div className='h-full flex-1 py-6 pr-8'>
+      <div className='h-full min-w-0 flex-1 py-6 pr-8'>
         <Outlet />
       </div>
     </div>

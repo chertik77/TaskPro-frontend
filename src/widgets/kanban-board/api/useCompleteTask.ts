@@ -22,7 +22,7 @@ export const useCompleteTask = () => {
       updateTask({ path: { taskId }, body: { completed } }),
     meta: {
       errorMessage:
-        'An error occurred while completing the task. Please try again shortly.'
+        'An error occurred while completing the task. Please try again.'
     },
     onMutate: async ({ completed, taskId }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })

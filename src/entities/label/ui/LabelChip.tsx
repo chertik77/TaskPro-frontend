@@ -1,5 +1,6 @@
 import type { Label } from '@/shared/api'
 
+import { cn } from '@/shared/lib'
 import { createTypeSafeCombobox } from '@/shared/ui'
 
 import { LABEL_COLOR_MAP } from '../config/color-map'
@@ -19,7 +20,10 @@ export const LabelChip = ({ labelMap, values }: LabelChipProps) => (
       .map(label => (
         <Combobox.Chip
           key={label?.id}
-          className={LABEL_COLOR_MAP[label?.color ?? 'gray']}>
+          className={cn(
+            'truncate px-1.5',
+            LABEL_COLOR_MAP[label?.color ?? 'gray']
+          )}>
           {label?.name ?? 'Unknown'}
         </Combobox.Chip>
       ))}

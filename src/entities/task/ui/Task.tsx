@@ -6,6 +6,7 @@ import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
+import { LABEL_BASE_COLOR_MAP } from '@/entities/label'
 import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
 import { useSettings } from '@/entities/setting/@x/task'
 
@@ -134,26 +135,41 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
     task: { labels }
   } = useTaskContext()
 
-  if (!labels?.length) return null
+  const { data } = useSettings(state => state.label)
 
-  const labelsPerRow = 3
+  if (!labels?.length || !data?.showLabelsOnTask) return null
+
+  const max = {
+    one: 1,
+    two: 2,
+    three: 3,
+    all: Infinity
+  }[data?.maxLabelsShown ?? 'three']
+
+  const visibleLabels = labels.slice(0, max)
+
+  const hiddenCount = labels.length - visibleLabels.length
 
   return (
     <div
       className={cn('mb-2 flex flex-wrap items-center gap-1.5', className)}
       {...props}>
-      {labels.slice(0, labelsPerRow).map(label => (
+      {visibleLabels.map(label => (
         <Label
           key={label.id}
-          className={LABEL_COLOR_MAP[label.color]}>
-          {label.name}
+          className={cn(
+            data?.labelDisplay === 'compact'
+              ? LABEL_BASE_COLOR_MAP[label.color]
+              : LABEL_COLOR_MAP[label.color]
+          )}>
+          {data?.labelDisplay === 'full' && label.name}
         </Label>
       ))}
-      {labels.length > labelsPerRow && (
+      {hiddenCount > 0 && (
         <span
           className='bg-white-muted dark:bg-black-muted rounded-md px-2 py-0.5
             text-[11px]'>
-          +{labels.length - labelsPerRow}
+          +{hiddenCount}
         </span>
       )}
     </div>

@@ -15,7 +15,6 @@ export const useMoveTask = () =>
       updateTask({ path: { taskId }, body: { columnId } }),
     meta: {
       invalidates: [boardQueries.details()],
-      errorMessage:
-        'An error occurred while moving the task. Please try again shortly.'
+      errorMessage: 'An error occurred while moving the task. Please try again.'
     }
   })

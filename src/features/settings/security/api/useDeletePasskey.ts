@@ -14,7 +14,7 @@ export const useDeletePasskey = () => {
       authClient.passkey.deletePasskey({ id }),
     meta: {
       errorMessage:
-        'An error occurred while deleting the passkey. Please try again shortly.'
+        'An error occurred while deleting the passkey. Please try again.'
     },
     onMutate: async ({ id: passkeyId }) => {
       await queryClient.cancelQueries({ queryKey: allPasskeysQueryKey })

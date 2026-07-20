@@ -20,7 +20,7 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
         if (e && 'error' in e) {
           return (
             getAuthErrorMessage(e.error.code) ??
-            'An error occurred during sign-in. Our technical team has been notified. Please try again shortly.'
+            'An error occurred during sign-in. Our technical team has been notified. Please try again.'
           )
         }
       }

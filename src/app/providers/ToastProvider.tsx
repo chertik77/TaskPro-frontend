@@ -2,12 +2,12 @@ import { Toaster } from 'sonner'
 
 import { useSettings } from '@/entities/setting'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { useMediaQuery } from '@/shared/lib'
 
 export const ToastProvider = () => {
   const { data: theme } = useSettings(state => state.general.theme)
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
+  const isTabletAndBelow = useMediaQuery('(max-width: 1025px)')
 
   return (
     <Toaster

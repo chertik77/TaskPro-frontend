@@ -33,7 +33,7 @@ export const useAccountConnection = () => {
         if (e && 'error' in e) {
           return (
             getAuthErrorMessage(e.error.code) ??
-            'An error occurred while updating the account connection. Please try again shortly.'
+            'An error occurred while updating the account connection. Please try again.'
           )
         }
       }

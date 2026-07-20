@@ -15,7 +15,7 @@ export const useAddPasskey = () => {
     meta: {
       invalidates: [sessionQueries.passkeys()],
       errorMessage:
-        'An error occurred while adding the passkey. Please try again shortly.'
+        'An error occurred while adding the passkey. Please try again.'
     },
     onSuccess({ error }) {
       if (error && 'code' in error) {

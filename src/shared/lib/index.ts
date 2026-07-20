@@ -1,4 +1,4 @@
-export { useTabletAndBelowMediaQuery } from './media/useTabletAndBelowMediaQuery'
+export { useMediaQuery } from './media/useMediaQuery'
 export { useDocumentTitle } from './document-title/useDocumentTitle'
 export { useShouldAutoFocus } from './auto-focus/useShouldAutoFocus'
 export { formVariants } from './motion/form-variants'

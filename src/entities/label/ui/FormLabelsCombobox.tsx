@@ -94,11 +94,11 @@ export const FormLabelsCombobox = ({
               value={item.id}>
               <span
                 className={cn(
-                  'size-2 rounded-full',
+                  'mr-2 inline-block size-2 shrink-0 rounded-full',
                   LABEL_BASE_COLOR_MAP[item.color]
                 )}
               />
-              {item.name}
+              <span className='min-w-0 truncate'>{item.name}</span>
             </Combobox.Item>
           )}
         </Combobox.List>

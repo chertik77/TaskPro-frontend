@@ -75,7 +75,7 @@ const ComboboxItem = ({
       className
     )}
     {...props}>
-    {children}
+    <span className='min-w-0 truncate'>{children}</span>
     <ComboboxPrimitive.ItemIndicator
       render={
         <span
@@ -128,14 +128,14 @@ const ComboboxChip = ({
 }) => (
   <ComboboxPrimitive.Chip
     className={cn(
-      `text-md dark:bg-gray/20 bg-white-muted flex h-[calc(--spacing(6))] w-fit
-      items-center justify-center gap-1 rounded-sm px-1.5 py-2 whitespace-nowrap
+      `text-md dark:bg-gray/20 bg-white-muted flex h-6 w-fit items-center
+      justify-center gap-1 rounded-sm px-1.5 py-2 whitespace-nowrap
       has-disabled:pointer-events-none has-disabled:cursor-not-allowed
       has-disabled:opacity-50`,
       className
     )}
     {...props}>
-    {children}
+    <span className='min-w-0 truncate'>{children}</span>
     {showRemove && (
       <ComboboxPrimitive.ChipRemove className='opacity-50 hover:opacity-100'>
         <XIcon className='size-3' />

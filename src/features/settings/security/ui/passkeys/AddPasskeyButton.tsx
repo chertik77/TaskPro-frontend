@@ -1,15 +1,14 @@
 import { useAddPasskey } from '../../api/useAddPasskey'
+import { SecurityActionButton } from '../SecurityActionButton'
 
 export const AddPasskeyButton = () => {
   const { mutate: addPasskey, isPending } = useAddPasskey()
 
   return (
-    <button
+    <SecurityActionButton
       onClick={() => addPasskey()}
-      disabled={isPending}
-      className='focus-visible:styled-outline enabled:hocus:text-accent ml-auto
-        disabled:cursor-not-allowed disabled:opacity-50'>
+      disabled={isPending}>
       {isPending ? 'Adding...' : 'Add'}
-    </button>
+    </SecurityActionButton>
   )
 }

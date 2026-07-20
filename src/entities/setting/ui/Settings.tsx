@@ -3,7 +3,15 @@ import type { ReactNode } from 'react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
 
 import { cn } from '@/shared/lib'
-import { Loader } from '@/shared/ui'
+import {
+  Loader,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+  SelectTrigger,
+  SelectValue
+} from '@/shared/ui'
 
 type SectionProps = {
   title: string
@@ -76,11 +84,47 @@ const Control = ({ children, className }: ChildrenProps) => (
   <div className={cn('shrink-0', className)}>{children}</div>
 )
 
+type SelectOption<T extends string> = {
+  value: T
+  label: string
+}
+
+type SettingSelectProps<T extends string> = {
+  value: T | undefined
+  onChange: (value: T | null) => void
+  options: readonly SelectOption<T>[]
+}
+
+export const SettingSelect = <T extends string>({
+  value,
+  onChange,
+  options
+}: SettingSelectProps<T>) => (
+  <Select
+    value={value}
+    items={options}
+    onValueChange={onChange}>
+    <SelectTrigger>
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent>
+      {options.map(option => (
+        <SelectItem
+          key={option.value}
+          value={option.value}>
+          <SelectItemText>{option.label}</SelectItemText>
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+)
+
 export const Settings = Object.assign(Section, {
   SubTitle,
   Item,
   Content,
   Title,
   Description,
-  Control
+  Control,
+  Select: SettingSelect
 })

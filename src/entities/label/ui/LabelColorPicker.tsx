@@ -22,8 +22,8 @@ export const LabelColorPicker = () => {
           <Radio.Root
             value={color}
             className={cn(
-              `focus-visible:styled-outline block size-6 rounded-xl
-              transition-transform data-checked:scale-125`,
+              `focus-visible:styled-outline pointer-cursors:cursor-pointer block
+              size-6 rounded-xl transition-transform data-checked:scale-125`,
               LABEL_BASE_COLOR_MAP[color]
             )}
           />

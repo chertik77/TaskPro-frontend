@@ -31,7 +31,7 @@ export const AccentColorSelect = ({
               className='block size-3 rounded-full'
               style={{ backgroundColor: ACCENT_COLOR_MAP[v] }}
             />
-            {v}
+            {v ? capitalize(v) : ''}
           </div>
         )}
       </SelectValue>

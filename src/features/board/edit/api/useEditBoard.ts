@@ -18,7 +18,7 @@ export const useEditBoard = (
     meta: {
       invalidates: [boardQueries.all()],
       errorMessage:
-        'An error occurred while editing the board. Please try again shortly.'
+        'An error occurred while editing the board. Please try again.'
     },
     onSuccess: () => {
       setIsDialogOpen(false)

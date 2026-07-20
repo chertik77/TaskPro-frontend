@@ -18,7 +18,7 @@ export const useRevokeSession = () => {
     meta: {
       invalidates: [sessionQueries.lists()],
       errorMessage:
-        'An error occurred while revoking the session. Please try again shortly.'
+        'An error occurred while revoking the session. Please try again.'
     },
     onSuccess: (_, variables) => {
       if (variables.id === currentSession?.session.id) {

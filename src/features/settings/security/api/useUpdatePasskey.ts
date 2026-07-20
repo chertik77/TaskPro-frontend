@@ -16,7 +16,7 @@ export const useUpdatePasskey = (closeDialog: () => void) =>
     meta: {
       invalidates: [sessionQueries.passkeys()],
       errorMessage:
-        'An error occurred while updating the passkey. Please try again shortly.'
+        'An error occurred while updating the passkey. Please try again.'
     },
     onSuccess() {
       closeDialog()

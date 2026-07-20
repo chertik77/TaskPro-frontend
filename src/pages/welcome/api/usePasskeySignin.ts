@@ -15,9 +15,11 @@ export const usePasskeySignin = () => {
     mutationFn: () => authClient.signIn.passkey(),
     meta: {
       errorMessage:
-        'An error occurred while signing in with passkey. Please try again shortly.'
+        'An error occurred while signing in with passkey. Please try again.'
     },
     onSuccess({ data: session, error }) {
+      //! TODO: handle error
+
       if (error && 'code' in error) {
         const errorMessage = getAuthErrorMessage(error.code)
 
