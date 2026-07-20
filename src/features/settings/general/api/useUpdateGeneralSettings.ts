@@ -13,7 +13,7 @@ export const useUpdateGeneralSettings = () => {
   return useMutation({
     ...updateGeneralSettingsMutation(),
     meta: {
-      errorMessage: 'We couldn’t update your settings. Please try again'
+      errorMessage: 'We couldn’t update your settings. Please try again.'
     },
     onMutate: async ({ body }) => {
       await queryClient.cancelQueries({ queryKey: allSettinsQueryKey })

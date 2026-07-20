@@ -13,7 +13,7 @@ export const useUpdateTaskSettings = () => {
   return useMutation({
     ...updateTaskSettingsMutation(),
     meta: {
-      errorMessage: 'We couldn’t update your settings. Please try again'
+      errorMessage: 'We couldn’t update your settings. Please try again.'
     },
     onMutate: async ({ body }) => {
       await queryClient.cancelQueries({ queryKey: allSettinsQueryKey })

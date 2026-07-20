@@ -54,7 +54,7 @@ export const GENERAL_SETTINGS: SettingTypes.SettingDefinition<
     type: 'switch',
     key: 'enableAnimations',
     title: 'Enable animations',
-    description: ' Enable animations and transitions throughout the app.'
+    description: 'Enable animations and transitions throughout the app.'
   },
   {
     type: 'switch',

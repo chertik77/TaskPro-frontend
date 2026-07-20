@@ -6,8 +6,11 @@ import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
-import { LABEL_BASE_COLOR_MAP } from '@/entities/label'
-import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
+import {
+  Label,
+  LABEL_BASE_COLOR_MAP,
+  LABEL_COLOR_MAP
+} from '@/entities/label/@x/task'
 import { useSettings } from '@/entities/setting/@x/task'
 
 import { capitalize, cn } from '@/shared/lib'
