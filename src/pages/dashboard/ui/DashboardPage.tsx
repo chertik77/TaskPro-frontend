@@ -1,5 +1,5 @@
 import { Outlet } from '@tanstack/react-router'
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 
 import { SettingsSync } from '@/entities/setting'
 import { useMetaThemeColor } from '@/entities/user'
@@ -30,13 +30,13 @@ export const DashboardPage = () => {
       <SettingsSync />
       <LabelModalProvider />
       <div className='fixed top-0 right-0 block h-12 w-screen'>
-        <motion.div
+        <m.div
           className='grid h-screen grid-rows-[60px_minmax(0,1fr)]'
           animate={{ gridTemplateColumns: columns }}>
           <Sidebar />
           <Header />
           <Outlet />
-        </motion.div>
+        </m.div>
       </div>
     </>
   )
