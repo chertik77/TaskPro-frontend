@@ -31,7 +31,13 @@
   font-display: swap;
 }
 
+:root {
+  --accent-color: var(--color-green);
+}
+
 @theme inline {
+  --default-transition-duration: 0.3s;
+
   --font-*: initial;
   --font-poppins: 'Poppins', sans-serif;
 
@@ -45,11 +51,12 @@
   --color-white: #ffffff;
   --color-white-soft: #fcfcfc;
   --color-white-muted: #f6f6f7;
-  --color-brand: #bedbb0;
-  --color-brand-light: #9dc888;
-  --color-blue: #8fa1d0;
+  --color-accent: var(--accent-color);
+  --color-priority-low: #9bb7d4;
+  --color-priority-medium: #e5a8b7;
   --color-red: #dc2626;
-  --color-pink: #e09cb5;
+  --color-green: #bedbb0;
+  --color-green-light: #9dc888;
 
   --text-*: initial;
   --text-xs: 8px;
@@ -146,13 +153,32 @@
 }
 
 @layer base {
-  button:not(:disabled),
-  [role='button']:not(:disabled) {
+  html:is(:not([data-pointer-cursors]), [data-pointer-cursors='true'])
+    button:not(:disabled),
+  html:is(:not([data-pointer-cursors]), [data-pointer-cursors='true'])
+    [role='button']:not(:disabled) {
     cursor: pointer;
+  }
+
+  html[data-animations='false'] *,
+  html[data-animations='false'] *::before,
+  html[data-animations='false'] *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
   }
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(html[data-theme='dark'] *));
+@custom-variant pointer-cursors (
+  &:where(
+    html:is(
+      :not([data-pointer-cursors]),
+      [data-pointer-cursors="true"]
+    ) *
+  )
+);
 
 @custom-variant hocus {
   @media (hover: hover) {
@@ -209,11 +235,11 @@
 }
 
 @utility styled-outline {
-  @apply outline-brand outline-2;
+  @apply outline-accent outline-2;
 }
 
 @utility bg-soft-green {
-  @apply to-brand bg-linear-180 from-white;
+  @apply to-green bg-linear-180 from-white;
 }
 
 @utility disable-text-selection {

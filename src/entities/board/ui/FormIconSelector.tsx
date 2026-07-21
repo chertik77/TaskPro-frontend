@@ -2,9 +2,8 @@ import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
 import { DynamicIcon } from 'lucide-react/dynamic'
 
+import { BoardIcon } from '@/shared/api'
 import { FormItem, useFormField } from '@/shared/ui'
-
-import { BOARD_ICONS } from '../config/icon'
 
 export const FormIconSelector = () => {
   const {
@@ -16,17 +15,17 @@ export const FormIconSelector = () => {
       className='flex items-center gap-2'
       value={value}
       onValueChange={onChange}>
-      {BOARD_ICONS.map(icon => (
+      {Object.values(BoardIcon).map(icon => (
         <FormItem key={icon}>
           <Radio.Root
             value={icon}
-            className='focus-visible:styled-outline hocus:text-black
-              dark:hocus:text-white cursor-pointer text-black/50
-              data-checked:text-black dark:text-white/50
-              dark:data-checked:text-white'>
+            className='focus-visible:styled-outline
+              pointer-cursors:cursor-pointer group'>
             <DynamicIcon
               name={icon}
-              className='size-4.5'
+              className='group-hocus:opacity-100 size-4.5 stroke-black
+                opacity-50 transition-all group-data-checked:opacity-100
+                dark:stroke-white'
             />
           </Radio.Root>
         </FormItem>

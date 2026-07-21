@@ -1,7 +1,7 @@
 import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
 
-import { useMe } from '@/entities/user/@x/board'
+import { useSettings } from '@/entities/setting/@x/board'
 
 import { resolveTheme } from '@/shared/config'
 import { FormItem, useFormField } from '@/shared/ui'
@@ -13,7 +13,7 @@ export const FormBgImageSelector = () => {
     field: { value, onChange }
   } = useFormField()
 
-  const user = useMe()
+  const { data: theme } = useSettings(state => state.general.theme)
 
   return (
     <RadioGroup
@@ -24,18 +24,14 @@ export const FormBgImageSelector = () => {
         <FormItem key={id}>
           <Radio.Root
             value={id}
-            className='focus-visible:styled-outline group cursor-pointer
-              outline-offset-3'>
+            className='focus-visible:styled-outline group
+              pointer-cursors:cursor-pointer outline-offset-3'>
             <img
               className='rounded-lg transition-transform
                 group-data-checked:scale-125'
               width={28}
               height={28}
-              src={
-                typeof icon === 'object'
-                  ? icon[resolveTheme(user?.theme)]
-                  : icon
-              }
+              src={typeof icon === 'object' ? icon[resolveTheme(theme)] : icon}
               alt={id}
             />
           </Radio.Root>

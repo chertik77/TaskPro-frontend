@@ -23,7 +23,7 @@ const AlertDialogContent = ({
     <AlertDialogPrimitive.Popup
       className={cn(
         `bg-white-soft data-open:animate-modal-in data-closed:animate-modal-out
-        tablet:w-87.5 dark:border-brand/50 after:bg-black-overlay fixed top-1/2
+        tablet:w-87.5 dark:border-accent/50 after:bg-black-overlay fixed top-1/2
         left-1/2 z-50 w-84 -translate-x-1/2 -translate-y-1/2 rounded-lg p-6
         dark:border dark:bg-black`,
         className
@@ -49,7 +49,7 @@ const AlertDialogDescription = ({
   ...props
 }: ComponentProps<typeof AlertDialogPrimitive.Description>) => (
   <AlertDialogPrimitive.Description
-    className={cn('text-md text-black/50 dark:text-white/50', className)}
+    className={cn('text-base text-black/50 dark:text-white/50', className)}
     {...props}
   />
 )
@@ -69,7 +69,7 @@ const AlertDialogCancel = ({
     render={
       <Button
         className={cn(
-          `enabled:hocus:bg-white-muted border-gray-light
+          `enabled:hocus:bg-black/10 border-gray-light
           dark:enabled:hocus:bg-black-muted h-10 w-auto flex-1 border
           bg-transparent text-black dark:border-white/20 dark:text-white`,
           className

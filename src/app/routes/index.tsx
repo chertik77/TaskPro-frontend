@@ -6,7 +6,7 @@ import * as v from 'valibot'
 import { sessionQueries } from '@/entities/user'
 
 export const OauthErrorSearchSchema = v.object({
-  error: v.optional(v.pipe(v.literal('access_denied')))
+  error: v.optional(v.pipe(v.string()))
 })
 
 export const Route = createFileRoute('/')({

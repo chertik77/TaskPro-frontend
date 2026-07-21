@@ -1,16 +1,16 @@
 import type { Variants } from 'motion/react'
 
 import { Link } from '@tanstack/react-router'
+import { Google, Microsoft } from '@thesvg/react'
 import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
 
 import { authClient } from '@/shared/api'
 import { env } from '@/shared/config'
-import { SocialIcon } from '@/shared/ui'
+import { Logo } from '@/shared/ui'
 
+import { PasskeyButton } from './PasskeyButton'
 import { SocialButton } from './SocialButton'
-
-const MotionLink = m.create(Link)
 
 const container: Variants = {
   hidden: {},
@@ -56,10 +56,7 @@ export const WelcomePage = () => {
         <m.div
           variants={item}
           className='mt-6 flex items-center gap-3.5 text-white'>
-          <SocialIcon
-            name='taskpro-logo'
-            className='tablet:size-12 size-10'
-          />
+          <Logo className='tablet:size-12 size-10' />
           <h1 className='tablet:text-3xl text-2xl text-black'>Task Pro</h1>
         </m.div>
         <m.p
@@ -73,29 +70,28 @@ export const WelcomePage = () => {
           variants={item}
           className='space-y-3.5'>
           <SocialButton
+            icon={Google}
             provider='google'
             onClick={() => continueWithSocial('google')}
           />
           <SocialButton
+            icon={Microsoft}
             provider='microsoft'
             onClick={() => continueWithSocial('microsoft')}
           />
-          <MotionLink
-            whileHover={{ scale: 1.015 }}
-            whileTap={{ scale: 0.985 }}
-            transition={{ duration: 0.15 }}
+          <PasskeyButton />
+          <Link
             to='/auth/signup'
-            className='block w-84 rounded-lg bg-black py-3.5 text-center
-              text-white'>
+            className='focus-visible:outline-green-light block w-84 rounded-lg
+              bg-black py-3.5 text-center text-white focus-visible:outline-2'>
             Registration
-          </MotionLink>
-          <MotionLink
-            whileHover={{ opacity: 0.7 }}
+          </Link>
+          <Link
             to='/auth/signin'
-            className='focus-visible:styled-outline block text-center
-              text-black'>
+            className='focus-visible:outline-green-light block text-center
+              text-black focus-visible:outline-2'>
             Log In
-          </MotionLink>
+          </Link>
         </m.div>
       </m.div>
     </div>

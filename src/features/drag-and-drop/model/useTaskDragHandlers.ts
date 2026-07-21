@@ -29,40 +29,38 @@ export const useTaskDragHandlers = ({
   const onDragOver = ({ active, over }: DragOverEvent) => {
     if (!over || active.id === over.id) return
 
+    if (recentlyDraggedOverIdRef.current === over.id) return
+
     const isActiveATask = active.data.current?.type === 'task'
     const isDraggingOverATask = over.data.current?.type === 'task'
     const isDraggingOverAColumn = over.data.current?.type === 'column'
 
     if (!isActiveATask) return
 
+    recentlyDraggedOverIdRef.current = over.id
+
     if (isDraggingOverATask) {
-      setTimeout(() => {
-        setTasks(prevTasks => {
-          const activeTaskIndex = prevTasks.findIndex(c => c.id === active.id)
-          const overTaskIndex = prevTasks.findIndex(c => c.id === over.id)
+      setTasks(prevTasks => {
+        const activeTaskIndex = prevTasks.findIndex(c => c.id === active.id)
+        const overTaskIndex = prevTasks.findIndex(c => c.id === over.id)
 
-          const activeTask = prevTasks[activeTaskIndex]
-          const overTask = prevTasks[overTaskIndex]
+        const activeTask = prevTasks[activeTaskIndex]
+        const overTask = prevTasks[overTaskIndex]
 
-          recentlyDraggedOverIdRef.current = over.id
+        if (!activeTask || !overTask) return prevTasks
 
-          if (
-            activeTask &&
-            overTask &&
-            activeTask.columnId !== overTask.columnId
-          ) {
-            activeTask.columnId = overTask.columnId
+        if (activeTask.columnId !== overTask.columnId) {
+          activeTask.columnId = overTask.columnId
 
-            return arrayMove(
-              prevTasks,
-              activeTaskIndex,
-              Math.max(0, overTaskIndex - 1)
-            )
-          }
+          return arrayMove(
+            prevTasks,
+            activeTaskIndex,
+            Math.max(0, overTaskIndex - 1)
+          )
+        }
 
-          return arrayMove(prevTasks, activeTaskIndex, overTaskIndex)
-        })
-      }, 0)
+        return arrayMove(prevTasks, activeTaskIndex, overTaskIndex)
+      })
     }
 
     if (isDraggingOverAColumn) {
@@ -86,11 +84,10 @@ export const useTaskDragHandlers = ({
   const onDragEnd = ({ active }: DragEndEvent) => {
     setActiveTask(null)
 
-    if (
-      !active ||
-      active.data.current?.type !== 'task' ||
-      !recentlyDraggedOverIdRef.current
-    ) {
+    const draggedOverId = recentlyDraggedOverIdRef.current
+    recentlyDraggedOverIdRef.current = null
+
+    if (!active || active.data.current?.type !== 'task' || !draggedOverId) {
       return
     }
 

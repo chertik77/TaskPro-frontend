@@ -1,21 +1,27 @@
+import type { Task as TTask } from '@/shared/api'
 import type { ComponentProps } from 'react'
-import type { TaskSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { isToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
-import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
+import {
+  Label,
+  LABEL_BASE_COLOR_MAP,
+  LABEL_COLOR_MAP
+} from '@/entities/label/@x/task'
+import { useSettings } from '@/entities/setting/@x/task'
 
 import { capitalize, cn } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'
 
-import { formatDeadlineDate } from '../lib/format-deadline-date'
+import { DATE_FORMAT_MAP } from '../config/date-format-map'
+import { formatDeadline } from '../lib/format-deadline'
 import { getTaskPriorityColor } from '../lib/priority-colors'
 
 type TaskContext = {
-  task: TaskSchema
+  task: TTask
 }
 
 const TaskContext = createContext<TaskContext | undefined>(undefined)
@@ -132,26 +138,41 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
     task: { labels }
   } = useTaskContext()
 
-  if (!labels?.length) return null
+  const { data } = useSettings(state => state.label)
 
-  const labelsPerRow = 3
+  if (!labels?.length || !data?.showLabelsOnTask) return null
+
+  const max = {
+    one: 1,
+    two: 2,
+    three: 3,
+    all: Infinity
+  }[data?.maxLabelsShown ?? 'three']
+
+  const visibleLabels = labels.slice(0, max)
+
+  const hiddenCount = labels.length - visibleLabels.length
 
   return (
     <div
       className={cn('mb-2 flex flex-wrap items-center gap-1.5', className)}
       {...props}>
-      {labels.slice(0, labelsPerRow).map(label => (
+      {visibleLabels.map(label => (
         <Label
           key={label.id}
-          className={LABEL_COLOR_MAP[label.color]}>
-          {label.name}
+          className={cn(
+            data?.labelDisplay === 'compact'
+              ? LABEL_BASE_COLOR_MAP[label.color]
+              : LABEL_COLOR_MAP[label.color]
+          )}>
+          {data?.labelDisplay === 'full' && label.name}
         </Label>
       ))}
-      {labels.length > labelsPerRow && (
+      {hiddenCount > 0 && (
         <span
           className='bg-white-muted dark:bg-black-muted rounded-md px-2 py-0.5
             text-[11px]'>
-          +{labels.length - labelsPerRow}
+          +{hiddenCount}
         </span>
       )}
     </div>
@@ -185,6 +206,8 @@ const TaskPriority = ({ className }: { className?: string }) => {
 const TaskDeadline = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
+  const { data: dateFormat } = useSettings(state => state.general.dateFormat)
+
   return (
     task.deadline && (
       <div
@@ -195,7 +218,12 @@ const TaskDeadline = ({ className }: { className?: string }) => {
         <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
           Deadline
         </p>
-        <p className='text-sm'>{formatDeadlineDate(task.deadline)}</p>
+        <p className='text-sm'>
+          {formatDeadline(
+            task.deadline,
+            DATE_FORMAT_MAP[dateFormat ?? 'dd_mm_yyyy']
+          )}
+        </p>
       </div>
     )
   )
@@ -208,7 +236,7 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
     task.deadline &&
     isToday(task.deadline) && (
       <BellRingIcon
-        className={cn('stroke-brand size-4.5 animate-bounce pr-1', className)}
+        className={cn('stroke-accent size-4.5 animate-bounce pr-1', className)}
       />
     )
   )
@@ -222,9 +250,9 @@ const TaskActionButton = ({
   const defaultProps: useRender.ElementProps<'button'> = {
     type: 'button',
     className: cn(
-      `focus-visible:styled-outline hocus:text-black
-        dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
-        [&_svg]:size-4`,
+      `focus-visible:styled-outline dark:text-white-soft text-black
+        [&_svg]:size-4 [&_svg]:opacity-50 hocus:[&_svg]:opacity-100
+        [&_svg]:transition-opacity`,
       className
     )
   }

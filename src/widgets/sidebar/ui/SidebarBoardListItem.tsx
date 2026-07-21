@@ -1,4 +1,4 @@
-import type { BoardTypes } from '@/entities/board'
+import type { Board } from '@/shared/api'
 
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
@@ -11,7 +11,7 @@ import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 type SidebarBoardListItemProps = {
-  board: Omit<BoardTypes.BoardSchema, 'columns'>
+  board: Omit<Board, 'columns'>
 }
 
 export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
@@ -29,9 +29,9 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
     <RovingFocusGroupItem
       key={board.id}
       className={cn(
-        `focus-visible:styled-outline tablet:pl-6 flex min-h-15.25 w-full
-        cursor-pointer items-center justify-between pl-3.5 text-black/50
-        dark:text-white/50`,
+        `focus-visible:styled-outline tablet:pl-6 pointer-cursors:cursor-pointer
+        flex min-h-15.25 w-full items-center justify-between pl-3.5
+        text-black/50 dark:text-white/50`,
         boardId === board.id &&
           'bg-white-muted dark:bg-black-muted text-black dark:text-white'
       )}
@@ -68,7 +68,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
             />
             <DeleteBoardAlertDialog />
           </div>
-          <div className='bg-brand h-15.25 w-1 rounded-l-lg' />
+          <div className='bg-accent h-15.25 w-1 rounded-l-lg' />
         </div>
       )}
     </RovingFocusGroupItem>

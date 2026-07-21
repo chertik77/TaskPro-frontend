@@ -14,7 +14,7 @@ export const useLogoutUser = () => {
     mutationFn: () => authClient.signOut(),
     meta: {
       errorMessage:
-        'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
+        'An error occurred while logging out. Our technical team has been notified. Please try again.'
     }
   })
 

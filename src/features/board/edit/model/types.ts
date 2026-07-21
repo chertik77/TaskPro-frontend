@@ -1,7 +1,7 @@
-import type { BoardTypes } from '@/entities/board'
+import type { BoardBackgroundId, BoardIcon } from '@/shared/api'
 
 export type EditBoardData = {
   title: string
-  icon: BoardTypes.BoardIcon
-  background: BoardTypes.BoardBgImageId
+  icon: BoardIcon
+  background: BoardBackgroundId
 }

@@ -6,6 +6,8 @@ import { startOfDay } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
 
+import { useSettings } from '@/entities/setting/@x/task'
+
 import { cn } from '@/shared/lib'
 import {
   Calendar,
@@ -17,7 +19,7 @@ import {
   useFormField
 } from '@/shared/ui'
 
-import { formatDeadlineDate } from '../lib/format-deadline-date'
+import { formatDeadline } from '../lib/format-deadline'
 
 type FormDeadlinePickerProps = {
   mode?: 'create' | 'edit'
@@ -28,13 +30,17 @@ const date = new Date()
 export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
 
+  const { data: firstDayOfWeek } = useSettings(
+    select => select.general.firstDayOfWeek
+  )
+
   const {
     fieldState: { error },
     field: { value, onChange, ...field }
   } = useFormField()
 
   const [inputValue, setInputValue] = useState(
-    () => formatDeadlineDate(value) ?? ''
+    () => formatDeadline(value) ?? ''
   )
 
   const clearValue = useDebouncedCallback(() => onChange(undefined), 1000)
@@ -54,7 +60,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
 
     if (date) {
       clearValue.cancel()
-      setInputValue(formatDeadlineDate(date))
+      setInputValue(formatDeadline(date))
     } else {
       setInputValue('')
       clearValue()
@@ -88,6 +94,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
           </PopoverTrigger>
           <PopoverContent positionerProps={{ side: 'top' }}>
             <Calendar
+              weekStartsOn={firstDayOfWeek === 'monday' ? 1 : 0}
               mode='single'
               defaultMonth={value}
               startMonth={mode === 'create' ? (value ?? date) : undefined}
@@ -107,7 +114,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
             starting:opacity-0`,
             value ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
           )}>
-          {`This task is due on ${formatDeadlineDate(value, 'd MMM yyyy')}.`}
+          {`This task is due on ${formatDeadline(value, 'd MMM yyyy')}.`}
         </FormDescription>
       )}
     </>

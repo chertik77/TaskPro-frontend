@@ -1,12 +1,11 @@
-import type { ColumnTypes } from '@/entities/column'
-import type { TaskTypes } from '@/entities/task'
+import type { Column, Task } from '@/shared/api'
 import type { UniqueIdentifier } from '@dnd-kit/core'
 
 export const getDraggingTaskData = (
   taskId: UniqueIdentifier,
   columnId: string | null,
-  columns: ColumnTypes.ColumnsSchema,
-  tasks: TaskTypes.TasksSchema
+  columns: Column[],
+  tasks: Task[]
 ) => {
   const columnTasks = tasks.filter(c => c.columnId === columnId)
   const taskPosition = columnTasks.findIndex(c => c.id === taskId)

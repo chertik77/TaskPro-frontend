@@ -1,17 +1,18 @@
-import type { LabelSchema } from '../model/types'
+import type { Label } from '@/shared/api'
 
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getAllLabelsOptions } from '@/shared/api'
-
+import { labelQueries } from '../api/queries'
 import { useLabelModalStore } from '../model/modal.store'
 
 const CREATE_SENTINEL = '__create'
 
 const isCreateOption = (id: string) => id === CREATE_SENTINEL
 
-const buildCreateOption = (name: string): LabelSchema => ({
+const buildCreateOption = (
+  name: string
+): Pick<Label, 'id' | 'name' | 'color'> => ({
   id: CREATE_SENTINEL,
   name: `Create "${name}"`,
   color: 'gray'
@@ -22,11 +23,7 @@ export const useLabelCombobox = (labelsValues: string[] | undefined) => {
 
   const { setModal } = useLabelModalStore()
 
-  const {
-    data: labels = [],
-    isPending,
-    error
-  } = useQuery(getAllLabelsOptions())
+  const { data: labels = [], isPending, error } = useQuery(labelQueries.list())
 
   const labelMap = useMemo(() => new Map(labels.map(l => [l.id, l])), [labels])
 
@@ -50,7 +47,7 @@ export const useLabelCombobox = (labelsValues: string[] | undefined) => {
         isOpen: true,
         props: {
           name: inputValue,
-          onCreated: (newLabel: LabelSchema) => {
+          onCreated: (newLabel: Label) => {
             const current = labelsValues ?? []
             onChange([...current, newLabel.id])
           }

@@ -22,7 +22,7 @@ export const NeedHelpDialog = () => {
       <NeedHelpCard>
         <DialogTrigger
           aria-label='Open need help modal'
-          className='focus-visible:styled-outline text-md hocus:text-brand-light
+          className='focus-visible:styled-outline text-md hocus:text-accent
             dark:text-white-soft flex items-center gap-2 font-medium
             transition-colors'>
           <CircleQuestionMarkIcon className='size-4' />

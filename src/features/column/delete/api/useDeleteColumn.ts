@@ -1,41 +1,38 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { parse } from 'valibot'
 
-import { BoardContracts, useGetParamBoardId } from '@/entities/board'
+import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
-import { deleteColumnMutation, getBoardByIdQueryKey } from '@/shared/api'
+import { deleteColumnMutation, vBoard } from '@/shared/api'
 
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient()
 
   const boardId = useGetParamBoardId()
 
-  const boardQueryKey = getBoardByIdQueryKey({ path: { boardId } })
+  const boardQueryKey = boardQueries.detail(boardId).queryKey
 
   return useMutation({
     ...deleteColumnMutation(),
     meta: {
       errorMessage:
-        'An error occurred while deleting the column. Please try again shortly.'
+        'An error occurred while deleting the column. Please try again.'
     },
     onMutate: async ({ path: { columnId } }) => {
       await queryClient.cancelQueries({ queryKey: boardQueryKey })
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)
 
-      const parsedPreviousBoard = parse(
-        BoardContracts.BoardSchema,
-        previousBoard
-      )
+      const parsedPreviousBoard = parse(vBoard, previousBoard)
 
       queryClient.setQueryData(boardQueryKey, oldBoard => {
         if (!oldBoard) return oldBoard
 
-        const parsedOldBoard = parse(BoardContracts.BoardSchema, oldBoard)
+        const parsedOldBoard = parse(vBoard, oldBoard)
 
         return {
           ...parsedOldBoard,
-          columns: parsedOldBoard.columns.filter(
+          columns: parsedOldBoard.columns?.filter(
             column => column.id !== columnId
           )
         }

@@ -1,5 +1,4 @@
-import { ThemeSelect } from '@/features/user/change-theme'
-
+import { SettingsButton } from './SettingsButton'
 import { ToggleMobileMenuTrigger } from './ToggleMobileMenuTrigger'
 import { ToggleSidebarTrigger } from './ToggleSidebarTrigger'
 import { UserInfo } from './UserInfo'
@@ -10,8 +9,8 @@ export const Header = () => (
       py-3.5 dark:bg-black'>
     <ToggleSidebarTrigger />
     <ToggleMobileMenuTrigger />
-    <div className='flex items-center gap-3.5'>
-      <ThemeSelect />
+    <div className='flex items-center gap-4'>
+      <SettingsButton />
       <UserInfo />
     </div>
   </header>

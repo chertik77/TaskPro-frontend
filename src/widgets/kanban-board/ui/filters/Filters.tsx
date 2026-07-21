@@ -52,7 +52,7 @@ export const Filters = () => {
           collisionAvoidance: { side: 'none' },
           collisionPadding: 10
         }}
-        className='bg-white-soft dark:bg-black-deep dark:border-brand/50 w-75
+        className='bg-white-soft dark:bg-black-deep dark:border-accent/50 w-75
           p-6 dark:border'>
         <m.div
           variants={container}
@@ -77,7 +77,7 @@ export const Filters = () => {
                 deadline: undefined
               })}
               className='focus-visible:styled-outline text-md
-                hocus:text-brand-light hocus:no-underline hocus:opacity-100
+                hocus:text-accent/50 hocus:no-underline hocus:opacity-100
                 underline opacity-50'>
               Show all
             </Link>

@@ -21,8 +21,7 @@ export const SidebarLogoutBtn = () => {
         logoutUser()
       }}>
       <LogOutIcon
-        className='text-brand group-hocus:text-brand-light size-6
-          transition-colors'
+        className='text-accent group-hocus:opacity-50 size-6 transition-opacity'
       />
       {isPending ? 'Logging out...' : 'Log out'}
     </button>

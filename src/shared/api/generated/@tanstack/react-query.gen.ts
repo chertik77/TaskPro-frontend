@@ -4,8 +4,8 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { createBoard, createColumn, createLabel, createTask, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateLabel, updateTask, updateTasksOrder } from '../sdk.gen';
-import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse } from '../types.gen';
+import { createBoard, createColumn, createLabel, createTask, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateAccessibilitySettings, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder } from '../sdk.gen';
+import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateAccessibilitySettingsData, UpdateAccessibilitySettingsError, UpdateAccessibilitySettingsResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse } from '../types.gen';
 
 /**
  * Send email need help
@@ -55,6 +55,92 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
         params.query = options.query;
     }
     return [params];
+};
+
+export const getAllSettingsQueryKey = (options?: Options<GetAllSettingsData>) => createQueryKey('getAllSettings', options);
+
+/**
+ * Get all user settings
+ */
+export const getAllSettingsOptions = (options?: Options<GetAllSettingsData>) => queryOptions<GetAllSettingsResponse, AxiosError<GetAllSettingsError>, GetAllSettingsResponse, ReturnType<typeof getAllSettingsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getAllSettings({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getAllSettingsQueryKey(options)
+});
+
+/**
+ * Update general settings
+ */
+export const updateGeneralSettingsMutation = (options?: Partial<Options<UpdateGeneralSettingsData>>): UseMutationOptions<UpdateGeneralSettingsResponse, AxiosError<UpdateGeneralSettingsError>, Options<UpdateGeneralSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateGeneralSettingsResponse, AxiosError<UpdateGeneralSettingsError>, Options<UpdateGeneralSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateGeneralSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update task settings
+ */
+export const updateTaskSettingsMutation = (options?: Partial<Options<UpdateTaskSettingsData>>): UseMutationOptions<UpdateTaskSettingsResponse, AxiosError<UpdateTaskSettingsError>, Options<UpdateTaskSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateTaskSettingsResponse, AxiosError<UpdateTaskSettingsError>, Options<UpdateTaskSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateTaskSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update label settings
+ */
+export const updateLabelSettingsMutation = (options?: Partial<Options<UpdateLabelSettingsData>>): UseMutationOptions<UpdateLabelSettingsResponse, AxiosError<UpdateLabelSettingsError>, Options<UpdateLabelSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateLabelSettingsResponse, AxiosError<UpdateLabelSettingsError>, Options<UpdateLabelSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateLabelSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update accessibility settings
+ */
+export const updateAccessibilitySettingsMutation = (options?: Partial<Options<UpdateAccessibilitySettingsData>>): UseMutationOptions<UpdateAccessibilitySettingsResponse, AxiosError<UpdateAccessibilitySettingsError>, Options<UpdateAccessibilitySettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateAccessibilitySettingsResponse, AxiosError<UpdateAccessibilitySettingsError>, Options<UpdateAccessibilitySettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateAccessibilitySettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
 };
 
 export const getAllBoardsQueryKey = (options?: Options<GetAllBoardsData>) => createQueryKey('getAllBoards', options);

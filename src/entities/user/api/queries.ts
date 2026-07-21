@@ -1,14 +1,39 @@
+import type { InferedSession } from '../model/types'
+
 import { queryOptions } from '@tanstack/react-query'
 
 import { authClient } from '@/shared/api'
 
 export const sessionQueries = {
   all: () => ['session'] as const,
+  lists: () => [...sessionQueries.all(), 'list'] as const,
+  list: () =>
+    queryOptions({
+      queryKey: sessionQueries.lists(),
+      staleTime: 1000 * 30,
+      queryFn: async () =>
+        (await authClient.listSessions()) as unknown as InferedSession[]
+    }),
+  passkeys: () => [...sessionQueries.all(), 'passkeys'] as const,
+  passkey: () =>
+    queryOptions({
+      queryKey: sessionQueries.passkeys(),
+      staleTime: 1000 * 30,
+      queryFn: async () => await authClient.passkey.listUserPasskeys()
+    }),
+  accounts: () => [...sessionQueries.all(), 'accounts'] as const,
+  account: () =>
+    queryOptions({
+      queryKey: sessionQueries.accounts(),
+      staleTime: 1000 * 30,
+      queryFn: async () => await authClient.listAccounts()
+    }),
   current: () =>
     queryOptions({
       queryKey: sessionQueries.all(),
       queryFn: async () => await authClient.getSession(),
       staleTime: 1000 * 60 * 10, // 10 minutes
-      retry: false
+      retry: false,
+      refetchOnWindowFocus: true
     })
 }

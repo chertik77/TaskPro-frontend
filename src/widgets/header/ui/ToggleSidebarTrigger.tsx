@@ -11,7 +11,10 @@ export const ToggleSidebarTrigger = () => {
       type='button'
       aria-label='Toggle sidebar'
       className='focus-visible:styled-outline max-desktop:hidden mr-auto size-5'>
-      <PanelLeftIcon className='size-full stroke-black/80 dark:stroke-white' />
+      <PanelLeftIcon
+        className='size-full stroke-black opacity-80 transition-opacity
+          dark:stroke-white dark:opacity-100'
+      />
     </button>
   )
 }
