@@ -1,6 +1,9 @@
+import type { Variants } from 'motion/react'
 import type { ReactNode } from 'react'
 
 import { ScrollArea } from '@base-ui/react/scroll-area'
+import { stagger } from 'motion/react'
+import * as m from 'motion/react-m'
 
 import { cn } from '@/shared/lib'
 import {
@@ -24,6 +27,21 @@ type ChildrenProps = {
   className?: string
 }
 
+const container: Variants = {
+  hidden: {},
+  show: { transition: { delayChildren: stagger(0.05) } }
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1] } },
+  exit: {
+    opacity: 0,
+    scale: 0.98,
+    transition: { duration: 0.2, ease: 'easeIn' }
+  }
+}
+
 const Section = ({ title, children, isLoading }: SectionProps) => (
   <div
     className='bg-white-soft border-accent dark:border-accent/50 flex h-full
@@ -34,12 +52,24 @@ const Section = ({ title, children, isLoading }: SectionProps) => (
         Loading...
       </div>
     ) : (
-      <>
+      <m.div
+        key='content'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className='flex min-h-0 flex-1 flex-col'>
         <h2 className='mb-7 shrink-0 text-xl'>{title}</h2>
         <ScrollArea.Root className='min-h-0 flex-1'>
           <ScrollArea.Viewport className='h-full'>
             <ScrollArea.Content className='pr-2'>
-              <div className='space-y-3.5'>{children}</div>
+              <m.div
+                variants={container}
+                initial='hidden'
+                animate='show'
+                className='space-y-3.5'>
+                {children}
+              </m.div>
             </ScrollArea.Content>
           </ScrollArea.Viewport>
           <ScrollArea.Scrollbar
@@ -51,7 +81,7 @@ const Section = ({ title, children, isLoading }: SectionProps) => (
             />
           </ScrollArea.Scrollbar>
         </ScrollArea.Root>
-      </>
+      </m.div>
     )}
   </div>
 )
@@ -61,9 +91,13 @@ const SubTitle = ({ children, className }: ChildrenProps) => (
 )
 
 const Item = ({ children, className }: ChildrenProps) => (
-  <div className={cn('flex items-start justify-between gap-5 p-2', className)}>
+  <m.div
+    layout
+    variants={itemVariants}
+    exit='exit'
+    className={cn('flex items-start justify-between gap-5 p-2', className)}>
     {children}
-  </div>
+  </m.div>
 )
 
 const Content = ({ children, className }: ChildrenProps) => (

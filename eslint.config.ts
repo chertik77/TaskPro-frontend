@@ -46,6 +46,14 @@ export default defineConfig(
             'Direct access to `import.meta.env` is forbidden. Use `@/shared/config` instead.'
         }
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          name: 'motion/react',
+          importNames: ['motion'],
+          message: 'Do not import motion. Use m from motion/react-m instead.'
+        }
+      ],
       'newline-before-return': 'error',
       'arrow-body-style': ['warn', 'as-needed']
     }

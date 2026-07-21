@@ -1,6 +1,8 @@
 import type { Label } from '@/shared/api'
 
 import { format } from 'date-fns'
+import { AnimatePresence } from 'motion/react'
+import * as m from 'motion/react-m'
 
 import { LABEL_BASE_COLOR_MAP } from '@/entities/label'
 
@@ -16,6 +18,8 @@ import {
 
 import { DeleteLabelAlertDialog } from './delete/DeleteLabelAlertDialog'
 import { EditLabelDialog } from './edit/EditLabelDialog'
+
+const MotionTableRow = m.create(TableRow)
 
 type LabelsTableProps = {
   labels: Label[] | undefined
@@ -37,40 +41,59 @@ export const LabelsTable = ({ labels }: LabelsTableProps) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {labels && labels.length > 0 ? (
-          labels.map(({ id, name, description, color, createdAt }) => (
-            <TableRow key={id}>
+        <AnimatePresence
+          initial={false}
+          mode='popLayout'>
+          {labels && labels.length > 0 ? (
+            labels.map(({ id, name, description, color, createdAt }) => (
+              <MotionTableRow
+                key={id}
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}>
+                <TableCell
+                  className='flex items-center gap-2 text-black dark:text-white'>
+                  <span
+                    className={cn(
+                      'size-3.5 shrink-0 rounded-full',
+                      LABEL_BASE_COLOR_MAP[color]
+                    )}
+                  />
+                  <p className='truncate'>{name}</p>
+                </TableCell>
+                <TableCell
+                  className='desktop:table-cell hidden truncate text-black
+                    dark:text-white'>
+                  {description}
+                </TableCell>
+                <TableCell className='text-right'>
+                  {format(createdAt, 'MMM yyyy')}
+                </TableCell>
+                <TableCell className='flex items-center justify-end gap-3'>
+                  <EditLabelDialog
+                    formData={{ id, name, color, description }}
+                  />
+                  <DeleteLabelAlertDialog labelId={id} />
+                </TableCell>
+              </MotionTableRow>
+            ))
+          ) : (
+            <m.tr
+              key='empty'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}>
               <TableCell
-                className='flex items-center gap-2 text-black dark:text-white'>
-                <span
-                  className={cn(
-                    'size-3.5 shrink-0 rounded-full',
-                    LABEL_BASE_COLOR_MAP[color]
-                  )}
-                />
-                <p className='truncate'>{name}</p>
+                colSpan={isDesktop ? 4 : 3}
+                className='h-15 text-center'>
+                No labels yet. Add your first label to get started.
               </TableCell>
-              <TableCell
-                className='desktop:table-cell hidden truncate text-black
-                  dark:text-white'>
-                {description}
-              </TableCell>
-              <TableCell className='text-right'>
-                {format(createdAt, 'MMM yyyy')}
-              </TableCell>
-              <TableCell className='flex items-center justify-end gap-3'>
-                <EditLabelDialog formData={{ id, name, color, description }} />
-                <DeleteLabelAlertDialog labelId={id} />
-              </TableCell>
-            </TableRow>
-          ))
-        ) : (
-          <TableCell
-            colSpan={isDesktop ? 4 : 3}
-            className='h-15 text-center'>
-            No labels yet. Add your first label to get started.
-          </TableCell>
-        )}
+            </m.tr>
+          )}
+        </AnimatePresence>
       </TableBody>
     </Table>
   )

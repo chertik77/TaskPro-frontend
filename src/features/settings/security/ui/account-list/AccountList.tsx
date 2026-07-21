@@ -1,5 +1,8 @@
 import type { Account } from 'better-auth'
 
+import { AnimatePresence } from 'motion/react'
+import * as m from 'motion/react-m'
+
 import { Settings } from '@/entities/setting'
 
 import { ACCOUNT_DATA } from '../../config/account-data'
@@ -22,14 +25,21 @@ export const AccountList = ({ accounts }: AccountListProps) =>
           <Icon className='size-5' />
           <div className='space-y-1'>
             <p>{label}</p>
-            {isConnected && (
-              <div
-                className='text-md flex items-center gap-1 text-black/50
-                  dark:text-white/50'>
-                <span className='size-2 rounded-full bg-green-500' />
-                Connected
-              </div>
-            )}
+            <AnimatePresence initial={false}>
+              {isConnected && (
+                <m.div
+                  key='connected'
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className='text-md flex items-center gap-1 text-black/50
+                    dark:text-white/50'>
+                  <span className='size-2 rounded-full bg-green-500' />
+                  Connected
+                </m.div>
+              )}
+            </AnimatePresence>
           </div>
           <AccountConnectionButton
             isConnected={isConnected}
