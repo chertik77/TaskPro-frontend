@@ -13,9 +13,6 @@ import Fuse from 'fuse.js'
 
 import { useTaskFilters } from './useTaskFilters'
 
-const today = startOfToday()
-const nextWeek = addDays(today, 7)
-
 const fuseOptions: IFuseOptions<Task> = {
   keys: [
     { name: 'title', weight: 0.7 },
@@ -44,6 +41,9 @@ export const useFilteredTasks = (tasks: Task[]) => {
   }
 
   if (deadline) {
+    const today = startOfToday()
+    const nextWeek = addDays(today, 7)
+
     filteredTasks = filteredTasks.filter(task => {
       const taskDeadline = task.deadline
 

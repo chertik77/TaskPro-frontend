@@ -28,7 +28,7 @@ export const usePasskeySignin = () => {
         })
       }
 
-      queryClient.setQueryData(sessionQueries.all(), session)
+      queryClient.setQueryData(sessionQueries.currents(), session)
       navigate({ to: '/dashboard' })
     }
   })

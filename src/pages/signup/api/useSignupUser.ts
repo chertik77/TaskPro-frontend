@@ -27,7 +27,7 @@ export const useSignupUser = (reset: UseFormReset<SignupSchema>) => {
     },
     onSuccess(session) {
       reset()
-      queryClient.setQueryData(sessionQueries.all(), session)
+      queryClient.setQueryData(sessionQueries.currents(), session)
       navigate({ to: '/dashboard' })
     }
   })

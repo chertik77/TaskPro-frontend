@@ -28,9 +28,10 @@ export const sessionQueries = {
       staleTime: 1000 * 30,
       queryFn: async () => await authClient.listAccounts()
     }),
+  currents: () => [...sessionQueries.all(), 'current'] as const,
   current: () =>
     queryOptions({
-      queryKey: sessionQueries.all(),
+      queryKey: sessionQueries.currents(),
       queryFn: async () => await authClient.getSession(),
       staleTime: 1000 * 60 * 10, // 10 minutes
       retry: false,

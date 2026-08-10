@@ -27,7 +27,7 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
     },
     onSuccess(session) {
       reset()
-      queryClient.setQueryData(sessionQueries.all(), session)
+      queryClient.setQueryData(sessionQueries.currents(), session)
       navigate({ to: '/dashboard' })
     }
   })

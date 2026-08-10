@@ -24,10 +24,7 @@ export const useDeletePasskey = () => {
       queryClient.setQueryData(allPasskeysQueryKey, oldPasskeys => {
         if (!oldPasskeys) return oldPasskeys
 
-        return {
-          ...oldPasskeys,
-          passkeys: oldPasskeys?.filter(passkey => passkey.id !== passkeyId)
-        }
+        return oldPasskeys.filter(passkey => passkey.id !== passkeyId)
       })
 
       return { previousPasskeys }

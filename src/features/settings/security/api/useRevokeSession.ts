@@ -20,12 +20,12 @@ export const useRevokeSession = () => {
       errorMessage:
         'An error occurred while revoking the session. Please try again.'
     },
-    onSuccess: (_, variables) => {
-      if (variables.id === currentSession?.session.id) {
-        navigate({ to: '/' })
-        queryClient.setQueryData(sessionQueries.all(), null)
-        authClient.signOut()
-      }
+    onSuccess: async (_, variables) => {
+      if (variables.id !== currentSession?.session.id) return
+
+      await authClient.signOut()
+      queryClient.setQueryData(sessionQueries.currents(), null)
+      navigate({ to: '/' })
     }
   })
 }

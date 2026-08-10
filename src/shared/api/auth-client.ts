@@ -56,5 +56,5 @@ const errorCodes = {
 export const getAuthErrorMessage = (code: string) => {
   if (code in errorCodes) return errorCodes[code as keyof typeof errorCodes]
 
-  return ''
+  return undefined
 }
