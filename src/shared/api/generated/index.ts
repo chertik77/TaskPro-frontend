@@ -15,7 +15,6 @@ export {
   getBoardById,
   help,
   type Options,
-  updateAccessibilitySettings,
   updateBoard,
   updateColumn,
   updateColumnsOrder,
@@ -28,7 +27,6 @@ export {
 } from './sdk.gen'
 export {
   AccentColor,
-  type AccessibilitySettings,
   type Board,
   type BoardBackground,
   BoardBackgroundId,
@@ -107,11 +105,6 @@ export {
   type Task,
   TaskPriority,
   type TaskSettings,
-  type UpdateAccessibilitySettingsData,
-  type UpdateAccessibilitySettingsError,
-  type UpdateAccessibilitySettingsErrors,
-  type UpdateAccessibilitySettingsResponse,
-  type UpdateAccessibilitySettingsResponses,
   type UpdateBoardData,
   type UpdateBoardError,
   type UpdateBoardErrors,

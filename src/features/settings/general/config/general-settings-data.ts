@@ -46,12 +46,6 @@ export const GENERAL_SETTINGS: SettingTypes.SettingDefinition<
   },
   {
     type: 'switch',
-    key: 'usePointerCursors',
-    title: 'Pointer cursors',
-    description: 'Show pointer cursors when hovering interactive elements.'
-  },
-  {
-    type: 'switch',
     key: 'enableAnimations',
     title: 'Enable animations',
     description: 'Enable animations and transitions throughout the app.'

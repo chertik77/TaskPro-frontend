@@ -94,6 +94,8 @@ const Item = ({ children, className }: ChildrenProps) => (
   <m.div
     layout
     variants={itemVariants}
+    initial='hidden'
+    animate='show'
     exit='exit'
     className={cn('flex items-start justify-between gap-5 p-2', className)}>
     {children}
@@ -145,6 +147,7 @@ export const SettingSelect = <T extends string>({
       {options.map(option => (
         <SelectItem
           key={option.value}
+          disabled={option.value === value}
           value={option.value}>
           <SelectItemText>{option.label}</SelectItemText>
         </SelectItem>

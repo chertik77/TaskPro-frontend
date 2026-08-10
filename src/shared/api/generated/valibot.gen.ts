@@ -2,28 +2,87 @@
 
 import * as v from 'valibot';
 
-export const vBoardBackgroundId = v.picklist([
-    'default',
-    'flowers',
-    'mountains-night',
-    'sakura',
-    'night-sky',
-    'tropics',
-    'light-sky',
-    'sea-rocks',
-    'blue-ball',
-    'red-moon',
-    'sea-boat',
-    'air-balloons',
-    'gorge',
-    'sea-boat-2',
-    'air-balloons-2',
-    'northern-lights'
-]);
+export const vErrorResponse = v.object({
+    status: v.number(),
+    message: v.union([v.string(), v.record(v.string(), v.array(v.string()))])
+});
 
-export const vBoardBackground = v.object({
-    identifier: vBoardBackgroundId,
-    url: v.nullable(v.string())
+export const vAccentColor = v.optional(v.picklist([
+    'blue',
+    'purple',
+    'red',
+    'gray',
+    'cyan',
+    'yellow',
+    'indigo',
+    'green'
+]), 'blue');
+
+export const vGeneralSettings = v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    theme: v.optional(v.picklist([
+        'light',
+        'dark',
+        'system'
+    ]), 'light'),
+    accentColor: vAccentColor,
+    firstDayOfWeek: v.picklist(['sunday', 'monday']),
+    dateFormat: v.picklist([
+        'dd_mm_yyyy',
+        'mm_dd_yyyy',
+        'yyyy_mm_dd'
+    ]),
+    boardBackgroundBlur: v.picklist([
+        'off',
+        'low',
+        'medium'
+    ]),
+    enableAnimations: v.boolean(),
+    confirmBeforeDelete: v.boolean(),
+    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+});
+
+export const vTaskSettings = v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    sortTasksBy: v.picklist([
+        'manual',
+        'priority',
+        'deadline',
+        'created',
+        'alphabetical'
+    ]),
+    defaultPriority: v.picklist([
+        'without',
+        'low',
+        'medium',
+        'high'
+    ]),
+    defaultDeadline: v.picklist([
+        'none',
+        'today',
+        'tomorrow',
+        'three_days',
+        'one_week'
+    ]),
+    cardDensity: v.picklist(['compact', 'comfortable']),
+    showCompletedTasks: v.boolean(),
+    showPriorityIndicator: v.boolean(),
+    newTaskPosition: v.picklist(['top', 'bottom']),
+    enableNaturalLanguageDates: v.boolean(),
+    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+});
+
+export const vLabelSettings = v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    showLabelsOnTask: v.boolean(),
+    labelDisplay: v.picklist(['full', 'compact']),
+    maxLabelsShown: v.picklist([
+        'one',
+        'two',
+        'three',
+        'all'
+    ]),
+    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
 export const vBoardIcon = v.picklist([
@@ -39,6 +98,30 @@ export const vBoardIcon = v.picklist([
     'leaf'
 ]);
 
+export const vBoardBackgroundId = v.picklist([
+    'flowers',
+    'mountains-night',
+    'sakura',
+    'night-sky',
+    'tropics',
+    'light-sky',
+    'sea-rocks',
+    'blue-ball',
+    'red-moon',
+    'sea-boat',
+    'air-balloons',
+    'gorge',
+    'sea-boat-2',
+    'air-balloons-2',
+    'northern-lights',
+    'default'
+]);
+
+export const vBoardBackground = v.object({
+    identifier: vBoardBackgroundId,
+    url: v.nullable(v.pipe(v.string(), v.url()))
+});
+
 export const vTaskPriority = v.picklist([
     'without',
     'low',
@@ -46,168 +129,72 @@ export const vTaskPriority = v.picklist([
     'high'
 ]);
 
-export const vAccentColor = v.picklist([
-    'blue',
-    'purple',
-    'red',
-    'gray',
-    'cyan',
-    'yellow',
-    'indigo',
-    'green'
-]);
-
 export const vLabel = v.object({
-    id: v.string(),
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     name: v.string(),
-    description: v.nullish(v.string()),
-    color: vAccentColor,
-    userId: v.string(),
-    taskId: v.nullish(v.string()),
+    description: v.nullable(v.pipe(v.string(), v.minLength(3))),
+    color: v.intersect([vAccentColor, v.unknown()]),
+    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    taskIds: v.array(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
 });
 
 export const vTask = v.object({
-    id: v.string(),
-    title: v.string(),
-    description: v.nullable(v.string()),
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
+    description: v.nullable(v.pipe(v.string(), v.minLength(3))),
     priority: vTaskPriority,
     deadline: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
     order: v.pipe(v.number(), v.integer()),
     completed: v.boolean(),
     completedAt: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
-    columnId: v.string(),
-    labels: v.optional(v.array(vLabel)),
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    labels: v.array(vLabel),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
 });
 
 export const vColumn = v.object({
-    id: v.string(),
-    title: v.string(),
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
     order: v.pipe(v.number(), v.integer()),
-    boardId: v.string(),
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     tasks: v.optional(v.array(vTask)),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
 });
 
 export const vBoard = v.object({
-    id: v.string(),
-    title: v.string(),
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
     icon: vBoardIcon,
     background: vBoardBackground,
-    userId: v.string(),
+    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     columns: v.optional(v.array(vColumn)),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
 });
 
-export const vGeneralSettings = v.object({
-    id: v.string(),
-    theme: v.optional(v.picklist([
-        'light',
-        'dark',
-        'system'
-    ]), 'light'),
-    accentColor: v.optional(v.picklist([
-        'blue',
-        'purple',
-        'red',
-        'gray',
-        'cyan',
-        'yellow',
-        'indigo',
-        'green'
-    ]), 'blue'),
-    firstDayOfWeek: v.picklist(['monday', 'sunday']),
-    dateFormat: v.optional(v.picklist([
-        'dd_mm_yyyy',
-        'mm_dd_yyyy',
-        'yyyy_mm_dd'
-    ])),
-    boardBackgroundBlur: v.picklist([
-        'off',
-        'low',
-        'medium'
-    ]),
-    usePointerCursors: v.boolean(),
-    enableAnimations: v.boolean(),
-    confirmBeforeDelete: v.boolean(),
-    userId: v.string()
-});
-
-export const vTaskSettings = v.object({
-    id: v.string(),
-    sortTasksBy: v.picklist([
-        'manual',
-        'priority',
-        'deadline',
-        'created',
-        'alphabetical'
-    ]),
-    defaultPriority: vTaskPriority,
-    defaultDeadlineDays: v.picklist([
-        'none',
-        'today',
-        'tomorrow',
-        'three_days',
-        'one_week'
-    ]),
-    cardDensity: v.picklist(['compact', 'comfortable']),
-    showCompletedTasks: v.boolean(),
-    newTaskPosition: v.picklist(['top', 'bottom']),
-    naturalLanguageDates: v.boolean(),
-    userId: v.string()
-});
-
-export const vLabelSettings = v.object({
-    id: v.string(),
-    showLabelsOnTask: v.boolean(),
-    labelDisplay: v.picklist(['full', 'compact']),
-    maxLabelsShown: v.picklist([
-        'one',
-        'two',
-        'three',
-        'all'
-    ]),
-    userId: v.string()
-});
-
-export const vAccessibilitySettings = v.object({
-    id: v.string(),
-    fontSize: v.picklist([
-        'small',
-        'medium',
-        'large'
-    ]),
-    reducedMotion: v.boolean(),
-    highContrast: v.boolean(),
-    focusIndicators: v.boolean(),
-    keyboardNavigationHints: v.boolean(),
-    userId: v.string()
-});
-
-export const vErrorResponse = v.object({
-    statusCode: v.optional(v.pipe(v.number(), v.integer())),
-    message: v.optional(v.union([v.string(), v.record(v.string(), v.unknown())]))
-});
-
 export const vHelpBody = v.object({
     email: v.pipe(v.string(), v.email()),
-    comment: v.string()
+    comment: v.pipe(v.string(), v.minLength(5))
 });
 
+/**
+ * Email sent
+ */
 export const vHelpResponse = v.object({
-    message: v.optional(v.string())
+    message: v.string()
 });
 
+/**
+ * Success
+ */
 export const vGetAllSettingsResponse = v.object({
     general: vGeneralSettings,
     task: vTaskSettings,
-    label: vLabelSettings,
-    accessibility: vAccessibilitySettings
+    label: vLabelSettings
 });
 
 export const vUpdateGeneralSettingsBody = v.object({
@@ -215,18 +202,9 @@ export const vUpdateGeneralSettingsBody = v.object({
         'light',
         'dark',
         'system'
-    ])),
-    accentColor: v.optional(v.picklist([
-        'blue',
-        'purple',
-        'red',
-        'gray',
-        'cyan',
-        'yellow',
-        'indigo',
-        'green'
-    ])),
-    firstDayOfWeek: v.optional(v.picklist(['monday', 'sunday'])),
+    ]), 'light'),
+    accentColor: v.optional(vAccentColor),
+    firstDayOfWeek: v.optional(v.picklist(['sunday', 'monday'])),
     dateFormat: v.optional(v.picklist([
         'dd_mm_yyyy',
         'mm_dd_yyyy',
@@ -237,11 +215,13 @@ export const vUpdateGeneralSettingsBody = v.object({
         'low',
         'medium'
     ])),
-    usePointerCursors: v.optional(v.boolean()),
     enableAnimations: v.optional(v.boolean()),
     confirmBeforeDelete: v.optional(v.boolean())
 });
 
+/**
+ * Updated
+ */
 export const vUpdateGeneralSettingsResponse = vGeneralSettings;
 
 export const vUpdateTaskSettingsBody = v.object({
@@ -252,8 +232,13 @@ export const vUpdateTaskSettingsBody = v.object({
         'created',
         'alphabetical'
     ])),
-    defaultPriority: v.optional(vTaskPriority),
-    defaultDeadlineDays: v.optional(v.picklist([
+    defaultPriority: v.optional(v.picklist([
+        'without',
+        'low',
+        'medium',
+        'high'
+    ])),
+    defaultDeadline: v.optional(v.picklist([
         'none',
         'today',
         'tomorrow',
@@ -262,10 +247,14 @@ export const vUpdateTaskSettingsBody = v.object({
     ])),
     cardDensity: v.optional(v.picklist(['compact', 'comfortable'])),
     showCompletedTasks: v.optional(v.boolean()),
+    showPriorityIndicator: v.optional(v.boolean()),
     newTaskPosition: v.optional(v.picklist(['top', 'bottom'])),
-    naturalLanguageDates: v.optional(v.boolean())
+    enableNaturalLanguageDates: v.optional(v.boolean())
 });
 
+/**
+ * Updated
+ */
 export const vUpdateTaskSettingsResponse = vTaskSettings;
 
 export const vUpdateLabelSettingsBody = v.object({
@@ -279,24 +268,37 @@ export const vUpdateLabelSettingsBody = v.object({
     ]))
 });
 
+/**
+ * Updated
+ */
 export const vUpdateLabelSettingsResponse = vLabelSettings;
 
-export const vUpdateAccessibilitySettingsBody = vAccessibilitySettings;
-
-export const vUpdateAccessibilitySettingsResponse = vAccessibilitySettings;
-
-export const vGetAllBoardsResponse = v.array(vBoard);
+/**
+ * Success
+ */
+export const vGetAllBoardsResponse = v.array(v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
+    icon: vBoardIcon,
+    background: vBoardBackground,
+    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    createdAt: v.pipe(v.string(), v.isoTimestamp()),
+    updatedAt: v.pipe(v.string(), v.isoTimestamp())
+}));
 
 export const vCreateBoardBody = v.object({
-    title: v.optional(v.pipe(v.string(), v.minLength(3))),
-    icon: v.optional(vBoardIcon),
-    background: v.optional(vBoardBackgroundId)
+    title: v.pipe(v.string(), v.minLength(3)),
+    icon: vBoardIcon,
+    background: vBoardBackgroundId
 });
 
+/**
+ * Success
+ */
 export const vCreateBoardResponse = vBoard;
 
 export const vDeleteBoardPath = v.object({
-    boardId: v.string()
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
 /**
@@ -305,12 +307,13 @@ export const vDeleteBoardPath = v.object({
 export const vDeleteBoardResponse = v.void();
 
 export const vGetBoardByIdPath = v.object({
-    boardId: v.string()
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
-export const vGetBoardByIdResponse = v.intersect([vBoard, v.object({
-        columns: v.optional(v.array(v.unknown()))
-    })]);
+/**
+ * Success
+ */
+export const vGetBoardByIdResponse = vBoard;
 
 export const vUpdateBoardBody = v.object({
     title: v.optional(v.pipe(v.string(), v.minLength(3))),
@@ -319,9 +322,12 @@ export const vUpdateBoardBody = v.object({
 });
 
 export const vUpdateBoardPath = v.object({
-    boardId: v.string()
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
+/**
+ * Success
+ */
 export const vUpdateBoardResponse = vBoard;
 
 export const vCreateColumnBody = v.object({
@@ -329,23 +335,23 @@ export const vCreateColumnBody = v.object({
 });
 
 export const vCreateColumnPath = v.object({
-    boardId: v.string()
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
-export const vCreateColumnResponse = vColumn;
-
-export const vUpdateColumnsOrderBody = v.object({
-    ids: v.array(v.string())
+/**
+ * Success
+ */
+export const vCreateColumnResponse = v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
+    order: v.pipe(v.number(), v.integer()),
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    createdAt: v.pipe(v.string(), v.isoTimestamp()),
+    updatedAt: v.pipe(v.string(), v.isoTimestamp())
 });
-
-export const vUpdateColumnsOrderPath = v.object({
-    boardId: v.string()
-});
-
-export const vUpdateColumnsOrderResponse = v.array(vColumn);
 
 export const vDeleteColumnPath = v.object({
-    columnId: v.string()
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
 /**
@@ -358,37 +364,60 @@ export const vUpdateColumnBody = v.object({
 });
 
 export const vUpdateColumnPath = v.object({
-    columnId: v.string()
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
-export const vUpdateColumnResponse = vColumn;
+/**
+ * Success
+ */
+export const vUpdateColumnResponse = v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
+    order: v.pipe(v.number(), v.integer()),
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    createdAt: v.pipe(v.string(), v.isoTimestamp()),
+    updatedAt: v.pipe(v.string(), v.isoTimestamp())
+});
+
+export const vUpdateColumnsOrderBody = v.object({
+    ids: v.array(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))
+});
+
+export const vUpdateColumnsOrderPath = v.object({
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+});
+
+/**
+ * Success
+ */
+export const vUpdateColumnsOrderResponse = v.array(v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
+    order: v.pipe(v.number(), v.integer()),
+    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    createdAt: v.pipe(v.string(), v.isoTimestamp()),
+    updatedAt: v.pipe(v.string(), v.isoTimestamp())
+}));
 
 export const vCreateTaskBody = v.object({
     title: v.pipe(v.string(), v.minLength(3)),
-    description: v.optional(v.pipe(v.string(), v.minLength(3))),
-    deadline: v.optional(v.pipe(v.string(), v.isoTimestamp())),
     priority: vTaskPriority,
-    labels: v.optional(v.array(v.string()))
+    description: v.optional(v.pipe(v.string(), v.minLength(3))),
+    labels: v.optional(v.array(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))),
+    deadline: v.optional(v.pipe(v.string(), v.isoTimestamp()))
 });
 
 export const vCreateTaskPath = v.object({
-    columnId: v.string()
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
+/**
+ * Success
+ */
 export const vCreateTaskResponse = vTask;
 
-export const vUpdateTasksOrderBody = v.object({
-    ids: v.array(v.string())
-});
-
-export const vUpdateTasksOrderPath = v.object({
-    columnId: v.string()
-});
-
-export const vUpdateTasksOrderResponse = v.array(vTask);
-
 export const vDeleteTaskPath = v.object({
-    taskId: v.string()
+    taskId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
 /**
@@ -398,32 +427,65 @@ export const vDeleteTaskResponse = v.void();
 
 export const vUpdateTaskBody = v.object({
     title: v.optional(v.pipe(v.string(), v.minLength(3))),
-    description: v.nullish(v.pipe(v.string(), v.minLength(3))),
-    deadline: v.nullish(v.pipe(v.string(), v.isoTimestamp())),
     priority: v.optional(vTaskPriority),
+    description: v.nullish(v.pipe(v.string(), v.minLength(3))),
+    labels: v.optional(v.array(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))),
+    deadline: v.nullish(v.pipe(v.string(), v.isoTimestamp())),
     completed: v.optional(v.boolean()),
-    columnId: v.optional(v.string()),
-    labels: v.optional(v.array(v.string()))
+    columnId: v.optional(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))
 });
 
 export const vUpdateTaskPath = v.object({
-    taskId: v.string()
+    taskId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
+/**
+ * Success
+ */
 export const vUpdateTaskResponse = vTask;
 
+export const vUpdateTasksOrderBody = v.object({
+    ids: v.array(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))
+});
+
+export const vUpdateTasksOrderPath = v.object({
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+});
+
+/**
+ * Updated
+ */
+export const vUpdateTasksOrderResponse = v.array(v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    title: v.pipe(v.string(), v.minLength(3)),
+    description: v.nullable(v.pipe(v.string(), v.minLength(3))),
+    priority: vTaskPriority,
+    deadline: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
+    order: v.pipe(v.number(), v.integer()),
+    completed: v.boolean(),
+    completedAt: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    createdAt: v.pipe(v.string(), v.isoTimestamp()),
+    updatedAt: v.pipe(v.string(), v.isoTimestamp())
+}));
+
+/**
+ * Success
+ */
 export const vGetAllLabelsResponse = v.array(vLabel);
 
 export const vCreateLabelBody = v.object({
-    name: v.pipe(v.string(), v.minLength(2)),
-    description: v.optional(v.pipe(v.string(), v.minLength(3))),
-    color: vAccentColor
+    name: v.string(),
+    color: v.intersect([vAccentColor, v.unknown()])
 });
 
+/**
+ * Success
+ */
 export const vCreateLabelResponse = vLabel;
 
 export const vDeleteLabelPath = v.object({
-    labelId: v.string()
+    labelId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
 /**
@@ -432,13 +494,16 @@ export const vDeleteLabelPath = v.object({
 export const vDeleteLabelResponse = v.void();
 
 export const vUpdateLabelBody = v.object({
-    name: v.optional(v.pipe(v.string(), v.minLength(2))),
-    description: v.nullish(v.pipe(v.string(), v.minLength(3))),
-    color: v.optional(vAccentColor)
+    name: v.optional(v.string()),
+    color: v.optional(v.intersect([vAccentColor, v.unknown()])),
+    description: v.nullish(v.pipe(v.string(), v.minLength(3)))
 });
 
 export const vUpdateLabelPath = v.object({
-    labelId: v.string()
+    labelId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
+/**
+ * Success
+ */
 export const vUpdateLabelResponse = vLabel;

@@ -67,7 +67,7 @@ const SelectItem = ({
   <SelectPrimitive.Item
     className={cn(
       `data-selected:text-accent hocus:text-black dark:hocus:text-white
-      pointer-cursors:cursor-pointer text-base outline-none
+      cursor-pointer text-base transition-colors outline-none
       data-disabled:pointer-events-none data-disabled:cursor-not-allowed
       data-highlighted:text-black dark:text-white/30
       dark:data-highlighted:text-white`,

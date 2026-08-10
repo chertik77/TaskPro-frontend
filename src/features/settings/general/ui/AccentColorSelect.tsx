@@ -28,7 +28,7 @@ export const AccentColorSelect = ({
         {(v: AccentColor) => (
           <div className='flex items-center gap-2'>
             <span
-              className='block size-3 rounded-full'
+              className='size-3 rounded-full'
               style={{ backgroundColor: ACCENT_COLOR_MAP[v] }}
             />
             {v ? capitalize(v) : ''}

@@ -153,10 +153,8 @@
 }
 
 @layer base {
-  html:is(:not([data-pointer-cursors]), [data-pointer-cursors='true'])
-    button:not(:disabled),
-  html:is(:not([data-pointer-cursors]), [data-pointer-cursors='true'])
-    [role='button']:not(:disabled) {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
     cursor: pointer;
   }
 
@@ -171,14 +169,6 @@
 }
 
 @custom-variant dark (&:where(html[data-theme='dark'] *));
-@custom-variant pointer-cursors (
-  &:where(
-    html:is(
-      :not([data-pointer-cursors]),
-      [data-pointer-cursors="true"]
-    ) *
-  )
-);
 
 @custom-variant hocus {
   @media (hover: hover) {

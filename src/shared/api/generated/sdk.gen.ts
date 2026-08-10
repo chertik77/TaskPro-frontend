@@ -4,8 +4,8 @@ import * as v from 'valibot';
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateAccessibilitySettingsData, UpdateAccessibilitySettingsErrors, UpdateAccessibilitySettingsResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses } from './types.gen';
-import { vCreateBoardBody, vCreateBoardResponse, vCreateColumnBody, vCreateColumnPath, vCreateColumnResponse, vCreateLabelBody, vCreateLabelResponse, vCreateTaskBody, vCreateTaskPath, vCreateTaskResponse, vDeleteBoardPath, vDeleteBoardResponse, vDeleteColumnPath, vDeleteColumnResponse, vDeleteLabelPath, vDeleteLabelResponse, vDeleteTaskPath, vDeleteTaskResponse, vGetAllBoardsResponse, vGetAllLabelsResponse, vGetAllSettingsResponse, vGetBoardByIdPath, vGetBoardByIdResponse, vHelpBody, vHelpResponse, vUpdateAccessibilitySettingsBody, vUpdateAccessibilitySettingsResponse, vUpdateBoardBody, vUpdateBoardPath, vUpdateBoardResponse, vUpdateColumnBody, vUpdateColumnPath, vUpdateColumnResponse, vUpdateColumnsOrderBody, vUpdateColumnsOrderPath, vUpdateColumnsOrderResponse, vUpdateGeneralSettingsBody, vUpdateGeneralSettingsResponse, vUpdateLabelBody, vUpdateLabelPath, vUpdateLabelResponse, vUpdateLabelSettingsBody, vUpdateLabelSettingsResponse, vUpdateTaskBody, vUpdateTaskPath, vUpdateTaskResponse, vUpdateTaskSettingsBody, vUpdateTaskSettingsResponse, vUpdateTasksOrderBody, vUpdateTasksOrderPath, vUpdateTasksOrderResponse } from './valibot.gen';
+import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses } from './types.gen';
+import { vCreateBoardBody, vCreateBoardResponse, vCreateColumnBody, vCreateColumnPath, vCreateColumnResponse, vCreateLabelBody, vCreateLabelResponse, vCreateTaskBody, vCreateTaskPath, vCreateTaskResponse, vDeleteBoardPath, vDeleteBoardResponse, vDeleteColumnPath, vDeleteColumnResponse, vDeleteLabelPath, vDeleteLabelResponse, vDeleteTaskPath, vDeleteTaskResponse, vGetAllBoardsResponse, vGetAllLabelsResponse, vGetAllSettingsResponse, vGetBoardByIdPath, vGetBoardByIdResponse, vHelpBody, vHelpResponse, vUpdateBoardBody, vUpdateBoardPath, vUpdateBoardResponse, vUpdateColumnBody, vUpdateColumnPath, vUpdateColumnResponse, vUpdateColumnsOrderBody, vUpdateColumnsOrderPath, vUpdateColumnsOrderResponse, vUpdateGeneralSettingsBody, vUpdateGeneralSettingsResponse, vUpdateLabelBody, vUpdateLabelPath, vUpdateLabelResponse, vUpdateLabelSettingsBody, vUpdateLabelSettingsResponse, vUpdateTaskBody, vUpdateTaskPath, vUpdateTaskResponse, vUpdateTaskSettingsBody, vUpdateTaskSettingsResponse, vUpdateTasksOrderBody, vUpdateTasksOrderPath, vUpdateTasksOrderResponse } from './valibot.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -110,26 +110,6 @@ export const updateLabelSettings = <ThrowOnError extends boolean = true>(options
     responseValidator: async (data) => await v.parseAsync(vUpdateLabelSettingsResponse, data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/user/settings/label',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
-    }
-});
-
-/**
- * Update accessibility settings
- */
-export const updateAccessibilitySettings = <ThrowOnError extends boolean = true>(options: Options<UpdateAccessibilitySettingsData, ThrowOnError>): RequestResult<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError> => (options.client ?? client).patch<UpdateAccessibilitySettingsResponses, UpdateAccessibilitySettingsErrors, ThrowOnError>({
-    requestValidator: async (data) => await v.parseAsync(v.object({
-        body: vUpdateAccessibilitySettingsBody,
-        path: v.optional(v.never()),
-        query: v.optional(v.never())
-    }), data),
-    responseType: 'json',
-    responseValidator: async (data) => await v.parseAsync(vUpdateAccessibilitySettingsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/user/settings/accessibility',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -245,26 +225,6 @@ export const createColumn = <ThrowOnError extends boolean = true>(options: Optio
 });
 
 /**
- * Update columns order
- */
-export const updateColumnsOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateColumnsOrderData, ThrowOnError>): RequestResult<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError>({
-    requestValidator: async (data) => await v.parseAsync(v.object({
-        body: vUpdateColumnsOrderBody,
-        path: vUpdateColumnsOrderPath,
-        query: v.optional(v.never())
-    }), data),
-    responseType: 'json',
-    responseValidator: async (data) => await v.parseAsync(vUpdateColumnsOrderResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/column/{boardId}/order',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
-    }
-});
-
-/**
  * Delete column by id
  */
 export const deleteColumn = <ThrowOnError extends boolean = true>(options: Options<DeleteColumnData, ThrowOnError>): RequestResult<DeleteColumnResponses, DeleteColumnErrors, ThrowOnError> => (options.client ?? client).delete<DeleteColumnResponses, DeleteColumnErrors, ThrowOnError>({
@@ -300,6 +260,26 @@ export const updateColumn = <ThrowOnError extends boolean = true>(options: Optio
 });
 
 /**
+ * Update columns order
+ */
+export const updateColumnsOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateColumnsOrderData, ThrowOnError>): RequestResult<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateColumnsOrderResponses, UpdateColumnsOrderErrors, ThrowOnError>({
+    requestValidator: async (data) => await v.parseAsync(v.object({
+        body: vUpdateColumnsOrderBody,
+        path: vUpdateColumnsOrderPath,
+        query: v.optional(v.never())
+    }), data),
+    responseType: 'json',
+    responseValidator: async (data) => await v.parseAsync(vUpdateColumnsOrderResponse, data),
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/column/{boardId}/order',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
  * Create new task
  */
 export const createTask = <ThrowOnError extends boolean = true>(options: Options<CreateTaskData, ThrowOnError>): RequestResult<CreateTaskResponses, CreateTaskErrors, ThrowOnError> => (options.client ?? client).post<CreateTaskResponses, CreateTaskErrors, ThrowOnError>({
@@ -312,26 +292,6 @@ export const createTask = <ThrowOnError extends boolean = true>(options: Options
     responseValidator: async (data) => await v.parseAsync(vCreateTaskResponse, data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/task/{columnId}',
-    ...options,
-    headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
-    }
-});
-
-/**
- * Update tasks order
- */
-export const updateTasksOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateTasksOrderData, ThrowOnError>): RequestResult<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError>({
-    requestValidator: async (data) => await v.parseAsync(v.object({
-        body: vUpdateTasksOrderBody,
-        path: vUpdateTasksOrderPath,
-        query: v.optional(v.never())
-    }), data),
-    responseType: 'json',
-    responseValidator: async (data) => await v.parseAsync(vUpdateTasksOrderResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/task/{columnId}/order',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -367,6 +327,26 @@ export const updateTask = <ThrowOnError extends boolean = true>(options: Options
     responseValidator: async (data) => await v.parseAsync(vUpdateTaskResponse, data),
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/task/{taskId}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update tasks order
+ */
+export const updateTasksOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateTasksOrderData, ThrowOnError>): RequestResult<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError>({
+    requestValidator: async (data) => await v.parseAsync(v.object({
+        body: vUpdateTasksOrderBody,
+        path: vUpdateTasksOrderPath,
+        query: v.optional(v.never())
+    }), data),
+    responseType: 'json',
+    responseValidator: async (data) => await v.parseAsync(vUpdateTasksOrderResponse, data),
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/task/{columnId}/order',
     ...options,
     headers: {
         'Content-Type': 'application/json',

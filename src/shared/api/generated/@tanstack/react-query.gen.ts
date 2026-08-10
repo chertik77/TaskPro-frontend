@@ -4,8 +4,8 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { createBoard, createColumn, createLabel, createTask, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateAccessibilitySettings, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder } from '../sdk.gen';
-import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateAccessibilitySettingsData, UpdateAccessibilitySettingsError, UpdateAccessibilitySettingsResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse } from '../types.gen';
+import { createBoard, createColumn, createLabel, createTask, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder } from '../sdk.gen';
+import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse } from '../types.gen';
 
 /**
  * Send email need help
@@ -126,23 +126,6 @@ export const updateLabelSettingsMutation = (options?: Partial<Options<UpdateLabe
     return mutationOptions;
 };
 
-/**
- * Update accessibility settings
- */
-export const updateAccessibilitySettingsMutation = (options?: Partial<Options<UpdateAccessibilitySettingsData>>): UseMutationOptions<UpdateAccessibilitySettingsResponse, AxiosError<UpdateAccessibilitySettingsError>, Options<UpdateAccessibilitySettingsData>> => {
-    const mutationOptions: UseMutationOptions<UpdateAccessibilitySettingsResponse, AxiosError<UpdateAccessibilitySettingsError>, Options<UpdateAccessibilitySettingsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await updateAccessibilitySettings({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
 export const getAllBoardsQueryKey = (options?: Options<GetAllBoardsData>) => createQueryKey('getAllBoards', options);
 
 /**
@@ -248,23 +231,6 @@ export const createColumnMutation = (options?: Partial<Options<CreateColumnData>
 };
 
 /**
- * Update columns order
- */
-export const updateColumnsOrderMutation = (options?: Partial<Options<UpdateColumnsOrderData>>): UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> => {
-    const mutationOptions: UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await updateColumnsOrder({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-/**
  * Delete column by id
  */
 export const deleteColumnMutation = (options?: Partial<Options<DeleteColumnData>>): UseMutationOptions<DeleteColumnResponse, AxiosError<DeleteColumnError>, Options<DeleteColumnData>> => {
@@ -299,12 +265,12 @@ export const updateColumnMutation = (options?: Partial<Options<UpdateColumnData>
 };
 
 /**
- * Create new task
+ * Update columns order
  */
-export const createTaskMutation = (options?: Partial<Options<CreateTaskData>>): UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> => {
-    const mutationOptions: UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> = {
+export const updateColumnsOrderMutation = (options?: Partial<Options<UpdateColumnsOrderData>>): UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> => {
+    const mutationOptions: UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await createTask({
+            const { data } = await updateColumnsOrder({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -316,12 +282,12 @@ export const createTaskMutation = (options?: Partial<Options<CreateTaskData>>): 
 };
 
 /**
- * Update tasks order
+ * Create new task
  */
-export const updateTasksOrderMutation = (options?: Partial<Options<UpdateTasksOrderData>>): UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> => {
-    const mutationOptions: UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> = {
+export const createTaskMutation = (options?: Partial<Options<CreateTaskData>>): UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> => {
+    const mutationOptions: UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await updateTasksOrder({
+            const { data } = await createTask({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -356,6 +322,23 @@ export const updateTaskMutation = (options?: Partial<Options<UpdateTaskData>>): 
     const mutationOptions: UseMutationOptions<UpdateTaskResponse, AxiosError<UpdateTaskError>, Options<UpdateTaskData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await updateTask({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update tasks order
+ */
+export const updateTasksOrderMutation = (options?: Partial<Options<UpdateTasksOrderData>>): UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> => {
+    const mutationOptions: UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateTasksOrder({
                 ...options,
                 ...fnOptions,
                 throwOnError: true

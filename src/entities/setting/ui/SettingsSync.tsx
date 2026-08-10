@@ -3,56 +3,44 @@ import { MotionGlobalConfig } from 'motion/react'
 
 import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
-import { DEFAULT_THEME, resolveTheme } from '@/shared/config'
+import { DEFAULT_THEME } from '@/shared/config'
 
 import { useSettings } from '../model/useSettings'
 
 export const SettingsSync = () => {
   const { data: settings } = useSettings(settings => settings.general)
 
-  const cursor = settings?.usePointerCursors
   const theme = settings?.theme
   const animations = settings?.enableAnimations
   const accentColor = ACCENT_COLOR_MAP[settings?.accentColor ?? 'blue']
 
   useEffect(() => {
+    document.documentElement.dataset.animations = String(animations ?? true)
+    MotionGlobalConfig.skipAnimations = !animations
+  }, [animations])
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent-color', accentColor)
+  }, [accentColor])
+
+  useEffect(() => {
     const root = document.documentElement
 
-    // Pointer cursors
-    root.dataset.pointerCursors = String(cursor ?? false)
-
-    // Theme
     if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+      const mq = window.matchMedia('(prefers-color-scheme: dark)')
 
-      const applySystemTheme = () => {
-        root.dataset.theme = resolveTheme(theme)
+      const apply = () => {
+        root.dataset.theme = mq.matches ? 'dark' : 'light'
       }
 
-      applySystemTheme()
-      mediaQuery.addEventListener('change', applySystemTheme)
+      apply()
+      mq.addEventListener('change', apply)
 
-      return () => {
-        mediaQuery.removeEventListener('change', applySystemTheme)
-        root.dataset.theme = DEFAULT_THEME
-      }
+      return () => mq.removeEventListener('change', apply)
     }
 
-    root.dataset.theme = String(theme ?? 'light')
-
-    // Animations
-    if (!animations) MotionGlobalConfig.skipAnimations = true
-    root.dataset.animations = String(animations ?? true)
-
-    // Accent color
-    root.style.setProperty('--accent-color', accentColor)
-
-    return () => {
-      root.style.removeProperty('--accent-color')
-      for (const item of Object.keys(root.dataset)) delete root.dataset[item]
-      MotionGlobalConfig.skipAnimations = false
-    }
-  }, [accentColor, animations, cursor, settings, theme])
+    root.dataset.theme = theme ?? DEFAULT_THEME
+  }, [theme])
 
   return null
 }
