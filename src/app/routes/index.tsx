@@ -1,9 +1,10 @@
 import { WelcomePage } from '@/pages/welcome'
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { toast } from 'sonner'
 import * as v from 'valibot'
 
 import { sessionQueries } from '@/entities/user'
+
+import { toast } from '@/shared/lib'
 
 export const OauthErrorSearchSchema = v.object({
   error: v.optional(v.pipe(v.string()))

@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 import { sessionQueries } from '@/entities/user'
 
 import { authClient, getAuthErrorMessage } from '@/shared/api'
+import { toast } from '@/shared/lib'
 
 import { usePasskeyDialogStore } from '../model/passkey-dialog.store'
 

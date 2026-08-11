@@ -1,5 +1,6 @@
 import { matchQuery, MutationCache, QueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
+
+import { toast } from '../toast/toast'
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
@@ -22,7 +23,7 @@ export const queryClient = new QueryClient({
         if (typeof errorMessage === 'string') {
           toast.error(errorMessage)
         } else if (typeof errorMessage === 'function') {
-          toast.error(errorMessage(error))
+          toast.success(errorMessage(error))
         }
       }
     }

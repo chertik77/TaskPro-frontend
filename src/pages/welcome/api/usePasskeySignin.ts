@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { toast } from 'sonner'
 
 import { sessionQueries } from '@/entities/user'
 
 import { authClient, getAuthErrorMessage } from '@/shared/api'
+import { toast } from '@/shared/lib'
 
 export const usePasskeySignin = () => {
   const queryClient = useQueryClient()

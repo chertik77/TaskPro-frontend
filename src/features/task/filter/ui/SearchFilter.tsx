@@ -29,7 +29,7 @@ export const SearchFilter = () => {
       <Input
         ref={inputRef}
         placeholder='Search title, description, labels...'
-        className='pr-12'
+        className='pr-10'
         value={localSearch}
         onChange={e => {
           const value = e.target.value

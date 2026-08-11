@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation, useNavigate } from '@tanstack/react-router'
-import { toast } from 'sonner'
+
+import { toast } from '@/shared/lib'
 
 export const AccountOAuthErrorHandler = () => {
   const { search } = useLocation()
