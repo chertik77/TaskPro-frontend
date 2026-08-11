@@ -1,32 +1,21 @@
 import { TASK_DEADLINES } from '@/entities/task'
 
-import { RadioGroup, RadioGroupItem } from '@/shared/ui'
-
 import { useTaskFilters } from '../lib/useTaskFilters'
+import { FilterOption } from './FilterOption'
 
 export const DeadlineFilter = () => {
-  const { deadline, handleParamsChange } = useTaskFilters()
+  const { deadline, toggleFilter } = useTaskFilters()
 
   return (
-    <RadioGroup
-      className='flex-col'
-      value={deadline ?? ''}
-      onValueChange={v => handleParamsChange('deadline', v)}>
-      {TASK_DEADLINES.map(deadline => (
-        <label
-          className='text-md hocus:text-black dark:hocus:text-white flex
-            cursor-pointer items-center gap-2 text-black/50
-            has-data-checked:text-black dark:text-white/50
-            dark:has-data-checked:text-white'
-          key={deadline}>
-          <RadioGroupItem
-            className='bg-black/30 dark:bg-white/30'
-            indicatorClassname='bg-black/30 dark:bg-white/30'
-            value={deadline}
-          />
-          {deadline}
-        </label>
+    <div className='flex flex-col gap-2'>
+      {TASK_DEADLINES.map(value => (
+        <FilterOption
+          key={value}
+          isChecked={deadline.includes(value)}
+          onCheckedChange={() => toggleFilter('deadline', value)}>
+          {value}
+        </FilterOption>
       ))}
-    </RadioGroup>
+    </div>
   )
 }

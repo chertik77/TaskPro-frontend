@@ -7,13 +7,20 @@ import { Input } from '@/shared/ui'
 import { useTaskFilters } from '../lib/useTaskFilters'
 
 export const SearchFilter = () => {
-  const { search, handleParamsChange } = useTaskFilters()
+  const { search, setFilter } = useTaskFilters()
 
-  const [localSearch, setLocalSearch] = useState(search ?? '')
+  const [localSearch, setLocalSearch] = useState(search)
+  const [previousSearch, setPreviousSearch] = useState(search)
 
-  const debouncedParamsChange = useDebouncedCallback(value => {
-    handleParamsChange('search', value)
+  const debouncedParamsChange = useDebouncedCallback((value: string) => {
+    setFilter('search', value)
   }, 250)
+
+  if (search !== previousSearch) {
+    setPreviousSearch(search)
+
+    if (!debouncedParamsChange.isPending()) setLocalSearch(search)
+  }
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -21,7 +28,7 @@ export const SearchFilter = () => {
     <div className='relative'>
       <Input
         ref={inputRef}
-        placeholder='Search tasks...'
+        placeholder='Search title, description, labels...'
         className='pr-12'
         value={localSearch}
         onChange={e => {
@@ -30,13 +37,13 @@ export const SearchFilter = () => {
           debouncedParamsChange(value)
         }}
       />
-      <Activity mode={search ? 'visible' : 'hidden'}>
+      <Activity mode={localSearch ? 'visible' : 'hidden'}>
         <button
           type='button'
           className='focus-visible:styled-outline absolute top-3.5 right-3.5'
           onClick={() => {
             setLocalSearch('')
-            handleParamsChange('search', '')
+            setFilter('search', '')
             debouncedParamsChange.cancel()
             inputRef.current?.focus()
           }}>

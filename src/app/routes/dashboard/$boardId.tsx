@@ -7,5 +7,16 @@ import { Board } from '@/widgets/kanban-board'
 export const Route = createFileRoute('/dashboard/$boardId')({
   component: Board,
   validateSearch: TaskContracts.TaskSearchSchema,
-  search: { middlewares: [stripSearchParams({ search: '' })] }
+  search: {
+    middlewares: [
+      stripSearchParams({
+        search: '',
+        priority: [],
+        deadline: [],
+        labels: [],
+        sort: 'manual',
+        dir: 'asc'
+      })
+    ]
+  }
 })

@@ -1,34 +1,27 @@
 import { getTaskPriorityColor } from '@/entities/task'
 
 import { TaskPriority } from '@/shared/api'
-import { capitalize } from '@/shared/lib'
-import { RadioGroup, RadioGroupItem } from '@/shared/ui'
+import { capitalize, cn } from '@/shared/lib'
 
 import { useTaskFilters } from '../lib/useTaskFilters'
+import { FilterOption } from './FilterOption'
 
 export const PriorityFilter = () => {
-  const { priority, handleParamsChange } = useTaskFilters()
+  const { priority, toggleFilter } = useTaskFilters()
 
   return (
-    <RadioGroup
-      className='flex-col'
-      value={priority ?? ''}
-      onValueChange={v => handleParamsChange('priority', v)}>
-      {Object.values(TaskPriority).map(priority => (
-        <label
-          className='text-md hocus:text-black dark:hocus:text-white flex
-            cursor-pointer items-center gap-2 text-black/50
-            has-data-checked:text-black dark:text-white/50
-            dark:has-data-checked:text-white'
-          key={priority}>
-          <RadioGroupItem
-            className={getTaskPriorityColor(priority)}
-            indicatorClassname={getTaskPriorityColor(priority)}
-            value={priority}
+    <div className='flex flex-col gap-2'>
+      {Object.values(TaskPriority).map(value => (
+        <FilterOption
+          key={value}
+          isChecked={priority.includes(value)}
+          onCheckedChange={() => toggleFilter('priority', value)}>
+          <span
+            className={cn('size-2.5 rounded-full', getTaskPriorityColor(value))}
           />
-          {capitalize(priority)}
-        </label>
+          {capitalize(value)}
+        </FilterOption>
       ))}
-    </RadioGroup>
+    </div>
   )
 }
