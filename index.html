@@ -5,6 +5,19 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
+    <script>
+      ;(() => {
+        let theme = localStorage.getItem('taskpro-theme')
+
+        if (theme === 'system') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
     <meta
       name="description"
       content="The ultimate task management tool for individuals and teams. Organize tasks, set deadlines, track progress, and increase productivity with TaskPro." />

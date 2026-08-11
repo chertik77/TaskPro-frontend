@@ -1,10 +1,5 @@
-import {
-  Outlet,
-  useLocation,
-  useNavigate,
-  useRouter
-} from '@tanstack/react-router'
-import { ArrowLeftIcon } from 'lucide-react'
+import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
+import { XIcon } from 'lucide-react'
 
 import { cn } from '@/shared/lib'
 
@@ -12,8 +7,6 @@ import { MENU_DATA } from '../config/menu-data'
 
 export const SettingsPage = () => {
   const navigate = useNavigate()
-
-  const router = useRouter()
 
   const { pathname } = useLocation()
 
@@ -24,15 +17,15 @@ export const SettingsPage = () => {
           border border-b-0 border-l-0 px-6 py-15 dark:bg-black'>
         <div className='mb-8 space-y-6'>
           <button
-            onClick={() => router.history.back()}
+            onClick={() => navigate({ to: '/dashboard' })}
             className='group hocus:text-black dark:hocus:text-white group flex
               items-center gap-2 text-black/50 transition-colors
               dark:text-white/50'>
-            <ArrowLeftIcon
+            <XIcon
               className='group-hocus:opacity-100 size-4 text-black opacity-50
                 transition-opacity dark:text-white'
             />
-            Back
+            Close
           </button>
           <h2 className='text-xl'>Settings</h2>
         </div>

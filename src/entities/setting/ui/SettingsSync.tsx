@@ -3,7 +3,7 @@ import { MotionGlobalConfig } from 'motion/react'
 
 import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
-import { DEFAULT_THEME } from '@/shared/config'
+import { setStoredTheme } from '@/shared/config'
 
 import { useSettings } from '../model/useSettings'
 
@@ -43,7 +43,11 @@ export const SettingsSync = () => {
   }, [fontSize])
 
   useEffect(() => {
+    if (!theme) return
+
     const root = document.documentElement
+
+    setStoredTheme(theme)
 
     if (theme === 'system') {
       const mq = window.matchMedia('(prefers-color-scheme: dark)')
@@ -58,7 +62,7 @@ export const SettingsSync = () => {
       return () => mq.removeEventListener('change', apply)
     }
 
-    root.dataset.theme = theme ?? DEFAULT_THEME
+    root.dataset.theme = theme
   }, [theme])
 
   return null
