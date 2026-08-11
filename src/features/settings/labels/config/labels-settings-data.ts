@@ -7,12 +7,6 @@ import { MAX_LABELS_SHOWN_OPTIONS } from './max-labels-shown-options'
 export const LABELS_SETTINGS: SettingTypes.SettingDefinition<LabelSettings>[] =
   [
     {
-      type: 'switch',
-      key: 'showLabelsOnTask',
-      title: 'Show labels on tasks',
-      description: 'Display labels directly on task cards.'
-    },
-    {
       type: 'select',
       key: 'labelDisplay',
       title: 'Label display',

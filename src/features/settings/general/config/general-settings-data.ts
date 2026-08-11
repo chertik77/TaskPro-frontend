@@ -3,7 +3,9 @@ import type { GeneralSettings } from '@/shared/api'
 
 import { BOARD_BACKGROUND_BLUR_OPTIONS } from './board-background-blur-options'
 import { DATE_FORMAT_OPTIONS } from './date-format-options'
+import { ENABLE_ANIMATIONS_OPTIONS } from './enable-animations-options'
 import { FIRST_DAY_WEEK_OPTIONS } from './first-day-week-options'
+import { FONT_SIZE_OPTIONS } from './font-size-options'
 import { THEME_OPTIONS } from './theme-options'
 
 export const GENERAL_SETTINGS: SettingTypes.SettingDefinition<
@@ -45,10 +47,18 @@ export const GENERAL_SETTINGS: SettingTypes.SettingDefinition<
     options: BOARD_BACKGROUND_BLUR_OPTIONS
   },
   {
-    type: 'switch',
+    type: 'select',
+    key: 'fontSize',
+    title: 'Font size',
+    description: 'Adjust the size of text throughout the app.',
+    options: FONT_SIZE_OPTIONS
+  },
+  {
+    type: 'select',
     key: 'enableAnimations',
     title: 'Enable animations',
-    description: 'Enable animations and transitions throughout the app.'
+    description: 'Enable animations and transitions throughout the app.',
+    options: ENABLE_ANIMATIONS_OPTIONS
   },
   {
     type: 'switch',

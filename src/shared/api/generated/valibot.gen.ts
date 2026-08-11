@@ -19,7 +19,6 @@ export const vAccentColor = v.optional(v.picklist([
 ]), 'blue');
 
 export const vGeneralSettings = v.object({
-    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     theme: v.optional(v.picklist([
         'light',
         'dark',
@@ -27,6 +26,11 @@ export const vGeneralSettings = v.object({
     ]), 'light'),
     accentColor: vAccentColor,
     firstDayOfWeek: v.picklist(['sunday', 'monday']),
+    fontSize: v.picklist([
+        'small',
+        'medium',
+        'large'
+    ]),
     dateFormat: v.picklist([
         'dd_mm_yyyy',
         'mm_dd_yyyy',
@@ -37,13 +41,15 @@ export const vGeneralSettings = v.object({
         'low',
         'medium'
     ]),
-    enableAnimations: v.boolean(),
-    confirmBeforeDelete: v.boolean(),
-    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+    enableAnimations: v.picklist([
+        'system',
+        'on',
+        'off'
+    ]),
+    confirmBeforeDelete: v.boolean()
 });
 
 export const vTaskSettings = v.object({
-    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     sortTasksBy: v.picklist([
         'manual',
         'priority',
@@ -67,21 +73,23 @@ export const vTaskSettings = v.object({
     cardDensity: v.picklist(['compact', 'comfortable']),
     showCompletedTasks: v.boolean(),
     showPriorityIndicator: v.boolean(),
-    newTaskPosition: v.picklist(['top', 'bottom']),
-    enableNaturalLanguageDates: v.boolean(),
-    userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+    newTaskPosition: v.picklist(['top', 'bottom'])
 });
 
 export const vLabelSettings = v.object({
-    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
-    showLabelsOnTask: v.boolean(),
-    labelDisplay: v.picklist(['full', 'compact']),
-    maxLabelsShown: v.picklist([
-        'one',
-        'two',
-        'three',
-        'all'
+    labelDisplay: v.picklist([
+        'hidden',
+        'full',
+        'compact'
     ]),
+    maxLabelsShown: v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10))
+});
+
+export const vUserSettings = v.object({
+    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    general: vGeneralSettings,
+    task: vTaskSettings,
+    label: vLabelSettings,
     userId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
 });
 
@@ -191,11 +199,7 @@ export const vHelpResponse = v.object({
 /**
  * Success
  */
-export const vGetAllSettingsResponse = v.object({
-    general: vGeneralSettings,
-    task: vTaskSettings,
-    label: vLabelSettings
-});
+export const vGetAllSettingsResponse = vUserSettings;
 
 export const vUpdateGeneralSettingsBody = v.object({
     theme: v.optional(v.picklist([
@@ -205,6 +209,11 @@ export const vUpdateGeneralSettingsBody = v.object({
     ]), 'light'),
     accentColor: v.optional(vAccentColor),
     firstDayOfWeek: v.optional(v.picklist(['sunday', 'monday'])),
+    fontSize: v.optional(v.picklist([
+        'small',
+        'medium',
+        'large'
+    ])),
     dateFormat: v.optional(v.picklist([
         'dd_mm_yyyy',
         'mm_dd_yyyy',
@@ -215,7 +224,11 @@ export const vUpdateGeneralSettingsBody = v.object({
         'low',
         'medium'
     ])),
-    enableAnimations: v.optional(v.boolean()),
+    enableAnimations: v.optional(v.picklist([
+        'system',
+        'on',
+        'off'
+    ])),
     confirmBeforeDelete: v.optional(v.boolean())
 });
 
@@ -248,8 +261,7 @@ export const vUpdateTaskSettingsBody = v.object({
     cardDensity: v.optional(v.picklist(['compact', 'comfortable'])),
     showCompletedTasks: v.optional(v.boolean()),
     showPriorityIndicator: v.optional(v.boolean()),
-    newTaskPosition: v.optional(v.picklist(['top', 'bottom'])),
-    enableNaturalLanguageDates: v.optional(v.boolean())
+    newTaskPosition: v.optional(v.picklist(['top', 'bottom']))
 });
 
 /**
@@ -258,14 +270,12 @@ export const vUpdateTaskSettingsBody = v.object({
 export const vUpdateTaskSettingsResponse = vTaskSettings;
 
 export const vUpdateLabelSettingsBody = v.object({
-    showLabelsOnTask: v.optional(v.boolean()),
-    labelDisplay: v.optional(v.picklist(['full', 'compact'])),
-    maxLabelsShown: v.optional(v.picklist([
-        'one',
-        'two',
-        'three',
-        'all'
-    ]))
+    labelDisplay: v.optional(v.picklist([
+        'hidden',
+        'full',
+        'compact'
+    ])),
+    maxLabelsShown: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10)))
 });
 
 /**

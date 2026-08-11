@@ -20,7 +20,7 @@ export type SettingDefinition<
 > =
   | {
       type: 'select'
-      key: KeysOfType<SettingsKeys<T>, string>
+      key: KeysOfType<SettingsKeys<T>, string | number>
       title: string
       description: string
       options: Option[]

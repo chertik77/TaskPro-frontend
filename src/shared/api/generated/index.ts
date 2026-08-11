@@ -149,5 +149,6 @@ export {
   type UpdateTasksOrderError,
   type UpdateTasksOrderErrors,
   type UpdateTasksOrderResponse,
-  type UpdateTasksOrderResponses
+  type UpdateTasksOrderResponses,
+  type UserSettings
 } from './types.gen'

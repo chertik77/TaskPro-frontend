@@ -28,7 +28,7 @@ export const LabelsSettings = () => {
           <Settings.Control>
             {setting.type === 'select' && (
               <Settings.Select
-                value={labelSettings?.[setting.key]}
+                value={labelSettings?.[setting.key].toString()}
                 options={setting.options}
                 onChange={value => update({ body: { [setting.key]: value } })}
               />

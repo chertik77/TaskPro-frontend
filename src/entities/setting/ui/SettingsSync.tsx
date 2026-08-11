@@ -11,17 +11,36 @@ export const SettingsSync = () => {
   const { data: settings } = useSettings(settings => settings.general)
 
   const theme = settings?.theme
-  const animations = settings?.enableAnimations
+  const animations = settings?.enableAnimations ?? 'system'
   const accentColor = ACCENT_COLOR_MAP[settings?.accentColor ?? 'blue']
+  const fontSize = settings?.fontSize ?? 'medium'
 
   useEffect(() => {
-    document.documentElement.dataset.animations = String(animations ?? true)
-    MotionGlobalConfig.skipAnimations = !animations
+    document.documentElement.dataset.animations = animations
+
+    if (animations === 'system') {
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+      const apply = () => {
+        MotionGlobalConfig.skipAnimations = mq.matches
+      }
+
+      apply()
+      mq.addEventListener('change', apply)
+
+      return () => mq.removeEventListener('change', apply)
+    }
+
+    MotionGlobalConfig.skipAnimations = animations === 'off'
   }, [animations])
 
   useEffect(() => {
     document.documentElement.style.setProperty('--accent-color', accentColor)
   }, [accentColor])
+
+  useEffect(() => {
+    document.documentElement.dataset.fontSize = fontSize
+  }, [fontSize])
 
   useEffect(() => {
     const root = document.documentElement

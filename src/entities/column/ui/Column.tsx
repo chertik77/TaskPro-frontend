@@ -76,6 +76,27 @@ const ColumnTitle = ({ className, ...props }: ComponentProps<'p'>) => {
   )
 }
 
+type ColumnTaskCountProps = ComponentProps<'span'> & {
+  count: number
+}
+
+const ColumnTaskCount = ({
+  count,
+  className,
+  ...props
+}: ColumnTaskCountProps) => (
+  <span
+    className={cn(
+      `text-md shrink-0 rounded-full bg-black/5 px-2 py-0.5 text-black/50
+      dark:bg-white/10 dark:text-white/50`,
+      className
+    )}
+    aria-label={`${count} ${count === 1 ? 'task' : 'tasks'}`}
+    {...props}>
+    {count}
+  </span>
+)
+
 const ColumnScrollArea = ({
   children,
   className,
@@ -172,6 +193,7 @@ export const Column = Object.assign(ColumnProvider, {
   Header: ColumnHeader,
   DragActivator: ColumnDragActivator,
   Title: ColumnTitle,
+  TaskCount: ColumnTaskCount,
   ScrollArea: ColumnScrollArea,
   ScrollAreaViewport: ColumnScrollAreaViewport,
   ScrollAreaContent: ColumnScrollAreaContent,

@@ -140,14 +140,11 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
 
   const { data } = useSettings(state => state.label)
 
-  if (!labels?.length || !data?.showLabelsOnTask) return null
+  if (!labels?.length || data?.labelDisplay === 'hidden') return null
 
-  const max = {
-    one: 1,
-    two: 2,
-    three: 3,
-    all: Infinity
-  }[data?.maxLabelsShown ?? 'three']
+  let max = data?.maxLabelsShown
+
+  if (max === 0) max = Infinity
 
   const visibleLabels = labels.slice(0, max)
 

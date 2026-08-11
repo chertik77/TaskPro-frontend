@@ -11,16 +11,26 @@ export type ErrorResponse = {
     };
 };
 
-export type GeneralSettings = {
+export type UserSettings = {
     id: string;
+    general: GeneralSettings;
+    task: TaskSettings;
+    label: LabelSettings;
+    userId: string;
+};
+
+export type GeneralSettings = {
     theme: 'light' | 'dark' | 'system';
     accentColor: AccentColor;
     firstDayOfWeek: 'sunday' | 'monday';
+    fontSize: 'small' | 'medium' | 'large';
     dateFormat: 'dd_mm_yyyy' | 'mm_dd_yyyy' | 'yyyy_mm_dd';
     boardBackgroundBlur: 'off' | 'low' | 'medium';
-    enableAnimations: boolean;
+    /**
+     * `system` defers to the client `prefers-reduced-motion` media query
+     */
+    enableAnimations: 'system' | 'on' | 'off';
     confirmBeforeDelete: boolean;
-    userId: string;
 };
 
 export const AccentColor = {
@@ -37,7 +47,6 @@ export const AccentColor = {
 export type AccentColor = typeof AccentColor[keyof typeof AccentColor];
 
 export type TaskSettings = {
-    id: string;
     sortTasksBy: 'manual' | 'priority' | 'deadline' | 'created' | 'alphabetical';
     defaultPriority: 'without' | 'low' | 'medium' | 'high';
     defaultDeadline: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
@@ -45,16 +54,14 @@ export type TaskSettings = {
     showCompletedTasks: boolean;
     showPriorityIndicator: boolean;
     newTaskPosition: 'top' | 'bottom';
-    enableNaturalLanguageDates: boolean;
-    userId: string;
 };
 
 export type LabelSettings = {
-    id: string;
-    showLabelsOnTask: boolean;
-    labelDisplay: 'full' | 'compact';
-    maxLabelsShown: 'one' | 'two' | 'three' | 'all';
-    userId: string;
+    labelDisplay: 'hidden' | 'full' | 'compact';
+    /**
+     * Labels rendered on a task card before collapsing. 0 = all
+     */
+    maxLabelsShown: number;
 };
 
 export const BoardIcon = {
@@ -208,11 +215,7 @@ export type GetAllSettingsResponses = {
     /**
      * Success
      */
-    200: {
-        general: GeneralSettings;
-        task: TaskSettings;
-        label: LabelSettings;
-    };
+    200: UserSettings;
 };
 
 export type GetAllSettingsResponse = GetAllSettingsResponses[keyof GetAllSettingsResponses];
@@ -222,9 +225,13 @@ export type UpdateGeneralSettingsData = {
         theme?: 'light' | 'dark' | 'system';
         accentColor?: AccentColor;
         firstDayOfWeek?: 'sunday' | 'monday';
+        fontSize?: 'small' | 'medium' | 'large';
         dateFormat?: 'dd_mm_yyyy' | 'mm_dd_yyyy' | 'yyyy_mm_dd';
         boardBackgroundBlur?: 'off' | 'low' | 'medium';
-        enableAnimations?: boolean;
+        /**
+         * `system` defers to the client `prefers-reduced-motion` media query
+         */
+        enableAnimations?: 'system' | 'on' | 'off';
         confirmBeforeDelete?: boolean;
     };
     path?: never;
@@ -263,7 +270,6 @@ export type UpdateTaskSettingsData = {
         showCompletedTasks?: boolean;
         showPriorityIndicator?: boolean;
         newTaskPosition?: 'top' | 'bottom';
-        enableNaturalLanguageDates?: boolean;
     };
     path?: never;
     query?: never;
@@ -294,9 +300,11 @@ export type UpdateTaskSettingsResponse = UpdateTaskSettingsResponses[keyof Updat
 
 export type UpdateLabelSettingsData = {
     body: {
-        showLabelsOnTask?: boolean;
-        labelDisplay?: 'full' | 'compact';
-        maxLabelsShown?: 'one' | 'two' | 'three' | 'all';
+        labelDisplay?: 'hidden' | 'full' | 'compact';
+        /**
+         * Labels rendered on a task card before collapsing. 0 = all
+         */
+        maxLabelsShown?: number;
     };
     path?: never;
     query?: never;

@@ -13,7 +13,7 @@ import {
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
 
-import { cn, useDocumentTitle } from '@/shared/lib'
+import { cn, pluralize, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
 import { ColumnList } from './column-list/ColumnList'
@@ -43,6 +43,8 @@ export const Board = () => {
 
   const backgroundURL = board?.background.url
 
+  const columnsCount = board?.columns?.length ?? 0
+
   return (
     <ScrollArea.Root
       className='tablet:pt-6.5 desktop:pt-2.5 flex flex-col overflow-hidden
@@ -57,9 +59,14 @@ export const Board = () => {
           ) && 'text-white',
           !backgroundURL && 'dark:text-white'
         )}>
-        <h2 className='tablet:text-xl max-w-max truncate whitespace-pre'>
-          {board?.title}
-        </h2>
+        <div className='flex min-w-0 items-center gap-2.5'>
+          <h2 className='tablet:text-xl max-w-max truncate whitespace-pre'>
+            {board?.title}
+          </h2>
+          <p className='text-md shrink-0 opacity-70'>
+            {pluralize(columnsCount, 'column', 'columns')}
+          </p>
+        </div>
         <Filters />
       </div>
       <ScrollArea.Viewport>

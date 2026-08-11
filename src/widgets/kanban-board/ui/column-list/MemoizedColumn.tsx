@@ -46,6 +46,7 @@ export const MemoizedColumn = memo(
               {...draggableListeners}
             />
             <Column.Title />
+            <Column.TaskCount count={tasks?.length ?? 0} />
           </div>
           <div>
             <EditColumnDialog
