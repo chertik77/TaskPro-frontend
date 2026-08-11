@@ -23,8 +23,8 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => {
 
   return (
     <Settings.Item
-      className='dark:bg-black-muted bg-white-muted flex flex-col rounded-lg
-        py-5 pr-8 pl-4'>
+      className='dark:bg-black-muted bg-white-muted tablet:pr-8 flex flex-col
+        rounded-lg px-4 py-5'>
       <m.div
         layout
         className='flex w-full items-center gap-3'>

@@ -42,8 +42,8 @@ export const SessionsList = ({ sessions }: SessionsListProps) => (
       return (
         <Settings.Item
           key={id}
-          className='dark:bg-black-muted bg-white-muted flex items-center gap-3
-            rounded-lg py-3 pr-8 pl-4'>
+          className='dark:bg-black-muted bg-white-muted tablet:pr-8
+            tablet:items-center flex items-center gap-3! rounded-lg px-4 py-3'>
           <BrowserIcon browser={browser} />
           <div className='space-y-1'>
             {browser && os && (

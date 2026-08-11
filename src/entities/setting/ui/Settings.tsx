@@ -44,8 +44,8 @@ const itemVariants: Variants = {
 
 const Section = ({ title, children, isLoading }: SectionProps) => (
   <div
-    className='bg-white-soft border-accent dark:border-accent/50 flex h-full
-      flex-col rounded-lg border p-6 dark:bg-black'>
+    className='bg-white-soft border-accent dark:border-accent/50 tablet:p-6 flex
+      h-full flex-col rounded-lg border p-4 pt-6 dark:bg-black'>
     {isLoading ? (
       <div className='flex h-full items-center justify-center gap-2'>
         <Loader />
@@ -97,27 +97,41 @@ const Item = ({ children, className }: ChildrenProps) => (
     initial='hidden'
     animate='show'
     exit='exit'
-    className={cn('flex items-start justify-between gap-5 p-2', className)}>
+    className={cn(
+      `tablet:flex tablet:items-start tablet:justify-between tablet:gap-5 grid
+      grid-cols-[1fr_auto] items-center gap-x-3 gap-y-3 p-2`,
+      className
+    )}>
     {children}
   </m.div>
 )
 
 const Content = ({ children, className }: ChildrenProps) => (
-  <div className={cn('space-y-2', className)}>{children}</div>
+  <div className={cn('tablet:block tablet:space-y-2 contents', className)}>
+    {children}
+  </div>
 )
 
 const Title = ({ children, className }: ChildrenProps) => (
-  <h4 className={cn('font-medium', className)}>{children}</h4>
+  <h4 className={cn('col-start-1 row-start-1 font-medium', className)}>
+    {children}
+  </h4>
 )
 
 const Description = ({ children, className }: ChildrenProps) => (
-  <p className={cn('text-black/50 dark:text-white/50', className)}>
+  <p
+    className={cn(
+      'col-span-2 col-start-1 row-start-2 text-black/50 dark:text-white/50',
+      className
+    )}>
     {children}
   </p>
 )
 
 const Control = ({ children, className }: ChildrenProps) => (
-  <div className={cn('shrink-0', className)}>{children}</div>
+  <div className={cn('col-start-2 row-start-1 shrink-0', className)}>
+    {children}
+  </div>
 )
 
 type SelectOption<T extends string> = {
@@ -140,7 +154,9 @@ export const SettingSelect = <T extends string>({
     value={value}
     items={options}
     onValueChange={onChange}>
-    <SelectTrigger>
+    <SelectTrigger
+      className='text-md tablet:text-base tablet:px-4 tablet:py-2.5 gap-1.5 px-3
+        py-2'>
       <SelectValue />
     </SelectTrigger>
     <SelectContent>

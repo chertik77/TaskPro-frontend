@@ -23,7 +23,9 @@ export const AccentColorSelect = ({
   <Select
     value={value}
     onValueChange={onChange}>
-    <SelectTrigger>
+    <SelectTrigger
+      className='text-md tablet:text-base tablet:px-4 tablet:py-2.5 gap-1.5 px-3
+        py-2'>
       <SelectValue>
         {(v: AccentColor) => (
           <div className='flex items-center gap-2'>
