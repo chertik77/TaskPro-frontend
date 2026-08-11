@@ -43,7 +43,6 @@ function revokeSessionByIdPlugin() {
 type ErrorTypes = Partial<Record<keyof typeof authClient.$ERROR_CODES, string>>
 
 const errorCodes = {
-  PREVIOUSLY_REGISTERED: 'Unable to register passkey.',
   PASSKEY_NOT_FOUND: 'This passkey is not registered for your account.',
   USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL:
     'An account with this email address already exists. Please sign in or use a different email.',

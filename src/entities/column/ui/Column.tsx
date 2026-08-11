@@ -6,7 +6,7 @@ import { mergeProps, useRender } from '@base-ui/react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import { GripVerticalIcon } from 'lucide-react'
 
-import { cn, useMediaQuery } from '@/shared/lib'
+import { cn, pluralize, useMediaQuery } from '@/shared/lib'
 
 type ColumnContext = {
   column: TColumn
@@ -91,7 +91,7 @@ const ColumnTaskCount = ({
       dark:bg-white/10 dark:text-white/50`,
       className
     )}
-    aria-label={`${count} ${count === 1 ? 'task' : 'tasks'}`}
+    aria-label={pluralize(count, 'task')}
     {...props}>
     {count}
   </span>

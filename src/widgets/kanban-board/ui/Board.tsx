@@ -64,7 +64,7 @@ export const Board = () => {
             {board?.title}
           </h2>
           <p className='text-md shrink-0 opacity-70'>
-            {pluralize(columnsCount, 'column', 'columns')}
+            {pluralize(columnsCount, 'column')}
           </p>
         </div>
         <Filters />
