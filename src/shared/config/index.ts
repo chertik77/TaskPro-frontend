@@ -1,10 +1,12 @@
 export {
   THEMES,
   DEFAULT_THEME,
-  THEME_STORAGE_KEY,
+  APPEARANCE_STORAGE_KEY,
+  getStoredAppearance,
+  setStoredAppearance,
   getStoredTheme,
-  setStoredTheme,
   resolveTheme,
-  type Theme
-} from './theme'
+  type Theme,
+  type StoredAppearance
+} from './appearance'
 export { env } from './env'

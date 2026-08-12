@@ -3,17 +3,22 @@ import { MotionGlobalConfig } from 'motion/react'
 
 import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
-import { setStoredTheme } from '@/shared/config'
+import { getStoredAppearance, setStoredAppearance } from '@/shared/config'
 
 import { useSettings } from '../model/useSettings'
+
+const storedAppearance = getStoredAppearance()
 
 export const SettingsSync = () => {
   const { data: settings } = useSettings(settings => settings.general)
 
-  const theme = settings?.theme
-  const animations = settings?.enableAnimations ?? 'system'
-  const accentColor = ACCENT_COLOR_MAP[settings?.accentColor ?? 'blue']
-  const fontSize = settings?.fontSize ?? 'medium'
+  const theme = settings?.theme ?? storedAppearance.theme
+  const fontSize = settings?.fontSize ?? storedAppearance.fontSize ?? 'medium'
+  const animations =
+    settings?.enableAnimations ?? storedAppearance.animations ?? 'system'
+  const accentColor = settings
+    ? ACCENT_COLOR_MAP[settings.accentColor]
+    : storedAppearance.accentColor
 
   useEffect(() => {
     document.documentElement.dataset.animations = animations
@@ -35,6 +40,8 @@ export const SettingsSync = () => {
   }, [animations])
 
   useEffect(() => {
+    if (!accentColor) return
+
     document.documentElement.style.setProperty('--accent-color', accentColor)
   }, [accentColor])
 
@@ -46,8 +53,6 @@ export const SettingsSync = () => {
     if (!theme) return
 
     const root = document.documentElement
-
-    setStoredTheme(theme)
 
     if (theme === 'system') {
       const mq = window.matchMedia('(prefers-color-scheme: dark)')
@@ -64,6 +69,17 @@ export const SettingsSync = () => {
 
     root.dataset.theme = theme
   }, [theme])
+
+  useEffect(() => {
+    if (!settings) return
+
+    setStoredAppearance({
+      theme: settings.theme,
+      accentColor: ACCENT_COLOR_MAP[settings.accentColor],
+      fontSize: settings.fontSize,
+      animations: settings.enableAnimations
+    })
+  }, [settings])
 
   return null
 }

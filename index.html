@@ -7,7 +7,15 @@
       content="width=device-width, initial-scale=1.0" />
     <script>
       ;(() => {
-        let theme = localStorage.getItem('taskpro-theme')
+        const root = document.documentElement
+
+        let appearance = {}
+
+        appearance =
+          JSON.parse(localStorage.getItem('taskpro-appearance')) || {}
+
+        let theme =
+          appearance.theme ?? localStorage.getItem('taskpro-theme') ?? 'light'
 
         if (theme === 'system') {
           theme = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -15,7 +23,13 @@
             : 'light'
         }
 
-        document.documentElement.dataset.theme = theme
+        root.dataset.theme = theme
+        root.dataset.fontSize = appearance.fontSize ?? 'medium'
+        root.dataset.animations = appearance.animations ?? 'system'
+
+        if (appearance.accentColor) {
+          root.style.setProperty('--accent-color', appearance.accentColor)
+        }
       })()
     </script>
     <meta
