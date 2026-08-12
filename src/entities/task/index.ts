@@ -5,6 +5,7 @@ export {
   TASK_PRIORITY_COLORS,
   getTaskPriorityColor
 } from './lib/priority-colors'
+export { useCardDensity } from './lib/useCardDensity'
 export { FormDeadlinePicker } from './ui/FormDeadlinePicker'
 export { FormPrioritySelector } from './ui/FormPrioritySelector'
 export { Task } from './ui/Task'

@@ -47,13 +47,11 @@ export const AccentColor = {
 export type AccentColor = typeof AccentColor[keyof typeof AccentColor];
 
 export type TaskSettings = {
-    sortTasksBy: 'manual' | 'priority' | 'deadline' | 'created' | 'alphabetical';
     defaultPriority: 'without' | 'low' | 'medium' | 'high';
     defaultDeadline: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
     cardDensity: 'compact' | 'comfortable';
-    showCompletedTasks: boolean;
     showPriorityIndicator: boolean;
-    newTaskPosition: 'top' | 'bottom';
+    overdueHighlight: boolean;
 };
 
 export type LabelSettings = {
@@ -263,13 +261,11 @@ export type UpdateGeneralSettingsResponse = UpdateGeneralSettingsResponses[keyof
 
 export type UpdateTaskSettingsData = {
     body: {
-        sortTasksBy?: 'manual' | 'priority' | 'deadline' | 'created' | 'alphabetical';
         defaultPriority?: 'without' | 'low' | 'medium' | 'high';
         defaultDeadline?: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
         cardDensity?: 'compact' | 'comfortable';
-        showCompletedTasks?: boolean;
         showPriorityIndicator?: boolean;
-        newTaskPosition?: 'top' | 'bottom';
+        overdueHighlight?: boolean;
     };
     path?: never;
     query?: never;

@@ -50,13 +50,6 @@ export const vGeneralSettings = v.object({
 });
 
 export const vTaskSettings = v.object({
-    sortTasksBy: v.picklist([
-        'manual',
-        'priority',
-        'deadline',
-        'created',
-        'alphabetical'
-    ]),
     defaultPriority: v.picklist([
         'without',
         'low',
@@ -71,9 +64,8 @@ export const vTaskSettings = v.object({
         'one_week'
     ]),
     cardDensity: v.picklist(['compact', 'comfortable']),
-    showCompletedTasks: v.boolean(),
     showPriorityIndicator: v.boolean(),
-    newTaskPosition: v.picklist(['top', 'bottom'])
+    overdueHighlight: v.boolean()
 });
 
 export const vLabelSettings = v.object({
@@ -238,13 +230,6 @@ export const vUpdateGeneralSettingsBody = v.object({
 export const vUpdateGeneralSettingsResponse = vGeneralSettings;
 
 export const vUpdateTaskSettingsBody = v.object({
-    sortTasksBy: v.optional(v.picklist([
-        'manual',
-        'priority',
-        'deadline',
-        'created',
-        'alphabetical'
-    ])),
     defaultPriority: v.optional(v.picklist([
         'without',
         'low',
@@ -259,9 +244,8 @@ export const vUpdateTaskSettingsBody = v.object({
         'one_week'
     ])),
     cardDensity: v.optional(v.picklist(['compact', 'comfortable'])),
-    showCompletedTasks: v.optional(v.boolean()),
     showPriorityIndicator: v.optional(v.boolean()),
-    newTaskPosition: v.optional(v.picklist(['top', 'bottom']))
+    overdueHighlight: v.optional(v.boolean())
 });
 
 /**

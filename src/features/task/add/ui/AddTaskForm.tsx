@@ -5,7 +5,7 @@ import * as m from 'motion/react-m'
 import { FormLabelsCombobox } from '@/entities/label'
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
 
-import { formVariants, useAppForm } from '@/shared/lib'
+import { formVariants } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -19,7 +19,7 @@ import {
 } from '@/shared/ui'
 
 import { useAddTask } from '../api/useAddTask'
-import { AddTaskSchema } from '../model/contract'
+import { useAddTaskForm } from '../lib/useAddTaskForm'
 
 type AddTaskFormProps = {
   columnId: string
@@ -30,15 +30,7 @@ export const AddTaskForm = ({
   columnId,
   setIsDialogOpen
 }: AddTaskFormProps) => {
-  const form = useAppForm(AddTaskSchema, {
-    defaultValues: {
-      title: '',
-      description: '',
-      priority: 'without',
-      deadline: undefined,
-      labels: []
-    }
-  })
+  const form = useAddTaskForm()
 
   const { mutate: addTask, isPending } = useAddTask(columnId, setIsDialogOpen)
 

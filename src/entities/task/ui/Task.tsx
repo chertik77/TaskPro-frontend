@@ -1,9 +1,9 @@
-import type { Task as TTask } from '@/shared/api'
+import type { TaskSettings, Task as TTask } from '@/shared/api'
 import type { ComponentProps } from 'react'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
-import { isToday } from 'date-fns'
+import { isBefore, isToday, startOfToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
 import {
@@ -19,9 +19,11 @@ import { Checkbox } from '@/shared/ui'
 import { DATE_FORMAT_MAP } from '../config/date-format-map'
 import { formatDeadline } from '../lib/format-deadline'
 import { getTaskPriorityColor } from '../lib/priority-colors'
+import { useCardDensity } from '../lib/useCardDensity'
 
 type TaskContext = {
   task: TTask
+  density: TaskSettings['cardDensity']
 }
 
 const TaskContext = createContext<TaskContext | undefined>(undefined)
@@ -36,7 +38,7 @@ const useTaskContext = () => {
   return context
 }
 
-type TaskProviderProps = TaskContext & ComponentProps<'div'>
+type TaskProviderProps = { task: TTask } & ComponentProps<'div'>
 
 const TaskProvider = ({
   task,
@@ -44,14 +46,18 @@ const TaskProvider = ({
   children,
   ...props
 }: TaskProviderProps) => {
-  const value = useMemo(() => ({ task }), [task])
+  const density = useCardDensity()
+
+  const value = useMemo(() => ({ task, density }), [task, density])
 
   return (
     <TaskContext value={value}>
       <div
         className={cn(
-          `relative min-h-38.5 overflow-hidden rounded-lg bg-white py-3.5 pr-5
-          pl-6 dark:bg-black`,
+          'relative overflow-hidden rounded-lg bg-white dark:bg-black',
+          density === 'compact'
+            ? 'py-2.5 pr-3.5 pl-4'
+            : 'min-h-38.5 py-3.5 pr-5 pl-6',
           task.completed &&
             'opacity-90 brightness-95 saturate-100 dark:brightness-125',
           className
@@ -69,6 +75,12 @@ const TaskPriorityIndicator = ({
 }: ComponentProps<'span'>) => {
   const { task } = useTaskContext()
 
+  const { data: showPriorityIndicator } = useSettings(
+    state => state.task.showPriorityIndicator
+  )
+
+  if (!showPriorityIndicator) return null
+
   return (
     <span
       className={cn(
@@ -82,12 +94,13 @@ const TaskPriorityIndicator = ({
 }
 
 const TaskTitle = ({ className, ...props }: ComponentProps<'p'>) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
 
   return (
     <p
       className={cn(
-        'mb-2 max-w-60 truncate text-base font-semibold',
+        'max-w-60 truncate text-base font-semibold',
+        density === 'comfortable' && 'mb-2',
         task.completed && 'text-black/40 line-through dark:text-white/40',
         className
       )}
@@ -98,14 +111,15 @@ const TaskTitle = ({ className, ...props }: ComponentProps<'p'>) => {
 }
 
 const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
 
   return (
     task.description && (
       <p
         className={cn(
-          `text-md mb-3.5 line-clamp-2 max-w-68.75 text-balance text-ellipsis
-          text-black/70 dark:text-white/50`,
+          `text-md max-w-68.75 text-balance text-ellipsis text-black/70
+          dark:text-white/50`,
+          density === 'compact' ? 'mb-1.5 line-clamp-1' : 'mb-3.5 line-clamp-2',
           task.completed && 'text-black/40 dark:text-white/40',
           className
         )}
@@ -135,7 +149,8 @@ const TaskCompletedToggle = ({
 
 const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
   const {
-    task: { labels }
+    task: { labels },
+    density
   } = useTaskContext()
 
   const { data } = useSettings(state => state.label)
@@ -152,7 +167,11 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
 
   return (
     <div
-      className={cn('mb-2 flex flex-wrap items-center gap-1.5', className)}
+      className={cn(
+        'flex flex-wrap items-center gap-1.5',
+        density === 'compact' ? 'mb-1' : 'mb-2',
+        className
+      )}
       {...props}>
       {visibleLabels.map(label => (
         <Label
@@ -177,16 +196,22 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
 }
 
 const TaskPriority = ({ className }: { className?: string }) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
+
+  const isCompact = density === 'compact'
 
   return (
     <div
       className={cn(
-        'mr-3.5',
+        isCompact ? 'mr-2' : 'mr-3.5',
         task.completed && 'text-black/40 dark:text-white/40',
         className
       )}>
-      <p className='mb-1 text-xs text-black/50 dark:text-white/50'>Priority</p>
+      {!isCompact && (
+        <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
+          Priority
+        </p>
+      )}
       <div className='flex items-center gap-1'>
         <div
           className={cn(
@@ -194,16 +219,29 @@ const TaskPriority = ({ className }: { className?: string }) => {
             getTaskPriorityColor(task.priority)
           )}
         />
-        <p className='text-sm'>{capitalize(task.priority)}</p>
+        {isCompact ? (
+          <span className='sr-only'>Priority: {capitalize(task.priority)}</span>
+        ) : (
+          <p className='text-sm'>{capitalize(task.priority)}</p>
+        )}
       </div>
     </div>
   )
 }
 
 const TaskDeadline = ({ className }: { className?: string }) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
 
   const { data: dateFormat } = useSettings(state => state.general.dateFormat)
+
+  const { data: overdueHighlight } = useSettings(
+    state => state.task.overdueHighlight
+  )
+
+  const isOverdue =
+    !!task.deadline &&
+    !task.completed &&
+    isBefore(task.deadline, startOfToday())
 
   return (
     task.deadline && (
@@ -212,10 +250,16 @@ const TaskDeadline = ({ className }: { className?: string }) => {
           task.completed && 'text-black/40 dark:text-white/40',
           className
         )}>
-        <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
-          Deadline
-        </p>
-        <p className='text-sm'>
+        {density === 'comfortable' && (
+          <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
+            Deadline
+          </p>
+        )}
+        <p
+          className={cn(
+            'text-sm',
+            overdueHighlight && isOverdue && 'text-red font-medium'
+          )}>
           {formatDeadline(
             task.deadline,
             DATE_FORMAT_MAP[dateFormat ?? 'dd_mm_yyyy']
