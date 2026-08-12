@@ -1,5 +1,6 @@
-import { startOfDay } from 'date-fns'
 import * as v from 'valibot'
+
+import { serializeDeadline } from '@/entities/task'
 
 import { vTaskPriority } from '@/shared/api'
 
@@ -22,15 +23,9 @@ export const AddTaskSchema = v.object({
   ]),
   priority: v.fallback(vTaskPriority, 'without'),
   labels: v.optional(v.array(v.string())),
-  deadline: v.optional(
-    v.pipe(
-      v.date(),
-      v.check(
-        d => startOfDay(d) >= startOfDay(new Date()),
-        'Deadline must be today or in the future.'
-      ),
-      v.transform(v => v.toISOString())
-    )
+  deadline: v.pipe(
+    v.nullish(v.date()),
+    v.transform(d => (d ? serializeDeadline(d) : undefined))
   )
 })
 

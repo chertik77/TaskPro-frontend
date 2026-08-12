@@ -100,7 +100,7 @@ export const AddTaskForm = ({
             render={() => (
               <FormItem className='mb-6'>
                 <FormLabel>Deadline</FormLabel>
-                <FormDeadlinePicker mode='create' />
+                <FormDeadlinePicker />
                 <FormMessage />
               </FormItem>
             )}

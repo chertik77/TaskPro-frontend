@@ -23,7 +23,7 @@ export const queryClient = new QueryClient({
         if (typeof errorMessage === 'string') {
           toast.error(errorMessage)
         } else if (typeof errorMessage === 'function') {
-          toast.success(errorMessage(error))
+          toast.error(errorMessage(error))
         }
       }
     }

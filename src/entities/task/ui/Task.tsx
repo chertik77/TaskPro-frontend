@@ -17,6 +17,7 @@ import { capitalize, cn } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'
 
 import { DATE_FORMAT_MAP } from '../config/date-format-map'
+import { parseDeadline } from '../lib/deadline-day'
 import { formatDeadline } from '../lib/format-deadline'
 import { getTaskPriorityColor } from '../lib/priority-colors'
 import { useCardDensity } from '../lib/useCardDensity'
@@ -238,13 +239,13 @@ const TaskDeadline = ({ className }: { className?: string }) => {
     state => state.task.overdueHighlight
   )
 
+  const deadline = parseDeadline(task.deadline)
+
   const isOverdue =
-    !!task.deadline &&
-    !task.completed &&
-    isBefore(task.deadline, startOfToday())
+    !!deadline && !task.completed && isBefore(deadline, startOfToday())
 
   return (
-    task.deadline && (
+    deadline && (
       <div
         className={cn(
           task.completed && 'text-black/40 dark:text-white/40',
@@ -261,7 +262,7 @@ const TaskDeadline = ({ className }: { className?: string }) => {
             overdueHighlight && isOverdue && 'text-red font-medium'
           )}>
           {formatDeadline(
-            task.deadline,
+            deadline,
             DATE_FORMAT_MAP[dateFormat ?? 'dd_mm_yyyy']
           )}
         </p>
@@ -273,9 +274,11 @@ const TaskDeadline = ({ className }: { className?: string }) => {
 const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
+  const deadline = parseDeadline(task.deadline)
+
   return (
-    task.deadline &&
-    isToday(task.deadline) && (
+    deadline &&
+    isToday(deadline) && (
       <BellRingIcon
         className={cn('stroke-accent size-4.5 animate-bounce pr-1', className)}
       />

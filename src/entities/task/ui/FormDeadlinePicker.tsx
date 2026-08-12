@@ -2,9 +2,8 @@ import type { ChangeEvent } from 'react'
 
 import { useState } from 'react'
 import { parseDate } from 'chrono-node'
-import { startOfDay } from 'date-fns'
+import { isBefore, startOfDay, startOfToday } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
-import { useDebouncedCallback } from 'use-debounce'
 
 import { useSettings } from '@/entities/setting/@x/task'
 
@@ -21,13 +20,7 @@ import {
 
 import { formatDeadline } from '../lib/format-deadline'
 
-type FormDeadlinePickerProps = {
-  mode?: 'create' | 'edit'
-}
-
-const date = new Date()
-
-export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
+export const FormDeadlinePicker = () => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
 
   const { data: firstDayOfWeek } = useSettings(
@@ -39,11 +32,7 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
     field: { value, onChange, ...field }
   } = useFormField()
 
-  const [inputValue, setInputValue] = useState(
-    () => formatDeadline(value) ?? ''
-  )
-
-  const clearValue = useDebouncedCallback(() => onChange(undefined), 1000)
+  const [inputValue, setInputValue] = useState(() => formatDeadline(value))
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value
@@ -51,23 +40,18 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
 
     const parsed = parseDate(text)
 
-    if (parsed) onChange(parsed)
-    else onChange(undefined)
+    onChange(parsed ? startOfDay(parsed) : null)
   }
 
   const handleSelect = (date: Date | undefined) => {
-    onChange(date)
-
-    if (date) {
-      clearValue.cancel()
-      setInputValue(formatDeadline(date))
-    } else {
-      setInputValue('')
-      clearValue()
-    }
-
+    onChange(date ? startOfDay(date) : null)
+    setInputValue(formatDeadline(date))
     setIsCalendarOpen(false)
   }
+
+  const isOverdue = value && isBefore(value, startOfToday())
+
+  const isUnparsed = !value && inputValue.trim().length > 0
 
   return (
     <>
@@ -94,27 +78,27 @@ export const FormDeadlinePicker = ({ mode }: FormDeadlinePickerProps) => {
           </PopoverTrigger>
           <PopoverContent positionerProps={{ side: 'top' }}>
             <Calendar
-              weekStartsOn={firstDayOfWeek === 'monday' ? 1 : 0}
               mode='single'
-              defaultMonth={value}
-              startMonth={mode === 'create' ? (value ?? date) : undefined}
-              disabled={
-                mode === 'create' ? date => date < startOfDay(date) : undefined
-              }
-              selected={value}
+              weekStartsOn={firstDayOfWeek === 'monday' ? 1 : 0}
+              defaultMonth={value ?? startOfToday()}
+              selected={value ?? undefined}
               onSelect={handleSelect}
             />
           </PopoverContent>
         </Popover>
       </div>
-      {!error && value && inputValue && (
+      {!error && (isUnparsed || value) && (
         <FormDescription
           className={cn(
             `mt-2 transition-all duration-500 starting:-translate-y-1
             starting:opacity-0`,
-            value ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
+            isOverdue && 'text-amber-600 dark:text-amber-500'
           )}>
-          {`This task is due on ${formatDeadline(value, 'd MMM yyyy')}.`}
+          {isUnparsed && "We couldn't read that date. Try “tomorrow”."}
+          {value &&
+            (isOverdue
+              ? `This deadline has passed — the task will show as overdue.`
+              : `This task is due on ${formatDeadline(value, 'd MMM yyyy')}.`)}
         </FormDescription>
       )}
     </>

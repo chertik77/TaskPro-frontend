@@ -3,6 +3,8 @@ import type { Task } from '@/shared/api'
 
 import { isAfter, isBefore, isToday, isWithinInterval } from 'date-fns'
 
+import { parseDeadline } from '@/entities/task'
+
 type DeadlineRange = { today: Date; nextWeek: Date }
 
 export const matchesDeadline = (
@@ -10,17 +12,19 @@ export const matchesDeadline = (
   preset: TaskDeadline,
   { today, nextWeek }: DeadlineRange
 ) => {
-  if (preset === 'No Deadline') return !task.deadline
+  const deadline = parseDeadline(task.deadline)
 
-  if (!task.deadline) return false
+  if (preset === 'No Deadline') return !deadline
 
-  if (preset === 'Today') return isToday(task.deadline)
+  if (!deadline) return false
 
-  if (preset === 'Overdue') return isBefore(task.deadline, today)
+  if (preset === 'Today') return isToday(deadline)
+
+  if (preset === 'Overdue') return isBefore(deadline, today)
 
   if (preset === 'Upcoming') {
-    return isWithinInterval(task.deadline, { start: today, end: nextWeek })
+    return isWithinInterval(deadline, { start: today, end: nextWeek })
   }
 
-  return isAfter(task.deadline, nextWeek)
+  return isAfter(deadline, nextWeek)
 }

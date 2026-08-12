@@ -1,6 +1,7 @@
 import type { TaskSettings } from '@/shared/api'
 
 import { parseDate } from 'chrono-node'
+import { startOfDay } from 'date-fns'
 
 type DefaultDeadline = TaskSettings['defaultDeadline']
 
@@ -17,5 +18,7 @@ export const resolveDefaultDeadline = (preset: DefaultDeadline | undefined) => {
 
   if (!text) return undefined
 
-  return parseDate(text) ?? undefined
+  const parsed = parseDate(text)
+
+  return parsed ? startOfDay(parsed) : undefined
 }

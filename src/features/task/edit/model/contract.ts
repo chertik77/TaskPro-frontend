@@ -1,5 +1,7 @@
 import * as v from 'valibot'
 
+import { serializeDeadline } from '@/entities/task'
+
 import { vTaskPriority } from '@/shared/api'
 
 export const EditTaskSchema = v.object({
@@ -25,8 +27,7 @@ export const EditTaskSchema = v.object({
   labels: v.optional(v.array(v.string())),
   deadline: v.pipe(
     v.nullish(v.date()),
-    v.transform(v => v ?? null),
-    v.transform(v => v?.toISOString())
+    v.transform(d => (d ? serializeDeadline(d) : null))
   )
 })
 
