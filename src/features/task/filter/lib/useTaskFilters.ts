@@ -9,9 +9,7 @@ export const DEFAULT_FILTERS: Filters = {
   search: '',
   priority: [],
   deadline: [],
-  labels: [],
-  sort: 'manual',
-  dir: 'asc'
+  labels: []
 }
 
 export const useTaskFilters = () => {
@@ -52,8 +50,7 @@ export const useTaskFilters = () => {
     filters.priority.length +
     filters.deadline.length +
     filters.labels.length +
-    (filters.search ? 1 : 0) +
-    (filters.sort === 'manual' ? 0 : 1)
+    (filters.search ? 1 : 0)
 
   return {
     ...filters,

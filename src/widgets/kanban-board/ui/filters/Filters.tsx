@@ -10,7 +10,6 @@ import {
   LabelFilter,
   PriorityFilter,
   SearchFilter,
-  SortFilter,
   useTaskFilters
 } from '@/features/task/filter'
 
@@ -94,9 +93,6 @@ export const Filters = () => {
             <SearchFilter />
           </m.div>
           <div className='border-b border-black/10 dark:border-white/10' />
-          <FilterSection title='Sort by'>
-            <SortFilter />
-          </FilterSection>
           <FilterSection title='Priority'>
             <PriorityFilter />
           </FilterSection>

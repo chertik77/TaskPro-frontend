@@ -6,7 +6,6 @@ import { addDays, startOfToday } from 'date-fns'
 import Fuse from 'fuse.js'
 
 import { matchesDeadline } from './match-deadline'
-import { sortTasks } from './sort-tasks'
 import { useTaskFilters } from './useTaskFilters'
 
 const fuseOptions: IFuseOptions<Task> = {
@@ -21,7 +20,7 @@ const fuseOptions: IFuseOptions<Task> = {
 }
 
 export const useFilteredTasks = (tasks: Task[]) => {
-  const { search, priority, deadline, labels, sort, dir } = useTaskFilters()
+  const { search, priority, deadline, labels } = useTaskFilters()
 
   const fuse = useMemo(() => new Fuse(tasks, fuseOptions), [tasks])
 
@@ -51,6 +50,6 @@ export const useFilteredTasks = (tasks: Task[]) => {
       )
     }
 
-    return sortTasks(filteredTasks, sort, dir)
-  }, [tasks, fuse, search, priority, deadline, labels, sort, dir])
+    return filteredTasks
+  }, [tasks, fuse, search, priority, deadline, labels])
 }

@@ -13,9 +13,7 @@ export const Route = createFileRoute('/dashboard/$boardId')({
         search: '',
         priority: [],
         deadline: [],
-        labels: [],
-        sort: 'manual',
-        dir: 'asc'
+        labels: []
       })
     ]
   }
