@@ -82,9 +82,12 @@ const ToastList = () => {
         dark:border-white/10
         [&[data-ending-style]:not([data-limited]):not([data-swipe-direction])]:transform-[translateY(calc(var(--exit)*150%))]'>
       <ToastPrimitive.Content
-        className='flex h-full items-start gap-3 overflow-hidden p-4
-          transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)]
-          data-behind:opacity-0 data-expanded:opacity-100'>
+        className={cn(
+          `flex h-full gap-3 overflow-hidden p-4 transition-opacity duration-250
+          ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0
+          data-expanded:opacity-100`,
+          toast.description ? 'items-start' : 'items-center'
+        )}>
         <ToastIcon type={toast.type} />
         <div className='flex min-w-0 flex-1 flex-col gap-1 text-balance'>
           <ToastPrimitive.Title className='font-medium' />
@@ -94,9 +97,12 @@ const ToastList = () => {
         </div>
         <ToastPrimitive.Close
           aria-label='Close notification'
-          className='focus-visible:styled-outline hocus:text-black
-            dark:hocus:text-white relative shrink-0 pt-1 text-black/40
-            transition-colors after:absolute after:-inset-2 dark:text-white/40'>
+          className={cn(
+            `focus-visible:styled-outline hocus:text-black dark:hocus:text-white
+            relative shrink-0 text-black/40 transition-colors after:absolute
+            after:-inset-2 dark:text-white/40`,
+            toast.description && 'pt-1'
+          )}>
           <XIcon className='size-4' />
         </ToastPrimitive.Close>
       </ToastPrimitive.Content>

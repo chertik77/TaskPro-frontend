@@ -19,6 +19,10 @@ export const useAddPasskey = () => {
     },
     onSuccess({ error }) {
       if (error && 'code' in error) {
+        if (error.code === 'ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY') {
+          return toast.warning('Passkey sign-in cancelled.')
+        }
+
         const errorMessage = getAuthErrorMessage(error.code)
 
         toast.error(errorMessage, {

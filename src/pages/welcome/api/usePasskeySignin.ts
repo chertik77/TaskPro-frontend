@@ -18,9 +18,11 @@ export const usePasskeySignin = () => {
         'An error occurred while signing in with passkey. Please try again.'
     },
     onSuccess({ data: session, error }) {
-      //! TODO: handle error
-
       if (error && 'code' in error) {
+        if (error.code === 'ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY') {
+          return toast.warning('Passkey sign-in cancelled.')
+        }
+
         const errorMessage = getAuthErrorMessage(error.code)
 
         toast.error(errorMessage, {

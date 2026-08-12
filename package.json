@@ -1,11 +1,10 @@
 {
   "name": "task-pro-frontend",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=24.0.0"
   },
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
