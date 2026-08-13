@@ -88,7 +88,7 @@ export const LabelsTable = ({ labels }: LabelsTableProps) => {
               transition={{ duration: 0.2 }}>
               <TableCell
                 colSpan={isDesktop ? 4 : 3}
-                className='h-15 text-center'>
+                className='h-15 text-center text-balance whitespace-normal'>
                 No labels yet. Add your first label to get started.
               </TableCell>
             </m.tr>

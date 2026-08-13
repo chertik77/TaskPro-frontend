@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import * as m from 'motion/react-m'
 
-import { formVariants, useAppForm } from '@/shared/lib'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,19 +8,11 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-  AlertDialogTrigger,
-  Button,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  PasswordInput
+  AlertDialogTrigger
 } from '@/shared/ui'
 
 import { useDeleteAccount } from '../../api/useDeleteAccount'
-import { DeleteAccountSchema } from '../../model/contract'
+import { DeleteAccountForm } from './DeleteAccountForm'
 
 type DeleteAccountAlertDialogProps = {
   hasPassword: boolean
@@ -32,11 +22,6 @@ export const DeleteAccountAlertDialog = ({
   hasPassword
 }: DeleteAccountAlertDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-
-  const form = useAppForm(DeleteAccountSchema, {
-    shouldUnregister: true,
-    defaultValues: { password: '' }
-  })
 
   const { mutate: deleteAccount, isPending } = useDeleteAccount(() =>
     setIsDialogOpen(false)
@@ -58,41 +43,7 @@ export const DeleteAccountAlertDialog = ({
           This cannot be undone.
         </AlertDialogDescription>
         {hasPassword ? (
-          <Form {...form}>
-            <m.form
-              variants={formVariants.container}
-              initial='hidden'
-              animate='show'
-              onSubmit={form.handleSubmit(({ password }) =>
-                deleteAccount(password)
-              )}
-              className='space-y-6'>
-              <m.div variants={formVariants.field}>
-                <FormField
-                  control={form.control}
-                  name='password'
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>Confirm your password</FormLabel>
-                      <FormControl render={<PasswordInput />} />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </m.div>
-              <m.div variants={formVariants.field}>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <Button
-                    type='submit'
-                    disabled={isPending}
-                    className='h-10 w-auto flex-1'>
-                    {isPending ? 'Deleting...' : 'Delete'}
-                  </Button>
-                </AlertDialogFooter>
-              </m.div>
-            </m.form>
-          </Form>
+          <DeleteAccountForm closeDialog={() => setIsDialogOpen(false)} />
         ) : (
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>

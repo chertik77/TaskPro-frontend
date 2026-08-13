@@ -2,7 +2,11 @@ import { loadEnvFile } from 'process'
 
 import { defineConfig } from '@hey-api/openapi-ts'
 
-loadEnvFile(process.cwd() + '/.env.local')
+try {
+  loadEnvFile(process.cwd() + '/.env.local')
+} catch {
+  /* platform-provided env */
+}
 
 export default defineConfig({
   input: `${process.env.VITE_API_BASE_URL}/openapi.json`,
