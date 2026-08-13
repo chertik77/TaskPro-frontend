@@ -38,7 +38,7 @@ export const EditLabelDialog = ({ formData }: EditLabelDialogProps) => {
         </DialogDescription>
         <EditLabelForm
           formData={formData}
-          setIsDialogOpen={setIsDialogOpen}
+          closeDialog={() => setIsDialogOpen(false)}
         />
       </DialogContent>
     </Dialog>

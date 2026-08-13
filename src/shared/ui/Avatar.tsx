@@ -13,6 +13,7 @@ const AvatarImage = ({ className, ...props }: AvatarPrimitive.Image.Props) => (
   <AvatarPrimitive.Image
     className={cn('aspect-square size-full rounded-[inherit]', className)}
     referrerPolicy='no-referrer'
+    crossOrigin='anonymous'
     {...props}
   />
 )

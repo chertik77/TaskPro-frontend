@@ -5,6 +5,7 @@ export {
   createColumn,
   createLabel,
   createTask,
+  deleteAvatar,
   deleteBoard,
   deleteColumn,
   deleteLabel,
@@ -23,10 +24,12 @@ export {
   updateLabelSettings,
   updateTask,
   updateTaskSettings,
-  updateTasksOrder
+  updateTasksOrder,
+  uploadAvatar
 } from './sdk.gen'
 export {
   AccentColor,
+  type Avatar,
   type Board,
   type BoardBackground,
   BoardBackgroundId,
@@ -53,6 +56,11 @@ export {
   type CreateTaskErrors,
   type CreateTaskResponse,
   type CreateTaskResponses,
+  type DeleteAvatarData,
+  type DeleteAvatarError,
+  type DeleteAvatarErrors,
+  type DeleteAvatarResponse,
+  type DeleteAvatarResponses,
   type DeleteBoardData,
   type DeleteBoardError,
   type DeleteBoardErrors,
@@ -150,5 +158,10 @@ export {
   type UpdateTasksOrderErrors,
   type UpdateTasksOrderResponse,
   type UpdateTasksOrderResponses,
+  type UploadAvatarData,
+  type UploadAvatarError,
+  type UploadAvatarErrors,
+  type UploadAvatarResponse,
+  type UploadAvatarResponses,
   type UserSettings
 } from './types.gen'

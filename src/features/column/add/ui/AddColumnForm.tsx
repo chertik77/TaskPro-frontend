@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import * as m from 'motion/react-m'
 
 import { formVariants, useAppForm } from '@/shared/lib'
@@ -18,15 +16,15 @@ import { useAddColumn } from '../api/useAddColumn'
 import { AddColumnSchema } from '../model/contract'
 
 type AddColumnFormProps = {
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
-export const AddColumnForm = ({ setIsDialogOpen }: AddColumnFormProps) => {
+export const AddColumnForm = ({ closeDialog }: AddColumnFormProps) => {
   const form = useAppForm(AddColumnSchema, {
     defaultValues: { title: '' }
   })
 
-  const { mutate: addColumn, isPending } = useAddColumn(setIsDialogOpen)
+  const { mutate: addColumn, isPending } = useAddColumn(closeDialog)
 
   return (
     <Form {...form}>

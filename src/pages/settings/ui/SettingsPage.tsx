@@ -21,9 +21,9 @@ export const SettingsPage = () => {
         <div className='mb-8 space-y-6'>
           <button
             onClick={() => navigate({ to: '/dashboard' })}
-            className='group hocus:text-black dark:hocus:text-white group flex
-              items-center gap-1 text-black/50 transition-colors
-              dark:text-white/50'>
+            className='group hocus:text-black dark:hocus:text-white group
+              focus-visible:styled-outline flex items-center gap-1 text-black/50
+              transition-colors dark:text-white/50'>
             <XIcon
               className='group-hocus:opacity-100 size-4 text-black opacity-50
                 transition-opacity dark:text-white'

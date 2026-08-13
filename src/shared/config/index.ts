@@ -4,6 +4,7 @@ export {
   APPEARANCE_STORAGE_KEY,
   getStoredAppearance,
   setStoredAppearance,
+  resetStoredAppearance,
   getStoredTheme,
   resolveTheme,
   type Theme,

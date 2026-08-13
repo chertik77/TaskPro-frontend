@@ -1,5 +1,4 @@
 import type { Label } from '@/shared/api'
-import type { Dispatch, SetStateAction } from 'react'
 
 import { LabelColorPicker } from '@/entities/label'
 
@@ -21,18 +20,18 @@ import { EditLabelSchema } from '../../model/contract'
 
 type EditLabelFormProps = {
   formData: Pick<Label, 'id' | 'name' | 'color' | 'description'>
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
 export const EditLabelForm = ({
   formData: { name, color, description, id },
-  setIsDialogOpen
+  closeDialog
 }: EditLabelFormProps) => {
   const form = useAppForm(EditLabelSchema, {
     defaultValues: { name, color, description: description ?? '' }
   })
 
-  const { mutate: editLabel, isPending } = useEditLabel(setIsDialogOpen)
+  const { mutate: editLabel, isPending } = useEditLabel(closeDialog)
 
   return (
     <Form {...form}>

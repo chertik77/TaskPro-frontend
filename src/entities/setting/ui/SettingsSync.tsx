@@ -3,7 +3,11 @@ import { MotionGlobalConfig } from 'motion/react'
 
 import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
-import { getStoredAppearance, setStoredAppearance } from '@/shared/config'
+import {
+  getStoredAppearance,
+  resetStoredAppearance,
+  setStoredAppearance
+} from '@/shared/config'
 
 import { useSettings } from '../model/useSettings'
 
@@ -80,6 +84,8 @@ export const SettingsSync = () => {
       animations: settings.enableAnimations
     })
   }, [settings])
+
+  useEffect(() => () => resetStoredAppearance(), [])
 
   return null
 }

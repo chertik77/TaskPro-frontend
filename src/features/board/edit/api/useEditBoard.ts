@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import type { EditBoardSchema } from '../model/contract'
 
 import { useMutation } from '@tanstack/react-query'
@@ -7,9 +6,7 @@ import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
 import { updateBoard } from '@/shared/api'
 
-export const useEditBoard = (
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
-) => {
+export const useEditBoard = (closeDialog: () => void) => {
   const boardId = useGetParamBoardId()
 
   return useMutation({
@@ -21,7 +18,7 @@ export const useEditBoard = (
         'An error occurred while editing the board. Please try again.'
     },
     onSuccess: () => {
-      setIsDialogOpen(false)
+      closeDialog()
     }
   })
 }

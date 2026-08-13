@@ -42,7 +42,7 @@ export const EditColumnDialog = ({ data }: EditColumnDialogProps) => {
         </DialogDescription>
         <EditColumnForm
           data={data}
-          setIsDialogOpen={setIsDialogOpen}
+          closeDialog={() => setIsDialogOpen(false)}
         />
       </DialogContent>
     </Dialog>

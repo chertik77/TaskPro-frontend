@@ -11,6 +11,10 @@ export type ErrorResponse = {
     };
 };
 
+export type Avatar = {
+    image: string | null;
+};
+
 export type UserSettings = {
     id: string;
     general: GeneralSettings;
@@ -192,6 +196,62 @@ export type HelpResponses = {
 };
 
 export type HelpResponse = HelpResponses[keyof HelpResponses];
+
+export type DeleteAvatarData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/user/avatar';
+};
+
+export type DeleteAvatarErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type DeleteAvatarError = DeleteAvatarErrors[keyof DeleteAvatarErrors];
+
+export type DeleteAvatarResponses = {
+    /**
+     * Avatar deleted
+     */
+    200: Avatar;
+};
+
+export type DeleteAvatarResponse = DeleteAvatarResponses[keyof DeleteAvatarResponses];
+
+export type UploadAvatarData = {
+    body: {
+        avatar: Blob | File;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/avatar';
+};
+
+export type UploadAvatarErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type UploadAvatarError = UploadAvatarErrors[keyof UploadAvatarErrors];
+
+export type UploadAvatarResponses = {
+    /**
+     * Avatar uploaded
+     */
+    200: Avatar;
+};
+
+export type UploadAvatarResponse = UploadAvatarResponses[keyof UploadAvatarResponses];
 
 export type GetAllSettingsData = {
     body?: never;

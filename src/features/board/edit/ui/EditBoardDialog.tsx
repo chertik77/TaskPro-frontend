@@ -40,7 +40,7 @@ export const EditBoardDialog = ({ data }: EditBoardDialogProps) => {
         </DialogDescription>
         <EditBoardForm
           data={data}
-          setIsDialogOpen={setIsDialogOpen}
+          closeDialog={() => setIsDialogOpen(false)}
         />
       </DialogContent>
     </Dialog>

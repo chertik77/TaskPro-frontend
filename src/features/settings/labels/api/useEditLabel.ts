@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import { useMutation } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 
@@ -8,9 +6,7 @@ import { labelQueries } from '@/entities/label'
 
 import { updateLabelMutation } from '@/shared/api'
 
-export const useEditLabel = (
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
-) =>
+export const useEditLabel = (closeDialog: () => void) =>
   useMutation({
     ...updateLabelMutation(),
     meta: {
@@ -28,6 +24,6 @@ export const useEditLabel = (
       }
     },
     onSuccess() {
-      setIsDialogOpen(false)
+      closeDialog()
     }
   })

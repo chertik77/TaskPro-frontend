@@ -4662,6 +4662,11 @@ rc9@^3.0.1:
     defu "^6.1.6"
     destr "^2.0.5"
 
+react-avatar-editor@^15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/react-avatar-editor/-/react-avatar-editor-15.1.0.tgz#f7d00cf6983b07cd9cd7c874e0ec5558e7cfbfba"
+  integrity sha512-Zto7u9l6Wd5LPPtjeFJ+7uwoT4bs01OSgkN2kxD18lWl8IiZ0GY3nWCbKPx4qIU7Au1vENsMJm19rfVWHHayaQ==
+
 react-day-picker@10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-10.0.1.tgz#8498e3f0ace2e9d03c209a5458c451a377c2d85c"

@@ -48,6 +48,9 @@ const errorCodes = {
     'An account with this email address already exists. Please sign in or use a different email.',
   INVALID_EMAIL_OR_PASSWORD:
     'The email or password you entered is incorrect. Please try again.',
+  INVALID_PASSWORD: 'The password you entered is incorrect. Please try again.',
+  SESSION_EXPIRED:
+    'For security, please sign in again before deleting your account.',
   FAILED_TO_UNLINK_LAST_ACCOUNT:
     'You cannot unlink your last account. Please add another account first.'
 } satisfies ErrorTypes

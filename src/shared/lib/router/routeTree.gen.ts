@@ -18,6 +18,7 @@ import { Route as DashboardSettingsLayoutRouteImport } from './../../../app/rout
 import { Route as DashboardSettingsIndexRouteImport } from './../../../app/routes/dashboard/settings/index'
 import { Route as DashboardSettingsTaskRouteImport } from './../../../app/routes/dashboard/settings/task'
 import { Route as DashboardSettingsSecurityRouteImport } from './../../../app/routes/dashboard/settings/security'
+import { Route as DashboardSettingsProfileRouteImport } from './../../../app/routes/dashboard/settings/profile'
 import { Route as DashboardSettingsLabelsRouteImport } from './../../../app/routes/dashboard/settings/labels'
 import { Route as DashboardSettingsGeneralRouteImport } from './../../../app/routes/dashboard/settings/general'
 import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
@@ -69,6 +70,12 @@ const DashboardSettingsSecurityRoute =
     path: '/security',
     getParentRoute: () => DashboardSettingsLayoutRoute,
   } as any)
+const DashboardSettingsProfileRoute =
+  DashboardSettingsProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => DashboardSettingsLayoutRoute,
+  } as any)
 const DashboardSettingsLabelsRoute = DashboardSettingsLabelsRouteImport.update({
   id: '/labels',
   path: '/labels',
@@ -102,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
   '/dashboard/settings/labels': typeof DashboardSettingsLabelsRoute
+  '/dashboard/settings/profile': typeof DashboardSettingsProfileRoute
   '/dashboard/settings/security': typeof DashboardSettingsSecurityRoute
   '/dashboard/settings/task': typeof DashboardSettingsTaskRoute
   '/dashboard/settings/': typeof DashboardSettingsIndexRoute
@@ -115,6 +123,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
   '/dashboard/settings/labels': typeof DashboardSettingsLabelsRoute
+  '/dashboard/settings/profile': typeof DashboardSettingsProfileRoute
   '/dashboard/settings/security': typeof DashboardSettingsSecurityRoute
   '/dashboard/settings/task': typeof DashboardSettingsTaskRoute
   '/dashboard/settings': typeof DashboardSettingsIndexRoute
@@ -131,6 +140,7 @@ export interface FileRoutesById {
   '/auth/_auth-layout/signup': typeof AuthAuthLayoutSignupRoute
   '/dashboard/settings/general': typeof DashboardSettingsGeneralRoute
   '/dashboard/settings/labels': typeof DashboardSettingsLabelsRoute
+  '/dashboard/settings/profile': typeof DashboardSettingsProfileRoute
   '/dashboard/settings/security': typeof DashboardSettingsSecurityRoute
   '/dashboard/settings/task': typeof DashboardSettingsTaskRoute
   '/dashboard/settings/': typeof DashboardSettingsIndexRoute
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings/general'
     | '/dashboard/settings/labels'
+    | '/dashboard/settings/profile'
     | '/dashboard/settings/security'
     | '/dashboard/settings/task'
     | '/dashboard/settings/'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings/general'
     | '/dashboard/settings/labels'
+    | '/dashboard/settings/profile'
     | '/dashboard/settings/security'
     | '/dashboard/settings/task'
     | '/dashboard/settings'
@@ -176,6 +188,7 @@ export interface FileRouteTypes {
     | '/auth/_auth-layout/signup'
     | '/dashboard/settings/general'
     | '/dashboard/settings/labels'
+    | '/dashboard/settings/profile'
     | '/dashboard/settings/security'
     | '/dashboard/settings/task'
     | '/dashboard/settings/'
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsSecurityRouteImport
       parentRoute: typeof DashboardSettingsLayoutRoute
     }
+    '/dashboard/settings/profile': {
+      id: '/dashboard/settings/profile'
+      path: '/profile'
+      fullPath: '/dashboard/settings/profile'
+      preLoaderRoute: typeof DashboardSettingsProfileRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
     '/dashboard/settings/labels': {
       id: '/dashboard/settings/labels'
       path: '/labels'
@@ -286,6 +306,7 @@ declare module '@tanstack/react-router' {
 interface DashboardSettingsLayoutRouteChildren {
   DashboardSettingsGeneralRoute: typeof DashboardSettingsGeneralRoute
   DashboardSettingsLabelsRoute: typeof DashboardSettingsLabelsRoute
+  DashboardSettingsProfileRoute: typeof DashboardSettingsProfileRoute
   DashboardSettingsSecurityRoute: typeof DashboardSettingsSecurityRoute
   DashboardSettingsTaskRoute: typeof DashboardSettingsTaskRoute
   DashboardSettingsIndexRoute: typeof DashboardSettingsIndexRoute
@@ -295,6 +316,7 @@ const DashboardSettingsLayoutRouteChildren: DashboardSettingsLayoutRouteChildren
   {
     DashboardSettingsGeneralRoute: DashboardSettingsGeneralRoute,
     DashboardSettingsLabelsRoute: DashboardSettingsLabelsRoute,
+    DashboardSettingsProfileRoute: DashboardSettingsProfileRoute,
     DashboardSettingsSecurityRoute: DashboardSettingsSecurityRoute,
     DashboardSettingsTaskRoute: DashboardSettingsTaskRoute,
     DashboardSettingsIndexRoute: DashboardSettingsIndexRoute,

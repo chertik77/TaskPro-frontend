@@ -11,6 +11,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   PlusButtonWithLoader
@@ -64,6 +65,7 @@ export const AddPasskeyNameDialog = ({
                 name='name'
                 render={() => (
                   <FormItem>
+                    <FormLabel>Name</FormLabel>
                     <FormControl render={<Input />} />
                     <FormMessage />
                   </FormItem>

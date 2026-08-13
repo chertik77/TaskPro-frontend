@@ -34,7 +34,7 @@ export const NeedHelpDialog = () => {
         <DialogDescription className='sr-only'>
           You can contact us here by sending us an email.
         </DialogDescription>
-        <NeedHelpForm setIsDialogOpen={setIsDialogOpen} />
+        <NeedHelpForm closeDialog={() => setIsDialogOpen(false)} />
       </DialogContent>
     </Dialog>
   )

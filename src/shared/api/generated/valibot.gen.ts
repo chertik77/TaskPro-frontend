@@ -7,6 +7,10 @@ export const vErrorResponse = v.object({
     message: v.union([v.string(), v.record(v.string(), v.array(v.string()))])
 });
 
+export const vAvatar = v.object({
+    image: v.nullable(v.pipe(v.string(), v.url()))
+});
+
 export const vAccentColor = v.optional(v.picklist([
     'blue',
     'purple',
@@ -187,6 +191,20 @@ export const vHelpBody = v.object({
 export const vHelpResponse = v.object({
     message: v.string()
 });
+
+/**
+ * Avatar deleted
+ */
+export const vDeleteAvatarResponse = vAvatar;
+
+export const vUploadAvatarBody = v.object({
+    avatar: v.string()
+});
+
+/**
+ * Avatar uploaded
+ */
+export const vUploadAvatarResponse = vAvatar;
 
 /**
  * Success

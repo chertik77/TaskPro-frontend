@@ -1,14 +1,10 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import { useMutation } from '@tanstack/react-query'
 
 import { boardQueries } from '@/entities/board'
 
 import { updateTaskMutation } from '@/shared/api'
 
-export const useEditTask = (
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
-) =>
+export const useEditTask = (closeDialog: () => void) =>
   useMutation({
     ...updateTaskMutation(),
     meta: {
@@ -17,6 +13,6 @@ export const useEditTask = (
         'An error occurred while editing the task. Please try again.'
     },
     onSuccess: () => {
-      setIsDialogOpen(false)
+      closeDialog()
     }
   })

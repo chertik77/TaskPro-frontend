@@ -2,10 +2,10 @@
 
 import * as v from 'valibot';
 
-import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
+import { type Client, type ClientMeta, formDataBodySerializer, type Options as Options2, type RequestResult, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses } from './types.gen';
-import { vCreateBoardBody, vCreateBoardResponse, vCreateColumnBody, vCreateColumnPath, vCreateColumnResponse, vCreateLabelBody, vCreateLabelResponse, vCreateTaskBody, vCreateTaskPath, vCreateTaskResponse, vDeleteBoardPath, vDeleteBoardResponse, vDeleteColumnPath, vDeleteColumnResponse, vDeleteLabelPath, vDeleteLabelResponse, vDeleteTaskPath, vDeleteTaskResponse, vGetAllBoardsResponse, vGetAllLabelsResponse, vGetAllSettingsResponse, vGetBoardByIdPath, vGetBoardByIdResponse, vHelpBody, vHelpResponse, vUpdateBoardBody, vUpdateBoardPath, vUpdateBoardResponse, vUpdateColumnBody, vUpdateColumnPath, vUpdateColumnResponse, vUpdateColumnsOrderBody, vUpdateColumnsOrderPath, vUpdateColumnsOrderResponse, vUpdateGeneralSettingsBody, vUpdateGeneralSettingsResponse, vUpdateLabelBody, vUpdateLabelPath, vUpdateLabelResponse, vUpdateLabelSettingsBody, vUpdateLabelSettingsResponse, vUpdateTaskBody, vUpdateTaskPath, vUpdateTaskResponse, vUpdateTaskSettingsBody, vUpdateTaskSettingsResponse, vUpdateTasksOrderBody, vUpdateTasksOrderPath, vUpdateTasksOrderResponse } from './valibot.gen';
+import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteAvatarData, DeleteAvatarErrors, DeleteAvatarResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses, UploadAvatarData, UploadAvatarErrors, UploadAvatarResponses } from './types.gen';
+import { vCreateBoardBody, vCreateBoardResponse, vCreateColumnBody, vCreateColumnPath, vCreateColumnResponse, vCreateLabelBody, vCreateLabelResponse, vCreateTaskBody, vCreateTaskPath, vCreateTaskResponse, vDeleteAvatarResponse, vDeleteBoardPath, vDeleteBoardResponse, vDeleteColumnPath, vDeleteColumnResponse, vDeleteLabelPath, vDeleteLabelResponse, vDeleteTaskPath, vDeleteTaskResponse, vGetAllBoardsResponse, vGetAllLabelsResponse, vGetAllSettingsResponse, vGetBoardByIdPath, vGetBoardByIdResponse, vHelpBody, vHelpResponse, vUpdateBoardBody, vUpdateBoardPath, vUpdateBoardResponse, vUpdateColumnBody, vUpdateColumnPath, vUpdateColumnResponse, vUpdateColumnsOrderBody, vUpdateColumnsOrderPath, vUpdateColumnsOrderResponse, vUpdateGeneralSettingsBody, vUpdateGeneralSettingsResponse, vUpdateLabelBody, vUpdateLabelPath, vUpdateLabelResponse, vUpdateLabelSettingsBody, vUpdateLabelSettingsResponse, vUpdateTaskBody, vUpdateTaskPath, vUpdateTaskResponse, vUpdateTaskSettingsBody, vUpdateTaskSettingsResponse, vUpdateTasksOrderBody, vUpdateTasksOrderPath, vUpdateTasksOrderResponse, vUploadAvatarBody, vUploadAvatarResponse } from './valibot.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -37,6 +37,43 @@ export const help = <ThrowOnError extends boolean = true>(options: Options<HelpD
     ...options,
     headers: {
         'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Delete user avatar
+ */
+export const deleteAvatar = <ThrowOnError extends boolean = true>(options?: Options<DeleteAvatarData, ThrowOnError>): RequestResult<DeleteAvatarResponses, DeleteAvatarErrors, ThrowOnError> => (options?.client ?? client).delete<DeleteAvatarResponses, DeleteAvatarErrors, ThrowOnError>({
+    requestValidator: async (data) => await v.parseAsync(v.object({
+        body: v.optional(v.never()),
+        path: v.optional(v.never()),
+        query: v.optional(v.never())
+    }), data),
+    responseType: 'json',
+    responseValidator: async (data) => await v.parseAsync(vDeleteAvatarResponse, data),
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/avatar',
+    ...options
+});
+
+/**
+ * Upload user avatar
+ */
+export const uploadAvatar = <ThrowOnError extends boolean = true>(options: Options<UploadAvatarData, ThrowOnError>): RequestResult<UploadAvatarResponses, UploadAvatarErrors, ThrowOnError> => (options.client ?? client).post<UploadAvatarResponses, UploadAvatarErrors, ThrowOnError>({
+    ...formDataBodySerializer,
+    requestValidator: async (data) => await v.parseAsync(v.object({
+        body: vUploadAvatarBody,
+        path: v.optional(v.never()),
+        query: v.optional(v.never())
+    }), data),
+    responseType: 'json',
+    responseValidator: async (data) => await v.parseAsync(vUploadAvatarResponse, data),
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/user/avatar',
+    ...options,
+    headers: {
+        'Content-Type': null,
         ...options.headers
     }
 });

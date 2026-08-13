@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import type { EditTaskData } from '../model/types'
 
 import * as m from 'motion/react-m'
@@ -28,12 +27,12 @@ import { EditTaskSchema } from '../model/contract'
 
 type EditTaskFormProps = {
   data: EditTaskData
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
 export const EditTaskForm = ({
   data: { taskId, formValues },
-  setIsDialogOpen
+  closeDialog
 }: EditTaskFormProps) => {
   const form = useAppForm(EditTaskSchema, {
     defaultValues: {
@@ -44,7 +43,7 @@ export const EditTaskForm = ({
     }
   })
 
-  const { mutate: editTask, isPending } = useEditTask(setIsDialogOpen)
+  const { mutate: editTask, isPending } = useEditTask(closeDialog)
 
   return (
     <Form {...form}>

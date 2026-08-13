@@ -4,8 +4,8 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { createBoard, createColumn, createLabel, createTask, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder } from '../sdk.gen';
-import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse } from '../types.gen';
+import { createBoard, createColumn, createLabel, createTask, deleteAvatar, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder, uploadAvatar } from '../sdk.gen';
+import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteAvatarData, DeleteAvatarError, DeleteAvatarResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse, UploadAvatarData, UploadAvatarError, UploadAvatarResponse } from '../types.gen';
 
 /**
  * Send email need help
@@ -14,6 +14,40 @@ export const helpMutation = (options?: Partial<Options<HelpData>>): UseMutationO
     const mutationOptions: UseMutationOptions<HelpResponse, AxiosError<HelpError>, Options<HelpData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await help({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Delete user avatar
+ */
+export const deleteAvatarMutation = (options?: Partial<Options<DeleteAvatarData>>): UseMutationOptions<DeleteAvatarResponse, AxiosError<DeleteAvatarError>, Options<DeleteAvatarData>> => {
+    const mutationOptions: UseMutationOptions<DeleteAvatarResponse, AxiosError<DeleteAvatarError>, Options<DeleteAvatarData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await deleteAvatar({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Upload user avatar
+ */
+export const uploadAvatarMutation = (options?: Partial<Options<UploadAvatarData>>): UseMutationOptions<UploadAvatarResponse, AxiosError<UploadAvatarError>, Options<UploadAvatarData>> => {
+    const mutationOptions: UseMutationOptions<UploadAvatarResponse, AxiosError<UploadAvatarError>, Options<UploadAvatarData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await uploadAvatar({
                 ...options,
                 ...fnOptions,
                 throwOnError: true

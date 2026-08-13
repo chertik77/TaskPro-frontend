@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import * as m from 'motion/react-m'
 
 import { FormLabelsCombobox } from '@/entities/label'
@@ -23,16 +21,13 @@ import { useAddTaskForm } from '../lib/useAddTaskForm'
 
 type AddTaskFormProps = {
   columnId: string
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
-export const AddTaskForm = ({
-  columnId,
-  setIsDialogOpen
-}: AddTaskFormProps) => {
+export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
   const form = useAddTaskForm()
 
-  const { mutate: addTask, isPending } = useAddTask(columnId, setIsDialogOpen)
+  const { mutate: addTask, isPending } = useAddTask(columnId, closeDialog)
 
   return (
     <Form {...form}>

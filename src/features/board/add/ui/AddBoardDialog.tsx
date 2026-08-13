@@ -29,7 +29,7 @@ export const AddBoardDialog = ({ children }: AddBoardDialogProps) => {
           You can create a new board here by adding a title, icon and
           background.
         </DialogDescription>
-        <AddBoardForm setIsDialogOpen={setIsDialogOpen} />
+        <AddBoardForm closeDialog={() => setIsDialogOpen(false)} />
       </DialogContent>
     </Dialog>
   )

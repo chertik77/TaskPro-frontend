@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import type { EditBoardData } from '../model/types'
 
 import * as m from 'motion/react-m'
@@ -22,11 +21,11 @@ import { EditBoardSchema } from '../model/contract'
 
 type EditBoardFormProps = {
   data: EditBoardData
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 export const EditBoardForm = ({
   data: formValues,
-  setIsDialogOpen
+  closeDialog
 }: EditBoardFormProps) => {
   const form = useAppForm(EditBoardSchema, {
     defaultValues: {
@@ -35,7 +34,7 @@ export const EditBoardForm = ({
     }
   })
 
-  const { mutate: editBoard, isPending } = useEditBoard(setIsDialogOpen)
+  const { mutate: editBoard, isPending } = useEditBoard(closeDialog)
 
   return (
     <Form {...form}>
