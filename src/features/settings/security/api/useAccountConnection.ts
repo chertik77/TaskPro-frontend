@@ -4,7 +4,7 @@ import { useLocation } from '@tanstack/react-router'
 import { sessionQueries } from '@/entities/user'
 
 import { authClient, getAuthErrorMessage } from '@/shared/api'
-import { env } from '@/shared/config'
+import { getBaseUrl } from '@/shared/config'
 
 type AccountConnectionMutationData = {
   providerId: string
@@ -23,8 +23,8 @@ export const useAccountConnection = () => {
 
       return authClient.linkSocial({
         provider: providerId,
-        callbackURL: env.VITE_BASE_URL + href,
-        errorCallbackURL: env.VITE_BASE_URL + href
+        callbackURL: getBaseUrl() + href,
+        errorCallbackURL: getBaseUrl() + href
       })
     },
     meta: {

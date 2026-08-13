@@ -6,7 +6,7 @@ import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
 
 import { authClient } from '@/shared/api'
-import { env } from '@/shared/config'
+import { getBaseUrl } from '@/shared/config'
 import { Logo } from '@/shared/ui'
 
 import { PasskeyButton } from './PasskeyButton'
@@ -30,8 +30,8 @@ export const WelcomePage = () => {
   const continueWithSocial = async (provider: 'google' | 'microsoft') => {
     await authClient.signIn.social({
       provider,
-      callbackURL: env.VITE_BASE_URL,
-      errorCallbackURL: env.VITE_BASE_URL + '?error=oauth_error'
+      callbackURL: getBaseUrl(),
+      errorCallbackURL: getBaseUrl() + '?error=oauth_error'
     })
   }
 

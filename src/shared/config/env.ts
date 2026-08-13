@@ -1,7 +1,6 @@
 import * as v from 'valibot'
 
 const EnvSchema = v.object({
-  VITE_BASE_URL: v.pipe(v.string(), v.url()),
   VITE_API_BASE_URL: v.pipe(v.string(), v.url())
 })
 

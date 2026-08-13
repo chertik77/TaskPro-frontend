@@ -11,3 +11,4 @@ export {
   type StoredAppearance
 } from './appearance'
 export { env } from './env'
+export { getBaseUrl } from './base-url'
