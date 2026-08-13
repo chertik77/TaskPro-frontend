@@ -4,8 +4,8 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { createBoard, createColumn, createLabel, createTask, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateLabel, updateTask, updateTasksOrder } from '../sdk.gen';
-import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse } from '../types.gen';
+import { createBoard, createColumn, createLabel, createTask, deleteAvatar, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder, uploadAvatar } from '../sdk.gen';
+import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteAvatarData, DeleteAvatarError, DeleteAvatarResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse, UploadAvatarData, UploadAvatarError, UploadAvatarResponse } from '../types.gen';
 
 /**
  * Send email need help
@@ -14,6 +14,40 @@ export const helpMutation = (options?: Partial<Options<HelpData>>): UseMutationO
     const mutationOptions: UseMutationOptions<HelpResponse, AxiosError<HelpError>, Options<HelpData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await help({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Delete user avatar
+ */
+export const deleteAvatarMutation = (options?: Partial<Options<DeleteAvatarData>>): UseMutationOptions<DeleteAvatarResponse, AxiosError<DeleteAvatarError>, Options<DeleteAvatarData>> => {
+    const mutationOptions: UseMutationOptions<DeleteAvatarResponse, AxiosError<DeleteAvatarError>, Options<DeleteAvatarData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await deleteAvatar({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Upload user avatar
+ */
+export const uploadAvatarMutation = (options?: Partial<Options<UploadAvatarData>>): UseMutationOptions<UploadAvatarResponse, AxiosError<UploadAvatarError>, Options<UploadAvatarData>> => {
+    const mutationOptions: UseMutationOptions<UploadAvatarResponse, AxiosError<UploadAvatarError>, Options<UploadAvatarData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await uploadAvatar({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -55,6 +89,75 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
         params.query = options.query;
     }
     return [params];
+};
+
+export const getAllSettingsQueryKey = (options?: Options<GetAllSettingsData>) => createQueryKey('getAllSettings', options);
+
+/**
+ * Get all user settings
+ */
+export const getAllSettingsOptions = (options?: Options<GetAllSettingsData>) => queryOptions<GetAllSettingsResponse, AxiosError<GetAllSettingsError>, GetAllSettingsResponse, ReturnType<typeof getAllSettingsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getAllSettings({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getAllSettingsQueryKey(options)
+});
+
+/**
+ * Update general settings
+ */
+export const updateGeneralSettingsMutation = (options?: Partial<Options<UpdateGeneralSettingsData>>): UseMutationOptions<UpdateGeneralSettingsResponse, AxiosError<UpdateGeneralSettingsError>, Options<UpdateGeneralSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateGeneralSettingsResponse, AxiosError<UpdateGeneralSettingsError>, Options<UpdateGeneralSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateGeneralSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update task settings
+ */
+export const updateTaskSettingsMutation = (options?: Partial<Options<UpdateTaskSettingsData>>): UseMutationOptions<UpdateTaskSettingsResponse, AxiosError<UpdateTaskSettingsError>, Options<UpdateTaskSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateTaskSettingsResponse, AxiosError<UpdateTaskSettingsError>, Options<UpdateTaskSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateTaskSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update label settings
+ */
+export const updateLabelSettingsMutation = (options?: Partial<Options<UpdateLabelSettingsData>>): UseMutationOptions<UpdateLabelSettingsResponse, AxiosError<UpdateLabelSettingsError>, Options<UpdateLabelSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateLabelSettingsResponse, AxiosError<UpdateLabelSettingsError>, Options<UpdateLabelSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateLabelSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
 };
 
 export const getAllBoardsQueryKey = (options?: Options<GetAllBoardsData>) => createQueryKey('getAllBoards', options);
@@ -162,23 +265,6 @@ export const createColumnMutation = (options?: Partial<Options<CreateColumnData>
 };
 
 /**
- * Update columns order
- */
-export const updateColumnsOrderMutation = (options?: Partial<Options<UpdateColumnsOrderData>>): UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> => {
-    const mutationOptions: UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await updateColumnsOrder({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-/**
  * Delete column by id
  */
 export const deleteColumnMutation = (options?: Partial<Options<DeleteColumnData>>): UseMutationOptions<DeleteColumnResponse, AxiosError<DeleteColumnError>, Options<DeleteColumnData>> => {
@@ -213,12 +299,12 @@ export const updateColumnMutation = (options?: Partial<Options<UpdateColumnData>
 };
 
 /**
- * Create new task
+ * Update columns order
  */
-export const createTaskMutation = (options?: Partial<Options<CreateTaskData>>): UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> => {
-    const mutationOptions: UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> = {
+export const updateColumnsOrderMutation = (options?: Partial<Options<UpdateColumnsOrderData>>): UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> => {
+    const mutationOptions: UseMutationOptions<UpdateColumnsOrderResponse, AxiosError<UpdateColumnsOrderError>, Options<UpdateColumnsOrderData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await createTask({
+            const { data } = await updateColumnsOrder({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -230,12 +316,12 @@ export const createTaskMutation = (options?: Partial<Options<CreateTaskData>>): 
 };
 
 /**
- * Update tasks order
+ * Create new task
  */
-export const updateTasksOrderMutation = (options?: Partial<Options<UpdateTasksOrderData>>): UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> => {
-    const mutationOptions: UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> = {
+export const createTaskMutation = (options?: Partial<Options<CreateTaskData>>): UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> => {
+    const mutationOptions: UseMutationOptions<CreateTaskResponse, AxiosError<CreateTaskError>, Options<CreateTaskData>> = {
         mutationFn: async (fnOptions) => {
-            const { data } = await updateTasksOrder({
+            const { data } = await createTask({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -270,6 +356,23 @@ export const updateTaskMutation = (options?: Partial<Options<UpdateTaskData>>): 
     const mutationOptions: UseMutationOptions<UpdateTaskResponse, AxiosError<UpdateTaskError>, Options<UpdateTaskData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await updateTask({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update tasks order
+ */
+export const updateTasksOrderMutation = (options?: Partial<Options<UpdateTasksOrderData>>): UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> => {
+    const mutationOptions: UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateTasksOrder({
                 ...options,
                 ...fnOptions,
                 throwOnError: true

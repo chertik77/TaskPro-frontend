@@ -1,15 +1,15 @@
+import type { Column as TColumn } from '@/shared/api'
 import type { ComponentProps, ReactNode } from 'react'
-import type { ColumnSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import { GripVerticalIcon } from 'lucide-react'
 
-import { cn, useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { cn, pluralize, useMediaQuery } from '@/shared/lib'
 
 type ColumnContext = {
-  column: ColumnSchema
+  column: TColumn
 }
 
 const ColumnContext = createContext<ColumnContext | undefined>(undefined)
@@ -76,12 +76,33 @@ const ColumnTitle = ({ className, ...props }: ComponentProps<'p'>) => {
   )
 }
 
+type ColumnTaskCountProps = ComponentProps<'span'> & {
+  count: number
+}
+
+const ColumnTaskCount = ({
+  count,
+  className,
+  ...props
+}: ColumnTaskCountProps) => (
+  <span
+    className={cn(
+      `text-md shrink-0 rounded-full bg-black/5 px-2 py-0.5 text-black/50
+      dark:bg-white/10 dark:text-white/50`,
+      className
+    )}
+    aria-label={pluralize(count, 'task')}
+    {...props}>
+    {count}
+  </span>
+)
+
 const ColumnScrollArea = ({
   children,
   className,
   ...props
 }: ScrollArea.Root.Props) => {
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
+  const isTabletAndBelow = useMediaQuery('(max-width: 1025px)')
 
   return (
     <ScrollArea.Root
@@ -154,9 +175,9 @@ const ColumnActionButton = ({
   const defaultProps: useRender.ElementProps<'button'> = {
     type: 'button',
     className: cn(
-      `focus-visible:styled-outline hocus:text-black
-        dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
-        [&_svg]:size-4`,
+      `focus-visible:styled-outline dark:text-white-soft text-black
+        [&_svg]:size-4 [&_svg]:opacity-50 hocus:[&_svg]:opacity-100
+        [&_svg]:transition-opacity`,
       className
     )
   }
@@ -172,6 +193,7 @@ export const Column = Object.assign(ColumnProvider, {
   Header: ColumnHeader,
   DragActivator: ColumnDragActivator,
   Title: ColumnTitle,
+  TaskCount: ColumnTaskCount,
   ScrollArea: ColumnScrollArea,
   ScrollAreaViewport: ColumnScrollAreaViewport,
   ScrollAreaContent: ColumnScrollAreaContent,

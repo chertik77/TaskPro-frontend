@@ -1,4 +1,6 @@
 export { useFilteredTasks } from './lib/useFilteredTasks'
+export { useTaskFilters } from './lib/useTaskFilters'
 export { DeadlineFilter } from './ui/DeadlineFilter'
+export { LabelFilter } from './ui/LabelFilter'
 export { PriorityFilter } from './ui/PriorityFilter'
 export { SearchFilter } from './ui/SearchFilter'

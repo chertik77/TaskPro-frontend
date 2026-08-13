@@ -1,6 +1,6 @@
-import type { LABEL_COLORS } from './colors'
+import type { AccentColor } from '@/shared/api'
 
-export const LABEL_COLOR_MAP: Record<(typeof LABEL_COLORS)[number], string> = {
+export const LABEL_COLOR_MAP: Record<AccentColor, string> = {
   blue: 'bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300',
   purple:
     'bg-violet-100 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300',
@@ -15,7 +15,7 @@ export const LABEL_COLOR_MAP: Record<(typeof LABEL_COLORS)[number], string> = {
   gray: 'bg-gray-100 text-gray-700 dark:bg-gray-500/15 dark:text-gray-300'
 } as const
 
-export const COLOR_MAP: Record<(typeof LABEL_COLORS)[number], string> = {
+export const LABEL_BASE_COLOR_MAP: Record<AccentColor, string> = {
   blue: 'bg-blue-500',
   purple: 'bg-violet-500',
   green: 'bg-emerald-500',

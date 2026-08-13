@@ -1,6 +1,6 @@
 import type { DragAndDropContext, DragAndDropProviderProps } from './types'
 
-import { createContext, use, useMemo } from 'react'
+import { useMemo } from 'react'
 import {
   DndContext,
   KeyboardSensor,
@@ -9,6 +9,7 @@ import {
   useSensor,
   useSensors
 } from '@dnd-kit/core'
+import { createContext, useContextSelector } from 'use-context-selector'
 
 import { coordinateGetter } from '../lib/coordinateGetter'
 import { useGetAccessibilityAnnouncements } from '../lib/useGetAccessibilityAnnouncements'
@@ -61,7 +62,8 @@ export const DragAndDropProvider = ({
   )
 
   return (
-    <DragAndDropContext value={value}>
+    // eslint-disable-next-line @eslint-react/no-context-provider
+    <DragAndDropContext.Provider value={value}>
       <DndContext
         sensors={sensors}
         accessibility={{ announcements }}
@@ -76,16 +78,22 @@ export const DragAndDropProvider = ({
         }}>
         {children}
       </DndContext>
-    </DragAndDropContext>
+    </DragAndDropContext.Provider>
   )
 }
 
-export const useDragAndDrop = () => {
-  const context = use(DragAndDropContext)
+export const useDragAndDropSelector = <T,>(
+  selector: (value: DragAndDropContext) => T
+) => {
+  const selected = useContextSelector(DragAndDropContext, ctx => {
+    if (!ctx) {
+      throw new Error(
+        'useDragAndDropSelector must be used within a DragAndDropProvider'
+      )
+    }
 
-  if (!context) {
-    throw new Error('useDragAndDrop must be used within a DragAndDropProvider')
-  }
+    return selector(ctx)
+  })
 
-  return context
+  return selected
 }

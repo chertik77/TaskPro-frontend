@@ -1,68 +1,55 @@
-import type { TaskTypes } from '@/entities/task'
+import type { Task } from '@/shared/api'
 import type { IFuseOptions } from 'fuse.js'
 
 import { useMemo } from 'react'
-import {
-  addDays,
-  isAfter,
-  isBefore,
-  isWithinInterval,
-  startOfToday
-} from 'date-fns'
+import { addDays, startOfToday } from 'date-fns'
 import Fuse from 'fuse.js'
 
+import { matchesDeadline } from './match-deadline'
 import { useTaskFilters } from './useTaskFilters'
 
-const today = startOfToday()
-const nextWeek = addDays(today, 7)
-
-const fuseOptions: IFuseOptions<TaskTypes.TaskSchema> = {
+const fuseOptions: IFuseOptions<Task> = {
   keys: [
-    { name: 'title', weight: 0.7 },
-    { name: 'description', weight: 0.3 }
+    { name: 'title', weight: 0.6 },
+    { name: 'description', weight: 0.25 },
+    { name: 'labels.name', weight: 0.15 }
   ],
   threshold: 0.35,
   ignoreLocation: true,
   minMatchCharLength: 2
 }
 
-export const useFilteredTasks = (tasks: TaskTypes.TasksSchema) => {
-  const { priority, deadline, search } = useTaskFilters()
+export const useFilteredTasks = (tasks: Task[]) => {
+  const { search, priority, deadline, labels } = useTaskFilters()
 
   const fuse = useMemo(() => new Fuse(tasks, fuseOptions), [tasks])
 
-  if (!priority && !deadline && !search) return tasks
+  return useMemo(() => {
+    let filteredTasks = search
+      ? fuse.search(search).map(({ item }) => item)
+      : tasks
 
-  let filteredTasks = tasks
+    if (priority.length) {
+      filteredTasks = filteredTasks.filter(task =>
+        priority.includes(task.priority)
+      )
+    }
 
-  if (search) {
-    filteredTasks = fuse.search(search).map(({ item }) => item)
-  }
+    if (labels.length) {
+      filteredTasks = filteredTasks.filter(task =>
+        task.labels?.some(label => labels.includes(label.id))
+      )
+    }
 
-  if (priority) {
-    filteredTasks = filteredTasks.filter(task => task.priority === priority)
-  }
+    if (deadline.length) {
+      const today = startOfToday()
+      const range = { today, nextWeek: addDays(today, 7) }
 
-  if (deadline) {
-    filteredTasks = filteredTasks.filter(task => {
-      const taskDeadline = task.deadline
+      filteredTasks = filteredTasks.filter(task =>
+        deadline.some(preset => matchesDeadline(task, preset, range))
+      )
+    }
 
-      if (!taskDeadline) return false
-
-      if (deadline === 'Overdue') return isBefore(taskDeadline, today)
-
-      if (deadline === 'Upcoming') {
-        return isWithinInterval(taskDeadline, {
-          start: today,
-          end: nextWeek
-        })
-      }
-
-      if (deadline === 'Far Future') return isAfter(taskDeadline, nextWeek)
-
-      return true
-    })
-  }
-
-  return filteredTasks
+    return filteredTasks
+  }, [tasks, fuse, search, priority, deadline, labels])
 }

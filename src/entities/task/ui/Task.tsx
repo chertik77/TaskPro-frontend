@@ -1,21 +1,30 @@
+import type { TaskSettings, Task as TTask } from '@/shared/api'
 import type { ComponentProps } from 'react'
-import type { TaskSchema } from '../model/types'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
-import { isToday } from 'date-fns'
+import { isBefore, isToday, startOfToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
-import { Label, LABEL_COLOR_MAP } from '@/entities/label/@x/task'
+import {
+  Label,
+  LABEL_BASE_COLOR_MAP,
+  LABEL_COLOR_MAP
+} from '@/entities/label/@x/task'
+import { useSettings } from '@/entities/setting/@x/task'
 
 import { capitalize, cn } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'
 
-import { formatDeadlineDate } from '../lib/format-deadline-date'
+import { DATE_FORMAT_MAP } from '../config/date-format-map'
+import { parseDeadline } from '../lib/deadline-day'
+import { formatDeadline } from '../lib/format-deadline'
 import { getTaskPriorityColor } from '../lib/priority-colors'
+import { useCardDensity } from '../lib/useCardDensity'
 
 type TaskContext = {
-  task: TaskSchema
+  task: TTask
+  density: TaskSettings['cardDensity']
 }
 
 const TaskContext = createContext<TaskContext | undefined>(undefined)
@@ -30,7 +39,7 @@ const useTaskContext = () => {
   return context
 }
 
-type TaskProviderProps = TaskContext & ComponentProps<'div'>
+type TaskProviderProps = { task: TTask } & ComponentProps<'div'>
 
 const TaskProvider = ({
   task,
@@ -38,14 +47,18 @@ const TaskProvider = ({
   children,
   ...props
 }: TaskProviderProps) => {
-  const value = useMemo(() => ({ task }), [task])
+  const density = useCardDensity()
+
+  const value = useMemo(() => ({ task, density }), [task, density])
 
   return (
     <TaskContext value={value}>
       <div
         className={cn(
-          `relative min-h-38.5 overflow-hidden rounded-lg bg-white py-3.5 pr-5
-          pl-6 dark:bg-black`,
+          'relative overflow-hidden rounded-lg bg-white dark:bg-black',
+          density === 'compact'
+            ? 'py-2.5 pr-3.5 pl-4'
+            : 'min-h-38.5 py-3.5 pr-5 pl-6',
           task.completed &&
             'opacity-90 brightness-95 saturate-100 dark:brightness-125',
           className
@@ -63,6 +76,12 @@ const TaskPriorityIndicator = ({
 }: ComponentProps<'span'>) => {
   const { task } = useTaskContext()
 
+  const { data: showPriorityIndicator } = useSettings(
+    state => state.task.showPriorityIndicator
+  )
+
+  if (!showPriorityIndicator) return null
+
   return (
     <span
       className={cn(
@@ -76,12 +95,13 @@ const TaskPriorityIndicator = ({
 }
 
 const TaskTitle = ({ className, ...props }: ComponentProps<'p'>) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
 
   return (
     <p
       className={cn(
-        'mb-2 max-w-60 truncate text-base font-semibold',
+        'max-w-60 truncate text-base font-semibold',
+        density === 'comfortable' && 'mb-2',
         task.completed && 'text-black/40 line-through dark:text-white/40',
         className
       )}
@@ -92,14 +112,15 @@ const TaskTitle = ({ className, ...props }: ComponentProps<'p'>) => {
 }
 
 const TaskDescription = ({ className, ...props }: ComponentProps<'p'>) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
 
   return (
     task.description && (
       <p
         className={cn(
-          `text-md mb-3.5 line-clamp-2 max-w-68.75 text-balance text-ellipsis
-          text-black/70 dark:text-white/50`,
+          `text-md max-w-68.75 text-balance text-ellipsis text-black/70
+          dark:text-white/50`,
+          density === 'compact' ? 'mb-1.5 line-clamp-1' : 'mb-3.5 line-clamp-2',
           task.completed && 'text-black/40 dark:text-white/40',
           className
         )}
@@ -129,29 +150,46 @@ const TaskCompletedToggle = ({
 
 const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
   const {
-    task: { labels }
+    task: { labels },
+    density
   } = useTaskContext()
 
-  if (!labels?.length) return null
+  const { data } = useSettings(state => state.label)
 
-  const labelsPerRow = 3
+  if (!labels?.length || data?.labelDisplay === 'hidden') return null
+
+  let max = data?.maxLabelsShown
+
+  if (max === 0) max = Infinity
+
+  const visibleLabels = labels.slice(0, max)
+
+  const hiddenCount = labels.length - visibleLabels.length
 
   return (
     <div
-      className={cn('mb-2 flex flex-wrap items-center gap-1.5', className)}
+      className={cn(
+        'flex flex-wrap items-center gap-1.5',
+        density === 'compact' ? 'mb-1' : 'mb-2',
+        className
+      )}
       {...props}>
-      {labels.slice(0, labelsPerRow).map(label => (
+      {visibleLabels.map(label => (
         <Label
           key={label.id}
-          className={LABEL_COLOR_MAP[label.color]}>
-          {label.name}
+          className={cn(
+            data?.labelDisplay === 'compact'
+              ? LABEL_BASE_COLOR_MAP[label.color]
+              : LABEL_COLOR_MAP[label.color]
+          )}>
+          {data?.labelDisplay === 'full' && label.name}
         </Label>
       ))}
-      {labels.length > labelsPerRow && (
+      {hiddenCount > 0 && (
         <span
           className='bg-white-muted dark:bg-black-muted rounded-md px-2 py-0.5
             text-[11px]'>
-          +{labels.length - labelsPerRow}
+          +{hiddenCount}
         </span>
       )}
     </div>
@@ -159,16 +197,22 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
 }
 
 const TaskPriority = ({ className }: { className?: string }) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
+
+  const isCompact = density === 'compact'
 
   return (
     <div
       className={cn(
-        'mr-3.5',
+        isCompact ? 'mr-2' : 'mr-3.5',
         task.completed && 'text-black/40 dark:text-white/40',
         className
       )}>
-      <p className='mb-1 text-xs text-black/50 dark:text-white/50'>Priority</p>
+      {!isCompact && (
+        <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
+          Priority
+        </p>
+      )}
       <div className='flex items-center gap-1'>
         <div
           className={cn(
@@ -176,26 +220,52 @@ const TaskPriority = ({ className }: { className?: string }) => {
             getTaskPriorityColor(task.priority)
           )}
         />
-        <p className='text-sm'>{capitalize(task.priority)}</p>
+        {isCompact ? (
+          <span className='sr-only'>Priority: {capitalize(task.priority)}</span>
+        ) : (
+          <p className='text-sm'>{capitalize(task.priority)}</p>
+        )}
       </div>
     </div>
   )
 }
 
 const TaskDeadline = ({ className }: { className?: string }) => {
-  const { task } = useTaskContext()
+  const { task, density } = useTaskContext()
+
+  const { data: dateFormat } = useSettings(state => state.general.dateFormat)
+
+  const { data: overdueHighlight } = useSettings(
+    state => state.task.overdueHighlight
+  )
+
+  const deadline = parseDeadline(task.deadline)
+
+  const isOverdue =
+    !!deadline && !task.completed && isBefore(deadline, startOfToday())
 
   return (
-    task.deadline && (
+    deadline && (
       <div
         className={cn(
           task.completed && 'text-black/40 dark:text-white/40',
           className
         )}>
-        <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
-          Deadline
+        {density === 'comfortable' && (
+          <p className='mb-1 text-xs text-black/50 dark:text-white/50'>
+            Deadline
+          </p>
+        )}
+        <p
+          className={cn(
+            'text-sm',
+            overdueHighlight && isOverdue && 'text-red font-medium'
+          )}>
+          {formatDeadline(
+            deadline,
+            DATE_FORMAT_MAP[dateFormat ?? 'dd_mm_yyyy']
+          )}
         </p>
-        <p className='text-sm'>{formatDeadlineDate(task.deadline)}</p>
       </div>
     )
   )
@@ -204,11 +274,13 @@ const TaskDeadline = ({ className }: { className?: string }) => {
 const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   const { task } = useTaskContext()
 
+  const deadline = parseDeadline(task.deadline)
+
   return (
-    task.deadline &&
-    isToday(task.deadline) && (
+    deadline &&
+    isToday(deadline) && (
       <BellRingIcon
-        className={cn('stroke-brand size-4.5 animate-bounce pr-1', className)}
+        className={cn('stroke-accent size-4.5 animate-bounce pr-1', className)}
       />
     )
   )
@@ -222,9 +294,9 @@ const TaskActionButton = ({
   const defaultProps: useRender.ElementProps<'button'> = {
     type: 'button',
     className: cn(
-      `focus-visible:styled-outline hocus:text-black
-        dark:hocus:text-white-soft dark:text-white-soft/50 text-black/50
-        [&_svg]:size-4`,
+      `focus-visible:styled-outline dark:text-white-soft text-black
+        [&_svg]:size-4 [&_svg]:opacity-50 hocus:[&_svg]:opacity-100
+        [&_svg]:transition-opacity`,
       className
     )
   }

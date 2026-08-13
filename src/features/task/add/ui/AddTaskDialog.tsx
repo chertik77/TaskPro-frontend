@@ -39,7 +39,7 @@ export const AddTaskDialog = ({ columnId }: AddTaskDialogProps) => {
         </DialogDescription>
         <AddTaskForm
           columnId={columnId}
-          setIsDialogOpen={setIsDialogOpen}
+          closeDialog={() => setIsDialogOpen(false)}
         />
       </DialogContent>
     </Dialog>

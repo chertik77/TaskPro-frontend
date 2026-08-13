@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import type { UseFormReset } from 'react-hook-form'
 import type { HelpSchema } from '../model/contract'
 
@@ -8,7 +7,7 @@ import { helpMutation } from '@/shared/api'
 
 export const useNeedHelp = (
   reset: UseFormReset<HelpSchema>,
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 ) =>
   useMutation({
     ...helpMutation(),
@@ -18,6 +17,6 @@ export const useNeedHelp = (
     },
     onSuccess() {
       reset()
-      setIsDialogOpen(false)
+      closeDialog()
     }
   })

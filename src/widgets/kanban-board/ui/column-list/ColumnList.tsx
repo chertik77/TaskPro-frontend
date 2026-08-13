@@ -5,7 +5,7 @@ import {
 } from '@dnd-kit/sortable'
 
 import { AddColumnDialog } from '@/features/column/add'
-import { useDragAndDrop } from '@/features/drag-and-drop'
+import { useDragAndDropSelector } from '@/features/drag-and-drop'
 
 import { ColumnListItem } from './ColumnListItem'
 
@@ -14,7 +14,7 @@ type ColumnListProps = {
 }
 
 export const ColumnList = ({ backgroundURL }: ColumnListProps) => {
-  const { columns } = useDragAndDrop()
+  const columns = useDragAndDropSelector(ctx => ctx.columns)
 
   const columnsIds = useMemo(() => columns?.map(c => c.id), [columns])
 

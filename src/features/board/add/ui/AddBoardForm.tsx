@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import * as m from 'motion/react-m'
 
 import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
@@ -20,15 +18,15 @@ import { useAddBoard } from '../api/useAddBoard'
 import { AddBoardSchema } from '../model/contract'
 
 type AddBoardFormProps = {
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
-export const AddBoardForm = ({ setIsDialogOpen }: AddBoardFormProps) => {
+export const AddBoardForm = ({ closeDialog }: AddBoardFormProps) => {
   const form = useAppForm(AddBoardSchema, {
     defaultValues: { title: '', icon: 'sparkles', background: 'default' }
   })
 
-  const { mutate: addBoard, isPending } = useAddBoard(setIsDialogOpen)
+  const { mutate: addBoard, isPending } = useAddBoard(closeDialog)
 
   return (
     <Form {...form}>

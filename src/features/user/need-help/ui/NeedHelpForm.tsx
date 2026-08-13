@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import * as m from 'motion/react-m'
 
 import { formVariants, useAppForm } from '@/shared/lib'
@@ -20,17 +18,17 @@ import { useNeedHelp } from '../api/useNeedHelp'
 import { HelpSchema } from '../model/contract'
 
 type NeedHelpFormProps = {
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
-export const NeedHelpForm = ({ setIsDialogOpen }: NeedHelpFormProps) => {
+export const NeedHelpForm = ({ closeDialog }: NeedHelpFormProps) => {
   const form = useAppForm(HelpSchema, {
     defaultValues: { email: '', comment: '' }
   })
 
   const { mutate: sendHelpRequest, isPending } = useNeedHelp(
     form.reset,
-    setIsDialogOpen
+    closeDialog
   )
 
   return (

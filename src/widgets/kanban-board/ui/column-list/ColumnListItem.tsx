@@ -1,4 +1,4 @@
-import type { ColumnTypes } from '@/entities/column'
+import type { Column } from '@/shared/api'
 
 import { cn } from '@/shared/lib'
 
@@ -6,7 +6,7 @@ import { useDndSortable } from '../../lib/useDndSortable'
 import { MemoizedColumn } from './MemoizedColumn'
 
 type ColumnListItemProps = {
-  column: ColumnTypes.ColumnSchema
+  column: Column
   isOverlay?: boolean
   backgroundURL?: string | null
 }

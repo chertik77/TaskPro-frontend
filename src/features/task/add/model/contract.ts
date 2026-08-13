@@ -1,7 +1,8 @@
-import { startOfDay } from 'date-fns'
 import * as v from 'valibot'
 
-import { TASK_PRIORITIES } from '@/entities/task'
+import { serializeDeadline } from '@/entities/task'
+
+import { vTaskPriority } from '@/shared/api'
 
 export const AddTaskSchema = v.object({
   title: v.pipe(
@@ -20,16 +21,11 @@ export const AddTaskSchema = v.object({
       v.minLength(3, 'Please enter at least 3 characters.')
     )
   ]),
-  priority: v.fallback(v.picklist(TASK_PRIORITIES), 'without'),
+  priority: v.fallback(vTaskPriority, 'without'),
   labels: v.optional(v.array(v.string())),
-  deadline: v.optional(
-    v.pipe(
-      v.date(),
-      v.check(
-        d => startOfDay(d) >= startOfDay(new Date()),
-        'Deadline must be today or in the future.'
-      )
-    )
+  deadline: v.pipe(
+    v.nullish(v.date()),
+    v.transform(d => (d ? serializeDeadline(d) : undefined))
   )
 })
 

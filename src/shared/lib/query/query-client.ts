@@ -1,5 +1,6 @@
 import { matchQuery, MutationCache, QueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner'
+
+import { toast } from '../toast/toast'
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
@@ -28,6 +29,10 @@ export const queryClient = new QueryClient({
     }
   }),
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false }
+    queries: {
+      retry: 1,
+      gcTime: 30 * 60_000, // 30 minutes,
+      refetchOnWindowFocus: false
+    }
   }
 })

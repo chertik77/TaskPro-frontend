@@ -1,13 +1,14 @@
 import { DragOverlay } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
 
-import { useDragAndDrop } from '@/features/drag-and-drop'
+import { useDragAndDropSelector } from '@/features/drag-and-drop'
 
 import { ColumnListItem } from '../column-list/ColumnListItem'
 import { TaskListItem } from '../task-list/TaskListItem'
 
 export const KanbanDragOverlay = () => {
-  const { activeTask, activeColumn } = useDragAndDrop()
+  const activeColumn = useDragAndDropSelector(ctx => ctx.activeColumn)
+  const activeTask = useDragAndDropSelector(ctx => ctx.activeTask)
 
   return createPortal(
     <DragOverlay>

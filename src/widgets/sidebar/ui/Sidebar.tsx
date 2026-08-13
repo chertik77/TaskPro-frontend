@@ -1,9 +1,9 @@
 import { ScrollArea } from '@base-ui/react/scroll-area'
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 
 import { NeedHelpDialog } from '@/features/user/need-help'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { useMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 import { useSidebarToggleShortcut } from '../lib/useSidebarToggleShortcut'
@@ -16,14 +16,14 @@ import { SidebarMobileMenu } from './SidebarMobileMenu'
 export const Sidebar = () => {
   const { isOpen } = useSidebarStore()
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
+  const isTabletAndBelow = useMediaQuery('(max-width: 1439px)')
 
   useSidebarToggleShortcut()
 
   return isTabletAndBelow ? (
     <SidebarMobileMenu />
   ) : (
-    <motion.div
+    <m.div
       className='row-span-2 overflow-hidden'
       animate={{ opacity: isOpen ? 1 : 0 }}
       transition={{ duration: 0.15 }}
@@ -46,9 +46,11 @@ export const Sidebar = () => {
           className='pointer-events-none w-1 bg-transparent opacity-0
             transition-opacity duration-200 data-scrolling:pointer-events-auto
             data-scrolling:opacity-100 data-scrolling:duration-initial'>
-          <ScrollArea.Thumb className='rounded-[26px] bg-white/60' />
+          <ScrollArea.Thumb
+            className='rounded-[26px] bg-black/30 dark:bg-white/60'
+          />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
-    </motion.div>
+    </m.div>
   )
 }

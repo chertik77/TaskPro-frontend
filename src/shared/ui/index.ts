@@ -1,9 +1,13 @@
+export { Logo } from './Logo'
 export { Button } from './Button'
 export { Input } from './Input'
 export { TextArea } from './TextArea'
 export { SocialIcon } from './SocialIcon'
 export { PasswordInput } from './PasswordInput'
 export { Loader } from './Loader'
+export { Toaster } from './Toast'
+export { Switch } from './Switch'
+export { Slider } from './Slider'
 export { Checkbox } from './Checkbox'
 export { Avatar, AvatarImage, AvatarFallback } from './Avatar'
 export { PlusButtonWithLoader } from './PlusButtonWithLoader'
@@ -53,3 +57,11 @@ export {
   FormMessage,
   useFormField
 } from './Form'
+export {
+  Table,
+  TableHeader,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableCell
+} from './Table'

@@ -1,13 +1,13 @@
-import type { LabelSchema } from '../model/types'
+import type { Label } from '@/shared/api'
 
 import { createTypeSafeCombobox } from '@/shared/ui'
 
 import { LABEL_COLOR_MAP } from '../config/color-map'
 
-const Combobox = createTypeSafeCombobox<LabelSchema, string>()
+const Combobox = createTypeSafeCombobox<Label, string>()
 
 type LabelChipProps = {
-  labelMap: Map<string, LabelSchema>
+  labelMap: Map<string, Label>
   values: string[]
 }
 

@@ -10,8 +10,8 @@ export const EmptyBoard = () => (
       Before starting your project, it is essential{' '}
       <AddBoardDialog>
         <DialogTrigger
-          className='focus-visible:styled-outline text-brand
-            hocus:text-brand-light transition-colors'>
+          className='focus-visible:styled-outline text-accent
+            hocus:text-accent/50 transition-colors'>
           to create a board
         </DialogTrigger>{' '}
       </AddBoardDialog>

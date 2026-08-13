@@ -9,7 +9,7 @@ export const RouterProvider = () => (
     defaultPendingComponent={() => (
       <div className='fixed top-0 right-0 block h-12 w-screen'>
         <div className='bg-soft-green flex h-screen items-center justify-center'>
-          <Loader className='size-12' />
+          <Loader className='size-12 stroke-black' />
         </div>
       </div>
     )}

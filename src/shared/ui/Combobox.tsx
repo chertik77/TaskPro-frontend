@@ -32,7 +32,7 @@ const ComboboxContent = ({
           data-[side=right]:slide-in-from-left-2
           data-[side=top]:slide-in-from-bottom-2 data-open:animate-in
           data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out
-          data-closed:fade-out-0 data-closed:zoom-out-95 border-brand/30 group
+          data-closed:fade-out-0 data-closed:zoom-out-95 border-accent/30 group
           bg-white-soft shadow-base relative z-50 max-h-(--available-height)
           w-(--anchor-width) max-w-(--available-width)
           origin-(--transform-origin) overflow-hidden rounded-lg dark:border`,
@@ -75,7 +75,7 @@ const ComboboxItem = ({
       className
     )}
     {...props}>
-    {children}
+    <span className='min-w-0 truncate'>{children}</span>
     <ComboboxPrimitive.ItemIndicator
       render={
         <span
@@ -109,8 +109,8 @@ const ComboboxChips = ({
   ComboboxPrimitive.Chips.Props) => (
   <ComboboxPrimitive.Chips
     className={cn(
-      `border-brand/40 focus-within:border-brand flex min-h-12 w-full flex-wrap
-      items-center gap-1 rounded-lg border px-2.5 py-1
+      `border-accent/40 focus-within:border-accent flex min-h-12 w-full
+      flex-wrap items-center gap-1 rounded-lg border px-2.5 py-1
       supports-[-webkit-overflow-scrolling:touch]:text-lg`,
       className
     )}
@@ -128,14 +128,14 @@ const ComboboxChip = ({
 }) => (
   <ComboboxPrimitive.Chip
     className={cn(
-      `text-md dark:bg-gray/20 bg-white-muted flex h-[calc(--spacing(6))] w-fit
-      items-center justify-center gap-1 rounded-sm px-1.5 py-2 whitespace-nowrap
+      `text-md dark:bg-gray/20 bg-white-muted flex h-6 w-fit items-center
+      justify-center gap-1 rounded-sm px-1.5 py-2 whitespace-nowrap
       has-disabled:pointer-events-none has-disabled:cursor-not-allowed
       has-disabled:opacity-50`,
       className
     )}
     {...props}>
-    {children}
+    <span className='min-w-0 truncate'>{children}</span>
     {showRemove && (
       <ComboboxPrimitive.ChipRemove className='opacity-50 hover:opacity-100'>
         <XIcon className='size-3' />

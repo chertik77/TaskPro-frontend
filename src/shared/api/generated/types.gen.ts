@@ -4,42 +4,67 @@ export type ClientOptions = {
     baseURL: 'http://localhost:9537/api' | 'https://api.taskpro.qzz.io' | (string & {});
 };
 
-export type Board = {
+export type ErrorResponse = {
+    status: number;
+    message: string | {
+        [key: string]: Array<string>;
+    };
+};
+
+export type Avatar = {
+    image: string | null;
+};
+
+export type UserSettings = {
     id: string;
-    title: string;
-    icon: BoardIcon;
-    background: BoardBackground;
+    general: GeneralSettings;
+    task: TaskSettings;
+    label: LabelSettings;
     userId: string;
-    columns?: Array<Column>;
-    createdAt: Date;
-    updatedAt: Date;
 };
 
-export type BoardBackground = {
-    identifier: BoardBackgroundId;
-    url: string | null;
+export type GeneralSettings = {
+    theme: 'light' | 'dark' | 'system';
+    accentColor: AccentColor;
+    firstDayOfWeek: 'sunday' | 'monday';
+    fontSize: 'small' | 'medium' | 'large';
+    dateFormat: 'dd_mm_yyyy' | 'mm_dd_yyyy' | 'yyyy_mm_dd';
+    boardBackgroundBlur: 'off' | 'low' | 'medium';
+    /**
+     * `system` defers to the client `prefers-reduced-motion` media query
+     */
+    enableAnimations: 'system' | 'on' | 'off';
+    confirmBeforeDelete: boolean;
 };
 
-export const BoardBackgroundId = {
-    DEFAULT: 'default',
-    FLOWERS: 'flowers',
-    MOUNTAINS_NIGHT: 'mountains-night',
-    SAKURA: 'sakura',
-    NIGHT_SKY: 'night-sky',
-    TROPICS: 'tropics',
-    LIGHT_SKY: 'light-sky',
-    SEA_ROCKS: 'sea-rocks',
-    BLUE_BALL: 'blue-ball',
-    RED_MOON: 'red-moon',
-    SEA_BOAT: 'sea-boat',
-    AIR_BALLOONS: 'air-balloons',
-    GORGE: 'gorge',
-    SEA_BOAT_2: 'sea-boat-2',
-    AIR_BALLOONS_2: 'air-balloons-2',
-    NORTHERN_LIGHTS: 'northern-lights'
+export const AccentColor = {
+    BLUE: 'blue',
+    PURPLE: 'purple',
+    RED: 'red',
+    GRAY: 'gray',
+    CYAN: 'cyan',
+    YELLOW: 'yellow',
+    INDIGO: 'indigo',
+    GREEN: 'green'
 } as const;
 
-export type BoardBackgroundId = typeof BoardBackgroundId[keyof typeof BoardBackgroundId];
+export type AccentColor = typeof AccentColor[keyof typeof AccentColor];
+
+export type TaskSettings = {
+    defaultPriority: 'without' | 'low' | 'medium' | 'high';
+    defaultDeadline: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
+    cardDensity: 'compact' | 'comfortable';
+    showPriorityIndicator: boolean;
+    overdueHighlight: boolean;
+};
+
+export type LabelSettings = {
+    labelDisplay: 'hidden' | 'full' | 'compact';
+    /**
+     * Labels rendered on a task card before collapsing. 0 = all
+     */
+    maxLabelsShown: number;
+};
 
 export const BoardIcon = {
     SPARKLES: 'sparkles',
@@ -56,14 +81,51 @@ export const BoardIcon = {
 
 export type BoardIcon = typeof BoardIcon[keyof typeof BoardIcon];
 
+export type BoardBackground = {
+    identifier: BoardBackgroundId;
+    url: string | null;
+};
+
+export const BoardBackgroundId = {
+    FLOWERS: 'flowers',
+    MOUNTAINS_NIGHT: 'mountains-night',
+    SAKURA: 'sakura',
+    NIGHT_SKY: 'night-sky',
+    TROPICS: 'tropics',
+    LIGHT_SKY: 'light-sky',
+    SEA_ROCKS: 'sea-rocks',
+    BLUE_BALL: 'blue-ball',
+    RED_MOON: 'red-moon',
+    SEA_BOAT: 'sea-boat',
+    AIR_BALLOONS: 'air-balloons',
+    GORGE: 'gorge',
+    SEA_BOAT_2: 'sea-boat-2',
+    AIR_BALLOONS_2: 'air-balloons-2',
+    NORTHERN_LIGHTS: 'northern-lights',
+    DEFAULT: 'default'
+} as const;
+
+export type BoardBackgroundId = typeof BoardBackgroundId[keyof typeof BoardBackgroundId];
+
+export type Board = {
+    id: string;
+    title: string;
+    icon: BoardIcon;
+    background: BoardBackground;
+    userId: string;
+    columns?: Array<Column>;
+    createdAt: string;
+    updatedAt: string;
+};
+
 export type Column = {
     id: string;
     title: string;
     order: number;
     boardId: string;
     tasks?: Array<Task>;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type Task = {
@@ -71,14 +133,14 @@ export type Task = {
     title: string;
     description: string | null;
     priority: TaskPriority;
-    deadline: Date | null;
+    deadline: string | null;
     order: number;
     completed: boolean;
-    completedAt: Date | null;
+    completedAt: string | null;
     columnId: string;
-    labels?: Array<Label>;
-    createdAt: Date;
-    updatedAt: Date;
+    labels: Array<Label>;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export const TaskPriority = {
@@ -93,31 +155,12 @@ export type TaskPriority = typeof TaskPriority[keyof typeof TaskPriority];
 export type Label = {
     id: string;
     name: string;
-    color: LabelColor;
+    description: string | null;
+    color: AccentColor & unknown;
     userId: string;
-    taskId?: string | null;
-    createdAt: Date;
-    updatedAt: Date;
-};
-
-export const LabelColor = {
-    BLUE: 'blue',
-    PURPLE: 'purple',
-    RED: 'red',
-    GRAY: 'gray',
-    CYAN: 'cyan',
-    YELLOW: 'yellow',
-    INDIGO: 'indigo',
-    GREEN: 'green'
-} as const;
-
-export type LabelColor = typeof LabelColor[keyof typeof LabelColor];
-
-export type ErrorResponse = {
-    statusCode?: number;
-    message?: string | {
-        [key: string]: unknown;
-    };
+    taskIds: Array<string>;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type HelpData = {
@@ -131,19 +174,220 @@ export type HelpData = {
 };
 
 export type HelpErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
 };
 
 export type HelpError = HelpErrors[keyof HelpErrors];
 
 export type HelpResponses = {
+    /**
+     * Email sent
+     */
     200: {
-        message?: string;
+        message: string;
     };
 };
 
 export type HelpResponse = HelpResponses[keyof HelpResponses];
+
+export type DeleteAvatarData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/user/avatar';
+};
+
+export type DeleteAvatarErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type DeleteAvatarError = DeleteAvatarErrors[keyof DeleteAvatarErrors];
+
+export type DeleteAvatarResponses = {
+    /**
+     * Avatar deleted
+     */
+    200: Avatar;
+};
+
+export type DeleteAvatarResponse = DeleteAvatarResponses[keyof DeleteAvatarResponses];
+
+export type UploadAvatarData = {
+    body: {
+        avatar: Blob | File;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/avatar';
+};
+
+export type UploadAvatarErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type UploadAvatarError = UploadAvatarErrors[keyof UploadAvatarErrors];
+
+export type UploadAvatarResponses = {
+    /**
+     * Avatar uploaded
+     */
+    200: Avatar;
+};
+
+export type UploadAvatarResponse = UploadAvatarResponses[keyof UploadAvatarResponses];
+
+export type GetAllSettingsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/user/settings';
+};
+
+export type GetAllSettingsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type GetAllSettingsError = GetAllSettingsErrors[keyof GetAllSettingsErrors];
+
+export type GetAllSettingsResponses = {
+    /**
+     * Success
+     */
+    200: UserSettings;
+};
+
+export type GetAllSettingsResponse = GetAllSettingsResponses[keyof GetAllSettingsResponses];
+
+export type UpdateGeneralSettingsData = {
+    body: {
+        theme?: 'light' | 'dark' | 'system';
+        accentColor?: AccentColor;
+        firstDayOfWeek?: 'sunday' | 'monday';
+        fontSize?: 'small' | 'medium' | 'large';
+        dateFormat?: 'dd_mm_yyyy' | 'mm_dd_yyyy' | 'yyyy_mm_dd';
+        boardBackgroundBlur?: 'off' | 'low' | 'medium';
+        /**
+         * `system` defers to the client `prefers-reduced-motion` media query
+         */
+        enableAnimations?: 'system' | 'on' | 'off';
+        confirmBeforeDelete?: boolean;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/general';
+};
+
+export type UpdateGeneralSettingsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type UpdateGeneralSettingsError = UpdateGeneralSettingsErrors[keyof UpdateGeneralSettingsErrors];
+
+export type UpdateGeneralSettingsResponses = {
+    /**
+     * Updated
+     */
+    200: GeneralSettings;
+};
+
+export type UpdateGeneralSettingsResponse = UpdateGeneralSettingsResponses[keyof UpdateGeneralSettingsResponses];
+
+export type UpdateTaskSettingsData = {
+    body: {
+        defaultPriority?: 'without' | 'low' | 'medium' | 'high';
+        defaultDeadline?: 'none' | 'today' | 'tomorrow' | 'three_days' | 'one_week';
+        cardDensity?: 'compact' | 'comfortable';
+        showPriorityIndicator?: boolean;
+        overdueHighlight?: boolean;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/task';
+};
+
+export type UpdateTaskSettingsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type UpdateTaskSettingsError = UpdateTaskSettingsErrors[keyof UpdateTaskSettingsErrors];
+
+export type UpdateTaskSettingsResponses = {
+    /**
+     * Updated
+     */
+    200: TaskSettings;
+};
+
+export type UpdateTaskSettingsResponse = UpdateTaskSettingsResponses[keyof UpdateTaskSettingsResponses];
+
+export type UpdateLabelSettingsData = {
+    body: {
+        labelDisplay?: 'hidden' | 'full' | 'compact';
+        /**
+         * Labels rendered on a task card before collapsing. 0 = all
+         */
+        maxLabelsShown?: number;
+    };
+    path?: never;
+    query?: never;
+    url: '/user/settings/label';
+};
+
+export type UpdateLabelSettingsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+};
+
+export type UpdateLabelSettingsError = UpdateLabelSettingsErrors[keyof UpdateLabelSettingsErrors];
+
+export type UpdateLabelSettingsResponses = {
+    /**
+     * Updated
+     */
+    200: LabelSettings;
+};
+
+export type UpdateLabelSettingsResponse = UpdateLabelSettingsResponses[keyof UpdateLabelSettingsResponses];
 
 export type GetAllBoardsData = {
     body?: never;
@@ -153,22 +397,36 @@ export type GetAllBoardsData = {
 };
 
 export type GetAllBoardsErrors = {
-    401: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
 };
 
 export type GetAllBoardsError = GetAllBoardsErrors[keyof GetAllBoardsErrors];
 
 export type GetAllBoardsResponses = {
-    200: Array<Board>;
+    /**
+     * Success
+     */
+    200: Array<{
+        id: string;
+        title: string;
+        icon: BoardIcon;
+        background: BoardBackground;
+        userId: string;
+        createdAt: string;
+        updatedAt: string;
+    }>;
 };
 
 export type GetAllBoardsResponse = GetAllBoardsResponses[keyof GetAllBoardsResponses];
 
 export type CreateBoardData = {
     body: {
-        title?: string;
-        icon?: BoardIcon;
-        background?: BoardBackgroundId;
+        title: string;
+        icon: BoardIcon;
+        background: BoardBackgroundId;
     };
     path?: never;
     query?: never;
@@ -176,13 +434,22 @@ export type CreateBoardData = {
 };
 
 export type CreateBoardErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
 };
 
 export type CreateBoardError = CreateBoardErrors[keyof CreateBoardErrors];
 
 export type CreateBoardResponses = {
+    /**
+     * Success
+     */
     201: Board;
 };
 
@@ -198,8 +465,14 @@ export type DeleteBoardData = {
 };
 
 export type DeleteBoardErrors = {
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type DeleteBoardError = DeleteBoardErrors[keyof DeleteBoardErrors];
@@ -223,18 +496,23 @@ export type GetBoardByIdData = {
 };
 
 export type GetBoardByIdErrors = {
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type GetBoardByIdError = GetBoardByIdErrors[keyof GetBoardByIdErrors];
 
 export type GetBoardByIdResponses = {
-    200: Board & {
-        columns?: Array<Column & {
-            tasks?: Array<Task>;
-        }>;
-    };
+    /**
+     * Success
+     */
+    200: Board;
 };
 
 export type GetBoardByIdResponse = GetBoardByIdResponses[keyof GetBoardByIdResponses];
@@ -253,14 +531,26 @@ export type UpdateBoardData = {
 };
 
 export type UpdateBoardErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type UpdateBoardError = UpdateBoardErrors[keyof UpdateBoardErrors];
 
 export type UpdateBoardResponses = {
+    /**
+     * Success
+     */
     200: Board;
 };
 
@@ -278,43 +568,37 @@ export type CreateColumnData = {
 };
 
 export type CreateColumnErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type CreateColumnError = CreateColumnErrors[keyof CreateColumnErrors];
 
 export type CreateColumnResponses = {
-    201: Column;
+    /**
+     * Success
+     */
+    201: {
+        id: string;
+        title: string;
+        order: number;
+        boardId: string;
+        createdAt: string;
+        updatedAt: string;
+    };
 };
 
 export type CreateColumnResponse = CreateColumnResponses[keyof CreateColumnResponses];
-
-export type UpdateColumnsOrderData = {
-    body: {
-        ids: Array<string>;
-    };
-    path: {
-        boardId: string;
-    };
-    query?: never;
-    url: '/column/{boardId}/order';
-};
-
-export type UpdateColumnsOrderErrors = {
-    400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
-};
-
-export type UpdateColumnsOrderError = UpdateColumnsOrderErrors[keyof UpdateColumnsOrderErrors];
-
-export type UpdateColumnsOrderResponses = {
-    200: Array<Column>;
-};
-
-export type UpdateColumnsOrderResponse = UpdateColumnsOrderResponses[keyof UpdateColumnsOrderResponses];
 
 export type DeleteColumnData = {
     body?: never;
@@ -326,8 +610,14 @@ export type DeleteColumnData = {
 };
 
 export type DeleteColumnErrors = {
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type DeleteColumnError = DeleteColumnErrors[keyof DeleteColumnErrors];
@@ -353,29 +643,92 @@ export type UpdateColumnData = {
 };
 
 export type UpdateColumnErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type UpdateColumnError = UpdateColumnErrors[keyof UpdateColumnErrors];
 
 export type UpdateColumnResponses = {
-    200: Column;
+    /**
+     * Success
+     */
+    200: {
+        id: string;
+        title: string;
+        order: number;
+        boardId: string;
+        createdAt: string;
+        updatedAt: string;
+    };
 };
 
 export type UpdateColumnResponse = UpdateColumnResponses[keyof UpdateColumnResponses];
 
+export type UpdateColumnsOrderData = {
+    body: {
+        ids: Array<string>;
+    };
+    path: {
+        boardId: string;
+    };
+    query?: never;
+    url: '/column/{boardId}/order';
+};
+
+export type UpdateColumnsOrderErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
+};
+
+export type UpdateColumnsOrderError = UpdateColumnsOrderErrors[keyof UpdateColumnsOrderErrors];
+
+export type UpdateColumnsOrderResponses = {
+    /**
+     * Success
+     */
+    200: Array<{
+        id: string;
+        title: string;
+        order: number;
+        boardId: string;
+        createdAt: string;
+        updatedAt: string;
+    }>;
+};
+
+export type UpdateColumnsOrderResponse = UpdateColumnsOrderResponses[keyof UpdateColumnsOrderResponses];
+
 export type CreateTaskData = {
     body: {
         title: string;
-        description?: string;
-        deadline?: Date;
         priority: TaskPriority;
+        description?: string;
         /**
          * Array of Label ids to attach to the task
          */
         labels?: Array<string>;
+        deadline?: string;
     };
     path: {
         columnId: string;
@@ -385,43 +738,30 @@ export type CreateTaskData = {
 };
 
 export type CreateTaskErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type CreateTaskError = CreateTaskErrors[keyof CreateTaskErrors];
 
 export type CreateTaskResponses = {
+    /**
+     * Success
+     */
     201: Task;
 };
 
 export type CreateTaskResponse = CreateTaskResponses[keyof CreateTaskResponses];
-
-export type UpdateTasksOrderData = {
-    body: {
-        ids: Array<string>;
-    };
-    path: {
-        columnId: string;
-    };
-    query?: never;
-    url: '/task/{columnId}/order';
-};
-
-export type UpdateTasksOrderErrors = {
-    400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
-};
-
-export type UpdateTasksOrderError = UpdateTasksOrderErrors[keyof UpdateTasksOrderErrors];
-
-export type UpdateTasksOrderResponses = {
-    200: Array<Task>;
-};
-
-export type UpdateTasksOrderResponse = UpdateTasksOrderResponses[keyof UpdateTasksOrderResponses];
 
 export type DeleteTaskData = {
     body?: never;
@@ -433,8 +773,14 @@ export type DeleteTaskData = {
 };
 
 export type DeleteTaskErrors = {
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type DeleteTaskError = DeleteTaskErrors[keyof DeleteTaskErrors];
@@ -451,18 +797,15 @@ export type DeleteTaskResponse = DeleteTaskResponses[keyof DeleteTaskResponses];
 export type UpdateTaskData = {
     body: {
         title?: string;
-        description?: string | null;
-        deadline?: Date | null;
         priority?: TaskPriority;
-        completed?: boolean;
-        /**
-         * Id of the column to move the task to
-         */
-        columnId?: string;
+        description?: string | null;
         /**
          * Array of Label ids to attach to the task
          */
         labels?: Array<string>;
+        deadline?: string | null;
+        completed?: boolean;
+        columnId?: string;
     };
     path: {
         taskId: string;
@@ -472,18 +815,79 @@ export type UpdateTaskData = {
 };
 
 export type UpdateTaskErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type UpdateTaskError = UpdateTaskErrors[keyof UpdateTaskErrors];
 
 export type UpdateTaskResponses = {
+    /**
+     * Success
+     */
     200: Task;
 };
 
 export type UpdateTaskResponse = UpdateTaskResponses[keyof UpdateTaskResponses];
+
+export type UpdateTasksOrderData = {
+    body: {
+        ids: Array<string>;
+    };
+    path: {
+        columnId: string;
+    };
+    query?: never;
+    url: '/task/{columnId}/order';
+};
+
+export type UpdateTasksOrderErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
+};
+
+export type UpdateTasksOrderError = UpdateTasksOrderErrors[keyof UpdateTasksOrderErrors];
+
+export type UpdateTasksOrderResponses = {
+    /**
+     * Updated
+     */
+    200: Array<{
+        id: string;
+        title: string;
+        description: string | null;
+        priority: TaskPriority;
+        deadline: string | null;
+        order: number;
+        completed: boolean;
+        completedAt: string | null;
+        columnId: string;
+        createdAt: string;
+        updatedAt: string;
+    }>;
+};
+
+export type UpdateTasksOrderResponse = UpdateTasksOrderResponses[keyof UpdateTasksOrderResponses];
 
 export type GetAllLabelsData = {
     body?: never;
@@ -493,12 +897,18 @@ export type GetAllLabelsData = {
 };
 
 export type GetAllLabelsErrors = {
-    401: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
 };
 
 export type GetAllLabelsError = GetAllLabelsErrors[keyof GetAllLabelsErrors];
 
 export type GetAllLabelsResponses = {
+    /**
+     * Success
+     */
     200: Array<Label>;
 };
 
@@ -507,7 +917,7 @@ export type GetAllLabelsResponse = GetAllLabelsResponses[keyof GetAllLabelsRespo
 export type CreateLabelData = {
     body: {
         name: string;
-        color: LabelColor;
+        color: AccentColor & unknown;
     };
     path?: never;
     query?: never;
@@ -515,13 +925,26 @@ export type CreateLabelData = {
 };
 
 export type CreateLabelErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Conflict
+     */
+    409: ErrorResponse & unknown;
 };
 
 export type CreateLabelError = CreateLabelErrors[keyof CreateLabelErrors];
 
 export type CreateLabelResponses = {
+    /**
+     * Success
+     */
     201: Label;
 };
 
@@ -537,8 +960,14 @@ export type DeleteLabelData = {
 };
 
 export type DeleteLabelErrors = {
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
 };
 
 export type DeleteLabelError = DeleteLabelErrors[keyof DeleteLabelErrors];
@@ -555,7 +984,8 @@ export type DeleteLabelResponse = DeleteLabelResponses[keyof DeleteLabelResponse
 export type UpdateLabelData = {
     body: {
         name?: string;
-        color?: LabelColor;
+        color?: AccentColor & unknown;
+        description?: string | null;
     };
     path: {
         labelId: string;
@@ -565,14 +995,30 @@ export type UpdateLabelData = {
 };
 
 export type UpdateLabelErrors = {
+    /**
+     * Bad Request
+     */
     400: ErrorResponse;
-    401: ErrorResponse;
-    404: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
+    /**
+     * Conflict
+     */
+    409: ErrorResponse & unknown;
 };
 
 export type UpdateLabelError = UpdateLabelErrors[keyof UpdateLabelErrors];
 
 export type UpdateLabelResponses = {
+    /**
+     * Success
+     */
     200: Label;
 };
 

@@ -41,7 +41,7 @@ export const EditTaskDialog = ({ data }: EditTaskDialogProps) => {
         </DialogDescription>
         <EditTaskForm
           data={data}
-          setIsDialogOpen={setIsDialogOpen}
+          closeDialog={() => setIsDialogOpen(false)}
         />
       </DialogContent>
     </Dialog>

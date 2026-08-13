@@ -1,1 +1,1 @@
-export { DragAndDropProvider, useDragAndDrop } from './model/context'
+export { DragAndDropProvider, useDragAndDropSelector } from './model/context'

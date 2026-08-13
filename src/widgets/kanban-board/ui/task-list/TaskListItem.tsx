@@ -1,4 +1,4 @@
-import type { TaskTypes } from '@/entities/task'
+import type { Task } from '@/shared/api'
 import type { KeyboardEvent } from 'react'
 
 import { useState } from 'react'
@@ -9,7 +9,7 @@ import { useDndSortable } from '../../lib/useDndSortable'
 import { MemoizedTask } from './MemoizedTask'
 
 type TaskListItemProps = {
-  task: TaskTypes.TaskSchema
+  task: Task
   isOverlay?: boolean
 }
 

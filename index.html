@@ -5,6 +5,33 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
+    <script>
+      ;(() => {
+        const root = document.documentElement
+
+        let appearance = {}
+
+        appearance =
+          JSON.parse(localStorage.getItem('taskpro-appearance')) || {}
+
+        let theme =
+          appearance.theme ?? localStorage.getItem('taskpro-theme') ?? 'light'
+
+        if (theme === 'system') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+
+        root.dataset.theme = theme
+        root.dataset.fontSize = appearance.fontSize ?? 'medium'
+        root.dataset.animations = appearance.animations ?? 'system'
+
+        if (appearance.accentColor) {
+          root.style.setProperty('--accent-color', appearance.accentColor)
+        }
+      })()
+    </script>
     <meta
       name="description"
       content="The ultimate task management tool for individuals and teams. Organize tasks, set deadlines, track progress, and increase productivity with TaskPro." />

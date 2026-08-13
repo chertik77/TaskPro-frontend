@@ -46,6 +46,14 @@ export default defineConfig(
             'Direct access to `import.meta.env` is forbidden. Use `@/shared/config` instead.'
         }
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          name: 'motion/react',
+          importNames: ['motion'],
+          message: 'Do not import motion. Use m from motion/react-m instead.'
+        }
+      ],
       'newline-before-return': 'error',
       'arrow-body-style': ['warn', 'as-needed']
     }
@@ -53,6 +61,7 @@ export default defineConfig(
   {
     rules: {
       'jsx-a11y/no-autofocus': 'off',
+      '@eslint-react/no-array-index-key': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/consistent-indexed-object-style': 'error',

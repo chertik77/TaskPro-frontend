@@ -32,6 +32,8 @@
 }
 
 @theme inline {
+  --default-transition-duration: 0.3s;
+
   --font-*: initial;
   --font-poppins: 'Poppins', sans-serif;
 
@@ -45,46 +47,47 @@
   --color-white: #ffffff;
   --color-white-soft: #fcfcfc;
   --color-white-muted: #f6f6f7;
-  --color-brand: #bedbb0;
-  --color-brand-light: #9dc888;
-  --color-blue: #8fa1d0;
+  --color-accent: var(--accent-color);
+  --color-priority-low: #9bb7d4;
+  --color-priority-medium: #e5a8b7;
   --color-red: #dc2626;
-  --color-pink: #e09cb5;
+  --color-green: #bedbb0;
+  --color-green-light: #9dc888;
 
   --text-*: initial;
-  --text-xs: 8px;
+  --text-xs: calc(8px * var(--font-scale));
   --text-xs--line-height: normal;
   --text-xs--font-weight: 400;
   --text-xs--letter-spacing: -0.16px;
 
-  --text-sm: 10px;
+  --text-sm: calc(10px * var(--font-scale));
   --text-sm--line-height: normal;
   --text-sm--font-weight: 400;
   --text-sm--letter-spacing: -0.2px;
 
-  --text-md: 12px;
+  --text-md: calc(12px * var(--font-scale));
   --text-md--line-height: normal;
   --text-md--letter-spacing: -0.24px;
 
-  --text-base: 14px;
+  --text-base: calc(14px * var(--font-scale));
   --text-base--line-height: 1.28;
   --text-base--letter-spacing: -0.28px;
 
-  --text-lg: 16px;
+  --text-lg: calc(16px * var(--font-scale));
   --text-lg--line-height: normal;
   --text-lg--letter-spacing: -0.64px;
 
-  --text-xl: 18px;
+  --text-xl: calc(18px * var(--font-scale));
   --text-xl--line-height: normal;
   --text-xl--font-weight: 500;
   --text-xl--letter-spacing: -0.36px;
 
-  --text-2xl: 28px;
+  --text-2xl: calc(28px * var(--font-scale));
   --text-2xl--line-height: normal;
   --text-2xl--font-weight: 600;
   --text-2xl--letter-spacing: -1.12px;
 
-  --text-3xl: 40px;
+  --text-3xl: calc(40px * var(--font-scale));
   --text-3xl--line-height: normal;
   --text-3xl--font-weight: 600;
   --text-3xl--letter-spacing: -1.6px;
@@ -146,13 +149,50 @@
 }
 
 @layer base {
+  :root {
+    --accent-color: var(--color-green);
+    --font-scale: 1;
+  }
+
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
+
+  html[data-animations='off'] *,
+  html[data-animations='off'] *::before,
+  html[data-animations='off'] *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html[data-animations='system'] *,
+    html[data-animations='system'] *::before,
+    html[data-animations='system'] *::after {
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0s !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  html[data-font-size='small'] {
+    --font-scale: 0.92;
+  }
+
+  html[data-font-size='medium'] {
+    --font-scale: 1;
+  }
+
+  html[data-font-size='large'] {
+    --font-scale: 1.12;
+  }
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(html[data-theme='dark'] *));
 
 @custom-variant hocus {
   @media (hover: hover) {
@@ -209,11 +249,11 @@
 }
 
 @utility styled-outline {
-  @apply outline-brand outline-2;
+  @apply outline-accent outline-2;
 }
 
 @utility bg-soft-green {
-  @apply to-brand bg-linear-180 from-white;
+  @apply to-green bg-linear-180 from-white;
 }
 
 @utility disable-text-selection {

@@ -1,11 +1,9 @@
-import type { Dispatch, SetStateAction } from 'react'
-
 import * as m from 'motion/react-m'
 
 import { FormLabelsCombobox } from '@/entities/label'
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
 
-import { formVariants, useAppForm } from '@/shared/lib'
+import { formVariants } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -19,28 +17,17 @@ import {
 } from '@/shared/ui'
 
 import { useAddTask } from '../api/useAddTask'
-import { AddTaskSchema } from '../model/contract'
+import { useAddTaskForm } from '../lib/useAddTaskForm'
 
 type AddTaskFormProps = {
   columnId: string
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
-export const AddTaskForm = ({
-  columnId,
-  setIsDialogOpen
-}: AddTaskFormProps) => {
-  const form = useAppForm(AddTaskSchema, {
-    defaultValues: {
-      title: '',
-      description: '',
-      priority: 'without',
-      deadline: undefined,
-      labels: []
-    }
-  })
+export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
+  const form = useAddTaskForm()
 
-  const { mutate: addTask, isPending } = useAddTask(columnId, setIsDialogOpen)
+  const { mutate: addTask, isPending } = useAddTask(columnId, closeDialog)
 
   return (
     <Form {...form}>
@@ -108,7 +95,7 @@ export const AddTaskForm = ({
             render={() => (
               <FormItem className='mb-6'>
                 <FormLabel>Deadline</FormLabel>
-                <FormDeadlinePicker mode='create' />
+                <FormDeadlinePicker />
                 <FormMessage />
               </FormItem>
             )}

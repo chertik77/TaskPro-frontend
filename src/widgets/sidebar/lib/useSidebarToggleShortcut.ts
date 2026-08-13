@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { useMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
 
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
@@ -8,7 +8,7 @@ const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 export const useSidebarToggleShortcut = () => {
   const { setIsOpen } = useSidebarStore()
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
+  const isTabletAndBelow = useMediaQuery('(max-width: 1025px)')
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

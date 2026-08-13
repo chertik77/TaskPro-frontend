@@ -10,19 +10,17 @@ export const useLogoutUser = () => {
 
   const navigate = useNavigate()
 
-  const { mutateAsync, isPending } = useMutation({
+  const { mutate: logoutUser, isPending } = useMutation({
     mutationFn: () => authClient.signOut(),
     meta: {
       errorMessage:
-        'An error occurred while logging out. Our technical team has been notified. Please try again shortly.'
+        'An error occurred while logging out. Our technical team has been notified. Please try again.'
+    },
+    onSuccess: () => {
+      queryClient.setQueryData(sessionQueries.currents(), null)
+      navigate({ to: '/' })
     }
   })
-
-  const logoutUser = async () => {
-    navigate({ to: '/' })
-    queryClient.setQueryData(sessionQueries.all(), null)
-    await mutateAsync()
-  }
 
   return { logoutUser, isPending }
 }

@@ -1,18 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { useGetParamBoardId } from '@/entities/board'
+import { boardQueries } from '@/entities/board'
 
-import { getBoardByIdQueryKey, updateTasksOrderMutation } from '@/shared/api'
+import { updateTasksOrderMutation } from '@/shared/api'
 
-export const useUpdateTaskOrder = () => {
-  const boardId = useGetParamBoardId()
-
-  return useMutation({
+export const useUpdateTaskOrder = () =>
+  useMutation({
     ...updateTasksOrderMutation(),
     meta: {
-      invalidates: [getBoardByIdQueryKey({ path: { boardId } })],
+      invalidates: [boardQueries.details()],
       errorMessage:
         'Unexpected error during tasks reordering. We apologize for the inconvenience. Please try again later.'
     }
   })
-}

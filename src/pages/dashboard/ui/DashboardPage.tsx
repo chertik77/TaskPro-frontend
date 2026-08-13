@@ -1,32 +1,43 @@
 import { Outlet } from '@tanstack/react-router'
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 
-import { useMetaThemeColor } from '@/features/user/change-theme'
+import { SettingsSync } from '@/entities/setting'
+import { useMetaThemeColor } from '@/entities/user'
 
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
 
-import { useTabletAndBelowMediaQuery } from '@/shared/lib'
+import { useMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/store'
+
+import { LabelModalProvider } from './LabelModalProvider'
 
 export const DashboardPage = () => {
   const { isOpen } = useSidebarStore()
 
   useMetaThemeColor()
 
-  const isTabletAndBelow = useTabletAndBelowMediaQuery('(max-width: 1439px)')
+  const isTabletAndBelow = useMediaQuery('(max-width: 1439px)')
 
-  const columns = isTabletAndBelow ? '1fr' : isOpen ? '260px 1fr' : '0px 1fr'
+  const columns = isTabletAndBelow
+    ? 'minmax(0, 1fr)'
+    : isOpen
+      ? '260px minmax(0, 1fr)'
+      : '0px minmax(0, 1fr)'
 
   return (
-    <div className='fixed top-0 right-0 block h-12 w-screen'>
-      <motion.div
-        className='grid h-screen grid-rows-[60px_1fr]'
-        animate={{ gridTemplateColumns: columns }}>
-        <Sidebar />
-        <Header />
-        <Outlet />
-      </motion.div>
-    </div>
+    <>
+      <SettingsSync />
+      <LabelModalProvider />
+      <div className='fixed top-0 right-0 block h-12 w-screen'>
+        <m.div
+          className='grid h-screen grid-rows-[60px_minmax(0,1fr)]'
+          animate={{ gridTemplateColumns: columns }}>
+          <Sidebar />
+          <Header />
+          <Outlet />
+        </m.div>
+      </div>
+    </>
   )
 }

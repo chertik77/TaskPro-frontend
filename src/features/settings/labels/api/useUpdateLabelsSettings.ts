@@ -1,0 +1,51 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { parse } from 'valibot'
+
+import { SettingContracts, settingQueries } from '@/entities/setting'
+
+import { updateLabelSettingsMutation } from '@/shared/api'
+
+export const useUpdateLabelsSettings = () => {
+  const queryClient = useQueryClient()
+
+  const allSettinsQueryKey = settingQueries.lists()
+
+  return useMutation({
+    ...updateLabelSettingsMutation(),
+    meta: {
+      errorMessage: 'We couldn’t update your settings. Please try again'
+    },
+    onMutate: async ({ body }) => {
+      await queryClient.cancelQueries({ queryKey: allSettinsQueryKey })
+
+      const previousSettings = queryClient.getQueryData(allSettinsQueryKey)
+
+      const parsedPreviousSettings = parse(
+        SettingContracts.SettingsSchema,
+        previousSettings
+      )
+
+      queryClient.setQueryData(allSettinsQueryKey, oldSettings => {
+        if (!oldSettings) return oldSettings
+
+        const parsedOldSettings = parse(
+          SettingContracts.SettingsSchema,
+          oldSettings
+        )
+
+        return {
+          ...parsedOldSettings,
+          label: { ...parsedOldSettings.label, ...body }
+        }
+      })
+
+      return { previousSettings: parsedPreviousSettings }
+    },
+    onError: (_, __, context) => {
+      queryClient.setQueryData(allSettinsQueryKey, context?.previousSettings)
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: allSettinsQueryKey })
+    }
+  })
+}

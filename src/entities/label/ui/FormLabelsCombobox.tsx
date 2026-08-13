@@ -1,4 +1,4 @@
-import type { LabelSchema } from '../model/types'
+import type { Label } from '@/shared/api'
 
 import { cn } from '@/shared/lib'
 import {
@@ -8,11 +8,11 @@ import {
   useFormField
 } from '@/shared/ui'
 
-import { COLOR_MAP } from '../config/color-map'
+import { LABEL_BASE_COLOR_MAP } from '../config/color-map'
 import { useLabelCombobox } from '../lib/useLabelCombobox'
 import { LabelChip } from './LabelChip'
 
-const Combobox = createTypeSafeCombobox<LabelSchema, string>()
+const Combobox = createTypeSafeCombobox<Label, string>()
 
 type FormLabelsComboboxProps = {
   labelsValues: string[] | undefined
@@ -93,9 +93,12 @@ export const FormLabelsCombobox = ({
               key={item.id}
               value={item.id}>
               <span
-                className={cn('size-2 rounded-full', COLOR_MAP[item.color])}
+                className={cn(
+                  'mr-2 inline-block size-2 shrink-0 rounded-full',
+                  LABEL_BASE_COLOR_MAP[item.color]
+                )}
               />
-              {item.name}
+              <span className='min-w-0 truncate'>{item.name}</span>
             </Combobox.Item>
           )}
         </Combobox.List>

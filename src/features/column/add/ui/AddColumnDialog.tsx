@@ -35,7 +35,7 @@ export const AddColumnDialog = () => {
         <DialogDescription className='sr-only'>
           You can add a new column here by adding a title.
         </DialogDescription>
-        <AddColumnForm setIsDialogOpen={setIsDialogOpen} />
+        <AddColumnForm closeDialog={() => setIsDialogOpen(false)} />
       </DialogContent>
     </Dialog>
   )

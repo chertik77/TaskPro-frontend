@@ -1,10 +1,13 @@
-import type { Dispatch, SetStateAction } from 'react'
 import type { EditTaskData } from '../model/types'
 
 import * as m from 'motion/react-m'
 
 import { FormLabelsCombobox } from '@/entities/label'
-import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
+import {
+  FormDeadlinePicker,
+  FormPrioritySelector,
+  parseDeadline
+} from '@/entities/task'
 
 import { formVariants, useAppForm } from '@/shared/lib'
 import {
@@ -24,23 +27,23 @@ import { EditTaskSchema } from '../model/contract'
 
 type EditTaskFormProps = {
   data: EditTaskData
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
 export const EditTaskForm = ({
   data: { taskId, formValues },
-  setIsDialogOpen
+  closeDialog
 }: EditTaskFormProps) => {
   const form = useAppForm(EditTaskSchema, {
     defaultValues: {
       ...formValues,
-      deadline: formValues.deadline ?? undefined,
+      deadline: parseDeadline(formValues.deadline),
       description: formValues.description ?? '',
       labels: formValues.labels?.map(l => l.id) ?? []
     }
   })
 
-  const { mutate: editTask, isPending } = useEditTask(setIsDialogOpen)
+  const { mutate: editTask, isPending } = useEditTask(closeDialog)
 
   return (
     <Form {...form}>
@@ -111,7 +114,7 @@ export const EditTaskForm = ({
             render={() => (
               <FormItem className='mb-6'>
                 <FormLabel>Deadline</FormLabel>
-                <FormDeadlinePicker mode='edit' />
+                <FormDeadlinePicker />
                 <FormMessage />
               </FormItem>
             )}

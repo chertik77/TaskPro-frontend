@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import type { EditColumnData } from '../model/types'
 
 import * as m from 'motion/react-m'
@@ -20,18 +19,18 @@ import { EditColumnSchema } from '../model/contract'
 
 type EditColumnFormProps = {
   data: EditColumnData
-  setIsDialogOpen: Dispatch<SetStateAction<boolean>>
+  closeDialog: () => void
 }
 
 export const EditColumnForm = ({
   data: { columnId, formValues },
-  setIsDialogOpen
+  closeDialog
 }: EditColumnFormProps) => {
   const form = useAppForm(EditColumnSchema, {
     defaultValues: formValues
   })
 
-  const { mutate: editColumn, isPending } = useEditColumn(setIsDialogOpen)
+  const { mutate: editColumn, isPending } = useEditColumn(closeDialog)
 
   return (
     <Form {...form}>
