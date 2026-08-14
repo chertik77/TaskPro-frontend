@@ -2,9 +2,19 @@
 
 import * as v from 'valibot';
 
+export const vHealth = v.object({
+    status: v.picklist(['ok', 'degraded']),
+    uptime: v.pipe(v.number(), v.integer()),
+    services: v.object({
+        database: v.picklist(['up', 'down']),
+        redis: v.picklist(['up', 'down'])
+    })
+});
+
 export const vErrorResponse = v.object({
     status: v.number(),
-    message: v.union([v.string(), v.record(v.string(), v.array(v.string()))])
+    message: v.union([v.string(), v.record(v.string(), v.array(v.string()))]),
+    errors: v.optional(v.record(v.string(), v.array(v.string())))
 });
 
 export const vAvatar = v.object({
@@ -20,7 +30,7 @@ export const vAccentColor = v.optional(v.picklist([
     'yellow',
     'indigo',
     'green'
-]), 'blue');
+]), 'green');
 
 export const vGeneralSettings = v.object({
     theme: v.optional(v.picklist([
@@ -150,7 +160,7 @@ export const vTask = v.object({
     description: v.nullable(v.pipe(v.string(), v.minLength(3))),
     priority: vTaskPriority,
     deadline: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
-    order: v.pipe(v.number(), v.integer()),
+    order: v.number(),
     completed: v.boolean(),
     completedAt: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
     columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
@@ -162,7 +172,7 @@ export const vTask = v.object({
 export const vColumn = v.object({
     id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     title: v.pipe(v.string(), v.minLength(3)),
-    order: v.pipe(v.number(), v.integer()),
+    order: v.number(),
     boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     tasks: v.optional(v.array(vTask)),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
@@ -179,6 +189,11 @@ export const vBoard = v.object({
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
 });
+
+/**
+ * All dependencies reachable
+ */
+export const vHealthResponse = vHealth;
 
 export const vHelpBody = v.object({
     email: v.pipe(v.string(), v.email()),
@@ -356,7 +371,7 @@ export const vCreateColumnPath = v.object({
 export const vCreateColumnResponse = v.object({
     id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     title: v.pipe(v.string(), v.minLength(3)),
-    order: v.pipe(v.number(), v.integer()),
+    order: v.number(),
     boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
@@ -385,7 +400,7 @@ export const vUpdateColumnPath = v.object({
 export const vUpdateColumnResponse = v.object({
     id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     title: v.pipe(v.string(), v.minLength(3)),
-    order: v.pipe(v.number(), v.integer()),
+    order: v.number(),
     boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
     createdAt: v.pipe(v.string(), v.isoTimestamp()),
     updatedAt: v.pipe(v.string(), v.isoTimestamp())
@@ -400,16 +415,9 @@ export const vUpdateColumnsOrderPath = v.object({
 });
 
 /**
- * Success
+ * The order was updated successfully.
  */
-export const vUpdateColumnsOrderResponse = v.array(v.object({
-    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
-    title: v.pipe(v.string(), v.minLength(3)),
-    order: v.pipe(v.number(), v.integer()),
-    boardId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
-    createdAt: v.pipe(v.string(), v.isoTimestamp()),
-    updatedAt: v.pipe(v.string(), v.isoTimestamp())
-}));
+export const vUpdateColumnsOrderResponse = v.void();
 
 export const vCreateTaskBody = v.object({
     title: v.pipe(v.string(), v.minLength(3)),
@@ -456,6 +464,21 @@ export const vUpdateTaskPath = v.object({
  */
 export const vUpdateTaskResponse = vTask;
 
+export const vMoveTaskBody = v.object({
+    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
+    prevTaskId: v.optional(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))),
+    nextTaskId: v.optional(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))
+});
+
+export const vMoveTaskPath = v.object({
+    taskId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/))
+});
+
+/**
+ * Moved
+ */
+export const vMoveTaskResponse = vTask;
+
 export const vUpdateTasksOrderBody = v.object({
     ids: v.array(v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)))
 });
@@ -465,21 +488,9 @@ export const vUpdateTasksOrderPath = v.object({
 });
 
 /**
- * Updated
+ * The order was updated successfully.
  */
-export const vUpdateTasksOrderResponse = v.array(v.object({
-    id: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
-    title: v.pipe(v.string(), v.minLength(3)),
-    description: v.nullable(v.pipe(v.string(), v.minLength(3))),
-    priority: vTaskPriority,
-    deadline: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
-    order: v.pipe(v.number(), v.integer()),
-    completed: v.boolean(),
-    completedAt: v.nullable(v.pipe(v.string(), v.isoTimestamp())),
-    columnId: v.pipe(v.string(), v.regex(/^[0-9a-f]{24}$/)),
-    createdAt: v.pipe(v.string(), v.isoTimestamp()),
-    updatedAt: v.pipe(v.string(), v.isoTimestamp())
-}));
+export const vUpdateTasksOrderResponse = v.void();
 
 /**
  * Success

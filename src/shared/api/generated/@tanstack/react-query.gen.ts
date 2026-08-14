@@ -4,8 +4,59 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { createBoard, createColumn, createLabel, createTask, deleteAvatar, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, help, type Options, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder, uploadAvatar } from '../sdk.gen';
-import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteAvatarData, DeleteAvatarError, DeleteAvatarResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HelpData, HelpError, HelpResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse, UploadAvatarData, UploadAvatarError, UploadAvatarResponse } from '../types.gen';
+import { createBoard, createColumn, createLabel, createTask, deleteAvatar, deleteBoard, deleteColumn, deleteLabel, deleteTask, getAllBoards, getAllLabels, getAllSettings, getBoardById, health, help, moveTask, type Options, updateBoard, updateColumn, updateColumnsOrder, updateGeneralSettings, updateLabel, updateLabelSettings, updateTask, updateTaskSettings, updateTasksOrder, uploadAvatar } from '../sdk.gen';
+import type { CreateBoardData, CreateBoardError, CreateBoardResponse, CreateColumnData, CreateColumnError, CreateColumnResponse, CreateLabelData, CreateLabelError, CreateLabelResponse, CreateTaskData, CreateTaskError, CreateTaskResponse, DeleteAvatarData, DeleteAvatarError, DeleteAvatarResponse, DeleteBoardData, DeleteBoardError, DeleteBoardResponse, DeleteColumnData, DeleteColumnError, DeleteColumnResponse, DeleteLabelData, DeleteLabelError, DeleteLabelResponse, DeleteTaskData, DeleteTaskError, DeleteTaskResponse, GetAllBoardsData, GetAllBoardsError, GetAllBoardsResponse, GetAllLabelsData, GetAllLabelsError, GetAllLabelsResponse, GetAllSettingsData, GetAllSettingsError, GetAllSettingsResponse, GetBoardByIdData, GetBoardByIdError, GetBoardByIdResponse, HealthData, HealthError, HealthResponse, HelpData, HelpError, HelpResponse, MoveTaskData, MoveTaskError, MoveTaskResponse, UpdateBoardData, UpdateBoardError, UpdateBoardResponse, UpdateColumnData, UpdateColumnError, UpdateColumnResponse, UpdateColumnsOrderData, UpdateColumnsOrderError, UpdateColumnsOrderResponse, UpdateGeneralSettingsData, UpdateGeneralSettingsError, UpdateGeneralSettingsResponse, UpdateLabelData, UpdateLabelError, UpdateLabelResponse, UpdateLabelSettingsData, UpdateLabelSettingsError, UpdateLabelSettingsResponse, UpdateTaskData, UpdateTaskError, UpdateTaskResponse, UpdateTaskSettingsData, UpdateTaskSettingsError, UpdateTaskSettingsResponse, UpdateTasksOrderData, UpdateTasksOrderError, UpdateTasksOrderResponse, UploadAvatarData, UploadAvatarError, UploadAvatarResponse } from '../types.gen';
+
+export type QueryKey<TOptions extends Options> = [
+    Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
+        _id: string;
+        _infinite?: boolean;
+        tags?: ReadonlyArray<string>;
+    }
+];
+
+const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions, infinite?: boolean, tags?: ReadonlyArray<string>): [
+    QueryKey<TOptions>[0]
+] => {
+    const params: QueryKey<TOptions>[0] = { _id: id, baseURL: options?.baseURL || (options?.client ?? client).getConfig().baseURL } as QueryKey<TOptions>[0];
+    if (infinite) {
+        params._infinite = infinite;
+    }
+    if (tags) {
+        params.tags = tags;
+    }
+    if (options?.body) {
+        params.body = options.body;
+    }
+    if (options?.headers) {
+        params.headers = options.headers;
+    }
+    if (options?.path) {
+        params.path = options.path;
+    }
+    if (options?.query) {
+        params.query = options.query;
+    }
+    return [params];
+};
+
+export const healthQueryKey = (options?: Options<HealthData>) => createQueryKey('health', options);
+
+/**
+ * Liveness and readiness probe
+ */
+export const healthOptions = (options?: Options<HealthData>) => queryOptions<HealthResponse, AxiosError<HealthError>, HealthResponse, ReturnType<typeof healthQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await health({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: healthQueryKey(options)
+});
 
 /**
  * Send email need help
@@ -56,39 +107,6 @@ export const uploadAvatarMutation = (options?: Partial<Options<UploadAvatarData>
         }
     };
     return mutationOptions;
-};
-
-export type QueryKey<TOptions extends Options> = [
-    Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
-        _id: string;
-        _infinite?: boolean;
-        tags?: ReadonlyArray<string>;
-    }
-];
-
-const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions, infinite?: boolean, tags?: ReadonlyArray<string>): [
-    QueryKey<TOptions>[0]
-] => {
-    const params: QueryKey<TOptions>[0] = { _id: id, baseURL: options?.baseURL || (options?.client ?? client).getConfig().baseURL } as QueryKey<TOptions>[0];
-    if (infinite) {
-        params._infinite = infinite;
-    }
-    if (tags) {
-        params.tags = tags;
-    }
-    if (options?.body) {
-        params.body = options.body;
-    }
-    if (options?.headers) {
-        params.headers = options.headers;
-    }
-    if (options?.path) {
-        params.path = options.path;
-    }
-    if (options?.query) {
-        params.query = options.query;
-    }
-    return [params];
 };
 
 export const getAllSettingsQueryKey = (options?: Options<GetAllSettingsData>) => createQueryKey('getAllSettings', options);
@@ -367,7 +385,26 @@ export const updateTaskMutation = (options?: Partial<Options<UpdateTaskData>>): 
 };
 
 /**
- * Update tasks order
+ * Move a task between or within columns
+ *
+ * Repositions a single task relative to its new neighbours. Costs one write regardless of column size.
+ */
+export const moveTaskMutation = (options?: Partial<Options<MoveTaskData>>): UseMutationOptions<MoveTaskResponse, AxiosError<MoveTaskError>, Options<MoveTaskData>> => {
+    const mutationOptions: UseMutationOptions<MoveTaskResponse, AxiosError<MoveTaskError>, Options<MoveTaskData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await moveTask({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Rewrite the full task order of a column
  */
 export const updateTasksOrderMutation = (options?: Partial<Options<UpdateTasksOrderData>>): UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> => {
     const mutationOptions: UseMutationOptions<UpdateTasksOrderResponse, AxiosError<UpdateTasksOrderError>, Options<UpdateTasksOrderData>> = {

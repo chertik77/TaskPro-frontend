@@ -1,19 +1,25 @@
+import type { Column } from '@/shared/api'
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
 import type { ColumnDragHandlersProps } from '../model/types'
 
+import { useRef } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 
 import { useUpdateColumnOrder } from '../api/useUpdateColumnOrder'
 
 export const useColumnDragHandlers = ({
-  columns,
-  setActiveColumn,
-  setColumns
+  applyColumns,
+  columnsRef,
+  setActiveColumn
 }: ColumnDragHandlersProps) => {
   const { mutate: updateColumnOrder } = useUpdateColumnOrder()
 
+  const snapshotRef = useRef<Column[] | null>(null)
+
   const onDragStart = ({ active }: DragStartEvent) => {
-    if (!active || active.data.current?.type !== 'column') return
+    if (active.data.current?.type !== 'column') return
+
+    snapshotRef.current = columnsRef.current
 
     setActiveColumn(active.data.current.column)
   }
@@ -21,23 +27,35 @@ export const useColumnDragHandlers = ({
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveColumn(null)
 
-    if (!active || !over || active.data.current?.type !== 'column') return
+    snapshotRef.current = null
 
-    const activeColumnIndex = columns.findIndex(c => c.id === active.id)
-    const overColumnIndex = columns.findIndex(c => c.id === over.id)
+    if (!over || active.data.current?.type !== 'column') return
 
-    if (activeColumnIndex === overColumnIndex) return
+    const columns = columnsRef.current
 
-    const updatedColumns = arrayMove(
-      columns,
-      activeColumnIndex,
-      overColumnIndex
-    )
+    const activeIndex = columns.findIndex(column => column.id === active.id)
+    const overIndex = columns.findIndex(column => column.id === over.id)
 
-    setColumns(updatedColumns)
+    if (activeIndex === -1 || overIndex === -1) return
 
-    updateColumnOrder({ ids: updatedColumns.map(c => c.id) })
+    if (activeIndex === overIndex) return
+
+    const updatedColumns = arrayMove(columns, activeIndex, overIndex)
+
+    applyColumns(() => updatedColumns)
+
+    updateColumnOrder({ columns: updatedColumns })
   }
 
-  return { onDragStart, onDragEnd }
+  const onDragCancel = () => {
+    setActiveColumn(null)
+
+    const snapshot = snapshotRef.current
+
+    snapshotRef.current = null
+
+    if (snapshot) applyColumns(() => snapshot)
+  }
+
+  return { onDragStart, onDragEnd, onDragCancel }
 }

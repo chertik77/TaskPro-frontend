@@ -4,8 +4,8 @@ import * as v from 'valibot';
 
 import { type Client, type ClientMeta, formDataBodySerializer, type Options as Options2, type RequestResult, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteAvatarData, DeleteAvatarErrors, DeleteAvatarResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HelpData, HelpErrors, HelpResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses, UploadAvatarData, UploadAvatarErrors, UploadAvatarResponses } from './types.gen';
-import { vCreateBoardBody, vCreateBoardResponse, vCreateColumnBody, vCreateColumnPath, vCreateColumnResponse, vCreateLabelBody, vCreateLabelResponse, vCreateTaskBody, vCreateTaskPath, vCreateTaskResponse, vDeleteAvatarResponse, vDeleteBoardPath, vDeleteBoardResponse, vDeleteColumnPath, vDeleteColumnResponse, vDeleteLabelPath, vDeleteLabelResponse, vDeleteTaskPath, vDeleteTaskResponse, vGetAllBoardsResponse, vGetAllLabelsResponse, vGetAllSettingsResponse, vGetBoardByIdPath, vGetBoardByIdResponse, vHelpBody, vHelpResponse, vUpdateBoardBody, vUpdateBoardPath, vUpdateBoardResponse, vUpdateColumnBody, vUpdateColumnPath, vUpdateColumnResponse, vUpdateColumnsOrderBody, vUpdateColumnsOrderPath, vUpdateColumnsOrderResponse, vUpdateGeneralSettingsBody, vUpdateGeneralSettingsResponse, vUpdateLabelBody, vUpdateLabelPath, vUpdateLabelResponse, vUpdateLabelSettingsBody, vUpdateLabelSettingsResponse, vUpdateTaskBody, vUpdateTaskPath, vUpdateTaskResponse, vUpdateTaskSettingsBody, vUpdateTaskSettingsResponse, vUpdateTasksOrderBody, vUpdateTasksOrderPath, vUpdateTasksOrderResponse, vUploadAvatarBody, vUploadAvatarResponse } from './valibot.gen';
+import type { CreateBoardData, CreateBoardErrors, CreateBoardResponses, CreateColumnData, CreateColumnErrors, CreateColumnResponses, CreateLabelData, CreateLabelErrors, CreateLabelResponses, CreateTaskData, CreateTaskErrors, CreateTaskResponses, DeleteAvatarData, DeleteAvatarErrors, DeleteAvatarResponses, DeleteBoardData, DeleteBoardErrors, DeleteBoardResponses, DeleteColumnData, DeleteColumnErrors, DeleteColumnResponses, DeleteLabelData, DeleteLabelErrors, DeleteLabelResponses, DeleteTaskData, DeleteTaskErrors, DeleteTaskResponses, GetAllBoardsData, GetAllBoardsErrors, GetAllBoardsResponses, GetAllLabelsData, GetAllLabelsErrors, GetAllLabelsResponses, GetAllSettingsData, GetAllSettingsErrors, GetAllSettingsResponses, GetBoardByIdData, GetBoardByIdErrors, GetBoardByIdResponses, HealthData, HealthErrors, HealthResponses, HelpData, HelpErrors, HelpResponses, MoveTaskData, MoveTaskErrors, MoveTaskResponses, UpdateBoardData, UpdateBoardErrors, UpdateBoardResponses, UpdateColumnData, UpdateColumnErrors, UpdateColumnResponses, UpdateColumnsOrderData, UpdateColumnsOrderErrors, UpdateColumnsOrderResponses, UpdateGeneralSettingsData, UpdateGeneralSettingsErrors, UpdateGeneralSettingsResponses, UpdateLabelData, UpdateLabelErrors, UpdateLabelResponses, UpdateLabelSettingsData, UpdateLabelSettingsErrors, UpdateLabelSettingsResponses, UpdateTaskData, UpdateTaskErrors, UpdateTaskResponses, UpdateTaskSettingsData, UpdateTaskSettingsErrors, UpdateTaskSettingsResponses, UpdateTasksOrderData, UpdateTasksOrderErrors, UpdateTasksOrderResponses, UploadAvatarData, UploadAvatarErrors, UploadAvatarResponses } from './types.gen';
+import { vCreateBoardBody, vCreateBoardResponse, vCreateColumnBody, vCreateColumnPath, vCreateColumnResponse, vCreateLabelBody, vCreateLabelResponse, vCreateTaskBody, vCreateTaskPath, vCreateTaskResponse, vDeleteAvatarResponse, vDeleteBoardPath, vDeleteBoardResponse, vDeleteColumnPath, vDeleteColumnResponse, vDeleteLabelPath, vDeleteLabelResponse, vDeleteTaskPath, vDeleteTaskResponse, vGetAllBoardsResponse, vGetAllLabelsResponse, vGetAllSettingsResponse, vGetBoardByIdPath, vGetBoardByIdResponse, vHealthResponse, vHelpBody, vHelpResponse, vMoveTaskBody, vMoveTaskPath, vMoveTaskResponse, vUpdateBoardBody, vUpdateBoardPath, vUpdateBoardResponse, vUpdateColumnBody, vUpdateColumnPath, vUpdateColumnResponse, vUpdateColumnsOrderBody, vUpdateColumnsOrderPath, vUpdateColumnsOrderResponse, vUpdateGeneralSettingsBody, vUpdateGeneralSettingsResponse, vUpdateLabelBody, vUpdateLabelPath, vUpdateLabelResponse, vUpdateLabelSettingsBody, vUpdateLabelSettingsResponse, vUpdateTaskBody, vUpdateTaskPath, vUpdateTaskResponse, vUpdateTaskSettingsBody, vUpdateTaskSettingsResponse, vUpdateTasksOrderBody, vUpdateTasksOrderPath, vUpdateTasksOrderResponse, vUploadAvatarBody, vUploadAvatarResponse } from './valibot.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -22,6 +22,21 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 /**
+ * Liveness and readiness probe
+ */
+export const health = <ThrowOnError extends boolean = true>(options?: Options<HealthData, ThrowOnError>): RequestResult<HealthResponses, HealthErrors, ThrowOnError> => (options?.client ?? client).get<HealthResponses, HealthErrors, ThrowOnError>({
+    requestValidator: async (data) => await v.parseAsync(v.object({
+        body: v.optional(v.never()),
+        path: v.optional(v.never()),
+        query: v.optional(v.never())
+    }), data),
+    responseType: 'json',
+    responseValidator: async (data) => await v.parseAsync(vHealthResponse, data),
+    url: '/health',
+    ...options
+});
+
+/**
  * Send email need help
  */
 export const help = <ThrowOnError extends boolean = true>(options: Options<HelpData, ThrowOnError>): RequestResult<HelpResponses, HelpErrors, ThrowOnError> => (options.client ?? client).post<HelpResponses, HelpErrors, ThrowOnError>({
@@ -32,7 +47,11 @@ export const help = <ThrowOnError extends boolean = true>(options: Options<HelpD
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vHelpResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/help',
     ...options,
     headers: {
@@ -52,7 +71,11 @@ export const deleteAvatar = <ThrowOnError extends boolean = true>(options?: Opti
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vDeleteAvatarResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/avatar',
     ...options
 });
@@ -69,7 +92,11 @@ export const uploadAvatar = <ThrowOnError extends boolean = true>(options: Optio
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUploadAvatarResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/avatar',
     ...options,
     headers: {
@@ -89,7 +116,11 @@ export const getAllSettings = <ThrowOnError extends boolean = true>(options?: Op
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetAllSettingsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/settings',
     ...options
 });
@@ -105,7 +136,11 @@ export const updateGeneralSettings = <ThrowOnError extends boolean = true>(optio
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateGeneralSettingsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/settings/general',
     ...options,
     headers: {
@@ -125,7 +160,11 @@ export const updateTaskSettings = <ThrowOnError extends boolean = true>(options:
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateTaskSettingsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/settings/task',
     ...options,
     headers: {
@@ -145,7 +184,11 @@ export const updateLabelSettings = <ThrowOnError extends boolean = true>(options
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateLabelSettingsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/user/settings/label',
     ...options,
     headers: {
@@ -165,7 +208,11 @@ export const getAllBoards = <ThrowOnError extends boolean = true>(options?: Opti
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetAllBoardsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/board',
     ...options
 });
@@ -181,7 +228,11 @@ export const createBoard = <ThrowOnError extends boolean = true>(options: Option
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateBoardResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/board',
     ...options,
     headers: {
@@ -200,7 +251,11 @@ export const deleteBoard = <ThrowOnError extends boolean = true>(options: Option
         query: v.optional(v.never())
     }), data),
     responseValidator: async (data) => await v.parseAsync(vDeleteBoardResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/board/{boardId}',
     ...options
 });
@@ -216,7 +271,11 @@ export const getBoardById = <ThrowOnError extends boolean = true>(options: Optio
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetBoardByIdResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/board/{boardId}',
     ...options
 });
@@ -232,7 +291,11 @@ export const updateBoard = <ThrowOnError extends boolean = true>(options: Option
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateBoardResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/board/{boardId}',
     ...options,
     headers: {
@@ -252,7 +315,11 @@ export const createColumn = <ThrowOnError extends boolean = true>(options: Optio
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateColumnResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/column/{boardId}',
     ...options,
     headers: {
@@ -271,7 +338,11 @@ export const deleteColumn = <ThrowOnError extends boolean = true>(options: Optio
         query: v.optional(v.never())
     }), data),
     responseValidator: async (data) => await v.parseAsync(vDeleteColumnResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/column/{columnId}',
     ...options
 });
@@ -287,7 +358,11 @@ export const updateColumn = <ThrowOnError extends boolean = true>(options: Optio
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateColumnResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/column/{columnId}',
     ...options,
     headers: {
@@ -305,9 +380,12 @@ export const updateColumnsOrder = <ThrowOnError extends boolean = true>(options:
         path: vUpdateColumnsOrderPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateColumnsOrderResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/column/{boardId}/order',
     ...options,
     headers: {
@@ -327,7 +405,11 @@ export const createTask = <ThrowOnError extends boolean = true>(options: Options
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateTaskResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/task/{columnId}',
     ...options,
     headers: {
@@ -346,7 +428,11 @@ export const deleteTask = <ThrowOnError extends boolean = true>(options: Options
         query: v.optional(v.never())
     }), data),
     responseValidator: async (data) => await v.parseAsync(vDeleteTaskResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/task/{taskId}',
     ...options
 });
@@ -362,7 +448,11 @@ export const updateTask = <ThrowOnError extends boolean = true>(options: Options
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateTaskResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/task/{taskId}',
     ...options,
     headers: {
@@ -372,7 +462,33 @@ export const updateTask = <ThrowOnError extends boolean = true>(options: Options
 });
 
 /**
- * Update tasks order
+ * Move a task between or within columns
+ *
+ * Repositions a single task relative to its new neighbours. Costs one write regardless of column size.
+ */
+export const moveTask = <ThrowOnError extends boolean = true>(options: Options<MoveTaskData, ThrowOnError>): RequestResult<MoveTaskResponses, MoveTaskErrors, ThrowOnError> => (options.client ?? client).patch<MoveTaskResponses, MoveTaskErrors, ThrowOnError>({
+    requestValidator: async (data) => await v.parseAsync(v.object({
+        body: vMoveTaskBody,
+        path: vMoveTaskPath,
+        query: v.optional(v.never())
+    }), data),
+    responseType: 'json',
+    responseValidator: async (data) => await v.parseAsync(vMoveTaskResponse, data),
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
+    url: '/task/{taskId}/move',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Rewrite the full task order of a column
  */
 export const updateTasksOrder = <ThrowOnError extends boolean = true>(options: Options<UpdateTasksOrderData, ThrowOnError>): RequestResult<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTasksOrderResponses, UpdateTasksOrderErrors, ThrowOnError>({
     requestValidator: async (data) => await v.parseAsync(v.object({
@@ -380,9 +496,12 @@ export const updateTasksOrder = <ThrowOnError extends boolean = true>(options: O
         path: vUpdateTasksOrderPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateTasksOrderResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/task/{columnId}/order',
     ...options,
     headers: {
@@ -402,7 +521,11 @@ export const getAllLabels = <ThrowOnError extends boolean = true>(options?: Opti
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetAllLabelsResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/label',
     ...options
 });
@@ -418,7 +541,11 @@ export const createLabel = <ThrowOnError extends boolean = true>(options: Option
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateLabelResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/label',
     ...options,
     headers: {
@@ -437,7 +564,11 @@ export const deleteLabel = <ThrowOnError extends boolean = true>(options: Option
         query: v.optional(v.never())
     }), data),
     responseValidator: async (data) => await v.parseAsync(vDeleteLabelResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/label/{labelId}',
     ...options
 });
@@ -453,7 +584,11 @@ export const updateLabel = <ThrowOnError extends boolean = true>(options: Option
     }), data),
     responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateLabelResponse, data),
-    security: [{ scheme: 'bearer', type: 'http' }],
+    security: [{
+            in: 'cookie',
+            name: 'taskpro.session_token',
+            type: 'apiKey'
+        }],
     url: '/label/{labelId}',
     ...options,
     headers: {

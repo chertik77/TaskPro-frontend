@@ -1,109 +1,166 @@
-import type {
-  DragEndEvent,
-  DragOverEvent,
-  DragStartEvent,
-  UniqueIdentifier
-} from '@dnd-kit/core'
+import type { Task } from '@/shared/api'
+import type { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import type { TaskDragHandlersProps } from './types'
 
 import { useRef } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 
-import { useUpdateTaskOrder } from '../api/useUpdateTaskOrder'
+import { useMoveDraggedTask } from '../api/useMoveDraggedTask'
+
+const getColumnTasks = (tasks: Task[], columnId: string) =>
+  tasks.filter(task => task.columnId === columnId)
+
+const getPosition = (tasks: Task[], taskId: string, columnId: string) =>
+  getColumnTasks(tasks, columnId).findIndex(task => task.id === taskId)
 
 export const useTaskDragHandlers = ({
-  tasks,
-  setTasks,
+  applyTasks,
+  tasksRef,
   setActiveTask
 }: TaskDragHandlersProps) => {
-  const { mutate: updateTaskOrder } = useUpdateTaskOrder()
+  const { mutate: moveTask } = useMoveDraggedTask()
 
-  const recentlyDraggedOverIdRef = useRef<UniqueIdentifier | null>(null)
+  const snapshotRef = useRef<Task[] | null>(null)
 
   const onDragStart = ({ active }: DragStartEvent) => {
-    if (!active || active.data.current?.type !== 'task') return
+    if (active.data.current?.type !== 'task') return
+
+    snapshotRef.current = tasksRef.current
 
     setActiveTask(active.data.current.task)
   }
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
-    if (!over || active.id === over.id) return
+    if (!over || active.data.current?.type !== 'task') return
 
-    if (recentlyDraggedOverIdRef.current === over.id) return
+    if (active.id === over.id) return
 
-    const isActiveATask = active.data.current?.type === 'task'
-    const isDraggingOverATask = over.data.current?.type === 'task'
-    const isDraggingOverAColumn = over.data.current?.type === 'column'
+    applyTasks(prev => {
+      const activeIndex = prev.findIndex(task => task.id === active.id)
 
-    if (!isActiveATask) return
+      if (activeIndex === -1) return prev
 
-    recentlyDraggedOverIdRef.current = over.id
+      const activeTask = prev[activeIndex]
 
-    if (isDraggingOverATask) {
-      setTasks(prevTasks => {
-        const activeTaskIndex = prevTasks.findIndex(c => c.id === active.id)
-        const overTaskIndex = prevTasks.findIndex(c => c.id === over.id)
+      if (!activeTask) return prev
 
-        const activeTask = prevTasks[activeTaskIndex]
-        const overTask = prevTasks[overTaskIndex]
+      const overIsTask = over.data.current?.type === 'task'
 
-        if (!activeTask || !overTask) return prevTasks
+      const overColumnId = overIsTask
+        ? prev.find(task => task.id === over.id)?.columnId
+        : String(over.id)
 
-        if (activeTask.columnId !== overTask.columnId) {
-          activeTask.columnId = overTask.columnId
+      if (!overColumnId) return prev
 
-          return arrayMove(
-            prevTasks,
-            activeTaskIndex,
-            Math.max(0, overTaskIndex - 1)
-          )
-        }
+      // Reordering inside one column is previewed by the sorting strategy and
+      // committed on drop. Writing state here would move the card, re-run
+      // collision detection against the new layout, and move it straight back.
+      if (activeTask.columnId === overColumnId) return prev
 
-        return arrayMove(prevTasks, activeTaskIndex, overTaskIndex)
-      })
-    }
+      let overIndex: number
 
-    if (isDraggingOverAColumn) {
-      setTasks(prevTasks => {
-        const activeTaskIndex = prevTasks.findIndex(c => c.id === active.id)
-        const activeTask = prevTasks[activeTaskIndex]
+      if (overIsTask) {
+        overIndex = prev.findIndex(task => task.id === over.id)
 
-        recentlyDraggedOverIdRef.current = over.id
+        if (overIndex === -1) return prev
 
-        if (activeTask) {
-          activeTask.columnId = over.id as string
+        const translated = active.rect.current.translated
 
-          return arrayMove(prevTasks, activeTaskIndex, activeTaskIndex)
-        }
+        const isBelow =
+          !!translated &&
+          translated.top + translated.height / 2 >
+            over.rect.top + over.rect.height / 2
 
-        return prevTasks
-      })
-    }
+        if (isBelow) overIndex += 1
+      } else {
+        let lastIndex = -1
+
+        prev.forEach((task, index) => {
+          if (task.columnId === overColumnId) lastIndex = index
+        })
+
+        overIndex = lastIndex === -1 ? prev.length : lastIndex + 1
+      }
+
+      const insertAt = activeIndex < overIndex ? overIndex - 1 : overIndex
+
+      const next = [...prev]
+
+      next.splice(activeIndex, 1)
+
+      next.splice(insertAt, 0, { ...activeTask, columnId: overColumnId })
+
+      return next
+    })
   }
 
-  const onDragEnd = ({ active }: DragEndEvent) => {
+  const onDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveTask(null)
 
-    const draggedOverId = recentlyDraggedOverIdRef.current
-    recentlyDraggedOverIdRef.current = null
+    const snapshot = snapshotRef.current
 
-    if (!active || active.data.current?.type !== 'task' || !draggedOverId) {
-      return
-    }
+    snapshotRef.current = null
 
-    const activeTask = tasks.find(c => c.id === active.id)
+    if (active.data.current?.type !== 'task') return
 
-    if (activeTask) {
-      updateTaskOrder({
-        path: { columnId: activeTask.columnId },
-        body: {
-          ids: tasks
-            .filter(c => c.columnId === activeTask.columnId)
-            .map(c => c.id)
-        }
+    if (over) {
+      applyTasks(prev => {
+        const activeIndex = prev.findIndex(item => item.id === active.id)
+        const overIndex = prev.findIndex(item => item.id === over.id)
+
+        if (activeIndex === -1 || overIndex === -1) return prev
+
+        if (activeIndex === overIndex) return prev
+
+        const activeTask = prev[activeIndex]
+        const overTask = prev[overIndex]
+
+        if (!activeTask || !overTask) return prev
+
+        if (activeTask.columnId !== overTask.columnId) return prev
+
+        return arrayMove(prev, activeIndex, overIndex)
       })
     }
+
+    const tasks = tasksRef.current
+
+    const task = tasks.find(item => item.id === active.id)
+
+    if (!task) return
+
+    const columnTasks = getColumnTasks(tasks, task.columnId)
+
+    const position = columnTasks.findIndex(item => item.id === task.id)
+
+    if (snapshot) {
+      const previous = snapshot.find(item => item.id === task.id)
+
+      const isUnchanged =
+        previous?.columnId === task.columnId &&
+        getPosition(snapshot, task.id, task.columnId) === position
+
+      if (isUnchanged) return
+    }
+
+    moveTask({
+      taskId: task.id,
+      columnId: task.columnId,
+      prevTaskId: columnTasks[position - 1]?.id,
+      nextTaskId: columnTasks[position + 1]?.id,
+      tasks
+    })
   }
 
-  return { onDragStart, onDragOver, onDragEnd }
+  const onDragCancel = () => {
+    setActiveTask(null)
+
+    const snapshot = snapshotRef.current
+
+    snapshotRef.current = null
+
+    if (snapshot) applyTasks(() => snapshot)
+  }
+
+  return { onDragStart, onDragOver, onDragEnd, onDragCancel }
 }

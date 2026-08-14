@@ -20,20 +20,22 @@ import { TaskList } from '../task-list/TaskList'
 type MemoizedColumnProps = {
   column: TColumn
   backgroundURL?: string | null
-  draggableAttributes: DraggableAttributes
-  draggableListeners: DraggableSyntheticListeners
+  isOverlay?: boolean
+  draggableAttributes?: DraggableAttributes
+  draggableListeners?: DraggableSyntheticListeners
 }
 
 export const MemoizedColumn = memo(
   ({
     column,
     backgroundURL,
+    isOverlay,
     draggableAttributes,
     draggableListeners
   }: MemoizedColumnProps) => {
-    const tasks = useDragAndDropSelector(ctx =>
-      ctx.tasks?.filter(c => c.columnId === column.id)
-    )
+    const tasks = useDragAndDropSelector(ctx => ctx.tasksByColumn[column.id])
+
+    const columns = useDragAndDropSelector(ctx => ctx.columns)
 
     return (
       <Column column={column}>
@@ -58,7 +60,11 @@ export const MemoizedColumn = memo(
         <Column.ScrollArea>
           <Column.ScrollAreaViewport>
             <Column.ScrollAreaContent className='w-full'>
-              <TaskList tasks={tasks} />
+              <TaskList
+                tasks={tasks}
+                columns={columns}
+                isOverlay={isOverlay}
+              />
             </Column.ScrollAreaContent>
           </Column.ScrollAreaViewport>
           <Column.ScrollAreaScrollbar>

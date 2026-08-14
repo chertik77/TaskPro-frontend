@@ -1,7 +1,6 @@
-import type { Task } from '@/shared/api'
-import type { KeyboardEvent } from 'react'
+import type { Column, Task } from '@/shared/api'
 
-import { useState } from 'react'
+import { memo } from 'react'
 
 import { cn } from '@/shared/lib'
 
@@ -10,44 +9,37 @@ import { MemoizedTask } from './MemoizedTask'
 
 type TaskListItemProps = {
   task: Task
-  isOverlay?: boolean
+  columns: Column[]
+  onCompletedChange: (taskId: string, completed: boolean) => void
 }
 
-export const TaskListItem = ({ task, isOverlay }: TaskListItemProps) => {
-  const [isInteracting, setIsInteracting] = useState(false)
+export const TaskListItem = memo(
+  ({ task, columns, onCompletedChange }: TaskListItemProps) => {
+    const { setNodeRef, listeners, attributes, style, isDragging } =
+      useDndSortable({
+        id: task.id,
+        data: { type: 'task', task },
+        attributes: { roleDescription: `Task: ${task.title}` }
+      })
 
-  const { setNodeRef, listeners, attributes, style, isDragging } =
-    useDndSortable({
-      id: task.id,
-      data: { type: 'task', task },
-      attributes: { roleDescription: `Task: ${task.title}` },
-      disabled: isInteracting
-    })
-
-  // Prevents dnd kit to trigger keyboard navigation during child interaction
-  const handleKeyDownCapture = (e: KeyboardEvent) => {
-    const nativeEvent = e.nativeEvent as KeyboardEvent['nativeEvent'] & {
-      dndKit?: unknown
-    }
-
-    if (!nativeEvent?.dndKit) setIsInteracting(true)
+    return (
+      <li
+        className={cn(
+          `disable-text-selection cursor-grab touch-manipulation list-none
+          rounded-lg focus-visible:outline-none
+          focus-visible:[&>div]:shadow-[inset_0_0px_10px_#9dc888]`,
+          isDragging && 'opacity-60'
+        )}
+        ref={setNodeRef}
+        style={style}
+        {...listeners}
+        {...attributes}>
+        <MemoizedTask
+          task={task}
+          columns={columns}
+          onCompletedChange={onCompletedChange}
+        />
+      </li>
+    )
   }
-
-  return (
-    <li
-      className={cn(
-        `disable-text-selection cursor-grab touch-manipulation list-none
-        rounded-lg transition-shadow focus-visible:outline-none
-        focus-visible:[&>div]:shadow-[inset_0_0px_10px_#9dc888]`,
-        isOverlay && 'styled-outline',
-        isDragging && 'opacity-60'
-      )}
-      onKeyDownCapture={handleKeyDownCapture}
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}>
-      <MemoizedTask task={task} />
-    </li>
-  )
-}
+)

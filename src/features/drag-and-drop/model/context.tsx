@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import {
   DndContext,
   KeyboardSensor,
+  MeasuringStrategy,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -11,6 +12,7 @@ import {
 } from '@dnd-kit/core'
 import { createContext, useContextSelector } from 'use-context-selector'
 
+import { createCollisionDetection } from '../lib/collisionDetection'
 import { coordinateGetter } from '../lib/coordinateGetter'
 import { useGetAccessibilityAnnouncements } from '../lib/useGetAccessibilityAnnouncements'
 import { useColumnDragHandlers } from './useColumnDragHandlers'
@@ -19,6 +21,8 @@ import { useTaskDragHandlers } from './useTaskDragHandlers'
 
 const DragAndDropContext = createContext<DragAndDropContext | null>(null)
 
+const measuring = { droppable: { strategy: MeasuringStrategy.Always } }
+
 export const DragAndDropProvider = ({
   children,
   initialColumns
@@ -26,39 +30,50 @@ export const DragAndDropProvider = ({
   const {
     columns,
     tasks,
+    tasksByColumn,
     activeColumn,
     activeTask,
+    tasksRef,
+    columnsRef,
+    applyTasks,
+    applyColumns,
+    getColumnTaskIds,
     setActiveColumn,
-    setActiveTask,
-    setColumns,
-    setTasks
+    setActiveTask
   } = useDndState(initialColumns)
 
   const taskDragHandlers = useTaskDragHandlers({
-    tasks,
-    setActiveTask,
-    setTasks
+    tasksRef,
+    applyTasks,
+    setActiveTask
   })
 
   const columnDragHandlers = useColumnDragHandlers({
-    columns,
-    setActiveColumn,
-    setColumns
+    columnsRef,
+    applyColumns,
+    setActiveColumn
   })
 
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 5 } }),
     useSensor(TouchSensor, {
-      activationConstraint: { distance: 5, delay: 250, tolerance: 5 }
+      activationConstraint: { delay: 200, tolerance: 8 }
     }),
     useSensor(KeyboardSensor, { coordinateGetter })
   )
 
+  const collisionDetection = useMemo(
+    () => createCollisionDetection(getColumnTaskIds),
+    [getColumnTaskIds]
+  )
+
   const announcements = useGetAccessibilityAnnouncements({ columns, tasks })
 
+  const accessibility = useMemo(() => ({ announcements }), [announcements])
+
   const value = useMemo(
-    () => ({ columns, tasks, activeTask, activeColumn }),
-    [columns, tasks, activeTask, activeColumn]
+    () => ({ columns, tasksByColumn, activeTask, activeColumn }),
+    [columns, tasksByColumn, activeTask, activeColumn]
   )
 
   return (
@@ -66,7 +81,9 @@ export const DragAndDropProvider = ({
     <DragAndDropContext.Provider value={value}>
       <DndContext
         sensors={sensors}
-        accessibility={{ announcements }}
+        collisionDetection={collisionDetection}
+        measuring={measuring}
+        accessibility={accessibility}
         onDragStart={e => {
           taskDragHandlers.onDragStart(e)
           columnDragHandlers.onDragStart(e)
@@ -75,6 +92,10 @@ export const DragAndDropProvider = ({
         onDragEnd={e => {
           taskDragHandlers.onDragEnd(e)
           columnDragHandlers.onDragEnd(e)
+        }}
+        onDragCancel={() => {
+          taskDragHandlers.onDragCancel()
+          columnDragHandlers.onDragCancel()
         }}>
         {children}
       </DndContext>

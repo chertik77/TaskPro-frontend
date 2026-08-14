@@ -1,23 +1,28 @@
-import { memo } from 'react'
+import type { Column } from '@/shared/api'
+
+import { memo, useMemo } from 'react'
 import { Select as SelectPrimitive } from '@base-ui/react/select'
 import { CircleArrowRightIcon } from 'lucide-react'
 
 import { cn } from '@/shared/lib'
 import { Loader, Select, SelectContent, SelectItem } from '@/shared/ui'
 
-import { useGetFilteredColumns } from '../api/useGetFilteredColumns'
 import { useMoveTask } from '../api/useMoveTask'
 
 type MoveTaskSelectProps = {
   taskId: string
   taskColumnId: string
+  columns: Column[]
 }
 
 export const MoveTaskSelect = memo(
-  ({ taskId, taskColumnId }: MoveTaskSelectProps) => {
-    const { columns, filteredColumns } = useGetFilteredColumns(taskColumnId)
-
+  ({ taskId, taskColumnId, columns }: MoveTaskSelectProps) => {
     const { mutate: moveTask, isPending } = useMoveTask()
+
+    const filteredColumns = useMemo(
+      () => columns.filter(c => c.id !== taskColumnId),
+      [columns, taskColumnId]
+    )
 
     return (
       <Select
@@ -26,10 +31,10 @@ export const MoveTaskSelect = memo(
         disabled={isPending}>
         <SelectPrimitive.Trigger
           className={cn(
-            'group text-black dark:text-white',
-            columns && columns.length <= 1 && 'hidden'
+            'group focus-visible:styled-outline text-black dark:text-white',
+            columns.length <= 1 && 'hidden'
           )}>
-          {!isPending ? (
+          {isPending ? (
             <Loader className='flex size-4' />
           ) : (
             <CircleArrowRightIcon
@@ -41,7 +46,7 @@ export const MoveTaskSelect = memo(
         <SelectContent
           positionerProps={{ align: 'start' }}
           className='w-min'>
-          {filteredColumns?.map(column => (
+          {filteredColumns.map(column => (
             <SelectItem
               key={column.id}
               className='flex items-center gap-2'

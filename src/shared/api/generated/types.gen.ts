@@ -4,9 +4,27 @@ export type ClientOptions = {
     baseURL: 'http://localhost:9537/api' | 'https://api.taskpro.qzz.io' | (string & {});
 };
 
+export type Health = {
+    status: 'ok' | 'degraded';
+    /**
+     * Process uptime in seconds
+     */
+    uptime: number;
+    services: {
+        database: 'up' | 'down';
+        redis: 'up' | 'down';
+    };
+};
+
 export type ErrorResponse = {
     status: number;
     message: string | {
+        [key: string]: Array<string>;
+    };
+    /**
+     * Per-field validation messages
+     */
+    errors?: {
         [key: string]: Array<string>;
     };
 };
@@ -162,6 +180,31 @@ export type Label = {
     createdAt: string;
     updatedAt: string;
 };
+
+export type HealthData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/health';
+};
+
+export type HealthErrors = {
+    /**
+     * One or more dependencies unreachable
+     */
+    503: Health;
+};
+
+export type HealthError = HealthErrors[keyof HealthErrors];
+
+export type HealthResponses = {
+    /**
+     * All dependencies reachable
+     */
+    200: Health;
+};
+
+export type HealthResponse = HealthResponses[keyof HealthResponses];
 
 export type HelpData = {
     body: {
@@ -705,16 +748,9 @@ export type UpdateColumnsOrderError = UpdateColumnsOrderErrors[keyof UpdateColum
 
 export type UpdateColumnsOrderResponses = {
     /**
-     * Success
+     * The order was updated successfully.
      */
-    200: Array<{
-        id: string;
-        title: string;
-        order: number;
-        boardId: string;
-        createdAt: string;
-        updatedAt: string;
-    }>;
+    204: void;
 };
 
 export type UpdateColumnsOrderResponse = UpdateColumnsOrderResponses[keyof UpdateColumnsOrderResponses];
@@ -840,6 +876,54 @@ export type UpdateTaskResponses = {
 
 export type UpdateTaskResponse = UpdateTaskResponses[keyof UpdateTaskResponses];
 
+export type MoveTaskData = {
+    body: {
+        /**
+         * Column the task is being moved into
+         */
+        columnId: string;
+        /**
+         * Task the moved task is dropped after, within the target column. Omit when dropping at the top.
+         */
+        prevTaskId?: string;
+        /**
+         * Task the moved task is dropped before, within the target column. Omit when dropping at the bottom.
+         */
+        nextTaskId?: string;
+    };
+    path: {
+        taskId: string;
+    };
+    query?: never;
+    url: '/task/{taskId}/move';
+};
+
+export type MoveTaskErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorResponse;
+    /**
+     * Unauthorized
+     */
+    401: ErrorResponse & unknown;
+    /**
+     * Not Found
+     */
+    404: ErrorResponse & unknown;
+};
+
+export type MoveTaskError = MoveTaskErrors[keyof MoveTaskErrors];
+
+export type MoveTaskResponses = {
+    /**
+     * Moved
+     */
+    200: Task;
+};
+
+export type MoveTaskResponse = MoveTaskResponses[keyof MoveTaskResponses];
+
 export type UpdateTasksOrderData = {
     body: {
         ids: Array<string>;
@@ -870,21 +954,9 @@ export type UpdateTasksOrderError = UpdateTasksOrderErrors[keyof UpdateTasksOrde
 
 export type UpdateTasksOrderResponses = {
     /**
-     * Updated
+     * The order was updated successfully.
      */
-    200: Array<{
-        id: string;
-        title: string;
-        description: string | null;
-        priority: TaskPriority;
-        deadline: string | null;
-        order: number;
-        completed: boolean;
-        completedAt: string | null;
-        columnId: string;
-        createdAt: string;
-        updatedAt: string;
-    }>;
+    204: void;
 };
 
 export type UpdateTasksOrderResponse = UpdateTasksOrderResponses[keyof UpdateTasksOrderResponses];

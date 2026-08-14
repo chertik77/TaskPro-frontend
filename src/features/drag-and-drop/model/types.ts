@@ -1,9 +1,10 @@
 import type { Column, Task } from '@/shared/api'
-import type { Dispatch, ReactNode, SetStateAction } from 'react'
+import type { Dispatch, ReactNode, RefObject, SetStateAction } from 'react'
+import type { TasksByColumn } from '../lib/groupTasksByColumn'
 
 export type DragAndDropContext = {
   columns: Column[]
-  tasks: Task[]
+  tasksByColumn: TasksByColumn
   activeColumn: Column | null
   activeTask: Task | null
 }
@@ -13,12 +14,14 @@ export type DragAndDropProviderProps = {
   initialColumns: Column[] | undefined
 }
 
-export type TaskDragHandlersProps = Pick<DragAndDropContext, 'tasks'> & {
-  setTasks: Dispatch<SetStateAction<Task[]>>
+export type TaskDragHandlersProps = {
+  tasksRef: RefObject<Task[]>
+  applyTasks: (updater: (prev: Task[]) => Task[]) => void
   setActiveTask: Dispatch<SetStateAction<Task | null>>
 }
 
-export type ColumnDragHandlersProps = Pick<DragAndDropContext, 'columns'> & {
-  setColumns: Dispatch<SetStateAction<Column[]>>
+export type ColumnDragHandlersProps = {
+  columnsRef: RefObject<Column[]>
+  applyColumns: (updater: (prev: Column[]) => Column[]) => void
   setActiveColumn: Dispatch<SetStateAction<Column | null>>
 }
