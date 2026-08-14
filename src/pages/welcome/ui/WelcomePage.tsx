@@ -36,64 +36,62 @@ export const WelcomePage = () => {
   }
 
   return (
-    <div className='fixed top-0 right-0 block h-12 w-screen'>
+    <m.div
+      variants={container}
+      initial='hidden'
+      animate='show'
+      className='bg-soft-green fixed inset-0 flex min-h-dvh flex-col
+        items-center justify-center overflow-y-auto'>
+      <m.img
+        variants={item}
+        animate={{ y: [0, -8, 0] }}
+        transition={{
+          y: { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }
+        }}
+        className='tablet:size-40.5 size-31'
+        src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568457/TaskPro/welcome.png'
+        alt='User with notebook'
+      />
       <m.div
-        variants={container}
-        initial='hidden'
-        animate='show'
-        className='bg-soft-green flex h-screen flex-col items-center
-          justify-center'>
-        <m.img
-          variants={item}
-          animate={{ y: [0, -8, 0] }}
-          transition={{
-            y: { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }
-          }}
-          className='tablet:size-40.5 size-31'
-          src='https://res.cloudinary.com/dmbnnewoy/image/upload/v1733568457/TaskPro/welcome.png'
-          alt='User with notebook'
-        />
-        <m.div
-          variants={item}
-          className='mt-6 flex items-center gap-3.5 text-white'>
-          <Logo className='tablet:size-12 size-10' />
-          <h1 className='tablet:text-3xl text-2xl text-black'>Task Pro</h1>
-        </m.div>
-        <m.p
-          variants={item}
-          className='tablet:w-118.25 mt-6 mb-8 w-84 text-center text-base
-            text-black'>
-          Supercharge your productivity and take control of your tasks with Task
-          Pro - Don&apos;t wait, start achieving your goals now!
-        </m.p>
-        <m.div
-          variants={item}
-          className='space-y-3.5'>
-          <SocialButton
-            icon={Google}
-            provider='google'
-            onClick={() => continueWithSocial('google')}
-          />
-          <SocialButton
-            icon={Microsoft}
-            provider='microsoft'
-            onClick={() => continueWithSocial('microsoft')}
-          />
-          <PasskeyButton />
-          <Link
-            to='/auth/signup'
-            className='focus-visible:outline-green-light block w-84 rounded-lg
-              bg-black py-3.5 text-center text-white focus-visible:outline-2'>
-            Registration
-          </Link>
-          <Link
-            to='/auth/signin'
-            className='focus-visible:outline-green-light block text-center
-              text-black focus-visible:outline-2'>
-            Log In
-          </Link>
-        </m.div>
+        variants={item}
+        className='mt-6 flex items-center gap-3.5 text-white'>
+        <Logo className='tablet:size-12 size-10' />
+        <h1 className='tablet:text-3xl text-2xl text-black'>Task Pro</h1>
       </m.div>
-    </div>
+      <m.p
+        variants={item}
+        className='tablet:w-118.25 mt-6 mb-8 w-84 text-center text-base
+          text-black'>
+        Supercharge your productivity and take control of your tasks with Task
+        Pro - Don&apos;t wait, start achieving your goals now!
+      </m.p>
+      <m.div
+        variants={item}
+        className='space-y-3.5'>
+        <SocialButton
+          icon={Google}
+          provider='google'
+          onClick={() => continueWithSocial('google')}
+        />
+        <SocialButton
+          icon={Microsoft}
+          provider='microsoft'
+          onClick={() => continueWithSocial('microsoft')}
+        />
+        <PasskeyButton />
+        <Link
+          to='/auth/signup'
+          className='focus-visible:outline-green-light block w-84 rounded-lg
+            bg-black py-3.5 text-center text-white focus-visible:outline-2'>
+          Registration
+        </Link>
+        <Link
+          to='/auth/signin'
+          className='focus-visible:outline-green-light block text-center
+            text-black focus-visible:outline-2'>
+          Log In
+        </Link>
+      </m.div>
+    </m.div>
   )
 }
