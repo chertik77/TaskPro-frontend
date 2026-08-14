@@ -29,8 +29,8 @@ export const MoveTaskSelect = memo(
             'group text-black dark:text-white',
             columns && columns.length <= 1 && 'hidden'
           )}>
-          {isPending ? (
-            <Loader className='flex size-4 border-2' />
+          {!isPending ? (
+            <Loader className='flex size-4' />
           ) : (
             <CircleArrowRightIcon
               className='group-hocus:opacity-100 size-4 opacity-50

@@ -159,6 +159,14 @@
     cursor: pointer;
   }
 
+  :where(body) {
+    text-wrap: pretty;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6, dt, th, caption, legend, summary) {
+    text-wrap: balance;
+  }
+
   html[data-animations='off'] *,
   html[data-animations='off'] *::before,
   html[data-animations='off'] *::after {

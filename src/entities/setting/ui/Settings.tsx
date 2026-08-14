@@ -121,7 +121,8 @@ const Title = ({ children, className }: ChildrenProps) => (
 const Description = ({ children, className }: ChildrenProps) => (
   <p
     className={cn(
-      'col-span-2 col-start-1 row-start-2 text-black/50 dark:text-white/50',
+      `col-span-2 col-start-1 row-start-2 text-balance text-black/50
+      dark:text-white/50`,
       className
     )}>
     {children}

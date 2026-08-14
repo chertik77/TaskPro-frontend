@@ -18,7 +18,7 @@ export const DeleteAccountSection = () => {
         tablet:pr-8 flex items-center rounded-lg px-4 py-5'>
       <div className='space-y-1'>
         <p>Delete account</p>
-        <p className='text-md text-black/50 dark:text-white/50'>
+        <p className='text-md text-balance text-black/50 dark:text-white/50'>
           Permanently deletes your account and all your data.
         </p>
       </div>
