@@ -7,10 +7,10 @@ export const RouterProvider = () => (
   <TanStackRouterProvider
     router={router}
     defaultPendingComponent={() => (
-      <div className='fixed top-0 right-0 block h-12 w-screen'>
-        <div className='bg-soft-green flex h-screen items-center justify-center'>
-          <Loader className='size-12 stroke-black' />
-        </div>
+      <div
+        className='bg-soft-green fixed inset-0 flex min-h-dvh items-center
+          justify-center'>
+        <Loader className='size-12 stroke-black' />
       </div>
     )}
     defaultErrorComponent={() => <GlobalError />}

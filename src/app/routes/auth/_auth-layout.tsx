@@ -14,9 +14,10 @@ export const Route = createFileRoute('/auth/_auth-layout')({
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },
+
   component: () => (
-    <div className='fixed top-0 right-0 block h-12 w-screen'>
-      <div className='bg-soft-green flex h-screen items-center justify-center'>
+    <div className='bg-soft-green fixed inset-0 min-h-dvh overflow-y-auto'>
+      <div className='flex min-h-dvh items-center justify-center'>
         <div className='tablet:w-106 tablet:p-10 w-84 rounded-lg bg-black p-6'>
           <RovingFocusGroup className='mb-10 flex items-center gap-3.5 text-xl'>
             <RovingFocusGroupItem asChild>
@@ -27,6 +28,7 @@ export const Route = createFileRoute('/auth/_auth-layout')({
                 Registration
               </Link>
             </RovingFocusGroupItem>
+
             <RovingFocusGroupItem asChild>
               <Link
                 to='/auth/signin'
@@ -36,6 +38,7 @@ export const Route = createFileRoute('/auth/_auth-layout')({
               </Link>
             </RovingFocusGroupItem>
           </RovingFocusGroup>
+
           <Outlet />
         </div>
       </div>
