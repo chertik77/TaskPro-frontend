@@ -39,7 +39,6 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
     isDirty,
     editorRef,
     changeScale,
-    zoomBy,
     selectImage,
     rotateClockwise,
     setPosition,
@@ -112,7 +111,7 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
               image={image}
               scale={scale}
               rotate={rotate}
-              onZoom={zoomBy}
+              onScaleChange={changeScale}
               onPositionChange={setPosition}
             />
             <AvatarEditorControls

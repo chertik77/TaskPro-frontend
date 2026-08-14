@@ -8,7 +8,6 @@ import { toast } from '@/shared/lib'
 import {
   ALLOWED_AVATAR_TYPES,
   MAX_AVATAR_SIZE,
-  MAX_SCALE,
   MIN_SCALE
 } from '../config/avatar'
 
@@ -66,11 +65,6 @@ export const useAvatarEditor = () => {
 
   const changeScale = (nextScale: number) => setScale(nextScale)
 
-  const zoomBy = (delta: number) =>
-    setScale(prevScale =>
-      Math.min(MAX_SCALE, Math.max(MIN_SCALE, prevScale + delta))
-    )
-
   const rotateClockwise = () => {
     setQuarterTurns(prevTurns => prevTurns + 1)
     targetRotate.set(targetRotate.get() + 90)
@@ -92,7 +86,6 @@ export const useAvatarEditor = () => {
     isDirty,
     editorRef,
     changeScale,
-    zoomBy,
     selectImage,
     rotateClockwise,
     setPosition,

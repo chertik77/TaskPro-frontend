@@ -6,7 +6,6 @@ export const ALLOWED_AVATAR_TYPES = [
 ]
 
 export const MAX_AVATAR_SIZE = 5 * 1024 * 1024
-export const PINCH_ZOOM_SENSITIVITY = 0.01
 export const EDITOR_SIZE = 240
 export const MIN_SCALE = 1
 export const MAX_SCALE = 3
