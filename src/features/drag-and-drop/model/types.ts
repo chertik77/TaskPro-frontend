@@ -1,6 +1,7 @@
 import type { Column, Task } from '@/shared/api'
 import type { Dispatch, ReactNode, RefObject, SetStateAction } from 'react'
-import type { TasksByColumn } from '../lib/groupTasksByColumn'
+
+export type TasksByColumn = Record<string, Task[]>
 
 export type DragAndDropContext = {
   columns: Column[]

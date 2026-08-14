@@ -52,9 +52,6 @@ export const useTaskDragHandlers = ({
 
       if (!overColumnId) return prev
 
-      // Reordering inside one column is previewed by the sorting strategy and
-      // committed on drop. Writing state here would move the card, re-run
-      // collision detection against the new layout, and move it straight back.
       if (activeTask.columnId === overColumnId) return prev
 
       let overIndex: number

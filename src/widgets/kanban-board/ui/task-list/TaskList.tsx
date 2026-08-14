@@ -15,10 +15,8 @@ type TaskListProps = {
   isOverlay?: boolean
 }
 
-const EMPTY_TASKS: Task[] = []
-
 export const TaskList = ({ tasks, columns, isOverlay }: TaskListProps) => {
-  const filteredTasks = useFilteredTasks(tasks ?? EMPTY_TASKS)
+  const filteredTasks = useFilteredTasks(tasks ?? [])
 
   const tasksIds = useMemo(() => filteredTasks.map(c => c.id), [filteredTasks])
 

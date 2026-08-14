@@ -49,7 +49,6 @@ export const useMoveDraggedTask = () => {
     },
     onError: (_error, _variables, context) => {
       queryClient.setQueryData(queryKey, context?.previousBoard)
-
       queryClient.invalidateQueries({ queryKey })
     },
     meta: {

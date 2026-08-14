@@ -17,8 +17,8 @@ import { cn, pluralize, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
 import { ColumnList } from './column-list/ColumnList'
-import { KanbanDragOverlay } from './dnd/KanbanDragOverlay'
-import { Filters } from './filters/Filters'
+import { Filters } from './Filters'
+import { KanbanDragOverlay } from './KanbanDragOverlay'
 
 export const Board = () => {
   const boardId = useGetParamBoardId()

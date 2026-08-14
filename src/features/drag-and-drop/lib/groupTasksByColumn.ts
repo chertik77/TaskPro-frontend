@@ -1,8 +1,5 @@
 import type { Task } from '@/shared/api'
-
-export type TasksByColumn = Record<string, Task[]>
-
-export const EMPTY_TASKS: Task[] = []
+import type { TasksByColumn } from '../model/types'
 
 export const groupTasksByColumn = (
   tasks: Task[],

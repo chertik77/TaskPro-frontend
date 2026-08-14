@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom'
 
 import { useDragAndDropSelector } from '@/features/drag-and-drop'
 
-import { MemoizedColumn } from '../column-list/MemoizedColumn'
-import { MemoizedTask } from '../task-list/MemoizedTask'
+import { MemoizedColumn } from './column-list/MemoizedColumn'
+import { MemoizedTask } from './task-list/MemoizedTask'
 
 const noop = () => {}
 

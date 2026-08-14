@@ -1,9 +1,9 @@
 import type { Column, Task } from '@/shared/api'
-import type { TasksByColumn } from '../lib/groupTasksByColumn'
+import type { TasksByColumn } from './types'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { EMPTY_TASKS, groupTasksByColumn } from '../lib/groupTasksByColumn'
+import { groupTasksByColumn } from '../lib/groupTasksByColumn'
 
 type TaskState = {
   tasks: Task[]
@@ -83,9 +83,7 @@ export const useDndState = (initialColumns: Column[] | undefined) => {
 
   const getColumnTaskIds = useCallback(
     (columnId: string) =>
-      (taskStateRef.current.tasksByColumn[columnId] ?? EMPTY_TASKS).map(
-        task => task.id
-      ),
+      (taskStateRef.current.tasksByColumn[columnId] ?? []).map(task => task.id),
     []
   )
 
