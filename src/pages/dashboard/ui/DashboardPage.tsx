@@ -31,7 +31,7 @@ export const DashboardPage = () => {
       <LabelModalProvider />
       <div className='fixed top-0 right-0 block h-12 w-screen'>
         <m.div
-          className='grid h-screen grid-rows-[60px_minmax(0,1fr)]'
+          className='grid h-dvh grid-rows-[60px_minmax(0,1fr)]'
           animate={{ gridTemplateColumns: columns }}>
           <Sidebar />
           <Header />
