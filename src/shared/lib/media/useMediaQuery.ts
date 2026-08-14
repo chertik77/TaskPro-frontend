@@ -1,23 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
 export const useMediaQuery = (mediaQuery: string) => {
-  const getMatches = (query: string) => window.matchMedia(query).matches
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const matchMedia = window.matchMedia(mediaQuery)
 
-  const [matches, setMatches] = useState(() => getMatches(mediaQuery))
+      matchMedia.addEventListener('change', onStoreChange)
 
-  useEffect(() => {
-    const matchMedia = window.matchMedia(mediaQuery)
+      return () => matchMedia.removeEventListener('change', onStoreChange)
+    },
+    [mediaQuery]
+  )
 
-    const handleChange = () => {
-      setMatches(getMatches(mediaQuery))
-    }
-
-    matchMedia.addEventListener('change', handleChange)
-
-    return () => {
-      matchMedia.removeEventListener('change', handleChange)
-    }
-  }, [mediaQuery])
-
-  return matches
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(mediaQuery).matches
+  )
 }

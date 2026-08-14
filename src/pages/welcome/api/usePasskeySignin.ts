@@ -23,11 +23,10 @@ export const usePasskeySignin = () => {
           return toast.warning('Passkey sign-in cancelled.')
         }
 
-        const errorMessage = getAuthErrorMessage(error.code)
-
-        toast.error(errorMessage, {
-          description: 'Try another sign-in method.'
-        })
+        return toast.error(
+          getAuthErrorMessage(error.code) ??
+            'We couldn’t sign you in with your passkey. Please try again.'
+        )
       }
 
       queryClient.setQueryData(sessionQueries.currents(), session)

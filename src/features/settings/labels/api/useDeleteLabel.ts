@@ -1,15 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { array, parse } from 'valibot'
 
 import { boardQueries } from '@/entities/board'
 import { labelQueries } from '@/entities/label'
 
-import { deleteLabelMutation, vLabel } from '@/shared/api'
+import { deleteLabelMutation } from '@/shared/api'
 
 export const useDeleteLabel = () => {
   const queryClient = useQueryClient()
 
-  const allLabelsQueryKey = labelQueries.lists()
+  const allLabelsQueryKey = labelQueries.list().queryKey
 
   return useMutation({
     ...deleteLabelMutation(),
@@ -22,17 +21,11 @@ export const useDeleteLabel = () => {
 
       const previousLabels = queryClient.getQueryData(allLabelsQueryKey)
 
-      const parsedPreviousLabels = parse(array(vLabel), previousLabels)
+      queryClient.setQueryData(allLabelsQueryKey, oldLabels =>
+        oldLabels?.filter(l => l.id !== labelId)
+      )
 
-      queryClient.setQueryData(allLabelsQueryKey, oldLabels => {
-        if (!oldLabels) return oldLabels
-
-        const parsedOldLabels = parse(array(vLabel), oldLabels)
-
-        return parsedOldLabels.filter(l => l.id !== labelId)
-      })
-
-      return { previousLabels: parsedPreviousLabels }
+      return { previousLabels }
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(allLabelsQueryKey, context?.previousLabels)

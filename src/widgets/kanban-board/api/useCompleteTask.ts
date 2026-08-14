@@ -1,14 +1,12 @@
 import type { UpdateTaskData } from '@/shared/api'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { parse } from 'valibot'
 
 import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
-import { updateTask, vBoard } from '@/shared/api'
+import { updateTask } from '@/shared/api'
 
-type CompleteTaskMutation = UpdateTaskData['path'] &
-  Pick<UpdateTaskData['body'], 'completed'>
+type CompleteTaskMutation = UpdateTaskData['path'] & { completed: boolean }
 
 export const useCompleteTask = () => {
   const queryClient = useQueryClient()
@@ -29,27 +27,21 @@ export const useCompleteTask = () => {
 
       const previousBoard = queryClient.getQueryData(boardQueryKey)
 
-      const parsedPreviousBoard = parse(vBoard, previousBoard)
-
       queryClient.setQueryData(boardQueryKey, oldBoard => {
         if (!oldBoard) return oldBoard
 
-        const parsedOldBoard = parse(vBoard, oldBoard)
-
         return {
           ...oldBoard,
-          columns: parsedOldBoard.columns?.map(column => ({
+          columns: oldBoard.columns?.map(column => ({
             ...column,
-            tasks: column.tasks?.map(task => {
-              if (task.id === taskId) return { ...task, completed: completed! }
-
-              return task
-            })
+            tasks: column.tasks?.map(task =>
+              task.id === taskId ? { ...task, completed } : task
+            )
           }))
         }
       })
 
-      return { previousBoard: parsedPreviousBoard }
+      return { previousBoard }
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(boardQueryKey, context?.previousBoard)

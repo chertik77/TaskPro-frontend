@@ -12,13 +12,13 @@ type TaskListProps = {
 }
 
 export const TaskList = ({ tasks }: TaskListProps) => {
-  const tasksIds = useMemo(() => tasks?.map(c => c.id), [tasks])
-
   const filteredTasks = useFilteredTasks(tasks || [])
 
+  const tasksIds = useMemo(() => filteredTasks.map(c => c.id), [filteredTasks])
+
   return (
-    <SortableContext items={tasksIds || []}>
-      {filteredTasks?.length > 0 && (
+    <SortableContext items={tasksIds}>
+      {filteredTasks.length > 0 && (
         <ul className='space-y-2'>
           {filteredTasks.map(task => (
             <TaskListItem

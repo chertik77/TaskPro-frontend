@@ -9,8 +9,8 @@ type SettingListOptions<T> = {
 }
 
 export const settingQueries = {
-  all: () => ['settings'],
-  lists: () => [...settingQueries.all(), 'list'],
+  all: () => ['settings'] as const,
+  lists: () => [...settingQueries.all(), 'list'] as const,
   list: <T>(options?: SettingListOptions<T>) =>
     queryOptions({
       queryKey: settingQueries.lists(),

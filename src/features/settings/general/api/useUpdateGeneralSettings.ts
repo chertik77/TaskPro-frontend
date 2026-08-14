@@ -1,14 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { parse } from 'valibot'
 
-import { SettingContracts, settingQueries } from '@/entities/setting'
+import { settingQueries } from '@/entities/setting'
 
 import { updateGeneralSettingsMutation } from '@/shared/api'
 
 export const useUpdateGeneralSettings = () => {
   const queryClient = useQueryClient()
 
-  const allSettinsQueryKey = settingQueries.lists()
+  const allSettinsQueryKey = settingQueries.list().queryKey
 
   return useMutation({
     ...updateGeneralSettingsMutation(),
@@ -20,26 +19,13 @@ export const useUpdateGeneralSettings = () => {
 
       const previousSettings = queryClient.getQueryData(allSettinsQueryKey)
 
-      const parsedPreviousSettings = parse(
-        SettingContracts.SettingsSchema,
-        previousSettings
+      queryClient.setQueryData(allSettinsQueryKey, oldSettings =>
+        oldSettings
+          ? { ...oldSettings, general: { ...oldSettings.general, ...body } }
+          : oldSettings
       )
 
-      queryClient.setQueryData(allSettinsQueryKey, oldSettings => {
-        if (!oldSettings) return oldSettings
-
-        const parsedOldSettings = parse(
-          SettingContracts.SettingsSchema,
-          oldSettings
-        )
-
-        return {
-          ...parsedOldSettings,
-          general: { ...parsedOldSettings.general, ...body }
-        }
-      })
-
-      return { previousSettings: parsedPreviousSettings }
+      return { previousSettings }
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(allSettinsQueryKey, context?.previousSettings)

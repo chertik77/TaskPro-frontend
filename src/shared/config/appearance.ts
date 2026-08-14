@@ -1,8 +1,19 @@
 import { MotionGlobalConfig } from 'motion/react'
 
-export const DEFAULT_THEME = 'light'
-export const DEFAULT_FONT_SIZE = 'medium'
-export const DEFAULT_ANIMATIONS = 'system'
+import {
+  APPEARANCE_DEFAULTS,
+  APPEARANCE_STORAGE_KEY,
+  applyStoredAppearance,
+  DEFAULT_THEME
+} from './appearance-bootstrap'
+
+export {
+  APPEARANCE_STORAGE_KEY,
+  DEFAULT_ANIMATIONS,
+  DEFAULT_FONT_SIZE,
+  DEFAULT_THEME
+} from './appearance-bootstrap'
+
 export const THEMES = ['light', 'dark', 'system'] as const
 
 export type Theme = (typeof THEMES)[number]
@@ -13,8 +24,6 @@ export type StoredAppearance = {
   fontSize: string
   animations: string
 }
-
-export const APPEARANCE_STORAGE_KEY = 'taskpro-appearance'
 
 export const getStoredAppearance = (): Partial<StoredAppearance> => {
   const stored = localStorage.getItem(APPEARANCE_STORAGE_KEY)
@@ -29,12 +38,7 @@ export const setStoredAppearance = (appearance: StoredAppearance) => {
 export const resetStoredAppearance = () => {
   localStorage.removeItem(APPEARANCE_STORAGE_KEY)
 
-  const root = document.documentElement
-
-  root.dataset.theme = DEFAULT_THEME
-  root.dataset.fontSize = DEFAULT_FONT_SIZE
-  root.dataset.animations = DEFAULT_ANIMATIONS
-  root.style.removeProperty('--accent-color')
+  applyStoredAppearance(APPEARANCE_STORAGE_KEY, APPEARANCE_DEFAULTS)
 
   MotionGlobalConfig.skipAnimations = window.matchMedia(
     '(prefers-reduced-motion: reduce)'

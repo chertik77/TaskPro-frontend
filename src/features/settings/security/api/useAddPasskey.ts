@@ -20,17 +20,20 @@ export const useAddPasskey = () => {
     onSuccess({ error }) {
       if (error && 'code' in error) {
         if (error.code === 'ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY') {
-          return toast.warning('Passkey sign-in cancelled.')
+          return toast.warning('Passkey registration cancelled.')
         }
 
-        const errorMessage = getAuthErrorMessage(error.code)
+        if (error.code === 'ERROR_AUTHENTICATOR_PREVIOUSLY_REGISTERED') {
+          return toast.error('This authenticator may be already registered.')
+        }
 
-        toast.error(errorMessage, {
-          description: 'The authenticator is already registered.'
-        })
+        return toast.error(
+          getAuthErrorMessage(error.code) ??
+            'We couldn’t add this passkey. Please try again.'
+        )
       }
 
-      if (!error) setIsOpen(true)
+      setIsOpen(true)
     }
   })
 }
