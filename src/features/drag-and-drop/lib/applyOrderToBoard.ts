@@ -1,5 +1,8 @@
 import type { Column, Task } from '@/shared/api'
 
+const isSameTaskList = (a: Task[] | undefined, b: Task[]) =>
+  !!a && a.length === b.length && a.every((task, index) => task === b[index])
+
 export const applyTaskOrder = (
   columns: Column[] | undefined,
   tasks: Task[]
@@ -15,8 +18,11 @@ export const applyTaskOrder = (
     else byColumn.set(task.columnId, [task])
   }
 
-  return columns.map(column => ({
-    ...column,
-    tasks: byColumn.get(column.id) ?? []
-  }))
+  return columns.map(column => {
+    const nextTasks = byColumn.get(column.id) ?? []
+
+    if (isSameTaskList(column.tasks, nextTasks)) return column
+
+    return { ...column, tasks: nextTasks }
+  })
 }
