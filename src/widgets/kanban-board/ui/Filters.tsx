@@ -1,6 +1,7 @@
 import type { Variants } from 'motion/react'
 import type { ReactNode } from 'react'
 
+import { useRef } from 'react'
 import { FunnelIcon } from 'lucide-react'
 import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
@@ -48,6 +49,8 @@ const FilterSection = ({ title, children }: FilterSectionProps) => (
 export const Filters = () => {
   const { activeFiltersCount, resetFilters } = useTaskFilters()
 
+  const searchInputRef = useRef<HTMLInputElement>(null)
+
   return (
     <Popover>
       <PopoverTrigger
@@ -64,6 +67,7 @@ export const Filters = () => {
         )}
       </PopoverTrigger>
       <PopoverContent
+        initialFocus={searchInputRef}
         positionerProps={{
           collisionAvoidance: { side: 'none' },
           collisionPadding: 10
@@ -90,7 +94,7 @@ export const Filters = () => {
           className='max-h-[min(65vh,34rem)] space-y-4.5 overflow-y-auto px-6
             pt-4.5 pb-6'>
           <m.div variants={item}>
-            <SearchFilter />
+            <SearchFilter ref={searchInputRef} />
           </m.div>
           <div className='border-b border-black/10 dark:border-white/10' />
           <FilterSection title='Priority'>

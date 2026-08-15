@@ -1,3 +1,5 @@
+import type { RefObject } from 'react'
+
 import { Activity, useRef, useState } from 'react'
 import { XIcon } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
@@ -6,7 +8,11 @@ import { Input } from '@/shared/ui'
 
 import { useTaskFilters } from '../lib/useTaskFilters'
 
-export const SearchFilter = () => {
+type SearchFilterProps = {
+  ref?: RefObject<HTMLInputElement | null>
+}
+
+export const SearchFilter = ({ ref }: SearchFilterProps) => {
   const { search, setFilter } = useTaskFilters()
 
   const [localSearch, setLocalSearch] = useState(search)
@@ -22,7 +28,9 @@ export const SearchFilter = () => {
     if (!debouncedParamsChange.isPending()) setLocalSearch(search)
   }
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const fallbackRef = useRef<HTMLInputElement>(null)
+
+  const inputRef = ref ?? fallbackRef
 
   return (
     <div className='relative'>
