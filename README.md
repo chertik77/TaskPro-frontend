@@ -1,42 +1,81 @@
-# Task Pro App
+<div align="center">
 
-Welcome to the Task Pro App, the ultimate tool for managing your tasks efficiently. Developed as the final project of the Fullstack Development Bootcamp, Task Pro combines powerful features and an intuitive interface to streamline your task management, similar to popular tools like Trello.
+# Task Pro
 
-![TaskPro Dashboard Preview](https://github.com/user-attachments/assets/aabe9f86-950d-486c-bbc3-9d77111e52e8)
+The Kanban task manager for organizing work into boards, columns and cards —
+with drag-and-drop, fuzzy search, passkey sign-in and a deeply customizable
+interface.
 
-_Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
+[![Code Quality](https://github.com/chertik77/TaskPro-frontend/actions/workflows/code-quality.yml/badge.svg)](https://github.com/chertik77/TaskPro-frontend/actions/workflows/code-quality.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+
+[Live App](https://www.taskpro.qzz.io) · [Backend Repo](https://github.com/chertik77/TaskPro-backend)
+
+![TaskPro Dashboard Preview](./.github/assets/dashboard-preview.webp)
+
+</div>
 
 ## Features
 
 - **Authentication:**
-  Users can register or log in with support for Google and Microsoft sign-in for a faster and more convenient experience.
+  Sign up or log in with email and password, Google or Microsoft, or skip the
+  password entirely with WebAuthn passkeys. Active sessions are listed per device
+  and can be revoked individually.
 
 - **Custom Boards:**
-  Users can create and personalize boards with unique icons and background images to organize their workspace effectively.
-
-- **Task Management:**
-  Users can add, edit, and prioritize tasks with ease. Filtering options help focus on high-priority work and improve productivity.
-
-- **Fuzzy Search:**
-  Implemented fuzzy search to help users quickly find tasks, even if the search input is not an exact match.
+  Create and personalize boards with unique icons and background images,
+  organizing separate workspaces however suits the work.
 
 - **Drag and Drop:**
-  Tasks and columns can be moved easily using drag-and-drop, making workflow management smooth and intuitive.
+  Tasks and columns move with dnd-kit, including cross-column drags, a live drag
+  overlay and optimistic reordering that updates instantly instead of waiting on
+  the server.
 
-- **Theme Switching:**
-  Users can switch between light, dark and system themes to match their preferences.
+- **Task Management:**
+  Add, edit, prioritize and complete tasks with labels, priorities and deadlines.
+  Reusable labels are shared across boards, and deadlines can be entered in plain
+  language through natural-language date parsing.
+
+- **Fuzzy Search and Filtering:**
+  Weighted fuzzy search across task titles, descriptions and label names finds
+  cards even when the query is not an exact match, and it composes with priority,
+  deadline and label filters.
+
+- **Appearance Customization:**
+  Light, dark and system themes, accent colors, font size, card density,
+  board background blur and animation preferences — all synced to the account.
+  Appearance is applied by an inline bootstrap script before first paint, so
+  there is no flash of the wrong theme on load.
+
+- **Motion:**
+  Animated dialogs, board transitions and micro-interactions built with Motion,
+  respecting the user's reduced-motion preference.
 
 - **Profile Management:**
-  Users can update their profile information, including changing their avatar.
+  Update profile details and crop a new avatar in place before uploading.
 
-- **Sidebar Toggle:**
-  Added keyboard shortcuts (<kbd>⌘ Command</kbd> + <kbd>B</kbd> on Mac, <kbd>⌃ Control</kbd> + <kbd>B</kbd> on Windows/Linux) to quickly show or hide the sidebar for better focus.
-
-- **Get Help Fast:**
-  Users can send help requests directly from the app via email, making it easy to get support when needed.
+- **Keyboard Shortcuts:**
+  Toggle the sidebar with <kbd>⌘</kbd> + <kbd>B</kbd> on macOS or <kbd>Ctrl</kbd> + <kbd>B</kbd> on Windows and Linux.
 
 - **Accessibility:**
-  The application supports keyboard navigation and screen readers, ensuring it is usable for a wide range of users.
+  Full keyboard navigation, roving focus in menus and lists, and live screen
+  reader announcements during drag-and-drop that read out what was picked up,
+  where it moved and where it landed.
+
+- **Get Help Fast:**
+  Send a support request straight from the app without leaving the board.
+
+- **Type-Safe API Layer:**
+  The entire API client — types, TanStack Query hooks and Valibot validators — is
+  generated from the backend's OpenAPI schema, so a contract change surfaces as a
+  compile error rather than a runtime surprise.
+
+- **Architecture:**
+  Organized with Feature-Sliced Design, enforced
+  in CI by Steiger so layer boundaries and import rules cannot silently rot.
 
 ## Project Contributors
 
@@ -54,3 +93,7 @@ _Link to the backend repo:_ https://github.com/chertik77/TaskPro-backend
 ## Languages and Tools
 
 ![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,baseui,tanstack,betterauth,heyapi,stanjs,axios,datefns,motion,reactdatepicker,reacthookform,lucide,thesvg,valibot,tailwind,tailwindmerge,fusejs,commitlint,eslint,prettier,githubactions,fsd,yarn,vercel,vite,vscode,figma&perline=10)
+
+## License
+
+Released under the [MIT License](./LICENSE) — © 2024-2026 Denys Babych.

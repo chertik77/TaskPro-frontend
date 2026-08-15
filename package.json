@@ -1,6 +1,7 @@
 {
   "name": "task-pro-frontend",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=24.0.0"
