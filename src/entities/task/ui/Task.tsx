@@ -100,8 +100,8 @@ const TaskTitle = ({ className, ...props }: ComponentProps<'p'>) => {
   return (
     <p
       className={cn(
-        'max-w-60 truncate text-base font-semibold',
-        density === 'comfortable' && 'mb-2',
+        'text-md max-w-60 truncate font-semibold',
+        density === 'comfortable' && 'mb-2 text-base',
         task.completed && 'text-black/40 line-through dark:text-white/40',
         className
       )}
