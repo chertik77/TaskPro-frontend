@@ -1,6 +1,6 @@
 import { PanelLeftIcon } from 'lucide-react'
 
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 export const ToggleSidebarTrigger = () => {
   const { setIsOpen } = useSidebarStore()

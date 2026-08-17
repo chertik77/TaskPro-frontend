@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 import { Logo } from '@/shared/ui'
 
 export const SidebarLogo = () => {

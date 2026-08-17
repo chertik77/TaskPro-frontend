@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { useMediaQuery } from '@/shared/lib'
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 

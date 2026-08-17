@@ -2,7 +2,7 @@ import { Dialog } from '@base-ui/react/dialog'
 
 import { NeedHelpDialog } from '@/features/user/need-help'
 
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'
 import { SidebarBoardList } from './SidebarBoardList'

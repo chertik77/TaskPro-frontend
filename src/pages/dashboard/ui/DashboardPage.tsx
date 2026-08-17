@@ -8,7 +8,7 @@ import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
 
 import { useMediaQuery } from '@/shared/lib'
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 import { LabelModalProvider } from './LabelModalProvider'
 

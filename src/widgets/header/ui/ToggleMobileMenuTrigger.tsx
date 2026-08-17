@@ -1,6 +1,6 @@
 import { MenuIcon } from 'lucide-react'
 
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 export const ToggleMobileMenuTrigger = () => {
   const { setIsOpenMobile } = useSidebarStore()

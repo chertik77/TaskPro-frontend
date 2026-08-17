@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { Providers } from './providers'
+import { Providers } from './setup'
 
 import './index.css'
 
