@@ -4,7 +4,7 @@ import * as m from 'motion/react-m'
 import { NeedHelpDialog } from '@/features/user/need-help'
 
 import { useMediaQuery } from '@/shared/lib'
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 import { useSidebarToggleShortcut } from '../lib/useSidebarToggleShortcut'
 import { SidebarBoardCreationSection } from './SidebarBoardCreationSection'

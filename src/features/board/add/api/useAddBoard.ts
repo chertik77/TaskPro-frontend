@@ -4,7 +4,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { boardQueries } from '@/entities/board'
 
 import { createBoardMutation } from '@/shared/api'
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 export const useAddBoard = (closeDialog: () => void) => {
   const navigate = useNavigate()

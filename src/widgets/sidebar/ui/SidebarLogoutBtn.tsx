@@ -1,6 +1,6 @@
 import { LogOutIcon } from 'lucide-react'
 
-import { useSidebarStore } from '@/shared/store'
+import { useSidebarStore } from '@/shared/model'
 
 import { useLogoutUser } from '../api/useLogoutUser'
 
