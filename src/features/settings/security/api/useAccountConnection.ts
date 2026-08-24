@@ -19,7 +19,9 @@ export const useAccountConnection = () => {
       providerId,
       isConnected
     }: AccountConnectionMutationData) => {
-      if (isConnected) return authClient.unlinkAccount({ providerId })
+      if (isConnected) {
+        return authClient.unlinkAccount({ accountId: providerId })
+      }
 
       return authClient.linkSocial({
         provider: providerId,
