@@ -162,7 +162,7 @@ const useComboboxAnchorRef = () => useRef<HTMLDivElement | null>(null)
 const createTypeSafeCombobox = <TItem, TValue>() => ({
   Root: Combobox as ComponentType<
     Omit<
-      ComboboxPrimitive.Root.Props<TValue, boolean>,
+      ComboboxPrimitive.Root.Props<TItem, boolean>,
       'items' | 'onValueChange' | 'filter'
     > & {
       onValueChange?: (value: TValue[]) => void
@@ -170,17 +170,23 @@ const createTypeSafeCombobox = <TItem, TValue>() => ({
       items?: TItem[]
     }
   >,
+
   Value: ComboboxValue as ComponentType<{
     children?: (value: TValue[]) => ReactNode
   }>,
+
   List: ComboboxList as ComponentType<
     Omit<ComboboxPrimitive.List.Props, 'children'> & {
       children?: ReactNode | ((item: TItem, index: number) => ReactNode)
     }
   >,
+
   Item: ComboboxItem as ComponentType<
-    Omit<ComboboxPrimitive.Item.Props, 'value'> & { value?: TValue }
+    Omit<ComboboxPrimitive.Item.Props, 'value'> & {
+      value?: TValue
+    }
   >,
+
   Content: ComboboxContent,
   Empty: ComboboxEmpty,
   Chips: ComboboxChips,
