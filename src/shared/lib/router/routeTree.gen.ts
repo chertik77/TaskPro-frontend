@@ -9,29 +9,34 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../../app/routes/__root'
-import { Route as DashboardLayoutRouteImport } from './../../../app/routes/dashboard/layout'
 import { Route as IndexRouteImport } from './../../../app/routes/index'
+import { Route as DashboardLayoutRouteImport } from './../../../app/routes/dashboard/layout'
+import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
 import { Route as DashboardIndexRouteImport } from './../../../app/routes/dashboard/index'
 import { Route as DashboardBoardIdRouteImport } from './../../../app/routes/dashboard/$boardId'
-import { Route as AuthAuthLayoutRouteImport } from './../../../app/routes/auth/_auth-layout'
 import { Route as DashboardSettingsLayoutRouteImport } from './../../../app/routes/dashboard/settings/layout'
-import { Route as DashboardSettingsIndexRouteImport } from './../../../app/routes/dashboard/settings/index'
-import { Route as DashboardSettingsTaskRouteImport } from './../../../app/routes/dashboard/settings/task'
-import { Route as DashboardSettingsSecurityRouteImport } from './../../../app/routes/dashboard/settings/security'
-import { Route as DashboardSettingsProfileRouteImport } from './../../../app/routes/dashboard/settings/profile'
-import { Route as DashboardSettingsLabelsRouteImport } from './../../../app/routes/dashboard/settings/labels'
-import { Route as DashboardSettingsGeneralRouteImport } from './../../../app/routes/dashboard/settings/general'
-import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
 import { Route as AuthAuthLayoutSigninRouteImport } from './../../../app/routes/auth/_auth-layout.signin'
+import { Route as AuthAuthLayoutSignupRouteImport } from './../../../app/routes/auth/_auth-layout.signup'
+import { Route as DashboardSettingsIndexRouteImport } from './../../../app/routes/dashboard/settings/index'
+import { Route as DashboardSettingsGeneralRouteImport } from './../../../app/routes/dashboard/settings/general'
+import { Route as DashboardSettingsLabelsRouteImport } from './../../../app/routes/dashboard/settings/labels'
+import { Route as DashboardSettingsProfileRouteImport } from './../../../app/routes/dashboard/settings/profile'
+import { Route as DashboardSettingsSecurityRouteImport } from './../../../app/routes/dashboard/settings/security'
+import { Route as DashboardSettingsTaskRouteImport } from './../../../app/routes/dashboard/settings/task'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthAuthLayoutRoute = AuthAuthLayoutRouteImport.update({
+  id: '/auth/_auth-layout',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -44,41 +49,24 @@ const DashboardBoardIdRoute = DashboardBoardIdRouteImport.update({
   path: '/$boardId',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
-const AuthAuthLayoutRoute = AuthAuthLayoutRouteImport.update({
-  id: '/auth/_auth-layout',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DashboardSettingsLayoutRoute = DashboardSettingsLayoutRouteImport.update({
   id: '/settings',
   path: '/settings',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
+const AuthAuthLayoutSigninRoute = AuthAuthLayoutSigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => AuthAuthLayoutRoute,
+} as any)
+const AuthAuthLayoutSignupRoute = AuthAuthLayoutSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => AuthAuthLayoutRoute,
+} as any)
 const DashboardSettingsIndexRoute = DashboardSettingsIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => DashboardSettingsLayoutRoute,
-} as any)
-const DashboardSettingsTaskRoute = DashboardSettingsTaskRouteImport.update({
-  id: '/task',
-  path: '/task',
-  getParentRoute: () => DashboardSettingsLayoutRoute,
-} as any)
-const DashboardSettingsSecurityRoute =
-  DashboardSettingsSecurityRouteImport.update({
-    id: '/security',
-    path: '/security',
-    getParentRoute: () => DashboardSettingsLayoutRoute,
-  } as any)
-const DashboardSettingsProfileRoute =
-  DashboardSettingsProfileRouteImport.update({
-    id: '/profile',
-    path: '/profile',
-    getParentRoute: () => DashboardSettingsLayoutRoute,
-  } as any)
-const DashboardSettingsLabelsRoute = DashboardSettingsLabelsRouteImport.update({
-  id: '/labels',
-  path: '/labels',
   getParentRoute: () => DashboardSettingsLayoutRoute,
 } as any)
 const DashboardSettingsGeneralRoute =
@@ -87,15 +75,27 @@ const DashboardSettingsGeneralRoute =
     path: '/general',
     getParentRoute: () => DashboardSettingsLayoutRoute,
   } as any)
-const AuthAuthLayoutSignupRoute = AuthAuthLayoutSignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
-  getParentRoute: () => AuthAuthLayoutRoute,
+const DashboardSettingsLabelsRoute = DashboardSettingsLabelsRouteImport.update({
+  id: '/labels',
+  path: '/labels',
+  getParentRoute: () => DashboardSettingsLayoutRoute,
 } as any)
-const AuthAuthLayoutSigninRoute = AuthAuthLayoutSigninRouteImport.update({
-  id: '/signin',
-  path: '/signin',
-  getParentRoute: () => AuthAuthLayoutRoute,
+const DashboardSettingsProfileRoute =
+  DashboardSettingsProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => DashboardSettingsLayoutRoute,
+  } as any)
+const DashboardSettingsSecurityRoute =
+  DashboardSettingsSecurityRouteImport.update({
+    id: '/security',
+    path: '/security',
+    getParentRoute: () => DashboardSettingsLayoutRoute,
+  } as any)
+const DashboardSettingsTaskRoute = DashboardSettingsTaskRouteImport.update({
+  id: '/task',
+  path: '/task',
+  getParentRoute: () => DashboardSettingsLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -202,6 +202,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -209,11 +216,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/auth/_auth-layout': {
+      id: '/auth/_auth-layout'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthAuthLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -230,13 +237,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBoardIdRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
-    '/auth/_auth-layout': {
-      id: '/auth/_auth-layout'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthAuthLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dashboard/settings': {
       id: '/dashboard/settings'
       path: '/settings'
@@ -244,39 +244,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsLayoutRouteImport
       parentRoute: typeof DashboardLayoutRoute
     }
+    '/auth/_auth-layout/signin': {
+      id: '/auth/_auth-layout/signin'
+      path: '/signin'
+      fullPath: '/auth/signin'
+      preLoaderRoute: typeof AuthAuthLayoutSigninRouteImport
+      parentRoute: typeof AuthAuthLayoutRoute
+    }
+    '/auth/_auth-layout/signup': {
+      id: '/auth/_auth-layout/signup'
+      path: '/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthAuthLayoutSignupRouteImport
+      parentRoute: typeof AuthAuthLayoutRoute
+    }
     '/dashboard/settings/': {
       id: '/dashboard/settings/'
       path: '/'
       fullPath: '/dashboard/settings/'
       preLoaderRoute: typeof DashboardSettingsIndexRouteImport
-      parentRoute: typeof DashboardSettingsLayoutRoute
-    }
-    '/dashboard/settings/task': {
-      id: '/dashboard/settings/task'
-      path: '/task'
-      fullPath: '/dashboard/settings/task'
-      preLoaderRoute: typeof DashboardSettingsTaskRouteImport
-      parentRoute: typeof DashboardSettingsLayoutRoute
-    }
-    '/dashboard/settings/security': {
-      id: '/dashboard/settings/security'
-      path: '/security'
-      fullPath: '/dashboard/settings/security'
-      preLoaderRoute: typeof DashboardSettingsSecurityRouteImport
-      parentRoute: typeof DashboardSettingsLayoutRoute
-    }
-    '/dashboard/settings/profile': {
-      id: '/dashboard/settings/profile'
-      path: '/profile'
-      fullPath: '/dashboard/settings/profile'
-      preLoaderRoute: typeof DashboardSettingsProfileRouteImport
-      parentRoute: typeof DashboardSettingsLayoutRoute
-    }
-    '/dashboard/settings/labels': {
-      id: '/dashboard/settings/labels'
-      path: '/labels'
-      fullPath: '/dashboard/settings/labels'
-      preLoaderRoute: typeof DashboardSettingsLabelsRouteImport
       parentRoute: typeof DashboardSettingsLayoutRoute
     }
     '/dashboard/settings/general': {
@@ -286,19 +272,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsGeneralRouteImport
       parentRoute: typeof DashboardSettingsLayoutRoute
     }
-    '/auth/_auth-layout/signup': {
-      id: '/auth/_auth-layout/signup'
-      path: '/signup'
-      fullPath: '/auth/signup'
-      preLoaderRoute: typeof AuthAuthLayoutSignupRouteImport
-      parentRoute: typeof AuthAuthLayoutRoute
+    '/dashboard/settings/labels': {
+      id: '/dashboard/settings/labels'
+      path: '/labels'
+      fullPath: '/dashboard/settings/labels'
+      preLoaderRoute: typeof DashboardSettingsLabelsRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
     }
-    '/auth/_auth-layout/signin': {
-      id: '/auth/_auth-layout/signin'
-      path: '/signin'
-      fullPath: '/auth/signin'
-      preLoaderRoute: typeof AuthAuthLayoutSigninRouteImport
-      parentRoute: typeof AuthAuthLayoutRoute
+    '/dashboard/settings/profile': {
+      id: '/dashboard/settings/profile'
+      path: '/profile'
+      fullPath: '/dashboard/settings/profile'
+      preLoaderRoute: typeof DashboardSettingsProfileRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
+    '/dashboard/settings/security': {
+      id: '/dashboard/settings/security'
+      path: '/security'
+      fullPath: '/dashboard/settings/security'
+      preLoaderRoute: typeof DashboardSettingsSecurityRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
+    }
+    '/dashboard/settings/task': {
+      id: '/dashboard/settings/task'
+      path: '/task'
+      fullPath: '/dashboard/settings/task'
+      preLoaderRoute: typeof DashboardSettingsTaskRouteImport
+      parentRoute: typeof DashboardSettingsLayoutRoute
     }
   }
 }

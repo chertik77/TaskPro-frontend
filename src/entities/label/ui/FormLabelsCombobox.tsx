@@ -12,7 +12,10 @@ import { LABEL_BASE_COLOR_MAP } from '../config/color-map'
 import { useLabelCombobox } from '../lib/useLabelCombobox'
 import { LabelChip } from './LabelChip'
 
-const Combobox = createTypeSafeCombobox<Label, string>()
+const Combobox = createTypeSafeCombobox<
+  Pick<Label, 'color' | 'id' | 'name'>,
+  string
+>()
 
 type FormLabelsComboboxProps = {
   labelsValues: string[] | undefined
