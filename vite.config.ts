@@ -10,7 +10,7 @@ import {
   APPEARANCE_DEFAULTS,
   APPEARANCE_STORAGE_KEY,
   applyStoredAppearance
-} from './src/shared/config/appearance-bootstrap'
+} from './src/shared/config/appearance-bootstrap.ts'
 
 const appearanceBootstrap = (): PluginOption => ({
   name: 'appearance-bootstrap',

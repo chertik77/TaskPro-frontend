@@ -4,7 +4,10 @@
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2023", "DOM"]
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "src/shared/config/appearance-bootstrap.ts"]
 }
