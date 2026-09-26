@@ -1,6 +1,6 @@
 import { Dialog } from '@base-ui/react/dialog'
 
-import { NeedHelpDialog } from '@/features/user/need-help'
+import { NeedHelpDialog } from '@/features/need-help'
 
 import { useSidebarStore } from '@/shared/model'
 

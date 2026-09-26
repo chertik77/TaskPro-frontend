@@ -1,7 +1,7 @@
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import * as m from 'motion/react-m'
 
-import { NeedHelpDialog } from '@/features/user/need-help'
+import { NeedHelpDialog } from '@/features/need-help'
 
 import { useMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/model'
