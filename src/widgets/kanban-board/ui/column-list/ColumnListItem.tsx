@@ -1,8 +1,7 @@
 import type { Column } from '@/shared/api'
 
 import { memo } from 'react'
-
-import { cn } from '@/shared/lib'
+import { cn } from 'cn'
 
 import { useDndSortable } from '../../lib/useDndSortable'
 import { MemoizedColumn } from './MemoizedColumn'

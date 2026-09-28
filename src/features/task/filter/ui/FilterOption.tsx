@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react'
 
-import { cn } from '@/shared/lib'
+import { cn } from 'cn'
+
 import { Checkbox } from '@/shared/ui'
 
 type FilterOptionProps = {

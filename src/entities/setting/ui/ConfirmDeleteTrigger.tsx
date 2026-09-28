@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { cn } from '@/shared/lib'
+import { cn } from 'cn'
 
 import { useSettings } from '../model/useSettings'
 

@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
 
-import { cn } from '../lib'
+import { cn } from 'cn'
 
 export const Button = ({
   className,

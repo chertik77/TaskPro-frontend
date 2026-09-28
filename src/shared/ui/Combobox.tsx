@@ -2,9 +2,8 @@ import type { ComponentPropsWithRef, ComponentType, ReactNode } from 'react'
 
 import { useRef } from 'react'
 import { Combobox as ComboboxPrimitive } from '@base-ui/react/combobox'
+import { cn } from 'cn'
 import { CheckIcon, XIcon } from 'lucide-react'
-
-import { cn } from '../lib'
 
 const Combobox = ComboboxPrimitive.Root
 

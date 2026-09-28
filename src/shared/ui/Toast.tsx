@@ -2,6 +2,7 @@ import type { LucideIcon } from 'lucide-react'
 import type { ToastType } from '../lib/toast/toast'
 
 import { Toast as ToastPrimitive } from '@base-ui/react/toast'
+import { cn } from 'cn'
 import {
   CircleAlertIcon,
   CircleCheckIcon,
@@ -10,7 +11,6 @@ import {
   XIcon
 } from 'lucide-react'
 
-import { cn } from '../lib/class-names/cn'
 import { toastManager } from '../lib/toast/toast'
 
 const TYPE_ICONS: Record<ToastType, LucideIcon> = {

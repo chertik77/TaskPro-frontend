@@ -1,9 +1,9 @@
 import type { ComponentProps } from 'react'
 
 import { useState } from 'react'
+import { cn } from 'cn'
 import { DynamicIcon } from 'lucide-react/dynamic'
 
-import { cn } from '../lib'
 import { Input } from './Input'
 
 export const PasswordInput = ({

@@ -4,9 +4,10 @@ import type { ComponentProps, ReactNode } from 'react'
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
 import { ScrollArea } from '@base-ui/react/scroll-area'
+import { cn } from 'cn'
 import { GripVerticalIcon } from 'lucide-react'
 
-import { cn, pluralize, useMediaQuery } from '@/shared/lib'
+import { pluralize, useMediaQuery } from '@/shared/lib'
 
 type ColumnContext = {
   column: TColumn

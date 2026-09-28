@@ -1,9 +1,8 @@
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
+import { cn } from 'cn'
 import { XIcon } from 'lucide-react'
 
 import { MENU_DATA } from '@/entities/setting'
-
-import { cn } from '@/shared/lib'
 
 export const SettingsPage = () => {
   const navigate = useNavigate()

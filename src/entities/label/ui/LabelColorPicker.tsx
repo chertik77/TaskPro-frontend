@@ -1,10 +1,10 @@
 import { Radio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
+import { cn } from 'cn'
 
 import { LABEL_BASE_COLOR_MAP } from '@/entities/label'
 
 import { AccentColor } from '@/shared/api'
-import { cn } from '@/shared/lib'
 import { FormItem, useFormField } from '@/shared/ui'
 
 export const LabelColorPicker = () => {

@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
+import { cn } from 'cn'
 
 import { LABEL_BASE_COLOR_MAP, labelQueries } from '@/entities/label'
 
-import { cn } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
 import { useTaskFilters } from '../lib/useTaskFilters'

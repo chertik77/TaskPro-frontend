@@ -1,6 +1,6 @@
-import { useSettings } from '@/entities/setting/@x/board'
+import { cn } from 'cn'
 
-import { cn } from '@/shared/lib'
+import { useSettings } from '@/entities/setting/@x/board'
 
 export const BoardBackgroundImage = ({ url }: { url: string | null }) => {
   const { data: backgroundBlur } = useSettings(

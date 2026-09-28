@@ -2,9 +2,9 @@ import type { Column } from '@/shared/api'
 
 import { memo, useMemo } from 'react'
 import { Select as SelectPrimitive } from '@base-ui/react/select'
+import { cn } from 'cn'
 import { CircleArrowRightIcon } from 'lucide-react'
 
-import { cn } from '@/shared/lib'
 import { Loader, Select, SelectContent, SelectItem } from '@/shared/ui'
 
 import { useMoveTask } from '../api/useMoveTask'

@@ -2,6 +2,7 @@ import type { AxiosError } from 'axios'
 
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import { useQuery } from '@tanstack/react-query'
+import { cn } from 'cn'
 
 import { DragAndDropProvider } from '@/features/drag-and-drop'
 
@@ -13,7 +14,7 @@ import {
   WHITE_TEXT_BOARD_BG_IDS
 } from '@/entities/board'
 
-import { cn, pluralize, useDocumentTitle } from '@/shared/lib'
+import { pluralize, useDocumentTitle } from '@/shared/lib'
 import { Loader } from '@/shared/ui'
 
 import { ColumnList } from './column-list/ColumnList'

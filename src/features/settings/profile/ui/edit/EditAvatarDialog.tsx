@@ -1,11 +1,11 @@
 import type { DragEvent, ReactNode } from 'react'
 
 import { useState } from 'react'
+import { cn } from 'cn'
 import { ImageUpIcon } from 'lucide-react'
 
 import { useMe } from '@/entities/user'
 
-import { cn } from '@/shared/lib'
 import {
   Button,
   Dialog,

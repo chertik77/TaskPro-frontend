@@ -2,14 +2,13 @@ import type { Column, Task as TTask } from '@/shared/api'
 import type { KeyboardEvent, PointerEvent } from 'react'
 
 import { memo } from 'react'
+import { cn } from 'cn'
 
 import { DeleteColumnAlertDialog } from '@/features/task/delete'
 import { EditTaskDialog } from '@/features/task/edit'
 import { MoveTaskSelect } from '@/features/task/move'
 
 import { Task, useCardDensity } from '@/entities/task'
-
-import { cn } from '@/shared/lib'
 
 type MemoizedTaskProps = {
   task: TTask

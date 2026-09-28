@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
 
-import { cn } from '../lib'
+import { cn } from 'cn'
 
 const Table = ({ className, ...props }: ComponentProps<'table'>) => (
   <div className='relative w-full overflow-x-auto'>

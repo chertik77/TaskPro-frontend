@@ -2,12 +2,12 @@ import type { ChangeEvent } from 'react'
 
 import { useState } from 'react'
 import { parseDate } from 'chrono-node'
+import { cn } from 'cn'
 import { isBefore, startOfDay, startOfToday } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 
 import { useSettings } from '@/entities/setting/@x/task'
 
-import { cn } from '@/shared/lib'
 import {
   Calendar,
   FormDescription,

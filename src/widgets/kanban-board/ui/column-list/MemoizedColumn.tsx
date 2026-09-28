@@ -5,6 +5,7 @@ import type {
 } from '@dnd-kit/core'
 
 import { memo } from 'react'
+import { cn } from 'cn'
 
 import { DeleteColumnAlertDialog } from '@/features/column/delete'
 import { EditColumnDialog } from '@/features/column/edit'
@@ -12,8 +13,6 @@ import { useDragAndDropSelector } from '@/features/drag-and-drop'
 import { AddTaskDialog } from '@/features/task/add'
 
 import { Column } from '@/entities/column'
-
-import { cn } from '@/shared/lib'
 
 import { TaskList } from '../task-list/TaskList'
 

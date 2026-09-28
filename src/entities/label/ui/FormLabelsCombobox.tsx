@@ -1,6 +1,7 @@
 import type { Label } from '@/shared/api'
 
-import { cn } from '@/shared/lib'
+import { cn } from 'cn'
+
 import {
   createTypeSafeCombobox,
   Loader,

@@ -2,12 +2,12 @@ import type { Board } from '@/shared/api'
 
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
+import { cn } from 'cn'
 import { DynamicIcon } from 'lucide-react/dynamic'
 
 import { DeleteBoardAlertDialog } from '@/features/board/delete'
 import { EditBoardDialog } from '@/features/board/edit'
 
-import { cn } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/model'
 
 type SidebarBoardListItemProps = {

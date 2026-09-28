@@ -1,6 +1,5 @@
 import { Avatar as AvatarPrimitive } from '@base-ui/react/avatar'
-
-import { cn } from '../lib'
+import { cn } from 'cn'
 
 const Avatar = ({ className, ...props }: AvatarPrimitive.Root.Props) => (
   <AvatarPrimitive.Root

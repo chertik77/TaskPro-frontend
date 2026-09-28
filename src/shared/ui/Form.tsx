@@ -2,9 +2,8 @@ import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 
 import { createContext, use, useMemo } from 'react'
 import { Field } from '@base-ui/react/field'
+import { cn } from 'cn'
 import { Controller, FormProvider, useController } from 'react-hook-form'
-
-import { cn } from '../lib'
 
 const Form = FormProvider
 

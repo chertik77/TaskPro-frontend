@@ -1,8 +1,7 @@
 import type { ComponentProps } from 'react'
 
+import { cn } from 'cn'
 import { Loader2Icon } from 'lucide-react'
-
-import { cn } from '../lib'
 
 export const Loader = ({ className, ...props }: ComponentProps<'svg'>) => (
   <Loader2Icon

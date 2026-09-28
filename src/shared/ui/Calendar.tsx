@@ -2,9 +2,8 @@ import type { ChevronProps } from '@daypicker/react'
 import type { ComponentProps } from 'react'
 
 import { DayPicker } from '@daypicker/react'
+import { cn } from 'cn'
 import { ChevronRightIcon } from 'lucide-react'
-
-import { cn } from '../lib'
 
 export const Calendar = ({
   className,

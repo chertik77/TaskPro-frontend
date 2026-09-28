@@ -2,10 +2,10 @@ import type { Variants } from 'motion/react'
 import type { ReactNode } from 'react'
 
 import { ScrollArea } from '@base-ui/react/scroll-area'
+import { cn } from 'cn'
 import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
 
-import { cn } from '@/shared/lib'
 import {
   Loader,
   Select,

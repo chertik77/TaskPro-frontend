@@ -1,7 +1,6 @@
 import { Dialog } from '@base-ui/react/dialog'
 import { useLocation, useNavigate } from '@tanstack/react-router'
-
-import { cn } from '@/shared/lib'
+import { cn } from 'cn'
 
 import { MENU_DATA } from '../config/menu-data'
 

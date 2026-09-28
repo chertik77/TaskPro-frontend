@@ -1,6 +1,5 @@
 import { Slider as SliderPrimitive } from '@base-ui/react/slider'
-
-import { cn } from '../lib'
+import { cn } from 'cn'
 
 export const Slider = <Value extends number | readonly number[]>({
   className,

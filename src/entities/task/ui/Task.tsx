@@ -3,6 +3,7 @@ import type { ComponentProps } from 'react'
 
 import { createContext, use, useMemo } from 'react'
 import { mergeProps, useRender } from '@base-ui/react'
+import { cn } from 'cn'
 import { isBefore, isToday, startOfToday } from 'date-fns'
 import { BellRingIcon } from 'lucide-react'
 
@@ -13,7 +14,7 @@ import {
 } from '@/entities/label/@x/task'
 import { useSettings } from '@/entities/setting/@x/task'
 
-import { capitalize, cn } from '@/shared/lib'
+import { capitalize } from '@/shared/lib'
 import { Checkbox } from '@/shared/ui'
 
 import { DATE_FORMAT_MAP } from '../config/date-format-map'

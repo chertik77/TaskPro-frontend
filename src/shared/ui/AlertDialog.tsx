@@ -1,8 +1,8 @@
 import type { ComponentProps } from 'react'
 
 import { AlertDialog as AlertDialogPrimitive } from '@base-ui/react/alert-dialog'
+import { cn } from 'cn'
 
-import { cn } from '../lib'
 import { Button } from './Button'
 
 const AlertDialog = AlertDialogPrimitive.Root

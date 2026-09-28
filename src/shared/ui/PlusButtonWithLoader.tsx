@@ -1,8 +1,8 @@
 import type { ComponentProps } from 'react'
 
+import { cn } from 'cn'
 import { PlusIcon } from 'lucide-react'
 
-import { cn } from '../lib'
 import { Button } from './Button'
 import { Loader } from './Loader'
 

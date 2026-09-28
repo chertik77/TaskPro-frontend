@@ -1,12 +1,13 @@
 import type { Label } from '@/shared/api'
 
+import { cn } from 'cn'
 import { format } from 'date-fns'
 import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
 
 import { LABEL_BASE_COLOR_MAP } from '@/entities/label'
 
-import { cn, useMediaQuery } from '@/shared/lib'
+import { useMediaQuery } from '@/shared/lib'
 import {
   Table,
   TableBody,

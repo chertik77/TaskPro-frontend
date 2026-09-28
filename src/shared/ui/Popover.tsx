@@ -1,9 +1,8 @@
 import type { ComponentProps } from 'react'
 
 import { Popover as PopoverPrimitive } from '@base-ui/react/popover'
+import { cn } from 'cn'
 import { XIcon } from 'lucide-react'
-
-import { cn } from '../lib'
 
 const Popover = PopoverPrimitive.Root
 

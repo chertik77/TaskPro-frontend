@@ -1,7 +1,9 @@
+import { cn } from 'cn'
+
 import { getTaskPriorityColor } from '@/entities/task'
 
 import { TaskPriority } from '@/shared/api'
-import { capitalize, cn } from '@/shared/lib'
+import { capitalize } from '@/shared/lib'
 
 import { useTaskFilters } from '../lib/useTaskFilters'
 import { FilterOption } from './FilterOption'

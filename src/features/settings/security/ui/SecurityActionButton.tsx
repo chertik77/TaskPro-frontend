@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
 
-import { cn } from '@/shared/lib'
+import { cn } from 'cn'
 
 export const SecurityActionButton = ({
   children,
