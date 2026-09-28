@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { Separator } from '@base-ui/react'
-import { CameraIcon, LockIcon } from 'lucide-react'
+import { CameraIcon } from 'lucide-react'
 
 import { Settings, useSettings } from '@/entities/setting'
 import { defaultAvatarUrl, useMe } from '@/entities/user'
@@ -16,7 +16,7 @@ import { EditNameDialog } from './EditNameDialog'
 type ProfileRowProps = {
   label: string
   value: ReactNode
-  children: ReactNode
+  children?: ReactNode
 }
 
 const ProfileRow = ({ label, value, children }: ProfileRowProps) => (
@@ -77,15 +77,8 @@ export const ProfileCard = () => {
       <RowSeparator />
       <ProfileRow
         label='Email'
-        value={user?.email}>
-        <span
-          className='text-md flex shrink-0 items-center gap-1.5 rounded-md
-            bg-black/5 px-2 py-1 text-black/50 dark:bg-white/5
-            dark:text-white/50'>
-          <LockIcon className='size-3' />
-          Read-only
-        </span>
-      </ProfileRow>
+        value={user?.email}
+      />
     </Settings.Item>
   )
 }
