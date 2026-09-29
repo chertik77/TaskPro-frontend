@@ -2,7 +2,6 @@ import type { BetterAuthClientPlugin } from 'better-auth'
 import type { BetterFetchOption } from 'better-auth/react'
 
 import { passkeyClient } from '@better-auth/passkey/client'
-import { inferAdditionalFields } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/react'
 
 import { env } from '../config'
@@ -10,17 +9,7 @@ import { env } from '../config'
 export const authClient = createAuthClient({
   baseURL: env.VITE_API_BASE_URL + '/auth',
   fetchOptions: { throw: true },
-  plugins: [
-    passkeyClient(),
-    revokeSessionByIdPlugin(),
-    inferAdditionalFields({
-      session: {
-        browser: { type: 'string', input: false },
-        os: { type: 'string', input: false },
-        isCurrent: { type: 'boolean', input: false }
-      }
-    })
-  ]
+  plugins: [passkeyClient(), revokeSessionByIdPlugin()]
 })
 
 function revokeSessionByIdPlugin() {

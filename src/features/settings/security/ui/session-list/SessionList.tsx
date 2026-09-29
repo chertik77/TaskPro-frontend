@@ -1,75 +1,69 @@
 import type { UserTypes } from '@/entities/user'
 
-import { Fragment } from 'react/jsx-runtime'
-import { Separator } from '@base-ui/react'
-import { formatDistanceToNowStrict } from 'date-fns'
+import { useQuery } from '@tanstack/react-query'
 import { AnimatePresence } from 'motion/react'
 
 import { Settings } from '@/entities/setting'
+import { sessionQueries } from '@/entities/user'
 
+import { parseUserAgent } from '../../lib/parseUserAgent'
 import { BrowserIcon } from './BrowserIcon'
 import { RevokeSessionButton } from './RevokeSessionButton'
+import { SessionMeta } from './SessionMeta'
 
 type SessionsListProps = {
   sessions: UserTypes.InferedSession[] | undefined
 }
 
-export const SessionsList = ({ sessions }: SessionsListProps) => (
-  <AnimatePresence
-    initial={false}
-    mode='popLayout'>
-    {sessions?.map(({ id, browser, os, isCurrent, updatedAt }) => {
-      const meta = [
-        isCurrent && (
-          <div
-            key='current'
-            className='flex items-center gap-1 text-green-500'>
-            <span className='size-2 rounded-full bg-current' />
-            Current session
-          </div>
-        ),
+export const SessionsList = ({ sessions }: SessionsListProps) => {
+  const currentSessionId = useQuery({
+    ...sessionQueries.current(),
+    select: session => session?.session.id
+  }).data
 
-        !isCurrent && updatedAt && (
-          <span key='last-active'>
-            Last active{' '}
-            {formatDistanceToNowStrict(new Date(updatedAt), {
-              addSuffix: true
-            })}
-          </span>
-        )
-      ].filter(Boolean)
+  const sortedSessions = sessions?.toSorted((a, b) => {
+    const aIsCurrent = a.id === currentSessionId
+    const bIsCurrent = b.id === currentSessionId
 
-      return (
-        <Settings.Item
-          key={id}
-          className='dark:bg-black-muted bg-white-muted tablet:pr-8
-            tablet:items-center flex items-center gap-3! rounded-lg px-4 py-3'>
-          <BrowserIcon browser={browser} />
-          <div className='space-y-1'>
-            {browser && os && (
-              <p className='text-base font-medium'>
-                {browser} on {os}
-              </p>
-            )}
-            <div
-              className='text-md flex items-center gap-2 text-black/50
-                dark:text-white/50'>
-              {meta.map((item, index) => (
-                <Fragment key={index}>
-                  {index > 0 && (
-                    <Separator className='size-1 rounded-full bg-current' />
-                  )}
-                  {item}
-                </Fragment>
-              ))}
+    if (aIsCurrent !== bIsCurrent) {
+      return aIsCurrent ? -1 : 1
+    }
+
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+  })
+
+  return (
+    <AnimatePresence
+      initial={false}
+      mode='popLayout'>
+      {sortedSessions?.map(({ id, userAgent, updatedAt }) => {
+        const isCurrent = id === currentSessionId
+        const { browser, os } = parseUserAgent(userAgent)
+
+        return (
+          <Settings.Item
+            key={id}
+            className='dark:bg-black-muted bg-white-muted tablet:pr-8
+              tablet:items-center flex items-center gap-3! rounded-lg px-4 py-3'>
+            <BrowserIcon browser={browser} />
+            <div className='space-y-1'>
+              {browser && os && (
+                <p className='text-base font-medium'>
+                  {browser} on {os}
+                </p>
+              )}
+              <SessionMeta
+                isCurrent={isCurrent}
+                updatedAt={updatedAt}
+              />
             </div>
-          </div>
-          <RevokeSessionButton
-            sessionId={id}
-            isCurrent={isCurrent}
-          />
-        </Settings.Item>
-      )
-    })}
-  </AnimatePresence>
-)
+            <RevokeSessionButton
+              sessionId={id}
+              isCurrent={isCurrent}
+            />
+          </Settings.Item>
+        )
+      })}
+    </AnimatePresence>
+  )
+}

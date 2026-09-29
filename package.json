@@ -46,6 +46,7 @@
     "react-dom": "^19.3.0",
     "react-hook-form": "7.88.0",
     "stan-js": "^1.9.1",
+    "ua-parser-js": "^2.0.10",
     "use-context-selector": "^2.0.0",
     "use-debounce": "^10.1.1",
     "valibot": "^1.5.0"
