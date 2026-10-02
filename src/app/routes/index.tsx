@@ -13,9 +13,10 @@ export const OauthErrorSearchSchema = v.object({
 export const Route = createFileRoute('/')({
   validateSearch: OauthErrorSearchSchema,
   beforeLoad: async ({ context: { queryClient }, search: { error } }) => {
-    const isAuthenticated = await queryClient.ensureQueryData(
-      sessionQueries.current()
-    )
+    const isAuthenticated = await queryClient.query({
+      ...sessionQueries.current(),
+      staleTime: 'static'
+    })
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
 

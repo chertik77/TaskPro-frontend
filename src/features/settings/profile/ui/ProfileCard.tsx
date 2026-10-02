@@ -4,7 +4,7 @@ import { Separator } from '@base-ui/react'
 import { CameraIcon } from 'lucide-react'
 
 import { Settings, useSettings } from '@/entities/setting'
-import { defaultAvatarUrl, useMe } from '@/entities/user'
+import { DEFAULT_AVATAR_URL, useMe } from '@/entities/user'
 
 import { resolveTheme } from '@/shared/config'
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui'
@@ -51,7 +51,7 @@ export const ProfileCard = () => {
         <EditAvatarDialog>
           <Avatar className='size-15 rounded-xl bg-white dark:bg-black'>
             <AvatarImage
-              src={user?.image || defaultAvatarUrl[resolveTheme(theme)]}
+              src={user?.image || DEFAULT_AVATAR_URL[resolveTheme(theme)]}
               alt='Avatar'
             />
             <AvatarFallback className='text-xl'>

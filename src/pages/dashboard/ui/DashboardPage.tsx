@@ -2,7 +2,6 @@ import { Outlet } from '@tanstack/react-router'
 import * as m from 'motion/react-m'
 
 import { SettingsSync } from '@/entities/setting'
-import { useMetaThemeColor } from '@/entities/user'
 
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
@@ -14,8 +13,6 @@ import { LabelModalProvider } from './LabelModalProvider'
 
 export const DashboardPage = () => {
   const { isOpen } = useSidebarStore()
-
-  useMetaThemeColor()
 
   const isTabletAndBelow = useMediaQuery('(max-width: 1439px)')
 

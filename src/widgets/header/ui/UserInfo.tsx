@@ -1,5 +1,5 @@
 import { useSettings } from '@/entities/setting'
-import { defaultAvatarUrl, useMe } from '@/entities/user'
+import { DEFAULT_AVATAR_URL, useMe } from '@/entities/user'
 
 import { resolveTheme } from '@/shared/config'
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui'
@@ -16,7 +16,7 @@ export const UserInfo = () => {
       <p>{name}</p>
       <Avatar>
         <AvatarImage
-          src={user?.image || defaultAvatarUrl[resolveTheme(theme)]}
+          src={user?.image || DEFAULT_AVATAR_URL[resolveTheme(theme)]}
           alt={name}
         />
         <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>

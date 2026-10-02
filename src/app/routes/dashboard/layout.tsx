@@ -5,9 +5,10 @@ import { sessionQueries } from '@/entities/user'
 
 export const Route = createFileRoute('/dashboard')({
   beforeLoad: async ({ context: { queryClient } }) => {
-    const isAuthenticated = await queryClient.ensureQueryData(
-      sessionQueries.current()
-    )
+    const isAuthenticated = await queryClient.query({
+      ...sessionQueries.current(),
+      staleTime: 'static'
+    })
 
     if (!isAuthenticated) throw redirect({ to: '/' })
   },

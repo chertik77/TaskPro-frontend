@@ -8,9 +8,10 @@ import { sessionQueries } from '@/entities/user'
 
 export const Route = createFileRoute('/auth/_auth-layout')({
   beforeLoad: async ({ context: { queryClient } }) => {
-    const isAuthenticated = await queryClient.ensureQueryData(
-      sessionQueries.current()
-    )
+    const isAuthenticated = await queryClient.query({
+      ...sessionQueries.current(),
+      staleTime: 'static'
+    })
 
     if (isAuthenticated) throw redirect({ to: '/dashboard' })
   },
@@ -28,7 +29,6 @@ export const Route = createFileRoute('/auth/_auth-layout')({
                 Registration
               </Link>
             </RovingFocusGroupItem>
-
             <RovingFocusGroupItem asChild>
               <Link
                 to='/auth/signin'
@@ -38,7 +38,6 @@ export const Route = createFileRoute('/auth/_auth-layout')({
               </Link>
             </RovingFocusGroupItem>
           </RovingFocusGroup>
-
           <Outlet />
         </div>
       </div>
