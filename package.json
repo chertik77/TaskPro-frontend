@@ -42,7 +42,7 @@
     "lucide-react": "^1.48.0",
     "motion": "^13.4.4",
     "react": "^19.3.0",
-    "react-avatar-editor": "^15.1.0",
+    "react-avatar-editor": "^16.0.0",
     "react-dom": "^19.3.0",
     "react-hook-form": "7.88.0",
     "stan-js": "^1.9.1",
