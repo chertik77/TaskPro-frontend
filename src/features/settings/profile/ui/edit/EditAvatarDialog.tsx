@@ -68,8 +68,9 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
     setIsDialogOpen(true)
   }
 
-  const handleSave = () =>
+  const handleSave = () => {
     getCroppedAvatar(avatar => uploadAvatar({ body: { avatar } }))
+  }
 
   return (
     <Dialog
@@ -111,7 +112,6 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
               image={image}
               scale={scale}
               rotate={rotate}
-              onScaleChange={changeScale}
               onPositionChange={setPosition}
             />
             <AvatarEditorControls
