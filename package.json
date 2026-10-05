@@ -39,7 +39,7 @@
     "date-fns": "^4.4.0",
     "fuse.js": "^7.5.0",
     "lucide-react": "^1.48.0",
-    "motion": "^13.4.4",
+    "motion": "^14.0.0",
     "react": "^19.3.0",
     "react-avatar-editor": "^16.0.0",
     "react-dom": "^19.3.0",
