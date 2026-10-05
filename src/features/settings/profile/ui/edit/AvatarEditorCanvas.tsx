@@ -2,26 +2,19 @@ import type { RefObject } from 'react'
 import type { AvatarEditorRef, Position } from 'react-avatar-editor'
 
 import { useRef } from 'react'
-import { usePinch } from '@use-gesture/react'
 import AvatarEditor from 'react-avatar-editor'
 
 import { useSettings } from '@/entities/setting'
 
 import { resolveTheme } from '@/shared/config'
 
-import {
-  EDITOR_COLORS,
-  EDITOR_SIZE,
-  MAX_SCALE,
-  MIN_SCALE
-} from '../../config/avatar'
+import { EDITOR_COLORS, EDITOR_SIZE } from '../../config/avatar'
 
 type AvatarEditorCanvasProps = {
   ref: RefObject<AvatarEditorRef | null>
   image: File | string
   scale: number
   rotate: number
-  onScaleChange: (scale: number) => void
   onPositionChange: (position: Position) => void
 }
 
@@ -30,7 +23,6 @@ export const AvatarEditorCanvas = ({
   image,
   scale,
   rotate,
-  onScaleChange,
   onPositionChange
 }: AvatarEditorCanvasProps) => {
   const { data: theme } = useSettings(state => state.general.theme)
@@ -38,13 +30,6 @@ export const AvatarEditorCanvas = ({
   const colors = EDITOR_COLORS[resolveTheme(theme)]
 
   const containerRef = useRef<HTMLDivElement>(null)
-
-  usePinch(({ offset: [pinchedScale] }) => onScaleChange(pinchedScale), {
-    target: containerRef,
-    from: () => [scale, 0],
-    scaleBounds: { min: MIN_SCALE, max: MAX_SCALE },
-    eventOptions: { passive: false }
-  })
 
   return (
     <div
@@ -62,6 +47,7 @@ export const AvatarEditorCanvas = ({
         backgroundColor={colors.background}
         scale={scale}
         rotate={rotate}
+        enableWheelZoom
         crossOrigin='anonymous'
         onPositionChange={onPositionChange}
         style={{ touchAction: 'none', borderRadius: 8 }}
