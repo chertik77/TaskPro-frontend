@@ -7,6 +7,7 @@ import { authClient, getAuthErrorMessage } from '@/shared/api'
 import { getBaseUrl } from '@/shared/config'
 
 type AccountConnectionMutationData = {
+  accountId: string | undefined
   providerId: string
   isConnected: boolean
 }
@@ -16,11 +17,12 @@ export const useAccountConnection = () => {
 
   return useMutation({
     mutationFn: async ({
+      accountId,
       providerId,
       isConnected
     }: AccountConnectionMutationData) => {
-      if (isConnected) {
-        return authClient.unlinkAccount({ accountId: providerId })
+      if (isConnected && accountId) {
+        return authClient.unlinkAccount({ accountId })
       }
 
       return authClient.linkSocial({

@@ -14,7 +14,8 @@ type AccountListProps = {
 
 export const AccountList = ({ accounts }: AccountListProps) =>
   ACCOUNT_DATA.map(({ id, icon: Icon, label }) => {
-    const isConnected = !!accounts?.some(account => account.providerId === id)
+    const account = accounts?.find(account => account.providerId === id)
+    const isConnected = !!account
 
     return (
       <Settings.Item
@@ -44,6 +45,7 @@ export const AccountList = ({ accounts }: AccountListProps) =>
           <AccountConnectionButton
             isConnected={isConnected}
             providerId={id}
+            accountId={account?.id}
           />
         </div>
       </Settings.Item>

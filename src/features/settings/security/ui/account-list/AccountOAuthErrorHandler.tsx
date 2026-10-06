@@ -11,7 +11,7 @@ export const AccountOAuthErrorHandler = () => {
   useEffect(() => {
     if (search.error) {
       toast.error(
-        search.error === "email_doesn't_match"
+        search.error === 'email_does_not_match'
           ? 'The email address you provided does not match the one associated with your account.'
           : 'Something went wrong. Please try again in a moment'
       )

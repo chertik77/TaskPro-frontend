@@ -3,18 +3,20 @@ import { SecurityActionButton } from '../SecurityActionButton'
 
 type AccountConnectionButtonProps = {
   isConnected: boolean
+  accountId: string | undefined
   providerId: string
 }
 
 export const AccountConnectionButton = ({
   isConnected,
+  accountId,
   providerId
 }: AccountConnectionButtonProps) => {
   const { mutate, isPending } = useAccountConnection()
 
   return (
     <SecurityActionButton
-      onClick={() => mutate({ providerId, isConnected })}
+      onClick={() => mutate({ providerId, accountId, isConnected })}
       disabled={isPending}>
       {isPending
         ? isConnected
