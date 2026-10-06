@@ -6,11 +6,10 @@ The Kanban task manager for organizing work into boards, columns and cards —
 with drag-and-drop, fuzzy search, passkey sign-in and a deeply customizable
 interface.
 
-[![Code Quality](https://github.com/chertik77/TaskPro-frontend/actions/workflows/code-quality.yml/badge.svg)](https://github.com/chertik77/TaskPro-frontend/actions/workflows/code-quality.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&style=flat&colorA=000000&colorB=000000)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&style=flat&colorA=000000&colorB=000000)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&style=flat&colorA=000000&colorB=000000)](https://tailwindcss.com)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&style=flat&colorA=000000&colorB=000000)](https://vite.dev)
 
 [Live App](https://www.taskpro.qzz.io) · [Backend Repo](https://github.com/chertik77/TaskPro-backend)
 
