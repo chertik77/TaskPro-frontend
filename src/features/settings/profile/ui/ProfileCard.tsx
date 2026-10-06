@@ -9,9 +9,9 @@ import { DEFAULT_AVATAR_URL, useMe } from '@/entities/user'
 import { resolveTheme } from '@/shared/config'
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui'
 
-import { DeleteAvatarAlertDialog } from './delete/DeleteAvatarAlertDialog'
-import { EditAvatarDialog } from './edit/EditAvatarDialog'
-import { EditNameDialog } from './EditNameDialog'
+import { DeleteAvatarAlertDialog } from './delete-avatar/DeleteAvatarAlertDialog'
+import { EditAvatarDialog } from './edit-avatar/EditAvatarDialog'
+import { EditNameDialog } from './edit-name/EditNameDialog'
 
 type ProfileRowProps = {
   label: string
@@ -27,10 +27,6 @@ const ProfileRow = ({ label, value, children }: ProfileRowProps) => (
     </div>
     {children}
   </div>
-)
-
-const RowSeparator = () => (
-  <Separator className='block h-px w-full bg-black/10 dark:bg-white/10' />
 )
 
 export const ProfileCard = () => {
@@ -68,13 +64,13 @@ export const ProfileCard = () => {
         </EditAvatarDialog>
         <DeleteAvatarAlertDialog isDisabled={!user?.image} />
       </div>
-      <RowSeparator />
+      <Separator className='block h-px w-full bg-black/10 dark:bg-white/10' />
       <ProfileRow
         label='Name'
         value={user?.name}>
         <EditNameDialog />
       </ProfileRow>
-      <RowSeparator />
+      <Separator className='block h-px w-full bg-black/10 dark:bg-white/10' />
       <ProfileRow
         label='Email'
         value={user?.email}

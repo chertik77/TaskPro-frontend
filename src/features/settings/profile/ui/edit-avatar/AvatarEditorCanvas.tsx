@@ -15,6 +15,7 @@ type AvatarEditorCanvasProps = {
   image: File | string
   scale: number
   rotate: number
+  changeScale: (scale: number) => void
   onPositionChange: (position: Position) => void
 }
 
@@ -23,6 +24,7 @@ export const AvatarEditorCanvas = ({
   image,
   scale,
   rotate,
+  changeScale,
   onPositionChange
 }: AvatarEditorCanvasProps) => {
   const { data: theme } = useSettings(state => state.general.theme)
@@ -34,7 +36,7 @@ export const AvatarEditorCanvas = ({
   return (
     <div
       ref={containerRef}
-      className='mx-auto w-fit touch-none'>
+      className='mx-auto w-fit'>
       <AvatarEditor
         ref={ref}
         image={image}
@@ -49,8 +51,9 @@ export const AvatarEditorCanvas = ({
         rotate={rotate}
         enableWheelZoom
         crossOrigin='anonymous'
+        onRequestScaleChange={changeScale}
         onPositionChange={onPositionChange}
-        style={{ touchAction: 'none', borderRadius: 8 }}
+        style={{ borderRadius: 8 }}
       />
     </div>
   )

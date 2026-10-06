@@ -97,8 +97,8 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
         {!image ? (
           <>
             <DialogDescription className='mb-6'>
-              Choose a .jpeg, .png, .avif or .webp image up to 5MB. You can
-              crop, zoom and rotate it before saving.
+              Choose a .jpeg, .png or .webp image up to 5MB. You can crop, zoom
+              and rotate it before saving.
             </DialogDescription>
             <AvatarFileInput onSelectFile={selectImage}>
               <ImageUpIcon className='mr-2 size-5' />
@@ -112,6 +112,7 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
               image={image}
               scale={scale}
               rotate={rotate}
+              changeScale={changeScale}
               onPositionChange={setPosition}
             />
             <AvatarEditorControls

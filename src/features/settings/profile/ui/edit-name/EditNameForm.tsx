@@ -14,8 +14,8 @@ import {
   PlusButtonWithLoader
 } from '@/shared/ui'
 
-import { useUpdateName } from '../api/useUpdateName'
-import { NameSchema } from '../model/contract'
+import { useUpdateName } from '../../api/useUpdateName'
+import { NameSchema } from '../../model/contract'
 
 type EditNameFormProps = {
   closeDialog: () => void
