@@ -1,5 +1,3 @@
-import type { AxiosError } from 'axios'
-
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
@@ -7,12 +5,12 @@ import { Button } from '@/shared/ui'
 
 import { boardQueries } from '../api/queries'
 
-export const BoardErrorView = ({ error }: { error: AxiosError }) => {
+export const BoardErrorView = ({ error }: { error: HttpError }) => {
   const navigate = useNavigate()
 
   const queryClient = useQueryClient()
 
-  const isBoardNotFound = error.response?.status === 404
+  const isBoardNotFound = error?.status === 404
 
   const refetchBoard = () => {
     queryClient.refetchQueries({

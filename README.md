@@ -91,7 +91,7 @@ interface.
 
 ## Languages and Tools
 
-![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,baseui,tanstack,betterauth,heyapi,stanjs,axios,datefns,motion,reactdatepicker,reacthookform,lucide,thesvg,valibot,tailwind,tailwindmerge,fusejs,commitlint,eslint,prettier,githubactions,fsd,yarn,vercel,vite,vscode,figma&perline=10)
+![Languages and Tools](https://skills.syvixor.com/api/icons?i=ts,react,dndkit,baseui,tanstack,betterauth,heyapi,stanjs,datefns,motion,reactdatepicker,reacthookform,lucide,thesvg,valibot,tailwind,tailwindmerge,fusejs,commitlint,eslint,prettier,githubactions,fsd,yarn,vercel,vite,vscode,figma&perline=10)
 
 ## License
 

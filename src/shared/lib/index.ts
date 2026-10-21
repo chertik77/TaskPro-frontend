@@ -1,6 +1,7 @@
 export { useMediaQuery } from './media/useMediaQuery'
 export { useDocumentTitle } from './document-title/useDocumentTitle'
 export { useShouldAutoFocus } from './auto-focus/useShouldAutoFocus'
+export { isHttpError } from './http-error/is-http-error'
 export { formVariants } from './motion/form-variants'
 export { capitalize } from './capitalize/capitalize'
 export { useAppForm } from './form/useAppForm'

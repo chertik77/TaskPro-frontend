@@ -1,5 +1,3 @@
-import type { AxiosError } from 'axios'
-
 import { ScrollArea } from '@base-ui/react/scroll-area'
 import { useQuery } from '@tanstack/react-query'
 import { cn } from 'cn'
@@ -40,7 +38,7 @@ export const Board = () => {
       </div>
     )
 
-  if (isError) return <BoardErrorView error={error as AxiosError} />
+  if (isError) return <BoardErrorView error={error} />
 
   const backgroundURL = board?.background.url
 

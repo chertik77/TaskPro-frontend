@@ -30,7 +30,6 @@ export const health = <ThrowOnError extends boolean = true>(options?: Options<He
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vHealthResponse, data),
     url: '/health',
     ...options
@@ -45,7 +44,6 @@ export const help = <ThrowOnError extends boolean = true>(options: Options<HelpD
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vHelpResponse, data),
     security: [{
             in: 'cookie',
@@ -69,7 +67,6 @@ export const deleteAvatar = <ThrowOnError extends boolean = true>(options?: Opti
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vDeleteAvatarResponse, data),
     security: [{
             in: 'cookie',
@@ -90,7 +87,6 @@ export const uploadAvatar = <ThrowOnError extends boolean = true>(options: Optio
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUploadAvatarResponse, data),
     security: [{
             in: 'cookie',
@@ -114,7 +110,6 @@ export const getAllSettings = <ThrowOnError extends boolean = true>(options?: Op
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetAllSettingsResponse, data),
     security: [{
             in: 'cookie',
@@ -134,7 +129,6 @@ export const updateGeneralSettings = <ThrowOnError extends boolean = true>(optio
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateGeneralSettingsResponse, data),
     security: [{
             in: 'cookie',
@@ -158,7 +152,6 @@ export const updateTaskSettings = <ThrowOnError extends boolean = true>(options:
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateTaskSettingsResponse, data),
     security: [{
             in: 'cookie',
@@ -182,7 +175,6 @@ export const updateLabelSettings = <ThrowOnError extends boolean = true>(options
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateLabelSettingsResponse, data),
     security: [{
             in: 'cookie',
@@ -206,7 +198,6 @@ export const getAllBoards = <ThrowOnError extends boolean = true>(options?: Opti
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetAllBoardsResponse, data),
     security: [{
             in: 'cookie',
@@ -226,7 +217,6 @@ export const createBoard = <ThrowOnError extends boolean = true>(options: Option
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateBoardResponse, data),
     security: [{
             in: 'cookie',
@@ -269,7 +259,6 @@ export const getBoardById = <ThrowOnError extends boolean = true>(options: Optio
         path: vGetBoardByIdPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetBoardByIdResponse, data),
     security: [{
             in: 'cookie',
@@ -289,7 +278,6 @@ export const updateBoard = <ThrowOnError extends boolean = true>(options: Option
         path: vUpdateBoardPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateBoardResponse, data),
     security: [{
             in: 'cookie',
@@ -313,7 +301,6 @@ export const createColumn = <ThrowOnError extends boolean = true>(options: Optio
         path: vCreateColumnPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateColumnResponse, data),
     security: [{
             in: 'cookie',
@@ -356,7 +343,6 @@ export const updateColumn = <ThrowOnError extends boolean = true>(options: Optio
         path: vUpdateColumnPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateColumnResponse, data),
     security: [{
             in: 'cookie',
@@ -403,7 +389,6 @@ export const createTask = <ThrowOnError extends boolean = true>(options: Options
         path: vCreateTaskPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateTaskResponse, data),
     security: [{
             in: 'cookie',
@@ -446,7 +431,6 @@ export const updateTask = <ThrowOnError extends boolean = true>(options: Options
         path: vUpdateTaskPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateTaskResponse, data),
     security: [{
             in: 'cookie',
@@ -472,7 +456,6 @@ export const moveTask = <ThrowOnError extends boolean = true>(options: Options<M
         path: vMoveTaskPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vMoveTaskResponse, data),
     security: [{
             in: 'cookie',
@@ -519,7 +502,6 @@ export const getAllLabels = <ThrowOnError extends boolean = true>(options?: Opti
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vGetAllLabelsResponse, data),
     security: [{
             in: 'cookie',
@@ -539,7 +521,6 @@ export const createLabel = <ThrowOnError extends boolean = true>(options: Option
         path: v.optional(v.never()),
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vCreateLabelResponse, data),
     security: [{
             in: 'cookie',
@@ -582,7 +563,6 @@ export const updateLabel = <ThrowOnError extends boolean = true>(options: Option
         path: vUpdateLabelPath,
         query: v.optional(v.never())
     }), data),
-    responseType: 'json',
     responseValidator: async (data) => await v.parseAsync(vUpdateLabelResponse, data),
     security: [{
             in: 'cookie',

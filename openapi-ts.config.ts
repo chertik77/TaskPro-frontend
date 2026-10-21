@@ -15,7 +15,7 @@ export default defineConfig({
     'valibot',
     '@tanstack/react-query',
     {
-      name: '@hey-api/client-axios',
+      name: '@hey-api/client-fetch',
       throwOnError: true,
       runtimeConfigPath: 'src/shared/lib/openapi/hey-api.ts'
     },

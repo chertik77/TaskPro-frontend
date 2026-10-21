@@ -31,7 +31,6 @@ export {
 } from './sdk.gen'
 export {
   AccentColor,
-  type Avatar,
   type Board,
   type BoardBackground,
   BoardBackgroundId,
@@ -105,7 +104,6 @@ export {
   type GetBoardByIdErrors,
   type GetBoardByIdResponse,
   type GetBoardByIdResponses,
-  type Health,
   type HealthData,
   type HealthError,
   type HealthErrors,

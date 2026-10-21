@@ -2,23 +2,10 @@
 
 import * as v from 'valibot';
 
-export const vHealth = v.object({
-    status: v.picklist(['ok', 'degraded']),
-    uptime: v.pipe(v.number(), v.integer()),
-    services: v.object({
-        database: v.picklist(['up', 'down']),
-        redis: v.picklist(['up', 'down'])
-    })
-});
-
 export const vErrorResponse = v.object({
     status: v.number(),
     message: v.union([v.string(), v.record(v.string(), v.array(v.string()))]),
     errors: v.optional(v.record(v.string(), v.array(v.string())))
-});
-
-export const vAvatar = v.object({
-    image: v.nullable(v.pipe(v.string(), v.url()))
 });
 
 export const vAccentColor = v.optional(v.picklist([
@@ -193,7 +180,14 @@ export const vBoard = v.object({
 /**
  * All dependencies reachable
  */
-export const vHealthResponse = vHealth;
+export const vHealthResponse = v.object({
+    status: v.picklist(['ok', 'degraded']),
+    uptime: v.pipe(v.number(), v.integer()),
+    services: v.object({
+        database: v.picklist(['up', 'down']),
+        redis: v.picklist(['up', 'down'])
+    })
+});
 
 export const vHelpBody = v.object({
     email: v.pipe(v.string(), v.email()),
@@ -210,7 +204,9 @@ export const vHelpResponse = v.object({
 /**
  * Avatar deleted
  */
-export const vDeleteAvatarResponse = vAvatar;
+export const vDeleteAvatarResponse = v.object({
+    image: v.nullable(v.pipe(v.string(), v.url()))
+});
 
 export const vUploadAvatarBody = v.object({
     avatar: v.string()
@@ -219,7 +215,9 @@ export const vUploadAvatarBody = v.object({
 /**
  * Avatar uploaded
  */
-export const vUploadAvatarResponse = vAvatar;
+export const vUploadAvatarResponse = v.object({
+    image: v.nullable(v.pipe(v.string(), v.url()))
+});
 
 /**
  * Success
