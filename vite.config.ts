@@ -7,9 +7,9 @@ import { defineConfig } from 'vite'
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 import {
-  APPEARANCE_DEFAULTS,
   APPEARANCE_STORAGE_KEY,
-  applyStoredAppearance
+  applyAppearance,
+  DEFAULT_APPEARANCE
 } from './src/shared/config/appearance-bootstrap.ts'
 
 const appearanceBootstrap = (): PluginOption => ({
@@ -19,9 +19,12 @@ const appearanceBootstrap = (): PluginOption => ({
     handler: () => [
       {
         tag: 'script',
-        children: `(${applyStoredAppearance.toString()})(${JSON.stringify(
+        injectTo: 'head-prepend',
+        children: `(${applyAppearance})({...${JSON.stringify(
+          DEFAULT_APPEARANCE
+        )},...JSON.parse(localStorage.getItem(${JSON.stringify(
           APPEARANCE_STORAGE_KEY
-        )},${JSON.stringify(APPEARANCE_DEFAULTS)})`
+        )}))})`
       }
     ]
   }

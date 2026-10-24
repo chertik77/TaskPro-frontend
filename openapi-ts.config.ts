@@ -17,7 +17,7 @@ export default defineConfig({
     {
       name: '@hey-api/client-fetch',
       throwOnError: true,
-      runtimeConfigPath: 'src/shared/lib/openapi/hey-api.ts'
+      runtimeConfigPath: 'src/shared/api/client-config.ts'
     },
     { enums: 'javascript', name: '@hey-api/typescript' },
     { name: '@hey-api/sdk', validator: true }

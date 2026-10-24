@@ -1,64 +1,34 @@
-import { MotionGlobalConfig } from 'motion/react'
+import type { Appearance } from './appearance-bootstrap'
 
 import {
-  APPEARANCE_DEFAULTS,
   APPEARANCE_STORAGE_KEY,
-  applyStoredAppearance,
-  DEFAULT_THEME
+  DEFAULT_APPEARANCE
 } from './appearance-bootstrap'
 
 export {
-  APPEARANCE_STORAGE_KEY,
-  DEFAULT_ANIMATIONS,
-  DEFAULT_FONT_SIZE,
-  DEFAULT_THEME
+  applyAppearance,
+  DEFAULT_APPEARANCE,
+  type Appearance
 } from './appearance-bootstrap'
 
-export const THEMES = ['light', 'dark', 'system'] as const
+export type Theme = Appearance['theme']
 
-export type Theme = (typeof THEMES)[number]
+export const getStoredAppearance = (): Appearance => {
+  const stored = JSON.parse(localStorage.getItem(APPEARANCE_STORAGE_KEY)!)
 
-export type StoredAppearance = {
-  theme: Theme
-  accentColor: string
-  fontSize: string
-  animations: string
+  return { ...DEFAULT_APPEARANCE, ...stored }
 }
 
-export const getStoredAppearance = (): Partial<StoredAppearance> => {
-  const stored = localStorage.getItem(APPEARANCE_STORAGE_KEY)
-
-  return stored ? JSON.parse(stored) : {}
-}
-
-export const setStoredAppearance = (appearance: StoredAppearance) => {
+export const setStoredAppearance = (appearance: Appearance) =>
   localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(appearance))
-}
 
-export const resetStoredAppearance = () => {
+export const clearStoredAppearance = () =>
   localStorage.removeItem(APPEARANCE_STORAGE_KEY)
 
-  applyStoredAppearance(APPEARANCE_STORAGE_KEY, APPEARANCE_DEFAULTS)
-
-  MotionGlobalConfig.skipAnimations = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches
-}
-
-export const getStoredTheme = (): Theme => {
-  const { theme } = getStoredAppearance()
-
-  return (THEMES as readonly string[]).includes(theme ?? '')
-    ? (theme as Theme)
-    : DEFAULT_THEME
-}
-
 export const resolveTheme = (
-  theme: Theme | undefined
+  theme: Theme = getStoredAppearance().theme
 ): Exclude<Theme, 'system'> => {
-  const value = theme ?? getStoredTheme()
-
-  if (value !== 'system') return value
+  if (theme !== 'system') return theme
 
   return window.matchMedia('(prefers-color-scheme: dark)').matches
     ? 'dark'

@@ -1,14 +1,12 @@
 export {
-  THEMES,
-  DEFAULT_THEME,
-  APPEARANCE_STORAGE_KEY,
+  applyAppearance,
+  DEFAULT_APPEARANCE,
   getStoredAppearance,
   setStoredAppearance,
-  resetStoredAppearance,
-  getStoredTheme,
+  clearStoredAppearance,
   resolveTheme,
-  type Theme,
-  type StoredAppearance
+  type Appearance,
+  type Theme
 } from './appearance'
 export { env } from './env'
 export { getBaseUrl } from './base-url'
