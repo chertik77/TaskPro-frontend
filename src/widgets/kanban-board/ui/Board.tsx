@@ -70,7 +70,9 @@ export const Board = () => {
       </div>
       <ScrollArea.Viewport>
         <ScrollArea.Content className='w-full flex-1 pb-4'>
-          <DragAndDropProvider initialColumns={board?.columns}>
+          <DragAndDropProvider
+            key={boardId}
+            initialColumns={board?.columns}>
             <ColumnList backgroundURL={backgroundURL} />
             <KanbanDragOverlay />
           </DragAndDropProvider>

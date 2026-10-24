@@ -106,6 +106,18 @@
     running;
   --animate-modal-overlay-out: modal-overlay-out 300ms ease 0s 1 normal none
     running;
+  --animate-drag-lift: drag-lift 200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  @keyframes drag-lift {
+    from {
+      outline-color: transparent;
+    }
+    to {
+      scale: 1.03;
+      rotate: var(--drag-lift-rotate, 0deg);
+      box-shadow: 0px 18px 36px -12px rgba(17, 17, 17, 0.35);
+    }
+  }
 
   @keyframes modal-overlay-in {
     from {
