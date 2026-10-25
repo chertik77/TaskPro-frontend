@@ -28,7 +28,7 @@
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "@hookform/resolvers": "^5.9.1",
+    "@hookform/resolvers": "^6.0.0",
     "@radix-ui/react-roving-focus": "^1.2.1",
     "@tanstack/react-query": "^5.104.3",
     "@tanstack/react-router": "1.170.44",
