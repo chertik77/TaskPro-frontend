@@ -1,17 +1,14 @@
 import { RouterProvider as TanStackRouterProvider } from '@tanstack/react-router'
 
+import { isStoredAppearanceActive } from '@/shared/config'
 import { router } from '@/shared/lib'
-import { GlobalError, Loader } from '@/shared/ui'
+import { GlobalError, PageLoader } from '@/shared/ui'
 
 export const RouterProvider = () => (
   <TanStackRouterProvider
     router={router}
     defaultPendingComponent={() => (
-      <div
-        className='bg-soft-green fixed inset-0 flex min-h-dvh items-center
-          justify-center'>
-        <Loader className='size-12 stroke-black' />
-      </div>
+      <PageLoader variant={isStoredAppearanceActive() ? 'themed' : 'brand'} />
     )}
     defaultErrorComponent={() => <GlobalError />}
   />

@@ -1,12 +1,17 @@
 import type { Variants } from 'motion/react'
 
+import { useLayoutEffect } from 'react'
 import { Link } from '@tanstack/react-router'
 import { Google, Microsoft } from '@thesvg/react'
 import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
 
 import { authClient } from '@/shared/api'
-import { getBaseUrl } from '@/shared/config'
+import {
+  getBaseUrl,
+  resetAppearance,
+  setStoredAppearanceActive
+} from '@/shared/config'
 import { Logo } from '@/shared/ui'
 
 import { PasskeyButton } from './PasskeyButton'
@@ -27,7 +32,13 @@ const item: Variants = {
 }
 
 export const WelcomePage = () => {
+  useLayoutEffect(resetAppearance, [])
+
   const continueWithSocial = async (provider: 'google' | 'microsoft') => {
+    // The OAuth callback reloads the app, so the head script needs to know
+    // user's theme straight away.
+    setStoredAppearanceActive(true)
+
     await authClient.signIn.social({
       provider,
       callbackURL: getBaseUrl(),

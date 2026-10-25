@@ -2,8 +2,10 @@ export {
   applyAppearance,
   DEFAULT_APPEARANCE,
   getStoredAppearance,
+  isStoredAppearanceActive,
   setStoredAppearance,
-  clearStoredAppearance,
+  setStoredAppearanceActive,
+  resetAppearance,
   resolveTheme,
   type Appearance,
   type Theme

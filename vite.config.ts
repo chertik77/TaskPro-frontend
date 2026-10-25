@@ -20,11 +20,11 @@ const appearanceBootstrap = (): PluginOption => ({
       {
         tag: 'script',
         injectTo: 'head-prepend',
-        children: `(${applyAppearance})({...${JSON.stringify(
-          DEFAULT_APPEARANCE
-        )},...JSON.parse(localStorage.getItem(${JSON.stringify(
+        children: `{const s=JSON.parse(localStorage.getItem(${JSON.stringify(
           APPEARANCE_STORAGE_KEY
-        )}))})`
+        )}));(${applyAppearance})({...${JSON.stringify(
+          DEFAULT_APPEARANCE
+        )},...(s?.active!==false&&s)})}`
       }
     ]
   }

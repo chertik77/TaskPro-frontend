@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import {
   RovingFocusGroup,
   RovingFocusGroupItem
@@ -6,17 +7,12 @@ import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
 
 import { sessionQueries } from '@/entities/user'
 
-export const Route = createFileRoute('/auth/_auth-layout')({
-  beforeLoad: async ({ context: { queryClient } }) => {
-    const isAuthenticated = await queryClient.query({
-      ...sessionQueries.current(),
-      staleTime: 'static'
-    })
+import { resetAppearance } from '@/shared/config'
 
-    if (isAuthenticated) throw redirect({ to: '/dashboard' })
-  },
+const AuthLayout = () => {
+  useLayoutEffect(resetAppearance, [])
 
-  component: () => (
+  return (
     <div className='bg-soft-green fixed inset-0 min-h-dvh overflow-y-auto'>
       <div className='flex min-h-dvh items-center justify-center'>
         <div className='tablet:w-106 tablet:p-10 w-84 rounded-lg bg-black p-6'>
@@ -43,4 +39,17 @@ export const Route = createFileRoute('/auth/_auth-layout')({
       </div>
     </div>
   )
+}
+
+export const Route = createFileRoute('/auth/_auth-layout')({
+  beforeLoad: async ({ context: { queryClient } }) => {
+    const isAuthenticated = await queryClient.query({
+      ...sessionQueries.current(),
+      staleTime: 'static'
+    })
+
+    if (isAuthenticated) throw redirect({ to: '/dashboard' })
+  },
+
+  component: AuthLayout
 })
