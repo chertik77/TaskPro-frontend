@@ -3,10 +3,11 @@ import type { Board } from '@/shared/api'
 import { RovingFocusGroupItem } from '@radix-ui/react-roving-focus'
 import { useNavigate, useParams } from '@tanstack/react-router'
 import { cn } from 'cn'
-import { DynamicIcon } from 'lucide-react/dynamic'
 
 import { DeleteBoardAlertDialog } from '@/features/board/delete'
 import { EditBoardDialog } from '@/features/board/edit'
+
+import { BOARD_ICONS } from '@/entities/board'
 
 import { useSidebarStore } from '@/shared/model'
 
@@ -20,6 +21,8 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
   const { setIsOpenMobile } = useSidebarStore()
 
   const navigate = useNavigate()
+
+  const BoardIcon = BOARD_ICONS[board.icon]
 
   const handleBoardSelect = (id: string) => {
     navigate({ to: '/dashboard/$boardId', params: { boardId: id } })
@@ -45,10 +48,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
         setIsOpenMobile(false)
       }}>
       <div className='tablet:gap-2 flex items-center gap-1'>
-        <DynamicIcon
-          name={board.icon}
-          className='size-4.5'
-        />
+        <BoardIcon className='size-4.5' />
         <p className='tablet:w-30.5 w-26.25 truncate text-left whitespace-pre'>
           {board?.title}
         </p>

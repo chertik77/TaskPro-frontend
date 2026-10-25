@@ -61,10 +61,7 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => {
                   />
                   <DeletePasskeyAlertDialog passkeyId={passkey.id} />
                 </div>
-                <AddPasskeyNameDialog
-                  passkeyId={passkey.id}
-                  passkeyAaguid={passkey.aaguid}
-                />
+                <AddPasskeyNameDialog passkeyId={passkey.id} />
               </m.div>
             ))}
           </AnimatePresence>

@@ -1,4 +1,5 @@
 export { useGetParamBoardId } from './lib/useGetParamBoardId'
+export { BOARD_ICONS } from './config/board-icons'
 export { WHITE_TEXT_BOARD_BG_IDS } from './config/white-text-board-bg-ids'
 export { FormBgImageSelector } from './ui/FormBgImageSelector'
 export { BoardBackgroundImage } from './ui/BoardBackgroundImage'

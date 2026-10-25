@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import { useState } from 'react'
 import { cn } from 'cn'
-import { DynamicIcon } from 'lucide-react/dynamic'
+import { Eye, EyeOff } from 'lucide-react'
 
 import { Input } from './Input'
 
@@ -24,10 +24,11 @@ export const PasswordInput = ({
         className='focus-visible:styled-outline absolute top-4 right-4.5
           opacity-40 peer-[.text-white]:text-white'
         onClick={() => setShowPassword(prev => !prev)}>
-        <DynamicIcon
-          name={showPassword ? 'eye-off' : 'eye'}
-          className='size-4.5'
-        />
+        {showPassword ? (
+          <EyeOff className='size-4.5' />
+        ) : (
+          <Eye className='size-4.5' />
+        )}
       </button>
     </div>
   )

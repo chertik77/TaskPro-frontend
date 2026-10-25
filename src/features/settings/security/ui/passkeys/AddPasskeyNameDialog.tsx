@@ -10,12 +10,10 @@ import { AddPasskeyNameForm } from './AddPasskeyNameForm'
 
 type AddPasskeyNameDialogProps = {
   passkeyId: string
-  passkeyAaguid: string | null | undefined
 }
 
 export const AddPasskeyNameDialog = ({
-  passkeyId,
-  passkeyAaguid
+  passkeyId
 }: AddPasskeyNameDialogProps) => {
   const { isOpen, setIsOpen } = usePasskeyDialogStore()
 
@@ -31,7 +29,6 @@ export const AddPasskeyNameDialog = ({
         </AlertDialogDescription>
         <AddPasskeyNameForm
           passkeyId={passkeyId}
-          passkeyAaguid={passkeyAaguid}
           closeDialog={() => setIsOpen(false)}
         />
       </AlertDialogContent>
