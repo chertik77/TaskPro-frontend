@@ -65,7 +65,7 @@
     "@tanstack/eslint-plugin-router": "^1.162.0",
     "@tanstack/router-plugin": "^1.168.47",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
-    "@types/node": "^25.9.9",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
