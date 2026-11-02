@@ -6,7 +6,6 @@ import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 import { defineConfig } from 'eslint/config'
-import globals from 'globals'
 import eslintTypescript from 'typescript-eslint'
 
 export default defineConfig(
@@ -19,13 +18,6 @@ export default defineConfig(
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
   { ignores: ['**/vite-env.d.ts', '**/generated'] },
-  {
-    languageOptions: {
-      globals: { ...globals.browser },
-      parser: eslintTypescript.parser,
-      parserOptions: { warnOnUnsupportedTypeScriptVersion: false }
-    }
-  },
   {
     rules: {
       'no-restricted-syntax': [
