@@ -5,6 +5,16 @@ import { DayPicker } from '@daypicker/react'
 import { cn } from 'cn'
 import { ChevronRightIcon } from 'lucide-react'
 
+const Chevron = ({ orientation }: ChevronProps) => (
+  <ChevronRightIcon
+    className={cn(
+      `size-4 stroke-black opacity-80 transition-opacity dark:stroke-white
+      dark:opacity-100`,
+      orientation === 'left' && 'rotate-180'
+    )}
+  />
+)
+
 export const Calendar = ({
   className,
   classNames,
@@ -41,18 +51,7 @@ export const Calendar = ({
       disabled: 'opacity-20 pointer-events-none',
       ...classNames
     }}
-    components={{
-      // eslint-disable-next-line @eslint-react/no-nested-component-definitions
-      Chevron: ({ orientation }: ChevronProps) => (
-        <ChevronRightIcon
-          className={cn(
-            `size-4 stroke-black opacity-80 transition-opacity dark:stroke-white
-            dark:opacity-100`,
-            orientation === 'left' && 'rotate-180'
-          )}
-        />
-      )
-    }}
+    components={{ Chevron }}
     {...props}
   />
 )

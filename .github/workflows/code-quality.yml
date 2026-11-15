@@ -23,11 +23,17 @@ jobs:
       - name: Install Dependencies 📦
         run: bun install --frozen-lockfile
 
+      - name: Type Check 🧩
+        run: bun run typecheck
+
       - name: Run Linter 🔧
         run: bun run lint
 
       - name: Verify Code Formatting 📝
         run: bun run format:check
+
+      - name: Build 🏗️
+        run: bun run build
 
       - name: Enforce Conventional Commits 🔒
         uses: webiny/action-conventional-commits@v1.4.2

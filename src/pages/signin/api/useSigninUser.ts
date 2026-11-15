@@ -4,9 +4,9 @@ import type { SigninSchema } from '../model/contract'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionQueries } from '@/entities/user'
+import { refetchSession } from '@/entities/user'
 
-import { authClient, getAuthErrorMessage } from '@/shared/api'
+import { authClient, authErrorMessage } from '@/shared/api'
 
 export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   const queryClient = useQueryClient()
@@ -16,18 +16,13 @@ export const useSigninUser = (reset: UseFormReset<SigninSchema>) => {
   return useMutation({
     mutationFn: (data: SigninSchema) => authClient.signIn.email(data),
     meta: {
-      errorMessage: e => {
-        if (e && 'error' in e) {
-          return (
-            getAuthErrorMessage(e.error.code) ??
-            'An error occurred during sign-in. Our technical team has been notified. Please try again.'
-          )
-        }
-      }
+      errorMessage: authErrorMessage(
+        'An error occurred during sign-in. Our technical team has been notified. Please try again.'
+      )
     },
-    onSuccess(session) {
+    async onSuccess() {
       reset()
-      queryClient.setQueryData(sessionQueries.currents(), session)
+      await refetchSession(queryClient)
       navigate({ to: '/dashboard' })
     }
   })

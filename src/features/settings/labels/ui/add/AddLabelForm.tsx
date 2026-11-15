@@ -1,3 +1,5 @@
+import type { LabelModalProps } from '@/entities/label'
+
 import * as m from 'motion/react-m'
 
 import { LabelColorPicker } from '@/entities/label'
@@ -18,8 +20,8 @@ import { useAddLabel } from '../../api/useAddLabel'
 import { AddLabelSchema } from '../../model/contract'
 
 type AddLabelFormProps = {
-  name?: string
-  onCreatedLabel?: (...event: unknown[]) => void
+  name?: LabelModalProps['name']
+  onCreatedLabel?: LabelModalProps['onCreated']
 }
 
 export const AddLabelForm = ({ name, onCreatedLabel }: AddLabelFormProps) => {

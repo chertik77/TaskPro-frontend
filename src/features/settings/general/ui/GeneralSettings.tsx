@@ -1,8 +1,7 @@
-import { Settings, useSettings } from '@/entities/setting'
+import { Settings, useSettings, useUpdateSettings } from '@/entities/setting'
 
 import { Switch } from '@/shared/ui'
 
-import { useUpdateGeneralSettings } from '../api/useUpdateGeneralSettings'
 import { GENERAL_SETTINGS } from '../config/general-settings-data'
 import { AccentColorSelect } from './AccentColorSelect'
 
@@ -11,7 +10,7 @@ export const GeneralSettings = () => {
     select => select.general
   )
 
-  const { mutate: update } = useUpdateGeneralSettings()
+  const { mutate: update } = useUpdateSettings('general')
 
   return (
     <Settings

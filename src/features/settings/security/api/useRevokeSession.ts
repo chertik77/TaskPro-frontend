@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionQueries } from '@/entities/user'
+import { clearUserCache, sessionQueries } from '@/entities/user'
 
 import { authClient } from '@/shared/api'
 
@@ -24,7 +24,7 @@ export const useRevokeSession = () => {
       if (variables.id !== currentSession?.session.id) return
 
       await authClient.signOut()
-      queryClient.setQueryData(sessionQueries.currents(), null)
+      clearUserCache(queryClient)
       navigate({ to: '/' })
     }
   })

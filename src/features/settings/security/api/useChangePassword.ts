@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 
 import { sessionQueries } from '@/entities/user'
 
-import { authClient, getAuthErrorMessage } from '@/shared/api'
+import { authClient, authErrorMessage } from '@/shared/api'
 
 export const useChangePassword = (closeDialog: () => void) =>
   useMutation({
@@ -18,14 +18,9 @@ export const useChangePassword = (closeDialog: () => void) =>
       invalidates: [sessionQueries.currents()],
       successMessage:
         'Your password has been updated. Other devices were signed out.',
-      errorMessage: e => {
-        if (e && 'error' in e) {
-          return (
-            getAuthErrorMessage(e.error.code) ??
-            'We couldn’t update your password. Please try again.'
-          )
-        }
-      }
+      errorMessage: authErrorMessage(
+        'We couldn’t update your password. Please try again.'
+      )
     },
     onSuccess() {
       closeDialog()

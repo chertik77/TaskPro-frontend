@@ -6,9 +6,7 @@ export type ClientOptions = {
 
 export type ErrorResponse = {
     status: number;
-    message: string | {
-        [key: string]: Array<string>;
-    };
+    message: string;
     /**
      * Per-field validation messages
      */

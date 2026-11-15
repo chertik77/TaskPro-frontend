@@ -146,7 +146,7 @@ type SettingSelectProps<T extends string> = {
   options: readonly SelectOption<T>[]
 }
 
-export const SettingSelect = <T extends string>({
+const SettingSelect = <T extends string>({
   value,
   onChange,
   options

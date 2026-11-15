@@ -4,6 +4,7 @@ import { boardQueries } from '@/entities/board'
 import { labelQueries } from '@/entities/label'
 
 import { deleteLabelMutation } from '@/shared/api'
+import { setOptimisticData } from '@/shared/lib'
 
 export const useDeleteLabel = () => {
   const queryClient = useQueryClient()
@@ -16,20 +17,11 @@ export const useDeleteLabel = () => {
       errorMessage:
         'An error occurred while deleting the label. Please try again.'
     },
-    onMutate: async ({ path: { labelId } }) => {
-      await queryClient.cancelQueries({ queryKey: allLabelsQueryKey })
-
-      const previousLabels = queryClient.getQueryData(allLabelsQueryKey)
-
-      queryClient.setQueryData(allLabelsQueryKey, oldLabels =>
-        oldLabels?.filter(l => l.id !== labelId)
-      )
-
-      return { previousLabels }
-    },
-    onError: (_, __, context) => {
-      queryClient.setQueryData(allLabelsQueryKey, context?.previousLabels)
-    },
+    onMutate: ({ path: { labelId } }) =>
+      setOptimisticData(queryClient, allLabelsQueryKey, labels =>
+        labels.filter(l => l.id !== labelId)
+      ),
+    onError: (_, __, context) => context?.rollback(),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: allLabelsQueryKey })
       queryClient.invalidateQueries({ queryKey: boardQueries.lists() })

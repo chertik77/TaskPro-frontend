@@ -31,7 +31,7 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => {
         <p>
           {!hasPasskeys
             ? 'No passkeys registered'
-            : pluralize(passkeys!.length, 'passkey')}
+            : pluralize(passkeys.length, 'passkey')}
         </p>
         <AddPasskeyButton />
       </m.div>
@@ -43,7 +43,7 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => {
           <AnimatePresence
             initial={false}
             mode='popLayout'>
-            {passkeys!.map(passkey => (
+            {passkeys.map(passkey => (
               <m.div
                 key={passkey.id}
                 layout
@@ -61,12 +61,12 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => {
                   />
                   <DeletePasskeyAlertDialog passkeyId={passkey.id} />
                 </div>
-                <AddPasskeyNameDialog passkeyId={passkey.id} />
               </m.div>
             ))}
           </AnimatePresence>
         </>
       )}
+      <AddPasskeyNameDialog />
     </Settings.Item>
   )
 }

@@ -1,6 +1,6 @@
-import type { Variants } from 'framer-motion'
+import type { Variants } from 'motion/react'
 
-import { stagger } from 'framer-motion'
+import { stagger } from 'motion/react'
 
 export const formVariants: Record<'container' | 'field', Variants> = {
   container: {

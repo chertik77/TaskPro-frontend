@@ -4,7 +4,7 @@ import * as v from 'valibot';
 
 export const vErrorResponse = v.object({
     status: v.number(),
-    message: v.union([v.string(), v.record(v.string(), v.array(v.string()))]),
+    message: v.string(),
     errors: v.optional(v.record(v.string(), v.array(v.string())))
 });
 

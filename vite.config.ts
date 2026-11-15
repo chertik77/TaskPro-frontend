@@ -12,23 +12,39 @@ import {
   DEFAULT_APPEARANCE
 } from './src/shared/config/appearance-bootstrap.ts'
 
-const appearanceBootstrap = (): PluginOption => ({
-  name: 'appearance-bootstrap',
-  transformIndexHtml: {
-    order: 'pre',
-    handler: () => [
+const APPEARANCE_SCRIPT_PATH = '/appearance-bootstrap.js'
+
+const appearanceBootstrap = (): PluginOption => {
+  const code = `{let s;try{s=JSON.parse(localStorage.getItem(${JSON.stringify(
+    APPEARANCE_STORAGE_KEY
+  )}))}catch{}(${applyAppearance})({...${JSON.stringify(
+    DEFAULT_APPEARANCE
+  )},...(s?.active!==false&&s)})}`
+
+  return {
+    name: 'appearance-bootstrap',
+    configureServer: server => {
+      server.middlewares.use(APPEARANCE_SCRIPT_PATH, (_req, res) => {
+        res.setHeader('Content-Type', 'text/javascript')
+        res.end(code)
+      })
+    },
+    generateBundle() {
+      this.emitFile({
+        type: 'asset',
+        fileName: APPEARANCE_SCRIPT_PATH.slice(1),
+        source: code
+      })
+    },
+    transformIndexHtml: () => [
       {
         tag: 'script',
-        injectTo: 'head-prepend',
-        children: `{const s=JSON.parse(localStorage.getItem(${JSON.stringify(
-          APPEARANCE_STORAGE_KEY
-        )}));(${applyAppearance})({...${JSON.stringify(
-          DEFAULT_APPEARANCE
-        )},...(s?.active!==false&&s)})}`
+        attrs: { src: APPEARANCE_SCRIPT_PATH },
+        injectTo: 'head-prepend'
       }
     ]
   }
-})
+}
 
 export default defineConfig({
   plugins: [

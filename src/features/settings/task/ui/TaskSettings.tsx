@@ -1,15 +1,14 @@
-import { Settings, useSettings } from '@/entities/setting'
+import { Settings, useSettings, useUpdateSettings } from '@/entities/setting'
 
 import { Switch } from '@/shared/ui'
 
-import { useUpdateTaskSettings } from '../api/useUpdateTaskSettings'
 import { TASK_SETTINGS } from '../config/task-settings-data'
 import { DefaultPrioritySelect } from './DefaultPrioritySelect'
 
 export const TaskSettings = () => {
   const { data: taskSettings, isPending } = useSettings(select => select.task)
 
-  const { mutate: update } = useUpdateTaskSettings()
+  const { mutate: update } = useUpdateSettings('task')
 
   return (
     <Settings

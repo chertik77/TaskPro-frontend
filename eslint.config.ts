@@ -18,6 +18,7 @@ export default defineConfig(
   ...eslintPluginRouter.configs['flat/recommended'],
   ...eslintPluginQuery.configs['flat/recommended'],
   { ignores: ['**/vite-env.d.ts', '**/generated'] },
+  { settings: { react: { version: '19.3' } } },
   {
     rules: {
       'no-restricted-syntax': [

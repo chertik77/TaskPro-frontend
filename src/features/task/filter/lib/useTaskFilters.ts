@@ -5,7 +5,7 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 type Filters = TaskTypes.TaskSearchSchema
 type ArrayKey = TaskTypes.TaskArrayFilterKey
 
-export const DEFAULT_FILTERS: Filters = {
+const DEFAULT_FILTERS: Filters = {
   search: '',
   priority: [],
   deadline: [],

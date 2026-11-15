@@ -18,8 +18,13 @@ export type Theme = Appearance['theme']
 
 type StoredAppearance = Partial<Appearance> & { active?: boolean }
 
-const readStoredAppearance = (): StoredAppearance | null =>
-  JSON.parse(localStorage.getItem(APPEARANCE_STORAGE_KEY)!)
+const readStoredAppearance = (): StoredAppearance | null => {
+  try {
+    return JSON.parse(localStorage.getItem(APPEARANCE_STORAGE_KEY) ?? 'null')
+  } catch {
+    return null
+  }
+}
 
 const writeStoredAppearance = (appearance: StoredAppearance) =>
   localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify(appearance))

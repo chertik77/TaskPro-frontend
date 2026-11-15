@@ -1,10 +1,10 @@
 import { Outlet } from '@tanstack/react-router'
 import * as m from 'motion/react-m'
 
-import { SettingsSync } from '@/entities/setting'
-
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
+
+import { SettingsSync } from '@/entities/setting'
 
 import { useMediaQuery } from '@/shared/lib'
 import { useSidebarStore } from '@/shared/model'

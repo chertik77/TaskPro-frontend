@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
 import { moveTask } from '@/shared/api'
+import { setOptimisticData } from '@/shared/lib'
 
 import { applyTaskOrder } from '../lib/applyOrderToBoard'
 
@@ -34,21 +35,13 @@ export const useMoveDraggedTask = () => {
         path: { taskId },
         body: { columnId, prevTaskId, nextTaskId }
       }),
-    onMutate: async ({ tasks }) => {
-      await queryClient.cancelQueries({ queryKey })
-
-      const previousBoard = queryClient.getQueryData(queryKey)
-
-      queryClient.setQueryData(queryKey, board =>
-        board
-          ? { ...board, columns: applyTaskOrder(board.columns, tasks) }
-          : board
-      )
-
-      return { previousBoard }
-    },
+    onMutate: ({ tasks }) =>
+      setOptimisticData(queryClient, queryKey, board => ({
+        ...board,
+        columns: applyTaskOrder(board.columns, tasks)
+      })),
     onError: (_error, _variables, context) => {
-      queryClient.setQueryData(queryKey, context?.previousBoard)
+      context?.rollback()
       queryClient.invalidateQueries({ queryKey })
     },
     meta: {

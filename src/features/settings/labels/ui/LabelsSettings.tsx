@@ -1,9 +1,8 @@
-import { Settings } from '@/entities/setting'
+import { Settings, useUpdateSettings } from '@/entities/setting'
 
 import { Switch } from '@/shared/ui'
 
 import { useGetLabelsSettings } from '../api/useGetLabelsSettings'
-import { useUpdateLabelsSettings } from '../api/useUpdateLabelsSettings'
 import { LABELS_SETTINGS } from '../config/labels-settings-data'
 import { AddLabelDialogButton } from './add/AddLabelDialogButton'
 import { LabelsTable } from './LabelsTable'
@@ -11,7 +10,7 @@ import { LabelsTable } from './LabelsTable'
 export const LabelsSettings = () => {
   const { labels, labelSettings, isPending } = useGetLabelsSettings()
 
-  const { mutate: update } = useUpdateLabelsSettings()
+  const { mutate: update } = useUpdateSettings('label')
 
   return (
     <Settings
@@ -30,7 +29,14 @@ export const LabelsSettings = () => {
               <Settings.Select
                 value={labelSettings?.[setting.key].toString()}
                 options={setting.options}
-                onChange={value => update({ body: { [setting.key]: value } })}
+                onChange={value =>
+                  update({
+                    body: {
+                      [setting.key]:
+                        setting.key === 'maxLabelsShown' ? Number(value) : value
+                    }
+                  })
+                }
               />
             )}
 

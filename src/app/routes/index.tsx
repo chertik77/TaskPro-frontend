@@ -1,13 +1,14 @@
-import { WelcomePage } from '@/pages/welcome'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import * as v from 'valibot'
+
+import { WelcomePage } from '@/pages/welcome'
 
 import { sessionQueries } from '@/entities/user'
 
 import { toast } from '@/shared/lib'
 
-export const OauthErrorSearchSchema = v.object({
-  error: v.optional(v.pipe(v.string()))
+const OauthErrorSearchSchema = v.object({
+  error: v.optional(v.string())
 })
 
 export const Route = createFileRoute('/')({

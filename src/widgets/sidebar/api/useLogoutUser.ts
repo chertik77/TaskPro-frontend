@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
-import { sessionQueries } from '@/entities/user'
+import { clearUserCache } from '@/entities/user'
 
 import { authClient } from '@/shared/api'
 
@@ -17,7 +17,7 @@ export const useLogoutUser = () => {
         'An error occurred while logging out. Our technical team has been notified. Please try again.'
     },
     onSuccess: () => {
-      queryClient.setQueryData(sessionQueries.currents(), null)
+      clearUserCache(queryClient)
       navigate({ to: '/' })
     }
   })

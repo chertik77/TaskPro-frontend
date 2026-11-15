@@ -3,7 +3,7 @@ import { useLocation } from '@tanstack/react-router'
 
 import { sessionQueries } from '@/entities/user'
 
-import { authClient, getAuthErrorMessage } from '@/shared/api'
+import { authClient, authErrorMessage } from '@/shared/api'
 import { getBaseUrl } from '@/shared/config'
 
 type AccountConnectionMutationData = {
@@ -33,14 +33,9 @@ export const useAccountConnection = () => {
     },
     meta: {
       invalidates: [sessionQueries.accounts()],
-      errorMessage: e => {
-        if (e && 'error' in e) {
-          return (
-            getAuthErrorMessage(e.error.code) ??
-            'An error occurred while updating the account connection. Please try again.'
-          )
-        }
-      }
+      errorMessage: authErrorMessage(
+        'An error occurred while updating the account connection. Please try again.'
+      )
     }
   })
 }

@@ -8,14 +8,8 @@ import {
 import { usePasskeyDialogStore } from '../../model/passkey-dialog.store'
 import { AddPasskeyNameForm } from './AddPasskeyNameForm'
 
-type AddPasskeyNameDialogProps = {
-  passkeyId: string
-}
-
-export const AddPasskeyNameDialog = ({
-  passkeyId
-}: AddPasskeyNameDialogProps) => {
-  const { isOpen, setIsOpen } = usePasskeyDialogStore()
+export const AddPasskeyNameDialog = () => {
+  const { isOpen, setIsOpen, passkeyId } = usePasskeyDialogStore()
 
   return (
     <AlertDialog

@@ -22,10 +22,8 @@ export const AddLabelDialog = () => {
           You can add a new label here by adding a name and color.
         </DialogDescription>
         <AddLabelForm
-          name={modal.props?.name as string}
-          onCreatedLabel={
-            modal.props?.onCreated as (...event: unknown[]) => void
-          }
+          name={modal.props?.name}
+          onCreatedLabel={modal.props?.onCreated}
         />
       </DialogContent>
     </Dialog>

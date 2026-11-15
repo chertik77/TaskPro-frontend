@@ -1,8 +1,3 @@
-import type { InferOutput } from 'valibot'
-import type { SettingsSchema } from './contract'
-
-export type SettingsSchema = InferOutput<typeof SettingsSchema>
-
 type SettingsKeys<T> = Omit<T, 'id' | 'userId'>
 
 type KeysOfType<T, TValue> = {

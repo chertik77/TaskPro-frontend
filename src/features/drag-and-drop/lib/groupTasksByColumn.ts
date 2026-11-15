@@ -1,30 +1,27 @@
 import type { Task } from '@/shared/api'
 import type { TasksByColumn } from '../model/types'
 
+export const isSameTaskList = (a: Task[] | undefined, b: Task[] | undefined) =>
+  !!a &&
+  !!b &&
+  a.length === b.length &&
+  a.every((task, index) => task === b[index])
+
 export const groupTasksByColumn = (
   tasks: Task[],
-  previous: TasksByColumn
+  previous: TasksByColumn = {}
 ): TasksByColumn => {
   const grouped: TasksByColumn = {}
 
   for (const task of tasks) {
-    const list = grouped[task.columnId]
-
-    if (list) list.push(task)
-    else grouped[task.columnId] = [task]
+    ;(grouped[task.columnId] ??= []).push(task)
   }
 
-  for (const columnId of Object.keys(grouped)) {
-    const nextList = grouped[columnId]
+  for (const [columnId, nextList] of Object.entries(grouped)) {
     const previousList = previous[columnId]
 
-    if (!nextList || !previousList) continue
-
-    const isUnchanged =
-      previousList.length === nextList.length &&
-      previousList.every((task, index) => task === nextList[index])
-
-    if (isUnchanged) grouped[columnId] = previousList
+    if (isSameTaskList(previousList, nextList))
+      grouped[columnId] = previousList!
   }
 
   return grouped

@@ -1,17 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMediaQuery } from '../media/useMediaQuery'
 
-const media = window.matchMedia('(hover: hover) and (pointer: fine)')
-
-export const useShouldAutoFocus = () => {
-  const [shouldAutoFocus, setShouldAutoFocus] = useState(media.matches)
-
-  useEffect(() => {
-    const update = () => setShouldAutoFocus(media.matches)
-
-    media.addEventListener('change', update)
-
-    return () => media.removeEventListener('change', update)
-  }, [])
-
-  return shouldAutoFocus
-}
+export const useShouldAutoFocus = () =>
+  useMediaQuery('(hover: hover) and (pointer: fine)')

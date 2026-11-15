@@ -1,3 +1,4 @@
+import type { BetterFetchError } from 'better-auth/react'
 import type { authClient } from './auth-client'
 
 type AuthErrorCode = keyof typeof authClient.$ERROR_CODES
@@ -19,3 +20,10 @@ export const getAuthErrorMessage = (code: string): string | undefined =>
   Object.hasOwn(AUTH_ERROR_MESSAGES, code)
     ? AUTH_ERROR_MESSAGES[code as keyof typeof AUTH_ERROR_MESSAGES]
     : undefined
+
+export const authErrorMessage =
+  (fallback: string) => (error?: HttpError | BetterFetchError) => {
+    if (error && 'error' in error) {
+      return getAuthErrorMessage(error.error.code) ?? fallback
+    }
+  }

@@ -1,3 +1,5 @@
+import type { LabelModalProps } from '@/entities/label'
+
 import { useMutation } from '@tanstack/react-query'
 
 import { labelQueries, useLabelModalStore } from '@/entities/label'
@@ -5,9 +7,7 @@ import { labelQueries, useLabelModalStore } from '@/entities/label'
 import { createLabelMutation } from '@/shared/api'
 import { isHttpError } from '@/shared/lib'
 
-export const useAddLabel = (
-  onCreatedLabel: ((...event: unknown[]) => void) | undefined
-) => {
+export const useAddLabel = (onCreatedLabel: LabelModalProps['onCreated']) => {
   const { setModal } = useLabelModalStore()
 
   return useMutation({

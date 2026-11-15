@@ -8,7 +8,7 @@ import { toast } from '@/shared/lib'
 import { usePasskeyDialogStore } from '../model/passkey-dialog.store'
 
 export const useAddPasskey = () => {
-  const { setIsOpen } = usePasskeyDialogStore()
+  const { setIsOpen, setPasskeyId } = usePasskeyDialogStore()
 
   return useMutation({
     mutationFn: () => authClient.passkey.addPasskey(),
@@ -17,7 +17,7 @@ export const useAddPasskey = () => {
       errorMessage:
         'An error occurred while adding the passkey. Please try again.'
     },
-    onSuccess({ error }) {
+    onSuccess({ data, error }) {
       if (error && 'code' in error) {
         if (error.code === 'ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY') {
           return toast.warning('Passkey registration cancelled.')
@@ -33,6 +33,9 @@ export const useAddPasskey = () => {
         )
       }
 
+      if (!data) return
+
+      setPasskeyId(data.id)
       setIsOpen(true)
     }
   })

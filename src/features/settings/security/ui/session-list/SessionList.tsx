@@ -12,7 +12,7 @@ import { RevokeSessionButton } from './RevokeSessionButton'
 import { SessionMeta } from './SessionMeta'
 
 type SessionsListProps = {
-  sessions: UserTypes.InferedSession[] | undefined
+  sessions: UserTypes.InferredSession[] | undefined
 }
 
 export const SessionsList = ({ sessions }: SessionsListProps) => {

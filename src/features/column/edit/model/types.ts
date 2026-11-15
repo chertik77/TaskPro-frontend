@@ -1,4 +1,4 @@
-export type EditColumnFormValues = {
+type EditColumnFormValues = {
   title: string
 }
 

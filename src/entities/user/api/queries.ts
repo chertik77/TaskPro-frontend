@@ -1,5 +1,3 @@
-import type { InferedSession } from '../model/types'
-
 import { queryOptions } from '@tanstack/react-query'
 
 import { authClient } from '@/shared/api'
@@ -11,8 +9,7 @@ export const sessionQueries = {
     queryOptions({
       queryKey: sessionQueries.lists(),
       staleTime: 1000 * 30,
-      queryFn: async () =>
-        (await authClient.listSessions()) as unknown as InferedSession[]
+      queryFn: async () => await authClient.listSessions()
     }),
   passkeys: () => [...sessionQueries.all(), 'passkeys'] as const,
   passkey: () =>

@@ -30,7 +30,6 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
 
   return (
     <RovingFocusGroupItem
-      key={board.id}
       className={cn(
         `focus-visible:styled-outline tablet:pl-6 flex min-h-15.25 w-full
         cursor-pointer items-center justify-between pl-3.5 text-black/50
@@ -50,7 +49,7 @@ export const SidebarBoardListItem = ({ board }: SidebarBoardListItemProps) => {
       <div className='tablet:gap-2 flex items-center gap-1'>
         <BoardIcon className='size-4.5' />
         <p className='tablet:w-30.5 w-26.25 truncate text-left whitespace-pre'>
-          {board?.title}
+          {board.title}
         </p>
       </div>
       {boardId === board.id && (

@@ -1,5 +1,6 @@
 export * as UserTypes from './model/types'
-export * as UserContracts from './model/contract'
 export { DEFAULT_AVATAR_URL } from './config/default-avatar-url'
 export { sessionQueries } from './api/queries'
 export { useMe } from './model/useMe'
+export { clearUserCache } from './lib/clear-user-cache'
+export { refetchSession } from './lib/refetch-session'

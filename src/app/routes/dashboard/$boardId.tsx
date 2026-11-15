@@ -1,8 +1,8 @@
 import { createFileRoute, stripSearchParams } from '@tanstack/react-router'
 
-import { TaskContracts } from '@/entities/task'
-
 import { Board } from '@/widgets/kanban-board'
+
+import { TaskContracts } from '@/entities/task'
 
 export const Route = createFileRoute('/dashboard/$boardId')({
   component: Board,

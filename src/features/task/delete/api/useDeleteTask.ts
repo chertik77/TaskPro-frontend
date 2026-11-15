@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { parse } from 'valibot'
 
 import { boardQueries, useGetParamBoardId } from '@/entities/board'
 
-import { deleteTaskMutation, vBoard } from '@/shared/api'
+import { deleteTaskMutation } from '@/shared/api'
+import { setOptimisticData } from '@/shared/lib'
 
 export const useDeleteTask = () => {
   const queryClient = useQueryClient()
@@ -18,32 +18,15 @@ export const useDeleteTask = () => {
       errorMessage:
         'An error occurred while deleting the task. Please try again.'
     },
-    onMutate: async ({ path: { taskId } }) => {
-      await queryClient.cancelQueries({ queryKey: boardQueryKey })
-
-      const previousBoard = queryClient.getQueryData(boardQueryKey)
-
-      const parsedPreviousBoard = parse(vBoard, previousBoard)
-
-      queryClient.setQueryData(boardQueryKey, oldBoard => {
-        if (!oldBoard) return oldBoard
-
-        const parsedOldBoard = parse(vBoard, oldBoard)
-
-        return {
-          ...oldBoard,
-          columns: parsedOldBoard.columns?.map(column => ({
-            ...column,
-            tasks: column.tasks?.filter(task => task.id !== taskId)
-          }))
-        }
-      })
-
-      return { previousBoard: parsedPreviousBoard }
-    },
-    onError: (_, __, context) => {
-      queryClient.setQueryData(boardQueryKey, context?.previousBoard)
-    },
+    onMutate: ({ path: { taskId } }) =>
+      setOptimisticData(queryClient, boardQueryKey, board => ({
+        ...board,
+        columns: board.columns?.map(column => ({
+          ...column,
+          tasks: column.tasks?.filter(task => task.id !== taskId)
+        }))
+      })),
+    onError: (_, __, context) => context?.rollback(),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: boardQueryKey })
     }
