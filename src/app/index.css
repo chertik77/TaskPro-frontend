@@ -3,30 +3,21 @@
 
 @font-face {
   font-family: 'Poppins';
-  src:
-    url('/fonts/poppins/woff2/Poppins-Regular.woff2') format('woff2'),
-    url('/fonts/poppins/woff/Poppins-Regular.woff') format('woff'),
-    url('/fonts/poppins/ttf/Poppins-Regular.ttf') format('truetype');
+  src: url('/fonts/poppins/Poppins-Regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src:
-    url('/fonts/poppins/woff2/Poppins-Medium.woff2') format('woff2'),
-    url('/fonts/poppins/woff/Poppins-Medium.woff') format('woff'),
-    url('/fonts/poppins/ttf/Poppins-Medium.ttf') format('truetype');
+  src: url('/fonts/poppins/Poppins-Medium.woff2') format('woff2');
   font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src:
-    url('/fonts/poppins/woff2/Poppins-SemiBold.woff2') format('woff2'),
-    url('/fonts/poppins/woff/Poppins-SemiBold.woff') format('woff'),
-    url('/fonts/poppins/ttf/Poppins-SemiBold.ttf') format('truetype');
+  src: url('/fonts/poppins/Poppins-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-display: swap;
 }
