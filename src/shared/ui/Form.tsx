@@ -20,10 +20,11 @@ const FormFieldContext = createContext<FormFieldContextValue>(
 
 const FormField = <
   F extends FieldValues = FieldValues,
-  N extends FieldPath<F> = FieldPath<F>
+  N extends FieldPath<F> = FieldPath<F>,
+  T = F
 >({
   ...props
-}: ControllerProps<F, N>) => {
+}: ControllerProps<F, N, T>) => {
   const value = useMemo(() => ({ name: props.name }), [props.name])
 
   return (
