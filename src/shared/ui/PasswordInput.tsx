@@ -21,6 +21,8 @@ export const PasswordInput = ({
       />
       <button
         type='button'
+        aria-label='Show password'
+        aria-pressed={showPassword}
         className='focus-visible:styled-outline absolute top-4 right-4.5
           opacity-40 peer-[.text-white]:text-white'
         onClick={() => setShowPassword(prev => !prev)}>

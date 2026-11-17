@@ -12,6 +12,7 @@ import {
   PasswordInput
 } from '@/shared/ui'
 
+import { usePasskeyAutofill } from '../api/usePasskeyAutofill'
 import { useSigninUser } from '../api/useSigninUser'
 import { SigninSchema } from '../model/contract'
 
@@ -24,10 +25,13 @@ export const SigninPage = () => {
 
   const shouldAutoFocus = useShouldAutoFocus()
 
+  usePasskeyAutofill()
+
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(data => signin(data))}
+        noValidate
         className='space-y-3.5'>
         <div>
           <FormField
@@ -39,7 +43,10 @@ export const SigninPage = () => {
                 <FormControl
                   render={<Input />}
                   autoFocus={shouldAutoFocus}
-                  autoComplete='email'
+                  type='email'
+                  autoComplete='username webauthn'
+                  spellCheck={false}
+                  required
                   className='autofill:text-fill-white text-white'
                 />
                 <FormMessage />
@@ -57,6 +64,7 @@ export const SigninPage = () => {
                 <FormControl
                   render={<PasswordInput />}
                   autoComplete='current-password'
+                  required
                   className='autofill:text-fill-white text-white'
                 />
                 <FormMessage />

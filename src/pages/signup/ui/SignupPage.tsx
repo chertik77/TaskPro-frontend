@@ -28,6 +28,7 @@ export const SignupPage = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(data => signup(data))}
+        noValidate
         className='space-y-3.5'>
         <div>
           <FormField
@@ -40,6 +41,7 @@ export const SignupPage = () => {
                   render={<Input />}
                   autoFocus={shouldAutoFocus}
                   autoComplete='name'
+                  required
                   className='autofill:text-fill-white text-white'
                 />
                 <FormMessage />
@@ -56,7 +58,10 @@ export const SignupPage = () => {
                 <FormLabel className='text-white/50'>Email</FormLabel>
                 <FormControl
                   render={<Input />}
-                  autoComplete='email'
+                  type='email'
+                  autoComplete='username'
+                  spellCheck={false}
+                  required
                   className='autofill:text-fill-white text-white'
                 />
                 <FormMessage />
@@ -74,6 +79,7 @@ export const SignupPage = () => {
                 <FormControl
                   render={<PasswordInput />}
                   autoComplete='new-password'
+                  required
                   className='autofill:text-fill-white text-white'
                 />
                 <FormMessage />
