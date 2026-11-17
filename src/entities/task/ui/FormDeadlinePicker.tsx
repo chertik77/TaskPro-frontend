@@ -90,8 +90,9 @@ export const FormDeadlinePicker = () => {
       {!error && (isUnparsed || value) && (
         <FormDescription
           className={cn(
-            `mt-2 transition-all duration-500 starting:-translate-y-1
-            starting:opacity-0`,
+            `reduce-motion:starting:translate-y-0 mt-2
+            transition-[opacity,translate] duration-200 ease-out
+            starting:-translate-y-1 starting:opacity-0`,
             isOverdue && 'text-amber-600 dark:text-amber-500'
           )}>
           {isUnparsed && "We couldn't read that date. Try “tomorrow”."}

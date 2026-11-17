@@ -11,10 +11,10 @@ export const Checkbox = ({
       `peer data-checked:border-accent data-checked:bg-accent
       focus-visible:styled-outline relative flex size-4 shrink-0 cursor-pointer
       items-center justify-center rounded-sm border border-black/20 bg-white
-      transition-colors outline-none after:absolute after:-inset-x-3
-      after:-inset-y-2 active:scale-95 disabled:cursor-not-allowed
-      disabled:opacity-50 data-checked:text-black dark:border-white/20
-      dark:bg-black`,
+      transition-[color,background-color,border-color,scale] outline-none
+      after:absolute after:-inset-x-3 after:-inset-y-2 active:scale-95
+      disabled:cursor-not-allowed disabled:opacity-50 data-checked:text-black
+      dark:border-white/20 dark:bg-black`,
       className
     )}
     {...props}>

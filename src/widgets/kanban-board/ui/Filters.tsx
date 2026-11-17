@@ -1,10 +1,7 @@
-import type { Variants } from 'motion/react'
 import type { ReactNode } from 'react'
 
 import { useRef } from 'react'
 import { FunnelIcon } from 'lucide-react'
-import { stagger } from 'motion/react'
-import * as m from 'motion/react-m'
 
 import {
   DeadlineFilter,
@@ -21,29 +18,13 @@ import {
   PopoverTrigger
 } from '@/shared/ui'
 
-const container: Variants = {
-  hidden: {},
-  show: { transition: { delayChildren: stagger(0.06) } }
-}
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 6 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
-  }
-}
-
 type FilterSectionProps = { title: string; children: ReactNode }
 
 const FilterSection = ({ title, children }: FilterSectionProps) => (
-  <m.section
-    variants={item}
-    className='space-y-3.5'>
+  <section className='space-y-3.5'>
     <h3>{title}</h3>
     {children}
-  </m.section>
+  </section>
 )
 
 export const Filters = () => {
@@ -87,15 +68,10 @@ export const Filters = () => {
           </button>
         </div>
         <PopoverClose className='absolute top-3.5 right-3.5' />
-        <m.div
-          variants={container}
-          initial='hidden'
-          animate='show'
+        <div
           className='max-h-[min(65vh,34rem)] space-y-4.5 overflow-y-auto px-6
             pt-4.5 pb-6'>
-          <m.div variants={item}>
-            <SearchFilter ref={searchInputRef} />
-          </m.div>
+          <SearchFilter ref={searchInputRef} />
           <div className='border-b border-black/10 dark:border-white/10' />
           <FilterSection title='Priority'>
             <PriorityFilter />
@@ -106,7 +82,7 @@ export const Filters = () => {
           <FilterSection title='Labels'>
             <LabelFilter />
           </FilterSection>
-        </m.div>
+        </div>
       </PopoverContent>
     </Popover>
   )

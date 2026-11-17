@@ -12,7 +12,7 @@ export const Label = ({
     props: mergeProps<'span'>(
       {
         className: cn(
-          'inline-flex px-2 py-0.5 shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md text-[11px] whitespace-nowrap transition-al [&>svg]:pointer-events-none [&>svg]:size-3',
+          'inline-flex px-2 py-0.5 shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md text-[0.6875rem] whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-3',
           className
         )
       },

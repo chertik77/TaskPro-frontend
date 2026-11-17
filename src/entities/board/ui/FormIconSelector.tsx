@@ -26,7 +26,7 @@ export const FormIconSelector = () => {
               className='focus-visible:styled-outline group cursor-pointer'>
               <Icon
                 className='group-hocus:opacity-100 size-4.5 stroke-black
-                  opacity-50 transition-all group-data-checked:opacity-100
+                  opacity-50 transition-opacity group-data-checked:opacity-100
                   dark:stroke-white'
               />
             </Radio.Root>

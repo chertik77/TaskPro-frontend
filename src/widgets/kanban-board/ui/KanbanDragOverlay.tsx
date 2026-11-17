@@ -1,10 +1,11 @@
 import type { DropAnimation } from '@dnd-kit/core'
 
 import { defaultDropAnimationSideEffects, DragOverlay } from '@dnd-kit/core'
-import { MotionGlobalConfig } from 'motion/react'
 import { createPortal } from 'react-dom'
 
 import { useDragAndDropSelector } from '@/features/drag-and-drop'
+
+import { isMotionReduced } from '@/shared/config'
 
 import { dropTiming } from '../config/animations'
 import { MemoizedColumn } from './column-list/MemoizedColumn'
@@ -50,8 +51,7 @@ export const KanbanDragOverlay = () => {
   const columns = useDragAndDropSelector(ctx => ctx.columns)
 
   return createPortal(
-    <DragOverlay
-      dropAnimation={MotionGlobalConfig.skipAnimations ? null : dropAnimation}>
+    <DragOverlay dropAnimation={isMotionReduced() ? null : dropAnimation}>
       {activeColumn && (
         <div className='w-83.5'>
           <div

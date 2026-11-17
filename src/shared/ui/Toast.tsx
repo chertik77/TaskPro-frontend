@@ -54,9 +54,11 @@ const ToastList = () => {
       className='group/toast focus-visible:styled-outline bg-white-soft
         shadow-base dark:bg-black-deep desktop:top-auto desktop:bottom-0
         desktop:origin-bottom desktop:[--dir:-1] desktop:[--exit:1]
-        desktop:after:top-full desktop:after:bottom-auto pointer-events-auto
-        absolute top-0 right-0 z-[calc(1000-var(--toast-index))] h-(--height)
-        w-full origin-top
+        desktop:after:top-full desktop:after:bottom-auto
+        reduce-motion:[transition:opacity_400ms_ease,height_150ms]
+        reduce-motion:data-starting-style:opacity-0 pointer-events-auto absolute
+        top-0 right-0 z-[calc(1000-var(--toast-index))] h-(--height) w-full
+        origin-top
         transform-[translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)+var(--dir)*(var(--toast-index)*var(--peek))+var(--dir)*(var(--shrink)*var(--height))))_scale(var(--scale))]
         rounded-lg border border-black/10 will-change-transform outline-none
         select-none [--dir:1] [--exit:-1] [--gap:0.75rem]
@@ -64,7 +66,7 @@ const ToastList = () => {
         [--offset-y:calc(var(--dir)*var(--toast-offset-y)+var(--dir)*var(--toast-index)*var(--gap)+var(--toast-swipe-movement-y))]
         [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))]
         [--shrink:calc(1-var(--scale))]
-        [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]
+        [transition:transform_400ms_ease,opacity_400ms_ease,height_150ms]
         after:absolute after:bottom-full after:left-0
         after:h-[calc(var(--gap)+1px)] after:w-full
         data-expanded:h-(--toast-height)
@@ -84,8 +86,7 @@ const ToastList = () => {
       <ToastPrimitive.Content
         className={cn(
           `flex h-full gap-3 overflow-hidden p-4 transition-opacity duration-250
-          ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0
-          data-expanded:opacity-100`,
+          ease-out data-behind:opacity-0 data-expanded:opacity-100`,
           toast.description ? 'items-start' : 'items-center'
         )}>
         <ToastIcon type={toast.type} />

@@ -6,7 +6,7 @@ export const Switch = ({ className, ...props }: SwitchPrimitive.Root.Props) => (
     className={cn(
       `focus-visible:styled-outline data-checked:bg-accent
       dark:data-unchecked:bg-gray/15 relative inline-flex h-7 w-13 shrink-0
-      cursor-pointer items-center rounded-full transition-all
+      cursor-pointer items-center rounded-full transition-colors
       data-disabled:cursor-not-allowed data-disabled:opacity-50
       data-unchecked:bg-black/10`,
       className

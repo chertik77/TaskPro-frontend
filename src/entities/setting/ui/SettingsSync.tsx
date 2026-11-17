@@ -1,8 +1,9 @@
 import type { GeneralSettings } from '@/shared/api'
 import type { Appearance } from '@/shared/config'
+import type { ReactNode } from 'react'
 
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { MotionGlobalConfig } from 'motion/react'
+import { MotionConfig, MotionGlobalConfig } from 'motion/react'
 
 import { ACCENT_COLOR_MAP } from '@/entities/user/@x/setting'
 
@@ -22,13 +23,12 @@ const toAppearance = (settings: GeneralSettings): Appearance => ({
   accentColor: ACCENT_COLOR_MAP[settings.accentColor]
 })
 
-export const SettingsSync = () => {
+export const SettingsSync = ({ children }: { children: ReactNode }) => {
   const { data: settings } = useSettings(settings => settings.general)
 
   const [storedAppearance] = useState(getStoredAppearance)
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)')
-  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 
   const { theme, fontSize, animations, accentColor } = settings
     ? toAppearance(settings)
@@ -42,9 +42,12 @@ export const SettingsSync = () => {
   }, [theme, fontSize, animations, accentColor, prefersDark])
 
   useEffect(() => {
-    MotionGlobalConfig.skipAnimations =
-      animations === 'system' ? prefersReducedMotion : animations === 'off'
-  }, [animations, prefersReducedMotion])
+    MotionGlobalConfig.skipAnimations = animations === 'off'
+  }, [animations])
 
-  return null
+  return (
+    <MotionConfig reducedMotion={animations === 'on' ? 'never' : 'user'}>
+      {children}
+    </MotionConfig>
+  )
 }

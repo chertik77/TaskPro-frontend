@@ -1,8 +1,6 @@
 import type { EditColumnData } from '../model/types'
 
-import * as m from 'motion/react-m'
-
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -34,15 +32,12 @@ export const EditColumnForm = ({
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         className='space-y-6'
         onSubmit={form.handleSubmit(editedColumn =>
           editColumn({ path: { columnId }, body: editedColumn })
         )}>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             control={form.control}
             name='title'
@@ -54,16 +49,16 @@ export const EditColumnForm = ({
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending || !form.formState.isDirty}>
             Edit
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

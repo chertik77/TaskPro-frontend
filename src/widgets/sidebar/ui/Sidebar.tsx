@@ -1,5 +1,4 @@
 import { ScrollArea } from '@base-ui/react/scroll-area'
-import * as m from 'motion/react-m'
 
 import { NeedHelpDialog } from '@/features/need-help'
 
@@ -23,11 +22,9 @@ export const Sidebar = () => {
   return isTabletAndBelow ? (
     <SidebarMobileMenu />
   ) : (
-    <m.div
+    <div
       className='row-span-2 overflow-hidden'
-      animate={{ opacity: isOpen ? 1 : 0 }}
-      transition={{ duration: 0.15 }}
-      style={{ pointerEvents: isOpen ? 'auto' : 'none' }}>
+      inert={!isOpen}>
       <ScrollArea.Root className='dark:bg-black-soft w-65 bg-white'>
         <ScrollArea.Viewport className='h-dvh'>
           <ScrollArea.Content>
@@ -51,6 +48,6 @@ export const Sidebar = () => {
           />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
-    </m.div>
+    </div>
   )
 }

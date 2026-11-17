@@ -2,6 +2,7 @@ export {
   applyAppearance,
   DEFAULT_APPEARANCE,
   getStoredAppearance,
+  isMotionReduced,
   isStoredAppearanceActive,
   setStoredAppearance,
   setStoredAppearanceActive,

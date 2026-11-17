@@ -1,9 +1,6 @@
-import * as m from 'motion/react-m'
-
 import { FormLabelsCombobox } from '@/entities/label'
 import { FormDeadlinePicker, FormPrioritySelector } from '@/entities/task'
 
-import { formVariants } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -31,12 +28,8 @@ export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
-        onSubmit={form.handleSubmit(data => addTask(data))}>
-        <m.div variants={formVariants.field}>
+      <form onSubmit={form.handleSubmit(data => addTask(data))}>
+        <div>
           <FormField
             control={form.control}
             name='title'
@@ -48,8 +41,8 @@ export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='description'
@@ -61,8 +54,8 @@ export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='priority'
@@ -74,8 +67,8 @@ export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='labels'
@@ -87,8 +80,8 @@ export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='deadline'
@@ -100,16 +93,16 @@ export const AddTaskForm = ({ columnId, closeDialog }: AddTaskFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Add
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

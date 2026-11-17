@@ -1,5 +1,4 @@
 import { Outlet } from '@tanstack/react-router'
-import * as m from 'motion/react-m'
 
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
@@ -23,18 +22,17 @@ export const DashboardPage = () => {
       : '0px minmax(0, 1fr)'
 
   return (
-    <>
-      <SettingsSync />
+    <SettingsSync>
       <LabelModalProvider />
       <div className='fixed top-0 right-0 block h-12 w-screen'>
-        <m.div
+        <div
           className='grid h-dvh grid-rows-[60px_minmax(0,1fr)]'
-          animate={{ gridTemplateColumns: columns }}>
+          style={{ gridTemplateColumns: columns }}>
           <Sidebar />
           <Header />
           <Outlet />
-        </m.div>
+        </div>
       </div>
-    </>
+    </SettingsSync>
   )
 }

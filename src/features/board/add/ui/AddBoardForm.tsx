@@ -1,8 +1,6 @@
-import * as m from 'motion/react-m'
-
 import { FormBgImageSelector, FormIconSelector } from '@/entities/board'
 
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -30,13 +28,10 @@ export const AddBoardForm = ({ closeDialog }: AddBoardFormProps) => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(data => addBoard({ body: data }))}
         className='space-y-6'>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             control={form.control}
             name='title'
@@ -48,8 +43,8 @@ export const AddBoardForm = ({ closeDialog }: AddBoardFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='icon'
@@ -61,8 +56,8 @@ export const AddBoardForm = ({ closeDialog }: AddBoardFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='background'
@@ -74,8 +69,8 @@ export const AddBoardForm = ({ closeDialog }: AddBoardFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             className='mt-10!'
@@ -83,8 +78,8 @@ export const AddBoardForm = ({ closeDialog }: AddBoardFormProps) => {
             disabled={isPending}>
             Create
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

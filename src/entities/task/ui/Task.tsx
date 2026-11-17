@@ -189,7 +189,7 @@ const TaskLabels = ({ className, ...props }: ComponentProps<'div'>) => {
       {hiddenCount > 0 && (
         <span
           className='bg-white-muted dark:bg-black-muted rounded-md px-2 py-0.5
-            text-[11px]'>
+            text-[0.6875rem]'>
           +{hiddenCount}
         </span>
       )}
@@ -280,9 +280,7 @@ const TaskDeadlineTodayIndicator = ({ className }: { className?: string }) => {
   return (
     deadline &&
     isToday(deadline) && (
-      <BellRingIcon
-        className={cn('stroke-accent size-4.5 animate-bounce pr-1', className)}
-      />
+      <BellRingIcon className={cn('stroke-accent size-4.5 pr-1', className)} />
     )
   )
 }

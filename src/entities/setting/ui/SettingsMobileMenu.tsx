@@ -22,16 +22,12 @@ export const SettingsMobileMenu = ({
       open={isOpen}
       onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Backdrop
-          className='data-open:animate-modal-overlay-in
-            data-closed:animate-modal-overlay-out bg-black-overlay fixed inset-0
-            isolate backdrop-blur-md backdrop-saturate-150'
-        />
+        <Dialog.Backdrop className='modal-backdrop fixed inset-0 isolate' />
         <Dialog.Popup
           initialFocus={false}
-          className='dark:bg-black-soft data-open:animate-modal-in
-            data-closed:animate-modal-out fixed top-0 left-0 flex max-h-dvh
-            min-h-dvh w-56.25 flex-col overflow-y-auto bg-white px-6 py-20'>
+          className='dark:bg-black-soft drawer-left fixed top-0 left-0 flex
+            max-h-dvh min-h-dvh w-56.25 flex-col overflow-y-auto bg-white px-6
+            py-20'>
           <Dialog.Title className='mb-10 text-xl'>Settings</Dialog.Title>
           <ul className='space-y-2'>
             {MENU_DATA.map(({ name, icon: Icon, href }) => (

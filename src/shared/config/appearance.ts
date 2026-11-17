@@ -49,9 +49,17 @@ export const setStoredAppearanceActive = (active: boolean) =>
 export const resetAppearance = () => {
   setStoredAppearanceActive(false)
   applyAppearance(DEFAULT_APPEARANCE)
-  MotionGlobalConfig.skipAnimations = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches
+  MotionGlobalConfig.skipAnimations = false
+}
+
+export const isMotionReduced = () => {
+  const { animations } = document.documentElement.dataset
+
+  return (
+    animations === 'off' ||
+    (animations === 'system' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  )
 }
 
 export const resolveTheme = (

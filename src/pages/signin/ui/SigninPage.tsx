@@ -1,6 +1,4 @@
-import * as m from 'motion/react-m'
-
-import { formVariants, useAppForm, useShouldAutoFocus } from '@/shared/lib'
+import { useAppForm, useShouldAutoFocus } from '@/shared/lib'
 import {
   Button,
   Form,
@@ -28,13 +26,10 @@ export const SigninPage = () => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(data => signin(data))}
         className='space-y-3.5'>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             name='email'
             control={form.control}
@@ -51,8 +46,8 @@ export const SigninPage = () => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             name='password'
             control={form.control}
@@ -68,16 +63,16 @@ export const SigninPage = () => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <Button
             type='submit'
             className='mt-6!'
             disabled={isPending}>
             {isPending ? <Loader /> : 'Log In Now'}
           </Button>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

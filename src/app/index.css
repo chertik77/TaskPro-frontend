@@ -22,9 +22,13 @@
   font-display: swap;
 }
 
-@theme inline {
-  --default-transition-duration: 0.3s;
+@theme {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
 
+@theme inline {
   --font-*: initial;
   --font-poppins: 'Poppins', sans-serif;
 
@@ -46,39 +50,39 @@
   --color-green-light: #9dc888;
 
   --text-*: initial;
-  --text-xs: calc(8px * var(--font-scale));
+  --text-xs: calc(0.5rem * var(--font-scale));
   --text-xs--line-height: normal;
   --text-xs--font-weight: 400;
   --text-xs--letter-spacing: -0.16px;
 
-  --text-sm: calc(10px * var(--font-scale));
+  --text-sm: calc(0.625rem * var(--font-scale));
   --text-sm--line-height: normal;
   --text-sm--font-weight: 400;
   --text-sm--letter-spacing: -0.2px;
 
-  --text-md: calc(12px * var(--font-scale));
+  --text-md: calc(0.75rem * var(--font-scale));
   --text-md--line-height: normal;
   --text-md--letter-spacing: -0.24px;
 
-  --text-base: calc(14px * var(--font-scale));
+  --text-base: calc(0.875rem * var(--font-scale));
   --text-base--line-height: 1.28;
   --text-base--letter-spacing: -0.28px;
 
-  --text-lg: calc(16px * var(--font-scale));
+  --text-lg: calc(1rem * var(--font-scale));
   --text-lg--line-height: normal;
   --text-lg--letter-spacing: -0.64px;
 
-  --text-xl: calc(18px * var(--font-scale));
+  --text-xl: calc(1.125rem * var(--font-scale));
   --text-xl--line-height: normal;
   --text-xl--font-weight: 500;
   --text-xl--letter-spacing: -0.36px;
 
-  --text-2xl: calc(28px * var(--font-scale));
+  --text-2xl: calc(1.75rem * var(--font-scale));
   --text-2xl--line-height: normal;
   --text-2xl--font-weight: 600;
   --text-2xl--letter-spacing: -1.12px;
 
-  --text-3xl: calc(40px * var(--font-scale));
+  --text-3xl: calc(2.5rem * var(--font-scale));
   --text-3xl--line-height: normal;
   --text-3xl--font-weight: 600;
   --text-3xl--letter-spacing: -1.6px;
@@ -91,13 +95,7 @@
   --shadow-*: initial;
   --shadow-base: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
-  --animate-modal-in: modal-in 300ms ease 0s 1 normal none running;
-  --animate-modal-out: modal-out 300ms ease 0s 1 normal none running;
-  --animate-modal-overlay-in: modal-overlay-in 300ms ease 0s 1 normal none
-    running;
-  --animate-modal-overlay-out: modal-overlay-out 300ms ease 0s 1 normal none
-    running;
-  --animate-drag-lift: drag-lift 200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-drag-lift: drag-lift 200ms var(--ease-out) forwards;
 
   @keyframes drag-lift {
     from {
@@ -107,46 +105,6 @@
       scale: 1.03;
       rotate: var(--drag-lift-rotate, 0deg);
       box-shadow: 0px 18px 36px -12px rgba(17, 17, 17, 0.35);
-    }
-  }
-
-  @keyframes modal-overlay-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes modal-overlay-out {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  @keyframes modal-in {
-    from {
-      scale: 0.96;
-      opacity: 0;
-    }
-    to {
-      scale: 100%;
-      opacity: 1;
-    }
-  }
-
-  @keyframes modal-out {
-    from {
-      scale: 100%;
-      opacity: 1;
-    }
-    to {
-      scale: 0.96;
-      opacity: 0;
     }
   }
 }
@@ -179,13 +137,23 @@
     scroll-behavior: auto !important;
   }
 
+  html[data-animations='off'] .animate-spin {
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html[data-animations='system'] *,
     html[data-animations='system'] *::before,
     html[data-animations='system'] *::after {
-      animation-duration: 0s !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0s !important;
+      --tw-enter-scale: 1 !important;
+      --tw-enter-rotate: 0 !important;
+      --tw-enter-translate-x: 0 !important;
+      --tw-enter-translate-y: 0 !important;
+      --tw-exit-scale: 1 !important;
+      --tw-exit-rotate: 0 !important;
+      --tw-exit-translate-x: 0 !important;
+      --tw-exit-translate-y: 0 !important;
       scroll-behavior: auto !important;
     }
   }
@@ -205,8 +173,16 @@
 
 @custom-variant dark (&:where(html[data-theme='dark'] *));
 
+@custom-variant reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    &:where(html[data-animations='system'] *) {
+      @slot;
+    }
+  }
+}
+
 @custom-variant hocus {
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       @slot;
     }
@@ -242,9 +218,96 @@
 @utility animate-nested-dialogs {
   translate: -50% calc(-50% + 1.25rem * var(--nested-dialogs));
   scale: calc(1 - 0.1 * var(--nested-dialogs));
-  transition:
-    translate 300ms ease,
-    scale 300ms ease;
+}
+
+@utility modal-backdrop {
+  background-color: --theme(--color-black-overlay);
+  backdrop-filter: blur(12px) saturate(150%);
+  transition: opacity 250ms var(--ease-out);
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: rgb(0 0 0 / 0.8);
+    backdrop-filter: none;
+  }
+
+  @media (prefers-contrast: more) {
+    background-color: rgb(0 0 0 / 0.85);
+    backdrop-filter: none;
+  }
+}
+
+@utility modal-popup {
+  transition-property: opacity, scale, translate;
+  transition-duration: 250ms;
+  transition-timing-function: var(--ease-out);
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  @variant reduce-motion {
+    &[data-starting-style],
+    &[data-ending-style] {
+      scale: 1;
+    }
+  }
+}
+
+@utility drawer-left {
+  transition: translate 400ms var(--ease-drawer);
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    translate: -100% 0;
+  }
+
+  @variant reduce-motion {
+    transition: opacity 250ms var(--ease-out);
+
+    &[data-starting-style],
+    &[data-ending-style] {
+      translate: none;
+      opacity: 0;
+    }
+  }
+}
+
+@utility nested-dialog-dim {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: --theme(--color-black-overlay);
+    backdrop-filter: blur(12px) saturate(150%);
+    opacity: 0;
+    transition: opacity 250ms var(--ease-out);
+  }
+
+  &[data-nested-dialog-open]::after {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    &::after {
+      background-color: rgb(0 0 0 / 0.8);
+      backdrop-filter: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    &::after {
+      background-color: rgb(0 0 0 / 0.85);
+      backdrop-filter: none;
+    }
+  }
 }
 
 @utility hide-password-toggle {
@@ -257,6 +320,7 @@
 @utility fade-zoom {
   @apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0
     data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95;
+  transform-origin: var(--transform-origin, center);
 }
 
 @utility styled-outline {

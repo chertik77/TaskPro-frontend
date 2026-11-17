@@ -6,6 +6,7 @@ import { cn } from 'cn'
 import { stagger } from 'motion/react'
 import * as m from 'motion/react-m'
 
+import { EASE_OUT } from '@/shared/lib'
 import {
   Loader,
   Select,
@@ -34,11 +35,11 @@ const container: Variants = {
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 8 },
-  show: { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { ease: EASE_OUT } },
   exit: {
     opacity: 0,
     scale: 0.98,
-    transition: { duration: 0.2, ease: 'easeIn' }
+    transition: { duration: 0.15, ease: EASE_OUT }
   }
 }
 

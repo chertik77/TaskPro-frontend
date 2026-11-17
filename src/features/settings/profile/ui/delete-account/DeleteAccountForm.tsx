@@ -1,6 +1,4 @@
-import * as m from 'motion/react-m'
-
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   AlertDialogCancel,
   AlertDialogFooter,
@@ -30,13 +28,10 @@ export const DeleteAccountForm = ({ closeDialog }: DeleteAccountFormProps) => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(({ password }) => deleteAccount(password))}
         className='space-y-6'>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             control={form.control}
             name='password'
@@ -48,8 +43,8 @@ export const DeleteAccountForm = ({ closeDialog }: DeleteAccountFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <Button
@@ -59,8 +54,8 @@ export const DeleteAccountForm = ({ closeDialog }: DeleteAccountFormProps) => {
               {isPending ? 'Deleting...' : 'Delete'}
             </Button>
           </AlertDialogFooter>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

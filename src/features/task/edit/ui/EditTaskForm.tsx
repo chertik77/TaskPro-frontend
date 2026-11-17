@@ -1,7 +1,5 @@
 import type { EditTaskData } from '../model/types'
 
-import * as m from 'motion/react-m'
-
 import { FormLabelsCombobox } from '@/entities/label'
 import {
   FormDeadlinePicker,
@@ -9,7 +7,7 @@ import {
   parseDeadline
 } from '@/entities/task'
 
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -47,14 +45,11 @@ export const EditTaskForm = ({
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(editedTask =>
           editTask({ path: { taskId }, body: editedTask })
         )}>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             control={form.control}
             name='title'
@@ -66,8 +61,8 @@ export const EditTaskForm = ({
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='description'
@@ -80,8 +75,8 @@ export const EditTaskForm = ({
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='labels'
@@ -93,8 +88,8 @@ export const EditTaskForm = ({
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='priority'
@@ -106,8 +101,8 @@ export const EditTaskForm = ({
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='deadline'
@@ -119,16 +114,16 @@ export const EditTaskForm = ({
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending || !form.formState.isDirty}>
             Edit
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

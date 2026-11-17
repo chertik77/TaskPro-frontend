@@ -1,7 +1,8 @@
 import type { ReactNode, RefObject } from 'react'
 
 import { Component } from 'react'
-import { MotionGlobalConfig } from 'motion/react'
+
+import { isMotionReduced } from '@/shared/config'
 
 import { flipTiming } from '../config/animations'
 
@@ -41,12 +42,7 @@ export class FlipGroup extends Component<FlipGroupProps> {
 
     // While dragging, and in the commit the drag ends in, dnd-kit has already
     // moved the items visually — animating them again would move them twice.
-    if (
-      !container ||
-      prevProps.disabled ||
-      disabled ||
-      MotionGlobalConfig.skipAnimations
-    ) {
+    if (!container || prevProps.disabled || disabled || isMotionReduced()) {
       return null
     }
 

@@ -1,8 +1,6 @@
-import * as m from 'motion/react-m'
-
 import { useMe } from '@/entities/user'
 
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -32,13 +30,10 @@ export const EditNameForm = ({ closeDialog }: EditNameFormProps) => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(data => updateName(data))}
         className='space-y-6'>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             control={form.control}
             name='name'
@@ -50,16 +45,16 @@ export const EditNameForm = ({ closeDialog }: EditNameFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending || !form.formState.isDirty}>
             Edit
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

@@ -7,7 +7,7 @@ import * as m from 'motion/react-m'
 
 import { LABEL_BASE_COLOR_MAP } from '@/entities/label'
 
-import { useMediaQuery } from '@/shared/lib'
+import { EASE_OUT, useMediaQuery } from '@/shared/lib'
 import {
   Table,
   TableBody,
@@ -53,7 +53,7 @@ export const LabelsTable = ({ labels }: LabelsTableProps) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}>
+                transition={{ duration: 0.25, ease: EASE_OUT }}>
                 <TableCell
                   className='flex items-center gap-2 text-black dark:text-white'>
                   <span

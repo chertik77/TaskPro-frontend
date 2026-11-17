@@ -1,10 +1,8 @@
 import type { LabelModalProps } from '@/entities/label'
 
-import * as m from 'motion/react-m'
-
 import { LabelColorPicker } from '@/entities/label'
 
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -33,12 +31,8 @@ export const AddLabelForm = ({ name, onCreatedLabel }: AddLabelFormProps) => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
-        onSubmit={form.handleSubmit(data => addLabel({ body: data }))}>
-        <m.div variants={formVariants.field}>
+      <form onSubmit={form.handleSubmit(data => addLabel({ body: data }))}>
+        <div>
           <FormField
             control={form.control}
             name='name'
@@ -52,8 +46,8 @@ export const AddLabelForm = ({ name, onCreatedLabel }: AddLabelFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <FormField
             control={form.control}
             name='color'
@@ -67,16 +61,16 @@ export const AddLabelForm = ({ name, onCreatedLabel }: AddLabelFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Add
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

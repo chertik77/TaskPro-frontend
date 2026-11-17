@@ -7,7 +7,7 @@ import * as m from 'motion/react-m'
 
 import { Settings } from '@/entities/setting'
 
-import { pluralize } from '@/shared/lib'
+import { EASE_OUT, pluralize } from '@/shared/lib'
 
 import { AddPasskeyButton } from './AddPasskeyButton'
 import { AddPasskeyNameDialog } from './AddPasskeyNameDialog'
@@ -50,7 +50,7 @@ export const PasskeysSection = ({ passkeys }: PasskeysSectionProps) => {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.2, ease: EASE_OUT }}
                 className='flex w-full items-center'>
                 <KeyRoundIcon className='mr-2 size-5 opacity-50' />
                 <p>{passkey.name}</p>

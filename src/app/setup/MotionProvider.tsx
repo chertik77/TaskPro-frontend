@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react'
 
-import { domAnimation, LazyMotion } from 'motion/react'
+import { domAnimation, LazyMotion, MotionConfig } from 'motion/react'
 
 export const MotionProvider = ({ children }: { children: ReactNode }) => (
-  <LazyMotion features={domAnimation}>{children}</LazyMotion>
+  <LazyMotion features={domAnimation}>
+    <MotionConfig reducedMotion='user'>{children}</MotionConfig>
+  </LazyMotion>
 )

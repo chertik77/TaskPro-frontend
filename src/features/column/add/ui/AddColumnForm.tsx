@@ -1,6 +1,4 @@
-import * as m from 'motion/react-m'
-
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -28,13 +26,10 @@ export const AddColumnForm = ({ closeDialog }: AddColumnFormProps) => {
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(data => addColumn(data))}
         className='space-y-6'>
-        <m.div variants={formVariants.field}>
+        <div>
           <FormField
             control={form.control}
             name='title'
@@ -46,16 +41,16 @@ export const AddColumnForm = ({ closeDialog }: AddColumnFormProps) => {
               </FormItem>
             )}
           />
-        </m.div>
-        <m.div variants={formVariants.field}>
+        </div>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Add
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

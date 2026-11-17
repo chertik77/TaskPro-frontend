@@ -1,6 +1,4 @@
-import * as m from 'motion/react-m'
-
-import { formVariants, useAppForm } from '@/shared/lib'
+import { useAppForm } from '@/shared/lib'
 import {
   Form,
   FormControl,
@@ -40,16 +38,11 @@ export const ChangePasswordForm = ({
 
   return (
     <Form {...form}>
-      <m.form
-        variants={formVariants.container}
-        initial='hidden'
-        animate='show'
+      <form
         onSubmit={form.handleSubmit(data => changePassword(data))}
         className='space-y-6'>
         {PASSWORD_FIELDS.map(({ name, label }) => (
-          <m.div
-            key={name}
-            variants={formVariants.field}>
+          <div key={name}>
             <FormField
               control={form.control}
               name={name}
@@ -61,17 +54,17 @@ export const ChangePasswordForm = ({
                 </FormItem>
               )}
             />
-          </m.div>
+          </div>
         ))}
-        <m.div variants={formVariants.field}>
+        <div>
           <PlusButtonWithLoader
             type='submit'
             shouldShowLoader={isPending}
             disabled={isPending}>
             Update
           </PlusButtonWithLoader>
-        </m.div>
-      </m.form>
+        </div>
+      </form>
     </Form>
   )
 }

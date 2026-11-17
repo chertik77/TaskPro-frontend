@@ -87,7 +87,7 @@ export const EditAvatarDialog = ({ children }: EditAvatarDialogProps) => {
         className={cn(
           `focus-visible:styled-outline ring-accent/0 group hocus:ring-accent/60
           relative shrink-0 cursor-pointer rounded-xl ring-2 ring-offset-2
-          ring-offset-transparent transition-all`,
+          ring-offset-transparent transition-[box-shadow,scale]`,
           isDraggingOver && 'ring-accent scale-105'
         )}>
         {children}
